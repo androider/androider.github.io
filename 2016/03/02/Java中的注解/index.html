@@ -77,7 +77,7 @@
 
 生成文档。这是最常见的，也是java 最早提供的注解。常用的有@see @param @return 等
 跟踪代码">
-<meta property="og:updated_time" content="2016-03-03T02:52:53.000Z">
+<meta property="og:updated_time" content="2016-03-03T03:03:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中的注解">
 <meta name="twitter:description" content="一、什么东西
@@ -342,7 +342,7 @@
 <li>RetentionPolicy.CLASS 注解在class文件中可用，但会被VM丢</li>
 <li>RetentionPolicy.RUNTIME VM将在运行期也保留注释，因此可以通过反射机制读取注解的信息。 </li>
 </ol>
-<h2 id="3-Documented-将此注解包含到Javadoc中"><a href="#3-Documented-将此注解包含到Javadoc中" class="headerlink" title="3. @Documented:将此注解包含到Javadoc中"></a>3. @Documented:将此注解包含到Javadoc中</h2><p>@Documented用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。</p>
+<h2 id="3-Documented-将此注解包含到Javadoc中"><a href="#3-Documented-将此注解包含到Javadoc中" class="headerlink" title="3. @Documented:将此注解包含到Javadoc中"></a>3. @Documented:将此注解包含到Javadoc中</h2><p><code>@Documented</code>用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。</p>
 <h2 id="4-Inherited：允许子类继承父类的注解"><a href="#4-Inherited：允许子类继承父类的注解" class="headerlink" title="4. @Inherited：允许子类继承父类的注解"></a>4. @Inherited：允许子类继承父类的注解</h2><ul>
 <li>@Inherited 元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。</li>
 <li><strong>注意</strong>：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。</li>
@@ -357,6 +357,7 @@
 </ol>
 <blockquote>
 <h1 id="五、自定义注解"><a href="#五、自定义注解" class="headerlink" title="五、自定义注解"></a>五、自定义注解</h1></blockquote>
+<p> 使用<code>@interface</code>自定义注解时，自动继承了java.lang.annotation.Annotation接口，由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口。<code>@interface</code>用来声明一个注解，其中的每一个方法实际上是声明了一个配置参数。方法的名称就是参数的名称，返回值类型就是参数的类型（返回值类型只能是基本类型、Class、String、enum）。可以通过default来声明参数的默认值。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"><span class="comment">//定义一个注解</span></span><br><span class="line"><span class="annotation">@Target</span>(ElementType.METHOD)<span class="comment">//定义该注解将应用于什么地方，方法或者域</span></span><br><span class="line"><span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)<span class="comment">//定义该注解在哪一个级别可用</span></span><br><span class="line"><span class="keyword">public</span> <span class="annotation">@interface</span> UseCase &#123;</span><br><span class="line">    <span class="comment">//注解元素，可以指定默认值，在使用注解的时候，可以直接给元素赋值如id=5</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> "no description"</span>;</span><br><span class="line">     <span class="comment">//利用枚举来设置参数类型</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">enum</span> ParameterType &#123; STRING, SHORT, INT, BOOL, LONG, OBJECT &#125;;</span><br><span class="line">     <span class="comment">// 默认值,在使用注解的时候，只需要为元素赋值</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> ParameterType <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> ParameterType.STRING</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
