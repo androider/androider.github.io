@@ -71,7 +71,7 @@
 一般干什么用
 生成文档。这是最常见的，也是java 最早提供的注解。常用的有@see @param @return 等
 跟踪代码依赖性，实现替">
-<meta property="og:updated_time" content="2016-03-03T02:27:17.000Z">
+<meta property="og:updated_time" content="2016-03-03T02:35:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中的注解">
 <meta name="twitter:description" content="什么东西注解是Java 1.5引入的，目前已被广泛应用于各种Java框架，如Hibernate，Jersey，Spring。注解相当于是一种嵌入在程序中的元数据，可以使用注解解析工具或编译器对其进行解析，也可以指定注解在编译期或运行期有效。好吧没看懂~~~
@@ -311,8 +311,7 @@
 <h1 id="四种元注解"><a href="#四种元注解" class="headerlink" title="四种元注解"></a>四种元注解</h1><blockquote>
 <p>元注解主要负责注解其他注解的。</p>
 </blockquote>
-<h3 id="1-Target："><a href="#1-Target：" class="headerlink" title="1. @Target："></a>1. @Target：</h3><p><strong>表示该注解可以用什么地方</strong></p>
-<p>@Target说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
+<h2 id="1-Target：表示该注解可以用什么地方"><a href="#1-Target：表示该注解可以用什么地方" class="headerlink" title="1. @Target：表示该注解可以用什么地方"></a>1. @Target：表示该注解可以用什么地方</h2><p>@Target说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
 <p><strong>作用</strong>：用于描述注解的使用范围（即：被描述的注解可以用在什么地方）</p>
 <p><strong>取值(ElementType)有</strong>：</p>
 <ol>
@@ -324,26 +323,25 @@
 <li>PARAMETER:用于描述参数</li>
 <li>TYPE:用于描述类、接口(包括注解类型) 或enum声明</li>
 </ol>
-<h3 id="2-Retention"><a href="#2-Retention" class="headerlink" title="2. @Retention"></a>2. @Retention</h3><p><strong>表示在什么级别保存该注解信息</strong></p>
-<p>可选的参数值在枚举类型 RetentionPolicy 中，包括：</p>
+<h2 id="2-Retention-表示在什么级别保存该注解信息"><a href="#2-Retention-表示在什么级别保存该注解信息" class="headerlink" title="2. @Retention:表示在什么级别保存该注解信息"></a>2. @Retention:表示在什么级别保存该注解信息</h2><p>可选的参数值在枚举类型 RetentionPolicy 中，包括：</p>
 <ol>
 <li>RetentionPolicy.SOURCE 注解将被编译器丢弃 </li>
 <li>RetentionPolicy.CLASS 注解在class文件中可用，但会被VM丢</li>
 <li>RetentionPolicy.RUNTIME VM将在运行期也保留注释，因此可以通过反射机制读取注解的信息。 </li>
 </ol>
-<h3 id="3-Documented"><a href="#3-Documented" class="headerlink" title="3. @Documented:"></a>3. @Documented:</h3><p><strong>将此注解包含到Javadoc中</strong></p>
-<p>@Documented用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。</p>
-<h3 id="4-Inherited："><a href="#4-Inherited：" class="headerlink" title="4. @Inherited："></a>4. @Inherited：</h3><p><strong>允许子类继承父类的注解</strong></p>
-<p>　　- @Inherited 元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。<br>　　<br>　　- 注意：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。<br>　　<br>　　- 当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。</p>
-<p>#三种Java内置注解</p>
-<p>java提供3种内置注解：</p>
+<h2 id="3-Documented-将此注解包含到Javadoc中"><a href="#3-Documented-将此注解包含到Javadoc中" class="headerlink" title="3. @Documented:将此注解包含到Javadoc中"></a>3. @Documented:将此注解包含到Javadoc中</h2><p>@Documented用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。</p>
+<h2 id="4-Inherited：允许子类继承父类的注解"><a href="#4-Inherited：允许子类继承父类的注解" class="headerlink" title="4. @Inherited：允许子类继承父类的注解"></a>4. @Inherited：允许子类继承父类的注解</h2><ul>
+<li>@Inherited 元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。</li>
+<li><strong>注意</strong>：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。</li>
+<li>当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。</li>
+</ul>
+<h1 id="三种Java内置注解"><a href="#三种Java内置注解" class="headerlink" title="三种Java内置注解"></a>三种Java内置注解</h1><p>java提供3种内置注解：</p>
 <ol>
 <li>@Override – 当我们想要覆盖父类的一个方法时，需要使用该注解告知编译器我们正在覆盖一个方法。这样的话，当父类的方法被删除或修改了，编译器会提示错误信息。大家可以学习一下为什么我们总是应该在覆盖方法时使用Java覆盖注解。</li>
 <li>@Deprecated – 当我们想要让编译器知道一个方法已经被弃用(deprecate)时，应该使用这个注解。Java推荐在javadoc中提供信息，告知用户为什么这个方法被弃用了，以及替代方法是什么。</li>
 <li>@SuppressWarnings – 这个注解仅仅是告知编译器，忽略它们产生了特殊警告，比如：在java泛型中使用原始类型。它的保持性策略(retention policy)是SOURCE，在编译器中将被丢弃。</li>
 </ol>
-<p>#自定义注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"><span class="comment">//定义一个注解</span></span><br><span class="line"><span class="annotation">@Target</span>(ElementType.METHOD)<span class="comment">//定义该注解将应用于什么地方，方法或者域</span></span><br><span class="line"><span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)<span class="comment">//定义该注解在哪一个级别可用</span></span><br><span class="line"><span class="keyword">public</span> <span class="annotation">@interface</span> UseCase &#123;</span><br><span class="line">    <span class="comment">//注解元素，可以指定默认值，在使用注解的时候，可以直接给元素赋值如id=5</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> "no description"</span>;</span><br><span class="line">     <span class="comment">//利用枚举来设置参数类型</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">enum</span> ParameterType &#123; STRING, SHORT, INT, BOOL, LONG, OBJECT &#125;;</span><br><span class="line">     <span class="comment">// 默认值,在使用注解的时候，只需要为元素赋值</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> ParameterType <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> ParameterType.STRING</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"><span class="comment">//定义一个注解</span></span><br><span class="line"><span class="annotation">@Target</span>(ElementType.METHOD)<span class="comment">//定义该注解将应用于什么地方，方法或者域</span></span><br><span class="line"><span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)<span class="comment">//定义该注解在哪一个级别可用</span></span><br><span class="line"><span class="keyword">public</span> <span class="annotation">@interface</span> UseCase &#123;</span><br><span class="line">    <span class="comment">//注解元素，可以指定默认值，在使用注解的时候，可以直接给元素赋值如id=5</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> "no description"</span>;</span><br><span class="line">     <span class="comment">//利用枚举来设置参数类型</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">enum</span> ParameterType &#123; STRING, SHORT, INT, BOOL, LONG, OBJECT &#125;;</span><br><span class="line">     <span class="comment">// 默认值,在使用注解的时候，只需要为元素赋值</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> ParameterType <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> ParameterType.STRING</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -536,7 +534,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么东西"><span class="nav-number">1.</span> <span class="nav-text">什么东西</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一般干什么用"><span class="nav-number">2.</span> <span class="nav-text">一般干什么用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四种元注解"><span class="nav-number">3.</span> <span class="nav-text">四种元注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Target："><span class="nav-number">3.0.1.</span> <span class="nav-text">1. @Target：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Retention"><span class="nav-number">3.0.2.</span> <span class="nav-text">2. @Retention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Documented"><span class="nav-number">3.0.3.</span> <span class="nav-text">3. @Documented:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Inherited："><span class="nav-number">3.0.4.</span> <span class="nav-text">4. @Inherited：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么东西"><span class="nav-number">1.</span> <span class="nav-text">什么东西</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一般干什么用"><span class="nav-number">2.</span> <span class="nav-text">一般干什么用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四种元注解"><span class="nav-number">3.</span> <span class="nav-text">四种元注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Target：表示该注解可以用什么地方"><span class="nav-number">3.1.</span> <span class="nav-text">1. @Target：表示该注解可以用什么地方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Retention-表示在什么级别保存该注解信息"><span class="nav-number">3.2.</span> <span class="nav-text">2. @Retention:表示在什么级别保存该注解信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Documented-将此注解包含到Javadoc中"><span class="nav-number">3.3.</span> <span class="nav-text">3. @Documented:将此注解包含到Javadoc中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Inherited：允许子类继承父类的注解"><span class="nav-number">3.4.</span> <span class="nav-text">4. @Inherited：允许子类继承父类的注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三种Java内置注解"><span class="nav-number">4.</span> <span class="nav-text">三种Java内置注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义注解"><span class="nav-number">5.</span> <span class="nav-text">自定义注解</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
