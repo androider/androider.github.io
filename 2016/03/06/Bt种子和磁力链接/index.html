@@ -67,7 +67,7 @@ BT是目前最热门的下载方式之一，它的全称为“BitTorrent”简�
 <meta property="og:site_name" content="我的程序世界">
 <meta property="og:description" content="什么事Bt下载
 BT是目前最热门的下载方式之一，它的全称为“BitTorrent”简称“BT”，中文全称“比特流”。BT服务器是通过一种传销的方式来实现文件共享的，它的工作原理。举个例子来说吧，例如BT服务器将一个文件分成了N个部分，有甲、乙、丙、丁四位用户同时下载，那么BT并不会完全从服务器下载这个文件的所有部分，而是根据实际情况有选择地从其他用户的机器中下载已下载完成的部分。例如甲已经下载了第">
-<meta property="og:updated_time" content="2016-03-06T15:11:02.000Z">
+<meta property="og:updated_time" content="2016-03-06T15:14:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bt种子和磁力链接">
 <meta name="twitter:description" content="什么事Bt下载
@@ -368,6 +368,10 @@ BT是目前最热门的下载方式之一，它的全称为“BitTorrent”简�
 <li>comment， string, 可选, bt 文件注释</li>
 <li>created by， string， 可选， 文件创建者。</li>
 </ol>
+<p>综上，多文件Torrent的结构的树形图为：</p>
+<p>Multi-file Torrent<br>├─announce<br>├─announce-list<br>├─comment<br>├─comment.utf-8<br>├─creation date<br>├─encoding<br>├─info<br>│ ├─files<br>│ │ ├─length<br>│ │ ├─path<br>│ │ └─path.utf-8<br>│ ├─name<br>│ ├─name.utf-8<br>│ ├─piece length<br>│ ├─pieces<br>│ ├─publisher<br>│ ├─publisher-url<br>│ ├─publisher-url.utf-8<br>│ └─publisher.utf-8<br>└─nodes</p>
+<p>单文件Torrent的结构的树形图为：</p>
+<p>Single-File Torrent<br>├─announce<br>├─announce-list<br>├─comment<br>├─comment.utf-8<br>├─creation date<br>├─encoding<br>├─info<br>│ ├─length<br>│ ├─name<br>│ ├─name.utf-8<br>│ ├─piece length<br>│ ├─pieces<br>│ ├─publisher<br>│ ├─publisher-url<br>│ ├─publisher-url.utf-8<br>│ └─publisher.utf-8<br>└─nodes</p>
 
       
     </div>

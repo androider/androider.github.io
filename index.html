@@ -494,6 +494,10 @@
 <li>comment， string, 可选, bt 文件注释</li>
 <li>created by， string， 可选， 文件创建者。</li>
 </ol>
+<p>综上，多文件Torrent的结构的树形图为：</p>
+<p>Multi-file Torrent<br>├─announce<br>├─announce-list<br>├─comment<br>├─comment.utf-8<br>├─creation date<br>├─encoding<br>├─info<br>│ ├─files<br>│ │ ├─length<br>│ │ ├─path<br>│ │ └─path.utf-8<br>│ ├─name<br>│ ├─name.utf-8<br>│ ├─piece length<br>│ ├─pieces<br>│ ├─publisher<br>│ ├─publisher-url<br>│ ├─publisher-url.utf-8<br>│ └─publisher.utf-8<br>└─nodes</p>
+<p>单文件Torrent的结构的树形图为：</p>
+<p>Single-File Torrent<br>├─announce<br>├─announce-list<br>├─comment<br>├─comment.utf-8<br>├─creation date<br>├─encoding<br>├─info<br>│ ├─length<br>│ ├─name<br>│ ├─name.utf-8<br>│ ├─piece length<br>│ ├─pieces<br>│ ├─publisher<br>│ ├─publisher-url<br>│ ├─publisher-url.utf-8<br>│ └─publisher.utf-8<br>└─nodes</p>
 
           
         
