@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -59,23 +59,37 @@
 
 
 
-<meta name="description" content="今天是我23岁生日，哈哈hexo的博客终于搭建完成了。她比我小了整整23岁哦。今天还是蛮高兴的。入职Android也有一年了吧。去年忍痛从Java转行到了Android。人说23窜一窜，要是今年还能长个心愿就满足了。哈哈~~
-一时兴起在QQ空间上爆了张照，收到的大多数是不认识了的评论。毕业后时间一晃好多人真的是从此不再相见。没有时间没有机会。
-今天还收到了好多红包哦~虽然都已经23了，但是能收到红">
+<meta name="description" content="Java内存模型（JMM）
+Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线程共享变量）的访问规则，以及在JVM中将变量存储到内存和从内存中读取出变量的底层细节。
+
+所有的变量都存储在主内存中
+每个线程都有自己独立的工作内存，里面保存该线程使用到的变量副本（主内存中该变量的一份拷贝）
+通常称被多个线程访问的变量为共享变量。
+
+1、Java内存模型的两条规定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="今天我23岁生日了">
-<meta property="og:url" content="http://febsky.me/2016/02/24/今天我23岁生日了/index.html">
+<meta property="og:title" content="Java中的多线程之内存可见性">
+<meta property="og:url" content="http://febsky.me/2016/02/28/2016-02-28-Java中的多线程之内存可见性/index.html">
 <meta property="og:site_name" content="我的程序世界">
-<meta property="og:description" content="今天是我23岁生日，哈哈hexo的博客终于搭建完成了。她比我小了整整23岁哦。今天还是蛮高兴的。入职Android也有一年了吧。去年忍痛从Java转行到了Android。人说23窜一窜，要是今年还能长个心愿就满足了。哈哈~~
-一时兴起在QQ空间上爆了张照，收到的大多数是不认识了的评论。毕业后时间一晃好多人真的是从此不再相见。没有时间没有机会。
-今天还收到了好多红包哦~虽然都已经23了，但是能收到红">
-<meta property="og:image" content="http://febsky.me/images/my_self_photo.jpeg">
-<meta property="og:updated_time" content="2016-02-26T06:40:22.000Z">
+<meta property="og:description" content="Java内存模型（JMM）
+Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线程共享变量）的访问规则，以及在JVM中将变量存储到内存和从内存中读取出变量的底层细节。
+
+所有的变量都存储在主内存中
+每个线程都有自己独立的工作内存，里面保存该线程使用到的变量副本（主内存中该变量的一份拷贝）
+通常称被多个线程访问的变量为共享变量。
+
+1、Java内存模型的两条规定">
+<meta property="og:updated_time" content="2016-03-08T07:19:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="今天我23岁生日了">
-<meta name="twitter:description" content="今天是我23岁生日，哈哈hexo的博客终于搭建完成了。她比我小了整整23岁哦。今天还是蛮高兴的。入职Android也有一年了吧。去年忍痛从Java转行到了Android。人说23窜一窜，要是今年还能长个心愿就满足了。哈哈~~
-一时兴起在QQ空间上爆了张照，收到的大多数是不认识了的评论。毕业后时间一晃好多人真的是从此不再相见。没有时间没有机会。
-今天还收到了好多红包哦~虽然都已经23了，但是能收到红">
+<meta name="twitter:title" content="Java中的多线程之内存可见性">
+<meta name="twitter:description" content="Java内存模型（JMM）
+Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线程共享变量）的访问规则，以及在JVM中将变量存储到内存和从内存中读取出变量的底层细节。
+
+所有的变量都存储在主内存中
+每个线程都有自己独立的工作内存，里面保存该线程使用到的变量副本（主内存中该变量的一份拷贝）
+通常称被多个线程访问的变量为共享变量。
+
+1、Java内存模型的两条规定">
 
 
 
@@ -93,7 +107,7 @@
   };
 </script>
 
-  <title> 今天我23岁生日了 | 我的程序世界 </title>
+  <title> Java中的多线程之内存可见性 | 我的程序世界 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -235,7 +249,7 @@
             
             
               
-                今天我23岁生日了
+                Java中的多线程之内存可见性
               
             
           </h1>
@@ -247,19 +261,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-24T18:30:37+08:00" content="2016-02-24">
-              2016-02-24
+            <time itemprop="dateCreated" datetime="2016-02-28T18:58:45+08:00" content="2016-02-28">
+              2016-02-28
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/02/24/今天我23岁生日了/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/24/今天我23岁生日了/" itemprop="commentsCount"></span>
+                <a href="/2016/02/28/2016-02-28-Java中的多线程之内存可见性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/28/2016-02-28-Java中的多线程之内存可见性/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -281,12 +314,109 @@
       
 
       
-        <p><img src="/images/my_self_photo.jpeg" alt="我自己哦"></p>
-<p>今天是我23岁生日，哈哈hexo的博客终于搭建完成了。她比我小了整整23岁哦。今天还是蛮高兴的。入职Android也有一年了吧。去年忍痛从Java转行到了Android。人说23窜一窜，要是今年还能长个心愿就满足了。哈哈~~</p>
-<p>一时兴起在QQ空间上爆了张照，收到的大多数是不认识了的评论。毕业后时间一晃好多人真的是从此不再相见。没有时间没有机会。</p>
-<p>今天还收到了好多红包哦~虽然都已经23了，但是能收到红包还是蛮高兴的(<em>^__^</em>) 嘻嘻……</p>
-<p>总算有点计划的做东西了。博客是今年的第一步，然后接下来是做自己APP（一个古文词典）了，包括APP后台的搭建。</p>
-<p>在很多地方搭建过博客，虽然自己写的不是高深的东西，但是也不想丢弃~~~新浪云，自己买服务器，阿里云的免费服务器，感觉管理成本太大，可定制性也太小，我想做个介绍自己app的主页，还要用到乱七八糟的文件传输客户端。</p>
+        <h1 id="Java内存模型（JMM）"><a href="#Java内存模型（JMM）" class="headerlink" title="Java内存模型（JMM）"></a>Java内存模型（JMM）</h1><hr>
+<p>Java 内存模型（<font color="#f01400">Java Memory Model</font>）描述了Java程序中各种变量（<strong>线程共享变量</strong>）的访问规则，以及在JVM中将变量存储到内存和从内存中读取出变量的底层细节。</p>
+<ul>
+<li>所有的变量都存储在主内存中</li>
+<li>每个线程都有自己独立的工作内存，里面保存该线程使用到的变量副本（<font color="red">主内存中该变量的一份拷贝</font>）</li>
+<li>通常称被多个线程访问的变量为共享变量。</li>
+</ul>
+<h2 id="1、Java内存模型的两条规定"><a href="#1、Java内存模型的两条规定" class="headerlink" title="1、Java内存模型的两条规定"></a>1、Java内存模型的两条规定</h2><ul>
+<li>线程对共享变量的所有操作都必须在自己的工作内存中进行，而不能直接从主内存中读写</li>
+<li>不同线程之间无法直接访问其他线程<em>工作内存</em>中的变量，线程之间变量值的传递需要通过主内存来完成。</li>
+</ul>
+<h2 id="2、共享变量可见性实现的原理"><a href="#2、共享变量可见性实现的原理" class="headerlink" title="2、共享变量可见性实现的原理"></a>2、共享变量可见性实现的原理</h2><p>线程1对共享变量的修改要想被线程2及时看到，必须经过下列两个步骤：</p>
+<ul>
+<li>把工作内存1中更新过的共享变量刷新到主内存中</li>
+<li>将主内存中最新的共享变量的值更新到工作内存2中</li>
+</ul>
+<h2 id="3、实现可见性的要求："><a href="#3、实现可见性的要求：" class="headerlink" title="3、实现可见性的要求："></a>3、实现可见性的要求：</h2><p>要实现共享变量的可见性，必须保证两点：</p>
+<ul>
+<li>线程修改后的共享变量值能够及时从工作内存刷新到主内存中</li>
+<li>其他线程能够及时把共享变量的最新值从主内存更新到自己的工作内存中</li>
+</ul>
+<h2 id="4、java语言层面支持的可见性实现方式"><a href="#4、java语言层面支持的可见性实现方式" class="headerlink" title="4、java语言层面支持的可见性实现方式"></a>4、java语言层面支持的可见性实现方式</h2><ul>
+<li>synchronized能够实现：<ul>
+<li>原子性（同步）</li>
+<li>可见性（JMM中的规定）：<ul>
+<li>线程解锁前，必须把共享变量的最新值刷新到主内存中</li>
+<li>线程加锁是，将清空工作内存中共享变量的值，从而使用共享变量时需要从主内存中重写读取最新的值（<font color="red">注意加锁和解锁需要是同一把锁</font>）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>volatile<ul>
+<li>能够保证volatile变量的可见性</li>
+<li>不能保证volatile变量符合操作的原子性</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-1、synchronize实现可见性的过程："><a href="#4-1、synchronize实现可见性的过程：" class="headerlink" title="4.1、synchronize实现可见性的过程："></a>4.1、synchronize实现可见性的过程：</h3><ol>
+<li>获取互斥锁</li>
+<li>清空工作内存</li>
+<li>从主内存拷贝变量的最新副本到工作内存</li>
+<li>执行代码</li>
+<li>将更改后的共享变量的值刷新到主内存</li>
+<li>释放互斥锁</li>
+</ol>
+<blockquote>
+<p><em>Tips:<strong>重排序</strong>： 代码书写的顺序与实际执行的顺序不同，指令重排序是编译器或者处理器为了提高城乡性能而做的优化。</em></p>
+<ol>
+<li>编译器优化重排序（编译器优化）</li>
+<li>指令级并行重排序（处理器优化，多核）</li>
+<li>内存系统的重排序（处理器优化）</li>
+</ol>
+<p>as-if-serial: 无论如何重排序，程序执行的结果应该与代码顺序执行的结果一致（PS.我感觉这特么就是废话，如果不一致这代码写出来还能玩~）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;    <span class="comment">//①</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">3</span>;    <span class="comment">//②</span></span><br><span class="line"><span class="keyword">int</span> sum = a+b;    <span class="comment">//③</span></span><br><span class="line"><span class="comment">//编译器不能保证 ① ②的顺序，但是③一定能保证在①②之后。</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-2、volatile实现可见性"><a href="#4-2、volatile实现可见性" class="headerlink" title="4.2、volatile实现可见性"></a>4.2、volatile实现可见性</h3><ul>
+<li>深入来说：通过加入内存屏障和禁止重排序优化来实现的。强制缓存区缓存失效</li>
+<li>对volatile变量执行写操作时，会在写操作后加入一条store屏障指令</li>
+<li>对volatile变量执行读操作的时候，会在读操作前加入一条load屏障指令</li>
+</ul>
+<hr>
+<p>通俗来说：volatile变量在每次被线程访问的时候，都强迫从主内存中重读该变量的值，而当该变量发生变化时，又会强迫线程将最新的值刷新到主内存。这样任何时刻，不同的线程总能看到该变量的最新值。</p>
+<p>线程写volatile变量的过程：</p>
+<ol>
+<li>改变线程工作内存中volatile变量副本的值</li>
+<li>将改变后的副本的值从工作内存刷新到主内存</li>
+</ol>
+<p>线程读volatile变量的过程：</p>
+<ol>
+<li>从主内存中读取volatile变量的最新值到线程的工作内存中</li>
+<li>从工作内存中读取volatile变量的副本</li>
+</ol>
+<hr>
+<p>volatile不能保证变量符合操作的原子性</p>
+<p>比如<code>number ++</code>这货不是原子操作，这货其实是三步操作的。</p>
+<p>那么如何保证它的原子性，有以下三种方式：</p>
+<ul>
+<li>使用<code>synchronized</code>关键字</li>
+<li>使用<code>ReentrantLock</code>,(在java.util.concurrent.locks包下面)</li>
+<li>使用<code>AtomicInterger</code>(java.util.concurrent.atomic包下面)</li>
+</ul>
+<p>演示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">lock.lock();</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.number ++;</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">	lock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="4-3、Volatile和synchronized比较"><a href="#4-3、Volatile和synchronized比较" class="headerlink" title="4.3、Volatile和synchronized比较"></a>4.3、Volatile和synchronized比较</h3><ul>
+<li>volatile不需要加锁，比synchronized轻，不会阻塞线程</li>
+<li><p>volatile 不能保证原子性</p>
+<p> 对于可见性，Java提供了volatile关键字来保证可见性。</p>
+</li>
+</ul>
+<p>　　当一个共享变量被volatile修饰时，它会保证修改的值会立即被更新到主存，当有其他线程需要读取时，它会去内存中读取新值。</p>
+<p>　　而普通的共享变量不能保证可见性，因为普通共享变量被修改之后，什么时候被写入主存是不确定的，当其他线程去读取时，此时内存中可能还是原来的旧值，因此无法保证可见性。</p>
+<p>　　另外，通过synchronized和Lock也能够保证可见性，synchronized和Lock能保证同一时刻只有一个线程获取锁然后执行同步代码，并且在释放锁之前会将对变量的修改刷新到主存当中。因此可以保证可见性。</p>
+<h2 id="5、导致共享变量在线程间不可见的原因："><a href="#5、导致共享变量在线程间不可见的原因：" class="headerlink" title="5、导致共享变量在线程间不可见的原因："></a>5、导致共享变量在线程间不可见的原因：</h2><ul>
+<li>线程的交叉执行</li>
+<li>重排序结合线程的交叉执行</li>
+<li>共享变量更新后的值没有在工作内存与主内存间及时更新</li>
+</ul>
+<p><strong>相关文献</strong></p>
+<ul>
+<li><a href="http://www.cnblogs.com/dolphin0520/p/3920373.html" target="_blank" rel="external">Java并发编程：volatile关键字解析</a></li>
+<li><a href="http://www.imooc.com/learn/352" target="_blank" rel="external">细说Java多线程之内存可见性</a></li>
+</ul>
 
       
     </div>
@@ -299,17 +429,27 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/02/24/2016-02-24-今天我23岁生日了/" rel="next" title="今天我23岁生日了">
+                <i class="fa fa-chevron-left"></i> 今天我23岁生日了
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/02/28/Java中的多线程/" rel="prev" title="Java中的多线程之内存可见性">
-                Java中的多线程之内存可见性 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/02/2016-03-02-Java中的注解/" rel="prev" title="Java中的注解">
+                Java中的注解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -359,8 +499,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/02/24/今天我23岁生日了/"
-           data-title="今天我23岁生日了" data-url="http://febsky.me/2016/02/24/今天我23岁生日了/">
+      <div class="ds-thread" data-thread-key="2016/02/28/2016-02-28-Java中的多线程之内存可见性/"
+           data-title="Java中的多线程之内存可见性" data-url="http://febsky.me/2016/02/28/2016-02-28-Java中的多线程之内存可见性/">
       </div>
     
   </div>
@@ -473,7 +613,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java内存模型（JMM）"><span class="nav-number">1.</span> <span class="nav-text">Java内存模型（JMM）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、Java内存模型的两条规定"><span class="nav-number">1.1.</span> <span class="nav-text">1、Java内存模型的两条规定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、共享变量可见性实现的原理"><span class="nav-number">1.2.</span> <span class="nav-text">2、共享变量可见性实现的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、实现可见性的要求："><span class="nav-number">1.3.</span> <span class="nav-text">3、实现可见性的要求：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、java语言层面支持的可见性实现方式"><span class="nav-number">1.4.</span> <span class="nav-text">4、java语言层面支持的可见性实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1、synchronize实现可见性的过程："><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1、synchronize实现可见性的过程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2、volatile实现可见性"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2、volatile实现可见性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3、Volatile和synchronized比较"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3、Volatile和synchronized比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、导致共享变量在线程间不可见的原因："><span class="nav-number">1.5.</span> <span class="nav-text">5、导致共享变量在线程间不可见的原因：</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
