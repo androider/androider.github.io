@@ -87,7 +87,7 @@ Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线
 
 所有的变量都存储在主内存中
 每个线程都有自己独立">
-<meta property="og:updated_time" content="2016-03-08T04:29:12.000Z">
+<meta property="og:updated_time" content="2016-03-08T04:39:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中的多线程">
 <meta name="twitter:description" content="1、进程
@@ -392,6 +392,17 @@ Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线
 <li>对volatile变量执行写操作时，会在写操作后加入一条store屏障指令</li>
 <li>对volatile变量执行读操作的时候，会在读操作前加入一条load屏障指令</li>
 </ul>
+<p>通俗来说：volatile变量在每次被线程访问的时候，都强迫从主内存中重读该变量的值，而当该变量发生变化时，又会强迫线程将最新的值刷新到主内存。这样任何时刻，不同的线程总能看到该变量的最新值。</p>
+<p>线程写volatile变量的过程：</p>
+<ol>
+<li>改变线程工作内存中volatile变量副本的值</li>
+<li>将改变后的副本的值从工作内存刷新到主内存</li>
+</ol>
+<p>线程度volatile变量的过程：</p>
+<ol>
+<li>从主内存中读取volatile变量的最新值到线程的工作内存中</li>
+<li>从工作内存中读取volatile变量的副本</li>
+</ol>
 <h2 id="2-5、导致共享变量在线程间不可见的原因："><a href="#2-5、导致共享变量在线程间不可见的原因：" class="headerlink" title="2.5、导致共享变量在线程间不可见的原因："></a>2.5、导致共享变量在线程间不可见的原因：</h2><ul>
 <li>线程的交叉执行</li>
 <li>重排序结合线程的交叉执行</li>
