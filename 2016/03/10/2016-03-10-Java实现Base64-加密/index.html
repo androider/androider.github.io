@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -59,8 +59,7 @@
 
 
 
-<meta name="description" content="title: Java中Base64加密简介date: 2016-03-10 10:34:26tags: [Java,加密]
-categories: Java密码学常用术语
+<meta name="description" content="密码学常用术语
 明文：待加密的信息
 密文：经过加密后的明文
 加密：明文转为密文的过程
@@ -68,13 +67,14 @@ categories: Java密码学常用术语
 加密秘钥：通过加密算法进行加密操作的秘钥
 解密：将密文转为明文的过程
 解密算法：密文转为明文的算法
-解密密钥：通过解密算法">
+解密密钥：通过解密算法进行解密操作的密钥
+密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或者密钥的过程
+主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的程序世界">
+<meta property="og:title" content="java使用Base64(加密)">
 <meta property="og:url" content="http://febsky.me/2016/03/10/2016-03-10-Java实现Base64-加密/index.html">
 <meta property="og:site_name" content="我的程序世界">
-<meta property="og:description" content="title: Java中Base64加密简介date: 2016-03-10 10:34:26tags: [Java,加密]
-categories: Java密码学常用术语
+<meta property="og:description" content="密码学常用术语
 明文：待加密的信息
 密文：经过加密后的明文
 加密：明文转为密文的过程
@@ -82,12 +82,13 @@ categories: Java密码学常用术语
 加密秘钥：通过加密算法进行加密操作的秘钥
 解密：将密文转为明文的过程
 解密算法：密文转为明文的算法
-解密密钥：通过解密算法">
-<meta property="og:updated_time" content="2016-03-10T08:47:20.000Z">
+解密密钥：通过解密算法进行解密操作的密钥
+密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或者密钥的过程
+主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段">
+<meta property="og:updated_time" content="2016-03-10T08:55:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的程序世界">
-<meta name="twitter:description" content="title: Java中Base64加密简介date: 2016-03-10 10:34:26tags: [Java,加密]
-categories: Java密码学常用术语
+<meta name="twitter:title" content="java使用Base64(加密)">
+<meta name="twitter:description" content="密码学常用术语
 明文：待加密的信息
 密文：经过加密后的明文
 加密：明文转为密文的过程
@@ -95,7 +96,9 @@ categories: Java密码学常用术语
 加密秘钥：通过加密算法进行加密操作的秘钥
 解密：将密文转为明文的过程
 解密算法：密文转为明文的算法
-解密密钥：通过解密算法">
+解密密钥：通过解密算法进行解密操作的密钥
+密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或者密钥的过程
+主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段">
 
 
 
@@ -113,7 +116,7 @@ categories: Java密码学常用术语
   };
 </script>
 
-  <title>  | 我的程序世界 </title>
+  <title> java使用Base64(加密) | 我的程序世界 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +258,7 @@ categories: Java密码学常用术语
             
             
               
-                
+                java使用Base64(加密)
               
             
           </h1>
@@ -267,11 +270,30 @@ categories: Java密码学常用术语
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T16:47:20+08:00" content="2016-03-10">
+            <time itemprop="dateCreated" datetime="2016-03-10T13:24:40+08:00" content="2016-03-10">
               2016-03-10
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -301,9 +323,7 @@ categories: Java密码学常用术语
       
 
       
-        <hr>
-<p>title: Java中Base64加密简介<br>date: 2016-03-10 10:34:26<br>tags: [Java,加密]</p>
-<h2 id="categories-Java"><a href="#categories-Java" class="headerlink" title="categories: Java"></a>categories: Java</h2><h1 id="密码学常用术语"><a href="#密码学常用术语" class="headerlink" title="密码学常用术语"></a>密码学常用术语</h1><ul>
+        <h1 id="密码学常用术语"><a href="#密码学常用术语" class="headerlink" title="密码学常用术语"></a>密码学常用术语</h1><ul>
 <li><strong>明文</strong>：待加密的信息</li>
 <li><strong>密文</strong>：经过加密后的明文</li>
 <li><strong>加密</strong>：明文转为密文的过程</li>
@@ -327,18 +347,14 @@ categories: Java密码学常用术语
 <li>JAAS（Java Authentication and Authentication Service）</li>
 </ul>
 <h1 id="相关的java包和类"><a href="#相关的java包和类" class="headerlink" title="相关的java包和类"></a>相关的java包和类</h1><ul>
-<li>java.security<ul>
-<li>消息摘要<br>— javax.crypto</li>
-<li>安全消息摘要，消息认证（鉴别）码<br>— java.net.ssl</li>
-<li>安全套接字，基于网咯的加解密</li>
-<li>HttpsURLConnection、SSLContext<h1 id="第三方java扩展"><a href="#第三方java扩展" class="headerlink" title="第三方java扩展"></a>第三方java扩展</h1></li>
+<li><code>java.security</code>  消息摘要</li>
+<li><code>javax.crypto</code>  安全消息摘要，消息认证（鉴别）码</li>
+<li><code>java.net.ssl</code> 安全套接字，基于网咯的加解密 例如：HttpsURLConnection、SSLContext</li>
 </ul>
-</li>
-</ul>
-<ol>
-<li>Bouncy Castle 两种支持方案：<ul>
-<li>配置</li>
-<li>调用</li>
+<h1 id="第三方java扩展"><a href="#第三方java扩展" class="headerlink" title="第三方java扩展"></a>第三方java扩展</h1><ol>
+<li>Bouncy Castle 两种支持（使用）方案：<ul>
+<li>配置（修改配置文件）</li>
+<li>调用（代码里面动态加载）</li>
 </ul>
 </li>
 <li>Commons Codec<ul>
@@ -384,18 +400,28 @@ categories: Java密码学常用术语
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/10/2016-03-10-java消息摘要算法/" rel="next" title="2016-03-10-java消息摘要算法">
-                <i class="fa fa-chevron-left"></i> 2016-03-10-java消息摘要算法
+              <a href="/2016/03/08/2016-03-08-深入浅出java多线程/" rel="next" title="深入浅出java多线程">
+                <i class="fa fa-chevron-left"></i> 深入浅出java多线程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/10/2016-03-10-java消息摘要算法/" rel="prev" title="2016-03-10-java消息摘要算法">
+                2016-03-10-java消息摘要算法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -445,7 +471,7 @@ categories: Java密码学常用术语
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/03/10/2016-03-10-Java实现Base64-加密/"
-           data-title="" data-url="http://febsky.me/2016/03/10/2016-03-10-Java实现Base64-加密/">
+           data-title="java使用Base64(加密)" data-url="http://febsky.me/2016/03/10/2016-03-10-Java实现Base64-加密/">
       </div>
     
   </div>
@@ -558,7 +584,7 @@ categories: Java密码学常用术语
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#categories-Java"><span class="nav-number">1.</span> <span class="nav-text">categories: Java</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#密码学常用术语"><span class="nav-number"></span> <span class="nav-text">密码学常用术语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java安全组成"><span class="nav-number"></span> <span class="nav-text">Java安全组成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关的java包和类"><span class="nav-number"></span> <span class="nav-text">相关的java包和类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三方java扩展"><span class="nav-number"></span> <span class="nav-text">第三方java扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Base64算法"><span class="nav-number"></span> <span class="nav-text">Base64算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Base64用途"><span class="nav-number"></span> <span class="nav-text">Base64用途</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#密码学常用术语"><span class="nav-number">1.</span> <span class="nav-text">密码学常用术语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java安全组成"><span class="nav-number">2.</span> <span class="nav-text">Java安全组成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关的java包和类"><span class="nav-number">3.</span> <span class="nav-text">相关的java包和类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三方java扩展"><span class="nav-number">4.</span> <span class="nav-text">第三方java扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Base64算法"><span class="nav-number">5.</span> <span class="nav-text">Base64算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Base64用途"><span class="nav-number">6.</span> <span class="nav-text">Base64用途</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
