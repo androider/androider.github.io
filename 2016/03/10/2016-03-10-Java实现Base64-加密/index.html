@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -59,37 +59,67 @@
 
 
 
-<meta name="description" content="Java内存模型（JMM）
-Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线程共享变量）的访问规则，以及在JVM中将变量存储到内存和从内存中读取出变量的底层细节。
+<meta name="description" content="title: ‘Java中Base64[加密]简介’date: 2016-03-10 10:34:26tags: 
 
-所有的变量都存储在主内存中
-每个线程都有自己独立的工作内存，里面保存该线程使用到的变量副本（主内存中该变量的一份拷贝）
-通常称被多个线程访问的变量为共享变量。
+Java
+加密categories: 
+Java
+加密
 
-1、Java内存模型的两条规定">
+
+
+
+密码学常用术语
+明文：待加密的信息
+密文：经过加密后的明文
+加密：明文转为密文的过程
+加密算法：明文转为密文的转换算法
+加密秘钥：通过加密算法进行加密操作的秘钥
+解密：将密文转为明文的过程
+解密算法：密文转为明文的算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java中的多线程之内存可见性">
-<meta property="og:url" content="http://febsky.me/2016/02/28/2016-02-28-Java中的多线程之内存可见性/index.html">
+<meta property="og:title" content="我的程序世界">
+<meta property="og:url" content="http://febsky.me/2016/03/10/2016-03-10-Java实现Base64-加密/index.html">
 <meta property="og:site_name" content="我的程序世界">
-<meta property="og:description" content="Java内存模型（JMM）
-Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线程共享变量）的访问规则，以及在JVM中将变量存储到内存和从内存中读取出变量的底层细节。
+<meta property="og:description" content="title: ‘Java中Base64[加密]简介’date: 2016-03-10 10:34:26tags: 
 
-所有的变量都存储在主内存中
-每个线程都有自己独立的工作内存，里面保存该线程使用到的变量副本（主内存中该变量的一份拷贝）
-通常称被多个线程访问的变量为共享变量。
+Java
+加密categories: 
+Java
+加密
 
-1、Java内存模型的两条规定">
-<meta property="og:updated_time" content="2016-03-08T07:19:00.000Z">
+
+
+
+密码学常用术语
+明文：待加密的信息
+密文：经过加密后的明文
+加密：明文转为密文的过程
+加密算法：明文转为密文的转换算法
+加密秘钥：通过加密算法进行加密操作的秘钥
+解密：将密文转为明文的过程
+解密算法：密文转为明文的算法">
+<meta property="og:updated_time" content="2016-03-10T07:06:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java中的多线程之内存可见性">
-<meta name="twitter:description" content="Java内存模型（JMM）
-Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线程共享变量）的访问规则，以及在JVM中将变量存储到内存和从内存中读取出变量的底层细节。
+<meta name="twitter:title" content="我的程序世界">
+<meta name="twitter:description" content="title: ‘Java中Base64[加密]简介’date: 2016-03-10 10:34:26tags: 
 
-所有的变量都存储在主内存中
-每个线程都有自己独立的工作内存，里面保存该线程使用到的变量副本（主内存中该变量的一份拷贝）
-通常称被多个线程访问的变量为共享变量。
+Java
+加密categories: 
+Java
+加密
 
-1、Java内存模型的两条规定">
+
+
+
+密码学常用术语
+明文：待加密的信息
+密文：经过加密后的明文
+加密：明文转为密文的过程
+加密算法：明文转为密文的转换算法
+加密秘钥：通过加密算法进行加密操作的秘钥
+解密：将密文转为明文的过程
+解密算法：密文转为明文的算法">
 
 
 
@@ -107,7 +137,7 @@ Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线
   };
 </script>
 
-  <title> Java中的多线程之内存可见性 | 我的程序世界 </title>
+  <title>  | 我的程序世界 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +279,7 @@ Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线
             
             
               
-                Java中的多线程之内存可见性
+                
               
             
           </h1>
@@ -261,38 +291,19 @@ Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-28T18:58:45+08:00" content="2016-02-28">
-              2016-02-28
+            <time itemprop="dateCreated" datetime="2016-03-10T15:06:24+08:00" content="2016-03-10">
+              2016-03-10
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/02/28/2016-02-28-Java中的多线程之内存可见性/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/28/2016-02-28-Java中的多线程之内存可见性/" itemprop="commentsCount"></span>
+                <a href="/2016/03/10/2016-03-10-Java实现Base64-加密/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/2016-03-10-Java实现Base64-加密/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -314,109 +325,86 @@ Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线
       
 
       
-        <h1 id="Java内存模型（JMM）"><a href="#Java内存模型（JMM）" class="headerlink" title="Java内存模型（JMM）"></a>Java内存模型（JMM）</h1><hr>
-<p>Java 内存模型（<font color="#f01400">Java Memory Model</font>）描述了Java程序中各种变量（<strong>线程共享变量</strong>）的访问规则，以及在JVM中将变量存储到内存和从内存中读取出变量的底层细节。</p>
+        <hr>
+<p>title: ‘Java中Base64[加密]简介’<br>date: 2016-03-10 10:34:26<br>tags: </p>
 <ul>
-<li>所有的变量都存储在主内存中</li>
-<li>每个线程都有自己独立的工作内存，里面保存该线程使用到的变量副本（<font color="red">主内存中该变量的一份拷贝</font>）</li>
-<li>通常称被多个线程访问的变量为共享变量。</li>
-</ul>
-<h2 id="1、Java内存模型的两条规定"><a href="#1、Java内存模型的两条规定" class="headerlink" title="1、Java内存模型的两条规定"></a>1、Java内存模型的两条规定</h2><ul>
-<li>线程对共享变量的所有操作都必须在自己的工作内存中进行，而不能直接从主内存中读写</li>
-<li>不同线程之间无法直接访问其他线程<em>工作内存</em>中的变量，线程之间变量值的传递需要通过主内存来完成。</li>
-</ul>
-<h2 id="2、共享变量可见性实现的原理"><a href="#2、共享变量可见性实现的原理" class="headerlink" title="2、共享变量可见性实现的原理"></a>2、共享变量可见性实现的原理</h2><p>线程1对共享变量的修改要想被线程2及时看到，必须经过下列两个步骤：</p>
-<ul>
-<li>把工作内存1中更新过的共享变量刷新到主内存中</li>
-<li>将主内存中最新的共享变量的值更新到工作内存2中</li>
-</ul>
-<h2 id="3、实现可见性的要求："><a href="#3、实现可见性的要求：" class="headerlink" title="3、实现可见性的要求："></a>3、实现可见性的要求：</h2><p>要实现共享变量的可见性，必须保证两点：</p>
-<ul>
-<li>线程修改后的共享变量值能够及时从工作内存刷新到主内存中</li>
-<li>其他线程能够及时把共享变量的最新值从主内存更新到自己的工作内存中</li>
-</ul>
-<h2 id="4、java语言层面支持的可见性实现方式"><a href="#4、java语言层面支持的可见性实现方式" class="headerlink" title="4、java语言层面支持的可见性实现方式"></a>4、java语言层面支持的可见性实现方式</h2><ul>
-<li>synchronized能够实现：<ul>
-<li>原子性（同步）</li>
-<li>可见性（JMM中的规定）：<ul>
-<li>线程解锁前，必须把共享变量的最新值刷新到主内存中</li>
-<li>线程加锁是，将清空工作内存中共享变量的值，从而使用共享变量时需要从主内存中重写读取最新的值（<font color="red">注意加锁和解锁需要是同一把锁</font>）</li>
+<li>Java</li>
+<li>加密<br>categories: <ul>
+<li>Java</li>
+<li>加密</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>volatile<ul>
-<li>能够保证volatile变量的可见性</li>
-<li>不能保证volatile变量符合操作的原子性</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-1、synchronize实现可见性的过程："><a href="#4-1、synchronize实现可见性的过程：" class="headerlink" title="4.1、synchronize实现可见性的过程："></a>4.1、synchronize实现可见性的过程：</h3><ol>
-<li>获取互斥锁</li>
-<li>清空工作内存</li>
-<li>从主内存拷贝变量的最新副本到工作内存</li>
-<li>执行代码</li>
-<li>将更改后的共享变量的值刷新到主内存</li>
-<li>释放互斥锁</li>
-</ol>
-<blockquote>
-<p><em>Tips:<strong>重排序</strong>： 代码书写的顺序与实际执行的顺序不同，指令重排序是编译器或者处理器为了提高城乡性能而做的优化。</em></p>
-<ol>
-<li>编译器优化重排序（编译器优化）</li>
-<li>指令级并行重排序（处理器优化，多核）</li>
-<li>内存系统的重排序（处理器优化）</li>
-</ol>
-<p>as-if-serial: 无论如何重排序，程序执行的结果应该与代码顺序执行的结果一致（PS.我感觉这特么就是废话，如果不一致这代码写出来还能玩~）</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;    <span class="comment">//①</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">3</span>;    <span class="comment">//②</span></span><br><span class="line"><span class="keyword">int</span> sum = a+b;    <span class="comment">//③</span></span><br><span class="line"><span class="comment">//编译器不能保证 ① ②的顺序，但是③一定能保证在①②之后。</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-2、volatile实现可见性"><a href="#4-2、volatile实现可见性" class="headerlink" title="4.2、volatile实现可见性"></a>4.2、volatile实现可见性</h3><ul>
-<li>深入来说：通过加入内存屏障和禁止重排序优化来实现的。强制缓存区缓存失效</li>
-<li>对volatile变量执行写操作时，会在写操作后加入一条store屏障指令</li>
-<li>对volatile变量执行读操作的时候，会在读操作前加入一条load屏障指令</li>
 </ul>
 <hr>
-<p>通俗来说：volatile变量在每次被线程访问的时候，都强迫从主内存中重读该变量的值，而当该变量发生变化时，又会强迫线程将最新的值刷新到主内存。这样任何时刻，不同的线程总能看到该变量的最新值。</p>
-<p>线程写volatile变量的过程：</p>
-<ol>
-<li>改变线程工作内存中volatile变量副本的值</li>
-<li>将改变后的副本的值从工作内存刷新到主内存</li>
-</ol>
-<p>线程读volatile变量的过程：</p>
-<ol>
-<li>从主内存中读取volatile变量的最新值到线程的工作内存中</li>
-<li>从工作内存中读取volatile变量的副本</li>
-</ol>
-<hr>
-<p>volatile不能保证变量符合操作的原子性</p>
-<p>比如<code>number ++</code>这货不是原子操作，这货其实是三步操作的。</p>
-<p>那么如何保证它的原子性，有以下三种方式：</p>
-<ul>
-<li>使用<code>synchronized</code>关键字</li>
-<li>使用<code>ReentrantLock</code>,(在java.util.concurrent.locks包下面)</li>
-<li>使用<code>AtomicInterger</code>(java.util.concurrent.atomic包下面)</li>
+<h1 id="密码学常用术语"><a href="#密码学常用术语" class="headerlink" title="密码学常用术语"></a>密码学常用术语</h1><ul>
+<li><strong>明文</strong>：待加密的信息</li>
+<li><strong>密文</strong>：经过加密后的明文</li>
+<li><strong>加密</strong>：明文转为密文的过程</li>
+<li><strong>加密算法</strong>：明文转为密文的转换算法</li>
+<li><strong>加密秘钥</strong>：通过加密算法进行加密操作的秘钥</li>
+<li><strong>解密</strong>：将密文转为明文的过程</li>
+<li><strong>解密算法</strong>：密文转为明文的算法</li>
+<li><strong>解密密钥</strong>：通过解密算法进行解密操作的密钥</li>
+<li><strong>密码分析</strong>：截获密文者试图通过分析截获的密文从而推断出原来的明文或者密钥的过程</li>
+<li><strong>主动攻击</strong>：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺   骗。（对密文具有破坏作用）</li>
+<li><strong>被动攻击</strong>：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用）</li>
+<li><strong>密码体制</strong>：由明文空间、密文空间、密钥空间、加密算法和解密算法五部分组成。</li>
+<li><strong>密码协议</strong>：也称为安全协议，指以密码学为基础的消息交互的通信协议，目的是在网络环境中提供安全的服务。</li>
+<li><strong>密码系统</strong>：指用于加密、解密的系统</li>
+<li><strong>柯克霍夫原则</strong>：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。—现代密码学设计的基本原则。</li>
 </ul>
-<p>演示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">lock.lock();</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.number ++;</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">	lock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="4-3、Volatile和synchronized比较"><a href="#4-3、Volatile和synchronized比较" class="headerlink" title="4.3、Volatile和synchronized比较"></a>4.3、Volatile和synchronized比较</h3><ul>
-<li>volatile不需要加锁，比synchronized轻，不会阻塞线程</li>
-<li><p>volatile 不能保证原子性</p>
-<p> 对于可见性，Java提供了volatile关键字来保证可见性。</p>
+<h1 id="Java安全组成"><a href="#Java安全组成" class="headerlink" title="Java安全组成"></a>Java安全组成</h1><ul>
+<li>JCA（Java Cryptography Architecture）</li>
+<li>JCE（Java Cryptography Extension） 这是个扩展包，像一些DES、AES、RSA等加密算法由它提供。</li>
+<li>JSSE（Java Secure Socket Extension）提供基于SSL的加密算法，主要用于网络传输</li>
+<li>JAAS（Java Authentication and Authentication Service）</li>
+</ul>
+<h1 id="相关的java包和类"><a href="#相关的java包和类" class="headerlink" title="相关的java包和类"></a>相关的java包和类</h1><ul>
+<li>java.security<ul>
+<li>消息摘要<br>— javax.crypto</li>
+<li>安全消息摘要，消息认证（鉴别）码<br>— java.net.ssl</li>
+<li>安全套接字，基于网咯的加解密</li>
+<li>HttpsURLConnection、SSLContext<h1 id="第三方java扩展"><a href="#第三方java扩展" class="headerlink" title="第三方java扩展"></a>第三方java扩展</h1></li>
+</ul>
 </li>
 </ul>
-<p>　　当一个共享变量被volatile修饰时，它会保证修改的值会立即被更新到主存，当有其他线程需要读取时，它会去内存中读取新值。</p>
-<p>　　而普通的共享变量不能保证可见性，因为普通共享变量被修改之后，什么时候被写入主存是不确定的，当其他线程去读取时，此时内存中可能还是原来的旧值，因此无法保证可见性。</p>
-<p>　　另外，通过synchronized和Lock也能够保证可见性，synchronized和Lock能保证同一时刻只有一个线程获取锁然后执行同步代码，并且在释放锁之前会将对变量的修改刷新到主存当中。因此可以保证可见性。</p>
-<h2 id="5、导致共享变量在线程间不可见的原因："><a href="#5、导致共享变量在线程间不可见的原因：" class="headerlink" title="5、导致共享变量在线程间不可见的原因："></a>5、导致共享变量在线程间不可见的原因：</h2><ul>
-<li>线程的交叉执行</li>
-<li>重排序结合线程的交叉执行</li>
-<li>共享变量更新后的值没有在工作内存与主内存间及时更新</li>
+<ol>
+<li>Bouncy Castle 两种支持方案：<ul>
+<li>配置</li>
+<li>调用</li>
 </ul>
-<p><strong>相关文献</strong></p>
-<ul>
-<li><a href="http://www.cnblogs.com/dolphin0520/p/3920373.html" target="_blank" rel="external">Java并发编程：volatile关键字解析</a></li>
-<li><a href="http://www.imooc.com/learn/352" target="_blank" rel="external">细说Java多线程之内存可见性</a></li>
+</li>
+<li>Commons Codec<ul>
+<li>Apache 提供的</li>
+<li>Base64、二进制、十六进制、字符集编码</li>
+<li>Url编码/解码</li>
 </ul>
+</li>
+</ol>
+<h1 id="Base64算法"><a href="#Base64算法" class="headerlink" title="Base64算法"></a>Base64算法</h1><ul>
+<li><p><strong>定义</strong> ： 基于64个字符的编码算法</p>
+</li>
+<li><p>算法实现</p>
+<ol>
+<li>JDK的实现</li>
+<li>Commons Codec的实现</li>
+<li>Bouncy Castle 实现</li>
+</ol>
+</li>
+</ul>
+<p>Base64是一种用64个字符来表示任意二进制数据的方法。</p>
+<p>用记事本打开exe、jpg、pdf这些文件时，我们都会看到一大堆乱码，因为二进制文件包含很多无法显示和打印的字符，所以，如果要让记事本这样的文本处理软件能处理二进制数据，就需要一个二进制到字符串的转换方法。Base64是一种最常见的二进制编码方法。</p>
+<p>Base64的原理很简单，首先，准备一个包含64个字符的数组：</p>
+<p><code>[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, ... &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, ... &#39;0&#39;, &#39;1&#39;, ... &#39;+&#39;, &#39;/&#39;]</code><br>然后，对二进制数据进行处理，每3个字节一组，一共是3x8=24bit，划为4组，每组正好6个bit.</p>
+<p>这样我们得到4个数字作为索引，然后查表，获得相应的4个字符，就是编码后的字符串。</p>
+<p>所以，Base64编码会把3字节的二进制数据编码为4字节的文本数据，长度增加33%，好处是编码后的文本数据可以在邮件正文、网页等直接显示。</p>
+<p>如果要编码的二进制数据不是3的倍数，最后会剩下1个或2个字节怎么办？Base64用\x00字节在末尾补足后，再在编码的末尾加上1个或2个=号，表示补了多少字节，解码的时候，会自动去掉。</p>
+<h1 id="Base64用途"><a href="#Base64用途" class="headerlink" title="Base64用途"></a>Base64用途</h1><ul>
+<li>Base64是一种通过查表的编码方法，不能用于加密，即使使用自定义的编码表也不行。</li>
+<li>Base64适用于小段内容的编码，比如数字证书签名、Cookie的内容等。</li>
+</ul>
+<p><strong>【参考文献】</strong><br><a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001399413803339f4bbda5c01fc479cbea98b1387390748000" target="_blank" rel="external">base64</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2008/06/base64.html" target="_blank" rel="external">阮一峰</a></p>
 
       
     </div>
@@ -429,28 +417,18 @@ Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Java/" rel="tag">#Java</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/24/2016-02-24-今天我23岁生日了/" rel="next" title="今天我23岁生日了">
-                <i class="fa fa-chevron-left"></i> 今天我23岁生日了
+              <a href="/2016/03/08/2016-03-08-深入浅出java多线程/" rel="next" title="深入浅出java多线程">
+                <i class="fa fa-chevron-left"></i> 深入浅出java多线程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/02/2016-03-02-Java中的注解/" rel="prev" title="Java中的注解">
-                Java中的注解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -499,8 +477,8 @@ Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/02/28/2016-02-28-Java中的多线程之内存可见性/"
-           data-title="Java中的多线程之内存可见性" data-url="http://febsky.me/2016/02/28/2016-02-28-Java中的多线程之内存可见性/">
+      <div class="ds-thread" data-thread-key="2016/03/10/2016-03-10-Java实现Base64-加密/"
+           data-title="" data-url="http://febsky.me/2016/03/10/2016-03-10-Java实现Base64-加密/">
       </div>
     
   </div>
@@ -613,7 +591,7 @@ Java 内存模型（Java Memory Model）描述了Java程序中各种变量（线
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java内存模型（JMM）"><span class="nav-number">1.</span> <span class="nav-text">Java内存模型（JMM）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、Java内存模型的两条规定"><span class="nav-number">1.1.</span> <span class="nav-text">1、Java内存模型的两条规定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、共享变量可见性实现的原理"><span class="nav-number">1.2.</span> <span class="nav-text">2、共享变量可见性实现的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、实现可见性的要求："><span class="nav-number">1.3.</span> <span class="nav-text">3、实现可见性的要求：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、java语言层面支持的可见性实现方式"><span class="nav-number">1.4.</span> <span class="nav-text">4、java语言层面支持的可见性实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1、synchronize实现可见性的过程："><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1、synchronize实现可见性的过程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2、volatile实现可见性"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2、volatile实现可见性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3、Volatile和synchronized比较"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3、Volatile和synchronized比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、导致共享变量在线程间不可见的原因："><span class="nav-number">1.5.</span> <span class="nav-text">5、导致共享变量在线程间不可见的原因：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#密码学常用术语"><span class="nav-number">1.</span> <span class="nav-text">密码学常用术语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java安全组成"><span class="nav-number">2.</span> <span class="nav-text">Java安全组成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关的java包和类"><span class="nav-number">3.</span> <span class="nav-text">相关的java包和类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三方java扩展"><span class="nav-number">4.</span> <span class="nav-text">第三方java扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Base64算法"><span class="nav-number">5.</span> <span class="nav-text">Base64算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Base64用途"><span class="nav-number">6.</span> <span class="nav-text">Base64用途</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
