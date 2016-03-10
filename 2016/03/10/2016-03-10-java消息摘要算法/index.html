@@ -117,7 +117,7 @@ JDK
 MD4
 128
 Bou">
-<meta property="og:updated_time" content="2016-03-10T09:24:09.000Z">
+<meta property="og:updated_time" content="2016-03-10T10:37:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java消息摘要算法">
 <meta name="twitter:description" content="消息摘要算法大概分为以下三类：
@@ -391,7 +391,7 @@ Bou">
 <li>MAC（Message Authentication Code）</li>
 </ul>
 <p>消息摘要算法是为了验证数据的完整性，数字签名的核心算法。</p>
-<h1 id="MD算法-128位摘要算法"><a href="#MD算法-128位摘要算法" class="headerlink" title="MD算法(128位摘要算法)"></a>MD算法(128位摘要算法)</h1><p>包括 <code>MD2</code>,<code>MD4</code>,<code>MD5</code></p>
+<h1 id="MD算法-128位摘要算法"><a href="#MD算法-128位摘要算法" class="headerlink" title="MD算法(128位摘要算法)"></a>MD算法(128位摘要算法)</h1><p><strong>包括</strong> <code>MD2</code>,<code>MD4</code>,<code>MD5</code></p>
 <table>
 <thead>
 <tr>
@@ -418,6 +418,52 @@ Bou">
 </tr>
 </tbody>
 </table>
+<p><strong>用途</strong></p>
+<p>在用户登录系统中可以对密码做MD5运算，数据库保存运算后的16进制字符串表示。</p>
+<p>Jdk中的使用列子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testMd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        String str = <span class="string">"www.febsky.me"</span>;</span><br><span class="line">        MessageDigest messageDigest = MessageDigest.getInstance(<span class="string">"MD5"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">byte</span>[] md5bytes = messageDigest.digest(str.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//至于byte数组如何打印可以借助于Apache的commons-codec.jar中的工具类</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="SHA-（安全散列）算法"><a href="#SHA-（安全散列）算法" class="headerlink" title="SHA （安全散列）算法"></a>SHA （安全散列）算法</h1><ul>
+<li>固定长度摘要信息</li>
+<li>SHA-1、SHA-2（SHA-224，SHA-256、SHA-384、SHA-512）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th style="text-align:center">摘要长度</th>
+<th style="text-align:right">实现方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SHA-1</td>
+<td style="text-align:center">160</td>
+<td style="text-align:right">JDK</td>
+</tr>
+<tr>
+<td>SHA-224</td>
+<td style="text-align:center">224</td>
+<td style="text-align:right">Bouncy Castle</td>
+</tr>
+<tr>
+<td>SHA-256</td>
+<td style="text-align:center">256</td>
+<td style="text-align:right">JDK</td>
+</tr>
+<tr>
+<td>SHA-384</td>
+<td style="text-align:center">384</td>
+<td style="text-align:right">JDK</td>
+</tr>
+<tr>
+<td>SHA-512</td>
+<td style="text-align:center">512</td>
+<td style="text-align:right">JDK</td>
+</tr>
+</tbody>
+</table>
+<p>代码实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testSHA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        String str = <span class="string">"www.febsky.me"</span>;</span><br><span class="line">        MessageDigest messageDigest = MessageDigest.getInstance(<span class="string">"SHA"</span>);</span><br><span class="line"></span><br><span class="line">        messageDigest.update(str.getBytes());</span><br><span class="line">        <span class="keyword">byte</span>[] md5bytes = messageDigest.digest();</span><br><span class="line">        <span class="comment">//至于byte数组如何打印可以借助于Apache的commons-codec.jar中的工具类</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="MAC-算法"><a href="#MAC-算法" class="headerlink" title="MAC 算法"></a>MAC 算法</h1><p>没用过，貌似和加密密钥有关</p>
 
       
     </div>
@@ -612,7 +658,7 @@ Bou">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#消息摘要算法"><span class="nav-number">1.</span> <span class="nav-text">消息摘要算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MD算法-128位摘要算法"><span class="nav-number">2.</span> <span class="nav-text">MD算法(128位摘要算法)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#消息摘要算法"><span class="nav-number">1.</span> <span class="nav-text">消息摘要算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MD算法-128位摘要算法"><span class="nav-number">2.</span> <span class="nav-text">MD算法(128位摘要算法)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SHA-（安全散列）算法"><span class="nav-number">3.</span> <span class="nav-text">SHA （安全散列）算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MAC-算法"><span class="nav-number">4.</span> <span class="nav-text">MAC 算法</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
