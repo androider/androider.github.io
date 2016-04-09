@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="MacOS," />
+  <meta name="keywords" content="Java,算法," />
 
 
 
@@ -59,22 +59,28 @@
 
 
 
-<meta name="description" content="最简单的方式
-安装homebrew
-然后brew install tree">
+<meta name="description" content="1、算法描述假定n是数组的长度，
+首先假设第一个元素被放置在正确的位置上，这样仅需从1-n-1范围内对剩余元素进行排序。对于每次遍历，从0-i-1范围内的元素已经被排好序，
+每次遍历的任务是：通过扫描前面已排序的子列表，将位置i处的元素定位到从0到i的子列表之内的正确的位置上。
+将arr[i]复制为一个名为target的临时元素。
+向下扫描列表，比较这个目标值target与arr[i-1]、arr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MacOS中的tree命令">
-<meta property="og:url" content="http://febsky.me/2016/03/06/2016-03-06-MacOS中的tree命令/index.html">
+<meta property="og:title" content="插入排序Java实现">
+<meta property="og:url" content="http://febsky.me/2016/04/09/2016-04-09-插入排序Java实现/index.html">
 <meta property="og:site_name" content="我的程序世界">
-<meta property="og:description" content="最简单的方式
-安装homebrew
-然后brew install tree">
-<meta property="og:updated_time" content="2016-03-06T07:17:02.000Z">
+<meta property="og:description" content="1、算法描述假定n是数组的长度，
+首先假设第一个元素被放置在正确的位置上，这样仅需从1-n-1范围内对剩余元素进行排序。对于每次遍历，从0-i-1范围内的元素已经被排好序，
+每次遍历的任务是：通过扫描前面已排序的子列表，将位置i处的元素定位到从0到i的子列表之内的正确的位置上。
+将arr[i]复制为一个名为target的临时元素。
+向下扫描列表，比较这个目标值target与arr[i-1]、arr">
+<meta property="og:updated_time" content="2016-04-09T06:39:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MacOS中的tree命令">
-<meta name="twitter:description" content="最简单的方式
-安装homebrew
-然后brew install tree">
+<meta name="twitter:title" content="插入排序Java实现">
+<meta name="twitter:description" content="1、算法描述假定n是数组的长度，
+首先假设第一个元素被放置在正确的位置上，这样仅需从1-n-1范围内对剩余元素进行排序。对于每次遍历，从0-i-1范围内的元素已经被排好序，
+每次遍历的任务是：通过扫描前面已排序的子列表，将位置i处的元素定位到从0到i的子列表之内的正确的位置上。
+将arr[i]复制为一个名为target的临时元素。
+向下扫描列表，比较这个目标值target与arr[i-1]、arr">
 
 
 
@@ -92,7 +98,7 @@
   };
 </script>
 
-  <title> MacOS中的tree命令 | 我的程序世界 </title>
+  <title> 插入排序Java实现 | 我的程序世界 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -234,7 +240,7 @@
             
             
               
-                MacOS中的tree命令
+                插入排序Java实现
               
             
           </h1>
@@ -246,8 +252,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-06T15:15:05+08:00" content="2016-03-06">
-              2016-03-06
+            <time itemprop="dateCreated" datetime="2016-04-09T10:56:27+08:00" content="2016-04-09">
+              2016-04-09
             </time>
           </span>
 
@@ -260,8 +266,20 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MacOs/" itemprop="url" rel="index">
-                    <span itemprop="name">MacOs</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -276,8 +294,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/06/2016-03-06-MacOS中的tree命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/06/2016-03-06-MacOS中的tree命令/" itemprop="commentsCount"></span>
+                <a href="/2016/04/09/2016-04-09-插入排序Java实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/2016-04-09-插入排序Java实现/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -299,10 +317,28 @@
       
 
       
-        <h1 id="最简单的方式"><a href="#最简单的方式" class="headerlink" title="最简单的方式"></a>最简单的方式</h1><hr>
-<p>安装<code>homebrew</code></p>
-<p>然后<code>brew install tree</code></p>
-
+        <h1 id="1、算法描述"><a href="#1、算法描述" class="headerlink" title="1、算法描述"></a>1、算法描述</h1><p>假定n是数组的长度，</p>
+<p>首先假设第一个元素被放置在正确的位置上，这样仅需从1-n-1范围内对剩余元素进行排序。对于每次遍历，从0-i-1范围内的元素已经被排好序，</p>
+<p>每次遍历的任务是：通过扫描前面已排序的子列表，将位置i处的元素定位到从0到i的子列表之内的正确的位置上。</p>
+<p>将arr[i]复制为一个名为target的临时元素。</p>
+<p>向下扫描列表，比较这个目标值target与arr[i-1]、arr[i-2]的大小，依次类推。</p>
+<p>这个比较过程在小于或等于目标值的第一个元素(arr[j])处停止，或者在列表开始处停止（j=0）。</p>
+<p>在arr[i]小于前面任何已排序元素时，后一个条件（j=0）为真，</p>
+<p>因此，这个元素会占用新排序子列表的第一个位置。</p>
+<p>在扫描期间，大于目标值target的每个元素都会向右滑动一个位置（arr[j]=arr[j-1]）。</p>
+<p>一旦确定了正确位置j，</p>
+<p>目标值target（即原始的arr[i]）就会被复制到这个位置。</p>
+<p>与选择排序不同的是，插入排序将数据向右滑动，并且不会执行交换。</p>
+<h1 id="2、举例描述"><a href="#2、举例描述" class="headerlink" title="2、举例描述"></a>2、举例描述</h1><p><code>10 3 8 0 6 9 2</code></p>
+<p>当使用插入排序进行升序排序时，排序的步骤是这样的：</p>
+<p><code>10 3 8 0 6 9 2</code> // 取元素3，去和10进行对比</p>
+<p><code>3 10 8 0 6 9 2</code> // 由于10比3大，将10向后移动，将3放置在原来10的位置；再取8与前一个元素10进行对比</p>
+<p><code>3 8 10 0 6 9 2</code> // 同理移动10；然后8再和3比，8大于3，所以不再移动；如此重复下去</p>
+<p>……</p>
+<p><code>0 2 3 6 8 9 10</code></p>
+<p>也就是说，我们每一次取一个元素，都要将该元素与之前已经排序好的元素进行比较。</p>
+<p>插入排序的最差时间复杂度为O(n^2)。同时，该算法不需要开辟额外的空间，都是在原空间上进行移动操作。</p>
+<h1 id="3、代码实现"><a href="#3、代码实现" class="headerlink" title="3、代码实现"></a>3、代码实现</h1>
       
     </div>
 
@@ -316,7 +352,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MacOS/" rel="tag">#MacOS</a>
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -325,16 +363,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/06/2016-03-06-Bt种子和磁力链接/" rel="next" title="Bt种子和磁力链接">
-                <i class="fa fa-chevron-left"></i> Bt种子和磁力链接
+              <a href="/2016/04/09/2016-04-09-选择排序Java实现/" rel="next" title="选择排序Java实现">
+                <i class="fa fa-chevron-left"></i> 选择排序Java实现
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/08/2016-03-08-深入浅出java多线程/" rel="prev" title="深入浅出java多线程">
-                深入浅出java多线程 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/09/2016-04-09-Eclipse中的Android项目导入AndroidStudio中的错误/" rel="prev" title="Eclipse中的Android项目导入AndroidStudio中的错误">
+                Eclipse中的Android项目导入AndroidStudio中的错误 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -384,8 +422,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/06/2016-03-06-MacOS中的tree命令/"
-           data-title="MacOS中的tree命令" data-url="http://febsky.me/2016/03/06/2016-03-06-MacOS中的tree命令/">
+      <div class="ds-thread" data-thread-key="2016/04/09/2016-04-09-插入排序Java实现/"
+           data-title="插入排序Java实现" data-url="http://febsky.me/2016/04/09/2016-04-09-插入排序Java实现/">
       </div>
     
   </div>
@@ -498,7 +536,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#最简单的方式"><span class="nav-number">1.</span> <span class="nav-text">最简单的方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、算法描述"><span class="nav-number">1.</span> <span class="nav-text">1、算法描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、举例描述"><span class="nav-number">2.</span> <span class="nav-text">2、举例描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、代码实现"><span class="nav-number">3.</span> <span class="nav-text">3、代码实现</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

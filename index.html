@@ -236,6 +236,275 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/09/2016-04-09-Eclipse中的Android项目导入AndroidStudio中的错误/" itemprop="url">
+                  Eclipse中的Android项目导入AndroidStudio中的错误
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-09T16:55:55+08:00" content="2016-04-09">
+              2016-04-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AndroidStudio/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidStudio</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/09/2016-04-09-Eclipse中的Android项目导入AndroidStudio中的错误/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/2016-04-09-Eclipse中的Android项目导入AndroidStudio中的错误/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#1、图片资源格式错误</p>
+<p><strong>错误Log：</strong></p>
+<font color="red"><code>AAPT err(Facade for 205525644) : No Delegate set : lost message:libpng error: Not a PNG file</code></font>
+
+<p><strong>引发原因：</strong><br>这个引发的原因主要是没有通过正规的途径修改图片的格式，比如原来的有张图片名字为<code>icon.jpg</code>,而你没有用图片编辑器，直接修改了图片的后缀名，改为了<code>icon.png</code>,虽然图片能正常打开，但是AndroidStudio对图片资源文件的检查比较严格。一般引起的原因要么是自己作死，自己改了后缀名;另一种是你盗用别人的资源文件，反编译的时候图片文件出错（一般发生在<code>.9</code>图片）</p>
+<p><strong>解决方案：</strong>有时候Log中会标出是哪张图片出了问题，这种比较好解决，直接找到这个图片，然后进行修改或者重新做一张图就好了。还有一种就是像我这个一样的错误，没有标出到底是哪个图片出错了。这时候比较麻烦了，项目是自己的还好，你可以大体猜测一下这个项目的哪些图片可能出错。如果不是自己的只能逐个排查。</p>
+<p><strong>错误图片排查方式：</strong><br>在studio中依次点开每个后缀名为png（因为我的错误是说某个图片不是png，从这个意思可以推测说的是某个以png为后缀的图片其真实格式不是png，所以我们队png图片进行排查）的图片（如图）。打开后在AndroidStudio的图片编辑器中的右上角会显示出图片的真实格式，查看这个格式是否和图片的后缀名一样，找到不一样的，进行修改。</p>
+<p><img src="https://github.com/niyingxunzong/images/blob/master/2016%2F04%2F09-AndroidStudio%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F%E6%9F%A5%E7%9C%8B.png" alt="09-AndroidStudio图片格式查看"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/09/2016-04-09-插入排序Java实现/" itemprop="url">
+                  插入排序Java实现
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-09T10:56:27+08:00" content="2016-04-09">
+              2016-04-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/09/2016-04-09-插入排序Java实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/2016-04-09-插入排序Java实现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1、算法描述"><a href="#1、算法描述" class="headerlink" title="1、算法描述"></a>1、算法描述</h1><p>假定n是数组的长度，</p>
+<p>首先假设第一个元素被放置在正确的位置上，这样仅需从1-n-1范围内对剩余元素进行排序。对于每次遍历，从0-i-1范围内的元素已经被排好序，</p>
+<p>每次遍历的任务是：通过扫描前面已排序的子列表，将位置i处的元素定位到从0到i的子列表之内的正确的位置上。</p>
+<p>将arr[i]复制为一个名为target的临时元素。</p>
+<p>向下扫描列表，比较这个目标值target与arr[i-1]、arr[i-2]的大小，依次类推。</p>
+<p>这个比较过程在小于或等于目标值的第一个元素(arr[j])处停止，或者在列表开始处停止（j=0）。</p>
+<p>在arr[i]小于前面任何已排序元素时，后一个条件（j=0）为真，</p>
+<p>因此，这个元素会占用新排序子列表的第一个位置。</p>
+<p>在扫描期间，大于目标值target的每个元素都会向右滑动一个位置（arr[j]=arr[j-1]）。</p>
+<p>一旦确定了正确位置j，</p>
+<p>目标值target（即原始的arr[i]）就会被复制到这个位置。</p>
+<p>与选择排序不同的是，插入排序将数据向右滑动，并且不会执行交换。</p>
+<h1 id="2、举例描述"><a href="#2、举例描述" class="headerlink" title="2、举例描述"></a>2、举例描述</h1><p><code>10 3 8 0 6 9 2</code></p>
+<p>当使用插入排序进行升序排序时，排序的步骤是这样的：</p>
+<p><code>10 3 8 0 6 9 2</code> // 取元素3，去和10进行对比</p>
+<p><code>3 10 8 0 6 9 2</code> // 由于10比3大，将10向后移动，将3放置在原来10的位置；再取8与前一个元素10进行对比</p>
+<p><code>3 8 10 0 6 9 2</code> // 同理移动10；然后8再和3比，8大于3，所以不再移动；如此重复下去</p>
+<p>……</p>
+<p><code>0 2 3 6 8 9 10</code></p>
+<p>也就是说，我们每一次取一个元素，都要将该元素与之前已经排序好的元素进行比较。</p>
+<p>插入排序的最差时间复杂度为O(n^2)。同时，该算法不需要开辟额外的空间，都是在原空间上进行移动操作。</p>
+<h1 id="3、代码实现"><a href="#3、代码实现" class="headerlink" title="3、代码实现"></a>3、代码实现</h1>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/09/2016-04-09-选择排序Java实现/" itemprop="url">
                   选择排序Java实现
                 </a>
@@ -1230,345 +1499,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/10/2016-03-11-Java数字签名概述/" itemprop="url">
-                  Java数字签名概述
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T18:44:11+08:00" content="2016-03-10">
-              2016-03-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/加密/" itemprop="url" rel="index">
-                    <span itemprop="name">加密</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/10/2016-03-11-Java数字签名概述/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/2016-03-11-Java数字签名概述/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/10/2016-03-10-Java消息摘要算法/" itemprop="url">
-                  java消息摘要算法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T16:41:38+08:00" content="2016-03-10">
-              2016-03-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/加密/" itemprop="url" rel="index">
-                    <span itemprop="name">加密</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/10/2016-03-10-Java消息摘要算法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/2016-03-10-Java消息摘要算法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="消息摘要算法"><a href="#消息摘要算法" class="headerlink" title="消息摘要算法"></a>消息摘要算法</h1><font color="red"><strong>大概分为以下三类：</strong></font>
-
-<ul>
-<li>MD（Message Digest）</li>
-<li>SHA（Secure Hash Algorithm）</li>
-<li>MAC（Message Authentication Code）</li>
-</ul>
-<p>消息摘要算法是为了验证数据的完整性，数字签名的核心算法。</p>
-<h1 id="MD算法-128位摘要算法"><a href="#MD算法-128位摘要算法" class="headerlink" title="MD算法(128位摘要算法)"></a>MD算法(128位摘要算法)</h1><p><strong>包括</strong> <code>MD2</code>,<code>MD4</code>,<code>MD5</code></p>
-<table>
-<thead>
-<tr>
-<th>算法</th>
-<th style="text-align:center">摘要长度</th>
-<th style="text-align:right">实现方</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>MD2</td>
-<td style="text-align:center">128</td>
-<td style="text-align:right">JDK</td>
-</tr>
-<tr>
-<td>MD4</td>
-<td style="text-align:center">128</td>
-<td style="text-align:right">Bouncy Castle</td>
-</tr>
-<tr>
-<td>MD5</td>
-<td style="text-align:center">128</td>
-<td style="text-align:right">JDK</td>
-</tr>
-</tbody>
-</table>
-<p><strong>用途</strong></p>
-<p>在用户登录系统中可以对密码做MD5运算，数据库保存运算后的16进制字符串表示。</p>
-<p>Jdk中的使用列子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testMd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        String str = <span class="string">"www.febsky.me"</span>;</span><br><span class="line">        MessageDigest messageDigest = MessageDigest.getInstance(<span class="string">"MD5"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">byte</span>[] md5bytes = messageDigest.digest(str.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//至于byte数组如何打印可以借助于Apache的commons-codec.jar中的工具类</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="SHA-（安全散列）算法"><a href="#SHA-（安全散列）算法" class="headerlink" title="SHA （安全散列）算法"></a>SHA （安全散列）算法</h1><ul>
-<li>固定长度摘要信息</li>
-<li>SHA-1、SHA-2（SHA-224，SHA-256、SHA-384、SHA-512）</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>算法</th>
-<th style="text-align:center">摘要长度</th>
-<th style="text-align:right">实现方</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SHA-1</td>
-<td style="text-align:center">160</td>
-<td style="text-align:right">JDK</td>
-</tr>
-<tr>
-<td>SHA-224</td>
-<td style="text-align:center">224</td>
-<td style="text-align:right">Bouncy Castle</td>
-</tr>
-<tr>
-<td>SHA-256</td>
-<td style="text-align:center">256</td>
-<td style="text-align:right">JDK</td>
-</tr>
-<tr>
-<td>SHA-384</td>
-<td style="text-align:center">384</td>
-<td style="text-align:right">JDK</td>
-</tr>
-<tr>
-<td>SHA-512</td>
-<td style="text-align:center">512</td>
-<td style="text-align:right">JDK</td>
-</tr>
-</tbody>
-</table>
-<p>代码实例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testSHA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        String str = <span class="string">"www.febsky.me"</span>;</span><br><span class="line">        MessageDigest messageDigest = MessageDigest.getInstance(<span class="string">"SHA"</span>);</span><br><span class="line"></span><br><span class="line">        messageDigest.update(str.getBytes());</span><br><span class="line">        <span class="keyword">byte</span>[] md5bytes = messageDigest.digest();</span><br><span class="line">        <span class="comment">//至于byte数组如何打印可以借助于Apache的commons-codec.jar中的工具类</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="MAC-算法"><a href="#MAC-算法" class="headerlink" title="MAC 算法"></a>MAC 算法</h1><p>没用过，貌似和加密密钥有关</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1609,7 +1545,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
