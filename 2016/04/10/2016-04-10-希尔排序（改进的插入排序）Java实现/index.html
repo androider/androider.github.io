@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,加密," />
+  <meta name="keywords" content="Java,算法," />
 
 
 
@@ -59,16 +59,20 @@
 
 
 
-<meta name="description" content="RSA">
+<meta name="description" content="算法描述希尔排序：将无序数组分割为若干个子序列，子序列不是逐段分割的，而是相隔特定的增量的子序列，对各个子序列进行插入排序；然后再选择一个更小的增量，再将数组分割为多个子序列进行排序……最后选择增量为1，即使用直接插入排序，使最终数组成为有序。   
+增量的选择：在每趟的排序过程都有一个增量，至少满足一个规则 增量关系 d[1] &amp;gt; d[2] &amp;gt; d[3] &amp;gt;..&amp;gt; d[t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java数字签名概述">
-<meta property="og:url" content="http://febsky.me/2016/03/10/2016-03-11-Java数字签名概述/index.html">
+<meta property="og:title" content="2016-04-10-希尔排序（改进的插入排序）Java实现">
+<meta property="og:url" content="http://febsky.me/2016/04/10/2016-04-10-希尔排序（改进的插入排序）Java实现/index.html">
 <meta property="og:site_name" content="我的程序世界">
-<meta property="og:description" content="RSA">
-<meta property="og:updated_time" content="2016-04-07T15:44:59.000Z">
+<meta property="og:description" content="算法描述希尔排序：将无序数组分割为若干个子序列，子序列不是逐段分割的，而是相隔特定的增量的子序列，对各个子序列进行插入排序；然后再选择一个更小的增量，再将数组分割为多个子序列进行排序……最后选择增量为1，即使用直接插入排序，使最终数组成为有序。   
+增量的选择：在每趟的排序过程都有一个增量，至少满足一个规则 增量关系 d[1] &amp;gt; d[2] &amp;gt; d[3] &amp;gt;..&amp;gt; d[t">
+<meta property="og:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/04/10/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F%E8%BF%87%E7%A8%8B%E5%9B%BE.jpg">
+<meta property="og:updated_time" content="2016-04-10T10:39:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java数字签名概述">
-<meta name="twitter:description" content="RSA">
+<meta name="twitter:title" content="2016-04-10-希尔排序（改进的插入排序）Java实现">
+<meta name="twitter:description" content="算法描述希尔排序：将无序数组分割为若干个子序列，子序列不是逐段分割的，而是相隔特定的增量的子序列，对各个子序列进行插入排序；然后再选择一个更小的增量，再将数组分割为多个子序列进行排序……最后选择增量为1，即使用直接插入排序，使最终数组成为有序。   
+增量的选择：在每趟的排序过程都有一个增量，至少满足一个规则 增量关系 d[1] &amp;gt; d[2] &amp;gt; d[3] &amp;gt;..&amp;gt; d[t">
 
 
 
@@ -86,7 +90,7 @@
   };
 </script>
 
-  <title> Java数字签名概述 | 我的程序世界 </title>
+  <title> 2016-04-10-希尔排序（改进的插入排序）Java实现 | 我的程序世界 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -228,7 +232,7 @@
             
             
               
-                Java数字签名概述
+                2016-04-10-希尔排序（改进的插入排序）Java实现
               
             
           </h1>
@@ -240,8 +244,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T18:44:11+08:00" content="2016-03-10">
-              2016-03-10
+            <time itemprop="dateCreated" datetime="2016-04-10T10:14:41+08:00" content="2016-04-10">
+              2016-04-10
             </time>
           </span>
 
@@ -266,8 +270,8 @@
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/加密/" itemprop="url" rel="index">
-                    <span itemprop="name">加密</span>
+                  <a href="/categories/Java/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -282,8 +286,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/10/2016-03-11-Java数字签名概述/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/2016-03-11-Java数字签名概述/" itemprop="commentsCount"></span>
+                <a href="/2016/04/10/2016-04-10-希尔排序（改进的插入排序）Java实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/2016-04-10-希尔排序（改进的插入排序）Java实现/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -305,7 +309,12 @@
       
 
       
-        <h1 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h1>
+        <h1 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h1><p><strong>希尔排序：</strong>将无序数组分割为若干个子序列，子序列不是逐段分割的，而是相隔特定的增量的子序列，对各个子序列进行插入排序；然后再选择一个更小的增量，再将数组分割为多个子序列进行排序……最后选择增量为1，即使用直接插入排序，使最终数组成为有序。   </p>
+<p><strong>增量的选择：</strong>在每趟的排序过程都有一个增量，至少满足一个规则 增量关系 d[1] &gt; d[2] &gt; d[3] &gt;..&gt; d[t] = 1 (t趟排序)；根据增量序列的选取其时间复杂度也会有变化，这个不少论文进行了研究，在此处就不再深究；本文采用首选增量为n/2,以此递推，每次增量为原先的1/2，直到增量为1；</p>
+<p>如下图：<br><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/04/10/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F%E8%BF%87%E7%A8%8B%E5%9B%BE.jpg" alt=""></p>
+<p><strong>【参考文章】</strong></p>
+<p><a href="http://blog.csdn.net/cjf_iceking/article/details/7951481" target="_blank" rel="external">希尔排序</a></p>
+
       
     </div>
 
@@ -321,7 +330,7 @@
           
             <a href="/tags/Java/" rel="tag">#Java</a>
           
-            <a href="/tags/加密/" rel="tag">#加密</a>
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -330,16 +339,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/10/2016-03-10-Java消息摘要算法/" rel="next" title="java消息摘要算法">
-                <i class="fa fa-chevron-left"></i> java消息摘要算法
+              <a href="/2016/04/09/2016-04-09-Eclipse中的Android项目导入AndroidStudio中的错误/" rel="next" title="Eclipse中的Android项目导入AndroidStudio中的错误">
+                <i class="fa fa-chevron-left"></i> Eclipse中的Android项目导入AndroidStudio中的错误
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/13/2016-03-13-一刹那是多久/" rel="prev" title="一刹那是多久">
-                一刹那是多久 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/11/2016-04-11-Android四大组件之Service概念/" rel="prev" title="2016-04-11-Android四大组件之Service概念">
+                2016-04-11-Android四大组件之Service概念 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -389,8 +398,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/10/2016-03-11-Java数字签名概述/"
-           data-title="Java数字签名概述" data-url="http://febsky.me/2016/03/10/2016-03-11-Java数字签名概述/">
+      <div class="ds-thread" data-thread-key="2016/04/10/2016-04-10-希尔排序（改进的插入排序）Java实现/"
+           data-title="2016-04-10-希尔排序（改进的插入排序）Java实现" data-url="http://febsky.me/2016/04/10/2016-04-10-希尔排序（改进的插入排序）Java实现/">
       </div>
     
   </div>
@@ -503,7 +512,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA"><span class="nav-number">1.</span> <span class="nav-text">RSA</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法描述"><span class="nav-number">1.</span> <span class="nav-text">算法描述</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

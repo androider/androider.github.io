@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,加密," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -59,16 +59,25 @@
 
 
 
-<meta name="description" content="RSA">
+<meta name="description" content="Service 与 Thread 的区别很多时候，你可能会问，为什么要用 Service，而不用 Thread 呢，因为用 Thread 是很方便的，比起 Service 也方便多了，下面我详细的来解释一下。
+
+Thread：Thread 是程序执行的最小单元，它是分配CPU的基本单位。可以用 Thread 来执行一些异步的操作。
+Service：Service 是android的一种机制，当它运">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java数字签名概述">
-<meta property="og:url" content="http://febsky.me/2016/03/10/2016-03-11-Java数字签名概述/index.html">
+<meta property="og:title" content="2016-04-11-Android四大组件之Service概念">
+<meta property="og:url" content="http://febsky.me/2016/04/11/2016-04-11-Android四大组件之Service概念/index.html">
 <meta property="og:site_name" content="我的程序世界">
-<meta property="og:description" content="RSA">
-<meta property="og:updated_time" content="2016-04-07T15:44:59.000Z">
+<meta property="og:description" content="Service 与 Thread 的区别很多时候，你可能会问，为什么要用 Service，而不用 Thread 呢，因为用 Thread 是很方便的，比起 Service 也方便多了，下面我详细的来解释一下。
+
+Thread：Thread 是程序执行的最小单元，它是分配CPU的基本单位。可以用 Thread 来执行一些异步的操作。
+Service：Service 是android的一种机制，当它运">
+<meta property="og:updated_time" content="2016-04-11T10:53:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java数字签名概述">
-<meta name="twitter:description" content="RSA">
+<meta name="twitter:title" content="2016-04-11-Android四大组件之Service概念">
+<meta name="twitter:description" content="Service 与 Thread 的区别很多时候，你可能会问，为什么要用 Service，而不用 Thread 呢，因为用 Thread 是很方便的，比起 Service 也方便多了，下面我详细的来解释一下。
+
+Thread：Thread 是程序执行的最小单元，它是分配CPU的基本单位。可以用 Thread 来执行一些异步的操作。
+Service：Service 是android的一种机制，当它运">
 
 
 
@@ -86,7 +95,7 @@
   };
 </script>
 
-  <title> Java数字签名概述 | 我的程序世界 </title>
+  <title> 2016-04-11-Android四大组件之Service概念 | 我的程序世界 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -228,7 +237,7 @@
             
             
               
-                Java数字签名概述
+                2016-04-11-Android四大组件之Service概念
               
             
           </h1>
@@ -240,50 +249,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T18:44:11+08:00" content="2016-03-10">
-              2016-03-10
+            <time itemprop="dateCreated" datetime="2016-04-11T18:36:01+08:00" content="2016-04-11">
+              2016-04-11
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/加密/" itemprop="url" rel="index">
-                    <span itemprop="name">加密</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/10/2016-03-11-Java数字签名概述/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/2016-03-11-Java数字签名概述/" itemprop="commentsCount"></span>
+                <a href="/2016/04/11/2016-04-11-Android四大组件之Service概念/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/11/2016-04-11-Android四大组件之Service概念/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -305,7 +283,35 @@
       
 
       
-        <h1 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h1>
+        <h1 id="Service-与-Thread-的区别"><a href="#Service-与-Thread-的区别" class="headerlink" title="Service 与 Thread 的区别"></a>Service 与 Thread 的区别</h1><p>很多时候，你可能会问，为什么要用 Service，而不用 Thread 呢，因为用 Thread 是很方便的，比起 Service 也方便多了，下面我详细的来解释一下。</p>
+<ol>
+<li>Thread：Thread 是程序执行的最小单元，它是分配CPU的基本单位。可以用 Thread 来执行一些异步的操作。</li>
+<li>Service：Service 是android的一种机制，当它运行的时候如果是Local Service，那么对应的 Service 是运行在主进程的 main 线程上的。如：onCreate，onStart 这些函数在被系统调用的时候都是在主进程的 main 线程上运行的。如果是Remote Service，那么对应的 Service 则是运行在独立进程的 main 线程上。因此请不要把 Service 理解成线程，它跟线程半毛钱的关系都没有！<br>&emsp;&emsp; 既然这样，那么我们为什么要用 Service 呢？其实这跟 android 的系统机制有关，我们先拿 Thread 来说。Thread 的运行是独立于 Activity 的，也就是说当一个 Activity 被 finish 之后，如果你没有主动停止 Thread 或者 Thread 里的 run 方法没有执行完毕的话，Thread 也会一直执行。因此这里会出现一个问题：当 Activity 被 finish 之后，你不再持有该 Thread 的引用。另一方面，你没有办法在不同的 Activity 中对同一 Thread 进行控制。<br>&emsp;&emsp;举个例子：如果你的 Thread 需要不停地隔一段时间就要连接服务器做某种同步的话，该 Thread 需要在 Activity 没有start的时候也在运行。这个时候当你 start 一个 Activity 就没有办法在该 Activity 里面控制之前创建的 Thread。因此你便需要创建并启动一个 Service ，在 Service 里面创建、运行并控制该 Thread，这样便解决了该问题（因为任何 Activity 都可以控制同一 Service，而系统也只会创建一个对应 Service 的实例）。</li>
+</ol>
+<p>因此你可以把 Service 想象成一种消息服务，而你可以在任何有 Context 的地方调用 Context.startService、Context.stopService、Context.bindService，Context.unbindService，来控制它，你也可以在 Service 里注册 BroadcastReceiver，在其他地方通过发送 broadcast 来控制它，当然这些都是 Thread 做不到的。</p>
+<h1 id="Service的生命周期"><a href="#Service的生命周期" class="headerlink" title="Service的生命周期"></a>Service的生命周期</h1><p><code>onCreate``onStart``onDestroy``onBind</code></p>
+<ol>
+<li>被启动的服务的生命周期：如果一个Service被某个Activity 调用 Context.startService 方法启动，那么不管是否有Activity使用bindService绑定或unbindService解除绑定到该Service，该Service都在后台运行。如果一个Service被startService 方法多次启动，那么onCreate方法只会调用一次，onStart将会被调用多次（对应调用startService的次数），并且系统只会创建Service的一个实例（因此你应该知道只需要一次stopService调用）。该Service将会一直在后台运行，而不管对应程序的Activity是否在运行，直到被调用stopService，或自身的stopSelf方法。当然如果系统资源不足，android系统也可能结束服务。</li>
+<li>被绑定的服务的生命周期：如果一个Service被某个Activity 调用 Context.bindService 方法绑定启动，不管调用 bindService 调用几次，onCreate方法都只会调用一次，同时onStart方法始终不会被调用。当连接建立之后，Service将会一直运行，除非调用Context.unbindService 断开连接或者之前调用bindService 的 Context 不存在了（如Activity被finish的时候），系统将会自动停止Service，对应onDestroy将被调用。</li>
+<li>被启动又被绑定的服务的生命周期：如果一个Service又被启动又被绑定，则该Service将会一直在后台运行。并且不管如何调用，onCreate始终只会调用一次，对应startService调用多少次，Service的onStart便会调用多少次。调用unbindService将不会停止Service，而必须调用 stopService 或 Service的 stopSelf 来停止服务。</li>
+<li>当服务被停止时清除服务：当一个Service被终止（<ul>
+<li>调用stopService； </li>
+<li>调用stopSelf；</li>
+<li>不再有绑定的连接（没有被启动））时，onDestroy方法将会被调用，在这里你应当做一些清除工作，如停止在Service中创建并运行的线程。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>特别注意：</p>
+<ol>
+<li>你应当知道在调用 bindService 绑定到Service的时候，你就应当保证在某处调用 unbindService 解除绑定（尽管 Activity 被 finish 的时候绑定会自动解除，并且Service会自动停止)  </li>
+<li>你应当注意 使用 startService 启动服务之后，一定要使用 stopService停止服务，不管你是否使用bindService；</li>
+<li>同时使用 startService 与 bindService 要注意到，Service 的终止，需要unbindService与stopService同时调用，才能终止 Service，不管 startService 与 bindService 的调用顺序，如果先调用 unbindService 此时服务不会自动终止，再调用 stopService 之后服务才会停止，如果先调用 stopService 此时服务也不会终止，而再调用 unbindService 或者 之前调用 bindService 的 Context 不存在了（如Activity 被 finish 的时候）之后服务才会自动停止；</li>
+<li>当在旋转手机屏幕的时候，当手机屏幕在“横”“竖”变换时，此时如果你的 Activity 如果会自动旋转的话，旋转其实是 Activity 的重新创建，因此旋转之前的使用 bindService 建立的连接便会断开（Context 不存在了），对应服务的生命周期与上述相同。</li>
+<li>在 sdk 2.0 及其以后的版本中，对应的 onStart 已经被否决变为了 onStartCommand，不过之前的 onStart 任然有效。这意味着，如果你开发的应用程序用的 sdk 为 2.0 及其以后的版本，那么你应当使用 onStartCommand 而不是 onStart。</li>
+</ol>
+</blockquote>
+
       
     </div>
 
@@ -317,30 +323,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Java/" rel="tag">#Java</a>
-          
-            <a href="/tags/加密/" rel="tag">#加密</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/10/2016-03-10-Java消息摘要算法/" rel="next" title="java消息摘要算法">
-                <i class="fa fa-chevron-left"></i> java消息摘要算法
+              <a href="/2016/04/10/2016-04-10-希尔排序（改进的插入排序）Java实现/" rel="next" title="2016-04-10-希尔排序（改进的插入排序）Java实现">
+                <i class="fa fa-chevron-left"></i> 2016-04-10-希尔排序（改进的插入排序）Java实现
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/13/2016-03-13-一刹那是多久/" rel="prev" title="一刹那是多久">
-                一刹那是多久 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -389,8 +383,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/10/2016-03-11-Java数字签名概述/"
-           data-title="Java数字签名概述" data-url="http://febsky.me/2016/03/10/2016-03-11-Java数字签名概述/">
+      <div class="ds-thread" data-thread-key="2016/04/11/2016-04-11-Android四大组件之Service概念/"
+           data-title="2016-04-11-Android四大组件之Service概念" data-url="http://febsky.me/2016/04/11/2016-04-11-Android四大组件之Service概念/">
       </div>
     
   </div>
@@ -503,7 +497,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA"><span class="nav-number">1.</span> <span class="nav-text">RSA</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Service-与-Thread-的区别"><span class="nav-number">1.</span> <span class="nav-text">Service 与 Thread 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Service的生命周期"><span class="nav-number">2.</span> <span class="nav-text">Service的生命周期</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
