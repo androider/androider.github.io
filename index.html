@@ -853,24 +853,12 @@
 
       
         
-          
-            <p><strong>先说点个人感想（废话）：</strong>真心挺感谢新浪能给这个面试机会，作为一个非重点本科毕业学生来说，能给个面试机会已经非常不错了。不想某些大公司筛选简历一看工作年限，二看出身。很可惜自己能力有限在三面的时候彻底被虐了，今年算是止步于三面了。但是还是学到很多东西的，如果再有个一到两年的沉淀，详细自己还是可以胜任的。本来不想发出来的不知道发出来会不会影响到人家的面试。</p>
-<p>约的是下午四点的面试，面到了差不多7点。时间还是挺长的。三面完了等了打约20分钟，人事告诉我他们要的是高级工程师。然后~~~</p>
-<h1 id="2016四月新浪微博面试笔试题"><a href="#2016四月新浪微博面试笔试题" class="headerlink" title="2016四月新浪微博面试笔试题"></a>2016四月新浪微博面试笔试题</h1><h2 id="1-静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？"><a href="#1-静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？" class="headerlink" title="1. 静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？"></a>1. 静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？</h2><h2 id="2-AraayList-和Vector-的区别"><a href="#2-AraayList-和Vector-的区别" class="headerlink" title="2. AraayList 和Vector 的区别"></a>2. AraayList 和Vector 的区别</h2><ol>
-<li>Vector是线程安全的，也就是说是它的方法之间是线程同步的，而ArrayList是线程序不安全的</li>
-<li>记住Vector与Hashtable是旧的，是java一诞生就提供了的，它们是线程安全的，ArrayList与HashMap是java2时才提供的</li>
-<li>ArrayList与Vector都有一个初始的容量大小，当存储进它们里面的元素的个数超过了容量时，就需要增加ArrayList与Vector的存储空间，Vector默认增长为原来两倍，而ArrayList的增长策略在文档中没有明确规定（从源代码看到的是增长为原来的1.5倍） ArrayList与Vector都可以设置初始的空间大小，Vector还可以设置增长的空间大小，而ArrayList没有提供设置增长空间的方法。<br>总结：即Vector增长原来的一倍，ArrayList增加原来的0.5倍。</li>
-</ol>
-<h2 id="3-RemoteView-在什么地方用"><a href="#3-RemoteView-在什么地方用" class="headerlink" title="3. RemoteView 在什么地方用"></a>3. RemoteView 在什么地方用</h2><p>到目前为止，我发现RemoteView会用在两个地方：一个是在AppWidget,另外一个是在Notification. </p>
-<h2 id="4-Fragment和Activity的生命周期"><a href="#4-Fragment和Activity的生命周期" class="headerlink" title="4. Fragment和Activity的生命周期"></a>4. Fragment和Activity的生命周期</h2><h2 id="5-Android-中的进程有哪些，说出它们的优先级"><a href="#5-Android-中的进程有哪些，说出它们的优先级" class="headerlink" title="5. Android 中的进程有哪些，说出它们的优先级"></a>5. Android 中的进程有哪些，说出它们的优先级</h2><h2 id="6-view和Surfaceview的区别"><a href="#6-view和Surfaceview的区别" class="headerlink" title="6. view和Surfaceview的区别"></a>6. view和Surfaceview的区别</h2><h2 id="7-onInterceptTouchEvent、onTouchEvent-的区别"><a href="#7-onInterceptTouchEvent、onTouchEvent-的区别" class="headerlink" title="7. onInterceptTouchEvent、onTouchEvent 的区别"></a>7. onInterceptTouchEvent、onTouchEvent 的区别</h2><ol>
-<li><p>onTouchEvent同样也是在view中定义的一个方法。处理传递到view 的手势事件。手势事件类型包括ACTION_DOWN,ACTION_MOVE,ACTION_UP,ACTION_CANCEL四种事件。<br>一旦onTouchEvent方法被调用，并返回true则这个手势事件就结束了，并不会向下传递到子控件。</p>
-</li>
-<li><p>onInterceptTouchEvent是在ViewGroup里面定义的。Android中的layout布局类一般都是继承此类的。onInterceptTouchEvent是用于拦截手势事件的，每个手势事件都会先调用onInterceptTouchEvent<br>此方法返回false，则手势事件会向子控件传递；返回true，则调用onTouchEvent方法。  </p>
-</li>
-</ol>
-<h2 id="8-switch-中可以用byte吗，可以用long吗，可以用String吗？"><a href="#8-switch-中可以用byte吗，可以用long吗，可以用String吗？" class="headerlink" title="8. switch 中可以用byte吗，可以用long吗，可以用String吗？"></a>8. switch 中可以用byte吗，可以用long吗，可以用String吗？</h2><p>答：switch 只能添加  <code>char,byte,short,int,Character,Byte,Short,Interger,String ,enum</code></p>
-<h2 id="9-try-catch-finally-运行流程"><a href="#9-try-catch-finally-运行流程" class="headerlink" title="9. try catch finally 运行流程"></a>9. try catch finally 运行流程</h2><h2 id="10-是一个程序找错题。"><a href="#10-是一个程序找错题。" class="headerlink" title="10. 是一个程序找错题。"></a>10. 是一个程序找错题。</h2>
-          
+          <p><strong>先说点个人感想（废话）：</strong>真心挺感谢新浪能给这个面试机会，作为一个非重点本科毕业学生来说，能给个面试机会已经非常不错了。不想某些大公司筛选简历一看工作年限，二看出身。很可惜自己能力有限在三面的时候彻底被虐了，今年算是止步于三面了。但是还是学到很多东西的，如果再有个一到两年的沉淀，详细自己还是可以胜任的。本来不想发出来的不知道发出来会不会影响到人家的面试。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/12/2016-04-12-新浪微博面试笔试题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1092,14 +1080,12 @@
 
       
         
-          
-            <h1 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h1><p><strong>希尔排序：</strong>将无序数组分割为若干个子序列，子序列不是逐段分割的，而是相隔特定的增量的子序列，对各个子序列进行插入排序；然后再选择一个更小的增量，再将数组分割为多个子序列进行排序……最后选择增量为1，即使用直接插入排序，使最终数组成为有序。   </p>
-<p><strong>增量的选择：</strong>在每趟的排序过程都有一个增量，至少满足一个规则 增量关系 d[1] &gt; d[2] &gt; d[3] &gt;..&gt; d[t] = 1 (t趟排序)；根据增量序列的选取其时间复杂度也会有变化，这个不少论文进行了研究，在此处就不再深究；本文采用首选增量为n/2,以此递推，每次增量为原先的1/2，直到增量为1；</p>
-<p>如下图：<br><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/04/10/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F%E8%BF%87%E7%A8%8B%E5%9B%BE.jpg" alt=""></p>
-<p><strong>【参考文章】</strong></p>
-<p><a href="http://blog.csdn.net/cjf_iceking/article/details/7951481" target="_blank" rel="external">希尔排序</a></p>
-
-          
+          <h1 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h1><p><strong>希尔排序：</strong>将无序数组分割为若干个子序列，子序列不是逐段分割的，而是相隔特定的增量的子序列，对各个子序列进行插入排序；然后再选择一个更小的增量，再将数组分割为多个子序列进行排序……最后选择增量为1，即使用直接插入排序，使最终数组成为有序。   </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/10/2016-04-10-希尔排序（改进的插入排序）Java实现/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1211,27 +1197,16 @@
 
       
         
-          
-            <p>#1、图片资源格式错误</p>
+          <p>#1、图片资源格式错误</p>
 <p><strong>错误Log：</strong></p>
-<font color="red"><code>AAPT err(Facade for 205525644) : No Delegate set : lost message:libpng error: Not a PNG file</code></font>
+<font color='red'><code>AAPT err(Facade for 205525644) : No Delegate set : lost message:libpng error: Not a PNG file</code></font>
 
 <p><strong>截图展示：</strong><br><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/04/09/09-eclipse%E5%AF%BC%E5%85%A5AS%E9%94%99%E8%AF%AF1.png" alt=""></p>
-<p><strong>引发原因：</strong><br>这个引发的原因主要是没有通过正规的途径修改图片的格式，比如原来的有张图片名字为<code>icon.jpg</code>,而你没有用图片编辑器，直接修改了图片的后缀名，改为了<code>icon.png</code>,虽然图片能正常打开，但是AndroidStudio对图片资源文件的检查比较严格。一般引起的原因要么是自己作死，自己改了后缀名;另一种是你盗用别人的资源文件，反编译的时候图片文件出错（一般发生在<code>.9</code>图片）</p>
-<p><strong>解决方案：</strong>有时候Log中会标出是哪张图片出了问题，这种比较好解决，直接找到这个图片，然后进行修改或者重新做一张图就好了。还有一种就是像我这个一样的错误，没有标出到底是哪个图片出错了。这时候比较麻烦了，项目是自己的还好，你可以大体猜测一下这个项目的哪些图片可能出错。如果不是自己的只能逐个排查。</p>
-<p><strong>错误图片排查方式：</strong><br>在studio中依次点开每个后缀名为png（因为我的错误是说某个图片不是png，从这个意思可以推测说的是某个以png为后缀的图片其真实格式不是png，所以我们队png图片进行排查）的图片（如图）。打开后在AndroidStudio的图片编辑器中的右上角会显示出图片的真实格式，查看这个格式是否和图片的后缀名一样，找到不一样的，进行修改。</p>
-<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/04/09/09-AndroidStudio%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F%E6%9F%A5%E7%9C%8B.png" alt="09-AndroidStudio图片格式查看"></p>
-<h1 id="2、我也不知道这是个什么错"><a href="#2、我也不知道这是个什么错" class="headerlink" title="2、我也不知道这是个什么错"></a>2、我也不知道这是个什么错</h1><p><strong>错误Log</strong>：</p>
-<font color="red"><code>Error:Dependency tasksystem:SlidingMenu:unspecified on project app resolves to an APK archive which is not supported as a compilation dependency. File: /Users/xxxx/Downloads/tasksystem/SlidingMenu/build/outputs/apk/SlidingMenu-release-unsigned.apk</code></font>
-
-<p><strong>出现原因：</strong><br>出现该问题unspecified on project app resolves to an APK archive which is not supported as a compilation dependency的情形可能是：创建了两个Module，其中一个Module依赖另一个Module而导致了出现该问题；</p>
-<p>如果在Android Studio中，有ModuleA和ModuleB，我们希望ModuleA依赖ModuleB，运行时候可能会出现该问题。</p>
-<p><strong>解决方法：</strong></p>
-<p>查看被依赖的ModuleB的build.gradle，里面可以看到：<br><code>apply plugin: &#39;com.android.application&#39;</code></p>
-<p>将其修改为<br><code>apply plugin: &#39;com.android.library&#39;</code><br>此时，Gradle将编译称为一个Library，也就是库，运行之后，如果出现这个问题：Error:Library projects cannot set applicationId. applicationId is set to ‘package_name’ in default config.，那是因为一个库不允许设置applicationId，需要将builde.gradle — android — defaultConfig中的applicationId删除；</p>
-<p>如果说，我们ModuleB仍然需要生成apk，则我们需要将其中公共的代码放到一个Module，作为一个support的库；<br><a href="http://stackoverflow.com/questions/27536491/how-to-import-android-project-as-library-and-not-compile-it-as-apk-android-stud" target="_blank" rel="external">http://stackoverflow.com/questions/27536491/how-to-import-android-project-as-library-and-not-compile-it-as-apk-android-stud</a></p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/09/2016-04-09-Eclipse中的Android项目导入AndroidStudio中的错误/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1502,12 +1477,12 @@
 
       
         
-          
-            <p>选择排序的基本思想是每一趟在 n-i+i(i=1,2,3,…,n-1)个记录中选取关键字最小的记录作为有序序列的第i个记录。</p>
-<h1 id="1、简单的选择排序"><a href="#1、简单的选择排序" class="headerlink" title="1、简单的选择排序"></a>1、简单的选择排序</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by liuqiang on 16/4/8.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleSelectionSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> arr[] = &#123;<span class="number">9</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"排序前："</span>, arr);</span><br><span class="line">        simpleSelectionSort(arr);</span><br><span class="line">        print(<span class="string">"排序后："</span>, arr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@param</span> args 待排序的数组</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">simpleSelectionSort</span><span class="params">(<span class="keyword">int</span>[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> min;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; args.length; i++) &#123;</span><br><span class="line">            min = i;    <span class="comment">//假设当前位置的下标为最小值的下标</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; args.length; j++) &#123;    <span class="comment">//循环当前下标之后的数据</span></span><br><span class="line">                <span class="keyword">if</span> (args[min] &gt; args[j]) &#123;    <span class="comment">//如果有小于当前最小值的关键字</span></span><br><span class="line">                    min = j;    <span class="comment">//保存最小值的关键字</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (min != i) &#123;    <span class="comment">//如果找到了最小值进行交换</span></span><br><span class="line">                swap(args, min, i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 交换数组args 中的下标为 i 和 j 的元素</span><br><span class="line">     *</span><br><span class="line">     * <span class="doctag">@param</span> args</span><br><span class="line">     * <span class="doctag">@param</span> i</span><br><span class="line">     * <span class="doctag">@param</span> j</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] args, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = args[i];</span><br><span class="line">        args[i] = args[j];</span><br><span class="line">        args[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 数组打印辅助方法</span><br><span class="line">     *</span><br><span class="line">     * <span class="doctag">@param</span> args 要打印的数组</span><br><span class="line">     * <span class="doctag">@param</span> tag  打印数组的标签</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(String tag, <span class="keyword">int</span>[] args)</span> </span>&#123;</span><br><span class="line">        System.out.print(tag == <span class="keyword">null</span> ? <span class="string">""</span> : tag + <span class="string">"数组的值: ["</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> m : args) &#123;</span><br><span class="line">            System.out.print(m + <span class="string">","</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"]"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>时间复杂度：</strong>尽管与冒泡排序同为O(n²)，但简单的选择排序在性能上还是要略优于冒泡排序的。</p>
-
-          
+          <p>选择排序的基本思想是每一趟在 n-i+i(i=1,2,3,…,n-1)个记录中选取关键字最小的记录作为有序序列的第i个记录。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/09/2016-04-09-选择排序Java实现/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
