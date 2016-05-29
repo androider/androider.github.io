@@ -233,7 +233,7 @@
     <link href="http://febsky.me/2016/05/07/2016-05-07-nodejs%E7%9A%84%E5%AD%A6%E4%B9%A0/"/>
     <id>http://febsky.me/2016/05/07/2016-05-07-nodejs的学习/</id>
     <published>2016-05-07T12:18:31.000Z</published>
-    <updated>2016-05-29T09:43:04.000Z</updated>
+    <updated>2016-05-29T14:27:50.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Mac-安装&quot;&gt;&lt;a href=&quot;#Mac-安装&quot; class=&quot;headerlink&quot; title=&quot;Mac 安装&quot;&gt;&lt;/a&gt;Mac 安装&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;检查Python 是否安装&lt;code&gt;python -V&lt;/code&gt;&lt;/li&gt;
@@ -284,7 +284,7 @@
 &lt;p&gt;&lt;strong&gt;【参考文献】&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;一个学习网站&lt;a href=&quot;http://www.runoob.com/nodejs/nodejs-express-framework.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点这儿&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.nodeclass.com/articles/99682&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Orm2参考使用&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://docs.sequelizejs.com/en/latest/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sequelize github上start最多的orm&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://docs.sequelizejs.com/en/latest/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sequelize github上start最多的orm&lt;/a&gt; &lt;a href=&quot;http://my.oschina.net/zj0303/blog/305384&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一个使用教程&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
