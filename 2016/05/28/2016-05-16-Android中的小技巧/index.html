@@ -3,6 +3,7 @@
 <li>缓慢滚动到某个位置<code>listView.smoothScrollToPosition();</code>当然还有其他的滚动方法</li>
 <li>在使用<code>adapter.notifyDataSetChanged()</code>方法的时候，必须保证传进adapter的数据List是同一个对象，否则无法实现效果（我就犯过这个错）</li>
 </ul>
+<a id="more"></a>
 <h1 id="滚动和位置"><a href="#滚动和位置" class="headerlink" title="滚动和位置"></a>滚动和位置</h1><ul>
 <li><code>scrollTo</code>方法其实滚动的是内容，比如说TextView中滚动的是文字。比如：<code>textView.scrollTo(0, 10);</code>意思是让TextView中的内容，的（0，10）坐标去和，TextView左上角对齐。</li>
 <li>滑动多少算是滑动了<code>ViewConfiguration.get(this).getScaledTouchSlop();</code></li>
