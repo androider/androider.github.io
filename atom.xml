@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-05-29T07:52:29.000Z</updated>
+  <updated>2016-06-02T14:24:54.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>2016-05-29-Mac下的某些命令</title>
+    <title>Mac下的某些命令</title>
     <link href="http://febsky.me/2016/05/29/2016-05-29-Mac%E4%B8%8B%E7%9A%84%E6%9F%90%E4%BA%9B%E5%91%BD%E4%BB%A4/"/>
     <id>http://febsky.me/2016/05/29/2016-05-29-Mac下的某些命令/</id>
     <published>2016-05-29T07:51:03.000Z</published>
-    <updated>2016-05-29T07:52:29.000Z</updated>
+    <updated>2016-06-02T14:24:54.000Z</updated>
     
     <content type="html">&lt;ol&gt;
 &lt;li&gt;&lt;code&gt;open .&lt;/code&gt; 单开finder为当前目录&lt;/li&gt;
