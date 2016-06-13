@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-06-02T15:11:43.000Z</updated>
+  <updated>2016-06-13T02:19:11.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,86 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android开发中图文并排插件</title>
+    <link href="http://febsky.me/2016/06/13/2016-06-13-Android%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%9B%BE%E6%96%87%E5%B9%B6%E6%8E%92%E6%8F%92%E4%BB%B6/"/>
+    <id>http://febsky.me/2016/06/13/2016-06-13-Android开发中的图文并排插件/</id>
+    <published>2016-06-13T09:33:37.000Z</published>
+    <updated>2016-06-13T02:19:11.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sufficientlysecure/html-textview&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;html-textview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/zzhoujay/RichText&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RichText&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sufficientlysecure/html-textview&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;html-textview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;ht
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo主题目录介绍</title>
+    <link href="http://febsky.me/2016/06/03/2016-06-03-Hexo%E4%B8%BB%E9%A2%98%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://febsky.me/2016/06/03/2016-06-03-Hexo主题目录介绍/</id>
+    <published>2016-06-03T04:37:28.000Z</published>
+    <updated>2016-06-12T02:29:19.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;分析主题目录&quot;&gt;&lt;a href=&quot;#分析主题目录&quot; class=&quot;headerlink&quot; title=&quot;分析主题目录&quot;&gt;&lt;/a&gt;分析主题目录&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;存放所有主题的文件目录&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;themes&amp;#10;    |--my_theme&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;某个特定主题目录&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;my_theme&amp;#10;    |-- _config.yml&amp;#10;    |-- languages/&amp;#10;    |-- layout/&amp;#10;    &amp;#9;|-- _partial/&amp;#10;&amp;#9;&amp;#9;|-- _widget/&amp;#10;&amp;#9;&amp;#9;|-- archive.ejs *&amp;#10;&amp;#9;&amp;#9;|-- category.ejs *&amp;#10;&amp;#9;&amp;#9;|-- index.ejs *&amp;#10;&amp;#9;&amp;#9;|-- layout.ejs *&amp;#10;&amp;#9;&amp;#9;|-- page.ejs *&amp;#10;&amp;#9;&amp;#9;|-- post.ejs *&amp;#10;&amp;#9;&amp;#9;|-- tag.ejs *&amp;#10;    |-- LICENSE&amp;#10;    |-- README.md&amp;#10;    |-- source/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;layout/&lt;/code&gt;&lt;br&gt;以上打&lt;code&gt;*&lt;/code&gt;的文件表示，每个主题至少需要这些文件。所有的主题都是用layout.ejs作为默认的布局文件，你也可以自定义布局文件。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;_widget/&lt;/code&gt;： 小工具目录，在my_theme主题中对右边栏的控制。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_partial/&lt;/code&gt;： 组件目录，给博客添加统计、评论等功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;source/&lt;/code&gt;&lt;br&gt;主题资源目录，主题用到的CSS、Javascript等文件需要放在这个目录中，会被编译到hexo的public目录中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;_config.yml&lt;/code&gt;  &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;menu:        #&amp;#31449;&amp;#28857;&amp;#23548;&amp;#33322;&amp;#26639; &amp;#65288;&amp;#26631;&amp;#31614;: &amp;#36335;&amp;#24452;&amp;#65289;&amp;#10;  &amp;#39318;&amp;#39029;: /&amp;#10;  &amp;#24402;&amp;#26723;: /archives&amp;#10;  &amp;#20851;&amp;#20110;: /about&amp;#10;&amp;#10;widgets:        #&amp;#23567;&amp;#24037;&amp;#20855; &amp;#21363;&amp;#31449;&amp;#28857;&amp;#30340;&amp;#21491;&amp;#36793;&amp;#19968;&amp;#26639; &amp;#39029;&amp;#38754;&amp;#20250;&amp;#25353;&amp;#36825;&amp;#37324;&amp;#30340;&amp;#39034;&amp;#24207;&amp;#25490;&amp;#21015;&amp;#10;- recent_posts&amp;#10;- category&amp;#10;- weibo_show&amp;#10;- blogroll&amp;#10;&amp;#10;excerpt_link: &amp;#38405;&amp;#35835;&amp;#20840;&amp;#25991;   #&amp;#40664;&amp;#35748;&amp;#26159;Read more &amp;#21487;&amp;#20197;&amp;#25913;&amp;#25104;&amp;#20013;&amp;#25991;&amp;#10;&amp;#10;twitter:    #&amp;#22681;&amp;#20869;&amp;#24456;&amp;#23569;&amp;#29992;&amp;#27492;&amp;#40479;&amp;#65292;so&amp;#21487;&amp;#20197;&amp;#21024;&amp;#25481;&amp;#10;&amp;#10;addthis:    #&amp;#36825;&amp;#20010;&amp;#20063;&amp;#21487;&amp;#20197;&amp;#21024;&amp;#25481;&amp;#10;  enable: true&amp;#10;&amp;#10;fancybox: true&amp;#10;&amp;#10;baidu_analytics: true    #&amp;#30334;&amp;#24230;&amp;#32479;&amp;#35745;&amp;#65292;&amp;#22825;&amp;#26397;&amp;#36824;&amp;#26159;&amp;#36825;&amp;#20010;&amp;#22909;&amp;#20351;&amp;#65292;&amp;#27809;&amp;#21150;&amp;#27861;&amp;#28404;&amp;#10;&amp;#10;google_analytics:        #&amp;#40664;&amp;#35748;&amp;#32479;&amp;#35745;&amp;#65292;&amp;#22810;&amp;#20040;&amp;#24076;&amp;#26395;&amp;#29992;&amp;#36825;&amp;#20010;&amp;#32479;&amp;#35745;&amp;#65292;&amp;#21487;&amp;#24796;&amp;#10;&amp;#10;rss: /atom.xml        #RSS&amp;#10;&amp;#10;comment_provider:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;每一个主题至少都要包含一个index模版，下面是各页面对应的模版名称：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;index 首页&lt;/li&gt;
+&lt;li&gt;post 文章&lt;/li&gt;
+&lt;li&gt;page 分页&lt;/li&gt;
+&lt;li&gt;archive 归档&lt;/li&gt;
+&lt;li&gt;category 分类归档&lt;/li&gt;
+&lt;li&gt;tag 标签归档&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;分析主题目录&quot;&gt;&lt;a href=&quot;#分析主题目录&quot; class=&quot;headerlink&quot; title=&quot;分析主题目录&quot;&gt;&lt;/a&gt;分析主题目录&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;存放所有主题的文件目录&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highli
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://febsky.me/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://febsky.me/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac下的某些命令</title>
@@ -139,7 +219,7 @@
     <link href="http://febsky.me/2016/05/15/2016-05-15-%E6%88%91%E8%AE%A4%E4%B8%BA%E4%B8%8D%E9%94%99%E7%9A%84%E5%87%A0%E4%B8%AAHexo%E4%B8%BB%E9%A2%98/"/>
     <id>http://febsky.me/2016/05/15/2016-05-15-我认为不错的几个Hexo主题/</id>
     <published>2016-05-15T04:37:28.000Z</published>
-    <updated>2016-06-02T15:12:38.000Z</updated>
+    <updated>2016-06-12T01:31:20.000Z</updated>
     
     <content type="html">&lt;p&gt;我认为几个不错的主题&lt;/p&gt;
 &lt;ol&gt;
@@ -148,8 +228,17 @@
 &lt;li&gt;&lt;a href=&quot;https://github.com/ppoffice/hexo-theme-icarus&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-icarus&lt;/a&gt;   &lt;a href=&quot;http://blog.zhangruipeng.me/hexo-theme-icarus/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/Alex-fun/hexo-theme-jane&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-jane&lt;/a&gt;   &lt;a href=&quot;http://hejx.me/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/xiangming/landscape-plus&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;landscape-plus&lt;/a&gt; &lt;a href=&quot;http://honglu.me/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址&lt;/a&gt;  &lt;a href=&quot;http://arvinxiang.com/landscape-plus/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;And&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/pinggod/hexo-theme-apollo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-apollo&lt;/a&gt; &lt;a href=&quot;http://pinggod.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://haojen.github.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-Anisina&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;</content>
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;主题的制作&quot;&gt;&lt;a href=&quot;#主题的制作&quot; class=&quot;headerlink&quot; title=&quot;主题的制作&quot;&gt;&lt;/a&gt;主题的制作&lt;/h1&gt;&lt;p&gt;有两篇很不错的文章&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.maintao.com/2014/hexo-theme-from-scratch/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;从零开始定制hexo主题&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://w3cboy.com/post/2014/05/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%81%9A%E5%8D%9A%E5%AE%A2%E4%B9%8B%E4%B8%BB%E9%A2%98/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一起来做博客——主题和部署&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://syxiaqj.github.io/2014/02/19/introduce-hexo-theme/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;introduce-hexo-theme&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
     
     <summary type="html">
     
@@ -160,6 +249,8 @@
 &lt;li&gt;&lt;a href=&quot;https://github.com/ppoffice/hexo-theme-icarus&quot;&gt;hexo-theme-icarus&lt;/a&gt;   &lt;a href=&quot;http://blog.zhangruipeng.me/hexo-theme-icarus/&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/Alex-fun/hexo-theme-jane&quot;&gt;hexo-theme-jane&lt;/a&gt;   &lt;a href=&quot;http://hejx.me/&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/xiangming/landscape-plus&quot;&gt;landscape-plus&lt;/a&gt; &lt;a href=&quot;http://honglu.me/&quot;&gt;演示地址&lt;/a&gt;  &lt;a href=&quot;http://arvinxiang.com/landscape-plus/&quot;&gt;And&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/pinggod/hexo-theme-apollo&quot;&gt;hexo-theme-apollo&lt;/a&gt; &lt;a href=&quot;http://pinggod.com/&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://haojen.github.io/&quot;&gt;hexo-theme-Anisina&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
     
     </summary>
@@ -788,85 +879,6 @@
       <category term="Java" scheme="http://febsky.me/tags/Java/"/>
     
       <category term="面试" scheme="http://febsky.me/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2016-04-11-Android四大组件之Service概念</title>
-    <link href="http://febsky.me/2016/04/11/2016-04-11-Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService%E6%A6%82%E5%BF%B5/"/>
-    <id>http://febsky.me/2016/04/11/2016-04-11-Android四大组件之Service概念/</id>
-    <published>2016-04-11T10:36:01.000Z</published>
-    <updated>2016-04-16T02:44:34.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Service-与-Thread-的区别&quot;&gt;&lt;a href=&quot;#Service-与-Thread-的区别&quot; class=&quot;headerlink&quot; title=&quot;Service 与 Thread 的区别&quot;&gt;&lt;/a&gt;Service 与 Thread 的区别&lt;/h1&gt;&lt;p&gt;很多时候，你可能会问，为什么要用 Service，而不用 Thread 呢，因为用 Thread 是很方便的，比起 Service 也方便多了，下面我详细的来解释一下。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;ol&gt;
-&lt;li&gt;Thread：Thread 是程序执行的最小单元，它是分配CPU的基本单位。可以用 Thread 来执行一些异步的操作。&lt;/li&gt;
-&lt;li&gt;Service：Service 是android的一种机制，当它运行的时候如果是Local Service，那么对应的 Service 是运行在主进程的 main 线程上的。如：onCreate，onStart 这些函数在被系统调用的时候都是在主进程的 main 线程上运行的。如果是Remote Service，那么对应的 Service 则是运行在独立进程的 main 线程上。因此请不要把 Service 理解成线程，它跟线程半毛钱的关系都没有！&lt;br&gt;&amp;emsp;&amp;emsp; 既然这样，那么我们为什么要用 Service 呢？其实这跟 android 的系统机制有关，我们先拿 Thread 来说。Thread 的运行是独立于 Activity 的，也就是说当一个 Activity 被 finish 之后，如果你没有主动停止 Thread 或者 Thread 里的 run 方法没有执行完毕的话，Thread 也会一直执行。因此这里会出现一个问题：当 Activity 被 finish 之后，你不再持有该 Thread 的引用。另一方面，你没有办法在不同的 Activity 中对同一 Thread 进行控制。&lt;br&gt;&amp;emsp;&amp;emsp;举个例子：如果你的 Thread 需要不停地隔一段时间就要连接服务器做某种同步的话，该 Thread 需要在 Activity 没有start的时候也在运行。这个时候当你 start 一个 Activity 就没有办法在该 Activity 里面控制之前创建的 Thread。因此你便需要创建并启动一个 Service ，在 Service 里面创建、运行并控制该 Thread，这样便解决了该问题（因为任何 Activity 都可以控制同一 Service，而系统也只会创建一个对应 Service 的实例）。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;因此你可以把 Service 想象成一种消息服务，而你可以在任何有 Context 的地方调用 Context.startService、Context.stopService、Context.bindService，Context.unbindService，来控制它，你也可以在 Service 里注册 BroadcastReceiver，在其他地方通过发送 broadcast 来控制它，当然这些都是 Thread 做不到的。&lt;/p&gt;
-&lt;h1 id=&quot;Service的生命周期&quot;&gt;&lt;a href=&quot;#Service的生命周期&quot; class=&quot;headerlink&quot; title=&quot;Service的生命周期&quot;&gt;&lt;/a&gt;Service的生命周期&lt;/h1&gt;&lt;p&gt;&lt;code&gt;onCreate``onStart``onDestroy``onBind&lt;/code&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;被启动的服务的生命周期：如果一个Service被某个Activity 调用 Context.startService 方法启动，那么不管是否有Activity使用bindService绑定或unbindService解除绑定到该Service，该Service都在后台运行。如果一个Service被startService 方法多次启动，那么onCreate方法只会调用一次，onStart将会被调用多次（对应调用startService的次数），并且系统只会创建Service的一个实例（因此你应该知道只需要一次stopService调用）。该Service将会一直在后台运行，而不管对应程序的Activity是否在运行，直到被调用stopService，或自身的stopSelf方法。当然如果系统资源不足，android系统也可能结束服务。&lt;/li&gt;
-&lt;li&gt;被绑定的服务的生命周期：如果一个Service被某个Activity 调用 Context.bindService 方法绑定启动，不管调用 bindService 调用几次，onCreate方法都只会调用一次，同时onStart方法始终不会被调用。当连接建立之后，Service将会一直运行，除非调用Context.unbindService 断开连接或者之前调用bindService 的 Context 不存在了（如Activity被finish的时候），系统将会自动停止Service，对应onDestroy将被调用。&lt;/li&gt;
-&lt;li&gt;被启动又被绑定的服务的生命周期：如果一个Service又被启动又被绑定，则该Service将会一直在后台运行。并且不管如何调用，onCreate始终只会调用一次，对应startService调用多少次，Service的onStart便会调用多少次。调用unbindService将不会停止Service，而必须调用 stopService 或 Service的 stopSelf 来停止服务。&lt;/li&gt;
-&lt;li&gt;当服务被停止时清除服务：当一个Service被终止（&lt;ul&gt;
-&lt;li&gt;调用stopService； &lt;/li&gt;
-&lt;li&gt;调用stopSelf；&lt;/li&gt;
-&lt;li&gt;不再有绑定的连接（没有被启动））时，onDestroy方法将会被调用，在这里你应当做一些清除工作，如停止在Service中创建并运行的线程。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;特别注意：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;你应当知道在调用 bindService 绑定到Service的时候，你就应当保证在某处调用 unbindService 解除绑定（尽管 Activity 被 finish 的时候绑定会自动解除，并且Service会自动停止)  &lt;/li&gt;
-&lt;li&gt;你应当注意 使用 startService 启动服务之后，一定要使用 stopService停止服务，不管你是否使用bindService；&lt;/li&gt;
-&lt;li&gt;同时使用 startService 与 bindService 要注意到，Service 的终止，需要unbindService与stopService同时调用，才能终止 Service，不管 startService 与 bindService 的调用顺序，如果先调用 unbindService 此时服务不会自动终止，再调用 stopService 之后服务才会停止，如果先调用 stopService 此时服务也不会终止，而再调用 unbindService 或者 之前调用 bindService 的 Context 不存在了（如Activity 被 finish 的时候）之后服务才会自动停止；&lt;/li&gt;
-&lt;li&gt;当在旋转手机屏幕的时候，当手机屏幕在“横”“竖”变换时，此时如果你的 Activity 如果会自动旋转的话，旋转其实是 Activity 的重新创建，因此旋转之前的使用 bindService 建立的连接便会断开（Context 不存在了），对应服务的生命周期与上述相同。&lt;/li&gt;
-&lt;li&gt;在 sdk 2.0 及其以后的版本中，对应的 onStart 已经被否决变为了 onStartCommand，不过之前的 onStart 任然有效。这意味着，如果你开发的应用程序用的 sdk 为 2.0 及其以后的版本，那么你应当使用 onStartCommand 而不是 onStart。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Service-与-Thread-的区别&quot;&gt;&lt;a href=&quot;#Service-与-Thread-的区别&quot; class=&quot;headerlink&quot; title=&quot;Service 与 Thread 的区别&quot;&gt;&lt;/a&gt;Service 与 Thread 的区别&lt;/h1&gt;&lt;p&gt;很多时候，你可能会问，为什么要用 Service，而不用 Thread 呢，因为用 Thread 是很方便的，比起 Service 也方便多了，下面我详细的来解释一下。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>2016-04-10-希尔排序（改进的插入排序）Java实现</title>
-    <link href="http://febsky.me/2016/04/10/2016-04-10-%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F%EF%BC%88%E6%94%B9%E8%BF%9B%E7%9A%84%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%EF%BC%89Java%E5%AE%9E%E7%8E%B0/"/>
-    <id>http://febsky.me/2016/04/10/2016-04-10-希尔排序（改进的插入排序）Java实现/</id>
-    <published>2016-04-10T02:14:41.000Z</published>
-    <updated>2016-04-16T02:46:41.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;算法描述&quot;&gt;&lt;a href=&quot;#算法描述&quot; class=&quot;headerlink&quot; title=&quot;算法描述&quot;&gt;&lt;/a&gt;算法描述&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;希尔排序：&lt;/strong&gt;将无序数组分割为若干个子序列，子序列不是逐段分割的，而是相隔特定的增量的子序列，对各个子序列进行插入排序；然后再选择一个更小的增量，再将数组分割为多个子序列进行排序……最后选择增量为1，即使用直接插入排序，使最终数组成为有序。   &lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;&lt;strong&gt;增量的选择：&lt;/strong&gt;在每趟的排序过程都有一个增量，至少满足一个规则 增量关系 d[1] &amp;gt; d[2] &amp;gt; d[3] &amp;gt;..&amp;gt; d[t] = 1 (t趟排序)；根据增量序列的选取其时间复杂度也会有变化，这个不少论文进行了研究，在此处就不再深究；本文采用首选增量为n/2,以此递推，每次增量为原先的1/2，直到增量为1；&lt;/p&gt;
-&lt;p&gt;如下图：&lt;br&gt;&lt;img src=&quot;http://7xripg.com1.z0.glb.clouddn.com/2016/04/10/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F%E8%BF%87%E7%A8%8B%E5%9B%BE.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;【参考文章】&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/cjf_iceking/article/details/7951481&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;希尔排序&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;算法描述&quot;&gt;&lt;a href=&quot;#算法描述&quot; class=&quot;headerlink&quot; title=&quot;算法描述&quot;&gt;&lt;/a&gt;算法描述&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;希尔排序：&lt;/strong&gt;将无序数组分割为若干个子序列，子序列不是逐段分割的，而是相隔特定的增量的子序列，对各个子序列进行插入排序；然后再选择一个更小的增量，再将数组分割为多个子序列进行排序……最后选择增量为1，即使用直接插入排序，使最终数组成为有序。   &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="http://febsky.me/categories/Java/"/>
-    
-      <category term="算法" scheme="http://febsky.me/categories/Java/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="Java" scheme="http://febsky.me/tags/Java/"/>
-    
-      <category term="算法" scheme="http://febsky.me/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
