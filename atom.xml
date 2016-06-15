@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-06-13T02:19:11.000Z</updated>
+  <updated>2016-06-14T14:30:03.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python日期时间的处理</title>
+    <link href="http://febsky.me/2016/06/14/2016-06-14-Python%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%9A%84%E5%A4%84%E7%90%86/"/>
+    <id>http://febsky.me/2016/06/14/2016-06-14-Python日期时间的处理/</id>
+    <published>2016-06-14T14:04:19.000Z</published>
+    <updated>2016-06-14T14:30:03.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;首先导入时间日期模块&quot;&gt;&lt;a href=&quot;#首先导入时间日期模块&quot; class=&quot;headerlink&quot; title=&quot;首先导入时间日期模块&quot;&gt;&lt;/a&gt;首先导入时间日期模块&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import datetime&amp;#10;import time&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;string转datetime&quot;&gt;&lt;a href=&quot;#string转datetime&quot; class=&quot;headerlink&quot; title=&quot;string转datetime&quot;&gt;&lt;/a&gt;string转datetime&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;str = &amp;#39;2012-11-19&amp;#39;&amp;#10;&amp;#10;date_time = datetime.datetime.strptime(str,&amp;#39;%Y-%m-%d&amp;#39;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;datetime转string&quot;&gt;&lt;a href=&quot;#datetime转string&quot; class=&quot;headerlink&quot; title=&quot;datetime转string&quot;&gt;&lt;/a&gt;datetime转string&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;date_time = datetime.datetime(2012,11,19,0,0)&amp;#10;&amp;#10;date_time.strftime(&amp;#39;%Y-%m-%d&amp;#39;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;datetime-获取date&quot;&gt;&lt;a href=&quot;#datetime-获取date&quot; class=&quot;headerlink&quot; title=&quot;datetime 获取date&quot;&gt;&lt;/a&gt;datetime 获取date&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;date_time.date()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;datetime转时间戳&quot;&gt;&lt;a href=&quot;#datetime转时间戳&quot; class=&quot;headerlink&quot; title=&quot;datetime转时间戳&quot;&gt;&lt;/a&gt;datetime转时间戳&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;time_time = time.mktime(date_time.timetuple())&amp;#10;print time_time&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;时间戳转string&quot;&gt;&lt;a href=&quot;#时间戳转string&quot; class=&quot;headerlink&quot; title=&quot;时间戳转string&quot;&gt;&lt;/a&gt;时间戳转string&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;time.strftime(&amp;#39;%Y-%m-%d&amp;#39;,time.localtime(time_time))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;time（时间戳）与datetime之间的互相转换&quot;&gt;&lt;a href=&quot;#time（时间戳）与datetime之间的互相转换&quot; class=&quot;headerlink&quot; title=&quot;time（时间戳）与datetime之间的互相转换&quot;&gt;&lt;/a&gt;time（时间戳）与datetime之间的互相转换&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#&amp;#27880;&amp;#37322; time.time() &amp;#36820;&amp;#22238;&amp;#30340;&amp;#26159;&amp;#27627;&amp;#31186;&amp;#20540;&amp;#10;datetime.datetime.fromtimestamp(time.time())&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;date转datetime&quot;&gt;&lt;a href=&quot;#date转datetime&quot; class=&quot;headerlink&quot; title=&quot;date转datetime&quot;&gt;&lt;/a&gt;date转datetime&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;date = datetime.date.today()&amp;#10;&amp;#10;print date    ##datetime.date(2012,11,19)&amp;#10;&amp;#10;datetime.datetime.strptime(str(date),&amp;#39;%Y-%m-%d&amp;#39;) #&amp;#23558;date&amp;#36716;&amp;#25442;&amp;#20026;str&amp;#65292;&amp;#22312;&amp;#30001;str&amp;#36716;&amp;#25442;&amp;#20026;datetime&amp;#10;&amp;#10;datetime.datetime(2012,11,19,0,0)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;p&gt;##time模块&lt;/p&gt;
+&lt;p&gt;time模块提供各种操作时间的函数，一般有两种表示时间的方式:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一种是时间戳的方式(相对于1970.1.1 00:00:00以秒计算的偏移量),时间戳是惟一的&lt;/li&gt;
+&lt;li&gt;第二种以数组的形式表示即(struct_time),共有九个元素，分别表示，同一个时间戳的struct_time会因为时区不同而不同&lt;/li&gt;
+&lt;li&gt;gmtime()与mktime（）可以将两种时间表示方法自由转换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;【参考文献】&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://iam42.iteye.com/blog/1922875&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;time 和 datetime之间的关系&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;首先导入时间日期模块&quot;&gt;&lt;a href=&quot;#首先导入时间日期模块&quot; class=&quot;headerlink&quot; title=&quot;首先导入时间日期模块&quot;&gt;&lt;/a&gt;首先导入时间日期模块&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import datetime&amp;#10;import time&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;string转datetime&quot;&gt;&lt;a href=&quot;#string转datetime&quot; class=&quot;headerlink&quot; title=&quot;string转datetime&quot;&gt;&lt;/a&gt;string转datetime&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;str = &amp;#39;2012-11-19&amp;#39;&amp;#10;&amp;#10;date_time = datetime.datetime.strptime(str,&amp;#39;%Y-%m-%d&amp;#39;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://febsky.me/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://febsky.me/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Android开发中图文并排插件</title>
@@ -263,6 +307,32 @@
   </entry>
   
   <entry>
+    <title>Android 中实现倒计时</title>
+    <link href="http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/"/>
+    <id>http://febsky.me/2016/05/10/2016-05-10-Android中实现倒计时的方式/</id>
+    <published>2016-05-10T04:14:42.000Z</published>
+    <updated>2016-06-02T15:13:55.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-中实现倒计时控件的方法有哪些&quot;&gt;&lt;a href=&quot;#Android-中实现倒计时控件的方法有哪些&quot; class=&quot;headerlink&quot; title=&quot;Android 中实现倒计时控件的方法有哪些&quot;&gt;&lt;/a&gt;Android 中实现倒计时控件的方法有哪些&lt;/h1&gt;&lt;p&gt;今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;第一种CountDownTimer&quot;&gt;&lt;a href=&quot;#第一种CountDownTimer&quot; class=&quot;headerlink&quot; title=&quot;第一种CountDownTimer&quot;&gt;&lt;/a&gt;第一种CountDownTimer&lt;/h2&gt;&lt;p&gt;位于&lt;code&gt;android.os.CountDownTimer&lt;/code&gt;这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; CountDownTimer(&lt;span class=&quot;number&quot;&gt;30000&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onTick&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; millisUntilFinished)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                textView.setText(&lt;span class=&quot;string&quot;&gt;&quot;seconds remaining: &quot;&lt;/span&gt; + millisUntilFinished / &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onFinish&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                textView.setText(&lt;span class=&quot;string&quot;&gt;&quot;done!&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;.start();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;第二种-Timer与TimerTask-runOnUiThread-runnable-方法&quot;&gt;&lt;a href=&quot;#第二种-Timer与TimerTask-runOnUiThread-runnable-方法&quot; class=&quot;headerlink&quot; title=&quot;第二种 Timer与TimerTask + runOnUiThread(runnable)方法&quot;&gt;&lt;/a&gt;第二种 Timer与TimerTask + runOnUiThread(runnable)方法&lt;/h2&gt;&lt;h2 id=&quot;第三种Handler与Message（不用TimerTask）&quot;&gt;&lt;a href=&quot;#第三种Handler与Message（不用TimerTask）&quot; class=&quot;headerlink&quot; title=&quot;第三种Handler与Message（不用TimerTask）&quot;&gt;&lt;/a&gt;第三种Handler与Message（不用TimerTask）&lt;/h2&gt;&lt;h2 id=&quot;第四种Handler与Runnable（最简单型）&quot;&gt;&lt;a href=&quot;#第四种Handler与Runnable（最简单型）&quot; class=&quot;headerlink&quot; title=&quot;第四种Handler与Runnable（最简单型）&quot;&gt;&lt;/a&gt;第四种Handler与Runnable（最简单型）&lt;/h2&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Activity&lt;/span&gt;&lt;/span&gt;&amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; recLen = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; TextView txtView;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle savedInstanceState)&lt;/span&gt;&lt;/span&gt;&amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onCreate(savedInstanceState);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        setContentView(R.layout.timertask);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        txtView = (TextView)findViewById(R.id.txttime);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        handler.postDelayed(runnable, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;     &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Handler handler = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Handler();  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Runnable runnable = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Runnable() &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;annotation&quot;&gt;@Override&lt;/span&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            recLen++;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            txtView.setText(&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt; + recLen);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            handler.postDelayed(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-中实现倒计时控件的方法有哪些&quot;&gt;&lt;a href=&quot;#Android-中实现倒计时控件的方法有哪些&quot; class=&quot;headerlink&quot; title=&quot;Android 中实现倒计时控件的方法有哪些&quot;&gt;&lt;/a&gt;Android 中实现倒计时控件的方法有哪些&lt;/h1&gt;&lt;p&gt;今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="Java" scheme="http://febsky.me/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android SQLite操作</title>
     <link href="http://febsky.me/2016/05/10/2016-05-10-Android%E6%93%8D%E4%BD%9CSQLite%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%B9%E6%B3%95/"/>
     <id>http://febsky.me/2016/05/10/2016-05-10-Android操作SQLite数据库的方法/</id>
@@ -301,32 +371,6 @@
       <category term="Android" scheme="http://febsky.me/tags/Android/"/>
     
       <category term="数据库" scheme="http://febsky.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 中实现倒计时</title>
-    <link href="http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/"/>
-    <id>http://febsky.me/2016/05/10/2016-05-10-Android中实现倒计时的方式/</id>
-    <published>2016-05-10T04:14:42.000Z</published>
-    <updated>2016-06-02T15:13:55.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-中实现倒计时控件的方法有哪些&quot;&gt;&lt;a href=&quot;#Android-中实现倒计时控件的方法有哪些&quot; class=&quot;headerlink&quot; title=&quot;Android 中实现倒计时控件的方法有哪些&quot;&gt;&lt;/a&gt;Android 中实现倒计时控件的方法有哪些&lt;/h1&gt;&lt;p&gt;今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;第一种CountDownTimer&quot;&gt;&lt;a href=&quot;#第一种CountDownTimer&quot; class=&quot;headerlink&quot; title=&quot;第一种CountDownTimer&quot;&gt;&lt;/a&gt;第一种CountDownTimer&lt;/h2&gt;&lt;p&gt;位于&lt;code&gt;android.os.CountDownTimer&lt;/code&gt;这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; CountDownTimer(&lt;span class=&quot;number&quot;&gt;30000&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onTick&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; millisUntilFinished)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                textView.setText(&lt;span class=&quot;string&quot;&gt;&quot;seconds remaining: &quot;&lt;/span&gt; + millisUntilFinished / &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onFinish&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                textView.setText(&lt;span class=&quot;string&quot;&gt;&quot;done!&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;.start();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;第二种-Timer与TimerTask-runOnUiThread-runnable-方法&quot;&gt;&lt;a href=&quot;#第二种-Timer与TimerTask-runOnUiThread-runnable-方法&quot; class=&quot;headerlink&quot; title=&quot;第二种 Timer与TimerTask + runOnUiThread(runnable)方法&quot;&gt;&lt;/a&gt;第二种 Timer与TimerTask + runOnUiThread(runnable)方法&lt;/h2&gt;&lt;h2 id=&quot;第三种Handler与Message（不用TimerTask）&quot;&gt;&lt;a href=&quot;#第三种Handler与Message（不用TimerTask）&quot; class=&quot;headerlink&quot; title=&quot;第三种Handler与Message（不用TimerTask）&quot;&gt;&lt;/a&gt;第三种Handler与Message（不用TimerTask）&lt;/h2&gt;&lt;h2 id=&quot;第四种Handler与Runnable（最简单型）&quot;&gt;&lt;a href=&quot;#第四种Handler与Runnable（最简单型）&quot; class=&quot;headerlink&quot; title=&quot;第四种Handler与Runnable（最简单型）&quot;&gt;&lt;/a&gt;第四种Handler与Runnable（最简单型）&lt;/h2&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Activity&lt;/span&gt;&lt;/span&gt;&amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; recLen = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; TextView txtView;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle savedInstanceState)&lt;/span&gt;&lt;/span&gt;&amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onCreate(savedInstanceState);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        setContentView(R.layout.timertask);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        txtView = (TextView)findViewById(R.id.txttime);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        handler.postDelayed(runnable, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;     &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Handler handler = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Handler();  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Runnable runnable = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Runnable() &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;annotation&quot;&gt;@Override&lt;/span&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            recLen++;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            txtView.setText(&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt; + recLen);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            handler.postDelayed(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-中实现倒计时控件的方法有哪些&quot;&gt;&lt;a href=&quot;#Android-中实现倒计时控件的方法有哪些&quot; class=&quot;headerlink&quot; title=&quot;Android 中实现倒计时控件的方法有哪些&quot;&gt;&lt;/a&gt;Android 中实现倒计时控件的方法有哪些&lt;/h1&gt;&lt;p&gt;今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="Java" scheme="http://febsky.me/tags/Java/"/>
     
   </entry>
   
@@ -836,34 +880,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;strong&gt;先说点个人感想（废话）：&lt;/strong&gt;真心挺感谢新浪能给这个面试机会，作为一个非重点本科毕业学生来说，能给个面试机会已经非常不错了。不想某些大公司筛选简历一看工作年限，二看出身。很可惜自己能力有限在三面的时候彻底被虐了，今年算是止步于三面了。但是还是学到很多东西的，如果再有个一到两年的沉淀，详细自己还是可以胜任的。本来不想发出来的不知道发出来会不会影响到人家的面试。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="http://febsky.me/categories/Java/"/>
-    
-      <category term="Android" scheme="http://febsky.me/categories/Java/Android/"/>
-    
-      <category term="面试" scheme="http://febsky.me/categories/Java/Android/%E9%9D%A2%E8%AF%95/"/>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="Java" scheme="http://febsky.me/tags/Java/"/>
-    
-      <category term="面试" scheme="http://febsky.me/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2016年四月新浪微博面试部分</title>
-    <link href="http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9AAndroid%E9%9D%A2%E8%AF%95%E9%83%A8%E5%88%86/"/>
-    <id>http://febsky.me/2016/04/12/2016-04-12-新浪微博Android面试部分/</id>
-    <published>2016-04-12T13:14:41.000Z</published>
-    <updated>2016-04-16T02:43:12.000Z</updated>
-    
-    <content type="html"></content>
-    
-    <summary type="html">
     
     </summary>
     
