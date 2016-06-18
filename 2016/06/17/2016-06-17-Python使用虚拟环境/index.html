@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>2016-06-17-Python使用虚拟环境 · 我的程序世界</title><meta name="description" content="2016-06-17-Python使用虚拟环境 - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">我的程序世界</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">归档</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">关于</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">2016-06-17-Python使用虚拟环境</h1><div class="post-time">Jun 17, 2016</div><div class="post-content"><p>Python的虚拟环境可以使一个Python程序拥有独立的库library和解释器interpreter，而不用与其他Python程序共享统一个library和interpreter。虚拟环境的好处是避免了不同Python程序间的互相影响（共同使用global library 和 interpreter），例如程序A需要某个库的1.0版本，而程序B需要同样这个库的2.0版本，如果程序B执行则A就不能执行了。</p>
+<ol>
+<li>安装virtualenv：<br><code>pip install virtualenv</code></li>
+<li><p>创建虚拟环境</p>
+<p><code>virtualenv venv</code><br> venv是新创建的虚拟环境的名称。 同时会创建一个与虚拟环境名称相同的文件夹venv, 里面存储了一个独立的Python执行环境。</p>
+</li>
+<li><p>进入虚拟环境</p>
+<p> <code>source venv/bin/activate</code><br> 进入虚拟环境后，命令行的提示符会加入虚拟环境的名称，例如：(venv)user@machine:~$</p>
+</li>
+<li>退出虚拟环境<br> <code>deactivate</code></li>
+<li>删除虚拟环境<br> <code>rm -r venv</code><br> 直接删除虚拟环境所在的文件夹venv就删除了我们创建的venv虚拟环境。</li>
+</ol>
+</div></article></div><div class="tags"></div><div class="paginator"><a href="/2016/06/17/2016-06-17-Python常用的库/" class="next"><span>下一页</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2016/06/17/2016-06-17-Python使用虚拟环境/index.html" data-title="2016-06-17-Python使用虚拟环境" data-url="http://febsky.me/2016/06/17/2016-06-17-Python使用虚拟环境/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script></section><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>

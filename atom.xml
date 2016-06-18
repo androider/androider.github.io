@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-06-14T14:30:03.000Z</updated>
+  <updated>2016-06-17T09:51:49.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2016-06-17-Python使用虚拟环境</title>
+    <link href="http://febsky.me/2016/06/17/2016-06-17-Python%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
+    <id>http://febsky.me/2016/06/17/2016-06-17-Python使用虚拟环境/</id>
+    <published>2016-06-17T09:46:24.000Z</published>
+    <updated>2016-06-17T09:51:49.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Python的虚拟环境可以使一个Python程序拥有独立的库library和解释器interpreter，而不用与其他Python程序共享统一个library和interpreter。虚拟环境的好处是避免了不同Python程序间的互相影响（共同使用global library 和 interpreter），例如程序A需要某个库的1.0版本，而程序B需要同样这个库的2.0版本，如果程序B执行则A就不能执行了。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安装virtualenv：&lt;br&gt;&lt;code&gt;pip install virtualenv&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;创建虚拟环境&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;virtualenv venv&lt;/code&gt;&lt;br&gt; venv是新创建的虚拟环境的名称。 同时会创建一个与虚拟环境名称相同的文件夹venv, 里面存储了一个独立的Python执行环境。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;进入虚拟环境&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;source venv/bin/activate&lt;/code&gt;&lt;br&gt; 进入虚拟环境后，命令行的提示符会加入虚拟环境的名称，例如：(venv)user@machine:~$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;退出虚拟环境&lt;br&gt; &lt;code&gt;deactivate&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;删除虚拟环境&lt;br&gt; &lt;code&gt;rm -r venv&lt;/code&gt;&lt;br&gt; 直接删除虚拟环境所在的文件夹venv就删除了我们创建的venv虚拟环境。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python的虚拟环境可以使一个Python程序拥有独立的库library和解释器interpreter，而不用与其他Python程序共享统一个library和interpreter。虚拟环境的好处是避免了不同Python程序间的互相影响（共同使用global librar
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python常用的库</title>
+    <link href="http://febsky.me/2016/06/17/2016-06-17-Python%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BA%93/"/>
+    <id>http://febsky.me/2016/06/17/2016-06-17-Python常用的库/</id>
+    <published>2016-06-16T17:55:08.000Z</published>
+    <updated>2016-06-17T16:09:13.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;网络请求库 requests &lt;a href=&quot;http://cn.python-requests.org/zh_CN/latest/user/quickstart.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一份中文文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;HTML解析  pyquery 或者 beautifulsoup&lt;/li&gt;
+&lt;li&gt;orm库 sqlalchemy &lt;a href=&quot;http://gashero.yeax.com/?p=6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一份中文文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;种子解析libtorrent&lt;/li&gt;
+&lt;li&gt;web Flask,flask-httpauth&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;【参考】&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/vovlie/p/4182814.html?utm_source=tuicool&amp;amp;utm_medium=referral&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;用Flask设计带认证的Restfull&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;网络请求库 requests &lt;a href=&quot;http://cn.python-requests.org/zh_CN/latest/user/quickstart.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一份中文文档&lt;/a&gt;&lt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://febsky.me/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://febsky.me/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python日期时间的处理</title>
@@ -449,6 +510,35 @@
   </entry>
   
   <entry>
+    <title>Android 打包过程</title>
+    <link href="http://febsky.me/2016/05/06/2016-05-06-Android%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/"/>
+    <id>http://febsky.me/2016/05/06/2016-05-06-Android打包过程/</id>
+    <published>2016-05-06T04:14:42.000Z</published>
+    <updated>2016-05-13T15:55:16.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Android-打包过程&quot;&gt;&lt;a href=&quot;#Android-打包过程&quot; class=&quot;headerlink&quot; title=&quot;Android 打包过程&quot;&gt;&lt;/a&gt;Android 打包过程&lt;/h1&gt;&lt;p&gt;第一步：打包资源文件，生成R.java文件&lt;br&gt;【输入】Resource文件（就是工程中res中的文件）、Assets文件（相当于另外一种资源，这种资源Android系统并不像对res中的文件那样优化它）、AndroidManifest.xml文件（包名就是从这里读取的，因为生成R.java文件需要包名）、Android基础类库（Android.jar文件）&lt;br&gt;【输出】打包好的资源（一般在Android工程的bin目录可以看到一个叫resources.ap_的文件就是它了）、R.java文件（在gen目录中，大家应该很熟悉了）&lt;br&gt;【工具】aapt工具，它的路径在${ANDROID_SDK_HOME}/platform-tools/aapt（如果你使用的是Windows系统，按惯例路径应该这样写：%ANDROID_SDK_HOME%\platform-tools\aapt.exe，下同）。&lt;/p&gt;
+&lt;p&gt;第二步：处理AIDL文件，生成对应的.java文件（当然，有很多工程没有用到AIDL，那这个过程就可以省了）&lt;br&gt;【输入】源码文件、aidl文件、framework.aidl文件&lt;br&gt;【输出】对应的.java文件&lt;br&gt;【工具】aidl工具&lt;/p&gt;
+&lt;p&gt;第三步：编译Java文件，生成对应的.class文件&lt;br&gt;【输入】源码文件（包括R.java和AIDL生成的.java文件）、库文件（.jar文件）&lt;br&gt;【输出】.class文件&lt;br&gt;【工具】javac工具&lt;/p&gt;
+&lt;p&gt;第四步：把.class文件转化成Davik VM支持的.dex文件&lt;br&gt;【输入】 .class文件（包括Aidl生成.class文件，R生成的.class文件，源文件生成的.class文件），库文件（.jar文件）&lt;br&gt;【输出】.dex文件&lt;br&gt;【工具】javac工具&lt;/p&gt;
+&lt;p&gt;第五步：打包生成未签名的.apk文件&lt;br&gt;【输入】打包后的资源文件、打包后类文件（.dex文件）、libs文件（包括.so文件，当然很多工程都没有这样的文件，如果你不使用C/C++开发的话）&lt;br&gt;【输出】未签名的.apk文件&lt;br&gt;【工具】apkbuilder工具&lt;/p&gt;
+&lt;p&gt;第六步：对未签名.apk文件进行签名&lt;br&gt;【输入】未签名的.apk文件&lt;br&gt;【输出】签名的.apk文件&lt;br&gt;【工具】jarsigner&lt;/p&gt;
+&lt;p&gt;第七步：对签名后的.apk文件进行对齐处理（不进行对齐处理是不能发布到Google Market的）&lt;br&gt;【输入】签名后的.apk文件&lt;br&gt;【输出】对齐后的.apk文件&lt;br&gt;【工具】zipalign工具&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android-打包过程&quot;&gt;&lt;a href=&quot;#Android-打包过程&quot; class=&quot;headerlink&quot; title=&quot;Android 打包过程&quot;&gt;&lt;/a&gt;Android 打包过程&lt;/h1&gt;&lt;p&gt;第一步：打包资源文件，生成R.java文件&lt;br&gt;【输入】R
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="编译" scheme="http://febsky.me/tags/%E7%BC%96%E8%AF%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android FragmentPagerAdapter和FragmentStatePagerAdapter</title>
     <link href="http://febsky.me/2016/05/06/2016-05-12-FragmentStatePagerAdapter%E5%92%8CFragmentPagerAdapter/"/>
     <id>http://febsky.me/2016/05/06/2016-05-12-FragmentStatePagerAdapter和FragmentPagerAdapter/</id>
@@ -506,35 +596,6 @@
     
     
       <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 打包过程</title>
-    <link href="http://febsky.me/2016/05/06/2016-05-06-Android%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/"/>
-    <id>http://febsky.me/2016/05/06/2016-05-06-Android打包过程/</id>
-    <published>2016-05-06T04:14:42.000Z</published>
-    <updated>2016-05-13T15:55:16.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-打包过程&quot;&gt;&lt;a href=&quot;#Android-打包过程&quot; class=&quot;headerlink&quot; title=&quot;Android 打包过程&quot;&gt;&lt;/a&gt;Android 打包过程&lt;/h1&gt;&lt;p&gt;第一步：打包资源文件，生成R.java文件&lt;br&gt;【输入】Resource文件（就是工程中res中的文件）、Assets文件（相当于另外一种资源，这种资源Android系统并不像对res中的文件那样优化它）、AndroidManifest.xml文件（包名就是从这里读取的，因为生成R.java文件需要包名）、Android基础类库（Android.jar文件）&lt;br&gt;【输出】打包好的资源（一般在Android工程的bin目录可以看到一个叫resources.ap_的文件就是它了）、R.java文件（在gen目录中，大家应该很熟悉了）&lt;br&gt;【工具】aapt工具，它的路径在${ANDROID_SDK_HOME}/platform-tools/aapt（如果你使用的是Windows系统，按惯例路径应该这样写：%ANDROID_SDK_HOME%\platform-tools\aapt.exe，下同）。&lt;/p&gt;
-&lt;p&gt;第二步：处理AIDL文件，生成对应的.java文件（当然，有很多工程没有用到AIDL，那这个过程就可以省了）&lt;br&gt;【输入】源码文件、aidl文件、framework.aidl文件&lt;br&gt;【输出】对应的.java文件&lt;br&gt;【工具】aidl工具&lt;/p&gt;
-&lt;p&gt;第三步：编译Java文件，生成对应的.class文件&lt;br&gt;【输入】源码文件（包括R.java和AIDL生成的.java文件）、库文件（.jar文件）&lt;br&gt;【输出】.class文件&lt;br&gt;【工具】javac工具&lt;/p&gt;
-&lt;p&gt;第四步：把.class文件转化成Davik VM支持的.dex文件&lt;br&gt;【输入】 .class文件（包括Aidl生成.class文件，R生成的.class文件，源文件生成的.class文件），库文件（.jar文件）&lt;br&gt;【输出】.dex文件&lt;br&gt;【工具】javac工具&lt;/p&gt;
-&lt;p&gt;第五步：打包生成未签名的.apk文件&lt;br&gt;【输入】打包后的资源文件、打包后类文件（.dex文件）、libs文件（包括.so文件，当然很多工程都没有这样的文件，如果你不使用C/C++开发的话）&lt;br&gt;【输出】未签名的.apk文件&lt;br&gt;【工具】apkbuilder工具&lt;/p&gt;
-&lt;p&gt;第六步：对未签名.apk文件进行签名&lt;br&gt;【输入】未签名的.apk文件&lt;br&gt;【输出】签名的.apk文件&lt;br&gt;【工具】jarsigner&lt;/p&gt;
-&lt;p&gt;第七步：对签名后的.apk文件进行对齐处理（不进行对齐处理是不能发布到Google Market的）&lt;br&gt;【输入】签名后的.apk文件&lt;br&gt;【输出】对齐后的.apk文件&lt;br&gt;【工具】zipalign工具&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-打包过程&quot;&gt;&lt;a href=&quot;#Android-打包过程&quot; class=&quot;headerlink&quot; title=&quot;Android 打包过程&quot;&gt;&lt;/a&gt;Android 打包过程&lt;/h1&gt;&lt;p&gt;第一步：打包资源文件，生成R.java文件&lt;br&gt;【输入】R
-    
-    </summary>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="编译" scheme="http://febsky.me/tags/%E7%BC%96%E8%AF%91/"/>
     
   </entry>
   
@@ -795,91 +856,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;strong&gt;先说点个人感想（废话）：&lt;/strong&gt;这家公司还是不错的，面了三个星期了，14个工作日，面了12家公司.这家算是除了新浪微博之外比较正规的面试了。只记录技术二面，一面的都是比较基础的Java和Android。主要的有下面两个其余的忘了。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="http://febsky.me/categories/Java/"/>
-    
-      <category term="Android" scheme="http://febsky.me/categories/Java/Android/"/>
-    
-      <category term="面试" scheme="http://febsky.me/categories/Java/Android/%E9%9D%A2%E8%AF%95/"/>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="Java" scheme="http://febsky.me/tags/Java/"/>
-    
-      <category term="面试" scheme="http://febsky.me/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>新浪微博笔试最后一题</title>
-    <link href="http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E7%AC%94%E8%AF%95%E6%9C%80%E5%90%8E%E4%B8%80%E9%A2%98/"/>
-    <id>http://febsky.me/2016/04/12/2016-04-12-新浪微博笔试最后一题/</id>
-    <published>2016-04-12T14:12:32.000Z</published>
-    <updated>2016-04-16T02:44:04.000Z</updated>
-    
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;这是个程序找错题，找出&lt;strong&gt;不合理的地方&lt;/strong&gt;并且给出解决方案。明确的说应该是三处错误，我当时找出三处但是有一处没有改对。程序大体的代码是这样的，最后的那个枚举类型有点不太确定的地方。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; com.febsky.temp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.content.Context;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.os.Handler;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.os.Message;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.support.v7.app.AppCompatActivity;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.os.Bundle;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; android.view.View;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;SinaWeiboActivity&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;AppCompatActivity&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Handler handler;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;annotation&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle savedInstanceState)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onCreate(savedInstanceState);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        handler = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Handler() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;annotation&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;handleMessage&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Message msg)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.handleMessage(msg);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        setContentView(R.layout.activity_sina_weibo);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        View.OnClickListener listener = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; View.OnClickListener() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;annotation&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(View v)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        findViewById(R.id.button).setOnClickListener(listener);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Manager.getInstance(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;).setListener(listener);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;enum&lt;/span&gt; Manager &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        INSTANCE;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Context context;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        View.OnClickListener listener;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Manager&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; Manager &lt;span class=&quot;title&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Context context)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;synchronized&lt;/span&gt; (Manager.class) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (Manager.INSTANCE.context == &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    Manager.INSTANCE.context = context;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; INSTANCE;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setListener&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(View.OnClickListener listener)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.listener = listener;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;答案我就不给了，万一微博真的还在用这个题面试。我岂不是成了微博的醉人0^0，想知道答案的可以留言，我回复邮件。&lt;/p&gt;
-&lt;p&gt;其余的笔试题参照&lt;strong&gt;&lt;a href=&quot;&quot;&gt;上篇&lt;/a&gt;&lt;/strong&gt;。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;这是个程序找错题，找出&lt;strong&gt;不合理的地方&lt;/strong&gt;并且给出解决方案。明确的说应该是三处错误，我当时找出三处但是有一处没有改对。程序大体的代码是这样的，最后的那个枚举类型有点不太确定的地方。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="http://febsky.me/categories/Java/"/>
-    
-      <category term="Android" scheme="http://febsky.me/categories/Java/Android/"/>
-    
-      <category term="面试" scheme="http://febsky.me/categories/Java/Android/%E9%9D%A2%E8%AF%95/"/>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="Java" scheme="http://febsky.me/tags/Java/"/>
-    
-      <category term="面试" scheme="http://febsky.me/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2016年四月新浪微博面试体验</title>
-    <link href="http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AF%95%E9%A2%98/"/>
-    <id>http://febsky.me/2016/04/12/2016-04-12-新浪微博面试笔试题/</id>
-    <published>2016-04-12T13:14:41.000Z</published>
-    <updated>2016-04-16T02:46:08.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;先说点个人感想（废话）：&lt;/strong&gt;真心挺感谢新浪能给这个面试机会，作为一个非重点本科毕业学生来说，能给个面试机会已经非常不错了。不想某些大公司筛选简历一看工作年限，二看出身。很可惜自己能力有限在三面的时候彻底被虐了，今年算是止步于三面了。但是还是学到很多东西的，如果再有个一到两年的沉淀，详细自己还是可以胜任的。本来不想发出来的不知道发出来会不会影响到人家的面试。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;约的是下午四点的面试，面到了差不多7点。时间还是挺长的。三面完了等了打约20分钟，人事告诉我他们要的是高级工程师。然后~~~&lt;/p&gt;
-&lt;h1 id=&quot;2016四月新浪微博面试笔试题&quot;&gt;&lt;a href=&quot;#2016四月新浪微博面试笔试题&quot; class=&quot;headerlink&quot; title=&quot;2016四月新浪微博面试笔试题&quot;&gt;&lt;/a&gt;2016四月新浪微博面试笔试题&lt;/h1&gt;&lt;h2 id=&quot;1-静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？&quot;&gt;&lt;a href=&quot;#1-静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？&quot; class=&quot;headerlink&quot; title=&quot;1. 静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？&quot;&gt;&lt;/a&gt;1. 静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？&lt;/h2&gt;&lt;h2 id=&quot;2-AraayList-和Vector-的区别&quot;&gt;&lt;a href=&quot;#2-AraayList-和Vector-的区别&quot; class=&quot;headerlink&quot; title=&quot;2. AraayList 和Vector 的区别&quot;&gt;&lt;/a&gt;2. AraayList 和Vector 的区别&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;Vector是线程安全的，也就是说是它的方法之间是线程同步的，而ArrayList是线程序不安全的&lt;/li&gt;
-&lt;li&gt;记住Vector与Hashtable是旧的，是java一诞生就提供了的，它们是线程安全的，ArrayList与HashMap是java2时才提供的&lt;/li&gt;
-&lt;li&gt;ArrayList与Vector都有一个初始的容量大小，当存储进它们里面的元素的个数超过了容量时，就需要增加ArrayList与Vector的存储空间，Vector默认增长为原来两倍，而ArrayList的增长策略在文档中没有明确规定（从源代码看到的是增长为原来的1.5倍） ArrayList与Vector都可以设置初始的空间大小，Vector还可以设置增长的空间大小，而ArrayList没有提供设置增长空间的方法。&lt;br&gt;总结：即Vector增长原来的一倍，ArrayList增加原来的0.5倍。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;3-RemoteView-在什么地方用&quot;&gt;&lt;a href=&quot;#3-RemoteView-在什么地方用&quot; class=&quot;headerlink&quot; title=&quot;3. RemoteView 在什么地方用&quot;&gt;&lt;/a&gt;3. RemoteView 在什么地方用&lt;/h2&gt;&lt;p&gt;到目前为止，我发现RemoteView会用在两个地方：一个是在AppWidget,另外一个是在Notification. &lt;/p&gt;
-&lt;h2 id=&quot;4-Fragment和Activity的生命周期&quot;&gt;&lt;a href=&quot;#4-Fragment和Activity的生命周期&quot; class=&quot;headerlink&quot; title=&quot;4. Fragment和Activity的生命周期&quot;&gt;&lt;/a&gt;4. Fragment和Activity的生命周期&lt;/h2&gt;&lt;h2 id=&quot;5-Android-中的进程有哪些，说出它们的优先级&quot;&gt;&lt;a href=&quot;#5-Android-中的进程有哪些，说出它们的优先级&quot; class=&quot;headerlink&quot; title=&quot;5. Android 中的进程有哪些，说出它们的优先级&quot;&gt;&lt;/a&gt;5. Android 中的进程有哪些，说出它们的优先级&lt;/h2&gt;&lt;h2 id=&quot;6-view和Surfaceview的区别&quot;&gt;&lt;a href=&quot;#6-view和Surfaceview的区别&quot; class=&quot;headerlink&quot; title=&quot;6. view和Surfaceview的区别&quot;&gt;&lt;/a&gt;6. view和Surfaceview的区别&lt;/h2&gt;&lt;h2 id=&quot;7-onInterceptTouchEvent、onTouchEvent-的区别&quot;&gt;&lt;a href=&quot;#7-onInterceptTouchEvent、onTouchEvent-的区别&quot; class=&quot;headerlink&quot; title=&quot;7. onInterceptTouchEvent、onTouchEvent 的区别&quot;&gt;&lt;/a&gt;7. onInterceptTouchEvent、onTouchEvent 的区别&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;onTouchEvent同样也是在view中定义的一个方法。处理传递到view 的手势事件。手势事件类型包括ACTION_DOWN,ACTION_MOVE,ACTION_UP,ACTION_CANCEL四种事件。&lt;br&gt;一旦onTouchEvent方法被调用，并返回true则这个手势事件就结束了，并不会向下传递到子控件。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;onInterceptTouchEvent是在ViewGroup里面定义的。Android中的layout布局类一般都是继承此类的。onInterceptTouchEvent是用于拦截手势事件的，每个手势事件都会先调用onInterceptTouchEvent&lt;br&gt;此方法返回false，则手势事件会向子控件传递；返回true，则调用onTouchEvent方法。  &lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;8-switch-中可以用byte吗，可以用long吗，可以用String吗？&quot;&gt;&lt;a href=&quot;#8-switch-中可以用byte吗，可以用long吗，可以用String吗？&quot; class=&quot;headerlink&quot; title=&quot;8. switch 中可以用byte吗，可以用long吗，可以用String吗？&quot;&gt;&lt;/a&gt;8. switch 中可以用byte吗，可以用long吗，可以用String吗？&lt;/h2&gt;&lt;p&gt;答：switch 只能添加  &lt;code&gt;char,byte,short,int,Character,Byte,Short,Interger,String ,enum&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&quot;9-try-catch-finally-运行流程&quot;&gt;&lt;a href=&quot;#9-try-catch-finally-运行流程&quot; class=&quot;headerlink&quot; title=&quot;9. try catch finally 运行流程&quot;&gt;&lt;/a&gt;9. try catch finally 运行流程&lt;/h2&gt;&lt;h2 id=&quot;10-是一个程序找错题。&quot;&gt;&lt;a href=&quot;#10-是一个程序找错题。&quot; class=&quot;headerlink&quot; title=&quot;10. 是一个程序找错题。&quot;&gt;&lt;/a&gt;10. 是一个程序找错题。&lt;/h2&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;先说点个人感想（废话）：&lt;/strong&gt;真心挺感谢新浪能给这个面试机会，作为一个非重点本科毕业学生来说，能给个面试机会已经非常不错了。不想某些大公司筛选简历一看工作年限，二看出身。很可惜自己能力有限在三面的时候彻底被虐了，今年算是止步于三面了。但是还是学到很多东西的，如果再有个一到两年的沉淀，详细自己还是可以胜任的。本来不想发出来的不知道发出来会不会影响到人家的面试。&lt;/p&gt;
     
     </summary>
     
