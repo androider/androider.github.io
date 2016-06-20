@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://febsky.me/2015/02/08/2015-02-08-AndroidStudio%E4%B8%AD%E6%88%91%E7%9A%84%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
+    
+    <lastmod>2016-06-20T09:51:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://febsky.me/2016/03/23/2016-03-23-AndroidStudio%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/</loc>
     
     <lastmod>2016-06-20T09:28:05.000Z</lastmod>
@@ -145,13 +152,6 @@
     <loc>http://febsky.me/2015/09/30/2015-09-30-%E8%B0%83%E7%94%A8Android%E7%9A%84Dialog%E7%9A%84show()%E6%96%B9%E6%B3%95dialog%E5%B9%B6%E6%B2%A1%E6%9C%89%E6%98%BE%E7%A4%BA/</loc>
     
     <lastmod>2016-05-28T14:41:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://febsky.me/2015/02/08/2015-02-08-AndroidStudio%E4%B8%AD%E6%88%91%E7%9A%84%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
-    
-    <lastmod>2016-05-28T14:14:09.000Z</lastmod>
     
   </url>
   
