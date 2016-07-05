@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-06-17T09:51:49.000Z</updated>
+  <updated>2016-07-05T05:48:56.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,79 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android开发我用到的Chrome插件</title>
+    <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E5%BC%80%E5%8F%91%E6%88%91%E7%94%A8%E5%88%B0%E7%9A%84Chrome%E6%8F%92%E4%BB%B6/"/>
+    <id>http://febsky.me/2016/07/05/2016-07-05-Android开发我用到的Chrome插件/</id>
+    <published>2016-07-05T05:35:51.000Z</published>
+    <updated>2016-07-05T05:48:56.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Chrome调试WebView&quot;&gt;&lt;a href=&quot;#Chrome调试WebView&quot; class=&quot;headerlink&quot; title=&quot;Chrome调试WebView&quot;&gt;&lt;/a&gt;Chrome调试WebView&lt;/h1&gt;&lt;p&gt;&lt;code&gt;前提一定要开启手机USB调试模式&lt;/code&gt;如果千万不要丢了U&lt;/p&gt;
+&lt;p&gt;在电脑上打开Chrome浏览器的菜单– 更多工具 – 检查设备（Chromemenu &amp;gt; More tools &amp;gt; Inspect Devices），或者直接在浏览器地址栏输入chrome://inspect 或者about:inspect&lt;/p&gt;
+&lt;p&gt;然后自己瞎鼓捣就行了。&lt;/p&gt;
+&lt;h1 id=&quot;Chrome操作Android真机（解放双手）&quot;&gt;&lt;a href=&quot;#Chrome操作Android真机（解放双手）&quot; class=&quot;headerlink&quot; title=&quot;Chrome操作Android真机（解放双手）&quot;&gt;&lt;/a&gt;Chrome操作Android真机（解放双手）&lt;/h1&gt;&lt;p&gt;Chrome有个叫做 &lt;code&gt;Vysor&lt;/code&gt; 的插件，可以直接在Chrome应用市场搜索。&lt;br&gt;可惜的是这个的免费版，画面太不清晰。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Chrome调试WebView&quot;&gt;&lt;a href=&quot;#Chrome调试WebView&quot; class=&quot;headerlink&quot; title=&quot;Chrome调试WebView&quot;&gt;&lt;/a&gt;Chrome调试WebView&lt;/h1&gt;&lt;p&gt;&lt;code&gt;前提一定要开启手机USB
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="Chrome插件" scheme="http://febsky.me/categories/Android/Chrome%E6%8F%92%E4%BB%B6/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="Chrome插件" scheme="http://febsky.me/tags/Chrome%E6%8F%92%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android逆向工程用到的工具</title>
+    <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/"/>
+    <id>http://febsky.me/2016/07/05/2016-07-05-Android逆向工程用到的工具/</id>
+    <published>2016-07-05T05:12:00.000Z</published>
+    <updated>2016-07-05T05:28:04.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;第一套组合&quot;&gt;&lt;a href=&quot;#第一套组合&quot; class=&quot;headerlink&quot; title=&quot;第一套组合&quot;&gt;&lt;/a&gt;第一套组合&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Apktool&lt;/a&gt; + &lt;a href=&quot;https://github.com/pxb1988/dex2jar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dex2jar&lt;/a&gt; + &lt;a href=&quot;https://github.com/java-decompiler/jd-gui&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jd-gui&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;可惜的是apktool好像后来不再支持调试Smali文件，jd-gui 作者从 2015 年开始就停止了维护.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;但是AndroidStudio有个调试Smali的插件  &lt;a href=&quot;SmaliIdea：https://github.com/JesusFreke/smali/wiki/smalidea&quot;&gt;地址 https://github.com/JesusFreke/smali/wiki/smalidea&lt;/a&gt;&lt;br&gt;据说jadx 不错，可以取代 jd-gui &lt;a href=&quot;https://github.com/skylot/jadx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;地址 https://github.com/skylot/jadx&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;Google-出的几个逆向分析工具&quot;&gt;&lt;a href=&quot;#Google-出的几个逆向分析工具&quot; class=&quot;headerlink&quot; title=&quot;Google 出的几个逆向分析工具&quot;&gt;&lt;/a&gt;Google 出的几个逆向分析工具&lt;/h1&gt;&lt;h2 id=&quot;1-enjarify&quot;&gt;&lt;a href=&quot;#1-enjarify&quot; class=&quot;headerlink&quot; title=&quot;1. enjarify  &quot;&gt;&lt;/a&gt;1. enjarify  &lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/enjarify&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/enjarify&lt;/a&gt;&lt;br&gt;功能：可直接将 apk 文件还原成为 jar 文件，也可以和 dex2jar 一样，直接操作某个dex&lt;/p&gt;
+&lt;p&gt;这是 Google 出品的一个逆向分析工具，从反编译成 jar 包的流程来说，要比 dex2jar 方便得多。下载完工具到本地并配置好 Python 环境后，需要修改 enjarify 目录下的 enjarify.bat 文件，将 python3 改为 python&lt;/p&gt;
+&lt;h2 id=&quot;2-Procyon&quot;&gt;&lt;a href=&quot;#2-Procyon&quot; class=&quot;headerlink&quot; title=&quot;2. Procyon&quot;&gt;&lt;/a&gt;2. Procyon&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://bitbucket.org/mstrobel/procyon&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bitbucket.org/mstrobel/procyon&lt;/a&gt;&lt;br&gt;功能：将反编译得到 jar 包还原成 java 文件，同时能够更强的还原代码的逻辑结构 &lt;/p&gt;
+&lt;h2 id=&quot;3-ClassyShark&quot;&gt;&lt;a href=&quot;#3-ClassyShark&quot; class=&quot;headerlink&quot; title=&quot;3. ClassyShark&quot;&gt;&lt;/a&gt;3. ClassyShark&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/android-classyshark&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/android-classyshark&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;功能：可直接浏览 Apk，支持对.dex, .aar, .so，.apk, .jar, .class等文件的操作。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;java -jar ClassyShark.jar -open XXX.apk&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;第一套组合&quot;&gt;&lt;a href=&quot;#第一套组合&quot; class=&quot;headerlink&quot; title=&quot;第一套组合&quot;&gt;&lt;/a&gt;第一套组合&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="反编译" scheme="http://febsky.me/categories/Android/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
+    
+      <category term="逆向工程" scheme="http://febsky.me/categories/Android/%E5%8F%8D%E7%BC%96%E8%AF%91/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="反编译" scheme="http://febsky.me/tags/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
+    
+      <category term="逆向工程" scheme="http://febsky.me/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>2016-06-17-Python使用虚拟环境</title>
@@ -795,82 +868,6 @@
     
     
       <category term="大数据" scheme="http://febsky.me/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo的Theme制作用到的库</title>
-    <link href="http://febsky.me/2016/04/16/2016-04-16-Hexo%E7%9A%84Theme%E5%88%B6%E4%BD%9C%E7%94%A8%E5%88%B0%E7%9A%84%E5%BA%93/"/>
-    <id>http://febsky.me/2016/04/16/2016-04-16-Hexo的Theme制作用到的库/</id>
-    <published>2016-04-16T02:31:43.000Z</published>
-    <updated>2016-04-24T10:24:02.000Z</updated>
-    
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;Hexo 的&lt;a href=&quot;https://hexo.io/zh-cn/docs/templates.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文档&lt;/a&gt;    &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;CSS库 &lt;a href=&quot;http://stylus-lang.com/docs/executable.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stylus&lt;/a&gt;当时一直很好奇这个&lt;code&gt;.styl&lt;/code&gt;结尾的文件到底是个啥,&lt;a href=&quot;http://www.zhangxinxu.com/jq/stylus/js.php&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;中文文档地址&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;Hexo 的&lt;a href=&quot;https://hexo.io/zh-cn/docs/templates.html&quot;&gt;文档&lt;/a&gt;    &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;CSS库 &lt;a href=&quot;http://stylus-lang.com/docs/executable.html&quot;&gt;Stylus&lt;/a&gt;当时一直很好奇这个&lt;code&gt;.styl&lt;/code&gt;结尾的文件到底是个啥,&lt;a href=&quot;http://www.zhangxinxu.com/jq/stylus/js.php&quot;&gt;中文文档地址&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://febsky.me/categories/Hexo/"/>
-    
-    
-      <category term="Hexo" scheme="http://febsky.me/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>某家公司面试题</title>
-    <link href="http://febsky.me/2016/04/14/2016-04-14-%E6%9F%90%E5%85%AC%E5%8F%B8%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AF%95%E9%A2%98/"/>
-    <id>http://febsky.me/2016/04/14/2016-04-14-某公司面试笔试题/</id>
-    <published>2016-04-14T08:39:22.000Z</published>
-    <updated>2016-04-16T02:43:37.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;先说点个人感想（废话）：&lt;/strong&gt;这家公司还是不错的，面了三个星期了，14个工作日，面了12家公司.这家算是除了新浪微博之外比较正规的面试了。只记录技术二面，一面的都是比较基础的Java和Android。主要的有下面两个其余的忘了。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-说说ArrayList的底层实现。&quot;&gt;&lt;a href=&quot;#1-说说ArrayList的底层实现。&quot; class=&quot;headerlink&quot; title=&quot;1. 说说ArrayList的底层实现。&quot;&gt;&lt;/a&gt;1. 说说ArrayList的底层实现。&lt;/h1&gt;&lt;p&gt;延长方式，为什么要选择这种延长方式，而不是一个个延长。（面试官带着我算了一下这几种延长方式时间复杂度，幸亏为了应对微博的面试我简单复习了下算法理论知识，不至于被虐的体无完肤）但是算到log(n)的时候我真心不会了，对数函数早忘没了~~~&lt;/p&gt;
-&lt;h1 id=&quot;2-题目是这样的：&quot;&gt;&lt;a href=&quot;#2-题目是这样的：&quot; class=&quot;headerlink&quot; title=&quot;2. 题目是这样的：&quot;&gt;&lt;/a&gt;2. 题目是这样的：&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;如果你知道接下来每秒的股票的价格，但是你只有一次买的机会，和一次卖的机会如何才能使收益最高。&lt;/li&gt;
-&lt;li&gt;我当时的解决是用来双重for循环来遍历，然后面试官接着问，你的算法复杂度是多少（就离不开复杂度了，😓），我说O(n²)，他说好，有没有办法一次for循环能解决。额，我解决了半天~~ 都没作对。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;3-Activity在不同启动模式下的生命周期&quot;&gt;&lt;a href=&quot;#3-Activity在不同启动模式下的生命周期&quot; class=&quot;headerlink&quot; title=&quot;3. Activity在不同启动模式下的生命周期&quot;&gt;&lt;/a&gt;3. Activity在不同启动模式下的生命周期&lt;/h1&gt;&lt;p&gt;恩，好像有个&lt;code&gt;onNewIntent()&lt;/code&gt;.记不清了,这个我不会。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;先说点个人感想（废话）：&lt;/strong&gt;这家公司还是不错的，面了三个星期了，14个工作日，面了12家公司.这家算是除了新浪微博之外比较正规的面试了。只记录技术二面，一面的都是比较基础的Java和Android。主要的有下面两个其余的忘了。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="http://febsky.me/categories/Java/"/>
-    
-      <category term="Android" scheme="http://febsky.me/categories/Java/Android/"/>
-    
-      <category term="面试" scheme="http://febsky.me/categories/Java/Android/%E9%9D%A2%E8%AF%95/"/>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="Java" scheme="http://febsky.me/tags/Java/"/>
-    
-      <category term="面试" scheme="http://febsky.me/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   

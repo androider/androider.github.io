@@ -13,6 +13,7 @@
 </li>
 <li><p>git commit -a 自动将在提交前将已记录、修改的文件放入缓存区,基本上这句话的意思就是，为任何已有记录的文件执行 <code>git add,</code>不过你仍然需要执行 <code>git add</code> 来添加新文件</p>
 </li>
+<li>git 对本地文件的文件名的大小写是不敏感额，如果修改文件名的大小写不会添加修改，命令行运行下列代码，强制git对大小写敏感<br><code>$ git config core.ignorecase false</code></li>
 </ol>
 <h2 id="git-branch【-origin-指的是主机名-master-指的是分支名】"><a href="#git-branch【-origin-指的是主机名-master-指的是分支名】" class="headerlink" title="git branch【  origin 指的是主机名    master 指的是分支名】"></a>git branch【  origin 指的是主机名    master 指的是分支名】</h2><p><code>git branch -r</code> 查看远程分支</p>
 <p><code>git branch -a</code>    查看所有分支</p>
