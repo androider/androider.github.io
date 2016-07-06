@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-07-05T05:48:56.000Z</updated>
+  <updated>2016-07-06T02:24:39.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -20,12 +20,18 @@
     <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E5%BC%80%E5%8F%91%E6%88%91%E7%94%A8%E5%88%B0%E7%9A%84Chrome%E6%8F%92%E4%BB%B6/"/>
     <id>http://febsky.me/2016/07/05/2016-07-05-Android开发我用到的Chrome插件/</id>
     <published>2016-07-05T05:35:51.000Z</published>
-    <updated>2016-07-05T05:48:56.000Z</updated>
+    <updated>2016-07-06T02:24:39.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Chrome调试WebView&quot;&gt;&lt;a href=&quot;#Chrome调试WebView&quot; class=&quot;headerlink&quot; title=&quot;Chrome调试WebView&quot;&gt;&lt;/a&gt;Chrome调试WebView&lt;/h1&gt;&lt;p&gt;&lt;code&gt;前提一定要开启手机USB调试模式&lt;/code&gt;如果千万不要丢了U&lt;/p&gt;
 &lt;p&gt;在电脑上打开Chrome浏览器的菜单– 更多工具 – 检查设备（Chromemenu &amp;gt; More tools &amp;gt; Inspect Devices），或者直接在浏览器地址栏输入chrome://inspect 或者about:inspect&lt;/p&gt;
 &lt;p&gt;然后自己瞎鼓捣就行了。&lt;/p&gt;
-&lt;h1 id=&quot;Chrome操作Android真机（解放双手）&quot;&gt;&lt;a href=&quot;#Chrome操作Android真机（解放双手）&quot; class=&quot;headerlink&quot; title=&quot;Chrome操作Android真机（解放双手）&quot;&gt;&lt;/a&gt;Chrome操作Android真机（解放双手）&lt;/h1&gt;&lt;p&gt;Chrome有个叫做 &lt;code&gt;Vysor&lt;/code&gt; 的插件，可以直接在Chrome应用市场搜索。&lt;br&gt;可惜的是这个的免费版，画面太不清晰。&lt;/p&gt;
+&lt;h1 id=&quot;Chrome（电脑端）操作Android真机（解放双手）&quot;&gt;&lt;a href=&quot;#Chrome（电脑端）操作Android真机（解放双手）&quot; class=&quot;headerlink&quot; title=&quot;Chrome（电脑端）操作Android真机（解放双手）&quot;&gt;&lt;/a&gt;Chrome（电脑端）操作Android真机（解放双手）&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Chrome有个叫做 &lt;code&gt;Vysor&lt;/code&gt; 的插件，可以直接在Chrome应用市场搜索。&lt;br&gt;可惜的是这个的免费版，画面太不清晰。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;其实还有一个不是Chrome插件的东西，是Google开发的亲儿子，（简称ASM）是一款监视手机或者模拟器屏幕的工具，主要和上面相比分辨率高   &lt;a href=&quot;https://code.google.com/archive/p/android-screen-monitor/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-screen-monitor&lt;/a&gt;  这个托管在GoogleCode上面，要科学上网！ 这个和上面的相比仅仅有监视的功能不能操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;配置方式：解压后将 &lt;code&gt;asm.jar&lt;/code&gt;拷贝到本机 &lt;code&gt;android-sdk\platform-tools&lt;/code&gt;目录下。然后命令行运行 &lt;code&gt;java -jar asm.jar&lt;/code&gt; 如果不copy到 platform-tools目录下，可能要配置Android sdk的环境变量。切记。&lt;/p&gt;
 </content>
     
     <summary type="html">
