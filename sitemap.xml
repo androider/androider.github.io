@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://febsky.me/tags/index.html</loc>
+    
+    <lastmod>2016-07-07T06:05:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://febsky.me/2016/05/28/2016-05-16-Android%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/</loc>
     
     <lastmod>2016-07-06T05:36:08.000Z</lastmod>
@@ -173,13 +180,6 @@
     <loc>http://febsky.me/2015/09/30/2015-09-30-%E8%B0%83%E7%94%A8Android%E7%9A%84Dialog%E7%9A%84show()%E6%96%B9%E6%B3%95dialog%E5%B9%B6%E6%B2%A1%E6%9C%89%E6%98%BE%E7%A4%BA/</loc>
     
     <lastmod>2016-05-28T14:41:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://febsky.me/tags/index.html</loc>
-    
-    <lastmod>2016-05-15T15:14:09.000Z</lastmod>
     
   </url>
   
