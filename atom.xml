@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-07-06T02:24:39.000Z</updated>
+  <updated>2016-07-06T03:24:21.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E5%BC%80%E5%8F%91%E6%88%91%E7%94%A8%E5%88%B0%E7%9A%84Chrome%E6%8F%92%E4%BB%B6/"/>
     <id>http://febsky.me/2016/07/05/2016-07-05-Android开发我用到的Chrome插件/</id>
     <published>2016-07-05T05:35:51.000Z</published>
-    <updated>2016-07-06T02:24:39.000Z</updated>
+    <updated>2016-07-06T03:24:21.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Chrome调试WebView&quot;&gt;&lt;a href=&quot;#Chrome调试WebView&quot; class=&quot;headerlink&quot; title=&quot;Chrome调试WebView&quot;&gt;&lt;/a&gt;Chrome调试WebView&lt;/h1&gt;&lt;p&gt;&lt;code&gt;前提一定要开启手机USB调试模式&lt;/code&gt;如果千万不要丢了U&lt;/p&gt;
 &lt;p&gt;在电脑上打开Chrome浏览器的菜单– 更多工具 – 检查设备（Chromemenu &amp;gt; More tools &amp;gt; Inspect Devices），或者直接在浏览器地址栏输入chrome://inspect 或者about:inspect&lt;/p&gt;
@@ -32,6 +32,7 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;配置方式：解压后将 &lt;code&gt;asm.jar&lt;/code&gt;拷贝到本机 &lt;code&gt;android-sdk\platform-tools&lt;/code&gt;目录下。然后命令行运行 &lt;code&gt;java -jar asm.jar&lt;/code&gt; 如果不copy到 platform-tools目录下，可能要配置Android sdk的环境变量。切记。&lt;/p&gt;
+&lt;h1 id=&quot;Facebook出了一个叫做Stetho东西&quot;&gt;&lt;a href=&quot;#Facebook出了一个叫做Stetho东西&quot; class=&quot;headerlink&quot; title=&quot;Facebook出了一个叫做Stetho东西&quot;&gt;&lt;/a&gt;Facebook出了一个叫做&lt;a href=&quot;http://facebook.github.io/stetho/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stetho&lt;/a&gt;东西&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;作用：&lt;/strong&gt; 他能在Chrome控制台中查看app的网络请求，数据抓包，和app的数据库文件等等。但是要在app中引入库，具体的操作看官网吧。&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -315,7 +316,7 @@
     <link href="http://febsky.me/2016/05/28/2016-05-16-Android%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
     <id>http://febsky.me/2016/05/28/2016-05-16-Android中的小技巧/</id>
     <published>2016-05-28T08:39:22.000Z</published>
-    <updated>2016-06-02T15:12:23.000Z</updated>
+    <updated>2016-07-06T05:36:08.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;ListView小技巧&quot;&gt;&lt;a href=&quot;#ListView小技巧&quot; class=&quot;headerlink&quot; title=&quot;ListView小技巧&quot;&gt;&lt;/a&gt;ListView小技巧&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;可以设置空白站位View &lt;code&gt;listView.setEmptyView(view);&lt;/code&gt;非常有用&lt;/li&gt;
@@ -336,6 +337,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h1 id=&quot;扩大View的触摸和点击响应范围&quot;&gt;&lt;a href=&quot;#扩大View的触摸和点击响应范围&quot; class=&quot;headerlink&quot; title=&quot;扩大View的触摸和点击响应范围&quot;&gt;&lt;/a&gt;扩大View的触摸和点击响应范围&lt;/h1&gt;&lt;p&gt;&lt;code&gt;setTouchDelegate()&lt;/code&gt;方法&lt;/p&gt;
 </content>
     
     <summary type="html">
