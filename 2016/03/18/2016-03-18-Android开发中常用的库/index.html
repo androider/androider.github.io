@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Android开发中常用的库 · 我的程序世界</title><meta name="description" content="Android开发中常用的库 - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、网络请求库"><span class="toc-text">1、网络请求库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、网络图片加载库"><span class="toc-text">2、网络图片加载库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、-gif-图片展示"><span class="toc-text">3、(gif)图片展示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、SQLite-ORM"><span class="toc-text">4、SQLite ORM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、开发框架"><span class="toc-text">5、开发框架</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、消息通信"><span class="toc-text">6、消息通信</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7、依赖注入"><span class="toc-text">7、依赖注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8、一个log库"><span class="toc-text">8、一个log库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">我的程序世界</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">归档</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">关于</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Android开发中常用的库</h1><div class="post-time">Mar 18, 2016</div><div class="post-content"><h1 id="1、网络请求库"><a href="#1、网络请求库" class="headerlink" title="1、网络请求库"></a>1、网络请求库</h1><ol>
+<li><del>HttpClient</del> Apache 中HttpClient库的简单封装，在Android中已经弃用。</li>
+<li><a href="https://github.com/loopj/android-async-http" target="_blank" rel="external">AsyncHttpClient</a> <em>An asynchronous, callback-based Http client for Android built on top of Apache’s HttpClient libraries.</em>（好像是最早的一个吧。我以前用过后来不用了）与volley一样是异步网络库，但volley是封装的httpUrlConnection，它是封装的httpClient，而android平台不推荐用HttpClient了，所以这个库已经不适合android平台了。</li>
+<li><a href="https://github.com/square/okhttp" target="_blank" rel="external">Okhttp</a>这货出身好啊。square公司，这个公司开源了好多Android的框架。这个偏底层。据说很快。在AndroidStudio能搜到。okhttp是高性能的http库，支持同步、异步，而且实现了spdy、http2、websocket协议，api很简洁易用，和volley一样实现了http协议的缓存。picasso就是利用okhttp的缓存机制实现其文件缓存，实现的很优雅，很正确，反例就是UIL（universal image loader），自己做的文件缓存，而且不遵守http缓存机制。</li>
+<li><a href="https://github.com/square/retrofit" target="_blank" rel="external">Retrofit</a>高层封装，底层使用okhttp。也是square公司提供。其实它更像一个restful 请求客户端。</li>
+<li><a href="https://android.googlesource.com/platform/frameworks/volley" target="_blank" rel="external">Volley</a> Google提供，高层封装。底层使用<code>HttpURLConnection</code>或者<code>HttpClient</code>（HttpClient在2.x之后弃用了）volley是一个简单的异步http库，仅此而已。缺点是不支持同步，这点会限制开发模式；不能post大数据，所以不适合用来上传文件。</li>
+<li><a href="https://github.com/kevinsawicki/http-request" target="_blank" rel="external">https://github.com/kevinsawicki/http-request</a>据说还有个这玩意，没用过，真心一次都没用过，上面那几个都试用过了。</li>
+</ol>
+<p>P.S. 所谓的偏底层是指，这个库的网络请求是在子线程中完成的，它的回调接口中不能直接更新UI。即库的内部没有封装Android 中的Handler。</p>
+<h1 id="2、网络图片加载库"><a href="#2、网络图片加载库" class="headerlink" title="2、网络图片加载库"></a>2、网络图片加载库</h1><ol>
+<li><a href="https://github.com/nostra13/Android-Universal-Image-Loader" target="_blank" rel="external">Android-Universal-Image-Loader</a> 应该是最早的一个吧</li>
+<li><a href="https://github.com/facebook/fresco" target="_blank" rel="external">Fresco</a> 他爹是Facebook，有完善的中文文档</li>
+<li><a href="https://github.com/square/picasso" target="_blank" rel="external">Picasso</a> 他爹是square，底层应该是用的okhttp，而且是注解的方式</li>
+<li><a href="https://github.com/bumptech/glide" target="_blank" rel="external">Glide</a> 据说是Google推荐使用的，用法和<code>Picasso</code>很相似</li>
+</ol>
+<h1 id="3、-gif-图片展示"><a href="#3、-gif-图片展示" class="headerlink" title="3、(gif)图片展示"></a>3、(gif)图片展示</h1><ol>
+<li><a href="https://github.com/koral--/android-gif-drawable" target="_blank" rel="external">android-gif-drawable</a> 和前面不同的是这个是个gif图片展示的库</li>
+<li><a href="http://code.google.com/p/gifview/" target="_blank" rel="external">GifView</a> 顾名思义这也是个gif图片播放的view，github上也有个同名的不知道是不是同一个。我没用过。</li>
+</ol>
+<h1 id="4、SQLite-ORM"><a href="#4、SQLite-ORM" class="headerlink" title="4、SQLite ORM"></a>4、SQLite ORM</h1><ol>
+<li><a href="https://github.com/greenrobot/greenDAO" target="_blank" rel="external">greenDAO</a> Orm框架</li>
+<li><a href="https://github.com/realm/realm-java" target="_blank" rel="external">Realm</a> Realm is a mobile database: a replacement for SQLite &amp; ORMs(一个据说能跨平台的数据库可以替换SQLite)</li>
+</ol>
+<h1 id="5、开发框架"><a href="#5、开发框架" class="headerlink" title="5、开发框架"></a>5、开发框架</h1><p>所谓的开发框架，就是包含了Android开发中常用的基本的库，像什么网络请求了，图片异步加载，文件上传，json数据解析了，文件下载，数据库的管理了，等等一系列工具的合集~~~前两个试用过。后两个几乎没见过。</p>
+<ol>
+<li><a href="https://github.com/yangfuhai/afinal" target="_blank" rel="external">Afinal框架</a></li>
+<li><a href="https://github.com/wyouflf/xUtils" target="_blank" rel="external">xUtils框架</a></li>
+<li><a href="https://github.com/white-cat/ThinkAndroid" target="_blank" rel="external">ThinkAndroid</a></li>
+<li><a href="https://github.com/gdpancheng/LoonAndroid" target="_blank" rel="external">LoonAndroid</a></li>
+</ol>
+<h1 id="6、消息通信"><a href="#6、消息通信" class="headerlink" title="6、消息通信"></a>6、消息通信</h1><p>为了简化android应用内组件通信</p>
+<ol>
+<li><a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a> 和<code>greenDAO</code>同一家公司开源的,翻译过来事件总线</li>
+<li><a href="https://github.com/square/otto" target="_blank" rel="external">Otto</a> 么也别说了，这货又是square公司开源的，这货依然使用的注解</li>
+</ol>
+<h1 id="7、依赖注入"><a href="#7、依赖注入" class="headerlink" title="7、依赖注入"></a>7、依赖注入</h1><ol>
+<li><a href="https://github.com/google/dagger" target="_blank" rel="external">Dagger2</a>  <a href="http://google.github.io/dagger/users-guide.html" target="_blank" rel="external">文档中心</a></li>
+<li><a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="external">ButterKnife</a></li>
+</ol>
+<h1 id="8、一个log库"><a href="#8、一个log库" class="headerlink" title="8、一个log库"></a>8、一个log库</h1><p>打印的log很是漂亮，并且有一个我非常喜欢的功能，打印当前线程名</p>
+<p><code>compile &#39;com.orhanobut:logger:1.4&#39;</code></p>
+<p><a href="https://github.com/orhanobut/logger" target="_blank" rel="external">github 地址</a></p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ol>
+<li><a href="https://github.com/ikew0ng/SwipeBackLayout" target="_blank" rel="external">左右滑动返回上一页 SwipeBackLayout</a></li>
+<li><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a> 是一个响应式编程框架</li>
+</ol>
+</div></article></div><div class="tags"><a href="/tags/Android/">Android</a></div><div class="paginator"><a href="/2016/03/19/2016-03-19-天干地支计时推算歌诀/" class="prev"><i class="fa fa-chevron-left"></i><span> 上一页</span></a><a href="/2016/03/15/2016-03-15-排序算法概要/" class="next"><span>下一页</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2016/03/18/2016-03-18-Android开发中常用的库/index.html" data-title="Android开发中常用的库" data-url="http://febsky.me/2016/03/18/2016-03-18-Android开发中常用的库/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script></section><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>

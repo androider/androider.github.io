@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Jekyll 本地运行环境搭建以及遇到的错误解决 · 我的程序世界</title><meta name="description" content="Jekyll 本地运行环境搭建以及遇到的错误解决 - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先安装Ruby环境"><span class="toc-text">首先安装Ruby环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Jekyll"><span class="toc-text">安装Jekyll</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以下是在用git和jekll写blog过程中常用密令"><span class="toc-text">以下是在用git和jekll写blog过程中常用密令</span></a></li></ol></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">我的程序世界</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">归档</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">关于</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Jekyll 本地运行环境搭建以及遇到的错误解决</h1><div class="post-time">Nov 28, 2014</div><div class="post-content"><h2 id="首先安装Ruby环境"><a href="#首先安装Ruby环境" class="headerlink" title="首先安装Ruby环境"></a>首先安装Ruby环境</h2><p>至于下载方式不同的操作系统安装方式不同，这里不再详细给出</p>
+<p>`</p>
+<p>Ubuntu系统下，可用：sudo apt-get install ruby</p>
+<p>centos系统下，可用：sudo yum install ruby</p>
+<p>`</p>
+<h2 id="安装Jekyll"><a href="#安装Jekyll" class="headerlink" title="安装Jekyll"></a>安装Jekyll</h2><p>当Ruby环境配置完成后（不提示任何错误），就可以安装Jekyll了。执行 gem jekyll install</p>
+<p>【错误】安装Jekyll 时候出错。</p>
+<p>`</p>
+<p>ERROR: Could not find a valid gem ‘jekyll’ (&gt;= 0) in any repository</p>
+<p>ERROR: Possible alternatives: jekyll`</p>
+<p>`</p>
+<p>【解决方案】如下有解决方案</p>
+<p>`</p>
+<p>$ gem sources –remove <a href="http://rubygems.org/" target="_blank" rel="external">http://rubygems.org/</a></p>
+<p>$ gem sources -a <a href="http://ruby.taobao.org/" target="_blank" rel="external">http://ruby.taobao.org/</a></p>
+<p>$ gem sources -l</p>
+<p><strong><em> CURRENT SOURCES </em></strong></p>
+<p><a href="http://ruby.taobao.org" target="_blank" rel="external">http://ruby.taobao.org</a></p>
+<p>$ gem install rack</p>
+<p>`</p>
+<p>然后继续执行 gem install jekyll 即可。等待片刻，会提示 gems installed jekyll 安装完毕。</p>
+<p>【错误】启动jekyll服务的时候报错</p>
+<p>/var/lib/gems/1.9.1/gems/execjs-2.2.2/lib/execjs/runtimes.rb:51:in `autodetect’: Could not find a JavaScript runtime. See <a href="https://github.com/sstephenson/execjs" target="_blank" rel="external">https://github.com/sstephenson/execjs</a> for a list of available runtimes. (ExecJS::RuntimeUnavailable)</p>
+<p>【解决方案】如下有解决方案</p>
+<p>`</p>
+<p>gem install execjs</p>
+<p>gem install therubyracer ###这个我也没安装成，不过貌似没问题了</p>
+<p>sudo apt-get install nodejs</p>
+<p>`</p>
+<h2 id="以下是在用git和jekll写blog过程中常用密令"><a href="#以下是在用git和jekll写blog过程中常用密令" class="headerlink" title="以下是在用git和jekll写blog过程中常用密令"></a>以下是在用git和jekll写blog过程中常用密令</h2><p>`</p>
+<p>git clone git@github.com:heiniuhaha/heiniuhaha.github.com.git//本地如果无远程代码，先做这步，不然就忽略</p>
+<p>cd .ssh/heiniuhaha.github.com//定位到你blog的目录下</p>
+<p>git pull origin master //先同步远程文件，后面的参数会自动连接你远程的文件</p>
+<p>git status //查看本地自己修改了多少文件</p>
+<p>git add .//添加远程不存在的git文件</p>
+<p>git commit * -m “what I want told to someone”</p>
+<p>git push origin master //更新到远程服务器上</p>
+<p>`</p>
+</div></article></div><div class="tags"><a href="/tags/Blog/">Blog</a><a href="/tags/Jekyll/">Jekyll</a></div><div class="paginator"><a href="/2014/11/28/2014-11-28-github操作遇到的几个问题/" class="prev"><i class="fa fa-chevron-left"></i><span> 上一页</span></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2014/11/28/2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决/index.html" data-title="Jekyll 本地运行环境搭建以及遇到的错误解决" data-url="http://febsky.me/2014/11/28/2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script></section><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>

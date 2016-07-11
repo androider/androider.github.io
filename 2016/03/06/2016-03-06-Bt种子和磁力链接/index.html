@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Bt种子和磁力链接 · 我的程序世界</title><meta name="description" content="Bt种子和磁力链接 - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么事Bt下载"><span class="toc-text">什么事Bt下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是磁力链接？"><span class="toc-text">什么是磁力链接？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bencode-编码"><span class="toc-text">bencode 编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bt文件结构"><span class="toc-text">bt文件结构</span></a></li></ol></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">我的程序世界</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">归档</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">关于</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Bt种子和磁力链接</h1><div class="post-time">Mar 6, 2016</div><div class="post-content"><h1 id="什么事Bt下载"><a href="#什么事Bt下载" class="headerlink" title="什么事Bt下载"></a>什么事Bt下载</h1><hr>
+<p>BT是目前最热门的下载方式之一，它的全称为“BitTorrent”简称“BT”，中文全称“比特流”。BT服务器是通过一种传销的方式来实现文件共享的，它的工作原理。举个例子来说吧，例如BT服务器将一个文件分成了N个部分，有甲、乙、丙、丁四位用户同时下载，那么BT并不会完全从服务器下载这个文件的所有部分，而是根据实际情况有选择地从其他用户的机器中下载已下载完成的部分。例如甲已经下载了第1部分，乙已经下载了第2部分，那么丙就会从甲的机器中下载第1部分，从乙的机器中下载第2部分，当然甲、乙、丁三位用户也在同时从丙的机器中下载相应的部分，这就大大减轻了BT服务器的负荷，也同时加快了丙的下载速度，也就是说每台参加下载的计算机既从其他用户的计算机上下载文件，同时自身也向其他用户提供下载，因此参与下载的用户数量越多，下载速度也越高。 </p>
+<p>那BT的“命门”在哪呢？也许你听说过BT Traker服务器。而这个BT Traker服务器也就是目前我朝有司大力打击BT下载站的重要和主要罪证之一，因为这个服务器的存在，且不管技术手段如何，从表面特征上看来，这些网站如同直接提供视频内容一样。</p>
+<p>用户是怎样通过BT下载文件的？基本过程应该是这样：一、找到Torrent文件，二、使用BT下载客户端软件打开这个文件。三、对于用户来讲，只要花时间去等就可以了。而对于客户端软件来讲，它会根据Torrent文件中的网址自动连接Tracker服务器，从它那里接收到其他正在下载该文件的人的网址名单。下一步，软件就一一与名单上的网址取得联系，从它们那里获取文件的片段，直到整个下载完成。从整个过程不难看出，BT Tracker服务器是一个中央节点，任何客户端都可以在其上找到“同伴”——只要其他人也在下载或分享同一个文件。所以MPAA和RIAA盯上了BT Tracker，因为消灭所有Torrent文件几乎是不可能的，但通过一些“努力”，消灭BT Tracker服务器则完全有可能实现。官司赢了，一个时代结束了，我们不妨称其为是BT1.0时代，BT1.0时代致命的缺点是因为其存在中央节点，也就是BTTracker服务器。然而，官司输了，并不代表整个BT时代的终结，一个新的时代已经悄然开始，我们可以称其为BT2.0时代。</p>
+<h1 id="什么是磁力链接？"><a href="#什么是磁力链接？" class="headerlink" title="什么是磁力链接？"></a>什么是磁力链接？</h1><hr>
+<p>  简单地说，磁力链接是一种特殊链接，但是它与传统基于文件的位置或名称的普通链接不一样，它只是通过不同文件内容的Hash结果生成一个纯文本的“数字指纹”，并用它来识别文件。它类似于生活消费品包装上常见的条码，不同的是这个“数字指纹”可以被任何人从任何文件上生成，这也就注定了“磁力链接”不需要任何“中心机构”的支持（例如：BT Tracker服务器），且识别准确度极高。因此任何人都可以生成一个Magnet链接并确保通过该链接下载的文件准确无误。更简单地说：类似【magnet:xt=urn:sha1:YNCKHTQCWBTRNJIV4WNAE52SJUQCZO5C】这样以“magnet:?”开头的字符串，就是一条“磁力链接”，其在网页上的图标像一块磁铁，很容易辨别。</p>
+<p>　　在BT2.0时代，Magnet（意译：磁铁、吸铁石）成为未来BT的发展方向，Magnet真的可以挽救BT吗？经笔者亲身试用，在支持Magnet URI之后，海盗湾似乎获得了新生，下载速度并非越来越慢，相反，速度表现让人满意。最关键的是，Magnet不需要Tracker服务器，也不需要Torrent文件，仅需要一串字符就可以进行文件下载。海盗湾LOGO与未来BT的“图腾”，海盗湾上的BT资源已经加入了Magnet下载方式Worlds most resilient tracking——节选自海盗湾博客博文的题目是“世界上最稳定的tracking”，文中提到：“随着DHT+ PEX技术的不断成熟，发现对端（Peer）并协调通信已经变得容易实现，而Tracker服务器变得不再重要，甚至显得有些多余，所以我们将关闭服务器。”文中还说服务器现在被安置在了一家博物馆中。看来，关闭Tracker服务器是计划之内的事情。一切尽在掌握？Tracker服务器和“BT种子”即将双双退役，取而代之的是DHT+ PEX网络和Magnet Link，DHT网络是分布式存在的，所以不存在“被拔线”的问题，而Magnet Link仅是一串字符，所以也不再需要Torrent文件。<br>　　<br>　　这里出现了三个关键词：DHT、PEX和Magnet Link，这三点是未来BT的核心，下面我们就来说一说它们都可以实现怎样的功能。<br>　　<br>　　DHT：2002年，纽约大学的两个教授Petar Maymounkov和David Mazières发表了一篇论文，提出了一种真正<code>去中心化</code>的“点对点”下载模型，他们将其称为Kademlia方法。2005年，BT软件开始引入这种技术，在BT中被称为DHT协议（Distributed HashTable，分布式哈希表）。DHT是一种分布式存储方法。DHT的作用是找到那些与本机正在下载（上传）相同文件的对端主机（Peer），当然，实现这一过程并不依赖Tracker服务器。在DHT网络中的每个客户端负责一个小范围的路由，并负责存储一小部分数据，从而实现整个DHT网络的寻址和存储。这种信息获取方式保证了整个网络没有单个的中心，即使一个节点下线，依然可以通过其他节点来获取文件，因此也就不需要Tracker服务器来告诉你，其他节点在什么地方。<br>　　<br>　　PEX：是Peer Exchange的简写，我们可以将其理解为“节点信息交换”。虽然DHT解决了去中心化的问题，但要在没有“中心协调员”（Tracker）的情况下实现高效寻址，就要借助PEX。PEX所提供的功能有点类似于以前的Tracker服务器，但工作方式却非常不同，我们可以打个比方来说明。小赵在A班，她不认识B班的小何，也不认识C班的小温，但小赵认识同班的小王，而小王认识B班的小何，也可能还认识C班的小温，或者小王仅认识B班的小何，但小何认识C班的小温，而小温又认识同班的所有同学，结果就是小赵可以“无限”地延伸自己的关系网，不管怎样，总有一条沟通途径可以将这些同学联系在一起，待小赵“认识”了小温后，他们就可以直接沟通了，在P2P世界里，就是进行上传与下载。</p>
+<p>Magnet links：有网友将其称为磁链。DHT+ PEX解决了BT“寻址”的问题，但是如何告诉BT客户端找（寻）什么又是另外一个问题。在Torrent文件中包含的内容就是用户真正要下载的文件的特征信息，或称为“电子指纹”，BT客户端知道了要找什么，也知道如何去找，于是P2P方式的下载、上传就实现了。以前BT客户端通过Torrent文件得知“要找什么”，现在，文件的“电子指纹”不再存放于Torrent中，而被放在了Magnetlinks中。 magnet:?xt=urn:btih:36684b463ca2aa2f9347b18e9f6b1a9090bdb073上面是笔者打算下载的一个文件，Microsoft iSCSI Initiator，按照以前的方式，我们需要下载它的Torrent文件，然后才能下载这个文件本身。但是，在新的模式下，我们不需要下载Torrent文件，只需知道它的Magnet URI，一个资源定位信息，其他都不需要(其实是其输入magnet 后，其不会直接下载文件，而还是先下载其种子，然后软件自动下载文件)。只要把这个地址告诉下载软件，软件就会开始自动下载。我们来分解一下这个地址：magnet：协议名。xt:exact topic的缩写，表示资源定位点。BTIH（BitTorrent Info Hash）表示哈希方法名，这里还可以使用SHA1和MD5。这个值是文件的标识符，是不可缺少的。dn：display name的缩写，表示向用户显示的文件名。这是一个可选项。tr：tracker的缩写，表示tracker服务器的地址。这是一个可选项，本例中并未出现。精简一下上例，仅需要magnet:?xt=urn:btih:36684b463ca2aa2f9347b18e9f6b1a9090bdb073就够用了，如果附加dn(displayname)，在使用上会更加方便一些。MagnetLink的好处就不用笔者多说了，至少包括两点：网络的可靠性得到了极大的增强；不存在“被拔线”的风险。由于不存在所谓的中央节点，审查将变得更加困难，“单点失效”的问题也就不存在了。此外，MagnetURI只是一个字符串，非常容易传播，根本无法禁止。因此，Magnet URI取代Tracker模式将是大势所趋，迟早会成为主流BT下载方式。　</p>
+<h1 id="bencode-编码"><a href="#bencode-编码" class="headerlink" title="bencode 编码"></a>bencode 编码</h1><hr>
+<p>在解析bt文件之前，我们先介绍 bencode 这种编码格式，因为 bt 种子文件，包括以后的 DHT 网络中，都是用这种编码的。网上有很多介绍，这里简单再重复一遍。bencode 有 4 种数据类型: string, integer, list 和 dictionary。整数以i标记开头以e标记结尾，中间是整数数字，字符串以：标记开头然后根接字符串的长度，最后是字符串内容，列表以l标记开头，以e结尾，字典以d开头以e结尾。列表可以包含任何的BT元素，字典也可以包含任何的BT元素，不过字典的Key必须是字符串。</p>
+<p>如此以来分析，整数和字符串是两种单元的元素，可以很好的解析，基本上不用分析就能搞定，而列表和字典，则就需要根据给定的字符串进行分析处理了，这个分析实际上也简单，先碰到开头的标记，然后不断的往下判断读取，碰到结尾标记e结束，如果在碰到结尾标记之前还又碰到其他的标记，则可进行递归处理，所以，处理起来也方便了。</p>
+<ol>
+<li><p><strong>string</strong></p>
+<p> 字符是以这种方式编码的: &lt;字符串长度&gt;:&lt;字符串&gt;。</p>
+<p> 如 hell: <code>4:hell</code></p>
+</li>
+<li><p><strong>integer</strong></p>
+<p> 整数是一这种方式编码的: i&lt;整数&gt;e。</p>
+<p> 如 1999: <code>i1999e</code></p>
+</li>
+<li><p><strong>list</strong></p>
+<p> 列表是一这种方式编码的: l[数据1][数据2][数据3][…]e。</p>
+<p> 如列表 [hello, world, 101]：<code>l5:hello5:worldi101ee</code></p>
+</li>
+<li><p><strong>dictionary</strong></p>
+<p> 字典是一这种方式编码的: <code>d[key1][value1][key2][value2][…]e</code>，其中 key 必须是 string 而且按照字母顺序排序。</p>
+<p> 如字典 {aa:100, bb:bb, cc:200}： <code>d2:aai100e2:bb2:bb2:cci200ee</code></p>
+</li>
+</ol>
+<p>很多语言都有 bencode 的实现，Python 版本可在 pypi 里面找到: <a href="https://pypi.python.org/pypi/bencode/1.0" target="_blank" rel="external">bencode</a></p>
+<h1 id="bt文件结构"><a href="#bt文件结构" class="headerlink" title="bt文件结构"></a>bt文件结构</h1><hr>
+<blockquote>
+<p>根据BitTorrent协议，文件发布者会根据要发布的文件生成提供一个.torrent文件，即种子文件，也简称为“种子”。 种子文件本质上是文本文件，包含Tracker信息和文件信息两部分。Tracker信息主要是BT下载中需要用到的Tracker服务器的地址和针对Tracker服务器的设置，文件信息是根据对目标文件的计算生成的，计算结果根据BitTorrent协议内的Bencode规则进行编码。它的主要原理是需要把提供下载的文件虚拟分成大小相等的块，块大小必须为2k的整数次方（由于是虚拟分块，硬盘上并不产生各个块文件），并把每个块的索引信息和Hash验证码写入种子文件中；所以，种子文件就是被下载文件的“索引”。 下载者要下载文件内容，需要先得到相应的种子文件，然后使用BT客户端软件进行下载。 下载时，BT客户端首先解析种子文件得到Tracker地址，然后连接Tracker服务器。Tracker服务器回应下载者的请求，提供下载者其他下载者（包括发布者）的IP。下载者再连接其他下载者，根据种子文件，两者分别告知对方自己已经有的块，然后交换对方所没有的数据。此时不需要其他服务器参与，分散了单个线路上的数据流量，因此减轻了服务器负担。 下载者每得到一个块，需要算出下载块的Hash验证码与种子文件中的对比，如果一样则说明块正确，不一样则需要重新下载这个块。这种规定是为了解决下载内容准确性的问题。 一般的HTTP/FTP下载，发布文件仅在某个或某几个服务器，下载的人太多，服务器的带宽很易不胜负荷，变得很慢。而BitTorrent协议下载的特点是，下载的人越多，提供的带宽也越多，下载速度就越快。同时，拥有完整文件的用户也会越来越多，使文件的“寿命”不断延长。</p>
+</blockquote>
+<ol>
+<li><p>bt 种子文件是使用 bencode 编码的，整个文件就 dictionary</p>
+<ul>
+<li><p>文件信息包括文件的公共部分</p>
+<p>  piece length, integer, 必选, 每一数据块的长度</p>
+<p>  pieces, string, 必选, 所有数据块的 SHA1 校验值</p>
+<p>  publisher, string, 可选, 发布者</p>
+<p>  publisher.utf-8, string, 可选, 发布者的 UTF-8 编码</p>
+<p>  publisher-url, string, 可选, 发布者的 URL</p>
+<p>  publisher-url.utf-8, string, 可选, 发布者的 URL 的 UTF-8 编码</p>
+</li>
+<li><p>如果 bt 种子包含的是单个文件，包含以下内容</p>
+<p>  name, string, 必选, 推荐的文件名称</p>
+<p>  name.utf-8, string, 可选, 推荐的文件名称的 UTF-8 编码</p>
+<p>  length, int, 必选， 文件的长度单位是字节</p>
+</li>
+<li><p>如果是多文件，则包含以下部分:</p>
+<p>  name, string, 必选, 推荐的文件夹名称</p>
+<p>  name.utf-8, string, 可选, 推荐的文件名称的 UTF-8 编码</p>
+<p>  files, list, 必选, 文件列表，每个文件列表下面是包括每一个文件的信息，文件信息是个字典。</p>
+</li>
+<li><p>文件字典</p>
+<p>  length, int, 必选， 文件的长度单位是字节</p>
+<p>  path, string, 必选， 文件名称，包含文件夹在内</p>
+<p>  path.utf-8, string, 必选， 文件名称 UTF-8 表示，包含文件夹在内</p>
+<p>  filehash，string, 可选， 文件 hash。</p>
+<p>  ed2k, string, 可选, ed2k 信息。</p>
+</li>
+</ul>
+</li>
+<li><p>info, dictinary, 必选, 表示该bt种子文件的文件信息。</p>
+</li>
+<li>announce, string, 必选, tracker 服务器的地址</li>
+<li>announce-list, list, 可选, 可选的 tracker 服务器地址</li>
+<li>creation date， interger， 必选, 文件创建时间</li>
+<li>comment， string, 可选, bt 文件注释</li>
+<li>created by， string， 可选， 文件创建者。</li>
+</ol>
+<p>综上，多文件Torrent的结构的树形图为：</p>
+<p>Multi-file Torrent<br>├─announce<br>├─announce-list<br>├─comment<br>├─comment.utf-8<br>├─creation date<br>├─encoding<br>├─info<br>│ ├─files<br>│ │ ├─length<br>│ │ ├─path<br>│ │ └─path.utf-8<br>│ ├─name<br>│ ├─name.utf-8<br>│ ├─piece length<br>│ ├─pieces<br>│ ├─publisher<br>│ ├─publisher-url<br>│ ├─publisher-url.utf-8<br>│ └─publisher.utf-8<br>└─nodes</p>
+<p>单文件Torrent的结构的树形图为：</p>
+<p>Single-File Torrent<br>├─announce<br>├─announce-list<br>├─comment<br>├─comment.utf-8<br>├─creation date<br>├─encoding<br>├─info<br>│ ├─length<br>│ ├─name<br>│ ├─name.utf-8<br>│ ├─piece length<br>│ ├─pieces<br>│ ├─publisher<br>│ ├─publisher-url<br>│ ├─publisher-url.utf-8<br>│ └─publisher.utf-8<br>└─nodes</p>
+</div></article></div><div class="tags"><a href="/tags/网络/">网络</a></div><div class="paginator"><a href="/2016/03/06/2016-03-06-MacOS中的tree命令/" class="prev"><i class="fa fa-chevron-left"></i><span> 上一页</span></a><a href="/2016/03/04/2016-03-04-Android中MVC的使用/" class="next"><span>下一页</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2016/03/06/2016-03-06-Bt种子和磁力链接/index.html" data-title="Bt种子和磁力链接" data-url="http://febsky.me/2016/03/06/2016-03-06-Bt种子和磁力链接/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script></section><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>
