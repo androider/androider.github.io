@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-07-06T03:24:21.000Z</updated>
+  <updated>2016-07-11T06:57:02.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo添加站内搜索</title>
+    <link href="http://febsky.me/2016/07/11/2016-07-11-Hexo%E6%B7%BB%E5%8A%A0%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/"/>
+    <id>http://febsky.me/2016/07/11/2016-07-11-Hexo添加站内搜索/</id>
+    <published>2016-07-11T05:49:07.000Z</published>
+    <updated>2016-07-11T06:57:02.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Google-和-百度提供的站内搜索&quot;&gt;&lt;a href=&quot;#Google-和-百度提供的站内搜索&quot; class=&quot;headerlink&quot; title=&quot;Google 和 百度提供的站内搜索&quot;&gt;&lt;/a&gt;Google 和 百度提供的站内搜索&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;可行性：&lt;/strong&gt;Google 呵呵，你懂。百度 据说github拒绝百度的爬虫，如果你的网站部署在github首页上，可能不能成功。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用法：&lt;/strong&gt; 在google的输入框中输入  &lt;code&gt;site:fesky.me&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Swiftype&quot;&gt;&lt;a href=&quot;#Swiftype&quot; class=&quot;headerlink&quot; title=&quot;Swiftype&quot;&gt;&lt;/a&gt;Swiftype&lt;/h1&gt;&lt;p&gt;这个据说是国外的一个很屌的做站内搜索的服务商，据说B轮融资。融了很多刀、&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;官方网址：&lt;/strong&gt; &lt;a href=&quot;https://swiftype.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Swiftype&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;可行性 ：&lt;/strong&gt; 据说官方给了30天的免费试用，试用期结束就降到普通版，我感觉我就是要搜个关键字也就几百篇文章完全没问题，可是我的过了试用期却不能用了，不知道为啥 时间为2016年7月。而且官网让我给他发邮局联系，你懂我的英语水平根本搞不明白他说了些啥。&lt;/p&gt;
+&lt;h1 id=&quot;Algolia&quot;&gt;&lt;a href=&quot;#Algolia&quot; class=&quot;headerlink&quot; title=&quot;Algolia&quot;&gt;&lt;/a&gt;Algolia&lt;/h1&gt;&lt;p&gt;从 Algolia 管理界面和文档上来看不会比 Swiftype 差，可留作备选。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;官方网址&lt;/strong&gt; &lt;a href=&quot;https://www.algolia.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Algolia&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;序列化站点内容作为数据源，然后自己写查询方法。&quot;&gt;&lt;a href=&quot;#序列化站点内容作为数据源，然后自己写查询方法。&quot; class=&quot;headerlink&quot; title=&quot;序列化站点内容作为数据源，然后自己写查询方法。&quot;&gt;&lt;/a&gt;序列化站点内容作为数据源，然后自己写查询方法。&lt;/h1&gt;&lt;p&gt;好像有个Hexo的插件 &lt;a href=&quot;https://github.com/PaicHyperionDev/hexo-generator-search&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-generator-search&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Google-和-百度提供的站内搜索&quot;&gt;&lt;a href=&quot;#Google-和-百度提供的站内搜索&quot; class=&quot;headerlink&quot; title=&quot;Google 和 百度提供的站内搜索&quot;&gt;&lt;/a&gt;Google 和 百度提供的站内搜索&lt;/h1&gt;&lt;p&gt;&lt;stron
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://febsky.me/categories/Hexo/"/>
+    
+      <category term="搜索" scheme="http://febsky.me/categories/Hexo/%E6%90%9C%E7%B4%A2/"/>
+    
+    
+      <category term="Hexo" scheme="http://febsky.me/tags/Hexo/"/>
+    
+      <category term="站内搜索" scheme="http://febsky.me/tags/%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>Android开发我用到的Chrome插件</title>
@@ -849,33 +883,6 @@
     
     
       <category term="postgres" scheme="http://febsky.me/tags/postgres/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Paas和SaaS</title>
-    <link href="http://febsky.me/2016/04/24/2015-07-27-Paas%E5%92%8CSaaS/"/>
-    <id>http://febsky.me/2016/04/24/2015-07-27-Paas和SaaS/</id>
-    <published>2016-04-24T10:33:24.000Z</published>
-    <updated>2016-05-13T15:38:43.000Z</updated>
-    
-    <content type="html">&lt;p&gt;平台即服务（Platform as a Service, PaaS)是软件即服务（Software as a Service, SaaS)的延伸。&lt;/p&gt;
-&lt;p&gt;SaaS提供的是定制好的远程软件服务，比如当你订购一个网络销售系统软件，就可以直接使用，不需要代码开发，但是缺点是客制化困难。&lt;/p&gt;
-&lt;p&gt;PaaS也是远程订购服务，但是你购买的是平台模块服务，如计算能力、数据库、储存和消息传送等。底层的平台已¾¬帮你铺建好，你需要开发自己的上层应用。&lt;/p&gt;
-&lt;p&gt;PAAS平台应用代表&lt;br&gt;国外：Google、Salesforce、Amazon&lt;br&gt;国内：八百客 用友 百度BAE 新浪SAE 阿里Ali 魔泊云（MoPaaS）&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;平台即服务（Platform as a Service, PaaS)是软件即服务（Software as a Service, SaaS)的延伸。&lt;/p&gt;
-&lt;p&gt;SaaS提供的是定制好的远程软件服务，比如当你订购一个网络销售系统软件，就可以直接使用，不需要代码开发，但是缺点
-    
-    </summary>
-    
-      <category term="大数据" scheme="http://febsky.me/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-      <category term="大数据" scheme="http://febsky.me/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
