@@ -57,7 +57,7 @@
     <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/"/>
     <id>http://febsky.me/2016/07/05/2016-07-05-Android逆向工程用到的工具/</id>
     <published>2016-07-05T05:12:00.000Z</published>
-    <updated>2016-07-05T05:28:04.000Z</updated>
+    <updated>2016-07-07T06:54:27.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;第一套组合&quot;&gt;&lt;a href=&quot;#第一套组合&quot; class=&quot;headerlink&quot; title=&quot;第一套组合&quot;&gt;&lt;/a&gt;第一套组合&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Apktool&lt;/a&gt; + &lt;a href=&quot;https://github.com/pxb1988/dex2jar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dex2jar&lt;/a&gt; + &lt;a href=&quot;https://github.com/java-decompiler/jd-gui&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jd-gui&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;可惜的是apktool好像后来不再支持调试Smali文件，jd-gui 作者从 2015 年开始就停止了维护.&lt;/p&gt;
@@ -96,11 +96,11 @@
   </entry>
   
   <entry>
-    <title>2016-06-17-Python使用虚拟环境</title>
+    <title>Python使用虚拟环境</title>
     <link href="http://febsky.me/2016/06/17/2016-06-17-Python%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
     <id>http://febsky.me/2016/06/17/2016-06-17-Python使用虚拟环境/</id>
     <published>2016-06-17T09:46:24.000Z</published>
-    <updated>2016-06-17T09:51:49.000Z</updated>
+    <updated>2016-07-07T06:12:28.000Z</updated>
     
     <content type="html">&lt;p&gt;Python的虚拟环境可以使一个Python程序拥有独立的库library和解释器interpreter，而不用与其他Python程序共享统一个library和interpreter。虚拟环境的好处是避免了不同Python程序间的互相影响（共同使用global library 和 interpreter），例如程序A需要某个库的1.0版本，而程序B需要同样这个库的2.0版本，如果程序B执行则A就不能执行了。&lt;/p&gt;
 &lt;ol&gt;
