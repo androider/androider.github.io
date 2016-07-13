@@ -99,11 +99,34 @@
         searchFunc("http://febsky.me/search.xml", 'local-search-input', 'local-search-result');
     </script>
 
-
     <style type="text/css">
+
+        div.box-search-input {
+            background: #fff;
+            border: 1px solid #ababab;
+            cursor: text;
+            height: 38px;
+            margin: 0 auto;
+            width:680px;
+        }
+
+        input.form-control {
+            background: transparent;
+            font: 16px arial;
+            line-height: 32px;
+            height: 30px;
+            margin-top: 4px;
+            padding-left: 7px;
+            width: 500px;
+            border: 0;
+            outline: none;
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
 
         ul.search-result-list {
             padding-left: 10px;
+            list-style-type: none;
         }
 
         a.search-result-title {
@@ -115,14 +138,14 @@
         }
 
         em.search-keyword {
-            color:#dd4b39;
+            border-bottom: 1px dashed #dd4b39;
             font-weight: bold;
         }
     </style>
 </head>
 <body>
-<div id="site_search">
-    <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..."
+<div id="site_search" class="box-search-input">
+    <input type="text" id="local-search-input" name="q" results="0" autocomplete="off" placeholder="search my blog..."
            class="form-control"/>
 
     <div id="local-search-result"></div>

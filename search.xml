@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[2016-07-13-AndroidStudio中查看依赖库的本地存储路径]]></title>
+      <title><![CDATA[AndroidStudio中查看依赖库的本地存储路径]]></title>
       <url>http://febsky.me/2016/07/13/2016-07-13-AndroidStudio%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E4%B8%80%E4%B8%AAtask%E6%98%BE%E7%A4%BA%E5%87%BA%E4%BE%9D%E8%B5%96%E5%BA%93%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84/</url>
       <content type="html"><![CDATA[<p>这两天由于公司网速慢，每次要下载v4  和 v7 包非常耗时。把gradle 改成离线模式就好多了。据说离线模式不再重新下载依赖。但是很好奇，AndroidStudio的gradle 引入的第三方库到底缓存到本地的什么位置了。</p>
 <p>可以在app目录下的<code>build.gradle</code>的文件的最后添加：</p>

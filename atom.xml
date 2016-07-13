@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-07-13T02:54:07.000Z</updated>
+  <updated>2016-07-13T06:59:19.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>2016-07-13-AndroidStudio中查看依赖库的本地存储路径</title>
+    <title>AndroidStudio中查看依赖库的本地存储路径</title>
     <link href="http://febsky.me/2016/07/13/2016-07-13-AndroidStudio%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E4%B8%80%E4%B8%AAtask%E6%98%BE%E7%A4%BA%E5%87%BA%E4%BE%9D%E8%B5%96%E5%BA%93%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84/"/>
     <id>http://febsky.me/2016/07/13/2016-07-13-AndroidStudio中如何利用一个task显示出依赖库的本地存储路径/</id>
     <published>2016-07-13T02:39:17.000Z</published>
-    <updated>2016-07-13T02:54:07.000Z</updated>
+    <updated>2016-07-13T06:59:19.000Z</updated>
     
     <content type="html">&lt;p&gt;这两天由于公司网速慢，每次要下载v4  和 v7 包非常耗时。把gradle 改成离线模式就好多了。据说离线模式不再重新下载依赖。但是很好奇，AndroidStudio的gradle 引入的第三方库到底缓存到本地的什么位置了。&lt;/p&gt;
 &lt;p&gt;可以在app目录下的&lt;code&gt;build.gradle&lt;/code&gt;的文件的最后添加：&lt;/p&gt;
