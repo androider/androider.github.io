@@ -1567,6 +1567,12 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Android文件下载]]></title>
+      <url>http://febsky.me/2015/09/15/2015-09-15-Android%20%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/</url>
+      <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;/**&#10;&#10; *&#10;&#10; * @param urlString    &#19979;&#36733;&#25991;&#20214;&#22320;&#22336;&#10;&#10; * @param savePath    &#20445;&#23384;&#26412;&#22320;&#36335;&#24452;&#10;&#10; * @param filename    &#20445;&#23384;&#30340;&#25991;&#20214;&#21517;&#10;&#10; * @throws Exception&#10;&#10; */&#10;&#10;public static void download(String urlString, String savePath, String filename) throws Exception &#123;&#10;&#10;    // &#26500;&#36896;URL&#10;&#10;    URL url = new URL(urlString);&#10;&#10;    // &#25171;&#24320;&#36830;&#25509;&#10;&#10;    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();&#10;&#10;    //&#35774;&#32622;&#35831;&#27714;&#36229;&#26102;&#20026;5s&#10;&#10;    httpURLConnection.setConnectTimeout(5 * 1000);&#10;&#10;    httpURLConnection.setRequestMethod(&#38;quot;GET&#38;quot;);&#10;&#10;    //&#24320;&#22987;&#19979;&#36733;&#10;&#10;    if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK) &#123;&#10;&#10;        // &#36755;&#20837;&#27969;&#10;&#10;        InputStream inputStream = httpURLConnection.getInputStream();&#10;&#10;        // &#36755;&#20986;&#30340;&#25991;&#20214;&#27969;&#10;&#10;        File savePathFile = new File(savePath);&#10;&#10;        if (!savePathFile.exists()) &#123;&#10;&#10;            savePathFile.mkdirs();&#10;&#10;        &#125;&#10;&#10;        // 1K&#30340;&#25968;&#25454;&#32531;&#20914;&#10;&#10;        byte[] buffer = new byte[1024 * 4];&#10;&#10;        // &#35835;&#21462;&#21040;&#30340;&#25968;&#25454;&#38271;&#24230;&#10;&#10;        int len;&#10;&#10;        OutputStream outputStream = new FileOutputStream(new File(savePathFile, filename));&#10;&#10;        // &#24320;&#22987;&#35835;&#21462;&#10;&#10;        while ((len = inputStream.read(buffer)) != -1) &#123;&#10;&#10;            outputStream.write(buffer, 0, len);&#10;&#10;        &#125;&#10;&#10;        // &#23436;&#27605;&#65292;&#20851;&#38381;&#25152;&#26377;&#38142;&#25509;&#10;&#10;        outputStream.close();&#10;&#10;        inputStream.close();&#10;&#10;    &#125;&#10;&#10;&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Mac Pro Mounty挂载NTFS硬盘报错]]></title>
       <url>http://febsky.me/2015/09/01/2015-09-01-Mac%20Pro%20Mounty%E6%8C%82%E8%BD%BDNTFS%E7%A1%AC%E7%9B%98%E6%8A%A5%E9%94%99/</url>
       <content type="html"><![CDATA[<p>原来用的是Linux或者Win系统，后来鸟枪换炮整了个MacPro结果发现移动硬盘，只能读不能写。</p>
@@ -1725,107 +1731,10 @@
 <p>如果使用上面的方法，当你的应用在被用户卸载后，sdcard/Android/data/你的应用的包名/ 这个目录下的所有文件都会被删除，不会留下垃圾信息。</p>
 <p>而且上面二个目录分别对应 设置-&gt;应用-&gt;应用详情里面的”清除数据“与”清除缓存“选项</p>
 <h3 id="最后注意使用外部存储，需要的权限，在AndoridManifest-xml中"><a href="#最后注意使用外部存储，需要的权限，在AndoridManifest-xml中" class="headerlink" title="最后注意使用外部存储，需要的权限，在AndoridManifest.xml中:"></a>最后注意使用外部存储，需要的权限，在AndoridManifest.xml中:</h3><h2 id="内部存储"><a href="#内部存储" class="headerlink" title="内部存储"></a>内部存储</h2><p><code>context.getCacheDir();</code> //目录位置/data/data/com.fivetv.testdownload/cache</p>
-<h2 id="存放缓存文件的方式"><a href="#存放缓存文件的方式" class="headerlink" title="存放缓存文件的方式"></a>存放缓存文件的方式</h2><p>[code lang=”java”]</p>
-<pre><code>//当SD卡存在或者SD卡不可被移除的时候，就调用getExternalCacheDir()方法来获取缓存路径，否则就调用getCacheDir()方法来获取缓存路径。
-
-public String getDiskCacheDir(Context context) {
-
-    String cachePath = null;
-
-    if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
-
-            || !Environment.isExternalStorageRemovable()) {
-
-        cachePath = context.getExternalCacheDir().getPath();
-
-    } else {
-
-        cachePath = context.getCacheDir().getPath();
-
-    }
-
-    return cachePath;
-
-}
-</code></pre><p>[/code]</p>
+<h2 id="存放缓存文件的方式"><a href="#存放缓存文件的方式" class="headerlink" title="存放缓存文件的方式"></a>存放缓存文件的方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//当SD卡存在或者SD卡不可被移除的时候，就调用getExternalCacheDir()方法来获取缓存路径，否则就调用getCacheDir()方法来获取缓存路径。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getDiskCacheDir</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String cachePath = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())</span><br><span class="line"></span><br><span class="line">            || !Environment.isExternalStorageRemovable()) &#123;</span><br><span class="line"></span><br><span class="line">        cachePath = context.getExternalCacheDir().getPath();</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">        cachePath = context.getCacheDir().getPath();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cachePath;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="路径的规律"><a href="#路径的规律" class="headerlink" title="路径的规律"></a>路径的规律</h2><p>一般地，通过<code>Context</code> 和 <code>Environment</code>相关的方法获取文件存取的路径。</p>
 <p>通过这两个类可获取各种路径，如图：</p>
-<pre><code>($rootDir)  /
-
-+- /data    -&amp;gt; Environment.getDataDirectory()
-
-|   |
-
-|   |   ($appDataDir)
-
-|   +- data/com.adorkable.sample
-
-|           |
-
-|           | ($filesDir)
-
-|           +- files     -&amp;gt; Context.getFilesDir() &amp;amp; Context.getFileStreamPath(&quot;&quot;) &amp;amp; Context.openFileOutput(&quot;&quot;)
-
-|           |       |
-
-|           |       +- file1    -&amp;gt; Context.getFileStreamPath(&quot;file1&quot;)
-
-|           |       +- file2    -&amp;gt;Context.openFileOutput(&quot;file2&quot;)
-
-|           | ($cacheDir)
-
-|           +- cache          -&amp;gt; Context.getCacheDir()
-
-|           |
-
-|           +- app_$name      -&amp;gt;(Context.getDir(String name, int mode)
-
-|           +-shared_prefs    -&amp;gt;(Context.getSharedPreferences()
-
-| 
-
-|($rootDir)
-
-+- /storage/sdcard0     -&amp;gt; Environment.getExternalStorageDirectory()
-
-             |                       / Environment.getExternalStoragePublicDirectory(&quot;&quot;)
-
-             |
-
-             +- dir1             -&amp;gt; Environment.getExternalStoragePublicDirectory(&quot;dir1&quot;)
-
-             |
-
-             |   ($appDataDir)
-
-             +- Andorid/data/com.adorkable.sample
-
-                              |
-
-                              | ($filesDir)
-
-                              +- files        -&amp;gt; Context.getExternalFilesDir(&quot;&quot;)
-
-                              |   |
-
-                              |   +- file1    -&amp;gt; Context.getExternalFilesDir(&quot;file1&quot;)
-
-                              |   +- Music    -&amp;gt; Context.getExternalFilesDir(Environment.Music);
-
-                              |   +- Picture  -&amp;gt; ... Environment.Picture
-
-                              |   +- ...
-
-                              |
-
-                              | ($cacheDir)
-
-                                +- cache        -&amp;gt; Context.getExternalCacheDir()
-
-                              |
-
-                              +- 其他
-</code></pre>]]></content>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">($rootDir)  /&#10;&#10;+- /data    -&#62; Environment.getDataDirectory()&#10;&#10;|   |&#10;&#10;|   |   ($appDataDir)&#10;&#10;|   +- data/com.adorkable.sample&#10;&#10;|           |&#10;&#10;|           | ($filesDir)&#10;&#10;|           +- files     -&#62; Context.getFilesDir() &#38;amp; Context.getFileStreamPath(&#34;&#34;) &#38;amp; Context.openFileOutput(&#34;&#34;)&#10;&#10;|           |       |&#10;&#10;|           |       +- file1    -&#62; Context.getFileStreamPath(&#34;file1&#34;)&#10;&#10;|           |       +- file2    -&#38;gt;Context.openFileOutput(&#34;file2&#34;)&#10;&#10;|           | ($cacheDir)&#10;&#10;|           +- cache          -&#62; Context.getCacheDir()&#10;&#10;|           |&#10;&#10;|           +- app_$name      -&#62;(Context.getDir(String name, int mode)&#10;&#10;|           +-shared_prefs    -&#62;(Context.getSharedPreferences()&#10;&#10;| &#10;&#10;|($rootDir)&#10;&#10;+- /storage/sdcard0     -&#62; Environment.getExternalStorageDirectory()&#10;&#10;             |                       / Environment.getExternalStoragePublicDirectory(&#34;&#34;)&#10;&#10;             |&#10;&#10;             +- dir1             -&#62;Environment.getExternalStoragePublicDirectory(&#34;dir1&#34;)&#10;&#10;             |&#10;&#10;             |   ($appDataDir)&#10;&#10;             +- Andorid/data/com.adorkable.sample&#10;&#10;                              |&#10;&#10;                              | ($filesDir)&#10;&#10;                              +- files        -&#62; Context.getExternalFilesDir(&#34;&#34;)&#10;&#10;                              |   |&#10;&#10;                              |   +- file1    -&#62; Context.getExternalFilesDir(&#34;file1&#34;)&#10;&#10;                              |   +- Music    -&#62; Context.getExternalFilesDir(Environment.Music);&#10;&#10;                              |   +- Picture  -&#62;; ... Environment.Picture&#10;&#10;                              |   +- ...&#10;&#10;                              |&#10;&#10;                              | ($cacheDir)&#10;&#10;                                +- cache        -&#62;; Context.getExternalCacheDir()&#10;&#10;                              |&#10;&#10;                              +- &#20854;&#20182;</span><br></pre></td></tr></table></figure>]]></content>
     </entry>
     
     <entry>
@@ -2029,16 +1938,6 @@ public String getDiskCacheDir(Context context) {
     
     <entry>
       <title><![CDATA[查看Python安装位置]]></title>
-      <url>http://febsky.me/2015/01/27/2015-02-25-%E6%9F%A5%E7%9C%8BPython%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<p>有时我们需要查看python的安装位置，好安装第三方库</p>
-<p>打开命令行，我们能输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;[node@dev3 ~]$ python &#10;&#10;Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) &#10;&#10;[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2&#10;&#10;Type &#38;quot;help&#38;quot;, &#38;quot;copyright&#38;quot;, &#38;quot;credits&#38;quot; or &#38;quot;license&#38;quot; for more information.&#10;&#10;&#38;gt;&#38;gt;&#38;gt; import sys&#10;&#10;&#38;gt;&#38;gt;&#38;gt; sys.path&#10;&#10;[&#39;&#39;, &#39;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&#39;, &#39;/usr/lib64/python26.zip&#39;, &#39;/usr/lib64/python2.6&#39;, &#39;/usr/lib64/python2.6/plat-linux2&#39;, &#39;/usr/lib64/python2.6/lib-tk&#39;, &#39;/usr/lib64/python2.6/lib-old&#39;, &#39;/usr/lib64/python2.6/lib-dynload&#39;, &#39;/usr/lib64/python2.6/site-packages&#39;, &#39;/usr/lib64/python2.6/site-packages/gtk-2.0&#39;, &#39;/usr/lib/python2.6/site-packages&#39;, &#39;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&#39;]&#10;&#10;&#38;gt;&#38;gt;&#38;gt;</span><br></pre></td></tr></table></figure>
-<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[查看Python安装位置]]></title>
       <url>http://febsky.me/2015/01/27/2015-02-25-Python%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E5%8F%98%E9%87%8F/</url>
       <content type="html"><![CDATA[<h2>函数（方法）</h2>
 
@@ -2063,6 +1962,16 @@ print(dir(sys))
 <p>len(s)     返回集合长度</p>
 <p>locals()     返回当前的变量列表</p>
 <p>globals()    返回一个描述当前全局符号表的字典</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[查看Python安装位置]]></title>
+      <url>http://febsky.me/2015/01/27/2015-02-25-%E6%9F%A5%E7%9C%8BPython%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<p>有时我们需要查看python的安装位置，好安装第三方库</p>
+<p>打开命令行，我们能输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;[node@dev3 ~]$ python &#10;&#10;Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) &#10;&#10;[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2&#10;&#10;Type &#38;quot;help&#38;quot;, &#38;quot;copyright&#38;quot;, &#38;quot;credits&#38;quot; or &#38;quot;license&#38;quot; for more information.&#10;&#10;&#38;gt;&#38;gt;&#38;gt; import sys&#10;&#10;&#38;gt;&#38;gt;&#38;gt; sys.path&#10;&#10;[&#39;&#39;, &#39;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&#39;, &#39;/usr/lib64/python26.zip&#39;, &#39;/usr/lib64/python2.6&#39;, &#39;/usr/lib64/python2.6/plat-linux2&#39;, &#39;/usr/lib64/python2.6/lib-tk&#39;, &#39;/usr/lib64/python2.6/lib-old&#39;, &#39;/usr/lib64/python2.6/lib-dynload&#39;, &#39;/usr/lib64/python2.6/site-packages&#39;, &#39;/usr/lib64/python2.6/site-packages/gtk-2.0&#39;, &#39;/usr/lib/python2.6/site-packages&#39;, &#39;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&#39;]&#10;&#10;&#38;gt;&#38;gt;&#38;gt;</span><br></pre></td></tr></table></figure>
+<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
 ]]></content>
     </entry>
     

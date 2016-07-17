@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://febsky.me/2015/07/14/2015-07-14-Android%20%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/</loc>
-    <lastmod>2016-07-17T10:28:13.000Z</lastmod>
+    <lastmod>2016-07-17T10:40:11.000Z</lastmod>
     <data>
         <display>
         <title>Android文件存储</title>
@@ -22,6 +22,31 @@
           
              
               <breadCrumb title="文件存储" url="http://febsky.me/categories/Android/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://febsky.me/2015/09/15/2015-09-15-Android%20%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/</loc>
+    <lastmod>2016-07-17T10:31:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android文件下载</title>
+        <pubTime>2015-09-15T05:47:54.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>AndroidStudio</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://febsky.me/categories/Android/"/>
+          
+             
+              <breadCrumb title="AndroidStudio" url="http://febsky.me/categories/Android/AndroidStudio/"/>
           
         </display>
     </data>
