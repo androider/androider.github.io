@@ -3,6 +3,52 @@
 
 
     
+    
+  <url>
+    <loc>http://febsky.me/2016/03/18/2016-03-18-Android%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BA%93/</loc>
+    <lastmod>2016-07-17T03:52:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发中常用的库</title>
+        <pubTime>2016-03-18T11:33:43.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://febsky.me/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://febsky.me/2016/07/12/2016-07-12-AndroidStudio%E5%8A%A0%E5%BF%AB%E7%BC%96%E8%AF%91%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2016-07-15T11:06:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>AndroidStudio加快编译的方法</title>
+        <pubTime>2016-07-12T08:57:32.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>AndroidStudio</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://febsky.me/categories/Android/"/>
+          
+             
+              <breadCrumb title="AndroidStudio" url="http://febsky.me/categories/Android/AndroidStudio/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://febsky.me/2016/07/14/2016-07-14-MPAndroidChart%E7%94%BB%E7%BA%BF%E5%BD%A2%E5%9B%BE/</loc>
     <lastmod>2016-07-14T10:55:04.000Z</lastmod>
@@ -92,32 +138,6 @@
           
              
               <breadCrumb title="Android" url="http://febsky.me/categories/AndroidStudio/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://febsky.me/2016/07/12/2016-07-12-AndroidStudio%E5%8A%A0%E5%BF%AB%E7%BC%96%E8%AF%91%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2016-07-12T10:00:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>AndroidStudio加快编译的方法</title>
-        <pubTime>2016-07-12T08:57:32.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>AndroidStudio</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://febsky.me/categories/Android/"/>
-          
-             
-              <breadCrumb title="AndroidStudio" url="http://febsky.me/categories/Android/AndroidStudio/"/>
           
         </display>
     </data>
@@ -290,26 +310,6 @@
            
              
               <breadCrumb title="AndroidStudio" url="http://febsky.me/categories/AndroidStudio/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://febsky.me/2016/03/18/2016-03-18-Android%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BA%93/</loc>
-    <lastmod>2016-07-05T02:15:44.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发中常用的库</title>
-        <pubTime>2016-03-18T11:33:43.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://febsky.me/categories/Android/"/>
           
         </display>
     </data>

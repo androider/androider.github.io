@@ -20,6 +20,8 @@
 <h1 id="如何知道自己项目中是由那个原因引起的"><a href="#如何知道自己项目中是由那个原因引起的" class="headerlink" title="如何知道自己项目中是由那个原因引起的"></a>如何知道自己项目中是由那个原因引起的</h1><p>可以在gradle 运行的时候给每个task添加一个参数  <code>--profile</code> ,用了监视task的运行，并打印log  最终log以html的方式打印在你的项目下的 <code>build/reports/profile/</code> 中，根据不同时间命名的。</p>
 <p>可以配置到AndroidStudio中，或者直接在命令行运行的时候添加<code>./gradlew clean buildAll --profile</code></p>
 <p>其他优化办法就是就代码依赖库进行删减了，没什么技术含量，还有就是选择编译。</p>
+<p>如下图所示：</p>
+<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/07/14/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-12%2017.15.54.png" alt=""></p>
 <p><strong>【参考文章】</strong></p>
 <ul>
 <li><a href="http://www.liaohuqiu.net/posts/speed-up-your-build/" target="_blank" rel="external">http://www.liaohuqiu.net/posts/speed-up-your-build/</a></li>

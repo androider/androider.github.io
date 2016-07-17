@@ -92,7 +92,7 @@
     <link href="http://febsky.me/2016/07/12/2016-07-12-AndroidStudio%E5%8A%A0%E5%BF%AB%E7%BC%96%E8%AF%91%E7%9A%84%E6%96%B9%E6%B3%95/"/>
     <id>http://febsky.me/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/</id>
     <published>2016-07-12T08:57:32.000Z</published>
-    <updated>2016-07-12T10:00:42.000Z</updated>
+    <updated>2016-07-15T11:06:16.000Z</updated>
     
     <content type="html">&lt;p&gt;Gradle 给我们的Android开发带来很大的便利，同事Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -116,6 +116,8 @@
 &lt;h1 id=&quot;如何知道自己项目中是由那个原因引起的&quot;&gt;&lt;a href=&quot;#如何知道自己项目中是由那个原因引起的&quot; class=&quot;headerlink&quot; title=&quot;如何知道自己项目中是由那个原因引起的&quot;&gt;&lt;/a&gt;如何知道自己项目中是由那个原因引起的&lt;/h1&gt;&lt;p&gt;可以在gradle 运行的时候给每个task添加一个参数  &lt;code&gt;--profile&lt;/code&gt; ,用了监视task的运行，并打印log  最终log以html的方式打印在你的项目下的 &lt;code&gt;build/reports/profile/&lt;/code&gt; 中，根据不同时间命名的。&lt;/p&gt;
 &lt;p&gt;可以配置到AndroidStudio中，或者直接在命令行运行的时候添加&lt;code&gt;./gradlew clean buildAll --profile&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;其他优化办法就是就代码依赖库进行删减了，没什么技术含量，还有就是选择编译。&lt;/p&gt;
+&lt;p&gt;如下图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xripg.com1.z0.glb.clouddn.com/2016/07/14/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-12%2017.15.54.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;【参考文章】&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.liaohuqiu.net/posts/speed-up-your-build/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.liaohuqiu.net/posts/speed-up-your-build/&lt;/a&gt;&lt;/li&gt;
