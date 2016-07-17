@@ -1706,6 +1706,129 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Android文件存储]]></title>
+      <url>http://febsky.me/2015/07/14/2015-07-14-Android%20%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/</url>
+      <content type="html"><![CDATA[<h2 id="外部文件存储"><a href="#外部文件存储" class="headerlink" title="外部文件存储"></a>外部文件存储</h2><p>最容易混淆的是外部存储，如果说pc上也要区分出外部存储和内部存储的话，那么自带的硬盘算是内部存储，U盘或者移动硬盘算是外部存储，因此我们很容易带着这样的理解去看待安卓手机，认为机身固有存储是内部存储，而扩展的T卡是外部存储。比如我们任务16GB版本的Nexus 4有16G的内部存储，普通消费者可以这样理解，但是安卓的编程中不能，这16GB仍然是外部存储。</p>
+<p>所有的安卓设备都有外部存储和内部存储，这两个名称来源于安卓的早期设备，那个时候的设备内部存储确实是固定的，而外部存储确实是可以像U盘一样移动的。但是在后来的设备中，很多中高端机器都将自己的机身存储扩展到了8G以上，他们将存储在概念上分成了”内部internal” 和”外部external” 两部分，但其实都在手机内部。所以不管安卓手机是否有可移动的sdcard，他们总是有外部存储和内部存储。最关键的是，我们都是通过相同的api来访问可移动的sdcard或者手机自带的存储（外部存储）。</p>
+<h3 id="自定义外部存储Environment类"><a href="#自定义外部存储Environment类" class="headerlink" title="自定义外部存储Environment类"></a>自定义外部存储<code>Environment</code>类</h3><p><code>static File getDataDirectory()</code>获得android data的目录。</p>
+<p><code>static File getDownloadCacheDirectory()</code>获得下载缓存目录。</p>
+<p><code>static File getExternalStorageDirectory()</code>或者外部存储媒体目录。</p>
+<p><code>static File getExternalStoragePublicDirectory(String type)</code>Get a top-level public external storage directory for placing files of a particular type.</p>
+<p><code>static String getExternalStorageState()</code>获得当前外部储存媒体的状态。</p>
+<p><code>static File getRootDirectory()</code>获得android的跟目录。</p>
+<h3 id="规范化外部存储"><a href="#规范化外部存储" class="headerlink" title="规范化外部存储"></a>规范化外部存储</h3><p>应用程序在运行的过程中如果需要向手机上保存数据，一般是把数据保存在SDcard中的。</p>
+<p>大部分应用是直接在SDCard的根目录下创建一个文件夹，然后把数据保存在该文件夹中。</p>
+<p>这样当该应用被卸载后，这些数据还保留在SDCard中，留下了垃圾数据。</p>
+<p>如果你想让你的应用被卸载后，与该应用相关的数据也清除掉，该怎么办呢？</p>
+<p>通过<code>Context.getExternalFilesDir()</code>方法可以获取到 sdcard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据</p>
+<p>通过<code>Context.getExternalCacheDir()</code>方法可以获取到 sdcard/Android/data/你的应用包名/cache/目录，一般存放临时缓存数据</p>
+<p>如果使用上面的方法，当你的应用在被用户卸载后，sdcard/Android/data/你的应用的包名/ 这个目录下的所有文件都会被删除，不会留下垃圾信息。</p>
+<p>而且上面二个目录分别对应 设置-&gt;应用-&gt;应用详情里面的”清除数据“与”清除缓存“选项</p>
+<h3 id="最后注意使用外部存储，需要的权限，在AndoridManifest-xml中"><a href="#最后注意使用外部存储，需要的权限，在AndoridManifest-xml中" class="headerlink" title="最后注意使用外部存储，需要的权限，在AndoridManifest.xml中:"></a>最后注意使用外部存储，需要的权限，在AndoridManifest.xml中:</h3><h2 id="内部存储"><a href="#内部存储" class="headerlink" title="内部存储"></a>内部存储</h2><p><code>context.getCacheDir();</code> //目录位置/data/data/com.fivetv.testdownload/cache</p>
+<h2 id="存放缓存文件的方式"><a href="#存放缓存文件的方式" class="headerlink" title="存放缓存文件的方式"></a>存放缓存文件的方式</h2><p>[code lang=”java”]</p>
+<pre><code>//当SD卡存在或者SD卡不可被移除的时候，就调用getExternalCacheDir()方法来获取缓存路径，否则就调用getCacheDir()方法来获取缓存路径。
+
+public String getDiskCacheDir(Context context) {
+
+    String cachePath = null;
+
+    if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
+
+            || !Environment.isExternalStorageRemovable()) {
+
+        cachePath = context.getExternalCacheDir().getPath();
+
+    } else {
+
+        cachePath = context.getCacheDir().getPath();
+
+    }
+
+    return cachePath;
+
+}
+</code></pre><p>[/code]</p>
+<h2 id="路径的规律"><a href="#路径的规律" class="headerlink" title="路径的规律"></a>路径的规律</h2><p>一般地，通过<code>Context</code> 和 <code>Environment</code>相关的方法获取文件存取的路径。</p>
+<p>通过这两个类可获取各种路径，如图：</p>
+<pre><code>($rootDir)  /
+
++- /data    -&amp;gt; Environment.getDataDirectory()
+
+|   |
+
+|   |   ($appDataDir)
+
+|   +- data/com.adorkable.sample
+
+|           |
+
+|           | ($filesDir)
+
+|           +- files     -&amp;gt; Context.getFilesDir() &amp;amp; Context.getFileStreamPath(&quot;&quot;) &amp;amp; Context.openFileOutput(&quot;&quot;)
+
+|           |       |
+
+|           |       +- file1    -&amp;gt; Context.getFileStreamPath(&quot;file1&quot;)
+
+|           |       +- file2    -&amp;gt;Context.openFileOutput(&quot;file2&quot;)
+
+|           | ($cacheDir)
+
+|           +- cache          -&amp;gt; Context.getCacheDir()
+
+|           |
+
+|           +- app_$name      -&amp;gt;(Context.getDir(String name, int mode)
+
+|           +-shared_prefs    -&amp;gt;(Context.getSharedPreferences()
+
+| 
+
+|($rootDir)
+
++- /storage/sdcard0     -&amp;gt; Environment.getExternalStorageDirectory()
+
+             |                       / Environment.getExternalStoragePublicDirectory(&quot;&quot;)
+
+             |
+
+             +- dir1             -&amp;gt; Environment.getExternalStoragePublicDirectory(&quot;dir1&quot;)
+
+             |
+
+             |   ($appDataDir)
+
+             +- Andorid/data/com.adorkable.sample
+
+                              |
+
+                              | ($filesDir)
+
+                              +- files        -&amp;gt; Context.getExternalFilesDir(&quot;&quot;)
+
+                              |   |
+
+                              |   +- file1    -&amp;gt; Context.getExternalFilesDir(&quot;file1&quot;)
+
+                              |   +- Music    -&amp;gt; Context.getExternalFilesDir(Environment.Music);
+
+                              |   +- Picture  -&amp;gt; ... Environment.Picture
+
+                              |   +- ...
+
+                              |
+
+                              | ($cacheDir)
+
+                                +- cache        -&amp;gt; Context.getExternalCacheDir()
+
+                              |
+
+                              +- 其他
+</code></pre>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[mysql中授权命令]]></title>
       <url>http://febsky.me/2015/05/25/2015-05-25-MySQL%E4%B8%AD%E6%8E%88%E6%9D%83%E5%91%BD%E4%BB%A4/</url>
       <content type="html"><![CDATA[<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mysql中授权命令<span class="operator"><span class="keyword">grant</span>用法详解: </span><br><span class="line"></span><br><span class="line">mysql中可以给你一个用户授予如<span class="keyword">select</span>,<span class="keyword">insert</span>,<span class="keyword">update</span>,<span class="keyword">delete</span>等其中的一个或者多个权限,主要使用<span class="keyword">grant</span>命令,用法格式为： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 权限 <span class="keyword">on</span> 数据库对象 <span class="keyword">to</span> 用户 </span><br><span class="line"></span><br><span class="line">一、<span class="keyword">grant</span> 普通数据用户，查询、插入、更新、删除 数据库中所有表数据的权利。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">insert</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">update</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">delete</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line">或者，用一条 MySQL 命令来替代： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>, <span class="keyword">insert</span>, <span class="keyword">update</span>, <span class="keyword">delete</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line">二、<span class="keyword">grant</span> 数据库开发人员，创建表、索引、视图、存储过程、函数。。。等权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 创建、修改、删除 MySQL 数据表结构权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> <span class="keyword">alter</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> <span class="keyword">drop</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> 操作 MySQL 外键权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">references</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> 操作 MySQL 临时表权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">temporary</span> <span class="keyword">tables</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> 操作 MySQL 索引权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">index</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> 操作 MySQL 视图、查看视图源代码 权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">view</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> <span class="keyword">show</span> <span class="keyword">view</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> 操作 MySQL 存储过程、函数 权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> routine <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> <span class="comment">-- now, can show procedure status </span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> <span class="keyword">alter</span> routine <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> <span class="comment">-- now, you can drop a procedure </span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> <span class="keyword">execute</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’;</span> </span><br><span class="line"></span><br><span class="line">三、<span class="operator"><span class="keyword">grant</span> 普通 DBA 管理某个 MySQL 数据库的权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> testdb <span class="keyword">to</span> dba@’localhost’ </span><br><span class="line"></span><br><span class="line">其中，关键字 “<span class="keyword">privileges</span>” 可以省略。 </span><br><span class="line"></span><br><span class="line">四、<span class="keyword">grant</span> 高级 DBA 管理 MySQL 中所有数据库的权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@’localhost’ </span><br><span class="line"></span><br><span class="line">五、MySQL <span class="keyword">grant</span> 权限，分别可以作用在多个层次上。 </span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> <span class="keyword">grant</span> 作用在整个 MySQL 服务器上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@localhost;</span> <span class="comment">-- dba 可以查询 MySQL 中所有数据库中的表。 </span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> all <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@localhost;</span> <span class="comment">-- dba 可以管理 MySQL 中的所有数据库 </span></span><br><span class="line"></span><br><span class="line">2. <span class="operator"><span class="keyword">grant</span> 作用在单个数据库上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> dba@localhost;</span> <span class="comment">-- dba 可以查询 testdb 中的表。 </span></span><br><span class="line"></span><br><span class="line">3. <span class="operator"><span class="keyword">grant</span> 作用在单个数据表上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>, <span class="keyword">insert</span>, <span class="keyword">update</span>, <span class="keyword">delete</span> <span class="keyword">on</span> testdb.orders <span class="keyword">to</span> dba@localhost;</span> </span><br><span class="line"></span><br><span class="line">4. <span class="operator"><span class="keyword">grant</span> 作用在表中的列上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>(<span class="keyword">id</span>, se, <span class="keyword">rank</span>) <span class="keyword">on</span> testdb.apache_log <span class="keyword">to</span> dba@localhost;</span> </span><br><span class="line"></span><br><span class="line">5. <span class="operator"><span class="keyword">grant</span> 作用在存储过程、函数上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">execute</span> <span class="keyword">on</span> <span class="keyword">procedure</span> testdb.pr_add <span class="keyword">to</span> ’dba’@’localhost’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">execute</span> <span class="keyword">on</span> <span class="keyword">function</span> testdb.fn_add <span class="keyword">to</span> ’dba’@’localhost’ </span><br><span class="line"></span><br><span class="line">六、查看 MySQL 用户权限 </span><br><span class="line"></span><br><span class="line">查看当前用户（自己）权限： </span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">grants</span>;</span> </span><br><span class="line"></span><br><span class="line">查看其他 MySQL 用户权限： </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">show</span> <span class="keyword">grants</span> <span class="keyword">for</span> dba@localhost;</span> </span><br><span class="line"></span><br><span class="line">七、撤销已经赋予给 MySQL 用户权限的权限。 </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">revoke</span> 跟 <span class="keyword">grant</span> 的语法差不多，只需要把关键字 “<span class="keyword">to</span>” 换成 “<span class="keyword">from</span>” 即可： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@localhost;</span> </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">revoke</span> all <span class="keyword">on</span> *.* <span class="keyword">from</span> dba@localhost;</span> </span><br><span class="line"></span><br><span class="line">八、MySQL <span class="operator"><span class="keyword">grant</span>、<span class="keyword">revoke</span> 用户权限注意事项 </span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> <span class="keyword">grant</span>, <span class="keyword">revoke</span> 用户权限后，该用户只有重新连接 MySQL 数据库，权限才能生效。 </span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 如果想让授权的用户，也可以将这些权限 <span class="keyword">grant</span> 给其他用户，需要选项 “<span class="keyword">grant</span> <span class="keyword">option</span>“ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> dba@localhost <span class="keyword">with</span> <span class="keyword">grant</span> <span class="keyword">option</span>;</span> </span><br><span class="line"></span><br><span class="line">这个特性一般用不到。实际中，数据库权限最好由 DBA 来统一管理。</span><br></pre></td></tr></table></figure>
