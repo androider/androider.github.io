@@ -14,7 +14,7 @@
 <p>BOM_UTF16_BE ‘\xfe\xff’</p>
 <p>并不是所有的编辑器都会写入BOM，但即使没有BOM，Unicode还是可以读取的，只是像MBCS的编码一样，需要另行指定具体的编码，否则解码将会失败。</p>
 <p>你可能听说过UTF-8不需要BOM，这种说法是不对的，只是绝大多数编辑器在没有BOM时都是以UTF-8作为默认编码读取。即使是保存时默认使用ANSI(MBCS)的记事本，在读取文件时也是先使用UTF-8测试编码，如果可以成功解码，则使用UTF-8解码。记事本这个别扭的做法造成了一个BUG：如果你新建文本文件并输入”姹塧”然后使用ANSI(MBCS)保存，再打开就会变成”汉a”，你不妨试试 ：）</p>
-</div></article></div><div class="tags"><a href="/tags/编码/">编码</a></div><div class="paginator"><a href="/2015/01/25/2015-01-25-Sublime Text 的配置文件/" class="prev"><i class="fa fa-chevron-left"></i><span> 上一页</span></a><a href="/2015/01/04/2014-12-11-Postgres 序列操作/" class="next"><span>下一页</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2015/01/24/2015-02-25-字符编码简介/index.html" data-title="字符编码简介" data-url="http://febsky.me/2015/01/24/2015-02-25-字符编码简介/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
+</div></article></div><div class="tags"><a href="/tags/编码/">编码</a></div><div class="paginator"><a href="/2015/01/25/2015-01-25-Sublime Text 的配置文件/" class="prev"><i class="fa fa-chevron-left"></i><span> 上一页</span></a><a href="/2015/01/13/2015-01-13-PostGres数据库导入导出/" class="next"><span>下一页</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2015/01/24/2015-02-25-字符编码简介/index.html" data-title="字符编码简介" data-url="http://febsky.me/2015/01/24/2015-02-25-字符编码简介/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
 (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
