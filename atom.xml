@@ -245,7 +245,7 @@
     <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/"/>
     <id>http://febsky.me/2016/07/05/2016-07-05-Android逆向工程用到的工具/</id>
     <published>2016-07-05T05:12:00.000Z</published>
-    <updated>2016-07-07T06:54:27.000Z</updated>
+    <updated>2016-07-18T06:50:52.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;第一套组合&quot;&gt;&lt;a href=&quot;#第一套组合&quot; class=&quot;headerlink&quot; title=&quot;第一套组合&quot;&gt;&lt;/a&gt;第一套组合&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Apktool&lt;/a&gt; + &lt;a href=&quot;https://github.com/pxb1988/dex2jar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dex2jar&lt;/a&gt; + &lt;a href=&quot;https://github.com/java-decompiler/jd-gui&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jd-gui&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;可惜的是apktool好像后来不再支持调试Smali文件，jd-gui 作者从 2015 年开始就停止了维护.&lt;/p&gt;
@@ -254,9 +254,19 @@
 &lt;/blockquote&gt;
 &lt;h1 id=&quot;Google-出的几个逆向分析工具&quot;&gt;&lt;a href=&quot;#Google-出的几个逆向分析工具&quot; class=&quot;headerlink&quot; title=&quot;Google 出的几个逆向分析工具&quot;&gt;&lt;/a&gt;Google 出的几个逆向分析工具&lt;/h1&gt;&lt;h2 id=&quot;1-enjarify&quot;&gt;&lt;a href=&quot;#1-enjarify&quot; class=&quot;headerlink&quot; title=&quot;1. enjarify  &quot;&gt;&lt;/a&gt;1. enjarify  &lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/enjarify&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/enjarify&lt;/a&gt;&lt;br&gt;功能：可直接将 apk 文件还原成为 jar 文件，也可以和 dex2jar 一样，直接操作某个dex&lt;/p&gt;
 &lt;p&gt;这是 Google 出品的一个逆向分析工具，从反编译成 jar 包的流程来说，要比 dex2jar 方便得多。下载完工具到本地并配置好 Python 环境后，需要修改 enjarify 目录下的 enjarify.bat 文件，将 python3 改为 python&lt;/p&gt;
-&lt;h2 id=&quot;2-Procyon&quot;&gt;&lt;a href=&quot;#2-Procyon&quot; class=&quot;headerlink&quot; title=&quot;2. Procyon&quot;&gt;&lt;/a&gt;2. Procyon&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://bitbucket.org/mstrobel/procyon&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bitbucket.org/mstrobel/procyon&lt;/a&gt;&lt;br&gt;功能：将反编译得到 jar 包还原成 java 文件，同时能够更强的还原代码的逻辑结构 &lt;/p&gt;
+&lt;h2 id=&quot;2-Procyon-和-cfr-和-Jad&quot;&gt;&lt;a href=&quot;#2-Procyon-和-cfr-和-Jad&quot; class=&quot;headerlink&quot; title=&quot;2. Procyon 和 cfr 和 Jad &quot;&gt;&lt;/a&gt;2. Procyon 和 cfr 和 Jad &lt;/h2&gt;&lt;p&gt;当然这几个不是Google的产物，这几个是jar和&lt;code&gt;.class&lt;/code&gt; 反编译工具。为啥要用这些，因为jd-gui，反编译java7会有问题。有些语法有点让人难以读懂。但是他有图形化界面剩下的这几个都没有。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://bitbucket.org/mstrobel/procyon&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bitbucket.org/mstrobel/procyon&lt;/a&gt;&lt;br&gt;功能：将反编译得到 jar 包还原成 java 文件，同时能够更强的还原代码的逻辑结构  2016-07-12 持续更新中。。。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.benf.org/other/cfr/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.benf.org/other/cfr/&lt;/a&gt; 最新版 cfr_0_116.jar (July 2016) 持续更新中。。。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/JAD_(JAva_Decompiler&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jad&lt;/a&gt;)  //这货我没用过，不知道地址，好像也不怎么更新了，给的是wiki的地址。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;procyon 反编译jar包命令：&lt;br&gt;&lt;code&gt;$ java -jar procyon-decompiler-0.5.30.jar -jar myJar.jar -o out&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id=&quot;3-ClassyShark&quot;&gt;&lt;a href=&quot;#3-ClassyShark&quot; class=&quot;headerlink&quot; title=&quot;3. ClassyShark&quot;&gt;&lt;/a&gt;3. ClassyShark&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/android-classyshark&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/android-classyshark&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;功能：可直接浏览 Apk，支持对.dex, .aar, .so，.apk, .jar, .class等文件的操作。&lt;/p&gt;
+&lt;p&gt;同意Google出品&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;java -jar ClassyShark.jar -open XXX.apk&lt;/p&gt;
 &lt;/blockquote&gt;
