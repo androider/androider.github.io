@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-07-14T10:55:04.000Z</updated>
+  <updated>2016-07-18T09:45:48.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android显示HTML格式</title>
+    <link href="http://febsky.me/2016/07/18/2016-07-18-Android%E6%98%BE%E7%A4%BAHTML%E6%A0%BC%E5%BC%8F/"/>
+    <id>http://febsky.me/2016/07/18/2016-07-18-Android显示HTML格式/</id>
+    <published>2016-07-18T09:34:30.000Z</published>
+    <updated>2016-07-18T09:45:48.000Z</updated>
+    
+    <content type="html">&lt;p&gt;实现如下效果：&lt;/p&gt;
+&lt;p&gt;Hello! &lt;font color=&quot;red&quot;&gt;小傻&lt;/font&gt;You have 5 new messages.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在&lt;code&gt;string.xml&lt;/code&gt;中&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;string name=&amp;quot;welcome_messages&amp;quot;&amp;gt;&amp;lt;![CDATA[Hello! &amp;lt;font color=&amp;quot;#ff0000&amp;quot;&amp;gt;%1$s&amp;lt;/font&amp;gt;You have %2$d new messages.]]&amp;gt;&amp;lt;/string&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意html中的引号，如果用单引号就要加转译字符&lt;code&gt;\&lt;/code&gt;,为了方便就用双引号吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在Activity中动态获取并设置&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Resources resources = getResources();&amp;#10;String htmlStr = resources.getString(R.string.welcome_messages,&amp;#34;&amp;#23567;&amp;#20667;&amp;#34;,5);&amp;#10;Spanned spannedText = Html.fromHtml(htmlStr);&amp;#10;textView.setText(spannedText);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; 其实上面的代码可以写成一行：&lt;br&gt; &lt;code&gt;textView.setText(Html.fromHtml(getResources().getString(R.string.welcome_messages,&amp;quot;小傻&amp;quot;,5)));&lt;/code&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;实现如下效果：&lt;/p&gt;
+&lt;p&gt;Hello! &lt;font color=&quot;red&quot;&gt;小傻&lt;/font&gt;You have 5 new messages.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在&lt;code&gt;string.xml&lt;/code&gt;中&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;stri
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>MPAndroidChart画线形图</title>
@@ -245,7 +285,7 @@
     <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/"/>
     <id>http://febsky.me/2016/07/05/2016-07-05-Android逆向工程用到的工具/</id>
     <published>2016-07-05T05:12:00.000Z</published>
-    <updated>2016-07-18T07:27:58.000Z</updated>
+    <updated>2016-07-18T07:37:04.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;第一套组合&quot;&gt;&lt;a href=&quot;#第一套组合&quot; class=&quot;headerlink&quot; title=&quot;第一套组合&quot;&gt;&lt;/a&gt;第一套组合&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Apktool&lt;/a&gt; + &lt;a href=&quot;https://github.com/pxb1988/dex2jar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dex2jar&lt;/a&gt; + &lt;a href=&quot;https://github.com/java-decompiler/jd-gui&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jd-gui&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;可惜的是apktool好像后来不再支持调试Smali文件，jd-gui 作者从 2015 年开始就停止了维护.&lt;/p&gt;
@@ -277,7 +317,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;java -jar ClassyShark.jar -open XXX.apk&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&quot;4-bytecode-viewer&quot;&gt;&lt;a href=&quot;#4-bytecode-viewer&quot; class=&quot;headerlink&quot; title=&quot;4.bytecode-viewer&quot;&gt;&lt;/a&gt;4.bytecode-viewer&lt;/h2&gt;&lt;p&gt;最后说一个基于Procyon的项目 &lt;a href=&quot;https://github.com/Konloch/bytecode-viewer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bytecode-viewer&lt;/a&gt;&lt;br&gt;A Java 8 Jar &amp;amp; Android APK Reverse Engineering Suite (Decompiler, Editor, Debugger &amp;amp; More) &lt;a href=&quot;https://bytecodeviewer.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bytecodeviewer.com&lt;/a&gt;.  不知道如何没用过。&lt;/p&gt;
+&lt;h2 id=&quot;4-bytecode-viewer-这是个套装&quot;&gt;&lt;a href=&quot;#4-bytecode-viewer-这是个套装&quot; class=&quot;headerlink&quot; title=&quot;4.bytecode-viewer 这是个套装&quot;&gt;&lt;/a&gt;4.bytecode-viewer 这是个套装&lt;/h2&gt;&lt;p&gt;最后说一个基于Procyon的项目 &lt;a href=&quot;https://github.com/Konloch/bytecode-viewer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bytecode-viewer&lt;/a&gt;&lt;br&gt;A Java 8 Jar &amp;amp; Android APK Reverse Engineering Suite (Decompiler, Editor, Debugger &amp;amp; More) &lt;a href=&quot;https://bytecodeviewer.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bytecodeviewer.com&lt;/a&gt;.  不知道如何没用过。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.febsky.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;me&lt;/a&gt;&lt;/p&gt;
 </content>
     
@@ -823,67 +863,6 @@
       <category term="Android" scheme="http://febsky.me/tags/Android/"/>
     
       <category term="编译" scheme="http://febsky.me/tags/%E7%BC%96%E8%AF%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android FragmentPagerAdapter和FragmentStatePagerAdapter</title>
-    <link href="http://febsky.me/2016/05/06/2016-05-12-FragmentStatePagerAdapter%E5%92%8CFragmentPagerAdapter/"/>
-    <id>http://febsky.me/2016/05/06/2016-05-12-FragmentStatePagerAdapter和FragmentPagerAdapter/</id>
-    <published>2016-05-06T04:14:42.000Z</published>
-    <updated>2016-05-13T15:56:42.000Z</updated>
-    
-    <content type="html">&lt;p&gt;在公司查看别人的代码的时候发现个东西，在展示试题的是时候，他用的是&lt;code&gt;FragmentStatePagerAdapter&lt;/code&gt;而如果是我的话，我就直接用&lt;code&gt;viewpager&lt;/code&gt;+&lt;code&gt;PagerAdapter&lt;/code&gt;,但是&lt;code&gt;FragmentStatePagerAdapter&lt;/code&gt;是个什么鬼，我听过&lt;code&gt;FragmentPagerAdapter&lt;/code&gt;可是没用过&lt;code&gt;FragmentStatePagerAdapter&lt;/code&gt;啊，只怪自己学艺不精，既然人家用了就有用的道理。&lt;/p&gt;
-&lt;h1 id=&quot;文档说明&quot;&gt;&lt;a href=&quot;#文档说明&quot; class=&quot;headerlink&quot; title=&quot;文档说明&quot;&gt;&lt;/a&gt;文档说明&lt;/h1&gt;&lt;p&gt;跟踪源码来看一下FragmentPagerAdapter和FragmentStatePagerAdapter的API说明。我们先来看看FragmentPagerAdapter的API（直接翻译吧）：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;FragmentPagerAdapter继承自PagerAdapter ，主要用来展示多个Fragment页面，并且每一个Fragment都会被保存在fragment manager中。 FragmentPagerAdapter最适用于那种少量且相对静态的页面，例如几个tab页。每一个用户访问过的fragment都会被保存在内存中，尽管他的视图层级可能会在不可见时被销毁。这可能导致大量的内存因为fragment实例能够拥有任意数量的状态。对于较多的页面集合，更推荐使用FragmentStatePagerAdapter。 当使用FragmentPagerAdapter的时候对应的ViewPager必须拥有一个有效的ID集。 FragmentPagerAdapter的派生类只需要实现getItem(int)和getCount()即可。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;然后是&lt;code&gt;FragmentStatePagerAdapter&lt;/code&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;FragmentStatePagerAdapter继承自PagerAdapter，主要使用Fragment来管理每个页面。这个类同样用来保存和恢复fragment页面的状态。 FragmentStatePagerAdapter更多用于大量页面，例如视图列表。当某个页面对用户不再可见时，他们的整个fragment就会被销毁，仅保留fragment状态。相比于FragmentPagerAdapter，这样做的好处是在访问各个页面时能节约大量的内存开销，但代价是在页面切换时会增加非常多的开销。 当使用FragmentPagerAdapter的时候对应的ViewPager必须拥有一个有效的ID集。 FragmentStatePagerAdapter的派生类只需要实现getItem(int)和getCount()即可。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;#直接上结论，然后是分析代码&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;FragmentStatePagerAdapter&lt;br&gt;顾名思义，我们的这个FragmentStatePagerAdapter，在我们切换不同的Fragment的时候，我们会把前面的Fragment销毁，所谓的销毁就是走完Fragment的生命周期，调用&lt;code&gt;onDestroyView&lt;/code&gt;,&lt;code&gt;onDestroy&lt;/code&gt;,直到&lt;code&gt;onDetach&lt;/code&gt;为止,而我们系统在销毁前，会把我们的我们Fragment的Bundle在我们的onSaveInstanceState(Bundle)保存下来。等用户切换回来的时候，我们的Fragment就会根据我们的instance state恢复出来。并且当切换回来的时候会调用这个Fragment的整个生命周期从&lt;code&gt;onAttach&lt;/code&gt;方法开始。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;FragmentPagerAdapter&lt;br&gt;使用这种Adapter，我们的Fragment在切换的时候，只会把我们的Fragment的view销毁，也就是说一个Fragment的生命周期只会调用到&lt;code&gt;onDestroyView&lt;/code&gt;,变不会再往下执行，下一次再滑动viewpager回到上一个&lt;code&gt;Fragment&lt;/code&gt;的时候,会从这个Fragment的&lt;code&gt;onCreateView&lt;/code&gt;开始执行。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;代码验证&quot;&gt;&lt;a href=&quot;#代码验证&quot; class=&quot;headerlink&quot; title=&quot;代码验证&quot;&gt;&lt;/a&gt;代码验证&lt;/h1&gt;&lt;h2 id=&quot;Fragment代码&quot;&gt;&lt;a href=&quot;#Fragment代码&quot; class=&quot;headerlink&quot; title=&quot;Fragment代码&quot;&gt;&lt;/a&gt;Fragment代码&lt;/h2&gt;&lt;p&gt;为了代码简洁Fragment的布局文件就不再给出，就是一个&lt;code&gt;RelativeLayout&lt;/code&gt;包含一个&lt;code&gt;TextView&lt;/code&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;package me.fesky.test.fragment;&amp;#10;&amp;#10;import android.content.Context;&amp;#10;import android.os.Bundle;&amp;#10;import android.support.annotation.Nullable;&amp;#10;import android.support.v4.app.Fragment;&amp;#10;import android.util.Log;&amp;#10;import android.view.LayoutInflater;&amp;#10;import android.view.View;&amp;#10;import android.view.ViewGroup;&amp;#10;import android.widget.TextView;&amp;#10;&amp;#10;import me.fesky.test.R;&amp;#10;&amp;#10;/**&amp;#10; * Created by Administrator on 2016/5/12.&amp;#10; */&amp;#10;public class MyFragment extends Fragment &amp;#123;&amp;#10;&amp;#10;    int index;&amp;#10;&amp;#10;    @Override&amp;#10;    public void onAttach(Context context) &amp;#123;&amp;#10;        super.onAttach(context);&amp;#10;        Bundle bundle = getArguments();&amp;#10;        index = bundle.getInt(&amp;#34;index&amp;#34;);&amp;#10;        Log.i(&amp;#34;Q_M:&amp;#34;, &amp;#34;onAttach&amp;#34; + index);&amp;#10;    &amp;#125;&amp;#10;&amp;#10;    @Nullable&amp;#10;    @Override&amp;#10;    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) &amp;#123;&amp;#10;        View view = inflater.inflate(R.layout.fragment, container, false);&amp;#10;        TextView textView = (TextView) view.findViewById(R.id.text_view);&amp;#10;&amp;#10;        textView.setText(textView.getText()+&amp;#34;&amp;#34;+index);&amp;#10;&amp;#10;        Log.i(&amp;#34;Q_M:&amp;#34;, &amp;#34;onCreateView&amp;#34; + index);&amp;#10;        return view;&amp;#10;    &amp;#125;&amp;#10;&amp;#10;    @Override&amp;#10;    public void onDestroyView() &amp;#123;&amp;#10;        super.onDestroyView();&amp;#10;&amp;#10;        Log.i(&amp;#34;Q_M:&amp;#34;, &amp;#34;onDestroyView&amp;#34; + index);&amp;#10;    &amp;#125;&amp;#10;&amp;#10;    @Override&amp;#10;    public void onDestroy() &amp;#123;&amp;#10;        super.onDestroy();&amp;#10;&amp;#10;        Log.i(&amp;#34;Q_M:&amp;#34;, &amp;#34;onDestroy&amp;#34; + index);&amp;#10;    &amp;#125;&amp;#10;&amp;#10;    @Override&amp;#10;    public void onDetach() &amp;#123;&amp;#10;        super.onDetach();&amp;#10;        Log.i(&amp;#34;Q_M:&amp;#34;, &amp;#34;onDetach&amp;#34; + index);&amp;#10;    &amp;#125;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Activity以及adapter代码&quot;&gt;&lt;a href=&quot;#Activity以及adapter代码&quot; class=&quot;headerlink&quot; title=&quot;Activity以及adapter代码&quot;&gt;&lt;/a&gt;Activity以及adapter代码&lt;/h2&gt;&lt;p&gt;为了代码简洁&lt;code&gt;Activity&lt;/code&gt;的布局文件就不再给出，就是一个&lt;code&gt;RelativeLayout&lt;/code&gt;包含一个&lt;code&gt;android.support.v4.view.ViewPager&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;package me.fesky.test;&amp;#10;&amp;#10;import android.support.v4.app.Fragment;&amp;#10;import android.support.v4.app.FragmentManager;&amp;#10;import android.support.v4.app.FragmentPagerAdapter;&amp;#10;import android.support.v4.app.FragmentStatePagerAdapter;&amp;#10;import android.support.v4.view.PagerAdapter;&amp;#10;import android.support.v4.view.ViewPager;&amp;#10;import android.support.v7.app.AppCompatActivity;&amp;#10;import android.os.Bundle;&amp;#10;&amp;#10;import java.util.ArrayList;&amp;#10;import java.util.List;&amp;#10;&amp;#10;import me.fesky.test.fragment.MyFragment;&amp;#10;&amp;#10;public class TestFragmentActivity extends AppCompatActivity &amp;#123;&amp;#10;&amp;#10;    ViewPager viewPager;&amp;#10;&amp;#10;    List&amp;#60;Fragment&amp;#62; fragments;&amp;#10;&amp;#10;    @Override&amp;#10;    protected void onCreate(Bundle savedInstanceState) &amp;#123;&amp;#10;        super.onCreate(savedInstanceState);&amp;#10;        setContentView(R.layout.activity_test_fragment);&amp;#10;&amp;#10;        fragments = new ArrayList&amp;#60;&amp;#62;();&amp;#10;&amp;#10;        /**&amp;#10;         * &amp;#21019;&amp;#24314;&amp;#22235;&amp;#20010;Fragment&amp;#10;         */&amp;#10;        fragments.add(new MyFragment());&amp;#10;        fragments.add(new MyFragment());&amp;#10;        fragments.add(new MyFragment());&amp;#10;        fragments.add(new MyFragment());&amp;#10;&amp;#10;        /**&amp;#10;         *&amp;#29992;&amp;#36825;&amp;#31181;&amp;#26041;&amp;#24335;&amp;#21521;Fragment&amp;#20256;&amp;#36882;&amp;#21442;&amp;#25968;&amp;#10;         */&amp;#10;        Bundle bundle1 = new Bundle();&amp;#10;        bundle1.putInt(&amp;#34;index&amp;#34;,1);&amp;#10;        fragments.get(0).setArguments(bundle1);&amp;#10;&amp;#10;        Bundle bundle2 = new Bundle();&amp;#10;        bundle2.putInt(&amp;#34;index&amp;#34;,2);&amp;#10;        fragments.get(1).setArguments(bundle2);&amp;#10;&amp;#10;        Bundle bundle3 = new Bundle();&amp;#10;        bundle3.putInt(&amp;#34;index&amp;#34;,3);&amp;#10;        fragments.get(2).setArguments(bundle3);&amp;#10;&amp;#10;        Bundle bundle4 = new Bundle();&amp;#10;        bundle4.putInt(&amp;#34;index&amp;#34;,4);&amp;#10;        fragments.get(3).setArguments(bundle4);&amp;#10;&amp;#10;        viewPager = (ViewPager) findViewById(R.id.view_pager);&amp;#10;        PagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());&amp;#10;&amp;#10;        viewPager.setAdapter(pagerAdapter);&amp;#10;    &amp;#125;&amp;#10;&amp;#10;&amp;#10;    /**&amp;#10;     * &amp;#23581;&amp;#35797;&amp;#20999;&amp;#25442;&amp;#32487;&amp;#25215;&amp;#30340;FragmentPagerAdapter&amp;#21644;FragmentStatePagerAdapter&amp;#10;     * &amp;#35266;&amp;#23519;&amp;#25171;&amp;#21360;&amp;#32467;&amp;#26524;&amp;#26377;&amp;#20160;&amp;#20040;&amp;#19981;&amp;#21516;&amp;#10;     */&amp;#10;    public  class MyFragmentPagerAdapter extends FragmentPagerAdapter &amp;#123;&amp;#10;&amp;#10;        public MyFragmentPagerAdapter(FragmentManager fm) &amp;#123;&amp;#10;            super(fm);&amp;#10;        &amp;#125;&amp;#10;&amp;#10;        @Override&amp;#10;        public Fragment getItem(int position) &amp;#123;&amp;#10;            return fragments.get(position);&amp;#10;        &amp;#125;&amp;#10;&amp;#10;        @Override&amp;#10;        public int getCount() &amp;#123;&amp;#10;            return fragments.size();&amp;#10;        &amp;#125;&amp;#10;    &amp;#125;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;blockquote&gt;
-&lt;font colot=&quot;red&quot;&gt; 注意上面所说的销毁都是建立在ViewPager缓存逻辑之上的并不是划过去就会销毁的。不了解的可以看下ViewPager的销毁机制&lt;/font&gt;
-
-&lt;/blockquote&gt;
-&lt;p&gt;运行上面的测试代码，可以看到，当adapter是&lt;code&gt;FragmentPagerAdapter&lt;/code&gt;打印结果如下：&lt;/p&gt;
-&lt;p&gt;ViewPager向后滑动结果如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;05-12 16:24:53.370 11366-11366/me.fesky.test I/Q_M:: onAttach1&lt;br&gt;05-12 16:24:53.380 11366-11366/me.fesky.test I/Q_M:: onCreateView1&lt;br&gt;05-12 16:24:53.380 11366-11366/me.fesky.test I/Q_M:: onAttach2&lt;br&gt;05-12 16:24:53.380 11366-11366/me.fesky.test I/Q_M:: onCreateView2&lt;br&gt;05-12 16:25:36.260 11366-11366/me.fesky.test I/Q_M:: onAttach3&lt;br&gt;05-12 16:25:36.270 11366-11366/me.fesky.test I/Q_M:: onCreateView3&lt;br&gt;05-12 16:25:39.980 11366-11366/me.fesky.test I/Q_M:: onDestroyView1&lt;br&gt;05-12 16:25:39.980 11366-11366/me.fesky.test I/Q_M:: onAttach4&lt;br&gt;05-12 16:25:39.980 11366-11366/me.fesky.test I/Q_M:: onCreateView4&lt;br&gt;05-12 16:25:44.760 11366-11366/me.fesky.test I/Q_M:: onDestroyView2&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;ViewPager向前滑动结果如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;05-12 16:26:17.220 11366-11366/me.fesky.test I/Q_M:: onCreateView2&lt;br&gt;05-12 16:26:18.720 11366-11366/me.fesky.test I/Q_M:: onCreateView1&lt;br&gt;05-12 16:26:18.720 11366-11366/me.fesky.test I/Q_M:: onDestroyView4&lt;br&gt;05-12 16:26:27.450 11366-11366/me.fesky.test I/Q_M:: onDestroyView3&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;当adapter是&lt;code&gt;FragmentStatePagerAdapter&lt;/code&gt;打印结果如下：&lt;/p&gt;
-&lt;p&gt;ViewPager向后(也就是向下一页滑动)滑动结果如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;05-12 16:53:36.940 3043-3043/me.fesky.test I/Q_M:: onAttach1&lt;br&gt;05-12 16:53:36.950 3043-3043/me.fesky.test I/Q_M:: onCreateView1&lt;br&gt;05-12 16:53:36.950 3043-3043/me.fesky.test I/Q_M:: onAttach2&lt;br&gt;05-12 16:53:36.950 3043-3043/me.fesky.test I/Q_M:: onCreateView2&lt;br&gt;05-12 16:53:44.500 3043-3043/me.fesky.test I/Q_M:: onAttach3&lt;br&gt;05-12 16:53:44.500 3043-3043/me.fesky.test I/Q_M:: onCreateView3&lt;br&gt;05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onDestroyView1&lt;br&gt;05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onDestroy1&lt;br&gt;05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onDetach1&lt;br&gt;05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onAttach4&lt;br&gt;05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onCreateView4&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;ViewPager向前滑动结果如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;05-12 16:55:31.350 3043-3043/me.fesky.test I/Q_M:: onAttach2&lt;br&gt;05-12 16:55:31.360 3043-3043/me.fesky.test I/Q_M:: onCreateView2&lt;br&gt;05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroyView4&lt;br&gt;05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroy4&lt;br&gt;05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDetach4&lt;br&gt;05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onAttach1&lt;br&gt;05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onCreateView1&lt;br&gt;05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroyView3&lt;br&gt;05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroy3&lt;br&gt;05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDetach3&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在公司查看别人的代码的时候发现个东西，在展示试题的是时候，他用的是&lt;code&gt;FragmentStatePagerAdapter&lt;/code&gt;而如果是我的话，我就直接用&lt;code&gt;viewpager&lt;/code&gt;+&lt;code&gt;PagerAdapter&lt;/code&gt;,但是&lt;c
-    
-    </summary>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
     
   </entry>
   
