@@ -135,22 +135,31 @@
 </blockquote>
 <h1 id="Google-出的几个逆向分析工具"><a href="#Google-出的几个逆向分析工具" class="headerlink" title="Google 出的几个逆向分析工具"></a>Google 出的几个逆向分析工具</h1><h2 id="1-enjarify"><a href="#1-enjarify" class="headerlink" title="1. enjarify  "></a>1. enjarify  </h2><p><a href="https://github.com/google/enjarify" target="_blank" rel="external">https://github.com/google/enjarify</a><br>功能：可直接将 apk 文件还原成为 jar 文件，也可以和 dex2jar 一样，直接操作某个dex</p>
 <p>这是 Google 出品的一个逆向分析工具，从反编译成 jar 包的流程来说，要比 dex2jar 方便得多。下载完工具到本地并配置好 Python 环境后，需要修改 enjarify 目录下的 enjarify.bat 文件，将 python3 改为 python</p>
-<h2 id="2-Procyon-和-cfr-和-Jad"><a href="#2-Procyon-和-cfr-和-Jad" class="headerlink" title="2. Procyon 和 cfr 和 Jad "></a>2. Procyon 和 cfr 和 Jad </h2><p>当然这几个不是Google的产物，这几个是jar和<code>.class</code> 反编译工具。为啥要用这些，因为jd-gui，反编译java7会有问题。有些语法有点让人难以读懂。但是他有图形化界面剩下的这几个都没有。</p>
+<h2 id="2-Procyon-和-cfr-和-Jad"><a href="#2-Procyon-和-cfr-和-Jad" class="headerlink" title="2. Procyon 和 cfr 和 Jad "></a>2. Procyon 和 cfr 和 Jad </h2><p>当然这几个不是Google的产物，这几个是<code>jar</code> 和<code>.class</code> 反编译工具。为啥要用这些，因为jd-gui，反编译java7会有问题。有些语法有点让人难以读懂。但是他有图形化界面剩下的这几个都没有。</p>
 <ul>
-<li><p><a href="https://bitbucket.org/mstrobel/procyon" target="_blank" rel="external">https://bitbucket.org/mstrobel/procyon</a><br>功能：将反编译得到 jar 包还原成 java 文件，同时能够更强的还原代码的逻辑结构  2016-07-12 持续更新中。。。</p>
+<li><p><a href="https://bitbucket.org/mstrobel/procyon" target="_blank" rel="external">https://bitbucket.org/mstrobel/procyon</a><br>功能：将反编译得到 jar 包还原成 java 文件，同时能够更强的还原代码的逻辑结构  2016-07-12 持续更新中。。。据说有个图形化界面<a href="https://github.com/deathmarine/Luyten" target="_blank" rel="external">https://github.com/deathmarine/Luyten</a></p>
 </li>
 <li><p><a href="http://www.benf.org/other/cfr/" target="_blank" rel="external">http://www.benf.org/other/cfr/</a> 最新版 cfr_0_116.jar (July 2016) 持续更新中。。。</p>
 </li>
 <li><p><a href="https://en.wikipedia.org/wiki/JAD_(JAva_Decompiler" target="_blank" rel="external">jad</a>)  //这货我没用过，不知道地址，好像也不怎么更新了，给的是wiki的地址。</p>
 </li>
 </ul>
-<p>procyon 反编译jar包命令：<br><code>$ java -jar procyon-decompiler-0.5.30.jar -jar myJar.jar -o out</code></p>
+<p>procyon 反编译jar包命令：(我用的是这个，比jd-gui好很多真的)</p>
+<blockquote>
+<p>$ java -jar procyon-decompiler-0.5.30.jar -jar myJar.jar -o out</p>
+</blockquote>
+<p>cfr 反编译jar包命令：</p>
+<blockquote>
+<p>java -jar cfr_0_79.jar example.jar -–outputdir out  </p>
+</blockquote>
 <h2 id="3-ClassyShark"><a href="#3-ClassyShark" class="headerlink" title="3. ClassyShark"></a>3. ClassyShark</h2><p><a href="https://github.com/google/android-classyshark" target="_blank" rel="external">https://github.com/google/android-classyshark</a></p>
 <p>功能：可直接浏览 Apk，支持对.dex, .aar, .so，.apk, .jar, .class等文件的操作。</p>
 <p>同意Google出品</p>
 <blockquote>
 <p>java -jar ClassyShark.jar -open XXX.apk</p>
 </blockquote>
+<h2 id="4-bytecode-viewer"><a href="#4-bytecode-viewer" class="headerlink" title="4.bytecode-viewer"></a>4.bytecode-viewer</h2><p>最后说一个基于Procyon的项目 <a href="https://github.com/Konloch/bytecode-viewer" target="_blank" rel="external">bytecode-viewer</a><br>A Java 8 Jar &amp; Android APK Reverse Engineering Suite (Decompiler, Editor, Debugger &amp; More) <a href="https://bytecodeviewer.com" target="_blank" rel="external">https://bytecodeviewer.com</a>.  不知道如何没用过。</p>
+<p><a href="http://www.febsky.me" target="_blank" rel="external">me</a></p>
 ]]></content>
     </entry>
     
