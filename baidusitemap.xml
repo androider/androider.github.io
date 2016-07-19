@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://febsky.me/2015/04/20/2015-04-20-git%20(github)%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2016-07-19T02:22:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>git (github)的基本使用</title>
+        <pubTime>2015-04-20T03:51:49.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
+          
+             
+              <breadCrumb title="git" url="http://febsky.me/categories/Git/git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://febsky.me/2016/07/18/2016-07-18-Android%E6%98%BE%E7%A4%BAHTML%E6%A0%BC%E5%BC%8F/</loc>
     <lastmod>2016-07-18T09:45:48.000Z</lastmod>
     <data>
@@ -533,31 +558,6 @@
            
              
               <breadCrumb title="AndroidStudio" url="http://febsky.me/categories/AndroidStudio/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://febsky.me/2015/04/20/2015-04-20-git%20(github)%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2016-06-23T03:25:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>git (github)的基本使用</title>
-        <pubTime>2015-04-20T03:51:49.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-        <tag>git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
-          
-             
-              <breadCrumb title="git" url="http://febsky.me/categories/Git/git/"/>
           
         </display>
     </data>
