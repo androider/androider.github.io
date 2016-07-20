@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-07-18T09:45:48.000Z</updated>
+  <updated>2016-07-20T10:25:15.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PopupWindow点击空白处隐藏</title>
+    <link href="http://febsky.me/2016/07/20/2016-07-20-PopupWindow%E7%82%B9%E5%87%BB%E7%A9%BA%E7%99%BD%E5%A4%84%E9%9A%90%E8%97%8F/"/>
+    <id>http://febsky.me/2016/07/20/2016-07-20-PopupWindow点击空白处隐藏/</id>
+    <published>2016-07-20T10:15:56.000Z</published>
+    <updated>2016-07-20T10:25:15.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;方法一&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mPopupWindow.setBackgroundDrawable(new BitmapDrawable());    //&amp;#36825;&amp;#20010;BitmapDrawable&amp;#24223;&amp;#24323;&amp;#20102;&amp;#21487;&amp;#20197;&amp;#29992;&amp;#19979;&amp;#38754;&amp;#30340;&amp;#36825;&amp;#20010;&amp;#10;//mPopupWindow.setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));&amp;#10;mPopupWindow.setOutsideTouchable(true);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;监听Activity的OnTouchEvent &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@Override&amp;#10;public boolean onTouchEvent(MotionEvent event) &amp;#123;&amp;#10;    if (popupWindow != null &amp;#38;&amp;#38; popupWindow.isShowing()) &amp;#123;&amp;#10;        popupWindow.dismiss();&amp;#10;        //popupWindow = null;&amp;#10;    &amp;#125;&amp;#10;    return super.onTouchEvent(event);&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;点击空白处的时候让PopupWindow消失的一点说明&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;关于PopupWindow最搞笑的地方是setOutsideTouchable方法，原本以为如果你setOutsideTouchable(true)则点击PopupWindow之外的地方PopupWindow会消失，其实这玩意儿好像一点用都没有。&lt;/p&gt;
+&lt;p&gt;要让点击PopupWindow之外的地方PopupWindow消失你需要调用setBackgroundDrawable(new BitmapDrawable());&lt;/p&gt;
+&lt;p&gt;设置背景，为了不影响样式，这个背景是空的。还可以这样写，觉得这样要保险些：&lt;/p&gt;
+&lt;p&gt;setBackgroundDrawable(new ColorDrawable(0x00000000));&lt;/p&gt;
+&lt;p&gt;背景不为空但是完全透明。如此设置还能让PopupWindow在点击back的时候消失。其实一直觉得很奇怪，不明白为什么一个背景会影响点击事件，只知道这样用可&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;方法一&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android显示HTML格式</title>
@@ -834,35 +872,6 @@
     
     
       <category term="nodejs" scheme="http://febsky.me/tags/nodejs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 打包过程</title>
-    <link href="http://febsky.me/2016/05/06/2016-05-06-Android%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/"/>
-    <id>http://febsky.me/2016/05/06/2016-05-06-Android打包过程/</id>
-    <published>2016-05-06T04:14:42.000Z</published>
-    <updated>2016-05-13T15:55:16.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-打包过程&quot;&gt;&lt;a href=&quot;#Android-打包过程&quot; class=&quot;headerlink&quot; title=&quot;Android 打包过程&quot;&gt;&lt;/a&gt;Android 打包过程&lt;/h1&gt;&lt;p&gt;第一步：打包资源文件，生成R.java文件&lt;br&gt;【输入】Resource文件（就是工程中res中的文件）、Assets文件（相当于另外一种资源，这种资源Android系统并不像对res中的文件那样优化它）、AndroidManifest.xml文件（包名就是从这里读取的，因为生成R.java文件需要包名）、Android基础类库（Android.jar文件）&lt;br&gt;【输出】打包好的资源（一般在Android工程的bin目录可以看到一个叫resources.ap_的文件就是它了）、R.java文件（在gen目录中，大家应该很熟悉了）&lt;br&gt;【工具】aapt工具，它的路径在${ANDROID_SDK_HOME}/platform-tools/aapt（如果你使用的是Windows系统，按惯例路径应该这样写：%ANDROID_SDK_HOME%\platform-tools\aapt.exe，下同）。&lt;/p&gt;
-&lt;p&gt;第二步：处理AIDL文件，生成对应的.java文件（当然，有很多工程没有用到AIDL，那这个过程就可以省了）&lt;br&gt;【输入】源码文件、aidl文件、framework.aidl文件&lt;br&gt;【输出】对应的.java文件&lt;br&gt;【工具】aidl工具&lt;/p&gt;
-&lt;p&gt;第三步：编译Java文件，生成对应的.class文件&lt;br&gt;【输入】源码文件（包括R.java和AIDL生成的.java文件）、库文件（.jar文件）&lt;br&gt;【输出】.class文件&lt;br&gt;【工具】javac工具&lt;/p&gt;
-&lt;p&gt;第四步：把.class文件转化成Davik VM支持的.dex文件&lt;br&gt;【输入】 .class文件（包括Aidl生成.class文件，R生成的.class文件，源文件生成的.class文件），库文件（.jar文件）&lt;br&gt;【输出】.dex文件&lt;br&gt;【工具】javac工具&lt;/p&gt;
-&lt;p&gt;第五步：打包生成未签名的.apk文件&lt;br&gt;【输入】打包后的资源文件、打包后类文件（.dex文件）、libs文件（包括.so文件，当然很多工程都没有这样的文件，如果你不使用C/C++开发的话）&lt;br&gt;【输出】未签名的.apk文件&lt;br&gt;【工具】apkbuilder工具&lt;/p&gt;
-&lt;p&gt;第六步：对未签名.apk文件进行签名&lt;br&gt;【输入】未签名的.apk文件&lt;br&gt;【输出】签名的.apk文件&lt;br&gt;【工具】jarsigner&lt;/p&gt;
-&lt;p&gt;第七步：对签名后的.apk文件进行对齐处理（不进行对齐处理是不能发布到Google Market的）&lt;br&gt;【输入】签名后的.apk文件&lt;br&gt;【输出】对齐后的.apk文件&lt;br&gt;【工具】zipalign工具&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-打包过程&quot;&gt;&lt;a href=&quot;#Android-打包过程&quot; class=&quot;headerlink&quot; title=&quot;Android 打包过程&quot;&gt;&lt;/a&gt;Android 打包过程&lt;/h1&gt;&lt;p&gt;第一步：打包资源文件，生成R.java文件&lt;br&gt;【输入】R
-    
-    </summary>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="编译" scheme="http://febsky.me/tags/%E7%BC%96%E8%AF%91/"/>
     
   </entry>
   

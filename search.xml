@@ -4,6 +4,26 @@
   
     
     <entry>
+      <title><![CDATA[PopupWindow点击空白处隐藏]]></title>
+      <url>http://febsky.me/2016/07/20/2016-07-20-PopupWindow%E7%82%B9%E5%87%BB%E7%A9%BA%E7%99%BD%E5%A4%84%E9%9A%90%E8%97%8F/</url>
+      <content type="html"><![CDATA[<ol>
+<li><p>方法一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mPopupWindow.setBackgroundDrawable(new BitmapDrawable());    //&#36825;&#20010;BitmapDrawable&#24223;&#24323;&#20102;&#21487;&#20197;&#29992;&#19979;&#38754;&#30340;&#36825;&#20010;&#10;//mPopupWindow.setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));&#10;mPopupWindow.setOutsideTouchable(true);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>监听Activity的OnTouchEvent </p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Override&#10;public boolean onTouchEvent(MotionEvent event) &#123;&#10;    if (popupWindow != null &#38;&#38; popupWindow.isShowing()) &#123;&#10;        popupWindow.dismiss();&#10;        //popupWindow = null;&#10;    &#125;&#10;    return super.onTouchEvent(event);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>点击空白处的时候让PopupWindow消失的一点说明</strong></p>
+<p>关于PopupWindow最搞笑的地方是setOutsideTouchable方法，原本以为如果你setOutsideTouchable(true)则点击PopupWindow之外的地方PopupWindow会消失，其实这玩意儿好像一点用都没有。</p>
+<p>要让点击PopupWindow之外的地方PopupWindow消失你需要调用setBackgroundDrawable(new BitmapDrawable());</p>
+<p>设置背景，为了不影响样式，这个背景是空的。还可以这样写，觉得这样要保险些：</p>
+<p>setBackgroundDrawable(new ColorDrawable(0x00000000));</p>
+<p>背景不为空但是完全透明。如此设置还能让PopupWindow在点击back的时候消失。其实一直觉得很奇怪，不明白为什么一个背景会影响点击事件，只知道这样用可</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android显示HTML格式]]></title>
       <url>http://febsky.me/2016/07/18/2016-07-18-Android%E6%98%BE%E7%A4%BAHTML%E6%A0%BC%E5%BC%8F/</url>
       <content type="html"><![CDATA[<p>实现如下效果：</p>
@@ -687,13 +707,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[2016年四月新浪微博面试部分]]></title>
-      <url>http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9AAndroid%E9%9D%A2%E8%AF%95%E9%83%A8%E5%88%86/</url>
-      <content type="html"><![CDATA[<p>整理中</p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[2016年四月新浪微博面试体验]]></title>
       <url>http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AF%95%E9%A2%98/</url>
       <content type="html"><![CDATA[<p><strong>先说点个人感想（废话）：</strong>真心挺感谢新浪能给这个面试机会，作为一个非重点本科毕业学生来说，能给个面试机会已经非常不错了。不想某些大公司筛选简历一看工作年限，二看出身。很可惜自己能力有限在三面的时候彻底被虐了，今年算是止步于三面了。但是还是学到很多东西的，如果再有个一到两年的沉淀，详细自己还是可以胜任的。本来不想发出来的不知道发出来会不会影响到人家的面试。</p>
@@ -713,6 +726,13 @@
 </ol>
 <h2 id="8-switch-中可以用byte吗，可以用long吗，可以用String吗？"><a href="#8-switch-中可以用byte吗，可以用long吗，可以用String吗？" class="headerlink" title="8. switch 中可以用byte吗，可以用long吗，可以用String吗？"></a>8. switch 中可以用byte吗，可以用long吗，可以用String吗？</h2><p>答：switch 只能添加  <code>char,byte,short,int,Character,Byte,Short,Interger,String ,enum</code></p>
 <h2 id="9-try-catch-finally-运行流程"><a href="#9-try-catch-finally-运行流程" class="headerlink" title="9. try catch finally 运行流程"></a>9. try catch finally 运行流程</h2><h2 id="10-是一个程序找错题。"><a href="#10-是一个程序找错题。" class="headerlink" title="10. 是一个程序找错题。"></a>10. 是一个程序找错题。</h2>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[2016年四月新浪微博面试部分]]></title>
+      <url>http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9AAndroid%E9%9D%A2%E8%AF%95%E9%83%A8%E5%88%86/</url>
+      <content type="html"><![CDATA[<p>整理中</p>
+]]></content>
     </entry>
     
     <entry>
@@ -2013,6 +2033,16 @@
     
     <entry>
       <title><![CDATA[查看Python安装位置]]></title>
+      <url>http://febsky.me/2015/01/27/2015-02-25-%E6%9F%A5%E7%9C%8BPython%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<p>有时我们需要查看python的安装位置，好安装第三方库</p>
+<p>打开命令行，我们能输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;[node@dev3 ~]$ python &#10;&#10;Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) &#10;&#10;[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2&#10;&#10;Type &#38;quot;help&#38;quot;, &#38;quot;copyright&#38;quot;, &#38;quot;credits&#38;quot; or &#38;quot;license&#38;quot; for more information.&#10;&#10;&#38;gt;&#38;gt;&#38;gt; import sys&#10;&#10;&#38;gt;&#38;gt;&#38;gt; sys.path&#10;&#10;[&#39;&#39;, &#39;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&#39;, &#39;/usr/lib64/python26.zip&#39;, &#39;/usr/lib64/python2.6&#39;, &#39;/usr/lib64/python2.6/plat-linux2&#39;, &#39;/usr/lib64/python2.6/lib-tk&#39;, &#39;/usr/lib64/python2.6/lib-old&#39;, &#39;/usr/lib64/python2.6/lib-dynload&#39;, &#39;/usr/lib64/python2.6/site-packages&#39;, &#39;/usr/lib64/python2.6/site-packages/gtk-2.0&#39;, &#39;/usr/lib/python2.6/site-packages&#39;, &#39;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&#39;]&#10;&#10;&#38;gt;&#38;gt;&#38;gt;</span><br></pre></td></tr></table></figure>
+<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[查看Python安装位置]]></title>
       <url>http://febsky.me/2015/01/27/2015-02-25-Python%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E5%8F%98%E9%87%8F/</url>
       <content type="html"><![CDATA[<h2>函数（方法）</h2>
 
@@ -2037,16 +2067,6 @@ print(dir(sys))
 <p>len(s)     返回集合长度</p>
 <p>locals()     返回当前的变量列表</p>
 <p>globals()    返回一个描述当前全局符号表的字典</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[查看Python安装位置]]></title>
-      <url>http://febsky.me/2015/01/27/2015-02-25-%E6%9F%A5%E7%9C%8BPython%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<p>有时我们需要查看python的安装位置，好安装第三方库</p>
-<p>打开命令行，我们能输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;[node@dev3 ~]$ python &#10;&#10;Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) &#10;&#10;[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2&#10;&#10;Type &#38;quot;help&#38;quot;, &#38;quot;copyright&#38;quot;, &#38;quot;credits&#38;quot; or &#38;quot;license&#38;quot; for more information.&#10;&#10;&#38;gt;&#38;gt;&#38;gt; import sys&#10;&#10;&#38;gt;&#38;gt;&#38;gt; sys.path&#10;&#10;[&#39;&#39;, &#39;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&#39;, &#39;/usr/lib64/python26.zip&#39;, &#39;/usr/lib64/python2.6&#39;, &#39;/usr/lib64/python2.6/plat-linux2&#39;, &#39;/usr/lib64/python2.6/lib-tk&#39;, &#39;/usr/lib64/python2.6/lib-old&#39;, &#39;/usr/lib64/python2.6/lib-dynload&#39;, &#39;/usr/lib64/python2.6/site-packages&#39;, &#39;/usr/lib64/python2.6/site-packages/gtk-2.0&#39;, &#39;/usr/lib/python2.6/site-packages&#39;, &#39;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&#39;]&#10;&#10;&#38;gt;&#38;gt;&#38;gt;</span><br></pre></td></tr></table></figure>
-<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
 ]]></content>
     </entry>
     
