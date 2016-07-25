@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-07-20T10:25:15.000Z</updated>
+  <updated>2016-07-25T08:32:31.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -16,11 +16,155 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Android反编译后重新打包apk</title>
+    <link href="http://febsky.me/2016/07/25/2016-07-25-Android%E5%8F%8D%E7%BC%96%E8%AF%91%E5%90%8E%E9%87%8D%E6%96%B0%E6%89%93%E5%8C%85apk/"/>
+    <id>http://febsky.me/2016/07/25/2016-07-25-Android反编译后重新打包apk/</id>
+    <published>2016-07-25T07:53:35.000Z</published>
+    <updated>2016-07-25T08:32:31.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;为什么要反编译别人的代码？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;人家比咱写的好，学习&lt;/li&gt;
+&lt;li&gt;看中了人家的某个控件，抄袭&lt;/li&gt;
+&lt;li&gt;看中了人家的本地数据库，想要&lt;/li&gt;
+&lt;li&gt;但是人家的本地数据库加密了，要读源码才能解密&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;为什么要打包别人的apk？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;反编译后的代码有些地方读不通顺。想添加log。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;一个基本的逆向工程的流程。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;apktool反编译apk –&amp;gt; 修改图片等资源文件（或者smali源码）–&amp;gt; apktool 打包apk –&amp;gt; 对打包好的apk用jarsigner签名 [–&amp;gt; zipalign优化apk，最后这步可选操作] &lt;/p&gt;
+&lt;p&gt;分别对应得详细操作：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;apktool反编译apk&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ apktool d test.apk&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修改图片，填好string.xml,修改smali&lt;/p&gt;
+&lt;p&gt;详细操作，尽情的折腾吧，隐藏某个view，添加某个view。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;apktool 打包&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;apktool b test&lt;/code&gt; 这里的test是反编译test.apk 后生成的文件夹。最终的生成的新的未签名的apk的路径为&lt;code&gt;./test/dist/test.apk&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用你自己的证书对别人的apk进行签名&lt;/p&gt;
+&lt;p&gt;这是当然了，你反编译了比人的app，可定拿不到人家的证书，但是Android系统对没有用证书签名的apk是不允许安装的。这时候我们自己生成一个证书。&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;第一步：生成RSA密钥对 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;keytool -genkeypair -alias adorkable_alias -keyalg RSA -validity &lt;span class=&quot;number&quot;&gt;400&lt;/span&gt; -keystore adorkable.keystore &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-genkeypair 指定生成密钥对 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-alias 密钥对的别名 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-keyalg 密钥对用于的算法，这里用的是RSA &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-validity 密钥对的有效期，单位为天 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-keystore 密钥对存储的文件名 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输入后，根据提示输入相应的内容就好了。 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;第二步：对未签名的apk进行签名 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;jarsigner -verbose -keystore adorkable.keystore -signedjar result_singed.apk my_unsigned.apk adorkable_alias &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-verbose 输出签名详细信息 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-keystore 指定密钥对的存储路径 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-signedjar 后面三个参数分别是 签名后的APK包 未签名的APK包 和 密钥对的别名 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;签名时，会要求输入密钥对的密码，这个是你在生成密钥时输入的密码&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; &lt;strong&gt;到这里就可以用adb install 将app安装到手机里了&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;优化apk包 &lt;/p&gt;
+&lt;p&gt;这一步是可选的，用来将apk包进行整理，以适应设备的读取等&lt;br&gt;zipalign -f -v 4 test.apk test_zip.apk &lt;/p&gt;
+&lt;p&gt;-f 强制覆盖已有的文件&lt;br&gt;-v 输出详细内容&lt;br&gt;4 指定档案整理的字节数，一般为4，及32位。如果以后android的设备有64位的，可能要改成8吧。&lt;br&gt;Magick.apk 是未整理的apk文件名&lt;br&gt;Magick_zip.apk 是整理后的apk文件名 &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;为什么要反编译别人的代码？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;人家比咱写的好，学习&lt;/li&gt;
+&lt;li&gt;看中了人家的某个控件，抄袭&lt;/li&gt;
+&lt;li&gt;看中了人家的本地数据库，想要&lt;/li&gt;
+&lt;li&gt;但是人家的本地数据库加密了，要读源码才能解密&lt;/li
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="反编译" scheme="http://febsky.me/categories/Android/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="反编译" scheme="http://febsky.me/tags/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
+    
+      <category term="打包" scheme="http://febsky.me/tags/%E6%89%93%E5%8C%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android反编译后的文件位置</title>
+    <link href="http://febsky.me/2016/07/22/2016-07-22-Android%E5%8F%8D%E7%BC%96%E8%AF%91%E5%90%8E%E7%9A%84%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE/"/>
+    <id>http://febsky.me/2016/07/22/2016-07-22-Android反编译后的文件位置/</id>
+    <published>2016-07-22T03:06:35.000Z</published>
+    <updated>2016-07-22T03:39:26.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;R.java &lt;/p&gt;
+&lt;p&gt;反编译后这个文件找不到了，但是在Activity中用的是是对应资源的id的数字表示，如何找到资源。在反编译后的&lt;code&gt;res/values/public.xml&lt;/code&gt; 中可以找到映射关系。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;反编译 非常有趣。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;R.java &lt;/p&gt;
+&lt;p&gt;反编译后这个文件找不到了，但是在Activity中用的是是对应资源的id的数字表示，如何找到资源。在反编译后的&lt;code&gt;res/values/public.xml&lt;/code&gt; 中可以找到映射关系。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="反编译" scheme="http://febsky.me/categories/Android/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="反编译" scheme="http://febsky.me/tags/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>adb命令行的使用</title>
+    <link href="http://febsky.me/2016/07/21/2016-07-21-Android-adb%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://febsky.me/2016/07/21/2016-07-21-Android-adb的使用/</id>
+    <published>2016-07-21T02:50:44.000Z</published>
+    <updated>2016-07-22T10:40:26.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;查看当前Activity堆栈信息&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ adb shell dumpsys activity activities&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;查看未root手机的/data/data/com.xxx.xxx/ 下的内容&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ adb shell&lt;/code&gt;&lt;br&gt;&lt;code&gt;shell@R9:/ $ run-as com.xxx.xxx&lt;/code&gt; &lt;/p&gt;
+&lt;p&gt; com.xxx.xxx 是包名，并且这个包名的APP处于debug模式&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;查看当前Activity堆栈信息&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ adb shell dumpsys activity activities&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;查看未root手机的/data/data/com.xxx.xxx/ 
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="adb" scheme="http://febsky.me/categories/Android/adb/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="adb" scheme="http://febsky.me/tags/adb/"/>
+    
+  </entry>
+  
+  <entry>
     <title>PopupWindow点击空白处隐藏</title>
     <link href="http://febsky.me/2016/07/20/2016-07-20-PopupWindow%E7%82%B9%E5%87%BB%E7%A9%BA%E7%99%BD%E5%A4%84%E9%9A%90%E8%97%8F/"/>
     <id>http://febsky.me/2016/07/20/2016-07-20-PopupWindow点击空白处隐藏/</id>
     <published>2016-07-20T10:15:56.000Z</published>
-    <updated>2016-07-20T10:25:15.000Z</updated>
+    <updated>2016-07-20T11:18:22.000Z</updated>
     
     <content type="html">&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;方法一&lt;/p&gt;
@@ -323,12 +467,12 @@
     <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/"/>
     <id>http://febsky.me/2016/07/05/2016-07-05-Android逆向工程用到的工具/</id>
     <published>2016-07-05T05:12:00.000Z</published>
-    <updated>2016-07-18T07:37:04.000Z</updated>
+    <updated>2016-07-22T09:45:14.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;第一套组合&quot;&gt;&lt;a href=&quot;#第一套组合&quot; class=&quot;headerlink&quot; title=&quot;第一套组合&quot;&gt;&lt;/a&gt;第一套组合&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Apktool&lt;/a&gt; + &lt;a href=&quot;https://github.com/pxb1988/dex2jar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dex2jar&lt;/a&gt; + &lt;a href=&quot;https://github.com/java-decompiler/jd-gui&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jd-gui&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;可惜的是apktool好像后来不再支持调试Smali文件，jd-gui 作者从 2015 年开始就停止了维护.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;但是AndroidStudio有个调试Smali的插件  &lt;a href=&quot;SmaliIdea：https://github.com/JesusFreke/smali/wiki/smalidea&quot;&gt;地址 https://github.com/JesusFreke/smali/wiki/smalidea&lt;/a&gt;&lt;br&gt;据说jadx 不错，可以取代 jd-gui &lt;a href=&quot;https://github.com/skylot/jadx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;地址 https://github.com/skylot/jadx&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;但是AndroidStudio有个调试Smali的插件  &lt;a href=&quot;SmaliIdea：https://github.com/JesusFreke/smali/wiki/smalidea&quot;&gt;地址 https://github.com/JesusFreke/smali/wiki/smalidea&lt;/a&gt;&lt;br&gt;据说jadx 不错（推荐使用），可以取代 jd-gui &lt;a href=&quot;https://github.com/skylot/jadx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;地址 https://github.com/skylot/jadx&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&quot;Google-出的几个逆向分析工具&quot;&gt;&lt;a href=&quot;#Google-出的几个逆向分析工具&quot; class=&quot;headerlink&quot; title=&quot;Google 出的几个逆向分析工具&quot;&gt;&lt;/a&gt;Google 出的几个逆向分析工具&lt;/h1&gt;&lt;h2 id=&quot;1-enjarify&quot;&gt;&lt;a href=&quot;#1-enjarify&quot; class=&quot;headerlink&quot; title=&quot;1. enjarify  &quot;&gt;&lt;/a&gt;1. enjarify  &lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/enjarify&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/enjarify&lt;/a&gt;&lt;br&gt;功能：可直接将 apk 文件还原成为 jar 文件，也可以和 dex2jar 一样，直接操作某个dex&lt;/p&gt;
 &lt;p&gt;这是 Google 出品的一个逆向分析工具，从反编译成 jar 包的流程来说，要比 dex2jar 方便得多。下载完工具到本地并配置好 Python 环境后，需要修改 enjarify 目录下的 enjarify.bat 文件，将 python3 改为 python&lt;/p&gt;
@@ -356,7 +500,14 @@
 &lt;p&gt;java -jar ClassyShark.jar -open XXX.apk&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;4-bytecode-viewer-这是个套装&quot;&gt;&lt;a href=&quot;#4-bytecode-viewer-这是个套装&quot; class=&quot;headerlink&quot; title=&quot;4.bytecode-viewer 这是个套装&quot;&gt;&lt;/a&gt;4.bytecode-viewer 这是个套装&lt;/h2&gt;&lt;p&gt;最后说一个基于Procyon的项目 &lt;a href=&quot;https://github.com/Konloch/bytecode-viewer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bytecode-viewer&lt;/a&gt;&lt;br&gt;A Java 8 Jar &amp;amp; Android APK Reverse Engineering Suite (Decompiler, Editor, Debugger &amp;amp; More) &lt;a href=&quot;https://bytecodeviewer.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bytecodeviewer.com&lt;/a&gt;.  不知道如何没用过。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Jadx&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;强烈推荐这个玩意，反编译后的代码可读性好，自带图形化界面。&lt;/p&gt;
+&lt;p&gt;这个是一款GUI界面的反编译工具，是一款点击鼠标就可以使用的跨平台工具。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/skylot/jadx/releases&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;项目在这里&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.febsky.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;me&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://bbs.pediy.com/showthread.php?p=1397272&amp;amp;mode=threaded&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bbs.pediy.com/showthread.php?p=1397272&amp;amp;mode=threaded&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -566,21 +717,29 @@
   </entry>
   
   <entry>
-    <title>Mac下的某些命令</title>
+    <title>Mac下常用命令和快捷键</title>
     <link href="http://febsky.me/2016/05/29/2016-05-29-Mac%E4%B8%8B%E7%9A%84%E6%9F%90%E4%BA%9B%E5%91%BD%E4%BB%A4/"/>
     <id>http://febsky.me/2016/05/29/2016-05-29-Mac下的某些命令/</id>
     <published>2016-05-29T07:51:03.000Z</published>
-    <updated>2016-06-02T15:11:43.000Z</updated>
+    <updated>2016-07-21T03:39:28.000Z</updated>
     
-    <content type="html">&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;open .&lt;/code&gt; 单开finder为当前目录&lt;/li&gt;
+    <content type="html">&lt;h1 id=&quot;命令行&quot;&gt;&lt;a href=&quot;#命令行&quot; class=&quot;headerlink&quot; title=&quot;命令行&quot;&gt;&lt;/a&gt;命令行&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;open .&lt;/code&gt; 打开finder为当前目录&lt;/li&gt;
 &lt;/ol&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;</content>
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;快捷键&quot;&gt;&lt;a href=&quot;#快捷键&quot; class=&quot;headerlink&quot; title=&quot;快捷键&quot;&gt;&lt;/a&gt;快捷键&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;删除文件： Command + Delete&lt;/li&gt;
+&lt;li&gt;快速预览文件： 选中按空格&lt;/li&gt;
+&lt;li&gt;锁屏： Shift + Contro + 电源键&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;【参考文献】&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://support.apple.com/zh-cn/HT201236&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网-Mac 键盘快捷键&lt;/a&gt;&lt;/p&gt;
+</content>
     
     <summary type="html">
     
-      &lt;ol&gt;
-&lt;li&gt;&lt;code&gt;open .&lt;/code&gt; 单开finder为当前目录&lt;/li&gt;
+      &lt;h1 id=&quot;命令行&quot;&gt;&lt;a href=&quot;#命令行&quot; class=&quot;headerlink&quot; title=&quot;命令行&quot;&gt;&lt;/a&gt;命令行&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;open .&lt;/code&gt; 打开finder为当前目录&lt;/li&gt;
 &lt;/ol&gt;
     
     </summary>
@@ -593,6 +752,8 @@
       <category term="Mac" scheme="http://febsky.me/tags/Mac/"/>
     
       <category term="命令行" scheme="http://febsky.me/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
+    
+      <category term="快捷键" scheme="http://febsky.me/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
     
   </entry>
   
@@ -651,7 +812,7 @@
     <link href="http://febsky.me/2016/05/23/2016-05-23-AndroidSQLite%E5%AD%98%E5%82%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1/"/>
     <id>http://febsky.me/2016/05/23/2016-05-23-AndroidSQLite存储自定义对象/</id>
     <published>2016-05-23T08:39:22.000Z</published>
-    <updated>2016-06-02T15:20:39.000Z</updated>
+    <updated>2016-07-22T03:20:47.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Android-SQLite存储自定义对象&quot;&gt;&lt;a href=&quot;#Android-SQLite存储自定义对象&quot; class=&quot;headerlink&quot; title=&quot;Android SQLite存储自定义对象&quot;&gt;&lt;/a&gt;Android SQLite存储自定义对象&lt;/h1&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;strong&gt;1. 首先给出JavaBean&lt;/strong&gt;&lt;/p&gt;
@@ -730,148 +891,6 @@
     
     
       <category term="Hexo" scheme="http://febsky.me/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android SQLite操作</title>
-    <link href="http://febsky.me/2016/05/10/2016-05-10-Android%E6%93%8D%E4%BD%9CSQLite%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://febsky.me/2016/05/10/2016-05-10-Android操作SQLite数据库的方法/</id>
-    <published>2016-05-10T04:14:42.000Z</published>
-    <updated>2016-05-13T15:57:06.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;一、-SQLiteOpenHelper辅助类&quot;&gt;&lt;a href=&quot;#一、-SQLiteOpenHelper辅助类&quot; class=&quot;headerlink&quot; title=&quot;一、 SQLiteOpenHelper辅助类&quot;&gt;&lt;/a&gt;一、 SQLiteOpenHelper辅助类&lt;/h1&gt;&lt;p&gt;SQLiteOpenHelper类是一个辅助类，用于创建或打开数据库。&lt;br&gt;该类的使用方法一般是自定义一个子类，继承自SQLiteOpenHelper，并覆写其中最关键的两个方法：onCreate(SQLiteDatabase db)和onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)。当新建一个数据库时会调用前者，一般在里面做一些创建表或视图的操作。数据库版本升级时则会调用后者。&lt;/p&gt;
-&lt;p&gt;定义好子类后（假如叫SqlHelper），只要调用SqlHelper对象的getReadableDatabase()方法或getWritableDatabase()方法即可返回一个SQLiteDatabase对象。如果是第一次调用，则会创建数据库。随后可使用SQLiteDatabase对象的方法进行数据操作，如：execSQL(), insert(), update(), query(), rawQuery(), delete()等。&lt;/p&gt;
-&lt;p&gt;PS：通过该方法创建的数据库存放的目录是固定的，其路径为/data/data/packageName/databases/。&lt;/p&gt;
-&lt;h1 id=&quot;二、Context类的openOrCreateDatabase-方法&quot;&gt;&lt;a href=&quot;#二、Context类的openOrCreateDatabase-方法&quot; class=&quot;headerlink&quot; title=&quot;二、Context类的openOrCreateDatabase()方法&quot;&gt;&lt;/a&gt;二、Context类的openOrCreateDatabase()方法&lt;/h1&gt;&lt;p&gt;openOrCreateDatabase(String dbName, int mode, CursorFactory factory);&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;dbName：数据库名称。&lt;/li&gt;
-&lt;li&gt;mode：数据库操作模式。默认值为MODE_PRIVATE（即0）。可选值：MODE_WORLD_READABLE, MODE_WORLD_WRITABLE, MODE_ENABLE_WRITE_AHEAD_LOGGING&lt;/li&gt;
-&lt;li&gt;factory：附加的一个工厂类，当SQLiteDatabase实例的query函数被调用时，会使用该工厂类返回一个Cursor。可为null。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;private static final String DATABASE_NAME = &amp;#8220;myDatabase.db&amp;#8221;;&amp;#10;private static final String DATABASE_TABLE = &amp;#8220;mainTable&amp;#8221;;&amp;#10;private static final String DATABASE_CREATE =&amp;#10;&amp;#8220;create table &amp;#8220; + DATABASE_TABLE +&amp;#10;&amp;#8220; ( _id integer primary key autoincrement,&amp;#8221; +&amp;#10;&amp;#8220;column_one text not null);&amp;#8221;;&amp;#10; &amp;#10;SQLiteDatabase myDatabase;&amp;#10; &amp;#10;private void createDatabase() &amp;#123;&amp;#10;myDatabase = openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);&amp;#10;myDatabase.execSQL(DATABASE_CREATE);&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;PS：该方法得到的数据库文件，其存储路径与上一方法相同。&lt;/p&gt;
-&lt;h1 id=&quot;三、直接调用SQLiteDatabase类的静态方法openOrCreateDatabases&quot;&gt;&lt;a href=&quot;#三、直接调用SQLiteDatabase类的静态方法openOrCreateDatabases&quot; class=&quot;headerlink&quot; title=&quot;三、直接调用SQLiteDatabase类的静态方法openOrCreateDatabases()&quot;&gt;&lt;/a&gt;三、直接调用SQLiteDatabase类的静态方法openOrCreateDatabases()&lt;/h1&gt;&lt;p&gt;SQLiteDatabase类有几个静态方法可直接打开或创建数据库。&lt;br&gt;//等同于openDatabase(path, factory, SQLiteDatabase.CREATE_IF_NECESSARY)  &lt;/p&gt;
-&lt;p&gt;openOrCreateDatabase(String path, CursorFactory factory)&lt;br&gt;//等同于openDatabase(file.getPath(), factory, SQLiteDatabase.CREATE_IF_NECESSARY)&lt;/p&gt;
-&lt;p&gt;openOrCreateDatabase(File file, CursorFactory factory)&lt;br&gt;//等同于openDatabase(file.getPath(), factory, SQLiteDatabase.CREATE_IF_NECESSARY, errorHandler)&lt;/p&gt;
-&lt;p&gt;openOrCreateDatabase(String path, CursorFactory factory, DatabaseErrorHandler errorHandler)&lt;/p&gt;
-&lt;p&gt;PS：该方法打开或创建的数据库文件可与上述两个方法的路径不同。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;    private static final String DATABASE_NAME = &amp;#34;xiangjie.db&amp;#34;;&amp;#10;    private static final String DATABASE_TABLE = &amp;#34;test&amp;#34;;&amp;#10;    private static final String DATABASE_CREATE =&amp;#10;    &amp;#34;create table &amp;#34; + DATABASE_TABLE +&amp;#10;            &amp;#34; ( _id integer primary key autoincrement,&amp;#34; +&amp;#10;            &amp;#34;column_one text not null)&amp;#34;;&amp;#10;    @Override&amp;#10;    protected void onCreate(Bundle savedInstanceState) &amp;#123;&amp;#10;        super.onCreate(savedInstanceState);&amp;#10;        setContentView(R.layout.activity_green_dao);&amp;#10;        &amp;#10;       SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(&amp;#34;/sdcard/&amp;#34;+DATABASE_NAME, null);&amp;#10;        &amp;#10;        //db.execSQL(&amp;#34;create table test ( _id integer primary key autoincrement,column_one text not null)&amp;#34;);&amp;#10;//        db.execSQL(&amp;#34;insert into test (column_one) values(?)&amp;#34;,new Object[]&amp;#123;&amp;#34;1111&amp;#34;&amp;#125;);&amp;#10;&amp;#10;        Cursor cursor = db.rawQuery(&amp;#34;select * from test;&amp;#34;,null);&amp;#10;        while (cursor.moveToNext()) &amp;#123;&amp;#10;            String id = cursor.getString(0);//&amp;#33719;&amp;#21462;&amp;#31532;&amp;#19968;&amp;#21015;&amp;#30340;&amp;#20540;&amp;#10;            Log.d(&amp;#34;Q_M:&amp;#34;,id);&amp;#10;        &amp;#125;&amp;#10;        cursor.close();&amp;#10;        db.close();&amp;#10;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;blockquote&gt;
-&lt;p&gt;最后记住，不管用何种方式打开了数据库，获得的SQLite对象不再使用时，都要调用close()来关闭打开的数据库，否则抛出IllegalStateException异常。&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;一、-SQLiteOpenHelper辅助类&quot;&gt;&lt;a href=&quot;#一、-SQLiteOpenHelper辅助类&quot; class=&quot;headerlink&quot; title=&quot;一、 SQLiteOpenHelper辅助类&quot;&gt;&lt;/a&gt;一、 SQLiteOpenHelper辅
-    
-    </summary>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="数据库" scheme="http://febsky.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 中实现倒计时</title>
-    <link href="http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/"/>
-    <id>http://febsky.me/2016/05/10/2016-05-10-Android中实现倒计时的方式/</id>
-    <published>2016-05-10T04:14:42.000Z</published>
-    <updated>2016-06-02T15:13:55.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-中实现倒计时控件的方法有哪些&quot;&gt;&lt;a href=&quot;#Android-中实现倒计时控件的方法有哪些&quot; class=&quot;headerlink&quot; title=&quot;Android 中实现倒计时控件的方法有哪些&quot;&gt;&lt;/a&gt;Android 中实现倒计时控件的方法有哪些&lt;/h1&gt;&lt;p&gt;今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;第一种CountDownTimer&quot;&gt;&lt;a href=&quot;#第一种CountDownTimer&quot; class=&quot;headerlink&quot; title=&quot;第一种CountDownTimer&quot;&gt;&lt;/a&gt;第一种CountDownTimer&lt;/h2&gt;&lt;p&gt;位于&lt;code&gt;android.os.CountDownTimer&lt;/code&gt;这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; CountDownTimer(&lt;span class=&quot;number&quot;&gt;30000&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onTick&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; millisUntilFinished)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                textView.setText(&lt;span class=&quot;string&quot;&gt;&quot;seconds remaining: &quot;&lt;/span&gt; + millisUntilFinished / &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onFinish&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                textView.setText(&lt;span class=&quot;string&quot;&gt;&quot;done!&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;.start();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;第二种-Timer与TimerTask-runOnUiThread-runnable-方法&quot;&gt;&lt;a href=&quot;#第二种-Timer与TimerTask-runOnUiThread-runnable-方法&quot; class=&quot;headerlink&quot; title=&quot;第二种 Timer与TimerTask + runOnUiThread(runnable)方法&quot;&gt;&lt;/a&gt;第二种 Timer与TimerTask + runOnUiThread(runnable)方法&lt;/h2&gt;&lt;h2 id=&quot;第三种Handler与Message（不用TimerTask）&quot;&gt;&lt;a href=&quot;#第三种Handler与Message（不用TimerTask）&quot; class=&quot;headerlink&quot; title=&quot;第三种Handler与Message（不用TimerTask）&quot;&gt;&lt;/a&gt;第三种Handler与Message（不用TimerTask）&lt;/h2&gt;&lt;h2 id=&quot;第四种Handler与Runnable（最简单型）&quot;&gt;&lt;a href=&quot;#第四种Handler与Runnable（最简单型）&quot; class=&quot;headerlink&quot; title=&quot;第四种Handler与Runnable（最简单型）&quot;&gt;&lt;/a&gt;第四种Handler与Runnable（最简单型）&lt;/h2&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Activity&lt;/span&gt;&lt;/span&gt;&amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; recLen = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; TextView txtView;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Bundle savedInstanceState)&lt;/span&gt;&lt;/span&gt;&amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;.onCreate(savedInstanceState);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        setContentView(R.layout.timertask);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        txtView = (TextView)findViewById(R.id.txttime);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        handler.postDelayed(runnable, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;     &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Handler handler = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Handler();  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Runnable runnable = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Runnable() &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;annotation&quot;&gt;@Override&lt;/span&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            recLen++;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            txtView.setText(&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt; + recLen);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            handler.postDelayed(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-中实现倒计时控件的方法有哪些&quot;&gt;&lt;a href=&quot;#Android-中实现倒计时控件的方法有哪些&quot; class=&quot;headerlink&quot; title=&quot;Android 中实现倒计时控件的方法有哪些&quot;&gt;&lt;/a&gt;Android 中实现倒计时控件的方法有哪些&lt;/h1&gt;&lt;p&gt;今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="Java" scheme="http://febsky.me/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nodejs的学习</title>
-    <link href="http://febsky.me/2016/05/07/2016-05-07-nodejs%E7%9A%84%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://febsky.me/2016/05/07/2016-05-07-nodejs的学习/</id>
-    <published>2016-05-07T12:18:31.000Z</published>
-    <updated>2016-05-29T14:27:50.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Mac-安装&quot;&gt;&lt;a href=&quot;#Mac-安装&quot; class=&quot;headerlink&quot; title=&quot;Mac 安装&quot;&gt;&lt;/a&gt;Mac 安装&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;检查Python 是否安装&lt;code&gt;python -V&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;检查ruby是否安装&lt;code&gt;ruby -v&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;首先安装&lt;code&gt;homebrew&lt;/code&gt;,然后命令行&lt;code&gt;brew install node&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;检查node是否安装成功 &lt;code&gt;node -v&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;然后命令行&lt;code&gt;node&lt;/code&gt;可以打开nodejs的交互器，和Python类似，很好玩&lt;/li&gt;
-&lt;li&gt;打开控制台输入 which node ，得到的输出结果就是node安装路径。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;Hello-World&quot;&gt;&lt;a href=&quot;#Hello-World&quot; class=&quot;headerlink&quot; title=&quot;Hello World&quot;&gt;&lt;/a&gt;Hello World&lt;/h1&gt;&lt;p&gt;什么不说直接上代码，Mac命令行&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ vim server.js&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;输入下面代码&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; http = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;http&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;http.createServer(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;req,res&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   res.writeHead(&lt;span class=&quot;number&quot;&gt;200&lt;/span&gt;,&amp;#123;&lt;span class=&quot;string&quot;&gt;&#39;Content-Type&#39;&lt;/span&gt;:&lt;span class=&quot;string&quot;&gt;&#39;text/plain&#39;&lt;/span&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   res.end(&lt;span class=&quot;string&quot;&gt;&#39;Hello World\n&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;).listen(&lt;span class=&quot;number&quot;&gt;1337&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;127.0.0.1&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;Server running at http://127.0.0.1:1337/&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;code&gt;$ node server.js&lt;/code&gt;&lt;/p&gt;
-&lt;h1 id=&quot;模块与包管理工具&quot;&gt;&lt;a href=&quot;#模块与包管理工具&quot; class=&quot;headerlink&quot; title=&quot;模块与包管理工具&quot;&gt;&lt;/a&gt;模块与包管理工具&lt;/h1&gt;&lt;p&gt;Commonjs 规范,理解模块含义理解模块&lt;code&gt;export&lt;/code&gt;和&lt;code&gt;requite&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;模块大致分为三种：核心模块、文件模块、第三方模块&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;模块创建流程：&lt;/strong&gt;  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;创建模块&lt;code&gt;teacher.js&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;导出模块 &lt;code&gt;export.add = function{}&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;加载模块 `var teacher = requite(‘./teacher.js’)&lt;/li&gt;
-&lt;li&gt;使用模块 &lt;code&gt;teacher.add(&amp;#39;Scott&amp;#39;)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;基本API&quot;&gt;&lt;a href=&quot;#基本API&quot; class=&quot;headerlink&quot; title=&quot;基本API&quot;&gt;&lt;/a&gt;基本API&lt;/h1&gt;&lt;p&gt;查看一个model的所拥有的函数&lt;code&gt;$ node&lt;/code&gt;开启nodejs交互器&lt;br&gt;然后输入模块名，比如想看url模块,直接在交互器输入&lt;code&gt;url&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#62; url&amp;#10;&amp;#123; parse: [Function: urlParse],&amp;#10;  resolve: [Function: urlResolve],&amp;#10;  resolveObject: [Function: urlResolveObject],&amp;#10;  format: [Function: urlFormat],&amp;#10;  Url: [Function: Url] &amp;#125;&amp;#10;&amp;#62;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;了解http-模块&quot;&gt;&lt;a href=&quot;#了解http-模块&quot; class=&quot;headerlink&quot; title=&quot;了解http 模块&quot;&gt;&lt;/a&gt;了解http 模块&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;什么是回调？&lt;/li&gt;
-&lt;li&gt;什么是同步/异步？&lt;/li&gt;
-&lt;li&gt;什么是I/O？&lt;/li&gt;
-&lt;li&gt;什么的单线程/多线程？&lt;/li&gt;
-&lt;li&gt;什么是阻塞/非阻塞？&lt;/li&gt;
-&lt;li&gt;什么是事件？&lt;/li&gt;
-&lt;li&gt;什么是事件驱动？&lt;/li&gt;
-&lt;li&gt;什么是基于事件驱动的回调？&lt;/li&gt;
-&lt;li&gt;什么是事件循环？&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;理解nodejs中的 this （上下文）,一般指向当前函数的拥有者。&lt;br&gt;但是&lt;code&gt;call&lt;/code&gt;方法可以改变this上下文&lt;/p&gt;
-&lt;h2 id=&quot;Node的突出特点&quot;&gt;&lt;a href=&quot;#Node的突出特点&quot; class=&quot;headerlink&quot; title=&quot;Node的突出特点&quot;&gt;&lt;/a&gt;Node的突出特点&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;WEB服务器&lt;br&gt;NodeJS与一般的后台编译性语言有什么不同?        &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;NodeJS本身包含一个http服务器，不像asp.net程序需要一个IIS，或者java的程序需要一个apche&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;NodeJS是异步IO，事件驱动的;一般的程序调用都是执行一个命令之后，线程阻塞，一直等到命令成功之后，才会去执行下面的事情，但是NodeJS不一样，所有的IO，网络通信，磁盘操作都是由事件来控制的，Nodejs进程在同一时刻只会处理一个事件，完成后立即进入事件轮询并检查处理后面的事件。如图&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;【参考文献】&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;一个学习网站&lt;a href=&quot;http://www.runoob.com/nodejs/nodejs-express-framework.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点这儿&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.nodeclass.com/articles/99682&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Orm2参考使用&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://docs.sequelizejs.com/en/latest/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sequelize github上start最多的orm&lt;/a&gt; &lt;a href=&quot;http://my.oschina.net/zj0303/blog/305384&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一个使用教程&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Mac-安装&quot;&gt;&lt;a href=&quot;#Mac-安装&quot; class=&quot;headerlink&quot; title=&quot;Mac 安装&quot;&gt;&lt;/a&gt;Mac 安装&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;检查Python 是否安装&lt;code&gt;python -V&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;检查r
-    
-    </summary>
-    
-      <category term="nodejs" scheme="http://febsky.me/categories/nodejs/"/>
-    
-    
-      <category term="nodejs" scheme="http://febsky.me/tags/nodejs/"/>
     
   </entry>
   

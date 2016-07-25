@@ -4,6 +4,75 @@
   
     
     <entry>
+      <title><![CDATA[Android反编译后重新打包apk]]></title>
+      <url>http://febsky.me/2016/07/25/2016-07-25-Android%E5%8F%8D%E7%BC%96%E8%AF%91%E5%90%8E%E9%87%8D%E6%96%B0%E6%89%93%E5%8C%85apk/</url>
+      <content type="html"><![CDATA[<p><strong>为什么要反编译别人的代码？</strong></p>
+<ul>
+<li>人家比咱写的好，学习</li>
+<li>看中了人家的某个控件，抄袭</li>
+<li>看中了人家的本地数据库，想要</li>
+<li>但是人家的本地数据库加密了，要读源码才能解密</li>
+</ul>
+<p><strong>为什么要打包别人的apk？</strong></p>
+<ul>
+<li>反编译后的代码有些地方读不通顺。想添加log。</li>
+</ul>
+<p><strong>一个基本的逆向工程的流程。</strong></p>
+<p>apktool反编译apk –&gt; 修改图片等资源文件（或者smali源码）–&gt; apktool 打包apk –&gt; 对打包好的apk用jarsigner签名 [–&gt; zipalign优化apk，最后这步可选操作] </p>
+<p>分别对应得详细操作：</p>
+<ol>
+<li><p>apktool反编译apk</p>
+<p><code>$ apktool d test.apk</code></p>
+</li>
+<li><p>修改图片，填好string.xml,修改smali</p>
+<p>详细操作，尽情的折腾吧，隐藏某个view，添加某个view。</p>
+</li>
+<li><p>apktool 打包</p>
+<p><code>apktool b test</code> 这里的test是反编译test.apk 后生成的文件夹。最终的生成的新的未签名的apk的路径为<code>./test/dist/test.apk</code></p>
+</li>
+<li><p>用你自己的证书对别人的apk进行签名</p>
+<p>这是当然了，你反编译了比人的app，可定拿不到人家的证书，但是Android系统对没有用证书签名的apk是不允许安装的。这时候我们自己生成一个证书。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">第一步：生成RSA密钥对 </span><br><span class="line">keytool -genkeypair -alias adorkable_alias -keyalg RSA -validity <span class="number">400</span> -keystore adorkable.keystore </span><br><span class="line"></span><br><span class="line">-genkeypair 指定生成密钥对 </span><br><span class="line">-alias 密钥对的别名 </span><br><span class="line">-keyalg 密钥对用于的算法，这里用的是RSA </span><br><span class="line">-validity 密钥对的有效期，单位为天 </span><br><span class="line">-keystore 密钥对存储的文件名 </span><br><span class="line"></span><br><span class="line">输入后，根据提示输入相应的内容就好了。 </span><br><span class="line"></span><br><span class="line">第二步：对未签名的apk进行签名 </span><br><span class="line">jarsigner -verbose -keystore adorkable.keystore -signedjar result_singed.apk my_unsigned.apk adorkable_alias </span><br><span class="line"></span><br><span class="line">-verbose 输出签名详细信息 </span><br><span class="line">-keystore 指定密钥对的存储路径 </span><br><span class="line">-signedjar 后面三个参数分别是 签名后的APK包 未签名的APK包 和 密钥对的别名 </span><br><span class="line"></span><br><span class="line">签名时，会要求输入密钥对的密码，这个是你在生成密钥时输入的密码</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p> <strong>到这里就可以用adb install 将app安装到手机里了</strong></p>
+<ol>
+<li><p>优化apk包 </p>
+<p>这一步是可选的，用来将apk包进行整理，以适应设备的读取等<br>zipalign -f -v 4 test.apk test_zip.apk </p>
+<p>-f 强制覆盖已有的文件<br>-v 输出详细内容<br>4 指定档案整理的字节数，一般为4，及32位。如果以后android的设备有64位的，可能要改成8吧。<br>Magick.apk 是未整理的apk文件名<br>Magick_zip.apk 是整理后的apk文件名 </p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android反编译后的文件位置]]></title>
+      <url>http://febsky.me/2016/07/22/2016-07-22-Android%E5%8F%8D%E7%BC%96%E8%AF%91%E5%90%8E%E7%9A%84%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<ol>
+<li><p>R.java </p>
+<p>反编译后这个文件找不到了，但是在Activity中用的是是对应资源的id的数字表示，如何找到资源。在反编译后的<code>res/values/public.xml</code> 中可以找到映射关系。</p>
+</li>
+</ol>
+<p>反编译 非常有趣。</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[adb命令行的使用]]></title>
+      <url>http://febsky.me/2016/07/21/2016-07-21-Android-adb%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      <content type="html"><![CDATA[<ol>
+<li><p>查看当前Activity堆栈信息</p>
+<p><code>$ adb shell dumpsys activity activities</code></p>
+</li>
+<li><p>查看未root手机的/data/data/com.xxx.xxx/ 下的内容</p>
+<p><code>$ adb shell</code><br><code>shell@R9:/ $ run-as com.xxx.xxx</code> </p>
+<p> com.xxx.xxx 是包名，并且这个包名的APP处于debug模式</p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[PopupWindow点击空白处隐藏]]></title>
       <url>http://febsky.me/2016/07/20/2016-07-20-PopupWindow%E7%82%B9%E5%87%BB%E7%A9%BA%E7%99%BD%E5%A4%84%E9%9A%90%E8%97%8F/</url>
       <content type="html"><![CDATA[<ol>
@@ -171,7 +240,7 @@
       <content type="html"><![CDATA[<h1 id="第一套组合"><a href="#第一套组合" class="headerlink" title="第一套组合"></a>第一套组合</h1><p><a href="https://github.com/iBotPeaches/Apktool" target="_blank" rel="external">Apktool</a> + <a href="https://github.com/pxb1988/dex2jar" target="_blank" rel="external">dex2jar</a> + <a href="https://github.com/java-decompiler/jd-gui" target="_blank" rel="external">jd-gui</a></p>
 <p>可惜的是apktool好像后来不再支持调试Smali文件，jd-gui 作者从 2015 年开始就停止了维护.</p>
 <blockquote>
-<p>但是AndroidStudio有个调试Smali的插件  <a href="SmaliIdea：https://github.com/JesusFreke/smali/wiki/smalidea">地址 https://github.com/JesusFreke/smali/wiki/smalidea</a><br>据说jadx 不错，可以取代 jd-gui <a href="https://github.com/skylot/jadx" target="_blank" rel="external">地址 https://github.com/skylot/jadx</a></p>
+<p>但是AndroidStudio有个调试Smali的插件  <a href="SmaliIdea：https://github.com/JesusFreke/smali/wiki/smalidea">地址 https://github.com/JesusFreke/smali/wiki/smalidea</a><br>据说jadx 不错（推荐使用），可以取代 jd-gui <a href="https://github.com/skylot/jadx" target="_blank" rel="external">地址 https://github.com/skylot/jadx</a></p>
 </blockquote>
 <h1 id="Google-出的几个逆向分析工具"><a href="#Google-出的几个逆向分析工具" class="headerlink" title="Google 出的几个逆向分析工具"></a>Google 出的几个逆向分析工具</h1><h2 id="1-enjarify"><a href="#1-enjarify" class="headerlink" title="1. enjarify  "></a>1. enjarify  </h2><p><a href="https://github.com/google/enjarify" target="_blank" rel="external">https://github.com/google/enjarify</a><br>功能：可直接将 apk 文件还原成为 jar 文件，也可以和 dex2jar 一样，直接操作某个dex</p>
 <p>这是 Google 出品的一个逆向分析工具，从反编译成 jar 包的流程来说，要比 dex2jar 方便得多。下载完工具到本地并配置好 Python 环境后，需要修改 enjarify 目录下的 enjarify.bat 文件，将 python3 改为 python</p>
@@ -199,7 +268,14 @@
 <p>java -jar ClassyShark.jar -open XXX.apk</p>
 </blockquote>
 <h2 id="4-bytecode-viewer-这是个套装"><a href="#4-bytecode-viewer-这是个套装" class="headerlink" title="4.bytecode-viewer 这是个套装"></a>4.bytecode-viewer 这是个套装</h2><p>最后说一个基于Procyon的项目 <a href="https://github.com/Konloch/bytecode-viewer" target="_blank" rel="external">bytecode-viewer</a><br>A Java 8 Jar &amp; Android APK Reverse Engineering Suite (Decompiler, Editor, Debugger &amp; More) <a href="https://bytecodeviewer.com" target="_blank" rel="external">https://bytecodeviewer.com</a>.  不知道如何没用过。</p>
+<ol>
+<li>Jadx</li>
+</ol>
+<p>强烈推荐这个玩意，反编译后的代码可读性好，自带图形化界面。</p>
+<p>这个是一款GUI界面的反编译工具，是一款点击鼠标就可以使用的跨平台工具。</p>
+<p><a href="https://github.com/skylot/jadx/releases" target="_blank" rel="external">项目在这里</a></p>
 <p><a href="http://www.febsky.me" target="_blank" rel="external">me</a></p>
+<p><a href="http://bbs.pediy.com/showthread.php?p=1397272&amp;mode=threaded" target="_blank" rel="external">http://bbs.pediy.com/showthread.php?p=1397272&amp;mode=threaded</a></p>
 ]]></content>
     </entry>
     
@@ -308,12 +384,20 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Mac下的某些命令]]></title>
+      <title><![CDATA[Mac下常用命令和快捷键]]></title>
       <url>http://febsky.me/2016/05/29/2016-05-29-Mac%E4%B8%8B%E7%9A%84%E6%9F%90%E4%BA%9B%E5%91%BD%E4%BB%A4/</url>
-      <content type="html"><![CDATA[<ol>
-<li><code>open .</code> 单开finder为当前目录</li>
+      <content type="html"><![CDATA[<h1 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h1><ol>
+<li><code>open .</code> 打开finder为当前目录</li>
 </ol>
-<a id="more"></a>]]></content>
+<a id="more"></a>
+<h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><ul>
+<li>删除文件： Command + Delete</li>
+<li>快速预览文件： 选中按空格</li>
+<li>锁屏： Shift + Contro + 电源键</li>
+</ul>
+<p><strong>【参考文献】</strong></p>
+<p><a href="https://support.apple.com/zh-cn/HT201236" target="_blank" rel="external">官网-Mac 键盘快捷键</a></p>
+]]></content>
     </entry>
     
     <entry>
@@ -477,19 +561,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Android 打包过程]]></title>
-      <url>http://febsky.me/2016/05/06/2016-05-06-Android%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</url>
-      <content type="html"><![CDATA[<h1 id="Android-打包过程"><a href="#Android-打包过程" class="headerlink" title="Android 打包过程"></a>Android 打包过程</h1><p>第一步：打包资源文件，生成R.java文件<br>【输入】Resource文件（就是工程中res中的文件）、Assets文件（相当于另外一种资源，这种资源Android系统并不像对res中的文件那样优化它）、AndroidManifest.xml文件（包名就是从这里读取的，因为生成R.java文件需要包名）、Android基础类库（Android.jar文件）<br>【输出】打包好的资源（一般在Android工程的bin目录可以看到一个叫resources.ap_的文件就是它了）、R.java文件（在gen目录中，大家应该很熟悉了）<br>【工具】aapt工具，它的路径在${ANDROID_SDK_HOME}/platform-tools/aapt（如果你使用的是Windows系统，按惯例路径应该这样写：%ANDROID_SDK_HOME%\platform-tools\aapt.exe，下同）。</p>
-<p>第二步：处理AIDL文件，生成对应的.java文件（当然，有很多工程没有用到AIDL，那这个过程就可以省了）<br>【输入】源码文件、aidl文件、framework.aidl文件<br>【输出】对应的.java文件<br>【工具】aidl工具</p>
-<p>第三步：编译Java文件，生成对应的.class文件<br>【输入】源码文件（包括R.java和AIDL生成的.java文件）、库文件（.jar文件）<br>【输出】.class文件<br>【工具】javac工具</p>
-<p>第四步：把.class文件转化成Davik VM支持的.dex文件<br>【输入】 .class文件（包括Aidl生成.class文件，R生成的.class文件，源文件生成的.class文件），库文件（.jar文件）<br>【输出】.dex文件<br>【工具】javac工具</p>
-<p>第五步：打包生成未签名的.apk文件<br>【输入】打包后的资源文件、打包后类文件（.dex文件）、libs文件（包括.so文件，当然很多工程都没有这样的文件，如果你不使用C/C++开发的话）<br>【输出】未签名的.apk文件<br>【工具】apkbuilder工具</p>
-<p>第六步：对未签名.apk文件进行签名<br>【输入】未签名的.apk文件<br>【输出】签名的.apk文件<br>【工具】jarsigner</p>
-<p>第七步：对签名后的.apk文件进行对齐处理（不进行对齐处理是不能发布到Google Market的）<br>【输入】签名后的.apk文件<br>【输出】对齐后的.apk文件<br>【工具】zipalign工具</p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Android FragmentPagerAdapter和FragmentStatePagerAdapter]]></title>
       <url>http://febsky.me/2016/05/06/2016-05-12-FragmentStatePagerAdapter%E5%92%8CFragmentPagerAdapter/</url>
       <content type="html"><![CDATA[<p>在公司查看别人的代码的时候发现个东西，在展示试题的是时候，他用的是<code>FragmentStatePagerAdapter</code>而如果是我的话，我就直接用<code>viewpager</code>+<code>PagerAdapter</code>,但是<code>FragmentStatePagerAdapter</code>是个什么鬼，我听过<code>FragmentPagerAdapter</code>可是没用过<code>FragmentStatePagerAdapter</code>啊，只怪自己学艺不精，既然人家用了就有用的道理。</p>
@@ -533,6 +604,19 @@
 <blockquote>
 <p>05-12 16:55:31.350 3043-3043/me.fesky.test I/Q_M:: onAttach2<br>05-12 16:55:31.360 3043-3043/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroyView4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroy4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDetach4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onAttach1<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroyView3<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroy3<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDetach3</p>
 </blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android 打包过程]]></title>
+      <url>http://febsky.me/2016/05/06/2016-05-06-Android%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</url>
+      <content type="html"><![CDATA[<h1 id="Android-打包过程"><a href="#Android-打包过程" class="headerlink" title="Android 打包过程"></a>Android 打包过程</h1><p>第一步：打包资源文件，生成R.java文件<br>【输入】Resource文件（就是工程中res中的文件）、Assets文件（相当于另外一种资源，这种资源Android系统并不像对res中的文件那样优化它）、AndroidManifest.xml文件（包名就是从这里读取的，因为生成R.java文件需要包名）、Android基础类库（Android.jar文件）<br>【输出】打包好的资源（一般在Android工程的bin目录可以看到一个叫resources.ap_的文件就是它了）、R.java文件（在gen目录中，大家应该很熟悉了）<br>【工具】aapt工具，它的路径在${ANDROID_SDK_HOME}/platform-tools/aapt（如果你使用的是Windows系统，按惯例路径应该这样写：%ANDROID_SDK_HOME%\platform-tools\aapt.exe，下同）。</p>
+<p>第二步：处理AIDL文件，生成对应的.java文件（当然，有很多工程没有用到AIDL，那这个过程就可以省了）<br>【输入】源码文件、aidl文件、framework.aidl文件<br>【输出】对应的.java文件<br>【工具】aidl工具</p>
+<p>第三步：编译Java文件，生成对应的.class文件<br>【输入】源码文件（包括R.java和AIDL生成的.java文件）、库文件（.jar文件）<br>【输出】.class文件<br>【工具】javac工具</p>
+<p>第四步：把.class文件转化成Davik VM支持的.dex文件<br>【输入】 .class文件（包括Aidl生成.class文件，R生成的.class文件，源文件生成的.class文件），库文件（.jar文件）<br>【输出】.dex文件<br>【工具】javac工具</p>
+<p>第五步：打包生成未签名的.apk文件<br>【输入】打包后的资源文件、打包后类文件（.dex文件）、libs文件（包括.so文件，当然很多工程都没有这样的文件，如果你不使用C/C++开发的话）<br>【输出】未签名的.apk文件<br>【工具】apkbuilder工具</p>
+<p>第六步：对未签名.apk文件进行签名<br>【输入】未签名的.apk文件<br>【输出】签名的.apk文件<br>【工具】jarsigner</p>
+<p>第七步：对签名后的.apk文件进行对齐处理（不进行对齐处理是不能发布到Google Market的）<br>【输入】签名后的.apk文件<br>【输出】对齐后的.apk文件<br>【工具】zipalign工具</p>
 ]]></content>
     </entry>
     
@@ -1393,10 +1477,11 @@
 <p>注解是Java 1.5引入的，目前已被广泛应用于各种Java框架，如Hibernate，Jersey，Spring。注解相当于是一种嵌入在程序中的元数据，可以使用注解解析工具或编译器对其进行解析，也可以指定注解在编译期或运行期有效。好吧没看懂~~~</p>
 <blockquote>
 <h1 id="二、一般干什么用"><a href="#二、一般干什么用" class="headerlink" title="二、一般干什么用"></a>二、一般干什么用</h1></blockquote>
+<p>Java中的注解通常扮演以下角色</p>
 <ul>
-<li>生成文档。这是最常见的，也是java 最早提供的注解。常用的有@see @param @return 等</li>
-<li>跟踪代码依赖性，实现替代配置文件功能。比较常见的是spring 2.5 开始的基于注解配置。作用就是减少配置。现在的框架基本都使用了这种配置来减少配置文件的数量。</li>
-<li>在编译时进行格式检查。如@override 放在方法前，如果你这个方法并不是覆盖了超类方法，则编译时就能检查出。</li>
+<li>编译器指令  （@OverWrite 给java编译器使用，生成文档，在编译时进行格式检查等）</li>
+<li>构建时指令  （给maven等构建工具使用）</li>
+<li>运行时指令  (我们常见的，结合反射使用)</li>
 </ul>
 <blockquote>
 <h1 id="三、四种元注解"><a href="#三、四种元注解" class="headerlink" title="三、四种元注解"></a>三、四种元注解</h1></blockquote>
@@ -1426,7 +1511,7 @@
 <li>当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。</li>
 </ul>
 <blockquote>
-<h1 id="四、三种Java内置注解"><a href="#四、三种Java内置注解" class="headerlink" title="四、三种Java内置注解"></a>四、三种Java内置注解</h1></blockquote>
+<h1 id="四、三种Java内置注解（编译器指令）"><a href="#四、三种Java内置注解（编译器指令）" class="headerlink" title="四、三种Java内置注解（编译器指令）"></a>四、三种Java内置注解（编译器指令）</h1></blockquote>
 <ol>
 <li>@Override – 当我们想要覆盖父类的一个方法时，需要使用该注解告知编译器我们正在覆盖一个方法。这样的话，当父类的方法被删除或修改了，编译器会提示错误信息。大家可以学习一下为什么我们总是应该在覆盖方法时使用Java覆盖注解。</li>
 <li>@Deprecated – 当我们想要让编译器知道一个方法已经被弃用(deprecate)时，应该使用这个注解。Java推荐在javadoc中提供信息，告知用户为什么这个方法被弃用了，以及替代方法是什么。</li>
@@ -1447,8 +1532,18 @@
 <li>以上所有类型的数组</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"><span class="comment">//定义一个注解</span></span><br><span class="line"><span class="annotation">@Target</span>(ElementType.METHOD)<span class="comment">//定义该注解将应用于什么地方，方法或者域</span></span><br><span class="line"><span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)<span class="comment">//定义该注解在哪一个级别可用</span></span><br><span class="line"><span class="keyword">public</span> <span class="annotation">@interface</span> UseCase &#123;</span><br><span class="line">    <span class="comment">//注解元素，可以指定默认值，在使用注解的时候，可以直接给元素赋值如id=5</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> "no description"</span>;</span><br><span class="line">     <span class="comment">//利用枚举来设置参数类型</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">enum</span> ParameterType &#123; STRING, SHORT, INT, BOOL, LONG, OBJECT &#125;;</span><br><span class="line">     <span class="comment">// 默认值,在使用注解的时候，只需要为元素赋值</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> ParameterType <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> ParameterType.STRING</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h1 id="Java注解解析"><a href="#Java注解解析" class="headerlink" title="Java注解解析"></a>Java注解解析</h1></blockquote>
+<p>我们将使用Java反射机制从一个类中解析注解，请记住，注解保持性策略应该是RUNTIME，否则它的信息在运行期无效，我们也不能从中获取任何数据。</p>
+<p>反射中的Class类和Method类都有获取注解的方法<code>getXXX</code> 如：Method 类的<code>getDeclaredAnnotations</code>方法等。</p>
 <p>未完待续。。。</p>
-<p><a href="http://www.cnblogs.com/peida/archive/2013/04/23/3036035.html" target="_blank" rel="external">参考文章</a></p>
+<p><strong>【参考文章】</strong></p>
+<ul>
+<li><p><a href="http://www.cnblogs.com/peida/archive/2013/04/23/3036035.html" target="_blank" rel="external">http://www.cnblogs.com/peida/archive/2013/04/23/3036035.html</a></p>
+</li>
+<li><p><a href="http://droidyue.com/blog/2016/04/24/look-into-java-annotation/" target="_blank" rel="external">http://droidyue.com/blog/2016/04/24/look-into-java-annotation/</a></p>
+</li>
+</ul>
 ]]></content>
     </entry>
     
@@ -2033,16 +2128,6 @@
     
     <entry>
       <title><![CDATA[查看Python安装位置]]></title>
-      <url>http://febsky.me/2015/01/27/2015-02-25-%E6%9F%A5%E7%9C%8BPython%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<p>有时我们需要查看python的安装位置，好安装第三方库</p>
-<p>打开命令行，我们能输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;[node@dev3 ~]$ python &#10;&#10;Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) &#10;&#10;[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2&#10;&#10;Type &#38;quot;help&#38;quot;, &#38;quot;copyright&#38;quot;, &#38;quot;credits&#38;quot; or &#38;quot;license&#38;quot; for more information.&#10;&#10;&#38;gt;&#38;gt;&#38;gt; import sys&#10;&#10;&#38;gt;&#38;gt;&#38;gt; sys.path&#10;&#10;[&#39;&#39;, &#39;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&#39;, &#39;/usr/lib64/python26.zip&#39;, &#39;/usr/lib64/python2.6&#39;, &#39;/usr/lib64/python2.6/plat-linux2&#39;, &#39;/usr/lib64/python2.6/lib-tk&#39;, &#39;/usr/lib64/python2.6/lib-old&#39;, &#39;/usr/lib64/python2.6/lib-dynload&#39;, &#39;/usr/lib64/python2.6/site-packages&#39;, &#39;/usr/lib64/python2.6/site-packages/gtk-2.0&#39;, &#39;/usr/lib/python2.6/site-packages&#39;, &#39;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&#39;]&#10;&#10;&#38;gt;&#38;gt;&#38;gt;</span><br></pre></td></tr></table></figure>
-<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[查看Python安装位置]]></title>
       <url>http://febsky.me/2015/01/27/2015-02-25-Python%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E5%8F%98%E9%87%8F/</url>
       <content type="html"><![CDATA[<h2>函数（方法）</h2>
 
@@ -2067,6 +2152,16 @@ print(dir(sys))
 <p>len(s)     返回集合长度</p>
 <p>locals()     返回当前的变量列表</p>
 <p>globals()    返回一个描述当前全局符号表的字典</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[查看Python安装位置]]></title>
+      <url>http://febsky.me/2015/01/27/2015-02-25-%E6%9F%A5%E7%9C%8BPython%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<p>有时我们需要查看python的安装位置，好安装第三方库</p>
+<p>打开命令行，我们能输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;[node@dev3 ~]$ python &#10;&#10;Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) &#10;&#10;[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2&#10;&#10;Type &#38;quot;help&#38;quot;, &#38;quot;copyright&#38;quot;, &#38;quot;credits&#38;quot; or &#38;quot;license&#38;quot; for more information.&#10;&#10;&#38;gt;&#38;gt;&#38;gt; import sys&#10;&#10;&#38;gt;&#38;gt;&#38;gt; sys.path&#10;&#10;[&#39;&#39;, &#39;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&#39;, &#39;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&#39;, &#39;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&#39;, &#39;/usr/lib64/python26.zip&#39;, &#39;/usr/lib64/python2.6&#39;, &#39;/usr/lib64/python2.6/plat-linux2&#39;, &#39;/usr/lib64/python2.6/lib-tk&#39;, &#39;/usr/lib64/python2.6/lib-old&#39;, &#39;/usr/lib64/python2.6/lib-dynload&#39;, &#39;/usr/lib64/python2.6/site-packages&#39;, &#39;/usr/lib64/python2.6/site-packages/gtk-2.0&#39;, &#39;/usr/lib/python2.6/site-packages&#39;, &#39;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&#39;]&#10;&#10;&#38;gt;&#38;gt;&#38;gt;</span><br></pre></td></tr></table></figure>
+<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
 ]]></content>
     </entry>
     
