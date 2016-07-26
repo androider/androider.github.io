@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-07-25T08:32:31.000Z</updated>
+  <updated>2016-07-26T03:38:10.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android中Notification工具类</title>
+    <link href="http://febsky.me/2016/07/26/2016-07-26-Android%E4%B8%ADNotification%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+    <id>http://febsky.me/2016/07/26/2016-07-26-Android中Notification工具类/</id>
+    <published>2016-07-26T03:06:35.000Z</published>
+    <updated>2016-07-26T03:38:10.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xripg.com1.z0.glb.clouddn.com/2016/07/26/20160120204444199.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import android.app.Activity;&amp;#10;import android.app.Notification;&amp;#10;import android.app.NotificationManager;&amp;#10;import android.app.PendingIntent;&amp;#10;import android.content.Context;&amp;#10;import android.content.Intent;&amp;#10;import android.content.pm.PackageManager;&amp;#10;import android.graphics.BitmapFactory;&amp;#10;import android.media.RingtoneManager;&amp;#10;import android.net.Uri;&amp;#10;import android.os.Build;&amp;#10;import android.support.v7.app.NotificationCompat;&amp;#10;&amp;#10;import com.eallcn.rentagent.R;&amp;#10;&amp;#10;/**&amp;#10; * Author: liuqiang&amp;#10; * Date: 2016-07-07&amp;#10; * Time: 17:23&amp;#10; * &amp;#22312;&amp;#19968;&amp;#20123;&amp;#22269;&amp;#20135;&amp;#30340;&amp;#25163;&amp;#26426;&amp;#65292;&amp;#19968;&amp;#23450;&amp;#22312;&amp;#23433;&amp;#20840;&amp;#31649;&amp;#29702;&amp;#30340;&amp;#36890;&amp;#30693;&amp;#31649;&amp;#29702;&amp;#20013;&amp;#25171;&amp;#24320;&amp;#10; * &amp;#23588;&amp;#20854;&amp;#26159;OPPO&amp;#10; */&amp;#10;public class NotificationUtil &amp;#123;&amp;#10;&amp;#10;    protected static int notifyID = 0525; // start notification id&amp;#10;    protected static int foregroundNotifyID = 0555;    //&amp;#24403;&amp;#21069;app&amp;#26159;&amp;#19981;&amp;#26159;&amp;#22312;&amp;#29992;&amp;#25143;&amp;#21487;&amp;#26159;&amp;#30028;&amp;#38754;&amp;#10;&amp;#10;    public static void send(String string, Context context, Class activity) &amp;#123;&amp;#10;&amp;#10;        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);&amp;#10;&amp;#10;        Intent intent = new Intent(context, activity);&amp;#10;        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);&amp;#10;        PendingIntent pendingIntent = PendingIntent.getActivity(&amp;#10;                context,&amp;#10;                notifyID,&amp;#10;                intent,&amp;#10;                PendingIntent.FLAG_UPDATE_CURRENT);&amp;#10;        mBuilder.setContentIntent(pendingIntent);// &amp;#35774;&amp;#32622;&amp;#36890;&amp;#30693;&amp;#26639;&amp;#28857;&amp;#20987;&amp;#24847;&amp;#22270;&amp;#10;&amp;#10;        mBuilder.setContentTitle(&amp;#34;&amp;#36825;&amp;#26159;&amp;#26631;&amp;#39064;&amp;#34;);// &amp;#35774;&amp;#32622;&amp;#36890;&amp;#30693;&amp;#26639;&amp;#26631;&amp;#39064;&amp;#10;        mBuilder.setContentText(string);&amp;#10;        mBuilder.setSmallIcon(R.drawable.ic_launcher);// &amp;#35774;&amp;#32622;&amp;#36890;&amp;#30693;&amp;#23567;ICON&amp;#65288;5.0&amp;#24517;&amp;#39035;&amp;#37319;&amp;#29992;&amp;#30333;&amp;#33394;&amp;#36879;&amp;#26126;&amp;#22270;&amp;#29255;&amp;#65289;&amp;#10;        mBuilder.setTicker(string + &amp;#34;&amp;#26377;&amp;#35686;&amp;#25253;&amp;#65281;&amp;#34;); // &amp;#36890;&amp;#30693;&amp;#39318;&amp;#27425;&amp;#20986;&amp;#29616;&amp;#22312;&amp;#36890;&amp;#30693;&amp;#26639;&amp;#65292;&amp;#24102;&amp;#19978;&amp;#21319;&amp;#21160;&amp;#30011;&amp;#25928;&amp;#26524;&amp;#30340;&amp;#10;&amp;#10;        if (Build.VERSION.SDK_INT &amp;#62;= Build.VERSION_CODES.LOLLIPOP) &amp;#123;//&amp;#24748;&amp;#25346;&amp;#24335;Notification&amp;#65292;5.0&amp;#21518;&amp;#26174;&amp;#31034;&amp;#10;            mBuilder.setFullScreenIntent(pendingIntent, true);&amp;#10;            mBuilder.setCategory(NotificationCompat.CATEGORY_MESSAGE);&amp;#10;            mBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);&amp;#10;        &amp;#125;&amp;#10;&amp;#10;        mBuilder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher));// &amp;#35774;&amp;#32622;&amp;#36890;&amp;#30693;&amp;#22823;ICON&amp;#10;        mBuilder.setWhen(System.currentTimeMillis());// &amp;#36890;&amp;#30693;&amp;#20135;&amp;#29983;&amp;#30340;&amp;#26102;&amp;#38388;&amp;#65292;&amp;#20250;&amp;#22312;&amp;#36890;&amp;#30693;&amp;#20449;&amp;#24687;&amp;#37324;&amp;#26174;&amp;#31034;&amp;#65292;&amp;#19968;&amp;#33324;&amp;#26159;&amp;#31995;&amp;#32479;&amp;#33719;&amp;#21462;&amp;#21040;&amp;#30340;&amp;#26102;&amp;#38388;&amp;#10;        mBuilder.setPriority(NotificationCompat.PRIORITY_MAX); // &amp;#35774;&amp;#32622;&amp;#35813;&amp;#36890;&amp;#30693;&amp;#20248;&amp;#20808;&amp;#32423;&amp;#10;        mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);//&amp;#22312;&amp;#20219;&amp;#20309;&amp;#24773;&amp;#20917;&amp;#19979;&amp;#37117;&amp;#26174;&amp;#31034;&amp;#65292;&amp;#19981;&amp;#21463;&amp;#38145;&amp;#23631;&amp;#24433;&amp;#21709;&amp;#12290;&amp;#10;        mBuilder.setAutoCancel(true);// &amp;#35774;&amp;#32622;&amp;#36825;&amp;#20010;&amp;#26631;&amp;#24535;&amp;#24403;&amp;#29992;&amp;#25143;&amp;#21333;&amp;#20987;&amp;#38754;&amp;#26495;&amp;#23601;&amp;#21487;&amp;#20197;&amp;#35753;&amp;#36890;&amp;#30693;&amp;#23558;&amp;#33258;&amp;#21160;&amp;#21462;&amp;#28040;&amp;#10;        mBuilder.setOngoing(false);// ture&amp;#65292;&amp;#35774;&amp;#32622;&amp;#20182;&amp;#20026;&amp;#19968;&amp;#20010;&amp;#27491;&amp;#22312;&amp;#36827;&amp;#34892;&amp;#30340;&amp;#36890;&amp;#30693;&amp;#12290;&amp;#20182;&amp;#20204;&amp;#36890;&amp;#24120;&amp;#26159;&amp;#29992;&amp;#26469;&amp;#34920;&amp;#31034;&amp;#19968;&amp;#20010;&amp;#21518;&amp;#21488;&amp;#20219;&amp;#21153;,&amp;#29992;&amp;#25143;&amp;#31215;&amp;#26497;&amp;#21442;&amp;#19982;(&amp;#22914;&amp;#25773;&amp;#25918;&amp;#38899;&amp;#20048;)&amp;#25110;&amp;#20197;&amp;#26576;&amp;#31181;&amp;#26041;&amp;#24335;&amp;#27491;&amp;#22312;&amp;#31561;&amp;#24453;,&amp;#22240;&amp;#27492;&amp;#21344;&amp;#29992;&amp;#35774;&amp;#22791;(&amp;#22914;&amp;#19968;&amp;#20010;&amp;#25991;&amp;#20214;&amp;#19979;&amp;#36733;,&amp;#21516;&amp;#27493;&amp;#25805;&amp;#20316;,&amp;#20027;&amp;#21160;&amp;#32593;&amp;#32476;&amp;#36830;&amp;#25509;)&amp;#10;        // &amp;#21521;&amp;#36890;&amp;#30693;&amp;#28155;&amp;#21152;&amp;#22768;&amp;#38899;&amp;#12289;&amp;#38378;&amp;#28783;&amp;#21644;&amp;#25391;&amp;#21160;&amp;#25928;&amp;#26524;&amp;#30340;&amp;#26368;&amp;#31616;&amp;#21333;&amp;#12289;&amp;#26368;&amp;#19968;&amp;#33268;&amp;#30340;&amp;#26041;&amp;#24335;&amp;#26159;&amp;#20351;&amp;#29992;&amp;#24403;&amp;#21069;&amp;#30340;&amp;#29992;&amp;#25143;&amp;#40664;&amp;#35748;&amp;#35774;&amp;#32622;&amp;#65292;&amp;#20351;&amp;#29992;NotificationCompat.DEFAULT_ALL&amp;#23646;&amp;#24615;&amp;#65292;&amp;#21487;&amp;#20197;&amp;#32452;&amp;#21512;&amp;#10;        mBuilder.setVibrate(new long[]&amp;#123;0, 100, 500, 100&amp;#125;);//&amp;#25391;&amp;#21160;&amp;#25928;&amp;#26524;&amp;#38656;&amp;#35201;&amp;#25391;&amp;#21160;&amp;#26435;&amp;#38480;&amp;#10;&amp;#10;        Uri defaultSoundUrlUri = RingtoneManager&amp;#10;                .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION); //&amp;#22768;&amp;#38899;&amp;#10;&amp;#10;        mBuilder.setSound(defaultSoundUrlUri);&amp;#10;        mBuilder.setDefaults(NotificationCompat.DEFAULT_LIGHTS);//&amp;#38378;&amp;#28783;&amp;#10;&amp;#10;        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);&amp;#10;        //Notification notification = mBuilder.getNotification();//API 11&amp;#10;&amp;#10;        Notification notification = mBuilder.build();//API 16&amp;#10;&amp;#10;        mNotificationManager.notify(1, notification);&amp;#10;    &amp;#125;&amp;#10;&amp;#10;&amp;#10;    public static void sendNotification(Context context, String message, boolean isForeground) &amp;#123;&amp;#10;&amp;#10;        NotificationManager notificationManager = (NotificationManager) context&amp;#10;                .getSystemService(Context.NOTIFICATION_SERVICE);&amp;#10;&amp;#10;        try &amp;#123;&amp;#10;            String notifyText = message;&amp;#10;            PackageManager packageManager = context.getPackageManager();&amp;#10;            String appName = (String) packageManager&amp;#10;                    .getApplicationLabel(context.getApplicationInfo());&amp;#10;&amp;#10;            // notification title&amp;#10;            String contentTitle = appName;&amp;#10;            String packageName = context.getApplicationInfo().packageName;&amp;#10;&amp;#10;            Uri defaultSoundUrlUri = RingtoneManager&amp;#10;                    .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);&amp;#10;            // create and send notification&amp;#10;            android.support.v4.app.NotificationCompat.Builder mBuilder = new android.support.v4.app.NotificationCompat.Builder(context)&amp;#10;                    .setSmallIcon(context.getApplicationInfo().icon)&amp;#10;                    .setSound(defaultSoundUrlUri)&amp;#10;                    .setWhen(System.currentTimeMillis())&amp;#10;                    .setAutoCancel(true);&amp;#10;&amp;#10;            Intent msgIntent = context.getPackageManager()&amp;#10;                    .getLaunchIntentForPackage(packageName);&amp;#10;&amp;#10;            PendingIntent pendingIntent = PendingIntent.getActivity(&amp;#10;                    context,&amp;#10;                    notifyID,&amp;#10;                    msgIntent,&amp;#10;                    PendingIntent.FLAG_UPDATE_CURRENT);&amp;#10;&amp;#10;            mBuilder.setPriority(NotificationCompat.PRIORITY_MAX); // &amp;#35774;&amp;#32622;&amp;#35813;&amp;#36890;&amp;#30693;&amp;#20248;&amp;#20808;&amp;#32423;&amp;#10;            mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);//&amp;#22312;&amp;#20219;&amp;#20309;&amp;#24773;&amp;#20917;&amp;#19979;&amp;#37117;&amp;#26174;&amp;#31034;&amp;#65292;&amp;#19981;&amp;#21463;&amp;#38145;&amp;#23631;&amp;#24433;&amp;#21709;&amp;#12290;&amp;#10;            mBuilder.setContentTitle(contentTitle);&amp;#10;            mBuilder.setTicker(notifyText);&amp;#10;            mBuilder.setContentText(notifyText);&amp;#10;            mBuilder.setContentIntent(pendingIntent);&amp;#10;            mBuilder.setFullScreenIntent(pendingIntent, true);&amp;#10;            mBuilder.setOnlyAlertOnce(false);&amp;#10;            mBuilder.setDefaults(NotificationCompat.DEFAULT_LIGHTS);//&amp;#38378;&amp;#28783;&amp;#10;            Notification notification = mBuilder.build();&amp;#10;&amp;#10;            if (isForeground) &amp;#123;&amp;#10;                notificationManager.notify(foregroundNotifyID, notification);&amp;#10;                notificationManager.cancel(foregroundNotifyID);&amp;#10;            &amp;#125; else &amp;#123;&amp;#10;                notificationManager.notify(notifyID, notification);&amp;#10;            &amp;#125;&amp;#10;&amp;#10;        &amp;#125; catch (Exception e) &amp;#123;&amp;#10;            e.printStackTrace();&amp;#10;        &amp;#125;&amp;#10;    &amp;#125;&amp;#10;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xripg.com1.z0.glb.clouddn.com/2016/07/26/20160120204444199.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="Notification" scheme="http://febsky.me/categories/Android/Notification/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="Notification" scheme="http://febsky.me/tags/Notification/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SublimeMac下的使用</title>
+    <link href="http://febsky.me/2016/07/26/2016-07-26-SublimeMac%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://febsky.me/2016/07/26/2016-07-26-SublimeMac下的使用/</id>
+    <published>2016-07-26T01:53:35.000Z</published>
+    <updated>2016-07-26T02:06:28.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Smali 语法高亮插件&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ShaneWilton/sublime-smali&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/ShaneWilton/sublime-smali&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;快捷键&lt;/p&gt;
+&lt;p&gt;| 快捷键        | 功能         |&lt;br&gt;| ————- |:————-:|&lt;br&gt;| ⌘ /   | 注释|&lt;br&gt;| ⌘⌥F   | 替换|&lt;br&gt;| ⌘T    |前往文件|&lt;br&gt;| ⌘KK   | 从光标处删除至行尾|&lt;br&gt;| ⌘K⌫   | 从光标处删除至行首|&lt;br&gt;| ⌘L    |选择行 (重复按下将下一行加入选择)|&lt;br&gt;| ⌘D    |选择词 (重复按下时多重选择相同的词进行多重编辑)|&lt;br&gt;| ⌘⇧F   | 在所有打开的文件中进行查找|&lt;br&gt;| ⌘⌥1   | 拆分窗口单列 |&lt;br&gt;| ⌘⌥2   | 拆分窗口双列 |&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Smali 语法高亮插件&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ShaneWilton/sublime-smali&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/Sha
+    
+    </summary>
+    
+      <category term="Sublime" scheme="http://febsky.me/categories/Sublime/"/>
+    
+      <category term="工具" scheme="http://febsky.me/categories/Sublime/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="Mac" scheme="http://febsky.me/tags/Mac/"/>
+    
+      <category term="Sublime" scheme="http://febsky.me/tags/Sublime/"/>
+    
+      <category term="工具" scheme="http://febsky.me/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>Android反编译后重新打包apk</title>
@@ -804,93 +870,6 @@
       <category term="Android" scheme="http://febsky.me/tags/Android/"/>
     
       <category term="Java" scheme="http://febsky.me/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android SQLite存储自定义对象</title>
-    <link href="http://febsky.me/2016/05/23/2016-05-23-AndroidSQLite%E5%AD%98%E5%82%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1/"/>
-    <id>http://febsky.me/2016/05/23/2016-05-23-AndroidSQLite存储自定义对象/</id>
-    <published>2016-05-23T08:39:22.000Z</published>
-    <updated>2016-07-22T03:20:47.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Android-SQLite存储自定义对象&quot;&gt;&lt;a href=&quot;#Android-SQLite存储自定义对象&quot; class=&quot;headerlink&quot; title=&quot;Android SQLite存储自定义对象&quot;&gt;&lt;/a&gt;Android SQLite存储自定义对象&lt;/h1&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;&lt;strong&gt;1. 首先给出JavaBean&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class Student implements Serializable &amp;#123;&amp;#10;&amp;#10;&amp;#9;/**&amp;#10;&amp;#9; * &amp;#10;&amp;#9; */&amp;#10;&amp;#9;private static final long serialVersionUID = 1L;&amp;#10;&amp;#9;String name;&amp;#10;&amp;#9;int age;&amp;#10;&amp;#10;&amp;#9;public Student(String name, int age) &amp;#123;&amp;#10;&amp;#9;&amp;#9;super();&amp;#10;&amp;#9;&amp;#9;this.name = name;&amp;#10;&amp;#9;&amp;#9;this.age = age;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#9;public String getName() &amp;#123;&amp;#10;&amp;#9;&amp;#9;return name;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#9;public void setName(String name) &amp;#123;&amp;#10;&amp;#9;&amp;#9;this.name = name;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#9;public int getAge() &amp;#123;&amp;#10;&amp;#9;&amp;#9;return age;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#9;public void setAge(int age) &amp;#123;&amp;#10;&amp;#9;&amp;#9;this.age = age;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;2. 然后给出Dbhelper&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/***&amp;#10; * &amp;#21333;&amp;#20363;&amp;#27169;&amp;#24335;&amp;#23454;&amp;#29616;&amp;#25968;&amp;#25454;&amp;#24211;&amp;#36830;&amp;#25509;&amp;#10; * @author bobo&amp;#10; *&amp;#10; */&amp;#10;public class Dbhelper extends SQLiteOpenHelper &amp;#123;&amp;#10;&amp;#10;&amp;#9;private static Dbhelper dbhelper = null;&amp;#10;&amp;#10;&amp;#9;public static Dbhelper getInstens(Context context) &amp;#123;&amp;#10;&amp;#9;&amp;#9;if (dbhelper == null) &amp;#123;&amp;#10;&amp;#9;&amp;#9;&amp;#9;dbhelper = new Dbhelper(context);&amp;#10;&amp;#9;&amp;#9;&amp;#125;&amp;#10;&amp;#9;&amp;#9;return dbhelper;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#9;private Dbhelper(Context context) &amp;#123;&amp;#10;&amp;#9;&amp;#9;super(context, &amp;#34;datebase.db&amp;#34;, null, 1);&amp;#10;&amp;#9;&amp;#9;// TODO Auto-generated constructor stub&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#9;@Override&amp;#10;&amp;#9;public void onCreate(SQLiteDatabase db) &amp;#123;&amp;#10;&amp;#9;&amp;#9;// TODO Auto-generated method stub&amp;#10;&amp;#9;&amp;#9;&amp;#10;&amp;#9;&amp;#9; //&amp;#36825;&amp;#24352;&amp;#34920;&amp;#37319;&amp;#29992;&amp;#20108;&amp;#36827;&amp;#21046;&amp;#25991;&amp;#20214;&amp;#23384;&amp;#20648;&amp;#23545;&amp;#35937;&amp;#27880;&amp;#24847;&amp;#31532;&amp;#20108;&amp;#20010;&amp;#23383;&amp;#27573;&amp;#25105;&amp;#20204;&amp;#23558;&amp;#23545;&amp;#35937;&amp;#23384;&amp;#21462;&amp;#22312;&amp;#36825;&amp;#37324;&amp;#38754;&amp;#10;&amp;#9;&amp;#9;String sql_class_table=&amp;#34;create table if not exists classtable(_id integer primary key autoincrement,classtabledata text)&amp;#34;;&amp;#10;&amp;#9;&amp;#9;db.execSQL(sql_class_table);&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#9;@Override&amp;#10;&amp;#9;public void onUpgrade(SQLiteDatabase db, int oldversion, int newversion) &amp;#123;&amp;#10;&amp;#9;&amp;#9;// TODO Auto-generated method stub&amp;#10;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;3. 最后是一个数据库操作类Dao 或者 叫service&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;最后是一个数据库操作类，最主要的方法在这个类里面，通过二进制流把对象转换为对象流然后取出二进制存取进数据库，最后取的时候也一样。首先取出二进制对象，然后通过流还原对象。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&amp;#10; * &amp;#25968;&amp;#25454;&amp;#24211;&amp;#25805;&amp;#20316;&amp;#10; * @author bobo&amp;#10; *&amp;#10; */&amp;#10;public class StudentServcie &amp;#123;&amp;#10;&amp;#9;Context context;&amp;#10;&amp;#10;&amp;#9;public StudentServcie(Context context) &amp;#123;&amp;#10;&amp;#9;&amp;#9;// TODO Auto-generated constructor stub&amp;#10;&amp;#9;&amp;#9;this.context = context;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#9;/**&amp;#10;&amp;#9; * &amp;#20445;&amp;#23384;&amp;#10;&amp;#9; * @param student&amp;#10;&amp;#9; */&amp;#10;&amp;#9;public void saveObject(Student student) &amp;#123;&amp;#10;&amp;#9;&amp;#9;ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();&amp;#10;&amp;#9;&amp;#9;try &amp;#123;&amp;#10;&amp;#9;&amp;#9;&amp;#9;ObjectOutputStream objectOutputStream = new ObjectOutputStream(arrayOutputStream);&amp;#10;&amp;#9;&amp;#9;&amp;#9;objectOutputStream.writeObject(student);&amp;#10;&amp;#9;&amp;#9;&amp;#9;objectOutputStream.flush();&amp;#10;&amp;#9;&amp;#9;&amp;#9;byte data[] = arrayOutputStream.toByteArray();&amp;#10;&amp;#9;&amp;#9;&amp;#9;objectOutputStream.close();&amp;#10;&amp;#9;&amp;#9;&amp;#9;arrayOutputStream.close();&amp;#10;&amp;#9;&amp;#9;&amp;#9;Dbhelper dbhelper = Dbhelper.getInstens(context);&amp;#10;&amp;#9;&amp;#9;&amp;#9;SQLiteDatabase database = dbhelper.getWritableDatabase();&amp;#10;&amp;#9;&amp;#9;&amp;#9;database.execSQL(&amp;#34;insert into classtable (classtabledata) values(?)&amp;#34;, new Object[] &amp;#123; data &amp;#125;);&amp;#10;&amp;#9;&amp;#9;&amp;#9;database.close();&amp;#10;&amp;#9;&amp;#9;&amp;#125; catch (Exception e) &amp;#123;&amp;#10;&amp;#9;&amp;#9;&amp;#9;// TODO Auto-generated catch block&amp;#10;&amp;#9;&amp;#9;&amp;#9;e.printStackTrace();&amp;#10;&amp;#9;&amp;#9;&amp;#125;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#9;public Student getObject() &amp;#123;&amp;#10;&amp;#9;&amp;#9;Student student = null;&amp;#10;&amp;#9;&amp;#9;Dbhelper dbhelper = Dbhelper.getInstens(context);&amp;#10;&amp;#9;&amp;#9;SQLiteDatabase database = dbhelper.getReadableDatabase();&amp;#10;&amp;#9;&amp;#9;Cursor cursor = database.rawQuery(&amp;#34;select * from classtable&amp;#34;, null);&amp;#10;&amp;#9;&amp;#9;if (cursor != null) &amp;#123;&amp;#10;&amp;#9;&amp;#9;&amp;#9;while (cursor.moveToNext()) &amp;#123;&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;byte data[] = cursor.getBlob(cursor.getColumnIndex(&amp;#34;classtabledata&amp;#34;));&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;ByteArrayInputStream arrayInputStream = new ByteArrayInputStream(data);&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;try &amp;#123;&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#9;ObjectInputStream inputStream = new ObjectInputStream(arrayInputStream);&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#9;student = (Student) inputStream.readObject();&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#9;inputStream.close();&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#9;arrayInputStream.close();&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#9;break;//&amp;#36825;&amp;#37324;&amp;#20026;&amp;#20102;&amp;#27979;&amp;#35797;&amp;#23601;&amp;#21462;&amp;#19968;&amp;#20010;&amp;#25968;&amp;#25454;&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#125; catch (Exception e) &amp;#123;&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#9;// TODO Auto-generated catch block&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#9;e.printStackTrace();&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#125;&amp;#10;&amp;#10;&amp;#9;&amp;#9;&amp;#9;&amp;#125;&amp;#10;&amp;#9;&amp;#9;&amp;#125;&amp;#10;&amp;#9;&amp;#9;return student;&amp;#10;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;4. 最后是测试代码&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class MainActivity extends Activity &amp;#123;&amp;#10;&amp;#9;StudentServcie servcie;&amp;#10;&amp;#10;&amp;#9;@Override&amp;#10;&amp;#9;protected void onCreate(Bundle savedInstanceState) &amp;#123;&amp;#10;&amp;#9;&amp;#9;super.onCreate(savedInstanceState);&amp;#10;&amp;#9;&amp;#9;setContentView(R.layout.activity_main);&amp;#10;&amp;#9;&amp;#9;servcie = new StudentServcie(this);&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#9;public void onclick(View view) &amp;#123;&amp;#10;&amp;#9;&amp;#9;switch (view.getId()) &amp;#123;&amp;#10;&amp;#9;&amp;#9;case R.id.save:&amp;#10;&amp;#9;&amp;#9;&amp;#9;servcie.saveObject(new Student(&amp;#34;&amp;#26446;&amp;#38647;&amp;#34;, 20));&amp;#10;&amp;#9;&amp;#9;&amp;#9;Toast.makeText(this, &amp;#34;&amp;#23384;&amp;#21462;&amp;#23436;&amp;#25104;&amp;#34;, 0).show();&amp;#10;&amp;#9;&amp;#9;&amp;#9;break;&amp;#10;&amp;#9;&amp;#9;case R.id.load:&amp;#10;&amp;#9;&amp;#9;&amp;#9;Student student =&amp;#9;servcie.getObject();&amp;#10;&amp;#9;&amp;#9;&amp;#9;if(student!=null)&amp;#10;&amp;#9;&amp;#9;&amp;#9;Toast.makeText(this, student.getName()+student.getAge(), 0).show();&amp;#10;&amp;#9;&amp;#9;&amp;#9;break;&amp;#10;&amp;#9;&amp;#9;&amp;#125;&amp;#10;&amp;#9;&amp;#125;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;同样我们也可以对list，或者map对象进行保存，方法跟上面的一样，但是map或者list里面的对象必须序列化。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;【参考文献】&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;这是转载 &lt;a href=&quot;http://blog.csdn.net/codebob/article/details/37091003&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文地址点这里&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Android-SQLite存储自定义对象&quot;&gt;&lt;a href=&quot;#Android-SQLite存储自定义对象&quot; class=&quot;headerlink&quot; title=&quot;Android SQLite存储自定义对象&quot;&gt;&lt;/a&gt;Android SQLite存储自定义对象&lt;/h1&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="http://febsky.me/categories/Java/"/>
-    
-      <category term="Android" scheme="http://febsky.me/categories/Java/Android/"/>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="Java" scheme="http://febsky.me/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我认为不错的几个Hexo主题</title>
-    <link href="http://febsky.me/2016/05/15/2016-05-15-%E6%88%91%E8%AE%A4%E4%B8%BA%E4%B8%8D%E9%94%99%E7%9A%84%E5%87%A0%E4%B8%AAHexo%E4%B8%BB%E9%A2%98/"/>
-    <id>http://febsky.me/2016/05/15/2016-05-15-我认为不错的几个Hexo主题/</id>
-    <published>2016-05-15T04:37:28.000Z</published>
-    <updated>2016-06-12T01:31:20.000Z</updated>
-    
-    <content type="html">&lt;p&gt;我认为几个不错的主题&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/kaijun/hexo-theme-huxblog/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-huxblog&lt;/a&gt;   &lt;a href=&quot;http://huangxuan.me/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址 Hux Blog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/ahonn/hexo-theme-even&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-even&lt;/a&gt;    &lt;a href=&quot;http://www.ahonn.me/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/ppoffice/hexo-theme-icarus&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-icarus&lt;/a&gt;   &lt;a href=&quot;http://blog.zhangruipeng.me/hexo-theme-icarus/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/Alex-fun/hexo-theme-jane&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-jane&lt;/a&gt;   &lt;a href=&quot;http://hejx.me/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/xiangming/landscape-plus&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;landscape-plus&lt;/a&gt; &lt;a href=&quot;http://honglu.me/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址&lt;/a&gt;  &lt;a href=&quot;http://arvinxiang.com/landscape-plus/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;And&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/pinggod/hexo-theme-apollo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-apollo&lt;/a&gt; &lt;a href=&quot;http://pinggod.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://haojen.github.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-Anisina&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;主题的制作&quot;&gt;&lt;a href=&quot;#主题的制作&quot; class=&quot;headerlink&quot; title=&quot;主题的制作&quot;&gt;&lt;/a&gt;主题的制作&lt;/h1&gt;&lt;p&gt;有两篇很不错的文章&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.maintao.com/2014/hexo-theme-from-scratch/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;从零开始定制hexo主题&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://w3cboy.com/post/2014/05/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%81%9A%E5%8D%9A%E5%AE%A2%E4%B9%8B%E4%B8%BB%E9%A2%98/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一起来做博客——主题和部署&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://syxiaqj.github.io/2014/02/19/introduce-hexo-theme/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;introduce-hexo-theme&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我认为几个不错的主题&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/kaijun/hexo-theme-huxblog/&quot;&gt;hexo-theme-huxblog&lt;/a&gt;   &lt;a href=&quot;http://huangxuan.me/&quot;&gt;演示地址 Hux Blog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/ahonn/hexo-theme-even&quot;&gt;hexo-theme-even&lt;/a&gt;    &lt;a href=&quot;http://www.ahonn.me/&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/ppoffice/hexo-theme-icarus&quot;&gt;hexo-theme-icarus&lt;/a&gt;   &lt;a href=&quot;http://blog.zhangruipeng.me/hexo-theme-icarus/&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/Alex-fun/hexo-theme-jane&quot;&gt;hexo-theme-jane&lt;/a&gt;   &lt;a href=&quot;http://hejx.me/&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/xiangming/landscape-plus&quot;&gt;landscape-plus&lt;/a&gt; &lt;a href=&quot;http://honglu.me/&quot;&gt;演示地址&lt;/a&gt;  &lt;a href=&quot;http://arvinxiang.com/landscape-plus/&quot;&gt;And&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/pinggod/hexo-theme-apollo&quot;&gt;hexo-theme-apollo&lt;/a&gt; &lt;a href=&quot;http://pinggod.com/&quot;&gt;演示地址&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://haojen.github.io/&quot;&gt;hexo-theme-Anisina&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://febsky.me/categories/Hexo/"/>
-    
-    
-      <category term="Hexo" scheme="http://febsky.me/tags/Hexo/"/>
     
   </entry>
   
