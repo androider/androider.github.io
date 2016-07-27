@@ -53,7 +53,7 @@
 </ol>
 <p>as-if-serial: 无论如何重排序，程序执行的结果应该与代码顺序执行的结果一致（PS.我感觉这特么就是废话，如果不一致这代码写出来还能玩~）</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;    <span class="comment">//①</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">3</span>;    <span class="comment">//②</span></span><br><span class="line"><span class="keyword">int</span> sum = a+b;    <span class="comment">//③</span></span><br><span class="line"><span class="comment">//编译器不能保证 ① ②的顺序，但是③一定能保证在①②之后。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a = <span class="number">1</span>;    <span class="comment">//①</span></div><div class="line"><span class="keyword">int</span> b = <span class="number">3</span>;    <span class="comment">//②</span></div><div class="line"><span class="keyword">int</span> sum = a+b;    <span class="comment">//③</span></div><div class="line"><span class="comment">//编译器不能保证 ① ②的顺序，但是③一定能保证在①②之后。</span></div></pre></td></tr></table></figure>
 <h3 id="4-2、volatile实现可见性"><a href="#4-2、volatile实现可见性" class="headerlink" title="4.2、volatile实现可见性"></a>4.2、volatile实现可见性</h3><ul>
 <li>深入来说：通过加入内存屏障和禁止重排序优化来实现的。强制缓存区缓存失效</li>
 <li>对volatile变量执行写操作时，会在写操作后加入一条store屏障指令</li>
@@ -81,7 +81,7 @@
 <li>使用<code>AtomicInterger</code>(java.util.concurrent.atomic包下面)</li>
 </ul>
 <p>演示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">lock.lock();</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.number ++;</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">	lock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Lock lock = <span class="keyword">new</span> ReentrantLock();</div><div class="line">lock.lock();</div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">	<span class="keyword">this</span>.number ++;</div><div class="line">&#125;<span class="keyword">finally</span>&#123;</div><div class="line">	lock.unlock();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
 <h3 id="4-3、Volatile和synchronized比较"><a href="#4-3、Volatile和synchronized比较" class="headerlink" title="4.3、Volatile和synchronized比较"></a>4.3、Volatile和synchronized比较</h3><ul>
 <li>volatile不需要加锁，比synchronized轻，不会阻塞线程</li>

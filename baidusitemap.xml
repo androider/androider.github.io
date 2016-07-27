@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://febsky.me/2016/07/27/2016-07-27-NodeJs%E5%8C%85%E7%AE%A1%E7%90%86npm/</loc>
+    <lastmod>2016-07-27T07:37:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>NodeJs包管理npm</title>
+        <pubTime>2016-07-27T07:30:35.000Z</pubTime>
+        
+        <tag>Nodejs</tag>
+         
+        <tag>npm</tag>
+         
+         
+           
+             
+              <breadCrumb title="Nodejs" url="http://febsky.me/categories/Nodejs/"/>
+          
+             
+              <breadCrumb title="npm" url="http://febsky.me/categories/Nodejs/npm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://febsky.me/2016/07/26/2016-07-26-Android%E4%B8%AD%E5%8F%8D%E7%BC%96%E8%AF%91Smali%E6%96%87%E4%BB%B6%E8%A7%A3%E8%AF%BB/</loc>
     <lastmod>2016-07-27T03:08:39.000Z</lastmod>
     <data>
@@ -88,11 +113,11 @@
         <title>SublimeMac下的使用</title>
         <pubTime>2016-07-26T01:53:35.000Z</pubTime>
         
+        <tag>工具</tag>
+         
         <tag>Mac</tag>
          
         <tag>Sublime</tag>
-         
-        <tag>工具</tag>
          
          
            
@@ -220,9 +245,9 @@
         <title>Mac下常用命令和快捷键</title>
         <pubTime>2016-05-29T07:51:03.000Z</pubTime>
         
-        <tag>Mac</tag>
-         
         <tag>命令行</tag>
+         
+        <tag>Mac</tag>
          
         <tag>快捷键</tag>
          
@@ -324,7 +349,6 @@
     </url>
 
     
-    
   <url>
     <loc>http://febsky.me/2015/05/08/2015-05-08Linux%20ftp%20%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%99%BB%E9%99%86/</loc>
     <lastmod>2016-07-18T03:02:40.000Z</lastmod>
@@ -360,9 +384,9 @@
         
         <tag>Linux</tag>
          
-        <tag>Zip</tag>
-         
         <tag>压缩</tag>
+         
+        <tag>Zip</tag>
          
          
            
@@ -698,7 +722,6 @@
     </url>
 
     
-    
   <url>
     <loc>http://febsky.me/2015/02/08/2015-02-08-AndroidStudio%E4%B8%AD%E6%88%91%E7%9A%84%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
     <lastmod>2016-07-11T02:57:14.000Z</lastmod>
@@ -999,9 +1022,9 @@
         <title>mysql中授权命令</title>
         <pubTime>2015-05-25T03:57:08.000Z</pubTime>
         
-        <tag>MySQL</tag>
-         
         <tag>SQL</tag>
+         
+        <tag>MySQL</tag>
          
          
            
@@ -1332,9 +1355,9 @@
         <title>Sublime Text 的配置文件</title>
         <pubTime>2015-01-25T10:12:29.000Z</pubTime>
         
-        <tag>sublime</tag>
-         
         <tag>工具</tag>
+         
+        <tag>sublime</tag>
          
          
            
@@ -1462,9 +1485,9 @@
         <title>泛型（Generics）</title>
         <pubTime>2016-05-04T04:14:42.000Z</pubTime>
         
-        <tag>Gson</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Gson</tag>
          
         <tag>泛型</tag>
          
@@ -1737,9 +1760,9 @@
         <title>java消息摘要算法</title>
         <pubTime>2016-03-10T08:41:38.000Z</pubTime>
         
-        <tag>Java</tag>
-         
         <tag>加密</tag>
+         
+        <tag>Java</tag>
          
          
            
@@ -2077,9 +2100,9 @@
         <title>Java数字签名概述</title>
         <pubTime>2016-03-10T10:44:11.000Z</pubTime>
         
-        <tag>Java</tag>
-         
         <tag>加密</tag>
+         
+        <tag>Java</tag>
          
          
            
@@ -2122,9 +2145,9 @@
         <title>java使用Base64(加密)</title>
         <pubTime>2016-03-10T05:24:40.000Z</pubTime>
         
-        <tag>Java</tag>
-         
         <tag>加密</tag>
+         
+        <tag>Java</tag>
          
          
            
