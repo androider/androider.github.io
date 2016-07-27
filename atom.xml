@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-07-26T03:38:10.000Z</updated>
+  <updated>2016-07-27T03:08:39.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android中反编译Smali文件解读</title>
+    <link href="http://febsky.me/2016/07/26/2016-07-26-Android%E4%B8%AD%E5%8F%8D%E7%BC%96%E8%AF%91Smali%E6%96%87%E4%BB%B6%E8%A7%A3%E8%AF%BB/"/>
+    <id>http://febsky.me/2016/07/26/2016-07-26-Android中反编译Smali文件解读/</id>
+    <published>2016-07-26T10:06:35.000Z</published>
+    <updated>2016-07-27T03:08:39.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;寄存器&lt;/p&gt;
+&lt;p&gt; 修改Smali时有一件很重要的事情就是要注意寄存器。如果乱用寄存器的话可能会导致程序崩溃。每个方法开头声明了registers的数量，这个数量是参数和本地变量总和。参数统一用P表示。如果是非静态方法p0代表this，p1-pN代表各个参数。如果是静态方法的话，p0-pN代表各个参数。本地变量统一用v表示。如果想要增加的新的本地变量，需要在方法开头的registers数量上增加相应的数值。&lt;/p&gt;
+&lt;p&gt;比如下面这个方法：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; # direct methods&amp;#10;.method public constructor &amp;#60;init&amp;#62;()V&amp;#10;    .registers 1&amp;#10;&amp;#10;&amp;#9; .prologue&amp;#10;&amp;#9; .line 7&amp;#10;    invoke-direct &amp;#123;p0&amp;#125;, Ljava/lang/Object;-&amp;#62;&amp;#60;init&amp;#62;()V&amp;#10;&amp;#10;    return-void&amp;#10;.end method&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;因为这不是静态方法，所以p0代表this。如果想要增加一个新的本地变量，比如v0。就需要把.registers 1改为.registers 2。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有两种方式指定一个方法中有多少寄存器是可用的&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;.registers&lt;/code&gt; 使用这个指令指定方法中寄存器的总数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;.locals&lt;/code&gt; 使用这个指定表明方法中非参寄存器的总数，放在方法的第一行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/JesusFreke/smali/wiki/Registers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/JesusFreke/smali/wiki/Registers&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;给原程序增加大量逻辑的办法&lt;/p&gt;
+&lt;p&gt;我非常不建议在程序原有的方法上增加大量逻辑，这样可能会出现很多寄存器方面的错误导致编译失败。比较好的方法是：把想要增加的逻辑先用java写成一个apk，然后把这个apk反编译成smali文件，随后把反编译后的这部分逻辑的smali文件插入到目标程序的smali文件夹中，然后再在原来的方法上采用invoke的方式调用新加入的逻辑。这样的话不管加入再多的逻辑，也只是修改了原程序的几行代码而已。这个思路也是很多重打包病毒惯用的伎俩，确实非常方便好用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;方法中出现的关键字&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; .method &amp;#60;&amp;#35775;&amp;#38382;&amp;#26435;&amp;#38480;&amp;#62;[&amp;#20462;&amp;#39280;&amp;#20851;&amp;#38190;&amp;#23383;]&amp;#60;&amp;#26041;&amp;#27861;&amp;#21407;&amp;#22411;&amp;#62;&amp;#10;    &amp;#60;.locals&amp;#62;                    # &amp;#25351;&amp;#23450;&amp;#20102;&amp;#20351;&amp;#29992;&amp;#30340;&amp;#23616;&amp;#37096;&amp;#21464;&amp;#37327;&amp;#20010;&amp;#25968;&amp;#10;    [.parameter]                 # &amp;#25351;&amp;#23450;&amp;#20102;&amp;#26041;&amp;#27861;&amp;#30340;&amp;#21442;&amp;#25968;,&amp;#22914;&amp;#26524;&amp;#26377;&amp;#19977;&amp;#20010;&amp;#21442;&amp;#25968;&amp;#23601;&amp;#26377;&amp;#19977;&amp;#20010;.parameter&amp;#10;    [.prologue]                  # &amp;#25351;&amp;#23450;&amp;#20102;&amp;#20195;&amp;#30721;&amp;#24320;&amp;#22987;&amp;#27573;,&amp;#28151;&amp;#28102;&amp;#36807;&amp;#30340;&amp;#20195;&amp;#30721;&amp;#21487;&amp;#33021;&amp;#21435;&amp;#25481;&amp;#20102;&amp;#25913;&amp;#27573;&amp;#33853;&amp;#10;    [.line]                      # &amp;#25351;&amp;#23450;&amp;#20102;&amp;#35813;&amp;#22788;&amp;#25351;&amp;#20196;&amp;#22312;&amp;#28304;&amp;#20195;&amp;#30721;&amp;#20013;&amp;#30340;&amp;#34892;&amp;#25968;,&amp;#28151;&amp;#28102;&amp;#36807;&amp;#30340;&amp;#20195;&amp;#30721;&amp;#21487;&amp;#33021;&amp;#20250;&amp;#21435;&amp;#25481;,&amp;#20027;&amp;#35201;&amp;#29992;&amp;#20110;&amp;#35843;&amp;#35797;&amp;#12290;&amp;#10;    &amp;#60;&amp;#20195;&amp;#30721;&amp;#20307;&amp;#62;&amp;#10;.end method&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+ &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; invoke-super&amp;#12288;&amp;#12288;&amp;#35843;&amp;#29992;&amp;#29238;&amp;#20989;&amp;#25968;&amp;#10;const/high16 v0, 0x7fo3&amp;#12288;&amp;#12288;&amp;#25226;0x7fo3&amp;#36171;&amp;#20540;&amp;#32473;v0&amp;#10;invoke-direct&amp;#12288;&amp;#12288;&amp;#35843;&amp;#29992;&amp;#20989;&amp;#25968;&amp;#10;return-void&amp;#12288;&amp;#12288;&amp;#20989;&amp;#25968;&amp;#36820;&amp;#22238;void&amp;#10;new-instance&amp;#12288;&amp;#12288;&amp;#21019;&amp;#24314;&amp;#23454;&amp;#20363;&amp;#10;iput-object&amp;#12288;&amp;#12288;&amp;#23545;&amp;#35937;&amp;#36171;&amp;#20540;&amp;#10;iget-object&amp;#12288;&amp;#12288;&amp;#35843;&amp;#29992;&amp;#23545;&amp;#35937;&amp;#10;invoke-static&amp;#12288;&amp;#12288;&amp;#35843;&amp;#29992;&amp;#38745;&amp;#24577;&amp;#20989;&amp;#25968;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt; 【参考文章】&lt;/p&gt;
+&lt;p&gt; &lt;a href=&quot;http://www.cnblogs.com/lee0oo0/p/3728271.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/lee0oo0/p/3728271.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;a href=&quot;http://nickycc.lofter.com/post/23e2a6_17d6a07&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://nickycc.lofter.com/post/23e2a6_17d6a07&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;a href=&quot;https://source.android.com/devices/tech/dalvik/dalvik-bytecode.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://source.android.com/devices/tech/dalvik/dalvik-bytecode.html&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;寄存器&lt;/p&gt;
+&lt;p&gt; 修改Smali时有一件很重要的事情就是要注意寄存器。如果乱用寄存器的话可能会导致程序崩溃。每个方法开头声明了registers的数量，这个数量是参数和本地变量总和。参数统一用P表示。如果是非静态方法p0代表this，p1-pN代表各
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="Smali" scheme="http://febsky.me/categories/Android/Smali/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="Smali" scheme="http://febsky.me/tags/Smali/"/>
+    
+  </entry>
   
   <entry>
     <title>Android中Notification工具类</title>
@@ -86,7 +143,7 @@
     <link href="http://febsky.me/2016/07/25/2016-07-25-Android%E5%8F%8D%E7%BC%96%E8%AF%91%E5%90%8E%E9%87%8D%E6%96%B0%E6%89%93%E5%8C%85apk/"/>
     <id>http://febsky.me/2016/07/25/2016-07-25-Android反编译后重新打包apk/</id>
     <published>2016-07-25T07:53:35.000Z</published>
-    <updated>2016-07-25T08:32:31.000Z</updated>
+    <updated>2016-07-26T10:03:28.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;strong&gt;为什么要反编译别人的代码？&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -107,7 +164,7 @@
 &lt;p&gt;&lt;code&gt;$ apktool d test.apk&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;修改图片，填好string.xml,修改smali&lt;/p&gt;
-&lt;p&gt;详细操作，尽情的折腾吧，隐藏某个view，添加某个view。&lt;/p&gt;
+&lt;p&gt;详细操作，尽情的折腾吧，隐藏某个view，添加某个view。&lt;br&gt;&lt;a href=&quot;https://gold.xitu.io/entry/5745388cdf0eea0063b494bb&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一篇有用的文章，后来补充&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;apktool 打包&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;apktool b test&lt;/code&gt; 这里的test是反编译test.apk 后生成的文件夹。最终的生成的新的未签名的apk的路径为&lt;code&gt;./test/dist/test.apk&lt;/code&gt;&lt;/p&gt;
@@ -820,56 +877,6 @@
       <category term="命令行" scheme="http://febsky.me/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
     
       <category term="快捷键" scheme="http://febsky.me/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 开发中的小技巧</title>
-    <link href="http://febsky.me/2016/05/28/2016-05-16-Android%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
-    <id>http://febsky.me/2016/05/28/2016-05-16-Android中的小技巧/</id>
-    <published>2016-05-28T08:39:22.000Z</published>
-    <updated>2016-07-06T05:36:08.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;ListView小技巧&quot;&gt;&lt;a href=&quot;#ListView小技巧&quot; class=&quot;headerlink&quot; title=&quot;ListView小技巧&quot;&gt;&lt;/a&gt;ListView小技巧&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;可以设置空白站位View &lt;code&gt;listView.setEmptyView(view);&lt;/code&gt;非常有用&lt;/li&gt;
-&lt;li&gt;缓慢滚动到某个位置&lt;code&gt;listView.smoothScrollToPosition();&lt;/code&gt;当然还有其他的滚动方法&lt;/li&gt;
-&lt;li&gt;在使用&lt;code&gt;adapter.notifyDataSetChanged()&lt;/code&gt;方法的时候，必须保证传进adapter的数据List是同一个对象，否则无法实现效果（我就犯过这个错）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;滚动和位置&quot;&gt;&lt;a href=&quot;#滚动和位置&quot; class=&quot;headerlink&quot; title=&quot;滚动和位置&quot;&gt;&lt;/a&gt;滚动和位置&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;scrollTo&lt;/code&gt;方法其实滚动的是内容，比如说TextView中滚动的是文字。比如：&lt;code&gt;textView.scrollTo(0, 10);&lt;/code&gt;意思是让TextView中的内容，的（0，10）坐标去和，TextView左上角对齐。&lt;/li&gt;
-&lt;li&gt;滑动多少算是滑动了&lt;code&gt;ViewConfiguration.get(this).getScaledTouchSlop();&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;所谓的滑动，是相对于参考系的运动&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;getX&lt;/code&gt;,&lt;code&gt;getY&lt;/code&gt; 获取的是相对于父view的相对位置&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;getRawX&lt;/code&gt;,&lt;code&gt;getRawY&lt;/code&gt;获取的是点击位置距离屏幕左边和上边的距离&lt;/li&gt;
-&lt;li&gt;Scroller类可以实现平滑的移动效果&lt;/li&gt;
-&lt;li&gt;实现拖拽效果&lt;code&gt;DrawerLayout&lt;/code&gt;,&lt;code&gt;SlidingPaneLayout&lt;/code&gt;,&lt;code&gt;ViewDragHelper&lt;/code&gt;,尤其是最后一个。非常diao~  &lt;ul&gt;
-&lt;li&gt;SlidingPaneLayout 效果是中间的内容块向右移动，以显示出左边的内容。只支持左侧显示  &lt;/li&gt;
-&lt;li&gt;DrawerLayout 支持左滑右滑 效果是左右侧的内容盖住中间的内容&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;扩大View的触摸和点击响应范围&quot;&gt;&lt;a href=&quot;#扩大View的触摸和点击响应范围&quot; class=&quot;headerlink&quot; title=&quot;扩大View的触摸和点击响应范围&quot;&gt;&lt;/a&gt;扩大View的触摸和点击响应范围&lt;/h1&gt;&lt;p&gt;&lt;code&gt;setTouchDelegate()&lt;/code&gt;方法&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;ListView小技巧&quot;&gt;&lt;a href=&quot;#ListView小技巧&quot; class=&quot;headerlink&quot; title=&quot;ListView小技巧&quot;&gt;&lt;/a&gt;ListView小技巧&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;可以设置空白站位View &lt;code&gt;listView.setEmptyView(view);&lt;/code&gt;非常有用&lt;/li&gt;
-&lt;li&gt;缓慢滚动到某个位置&lt;code&gt;listView.smoothScrollToPosition();&lt;/code&gt;当然还有其他的滚动方法&lt;/li&gt;
-&lt;li&gt;在使用&lt;code&gt;adapter.notifyDataSetChanged()&lt;/code&gt;方法的时候，必须保证传进adapter的数据List是同一个对象，否则无法实现效果（我就犯过这个错）&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Java" scheme="http://febsky.me/categories/Java/"/>
-    
-      <category term="Android" scheme="http://febsky.me/categories/Java/Android/"/>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="Java" scheme="http://febsky.me/tags/Java/"/>
     
   </entry>
   
