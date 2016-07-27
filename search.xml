@@ -47,15 +47,13 @@
 </li>
 <li><p>方法中出现的关键字</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> .method &lt;访问权限&gt;[修饰关键字]&lt;方法原型&gt;</div><div class="line">    &lt;.locals&gt;                    # 指定了使用的局部变量个数</div><div class="line">    [.parameter]                 # 指定了方法的参数,如果有三个参数就有三个.parameter</div><div class="line">    [.prologue]                  # 指定了代码开始段,混淆过的代码可能去掉了改段落</div><div class="line">    [.line]                      # 指定了该处指令在源代码中的行数,混淆过的代码可能会去掉,主要用于调试。</div><div class="line">    &lt;代码体&gt;</div><div class="line">.end method</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">invoke-super　　调用父函数</div><div class="line">const/high16 v0, 0x7fo3　　把0x7fo3赋值给v0</div><div class="line">invoke-direct　　调用函数</div><div class="line">return-void　　函数返回void</div><div class="line">new-instance　　创建实例</div><div class="line">iput-object　　对象赋值</div><div class="line">iget-object　　调用对象</div><div class="line">invoke-static　　调用静态函数</div></pre></td></tr></table></figure>
 </li>
 </ol>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">invoke-super　　调用父函数</div><div class="line">const/high16 v0, 0x7fo3　　把0x7fo3赋值给v0</div><div class="line">invoke-direct　　调用函数</div><div class="line">return-void　　函数返回void</div><div class="line">new-instance　　创建实例</div><div class="line">iput-object　　对象赋值</div><div class="line">iget-object　　调用对象</div><div class="line">invoke-static　　调用静态函数</div></pre></td></tr></table></figure>
 <p><strong>【参考文章】</strong></p>
 <p> <a href="http://www.cnblogs.com/lee0oo0/p/3728271.html" target="_blank" rel="external">http://www.cnblogs.com/lee0oo0/p/3728271.html</a></p>
-<p> <a href="http://nickycc.lofter.com/post/23e2a6_17d6a07" target="_blank" rel="external">http://nickycc.lofter.com/post/23e2a6_17d6a07</a></p>
-<p> <a href="https://source.android.com/devices/tech/dalvik/dalvik-bytecode.html" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/dalvik-bytecode.html</a></p>
-<p> <a href="http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html" target="_blank" rel="external">http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html</a></p>
 <p> <a href="http://dalufan.com/2015/01/14/android-Smail-learn/" target="_blank" rel="external">http://dalufan.com/2015/01/14/android-Smail-learn/</a></p>
+<p> 官网文档：<br> <a href="http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html" target="_blank" rel="external">转载官网</a> 、<a href="https://source.android.com/devices/tech/dalvik/dalvik-bytecode.html" target="_blank" rel="external">Android官网，科学上网</a></p>
 ]]></content>
     </entry>
     
