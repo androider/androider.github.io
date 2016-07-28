@@ -63,7 +63,7 @@
     <link href="http://febsky.me/2016/07/26/2016-07-26-Android%E4%B8%AD%E5%8F%8D%E7%BC%96%E8%AF%91Smali%E6%96%87%E4%BB%B6%E8%A7%A3%E8%AF%BB/"/>
     <id>http://febsky.me/2016/07/26/2016-07-26-Android中反编译Smali文件解读/</id>
     <published>2016-07-26T10:06:35.000Z</published>
-    <updated>2016-07-27T08:24:36.000Z</updated>
+    <updated>2016-07-27T09:22:02.000Z</updated>
     
     <content type="html">&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;寄存器&lt;/p&gt;
@@ -91,9 +91,11 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;【参考文章】&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; Smali 语法：&lt;/p&gt;
 &lt;p&gt; &lt;a href=&quot;http://www.cnblogs.com/lee0oo0/p/3728271.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/lee0oo0/p/3728271.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; &lt;a href=&quot;http://dalufan.com/2015/01/14/android-Smail-learn/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dalufan.com/2015/01/14/android-Smail-learn/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; 官网文档：&lt;br&gt; &lt;a href=&quot;http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;转载官网&lt;/a&gt; 、&lt;a href=&quot;https://source.android.com/devices/tech/dalvik/dalvik-bytecode.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android官网，科学上网&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;a href=&quot;http://zke1ev3n.me/2015/12/02/Android-Dalvik%E5%AD%97%E8%8A%82%E7%A0%81%E8%A7%A3%E6%9E%90/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dalvik字节码&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">

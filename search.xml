@@ -51,9 +51,11 @@
 </li>
 </ol>
 <p><strong>【参考文章】</strong></p>
+<p> Smali 语法：</p>
 <p> <a href="http://www.cnblogs.com/lee0oo0/p/3728271.html" target="_blank" rel="external">http://www.cnblogs.com/lee0oo0/p/3728271.html</a></p>
 <p> <a href="http://dalufan.com/2015/01/14/android-Smail-learn/" target="_blank" rel="external">http://dalufan.com/2015/01/14/android-Smail-learn/</a></p>
 <p> 官网文档：<br> <a href="http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html" target="_blank" rel="external">转载官网</a> 、<a href="https://source.android.com/devices/tech/dalvik/dalvik-bytecode.html" target="_blank" rel="external">Android官网，科学上网</a></p>
+<p> <a href="http://zke1ev3n.me/2015/12/02/Android-Dalvik%E5%AD%97%E8%8A%82%E7%A0%81%E8%A7%A3%E6%9E%90/" target="_blank" rel="external">Dalvik字节码</a></p>
 ]]></content>
     </entry>
     
@@ -866,6 +868,13 @@
     </entry>
     
     <entry>
+      <title><![CDATA[2016年四月新浪微博面试部分]]></title>
+      <url>http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9AAndroid%E9%9D%A2%E8%AF%95%E9%83%A8%E5%88%86/</url>
+      <content type="html"><![CDATA[<p>整理中</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[2016年四月新浪微博面试体验]]></title>
       <url>http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AF%95%E9%A2%98/</url>
       <content type="html"><![CDATA[<p><strong>先说点个人感想（废话）：</strong>真心挺感谢新浪能给这个面试机会，作为一个非重点本科毕业学生来说，能给个面试机会已经非常不错了。不想某些大公司筛选简历一看工作年限，二看出身。很可惜自己能力有限在三面的时候彻底被虐了，今年算是止步于三面了。但是还是学到很多东西的，如果再有个一到两年的沉淀，详细自己还是可以胜任的。本来不想发出来的不知道发出来会不会影响到人家的面试。</p>
@@ -885,13 +894,6 @@
 </ol>
 <h2 id="8-switch-中可以用byte吗，可以用long吗，可以用String吗？"><a href="#8-switch-中可以用byte吗，可以用long吗，可以用String吗？" class="headerlink" title="8. switch 中可以用byte吗，可以用long吗，可以用String吗？"></a>8. switch 中可以用byte吗，可以用long吗，可以用String吗？</h2><p>答：switch 只能添加  <code>char,byte,short,int,Character,Byte,Short,Interger,String ,enum</code></p>
 <h2 id="9-try-catch-finally-运行流程"><a href="#9-try-catch-finally-运行流程" class="headerlink" title="9. try catch finally 运行流程"></a>9. try catch finally 运行流程</h2><h2 id="10-是一个程序找错题。"><a href="#10-是一个程序找错题。" class="headerlink" title="10. 是一个程序找错题。"></a>10. 是一个程序找错题。</h2>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[2016年四月新浪微博面试部分]]></title>
-      <url>http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9AAndroid%E9%9D%A2%E8%AF%95%E9%83%A8%E5%88%86/</url>
-      <content type="html"><![CDATA[<p>整理中</p>
-]]></content>
     </entry>
     
     <entry>
@@ -1823,6 +1825,37 @@
 </ol>
 <p>然后再插到mac上就OK了。</p>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android属性动画之ObjectAnimator]]></title>
+      <url>http://febsky.me/2015/08/28/2015-08-28-Android%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB%E4%B9%8BObjectAnimator/</url>
+      <content type="html"><![CDATA[<p>播放组合动画的三种方式：</p>
+<h2 id="方法一直接全部列出来，多种动画同时并发执行："><a href="#方法一直接全部列出来，多种动画同时并发执行：" class="headerlink" title="方法一直接全部列出来，多种动画同时并发执行："></a>方法一直接全部列出来，多种动画同时并发执行：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ObjectAnimator animX = ObjectAnimator.ofFloat(myView, x, <span class="number">50f</span>).setDuration(<span class="number">1000</span>).start();;</div><div class="line"></div><div class="line">ObjectAnimator animY = ObjectAnimator.ofFloat(myView, ;y, <span class="number">100f</span>).setDuration(<span class="number">1000</span>).start();;</div></pre></td></tr></table></figure>
+<h2 id="方法二：PropertyValuesHolder-多种动画同时开启"><a href="#方法二：PropertyValuesHolder-多种动画同时开启" class="headerlink" title="方法二：PropertyValuesHolder 多种动画同时开启"></a>方法二：PropertyValuesHolder 多种动画同时开启</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">PropertyValuesHolder pvhX = PropertyValuesHolder.ofFloat(x, <span class="number">50f</span>);</div><div class="line"></div><div class="line">PropertyValuesHolder pvhY = PropertyValuesHolder.ofFloat(y, <span class="number">100f</span>);</div><div class="line"></div><div class="line">ObjectAnimator.ofPropertyValuesHolder(myView, pvhX, pvyY).start();</div></pre></td></tr></table></figure>
+<h2 id="方法三：AnimatorSet-最灵活可以指定每个动画开启的时机"><a href="#方法三：AnimatorSet-最灵活可以指定每个动画开启的时机" class="headerlink" title="方法三：AnimatorSet 最灵活可以指定每个动画开启的时机"></a>方法三：AnimatorSet 最灵活可以指定每个动画开启的时机</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ObjectAnimator animX = ObjectAnimator.ofFloat(myView, x, <span class="number">50f</span>);</div><div class="line"></div><div class="line">ObjectAnimator animY = ObjectAnimator.ofFloat(myView, y, <span class="number">100f</span>);</div><div class="line"></div><div class="line">AnimatorSet animSetXY = <span class="keyword">new</span> AnimatorSet();</div><div class="line"></div><div class="line">animSetXY.playTogether(animX, animY);    <span class="comment">//同时执行</span></div><div class="line"></div><div class="line"><span class="comment">//animSetXY.playSequentially(animX, animY);    //顺序执行</span></div><div class="line"></div><div class="line">animSetXY.start();</div></pre></td></tr></table></figure>
+<h2 id="ofFloat或者oFInt中的propertyName的已有取值"><a href="#ofFloat或者oFInt中的propertyName的已有取值" class="headerlink" title="ofFloat或者oFInt中的propertyName的已有取值"></a>ofFloat或者oFInt中的propertyName的已有取值</h2><ol>
+<li><p>translationX和translationY：这两个属性作为一种增量来控制着View对象从它布局容器的左上角坐标开始的位置。</p>
+</li>
+<li><p>rotation、rotationX和rotationY：这三个属性控制View对象围绕支点进行2D和3D旋转。</p>
+</li>
+<li><p>scaleX和scaleY：这两个属性控制着View对象围绕它的支点进行2D缩放。</p>
+</li>
+<li><p>pivotX和pivotY：这两个属性控制着View对象的支点位置，围绕这个支点进行旋转和缩放变换处理。默认情况下，该支点的位置就是View对象的中心点。</p>
+</li>
+<li><p>x和y：这是两个简单实用的属性，它描述了View对象在它的容器中的最终位置，它是最初的左上角坐标和translationX和translationY值的累计和。</p>
+</li>
+<li><p>alpha：它表示View对象的alpha透明度。默认值是1（不透明），0代表完全透明（不可见）。</p>
+</li>
+</ol>
+<p>7.left right top bottom</p>
+<ol>
+<li>pivotX 和 pivotY: 这两个属性控制着枢轴点的位置，前述的旋转和缩放都是以此点为中心展开的,缺省的枢轴点是 View 对象的中心点;</li>
+</ol>
+<p>但是这种方式设置的话会吧pivotX和pivotY也做动画了，出来的效果有问题，后来发现可以用<code>view. setPivotX(int x);</code></p>
+<p>来设置ObjectAnimator旋转的中心点，设置ObjectAnimator的pivotX或者ObjectAnimator的pivotY</p>
+<p>除此之外还可以自定义</p>
+<h2 id="Android系统本身内置了一些通用的Interpolator-插值器"><a href="#Android系统本身内置了一些通用的Interpolator-插值器" class="headerlink" title="Android系统本身内置了一些通用的Interpolator(插值器),"></a>Android系统本身内置了一些通用的Interpolator(插值器),</h2>]]></content>
     </entry>
     
     <entry>
