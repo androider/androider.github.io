@@ -295,18 +295,30 @@
   </entry>
   
   <entry>
-    <title>SublimeMac下的使用</title>
-    <link href="http://febsky.me/2016/07/26/2016-07-26-SublimeMac%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://febsky.me/2016/07/26/2016-07-26-SublimeMac下的使用/</id>
+    <title>Sublime3 Mac下的使用</title>
+    <link href="http://febsky.me/2016/07/26/2016-07-26-Sublime3Mac%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://febsky.me/2016/07/26/2016-07-26-Sublime3Mac下的使用/</id>
     <published>2016-07-26T01:53:35.000Z</published>
-    <updated>2016-07-26T02:06:28.000Z</updated>
+    <updated>2016-08-11T02:54:46.000Z</updated>
     
     <content type="html">&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Smali 语法高亮插件&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/ShaneWilton/sublime-smali&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/ShaneWilton/sublime-smali&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;快捷键&lt;/p&gt;
 &lt;p&gt;| 快捷键        | 功能         |&lt;br&gt;| ————- |:————-:|&lt;br&gt;| ⌘ /   | 注释|&lt;br&gt;| ⌘⌥F   | 替换|&lt;br&gt;| ⌘T    |前往文件|&lt;br&gt;| ⌘KK   | 从光标处删除至行尾|&lt;br&gt;| ⌘K⌫   | 从光标处删除至行首|&lt;br&gt;| ⌘L    |选择行 (重复按下将下一行加入选择)|&lt;br&gt;| ⌘D    |选择词 (重复按下时多重选择相同的词进行多重编辑)|&lt;br&gt;| ⌘⇧F   | 在所有打开的文件中进行查找|&lt;br&gt;| ⌘⌥1   | 拆分窗口单列 |&lt;br&gt;| ⌘⌥2   | 拆分窗口双列 |&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://packagecontrol.io/installation&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;包管理器(Sublime3)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;打开控制台：ctrl + ~或者菜单栏选择   view    — &amp;gt; show  console&lt;br&gt;然后输入下面代码，注意不能有回车，下面代码必须在一行中&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;import urllib.request,os; pf = &amp;apos;Package Control.sublime-package&amp;apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &amp;apos;wb&amp;apos;).write(urllib.request.urlopen( &amp;apos;http://sublime.wbond.net/&amp;apos; + pf.replace(&amp;apos; &amp;apos;,&amp;apos;%20&amp;apos;)).read())&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;卸载&lt;/p&gt;
+&lt;p&gt;卸载之后再次安装的时候，会在&lt;code&gt;~/Library/Application\ Support/Sublime\ Text\ 3/&lt;/code&gt; 下存在缓存，注意要删除。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;语法高亮插件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Smali &lt;a href=&quot;https://github.com/ShaneWilton/sublime-smali&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/ShaneWilton/sublime-smali&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Nodejs &lt;a href=&quot;https://github.com/tanepiper/SublimeText-Nodejs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/tanepiper/SublimeText-Nodejs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 </content>
@@ -314,8 +326,8 @@
     <summary type="html">
     
       &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Smali 语法高亮插件&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/ShaneWilton/sublime-smali&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/Sha
+&lt;li&gt;&lt;p&gt;快捷键&lt;/p&gt;
+&lt;p&gt;| 快捷键        | 功能         |&lt;br&gt;| ————- |:————-:|&lt;br&gt;| ⌘ /   | 注释|&lt;br&gt;| ⌘⌥F   | 替换|&lt;br&gt;| ⌘T    |前往文件|&lt;br&gt;| ⌘KK   | 从光标
     
     </summary>
     
