@@ -4,6 +4,23 @@
   
     
     <entry>
+      <title><![CDATA[Nodejs随机数]]></title>
+      <url>http://febsky.me/2016/08/15/2016-05-07-Nodejs%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/</url>
+      <content type="html"><![CDATA[<p>Math：数学对象，提供对数据的数学计算。</p>
+<ol>
+<li><p>Math.random(); 结果为0-1间的一个随机数(包括0,不包括1) </p>
+</li>
+<li><p>Math.ceil(n); 返回大于等于n的最小整数。用Math.ceil(Math.random()*10);时，主要获取1到10的随机整数，取0的几率极小。</p>
+</li>
+<li><p>Math.round(num); 返回num四舍五入后整数的值。用Math.round(Math.random());可均衡获取0到1的随机整数。<br>用Math.round(Math.random()*10);时，可基本均衡获取0到10的随机整数，其中获取最小值0和最大值10的几率少一半。</p>
+</li>
+<li><p>Math.floor(num); 参数num为一个数值，函数结果为num的整数部分。 用Math.floor(Math.random()*10);时，可均衡获取0到9的随机整数。</p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[垂直方向的ViewPager]]></title>
       <url>http://febsky.me/2016/08/10/2016-08-10-%E5%9E%82%E7%9B%B4%E6%96%B9%E5%90%91%E7%9A%84ViewPager/</url>
       <content type="html"><![CDATA[<p>竖直方向的ViewPager</p>
@@ -664,6 +681,16 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Android 中实现倒计时]]></title>
+      <url>http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<h1 id="Android-中实现倒计时控件的方法有哪些"><a href="#Android-中实现倒计时控件的方法有哪些" class="headerlink" title="Android 中实现倒计时控件的方法有哪些"></a>Android 中实现倒计时控件的方法有哪些</h1><p>今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~</p>
+<a id="more"></a>
+<h2 id="第一种CountDownTimer"><a href="#第一种CountDownTimer" class="headerlink" title="第一种CountDownTimer"></a>第一种CountDownTimer</h2><p>位于<code>android.os.CountDownTimer</code>这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> CountDownTimer(<span class="number">30000</span>, <span class="number">1000</span>) &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTick</span><span class="params">(<span class="keyword">long</span> millisUntilFinished)</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"seconds remaining: "</span> + millisUntilFinished / <span class="number">1000</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinish</span><span class="params">()</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"done!"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div></pre></td></tr></table></figure>
+<h2 id="第二种-Timer与TimerTask-runOnUiThread-runnable-方法"><a href="#第二种-Timer与TimerTask-runOnUiThread-runnable-方法" class="headerlink" title="第二种 Timer与TimerTask + runOnUiThread(runnable)方法"></a>第二种 Timer与TimerTask + runOnUiThread(runnable)方法</h2><h2 id="第三种Handler与Message（不用TimerTask）"><a href="#第三种Handler与Message（不用TimerTask）" class="headerlink" title="第三种Handler与Message（不用TimerTask）"></a>第三种Handler与Message（不用TimerTask）</h2><h2 id="第四种Handler与Runnable（最简单型）"><a href="#第四种Handler与Runnable（最简单型）" class="headerlink" title="第四种Handler与Runnable（最简单型）"></a>第四种Handler与Runnable（最简单型）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> recLen = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">private</span> TextView txtView;  </div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line"> </div><div class="line">        setContentView(R.layout.timertask);  </div><div class="line">        txtView = (TextView)findViewById(R.id.txttime);  </div><div class="line">          </div><div class="line">        handler.postDelayed(runnable, <span class="number">1000</span>);  </div><div class="line">    &#125;     </div><div class="line"> </div><div class="line">    Handler handler = <span class="keyword">new</span> Handler();  </div><div class="line">    Runnable runnable = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            recLen++;  </div><div class="line">            txtView.setText(<span class="string">""</span> + recLen);  </div><div class="line">            handler.postDelayed(<span class="keyword">this</span>, <span class="number">1000</span>);  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android SQLite操作]]></title>
       <url>http://febsky.me/2016/05/10/2016-05-10-Android%E6%93%8D%E4%BD%9CSQLite%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%B9%E6%B3%95/</url>
       <content type="html"><![CDATA[<h1 id="一、-SQLiteOpenHelper辅助类"><a href="#一、-SQLiteOpenHelper辅助类" class="headerlink" title="一、 SQLiteOpenHelper辅助类"></a>一、 SQLiteOpenHelper辅助类</h1><p>SQLiteOpenHelper类是一个辅助类，用于创建或打开数据库。<br>该类的使用方法一般是自定义一个子类，继承自SQLiteOpenHelper，并覆写其中最关键的两个方法：onCreate(SQLiteDatabase db)和onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)。当新建一个数据库时会调用前者，一般在里面做一些创建表或视图的操作。数据库版本升级时则会调用后者。</p>
@@ -690,18 +717,8 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Android 中实现倒计时]]></title>
-      <url>http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
-      <content type="html"><![CDATA[<h1 id="Android-中实现倒计时控件的方法有哪些"><a href="#Android-中实现倒计时控件的方法有哪些" class="headerlink" title="Android 中实现倒计时控件的方法有哪些"></a>Android 中实现倒计时控件的方法有哪些</h1><p>今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~</p>
-<a id="more"></a>
-<h2 id="第一种CountDownTimer"><a href="#第一种CountDownTimer" class="headerlink" title="第一种CountDownTimer"></a>第一种CountDownTimer</h2><p>位于<code>android.os.CountDownTimer</code>这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> CountDownTimer(<span class="number">30000</span>, <span class="number">1000</span>) &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTick</span><span class="params">(<span class="keyword">long</span> millisUntilFinished)</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"seconds remaining: "</span> + millisUntilFinished / <span class="number">1000</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinish</span><span class="params">()</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"done!"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div></pre></td></tr></table></figure>
-<h2 id="第二种-Timer与TimerTask-runOnUiThread-runnable-方法"><a href="#第二种-Timer与TimerTask-runOnUiThread-runnable-方法" class="headerlink" title="第二种 Timer与TimerTask + runOnUiThread(runnable)方法"></a>第二种 Timer与TimerTask + runOnUiThread(runnable)方法</h2><h2 id="第三种Handler与Message（不用TimerTask）"><a href="#第三种Handler与Message（不用TimerTask）" class="headerlink" title="第三种Handler与Message（不用TimerTask）"></a>第三种Handler与Message（不用TimerTask）</h2><h2 id="第四种Handler与Runnable（最简单型）"><a href="#第四种Handler与Runnable（最简单型）" class="headerlink" title="第四种Handler与Runnable（最简单型）"></a>第四种Handler与Runnable（最简单型）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> recLen = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">private</span> TextView txtView;  </div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line"> </div><div class="line">        setContentView(R.layout.timertask);  </div><div class="line">        txtView = (TextView)findViewById(R.id.txttime);  </div><div class="line">          </div><div class="line">        handler.postDelayed(runnable, <span class="number">1000</span>);  </div><div class="line">    &#125;     </div><div class="line"> </div><div class="line">    Handler handler = <span class="keyword">new</span> Handler();  </div><div class="line">    Runnable runnable = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            recLen++;  </div><div class="line">            txtView.setText(<span class="string">""</span> + recLen);  </div><div class="line">            handler.postDelayed(<span class="keyword">this</span>, <span class="number">1000</span>);  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[nodejs的学习]]></title>
-      <url>http://febsky.me/2016/05/07/2016-05-07-nodejs%E7%9A%84%E5%AD%A6%E4%B9%A0/</url>
+      <title><![CDATA[Nodejs的学习]]></title>
+      <url>http://febsky.me/2016/05/07/2016-05-07-Nodejs%E7%9A%84%E5%AD%A6%E4%B9%A0/</url>
       <content type="html"><![CDATA[<h1 id="Mac-安装"><a href="#Mac-安装" class="headerlink" title="Mac 安装"></a>Mac 安装</h1><ul>
 <li>检查Python 是否安装<code>python -V</code></li>
 <li>检查ruby是否安装<code>ruby -v</code></li>
@@ -1218,9 +1235,25 @@
 <h1 id="8、一个log库"><a href="#8、一个log库" class="headerlink" title="8、一个log库"></a>8、一个log库</h1><p>打印的log很是漂亮，并且有一个我非常喜欢的功能，打印当前线程名</p>
 <p><code>compile &#39;com.orhanobut:logger:1.4&#39;</code></p>
 <p><a href="https://github.com/orhanobut/logger" target="_blank" rel="external">github 地址</a></p>
+<h1 id="9、下拉刷新的库-停止维护的就不说了"><a href="#9、下拉刷新的库-停止维护的就不说了" class="headerlink" title="9、下拉刷新的库(停止维护的就不说了)"></a>9、下拉刷新的库(停止维护的就不说了)</h1><ul>
+<li>继承自RecyclerView或者ListView<ul>
+<li><a href="https://github.com/jianghejie/XRecyclerView" target="_blank" rel="external">XRecyclerView</a></li>
+<li><a href="https://github.com/zarics/ZrcListView" target="_blank" rel="external">ZrcListView</a></li>
+</ul>
+</li>
+<li>作为RecyclerView（ListView）的父View存在的【我比较喜欢这种】<ul>
+<li><a href="https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh" target="_blank" rel="external">android-Ultra-Pull-To-Refresh</a></li>
+<li><a href="https://github.com/baoyongzhang/android-PullRefreshLayout" target="_blank" rel="external">android-PullRefreshLayout</a></li>
+<li><a href="https://github.com/bingoogolapple/BGARefreshLayout-Android" target="_blank" rel="external">BGARefreshLayout-Android</a></li>
+<li><a href="https://github.com/android-cjj/Android-MaterialRefreshLayout" target="_blank" rel="external">Android-MaterialRefreshLayout</a></li>
+<li><a href="https://github.com/tuesda/CircleRefreshLayout" target="_blank" rel="external">CircleRefreshLayout</a></li>
+</ul>
+</li>
+</ul>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ol>
 <li><a href="https://github.com/ikew0ng/SwipeBackLayout" target="_blank" rel="external">左右滑动返回上一页 SwipeBackLayout</a></li>
 <li><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a> 是一个响应式编程框架</li>
+<li><a href="https://github.com/android-cjj/BeautifulRefreshLayout" target="_blank" rel="external">总结下拉刷新的库</a></li>
 </ol>
 ]]></content>
     </entry>

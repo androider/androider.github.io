@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-08-10T06:23:22.000Z</updated>
+  <updated>2016-08-15T03:36:11.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nodejs随机数</title>
+    <link href="http://febsky.me/2016/08/15/2016-05-07-Nodejs%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/"/>
+    <id>http://febsky.me/2016/08/15/2016-05-07-Nodejs的随机数/</id>
+    <published>2016-08-15T03:18:31.000Z</published>
+    <updated>2016-08-15T03:36:11.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Math：数学对象，提供对数据的数学计算。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Math.random(); 结果为0-1间的一个随机数(包括0,不包括1) &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Math.ceil(n); 返回大于等于n的最小整数。用Math.ceil(Math.random()*10);时，主要获取1到10的随机整数，取0的几率极小。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Math.round(num); 返回num四舍五入后整数的值。用Math.round(Math.random());可均衡获取0到1的随机整数。&lt;br&gt;用Math.round(Math.random()*10);时，可基本均衡获取0到10的随机整数，其中获取最小值0和最大值10的几率少一半。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Math.floor(num); 参数num为一个数值，函数结果为num的整数部分。 用Math.floor(Math.random()*10);时，可均衡获取0到9的随机整数。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Math：数学对象，提供对数据的数学计算。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Math.random(); 结果为0-1间的一个随机数(包括0,不包括1) &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Math.ceil(n); 返回大于等于n的最小整数。用Math.ceil(Math
+    
+    </summary>
+    
+      <category term="Nodejs" scheme="http://febsky.me/categories/Nodejs/"/>
+    
+    
+      <category term="Nodejs" scheme="http://febsky.me/tags/Nodejs/"/>
+    
+  </entry>
   
   <entry>
     <title>垂直方向的ViewPager</title>
@@ -911,50 +948,6 @@
     
       &lt;ol&gt;
 &lt;li&gt;网络请求库 requests &lt;a href=&quot;http://cn.python-requests.org/zh_CN/latest/user/quickstart.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一份中文文档&lt;/a&gt;&lt;
-    
-    </summary>
-    
-      <category term="Python" scheme="http://febsky.me/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="http://febsky.me/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python日期时间的处理</title>
-    <link href="http://febsky.me/2016/06/14/2016-06-14-Python%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%9A%84%E5%A4%84%E7%90%86/"/>
-    <id>http://febsky.me/2016/06/14/2016-06-14-Python日期时间的处理/</id>
-    <published>2016-06-14T14:04:19.000Z</published>
-    <updated>2016-07-14T07:51:13.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;首先导入时间日期模块&quot;&gt;&lt;a href=&quot;#首先导入时间日期模块&quot; class=&quot;headerlink&quot; title=&quot;首先导入时间日期模块&quot;&gt;&lt;/a&gt;首先导入时间日期模块&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; datetime&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; time&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;string转datetime&quot;&gt;&lt;a href=&quot;#string转datetime&quot; class=&quot;headerlink&quot; title=&quot;string转datetime&quot;&gt;&lt;/a&gt;string转datetime&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;str = &lt;span class=&quot;string&quot;&gt;&#39;2012-11-19&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;date_time = datetime.datetime.strptime(str,&lt;span class=&quot;string&quot;&gt;&#39;%Y-%m-%d&#39;&lt;/span&gt;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;datetime转string&quot;&gt;&lt;a href=&quot;#datetime转string&quot; class=&quot;headerlink&quot; title=&quot;datetime转string&quot;&gt;&lt;/a&gt;datetime转string&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;date_time = datetime.datetime(&lt;span class=&quot;number&quot;&gt;2012&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;19&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;date_time.strftime(&lt;span class=&quot;string&quot;&gt;&#39;%Y-%m-%d&#39;&lt;/span&gt;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;datetime-获取date&quot;&gt;&lt;a href=&quot;#datetime-获取date&quot; class=&quot;headerlink&quot; title=&quot;datetime 获取date&quot;&gt;&lt;/a&gt;datetime 获取date&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;date_time.date()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;datetime转时间戳&quot;&gt;&lt;a href=&quot;#datetime转时间戳&quot; class=&quot;headerlink&quot; title=&quot;datetime转时间戳&quot;&gt;&lt;/a&gt;datetime转时间戳&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;time_time = time.mktime(date_time.timetuple())&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; time_time&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;时间戳转string&quot;&gt;&lt;a href=&quot;#时间戳转string&quot; class=&quot;headerlink&quot; title=&quot;时间戳转string&quot;&gt;&lt;/a&gt;时间戳转string&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;time.strftime(&lt;span class=&quot;string&quot;&gt;&#39;%Y-%m-%d&#39;&lt;/span&gt;,time.localtime(time_time))&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;time（时间戳）与datetime之间的互相转换&quot;&gt;&lt;a href=&quot;#time（时间戳）与datetime之间的互相转换&quot; class=&quot;headerlink&quot; title=&quot;time（时间戳）与datetime之间的互相转换&quot;&gt;&lt;/a&gt;time（时间戳）与datetime之间的互相转换&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#注释 time.time() 返回的是毫秒值&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;datetime.datetime.fromtimestamp(time.time())&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;date转datetime&quot;&gt;&lt;a href=&quot;#date转datetime&quot; class=&quot;headerlink&quot; title=&quot;date转datetime&quot;&gt;&lt;/a&gt;date转datetime&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;date = datetime.date.today()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; date    &lt;span class=&quot;comment&quot;&gt;##datetime.date(2012,11,19)&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;datetime.datetime.strptime(str(date),&lt;span class=&quot;string&quot;&gt;&#39;%Y-%m-%d&#39;&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;#将date转换为str，在由str转换为datetime&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;datetime.datetime(&lt;span class=&quot;number&quot;&gt;2012&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;19&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;hr&gt;
-&lt;p&gt;##time模块&lt;/p&gt;
-&lt;p&gt;time模块提供各种操作时间的函数，一般有两种表示时间的方式:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;第一种是时间戳的方式(相对于1970.1.1 00:00:00以秒计算的偏移量),时间戳是惟一的&lt;/li&gt;
-&lt;li&gt;第二种以数组的形式表示即(struct_time),共有九个元素，分别表示，同一个时间戳的struct_time会因为时区不同而不同&lt;/li&gt;
-&lt;li&gt;gmtime()与mktime（）可以将两种时间表示方法自由转换&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;【参考文献】&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://iam42.iteye.com/blog/1922875&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;time 和 datetime之间的关系&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;首先导入时间日期模块&quot;&gt;&lt;a href=&quot;#首先导入时间日期模块&quot; class=&quot;headerlink&quot; title=&quot;首先导入时间日期模块&quot;&gt;&lt;/a&gt;首先导入时间日期模块&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; datetime&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; time&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;string转datetime&quot;&gt;&lt;a href=&quot;#string转datetime&quot; class=&quot;headerlink&quot; title=&quot;string转datetime&quot;&gt;&lt;/a&gt;string转datetime&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;str = &lt;span class=&quot;string&quot;&gt;&#39;2012-11-19&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;date_time = datetime.datetime.strptime(str,&lt;span class=&quot;string&quot;&gt;&#39;%Y-%m-%d&#39;&lt;/span&gt;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
