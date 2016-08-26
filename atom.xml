@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-08-26T06:46:35.000Z</updated>
+  <updated>2016-08-15T03:36:11.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,48 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Sublime下ReactNative开发环境</title>
-    <link href="http://febsky.me/2016/08/25/2016-08-25-Sublime%E4%B8%8BReactNative%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
-    <id>http://febsky.me/2016/08/25/2016-08-25-Sublime下ReactNative开发环境/</id>
-    <published>2016-08-25T08:27:49.000Z</published>
-    <updated>2016-08-26T06:46:35.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;主要用到以下四个插件：&quot;&gt;&lt;a href=&quot;#主要用到以下四个插件：&quot; class=&quot;headerlink&quot; title=&quot;主要用到以下四个插件：&quot;&gt;&lt;/a&gt;主要用到以下四个插件：&lt;/h2&gt;&lt;p&gt;以下四个插件都用Package Control安装,安装后&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://packagecontrol.io/packages/Babel&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;babel&lt;/a&gt; &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/jdc0589/JsFormat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JsFormat&lt;/a&gt; jsformat 是 sublime 上 js 格式化比较好用的插件之一，通过修改它的e4x 属性可以使它支持 jsx。 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/Shrugs/react-native-snippets&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;react-native-snippets&lt;/a&gt; 在代码编辑器中输入代码片段的缩写,就能生成完整代码&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://packagecontrol.io/packages/SublimeLinter-jsxhint&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sublimeLinter-jsxhint&lt;/a&gt;  JSX 代码审查，实时提示语法错误, 帮助快速定位错误点.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;babel 使用配置：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;打开&lt;code&gt;.js&lt;/code&gt;, &lt;code&gt;.jsx&lt;/code&gt; 后缀的文件;&lt;/li&gt;
-&lt;li&gt;打开菜单view， &lt;code&gt;Syntax -&amp;gt; Open all with current extension as... -&amp;gt; Babel -&amp;gt; JavaScript (Babel)&lt;/code&gt;，选择babel为默认 javascript 打开syntax&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;JsFormat 配置&lt;/p&gt;
-&lt;p&gt;打开&lt;code&gt;preferences -&amp;gt; Package Settings -&amp;gt; JsFormat -&amp;gt; Setting - Users&lt;/code&gt;,输入以下代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  //支持 jsx 类型文件&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &quot;e4x&quot;: true,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  // 保存时自动格式化&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &quot;format_on_save&quot;: true,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;主要用到以下四个插件：&quot;&gt;&lt;a href=&quot;#主要用到以下四个插件：&quot; class=&quot;headerlink&quot; title=&quot;主要用到以下四个插件：&quot;&gt;&lt;/a&gt;主要用到以下四个插件：&lt;/h2&gt;&lt;p&gt;以下四个插件都用Package Control安装,安装后&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="Sublime" scheme="http://febsky.me/categories/Sublime/"/>
-    
-      <category term="工具" scheme="http://febsky.me/categories/Sublime/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-  </entry>
   
   <entry>
     <title>Nodejs随机数</title>
@@ -980,6 +938,37 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>Python常用的库</title>
+    <link href="http://febsky.me/2016/06/17/2016-06-17-Python%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BA%93/"/>
+    <id>http://febsky.me/2016/06/17/2016-06-17-Python常用的库/</id>
+    <published>2016-06-16T17:55:08.000Z</published>
+    <updated>2016-06-17T16:09:13.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;网络请求库 requests &lt;a href=&quot;http://cn.python-requests.org/zh_CN/latest/user/quickstart.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一份中文文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;HTML解析  pyquery 或者 beautifulsoup&lt;/li&gt;
+&lt;li&gt;orm库 sqlalchemy &lt;a href=&quot;http://gashero.yeax.com/?p=6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一份中文文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;种子解析libtorrent&lt;/li&gt;
+&lt;li&gt;web Flask,flask-httpauth&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;【参考】&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/vovlie/p/4182814.html?utm_source=tuicool&amp;amp;utm_medium=referral&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;用Flask设计带认证的Restfull&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;网络请求库 requests &lt;a href=&quot;http://cn.python-requests.org/zh_CN/latest/user/quickstart.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一份中文文档&lt;/a&gt;&lt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://febsky.me/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="http://febsky.me/tags/Python/"/>
     
   </entry>
   

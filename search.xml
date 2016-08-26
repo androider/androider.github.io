@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[Sublime下ReactNative开发环境]]></title>
-      <url>http://febsky.me/2016/08/25/2016-08-25-Sublime%E4%B8%8BReactNative%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
-      <content type="html"><![CDATA[<h2 id="主要用到以下四个插件："><a href="#主要用到以下四个插件：" class="headerlink" title="主要用到以下四个插件："></a>主要用到以下四个插件：</h2><p>以下四个插件都用Package Control安装,安装后</p>
-<ul>
-<li><a href="https://packagecontrol.io/packages/Babel" target="_blank" rel="external">babel</a> </li>
-<li><a href="https://github.com/jdc0589/JsFormat" target="_blank" rel="external">JsFormat</a> jsformat 是 sublime 上 js 格式化比较好用的插件之一，通过修改它的e4x 属性可以使它支持 jsx。 </li>
-<li><a href="https://github.com/Shrugs/react-native-snippets" target="_blank" rel="external">react-native-snippets</a> 在代码编辑器中输入代码片段的缩写,就能生成完整代码</li>
-<li><a href="https://packagecontrol.io/packages/SublimeLinter-jsxhint" target="_blank" rel="external">sublimeLinter-jsxhint</a>  JSX 代码审查，实时提示语法错误, 帮助快速定位错误点.</li>
-</ul>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ol>
-<li><p>babel 使用配置：</p>
-<ul>
-<li>打开<code>.js</code>, <code>.jsx</code> 后缀的文件;</li>
-<li>打开菜单view， <code>Syntax -&gt; Open all with current extension as... -&gt; Babel -&gt; JavaScript (Babel)</code>，选择babel为默认 javascript 打开syntax</li>
-</ul>
-</li>
-<li><p>JsFormat 配置</p>
-<p>打开<code>preferences -&gt; Package Settings -&gt; JsFormat -&gt; Setting - Users</code>,输入以下代码：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  //支持 jsx 类型文件</div><div class="line">  "e4x": true,</div><div class="line">  // 保存时自动格式化</div><div class="line">  "format_on_save": true,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Nodejs随机数]]></title>
       <url>http://febsky.me/2016/08/15/2016-05-07-Nodejs%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/</url>
       <content type="html"><![CDATA[<p>Math：数学对象，提供对数据的数学计算。</p>
@@ -721,16 +696,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Android 中实现倒计时]]></title>
-      <url>http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
-      <content type="html"><![CDATA[<h1 id="Android-中实现倒计时控件的方法有哪些"><a href="#Android-中实现倒计时控件的方法有哪些" class="headerlink" title="Android 中实现倒计时控件的方法有哪些"></a>Android 中实现倒计时控件的方法有哪些</h1><p>今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~</p>
-<a id="more"></a>
-<h2 id="第一种CountDownTimer"><a href="#第一种CountDownTimer" class="headerlink" title="第一种CountDownTimer"></a>第一种CountDownTimer</h2><p>位于<code>android.os.CountDownTimer</code>这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> CountDownTimer(<span class="number">30000</span>, <span class="number">1000</span>) &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTick</span><span class="params">(<span class="keyword">long</span> millisUntilFinished)</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"seconds remaining: "</span> + millisUntilFinished / <span class="number">1000</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinish</span><span class="params">()</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"done!"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div></pre></td></tr></table></figure>
-<h2 id="第二种-Timer与TimerTask-runOnUiThread-runnable-方法"><a href="#第二种-Timer与TimerTask-runOnUiThread-runnable-方法" class="headerlink" title="第二种 Timer与TimerTask + runOnUiThread(runnable)方法"></a>第二种 Timer与TimerTask + runOnUiThread(runnable)方法</h2><h2 id="第三种Handler与Message（不用TimerTask）"><a href="#第三种Handler与Message（不用TimerTask）" class="headerlink" title="第三种Handler与Message（不用TimerTask）"></a>第三种Handler与Message（不用TimerTask）</h2><h2 id="第四种Handler与Runnable（最简单型）"><a href="#第四种Handler与Runnable（最简单型）" class="headerlink" title="第四种Handler与Runnable（最简单型）"></a>第四种Handler与Runnable（最简单型）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> recLen = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">private</span> TextView txtView;  </div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line"> </div><div class="line">        setContentView(R.layout.timertask);  </div><div class="line">        txtView = (TextView)findViewById(R.id.txttime);  </div><div class="line">          </div><div class="line">        handler.postDelayed(runnable, <span class="number">1000</span>);  </div><div class="line">    &#125;     </div><div class="line"> </div><div class="line">    Handler handler = <span class="keyword">new</span> Handler();  </div><div class="line">    Runnable runnable = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            recLen++;  </div><div class="line">            txtView.setText(<span class="string">""</span> + recLen);  </div><div class="line">            handler.postDelayed(<span class="keyword">this</span>, <span class="number">1000</span>);  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Android SQLite操作]]></title>
       <url>http://febsky.me/2016/05/10/2016-05-10-Android%E6%93%8D%E4%BD%9CSQLite%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%B9%E6%B3%95/</url>
       <content type="html"><![CDATA[<h1 id="一、-SQLiteOpenHelper辅助类"><a href="#一、-SQLiteOpenHelper辅助类" class="headerlink" title="一、 SQLiteOpenHelper辅助类"></a>一、 SQLiteOpenHelper辅助类</h1><p>SQLiteOpenHelper类是一个辅助类，用于创建或打开数据库。<br>该类的使用方法一般是自定义一个子类，继承自SQLiteOpenHelper，并覆写其中最关键的两个方法：onCreate(SQLiteDatabase db)和onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)。当新建一个数据库时会调用前者，一般在里面做一些创建表或视图的操作。数据库版本升级时则会调用后者。</p>
@@ -754,6 +719,16 @@
 <p>最后记住，不管用何种方式打开了数据库，获得的SQLite对象不再使用时，都要调用close()来关闭打开的数据库，否则抛出IllegalStateException异常。</p>
 </blockquote>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android 中实现倒计时]]></title>
+      <url>http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<h1 id="Android-中实现倒计时控件的方法有哪些"><a href="#Android-中实现倒计时控件的方法有哪些" class="headerlink" title="Android 中实现倒计时控件的方法有哪些"></a>Android 中实现倒计时控件的方法有哪些</h1><p>今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~</p>
+<a id="more"></a>
+<h2 id="第一种CountDownTimer"><a href="#第一种CountDownTimer" class="headerlink" title="第一种CountDownTimer"></a>第一种CountDownTimer</h2><p>位于<code>android.os.CountDownTimer</code>这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> CountDownTimer(<span class="number">30000</span>, <span class="number">1000</span>) &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTick</span><span class="params">(<span class="keyword">long</span> millisUntilFinished)</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"seconds remaining: "</span> + millisUntilFinished / <span class="number">1000</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinish</span><span class="params">()</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"done!"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div></pre></td></tr></table></figure>
+<h2 id="第二种-Timer与TimerTask-runOnUiThread-runnable-方法"><a href="#第二种-Timer与TimerTask-runOnUiThread-runnable-方法" class="headerlink" title="第二种 Timer与TimerTask + runOnUiThread(runnable)方法"></a>第二种 Timer与TimerTask + runOnUiThread(runnable)方法</h2><h2 id="第三种Handler与Message（不用TimerTask）"><a href="#第三种Handler与Message（不用TimerTask）" class="headerlink" title="第三种Handler与Message（不用TimerTask）"></a>第三种Handler与Message（不用TimerTask）</h2><h2 id="第四种Handler与Runnable（最简单型）"><a href="#第四种Handler与Runnable（最简单型）" class="headerlink" title="第四种Handler与Runnable（最简单型）"></a>第四种Handler与Runnable（最简单型）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> recLen = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">private</span> TextView txtView;  </div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line"> </div><div class="line">        setContentView(R.layout.timertask);  </div><div class="line">        txtView = (TextView)findViewById(R.id.txttime);  </div><div class="line">          </div><div class="line">        handler.postDelayed(runnable, <span class="number">1000</span>);  </div><div class="line">    &#125;     </div><div class="line"> </div><div class="line">    Handler handler = <span class="keyword">new</span> Handler();  </div><div class="line">    Runnable runnable = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            recLen++;  </div><div class="line">            txtView.setText(<span class="string">""</span> + recLen);  </div><div class="line">            handler.postDelayed(<span class="keyword">this</span>, <span class="number">1000</span>);  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
     </entry>
     
     <entry>
@@ -1107,333 +1082,6 @@
 <li>在 sdk 2.0 及其以后的版本中，对应的 onStart 已经被否决变为了 onStartCommand，不过之前的 onStart 任然有效。这意味着，如果你开发的应用程序用的 sdk 为 2.0 及其以后的版本，那么你应当使用 onStartCommand 而不是 onStart。</li>
 </ol>
 </blockquote>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Sublime Text 的配置文件]]></title>
-      <url>http://febsky.me/2016/04/10/2015-01-25-Sublime%20Text%20%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</url>
-      <content type="html"><![CDATA[<p>Sublime 是个很好用的文本编辑器，可以安装后拷贝的U盘或者网盘中在任意的地方使用。但是安装的时候一定要注意配置文件 的存放位置</p>
-<p>默认是不和安装文件放在一块的。</p>
-<p>安装完sublime text2，在第一次运行的时候，sublime text2 会在%appdata%目录下生成一个Sublime Text 2的文件夹，用于存放配置文件，</p>
-<p>以及后面安装的各种插件(所以第一次打开sublime text2时会比较慢)</p>
-<p>要做的第一件事情就是把这个文件移动安装目录，便于设置完后打包。</p>
-<p>第一步：安装完sublime text2后，不要直接运行。</p>
-<pre><code>找到sublime text2的安装目录，并在该目录下新建 Data 文件夹(注意大小写)。如果已经运行了，请先在地址栏输入 %appdata%  然后删除
-
-该目录下的sublime text2文件夹。完成这一步之后再打开sublime text2所有的配置文件都会被生成在Data文件夹中了。
-</code></pre><p>第二步：安装你需要的插件</p>
-<pre><code>这就没什么好说的了，还是默认的安装方式。安装后的插件可以在sublime text2安装目录下的 Data/Packages下找到。
-</code></pre><p>第三步：打包sublime text2文件夹</p>
-<pre><code>打包的文件就可以在其他电脑上直接使用了。
-</code></pre><h2 id="PS-下面是网友分享的配置文件的具体含义"><a href="#PS-下面是网友分享的配置文件的具体含义" class="headerlink" title="PS.下面是网友分享的配置文件的具体含义"></a>PS.下面是网友分享的配置文件的具体含义</h2><p>Preferences.sublime-settings文件：</p>
-<p>[code lang=”java”]</p>
-<p>// While you can edit this file, it’s best to put your changes in</p>
-<p>// “User/Preferences.sublime-settings”, which overrides the settings in here.</p>
-<p>//</p>
-<p>// Settings may also be placed in file type specific options files, for</p>
-<p>// example, in Packages/Python/Python.sublime-settings for python files.</p>
-<p>{</p>
-<p>// Sets the colors used within the text area</p>
-<p>// 主题文件的路径</p>
-<p>“color_scheme”: “Packages/Color Scheme – Default/Monokai.tmTheme”,</p>
-<p>// Note that the font_face and font_size are overriden in the platform</p>
-<p>// specific settings file, for example, “Preferences (Linux).sublime-settings”.</p>
-<p>// Because of this, setting them here will have no effect: you must set them</p>
-<p>// in your User File Preferences.</p>
-<p>// 设置字体和大小，必须在Settings-User里重写，这里设置没有任何效果</p>
-<p>“font_face”: “Consolas”,</p>
-<p>“font_size”: 12,</p>
-<p>// Valid options are “no_bold”, “no_italic”, “no_antialias”, “gray_antialias”,</p>
-<p>// “subpixel_antialias” and “no_round” (OS X only)</p>
-<p>// 字体选项：no_bold不显示粗体字，no_italic不显示斜体字，no_antialias和no_antialias关闭反锯齿</p>
-<p>// subpixel_antialias和no_round是OS X系统独有的</p>
-<p>“font_options”: [],</p>
-<p>// Characters that are considered to separate words</p>
-<p>// 在文字上双击会全选当前的内容，如果里面出现以下字符，就会被截断</p>
-<p>“word_separators”: “./\()\”‘-:,.;&lt;&gt;~!@#$%^&amp;*|+=[]{}`~?”,</p>
-<p>// Set to false to prevent line numbers being drawn in the gutter</p>
-<p>// 是否显示行号</p>
-<p>“line_numbers”: true,</p>
-<p>// Set to false to hide the gutter altogether</p>
-<p>// 是否显示行号边栏</p>
-<p>“gutter”: true,</p>
-<p>// Spacing between the gutter and the text</p>
-<p>// 行号边栏和文字的间距</p>
-<p>“margin”: 4,</p>
-<p>// Fold buttons are the triangles shown in the gutter to fold regions of text</p>
-<p>// 是否显示代码折叠按钮</p>
-<p>“fold_buttons”: true,</p>
-<p>// Hides the fold buttons unless the mouse is over the gutter</p>
-<p>// 不管鼠标在不在行号边栏，代码折叠按钮一直显示</p>
-<p>“fade_fold_buttons”: true,</p>
-<p>// Columns in which to display vertical rulers</p>
-<p>//列显示垂直标尺，在中括号里填入数字，宽度按字符计算</p>
-<p>“rulers”: [],</p>
-<p>// Set to true to turn spell checking on by default</p>
-<p>// 是否打开拼写检查</p>
-<p>“spell_check”: false,</p>
-<p>// The number of spaces a tab is considered equal to</p>
-<p>// Tab键制表符宽度</p>
-<p>“tab_size”: 4,</p>
-<p>// Set to true to insert spaces when tab is pressed</p>
-<p>// 设为true时，缩进和遇到Tab键时使用空格替代</p>
-<p>“translate_tabs_to_spaces”: false,</p>
-<p>// If translate_tabs_to_spaces is true, use_tab_stops will make tab and</p>
-<p>// backspace insert/delete up to the next tabstop</p>
-<p>// translate_tabs_to_spaces设置为true，Tab和Backspace的删除/插入作用于制表符宽度</p>
-<p>// 否则作用于单个空格</p>
-<p>“use_tab_stops”: true,</p>
-<p>// Set to false to disable detection of tabs vs. spaces on load</p>
-<p>// false时禁止在载入的时候检测制表符和空格</p>
-<p>“detect_indentation”: true,</p>
-<p>// Calculates indentation automatically when pressing enter</p>
-<p>// 按回车时，自动与制表位对齐</p>
-<p>“auto_indent”: true,</p>
-<p>// Makes auto indent a little smarter, e.g., by indenting the next line</p>
-<p>// after an if statement in C. Requires auto_indent to be enabled.</p>
-<p>//针对C语言的</p>
-<p>“smart_indent”: false,</p>
-<p>// Adds whitespace up to the first open bracket when indenting. Requires</p>
-<p>// auto_indent to be enabled.</p>
-<p>// 需要启用auto_indent，第一次打开括号缩进时插入空格？（没测试出来效果…）</p>
-<p>“indent_to_bracket”: true,</p>
-<p>// Trims white space added by auto_indent when moving the caret off the</p>
-<p>// line.</p>
-<p>// 显示对齐的白线是否根据回车、tab等操作自动填补</p>
-<p>“trim_automatic_white_space”: true,</p>
-<p>// Disables horizontal scrolling if enabled.</p>
-<p>// May be set to true, false, or “auto”, where it will be disabled for</p>
-<p>// source code, and otherwise enabled.</p>
-<p>// 是否自动换行，如果选auto，需要加双引号</p>
-<p>“word_wrap”: false,</p>
-<p>// Set to a value other than 0 to force wrapping at that column rather than the</p>
-<p>// window width</p>
-<p>// 设置窗口内文字区域的宽度</p>
-<p>“wrap_width”: 0,</p>
-<p>// Set to false to prevent word wrapped lines from being indented to the same</p>
-<p>// level</p>
-<p>// 防止被缩进到同一级的字换行</p>
-<p>“indent_subsequent_lines”: true,</p>
-<p>// Draws text centered in the window rather than left aligned</p>
-<p>// 如果没有定义过，则文件居中显示（比如新建的文件）</p>
-<p>“draw_centered”: false,</p>
-<p>// Controls auto pairing of quotes, brackets etc</p>
-<p>// 自动匹配引号，括号等</p>
-<p>“auto_match_enabled”: true,</p>
-<p>// Word list to use for spell checking</p>
-<p>// 拼写检查的单词列表路径</p>
-<p>“dictionary”: “Packages/Language – English/en_US.dic”,</p>
-<p>// Set to true to draw a border around the visible rectangle on the minimap.</p>
-<p>// The color of the border will be determined by the “minimapBorder” key in</p>
-<p>// the color scheme</p>
-<p>// 代码地图的可视区域部分是否加上边框，边框的颜色可在配色方案上加入minimapBorder键</p>
-<p>“draw_minimap_border”: false,</p>
-<p>// If enabled, will highlight any line with a caret</p>
-<p>// 突出显示当前光标所在的行</p>
-<p>“highlight_line”: false,</p>
-<p>// Valid values are “smooth”, “phase”, “blink”, “wide” and “solid”.</p>
-<p>// 设置光标闪动方式</p>
-<p>“caret_style”: “smooth”,</p>
-<p>// Set to false to disable underlining the brackets surrounding the caret</p>
-<p>// 是否特殊显示当前光标所在的括号、代码头尾闭合标记</p>
-<p>“match_brackets”: true,</p>
-<p>// Set to false if you’d rather only highlight the brackets when the caret is</p>
-<p>// next to one</p>
-<p>// 设为false时，只有光标在括号或头尾闭合标记的两端时，match_brackets才生效</p>
-<p>“match_brackets_content”: true,</p>
-<p>// Set to false to not highlight square brackets. This only takes effect if</p>
-<p>// match_brackets is true</p>
-<p>// 是否突出显示圆括号，match_brackets为true生效</p>
-<p>“match_brackets_square”: false,</p>
-<p>// Set to false to not highlight curly brackets. This only takes effect if</p>
-<p>// match_brackets is true</p>
-<p>// 是否突出显示大括号，match_brackets为true生效</p>
-<p>“match_brackets_braces”: false,</p>
-<p>// Set to false to not highlight angle brackets. This only takes effect if</p>
-<p>// match_brackets is true</p>
-<p>// 是否突出显示尖括号，match_brackets为true生效</p>
-<p>“match_brackets_angle”: false,</p>
-<p>// Enable visualization of the matching tag in HTML and XML</p>
-<p>// html和xml下突出显示光标所在标签的两端，影响HTML、XML、CSS等</p>
-<p>“match_tags”: true,</p>
-<p>// Highlights other occurrences of the currently selected text</p>
-<p>// 全文突出显示和当前选中字符相同的字符</p>
-<p>“match_selection”: true,</p>
-<p>// Additional spacing at the top of each line, in pixels</p>
-<p>// 设置每一行到顶部，以像素为单位的间距，效果相当于行距</p>
-<p>“line_padding_top”: 1,</p>
-<p>// Additional spacing at the bottom of each line, in pixels</p>
-<p>// 设置每一行到底部，以像素为单位的间距，效果相当于行距</p>
-<p>“line_padding_bottom”: 1,</p>
-<p>// Set to false to disable scrolling past the end of the buffer.</p>
-<p>// On OS X, this value is overridden in the platform specific settings, so</p>
-<p>// you’ll need to place this line in your user settings to override it.</p>
-<p>// 设置为false时，滚动到文本的最下方时，没有缓冲区</p>
-<p>“scroll_past_end”: true,</p>
-<p>// This controls what happens when pressing up or down when on the first</p>
-<p>// or last line.</p>
-<p>// On OS X, this value is overridden in the platform specific settings, so</p>
-<p>// you’ll need to place this line in your user settings to override it.</p>
-<p>// 控制向上或向下到第一行或最后一行时发生什么（没明白也没试出来）</p>
-<p>“move_to_limit_on_up_down”: false,</p>
-<p>// Set to “none” to turn off drawing white space, “selection” to draw only the</p>
-<p>// white space within the selection, and “all” to draw all white space</p>
-<p>// 按space或tab时，实际会产生白色的点（一个空格一个点）或白色的横线（tab_size设置的制表符的宽度），选中状态下才能看到</p>
-<p>// 设置为none时，什么情况下都不显示这些点和线</p>
-<p>// 设置为selection时，只显示选中状态下的点和线</p>
-<p>// 设置为all时，则一直显示</p>
-<p>“draw_white_space”: “selection”,</p>
-<p>// Set to false to turn off the indentation guides.</p>
-<p>// The color and width of the indent guides may be customized by editing</p>
-<p>// the corresponding .tmTheme file, and specifying the colors “guide”,</p>
-<p>// “activeGuide” and “stackGuide”</p>
-<p>// 制表位的对齐白线是否显示，颜色可在主题文件里设置（guide，activeGuide，stackGuide）</p>
-<p>“draw_indent_guides”: true,</p>
-<p>// Controls how the indent guides are drawn, valid options are</p>
-<p>// “draw_normal” and “draw_active”. draw_active will draw the indent</p>
-<p>// guides containing the caret in a different color.</p>
-<p>// 制表位的对齐白线，draw_normal为一直显示，draw_active为只显示当前光标所在的代码控制域</p>
-<p>“indent_guide_options”: [&quot;draw_normal&quot;],</p>
-<p>// Set to true to removing trailing white space on save</p>
-<p>// 为true时，保存文件时会删除每行结束后多余的空格</p>
-<p>“trim_trailing_white_space_on_save”: false,</p>
-<p>// Set to true to ensure the last line of the file ends in a newline</p>
-<p>// character when saving</p>
-<p>// 为true时，保存文件时光标会在文件的最后向下换一行</p>
-<p>“ensure_newline_at_eof_on_save”: false,</p>
-<p>// Set to true to automatically save files when switching to a different file</p>
-<p>// or application</p>
-<p>// 切换到其它文件标签或点击其它非本软件区域，文件自动保存</p>
-<p>“save_on_focus_lost”: false,</p>
-<p>// The encoding to use when the encoding can’t be determined automatically.</p>
-<p>// ASCII, UTF-8 and UTF-16 encodings will be automatically detected.</p>
-<p>// 编码时不能自动检测编码时，将自动检测ASCII, UTF-8 和 UTF-16</p>
-<p>“fallback_encoding”: “Western (Windows 1252)”,</p>
-<p>// Encoding used when saving new files, and files opened with an undefined</p>
-<p>// encoding (e.g., plain ascii files). If a file is opened with a specific</p>
-<p>// encoding (either detected or given explicitly), this setting will be</p>
-<p>// ignored, and the file will be saved with the encoding it was opened</p>
-<p>// with.</p>
-<p>// 默认编码格式</p>
-<p>“default_encoding”: “UTF-8″,</p>
-<p>// Files containing null bytes are opened as hexadecimal by default</p>
-<p>// 包含空字节的文件被打开默认为十六进制</p>
-<p>“enable_hexadecimal_encoding”: true,</p>
-<p>// Determines what character(s) are used to terminate each line in new files.</p>
-<p>// Valid values are ‘system’ (whatever the OS uses), ‘windows’ (CRLF) and</p>
-<p>// ‘unix’ (LF only).</p>
-<p>// 每一行结束的时候用什么字符做终止符</p>
-<p>“default_line_ending”: “system”,</p>
-<p>// When enabled, pressing tab will insert the best matching completion.</p>
-<p>// When disabled, tab will only trigger snippets or insert a tab.</p>
-<p>// Shift+tab can be used to insert an explicit tab when tab_completion is</p>
-<p>// enabled.</p>
-<p>// 设置为enabled时，在一个字符串间按Tab将插入一个制表符</p>
-<p>// 设置为true时，按Tab会根据前后环境进行代码自动匹配填补</p>
-<p>“tab_completion”: true,</p>
-<p>// Enable auto complete to be triggered automatically when typing.</p>
-<p>// 代码提示</p>
-<p>“auto_complete”: true,</p>
-<p>// The maximum file size where auto complete will be automatically triggered.</p>
-<p>// 代码提示的大小限制</p>
-<p>“auto_complete_size_limit”: 4194304,</p>
-<p>// The delay, in ms, before the auto complete window is shown after typing</p>
-<p>// 代码提示延迟显示</p>
-<p>“auto_complete_delay”: 50,</p>
-<p>// Controls what scopes auto complete will be triggered in</p>
-<p>// 代码提示的控制范围</p>
-<p>“auto_complete_selector”: “source – comment”,</p>
-<p>// Additional situations to trigger auto complete</p>
-<p>// 触发代码提示的其他情况</p>
-<p>“auto_complete_triggers”: [ {&quot;selector&quot;: &quot;text.html&quot;, &quot;characters&quot;: &quot;&lt;&quot;} ],</p>
-<p>// By default, auto complete will commit the current completion on enter.</p>
-<p>// This setting can be used to make it complete on tab instead.</p>
-<p>// Completing on tab is generally a superior option, as it removes</p>
-<p>// ambiguity between committing the completion and inserting a newline.</p>
-<p>// 设为false时，选择提示的代码按回车或点击可以输出出来，但选择true时不会输出而是直接换行</p>
-<p>“auto_complete_commit_on_tab”: false,</p>
-<p>// Controls if auto complete is shown when snippet fields are active.</p>
-<p>// Only relevant if auto_complete_commit_on_tab is true.</p>
-<p>// auto_complete_commit_on_tab必须为true，控制代码提示的活跃度（没明白…）</p>
-<p>“auto_complete_with_fields”: false,</p>
-<p>// By default, shift+tab will only unindent if the selection spans</p>
-<p>// multiple lines. When pressing shift+tab at other times, it’ll insert a</p>
-<p>// tab character – this allows tabs to be inserted when tab_completion is</p>
-<p>// enabled. Set this to true to make shift+tab always unindent, instead of</p>
-<p>// inserting tabs.</p>
-<p>// 设置为false，使用Shift + tab总是插入制表符</p>
-<p>“shift_tab_unindent”: true,</p>
-<p>// If true, the selected text will be copied into the find panel when it’s</p>
-<p>// shown.</p>
-<p>// On OS X, this value is overridden in the platform specific settings, so</p>
-<p>// you’ll need to place this line in your user settings to override it.</p>
-<p>// 选中的文本按Ctrl + f时，自动复制到查找面板的文本框里</p>
-<p>“find_selected_text”: true,</p>
-<p>//</p>
-<p>// User Interface Settings</p>
-<p>//</p>
-<p>// The theme controls the look of Sublime Text’s UI (buttons, tabs, scroll bars, etc)</p>
-<p>// Data\Packages\Theme – Default\Default.sublime-theme控制软件的主题</p>
-<p>“theme”: “Default.sublime-theme”,</p>
-<p>// Set to 0 to disable smooth scrolling. Set to a value between 0 and 1 to</p>
-<p>// scroll slower, or set to larger than 1 to scroll faster</p>
-<p>// 滚动的速度</p>
-<p>“scroll_speed”: 1.0,</p>
-<p>// Controls side bar animation when expanding or collapsing folders</p>
-<p>// 左边边栏文件夹动画</p>
-<p>“tree_animation_enabled”: true,</p>
-<p>// 标签页的关闭按钮</p>
-<p>“show_tab_close_buttons”: true,</p>
-<p>// OS X 10.7 only: Set to true to disable Lion style full screen support.</p>
-<p>// Sublime Text must be restarted for this to take effect.</p>
-<p>// 针对OS X</p>
-<p>“use_simple_full_screen”: false,</p>
-<p>// Valid values are “system”, “enabled” and “disabled”</p>
-<p>// 水平垂直滚动条：system和disabled为默认显示方式，enabled为自动隐藏显示</p>
-<p>“overlay_scroll_bars”: “system”,</p>
-<p>//</p>
-<p>// Application Behavior Settings</p>
-<p>//</p>
-<p>// Exiting the application with hot_exit enabled will cause it to close</p>
-<p>// immediately without prompting. Unsaved modifications and open files will</p>
-<p>// be preserved and restored when next starting.</p>
-<p>//</p>
-<p>// Closing a window with an associated project will also close the window</p>
-<p>// without prompting, preserving unsaved changes in the workspace file</p>
-<p>// alongside the project.</p>
-<p>// 热推出功能！退出时不会提示是否保存文件，而是直接退出</p>
-<p>// 下次打开软件时，文件保持退出前的状态，没来得及保存的内容都在，但并没有真实的写在原文件里</p>
-<p>“hot_exit”: true,</p>
-<p>// remember_open_files makes the application start up with the last set of</p>
-<p>// open files. Changing this to false will have no effect if hot_exit is</p>
-<p>// true</p>
-<p>// 软件使用最后的设定打开文件，hot_exit为true时没有效果</p>
-<p>“remember_open_files”: true,</p>
-<p>// OS X only: When files are opened from finder, or by dragging onto the</p>
-<p>// dock icon, this controls if a new window is created or not.</p>
-<p>// 针对OS X</p>
-<p>“open_files_in_new_window”: true,</p>
-<p>// Set to true to close windows as soon as the last file is closed, unless</p>
-<p>// there’s a folder open within the window. This is always enabled on OS X,</p>
-<p>// changing it here won’t modify the behavior.</p>
-<p>// 针对OS X</p>
-<p>“close_windows_when_empty”: true,</p>
-<p>// 哪些文件会被显示到边栏上</p>
-<p>// folder_exclude_patterns and file_exclude_patterns control which files</p>
-<p>// are listed in folders on the side bar. These can also be set on a per-</p>
-<p>// project basis.</p>
-<p>“folder_exclude_patterns”: [&quot;.svn&quot;, &quot;.git&quot;, &quot;.hg&quot;, &quot;CVS&quot;],</p>
-<p>“file_exclude_patterns”: [&quot;<em>.pyc&quot;, &quot;</em>.pyo&quot;, &quot;<em>.exe&quot;, &quot;</em>.dll&quot;, &quot;<em>.obj&quot;,&quot;</em>.o&quot;, &quot;<em>.a&quot;, &quot;</em>.lib&quot;, &quot;<em>.so&quot;, &quot;</em>.dylib&quot;, &quot;<em>.ncb&quot;, &quot;</em>.sdf&quot;, &quot;<em>.suo&quot;, &quot;</em>.pdb&quot;, &quot;<em>.idb&quot;, &quot;.DS_Store&quot;, &quot;</em>.class&quot;, &quot;<em>.psd&quot;, &quot;</em>.db&quot;],</p>
-<p>// These files will still show up in the side bar, but won’t be included in</p>
-<p>// Goto Anything or Find in Files</p>
-<p>“binary_file_patterns”: [&quot;<em>.jpg&quot;, &quot;</em>.jpeg&quot;, &quot;<em>.png&quot;, &quot;</em>.gif&quot;, &quot;<em>.ttf&quot;, &quot;</em>.tga&quot;, &quot;<em>.dds&quot;, &quot;</em>.ico&quot;, &quot;<em>.eot&quot;, &quot;</em>.pdf&quot;, &quot;<em>.swf&quot;, &quot;</em>.jar&quot;, &quot;*.zip&quot;],</p>
-<p>// List any packages to ignore here. When removing entries from this list,</p>
-<p>// a restart may be required if the package contains plugins.</p>
-<p>// 删除你想要忽略的插件，需要重启</p>
-<p>“ignored_packages”: [&quot;Vintage&quot;]</p>
-<p>}</p>
-<p>[/code]</p>
 ]]></content>
     </entry>
     
@@ -2448,6 +2096,31 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Sublime下ReactNative开发环境]]></title>
+      <url>http://febsky.me/2015/08/25/2016-08-25-Sublime%E4%B8%8BReactNative%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+      <content type="html"><![CDATA[<h2 id="主要用到以下四个插件："><a href="#主要用到以下四个插件：" class="headerlink" title="主要用到以下四个插件："></a>主要用到以下四个插件：</h2><p>以下四个插件都用Package Control安装,安装后</p>
+<ul>
+<li><a href="https://packagecontrol.io/packages/Babel" target="_blank" rel="external">babel</a> </li>
+<li><a href="https://github.com/jdc0589/JsFormat" target="_blank" rel="external">JsFormat</a> jsformat 是 sublime 上 js 格式化比较好用的插件之一，通过修改它的e4x 属性可以使它支持 jsx。 </li>
+<li><a href="https://github.com/Shrugs/react-native-snippets" target="_blank" rel="external">react-native-snippets</a> 在代码编辑器中输入代码片段的缩写,就能生成完整代码</li>
+<li><a href="https://packagecontrol.io/packages/SublimeLinter-jsxhint" target="_blank" rel="external">sublimeLinter-jsxhint</a>  JSX 代码审查，实时提示语法错误, 帮助快速定位错误点.</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ol>
+<li><p>babel 使用配置：</p>
+<ul>
+<li>打开<code>.js</code>, <code>.jsx</code> 后缀的文件;</li>
+<li>打开菜单view， <code>Syntax -&gt; Open all with current extension as... -&gt; Babel -&gt; JavaScript (Babel)</code>，选择babel为默认 javascript 打开syntax</li>
+</ul>
+</li>
+<li><p>JsFormat 配置</p>
+<p>打开<code>preferences -&gt; Package Settings -&gt; JsFormat -&gt; Setting - Users</code>,输入以下代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  //支持 jsx 类型文件</div><div class="line">  "e4x": true,</div><div class="line">  // 保存时自动格式化</div><div class="line">  "format_on_save": true,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[MAC 上的软件常用]]></title>
       <url>http://febsky.me/2015/08/13/2015-08-13-MAC%20%E4%B8%8A%E7%9A%84%E8%BD%AF%E4%BB%B6/</url>
       <content type="html"><![CDATA[<h2 id="1-解压"><a href="#1-解压" class="headerlink" title="1. 解压"></a>1. 解压</h2><p> <a href="https://itunes.apple.com/app/the-unarchiver/id425424353" target="_blank" rel="external">The Unarchiver</a></p>
@@ -2833,6 +2506,16 @@
     
     <entry>
       <title><![CDATA[查看Python安装位置]]></title>
+      <url>http://febsky.me/2015/01/27/2015-02-25-%E6%9F%A5%E7%9C%8BPython%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<p>有时我们需要查看python的安装位置，好安装第三方库</p>
+<p>打开命令行，我们能输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[node@dev3 ~]$ python </div><div class="line"></div><div class="line">Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) </div><div class="line"></div><div class="line">[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2</div><div class="line"></div><div class="line">Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt; import sys</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt; sys.path</div><div class="line"></div><div class="line">[&apos;&apos;, &apos;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&apos;, &apos;/usr/lib64/python26.zip&apos;, &apos;/usr/lib64/python2.6&apos;, &apos;/usr/lib64/python2.6/plat-linux2&apos;, &apos;/usr/lib64/python2.6/lib-tk&apos;, &apos;/usr/lib64/python2.6/lib-old&apos;, &apos;/usr/lib64/python2.6/lib-dynload&apos;, &apos;/usr/lib64/python2.6/site-packages&apos;, &apos;/usr/lib64/python2.6/site-packages/gtk-2.0&apos;, &apos;/usr/lib/python2.6/site-packages&apos;, &apos;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&apos;]</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt;</div></pre></td></tr></table></figure>
+<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[查看Python安装位置]]></title>
       <url>http://febsky.me/2015/01/27/2015-02-25-Python%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E5%8F%98%E9%87%8F/</url>
       <content type="html"><![CDATA[<h2>函数（方法）</h2>
 
@@ -2861,12 +2544,329 @@ print(dir(sys))
     </entry>
     
     <entry>
-      <title><![CDATA[查看Python安装位置]]></title>
-      <url>http://febsky.me/2015/01/27/2015-02-25-%E6%9F%A5%E7%9C%8BPython%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<p>有时我们需要查看python的安装位置，好安装第三方库</p>
-<p>打开命令行，我们能输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[node@dev3 ~]$ python </div><div class="line"></div><div class="line">Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) </div><div class="line"></div><div class="line">[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2</div><div class="line"></div><div class="line">Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt; import sys</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt; sys.path</div><div class="line"></div><div class="line">[&apos;&apos;, &apos;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&apos;, &apos;/usr/lib64/python26.zip&apos;, &apos;/usr/lib64/python2.6&apos;, &apos;/usr/lib64/python2.6/plat-linux2&apos;, &apos;/usr/lib64/python2.6/lib-tk&apos;, &apos;/usr/lib64/python2.6/lib-old&apos;, &apos;/usr/lib64/python2.6/lib-dynload&apos;, &apos;/usr/lib64/python2.6/site-packages&apos;, &apos;/usr/lib64/python2.6/site-packages/gtk-2.0&apos;, &apos;/usr/lib/python2.6/site-packages&apos;, &apos;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&apos;]</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt;</div></pre></td></tr></table></figure>
-<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
+      <title><![CDATA[Sublime Text 的配置文件]]></title>
+      <url>http://febsky.me/2015/01/25/2015-01-25-Sublime%20Text%20%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</url>
+      <content type="html"><![CDATA[<p>Sublime 是个很好用的文本编辑器，可以安装后拷贝的U盘或者网盘中在任意的地方使用。但是安装的时候一定要注意配置文件 的存放位置</p>
+<p>默认是不和安装文件放在一块的。</p>
+<p>安装完sublime text2，在第一次运行的时候，sublime text2 会在%appdata%目录下生成一个Sublime Text 2的文件夹，用于存放配置文件，</p>
+<p>以及后面安装的各种插件(所以第一次打开sublime text2时会比较慢)</p>
+<p>要做的第一件事情就是把这个文件移动安装目录，便于设置完后打包。</p>
+<p>第一步：安装完sublime text2后，不要直接运行。</p>
+<pre><code>找到sublime text2的安装目录，并在该目录下新建 Data 文件夹(注意大小写)。如果已经运行了，请先在地址栏输入 %appdata%  然后删除
+
+该目录下的sublime text2文件夹。完成这一步之后再打开sublime text2所有的配置文件都会被生成在Data文件夹中了。
+</code></pre><p>第二步：安装你需要的插件</p>
+<pre><code>这就没什么好说的了，还是默认的安装方式。安装后的插件可以在sublime text2安装目录下的 Data/Packages下找到。
+</code></pre><p>第三步：打包sublime text2文件夹</p>
+<pre><code>打包的文件就可以在其他电脑上直接使用了。
+</code></pre><h2 id="PS-下面是网友分享的配置文件的具体含义"><a href="#PS-下面是网友分享的配置文件的具体含义" class="headerlink" title="PS.下面是网友分享的配置文件的具体含义"></a>PS.下面是网友分享的配置文件的具体含义</h2><p>Preferences.sublime-settings文件：</p>
+<p>[code lang=”java”]</p>
+<p>// While you can edit this file, it’s best to put your changes in</p>
+<p>// “User/Preferences.sublime-settings”, which overrides the settings in here.</p>
+<p>//</p>
+<p>// Settings may also be placed in file type specific options files, for</p>
+<p>// example, in Packages/Python/Python.sublime-settings for python files.</p>
+<p>{</p>
+<p>// Sets the colors used within the text area</p>
+<p>// 主题文件的路径</p>
+<p>“color_scheme”: “Packages/Color Scheme – Default/Monokai.tmTheme”,</p>
+<p>// Note that the font_face and font_size are overriden in the platform</p>
+<p>// specific settings file, for example, “Preferences (Linux).sublime-settings”.</p>
+<p>// Because of this, setting them here will have no effect: you must set them</p>
+<p>// in your User File Preferences.</p>
+<p>// 设置字体和大小，必须在Settings-User里重写，这里设置没有任何效果</p>
+<p>“font_face”: “Consolas”,</p>
+<p>“font_size”: 12,</p>
+<p>// Valid options are “no_bold”, “no_italic”, “no_antialias”, “gray_antialias”,</p>
+<p>// “subpixel_antialias” and “no_round” (OS X only)</p>
+<p>// 字体选项：no_bold不显示粗体字，no_italic不显示斜体字，no_antialias和no_antialias关闭反锯齿</p>
+<p>// subpixel_antialias和no_round是OS X系统独有的</p>
+<p>“font_options”: [],</p>
+<p>// Characters that are considered to separate words</p>
+<p>// 在文字上双击会全选当前的内容，如果里面出现以下字符，就会被截断</p>
+<p>“word_separators”: “./\()\”‘-:,.;&lt;&gt;~!@#$%^&amp;*|+=[]{}`~?”,</p>
+<p>// Set to false to prevent line numbers being drawn in the gutter</p>
+<p>// 是否显示行号</p>
+<p>“line_numbers”: true,</p>
+<p>// Set to false to hide the gutter altogether</p>
+<p>// 是否显示行号边栏</p>
+<p>“gutter”: true,</p>
+<p>// Spacing between the gutter and the text</p>
+<p>// 行号边栏和文字的间距</p>
+<p>“margin”: 4,</p>
+<p>// Fold buttons are the triangles shown in the gutter to fold regions of text</p>
+<p>// 是否显示代码折叠按钮</p>
+<p>“fold_buttons”: true,</p>
+<p>// Hides the fold buttons unless the mouse is over the gutter</p>
+<p>// 不管鼠标在不在行号边栏，代码折叠按钮一直显示</p>
+<p>“fade_fold_buttons”: true,</p>
+<p>// Columns in which to display vertical rulers</p>
+<p>//列显示垂直标尺，在中括号里填入数字，宽度按字符计算</p>
+<p>“rulers”: [],</p>
+<p>// Set to true to turn spell checking on by default</p>
+<p>// 是否打开拼写检查</p>
+<p>“spell_check”: false,</p>
+<p>// The number of spaces a tab is considered equal to</p>
+<p>// Tab键制表符宽度</p>
+<p>“tab_size”: 4,</p>
+<p>// Set to true to insert spaces when tab is pressed</p>
+<p>// 设为true时，缩进和遇到Tab键时使用空格替代</p>
+<p>“translate_tabs_to_spaces”: false,</p>
+<p>// If translate_tabs_to_spaces is true, use_tab_stops will make tab and</p>
+<p>// backspace insert/delete up to the next tabstop</p>
+<p>// translate_tabs_to_spaces设置为true，Tab和Backspace的删除/插入作用于制表符宽度</p>
+<p>// 否则作用于单个空格</p>
+<p>“use_tab_stops”: true,</p>
+<p>// Set to false to disable detection of tabs vs. spaces on load</p>
+<p>// false时禁止在载入的时候检测制表符和空格</p>
+<p>“detect_indentation”: true,</p>
+<p>// Calculates indentation automatically when pressing enter</p>
+<p>// 按回车时，自动与制表位对齐</p>
+<p>“auto_indent”: true,</p>
+<p>// Makes auto indent a little smarter, e.g., by indenting the next line</p>
+<p>// after an if statement in C. Requires auto_indent to be enabled.</p>
+<p>//针对C语言的</p>
+<p>“smart_indent”: false,</p>
+<p>// Adds whitespace up to the first open bracket when indenting. Requires</p>
+<p>// auto_indent to be enabled.</p>
+<p>// 需要启用auto_indent，第一次打开括号缩进时插入空格？（没测试出来效果…）</p>
+<p>“indent_to_bracket”: true,</p>
+<p>// Trims white space added by auto_indent when moving the caret off the</p>
+<p>// line.</p>
+<p>// 显示对齐的白线是否根据回车、tab等操作自动填补</p>
+<p>“trim_automatic_white_space”: true,</p>
+<p>// Disables horizontal scrolling if enabled.</p>
+<p>// May be set to true, false, or “auto”, where it will be disabled for</p>
+<p>// source code, and otherwise enabled.</p>
+<p>// 是否自动换行，如果选auto，需要加双引号</p>
+<p>“word_wrap”: false,</p>
+<p>// Set to a value other than 0 to force wrapping at that column rather than the</p>
+<p>// window width</p>
+<p>// 设置窗口内文字区域的宽度</p>
+<p>“wrap_width”: 0,</p>
+<p>// Set to false to prevent word wrapped lines from being indented to the same</p>
+<p>// level</p>
+<p>// 防止被缩进到同一级的字换行</p>
+<p>“indent_subsequent_lines”: true,</p>
+<p>// Draws text centered in the window rather than left aligned</p>
+<p>// 如果没有定义过，则文件居中显示（比如新建的文件）</p>
+<p>“draw_centered”: false,</p>
+<p>// Controls auto pairing of quotes, brackets etc</p>
+<p>// 自动匹配引号，括号等</p>
+<p>“auto_match_enabled”: true,</p>
+<p>// Word list to use for spell checking</p>
+<p>// 拼写检查的单词列表路径</p>
+<p>“dictionary”: “Packages/Language – English/en_US.dic”,</p>
+<p>// Set to true to draw a border around the visible rectangle on the minimap.</p>
+<p>// The color of the border will be determined by the “minimapBorder” key in</p>
+<p>// the color scheme</p>
+<p>// 代码地图的可视区域部分是否加上边框，边框的颜色可在配色方案上加入minimapBorder键</p>
+<p>“draw_minimap_border”: false,</p>
+<p>// If enabled, will highlight any line with a caret</p>
+<p>// 突出显示当前光标所在的行</p>
+<p>“highlight_line”: false,</p>
+<p>// Valid values are “smooth”, “phase”, “blink”, “wide” and “solid”.</p>
+<p>// 设置光标闪动方式</p>
+<p>“caret_style”: “smooth”,</p>
+<p>// Set to false to disable underlining the brackets surrounding the caret</p>
+<p>// 是否特殊显示当前光标所在的括号、代码头尾闭合标记</p>
+<p>“match_brackets”: true,</p>
+<p>// Set to false if you’d rather only highlight the brackets when the caret is</p>
+<p>// next to one</p>
+<p>// 设为false时，只有光标在括号或头尾闭合标记的两端时，match_brackets才生效</p>
+<p>“match_brackets_content”: true,</p>
+<p>// Set to false to not highlight square brackets. This only takes effect if</p>
+<p>// match_brackets is true</p>
+<p>// 是否突出显示圆括号，match_brackets为true生效</p>
+<p>“match_brackets_square”: false,</p>
+<p>// Set to false to not highlight curly brackets. This only takes effect if</p>
+<p>// match_brackets is true</p>
+<p>// 是否突出显示大括号，match_brackets为true生效</p>
+<p>“match_brackets_braces”: false,</p>
+<p>// Set to false to not highlight angle brackets. This only takes effect if</p>
+<p>// match_brackets is true</p>
+<p>// 是否突出显示尖括号，match_brackets为true生效</p>
+<p>“match_brackets_angle”: false,</p>
+<p>// Enable visualization of the matching tag in HTML and XML</p>
+<p>// html和xml下突出显示光标所在标签的两端，影响HTML、XML、CSS等</p>
+<p>“match_tags”: true,</p>
+<p>// Highlights other occurrences of the currently selected text</p>
+<p>// 全文突出显示和当前选中字符相同的字符</p>
+<p>“match_selection”: true,</p>
+<p>// Additional spacing at the top of each line, in pixels</p>
+<p>// 设置每一行到顶部，以像素为单位的间距，效果相当于行距</p>
+<p>“line_padding_top”: 1,</p>
+<p>// Additional spacing at the bottom of each line, in pixels</p>
+<p>// 设置每一行到底部，以像素为单位的间距，效果相当于行距</p>
+<p>“line_padding_bottom”: 1,</p>
+<p>// Set to false to disable scrolling past the end of the buffer.</p>
+<p>// On OS X, this value is overridden in the platform specific settings, so</p>
+<p>// you’ll need to place this line in your user settings to override it.</p>
+<p>// 设置为false时，滚动到文本的最下方时，没有缓冲区</p>
+<p>“scroll_past_end”: true,</p>
+<p>// This controls what happens when pressing up or down when on the first</p>
+<p>// or last line.</p>
+<p>// On OS X, this value is overridden in the platform specific settings, so</p>
+<p>// you’ll need to place this line in your user settings to override it.</p>
+<p>// 控制向上或向下到第一行或最后一行时发生什么（没明白也没试出来）</p>
+<p>“move_to_limit_on_up_down”: false,</p>
+<p>// Set to “none” to turn off drawing white space, “selection” to draw only the</p>
+<p>// white space within the selection, and “all” to draw all white space</p>
+<p>// 按space或tab时，实际会产生白色的点（一个空格一个点）或白色的横线（tab_size设置的制表符的宽度），选中状态下才能看到</p>
+<p>// 设置为none时，什么情况下都不显示这些点和线</p>
+<p>// 设置为selection时，只显示选中状态下的点和线</p>
+<p>// 设置为all时，则一直显示</p>
+<p>“draw_white_space”: “selection”,</p>
+<p>// Set to false to turn off the indentation guides.</p>
+<p>// The color and width of the indent guides may be customized by editing</p>
+<p>// the corresponding .tmTheme file, and specifying the colors “guide”,</p>
+<p>// “activeGuide” and “stackGuide”</p>
+<p>// 制表位的对齐白线是否显示，颜色可在主题文件里设置（guide，activeGuide，stackGuide）</p>
+<p>“draw_indent_guides”: true,</p>
+<p>// Controls how the indent guides are drawn, valid options are</p>
+<p>// “draw_normal” and “draw_active”. draw_active will draw the indent</p>
+<p>// guides containing the caret in a different color.</p>
+<p>// 制表位的对齐白线，draw_normal为一直显示，draw_active为只显示当前光标所在的代码控制域</p>
+<p>“indent_guide_options”: [&quot;draw_normal&quot;],</p>
+<p>// Set to true to removing trailing white space on save</p>
+<p>// 为true时，保存文件时会删除每行结束后多余的空格</p>
+<p>“trim_trailing_white_space_on_save”: false,</p>
+<p>// Set to true to ensure the last line of the file ends in a newline</p>
+<p>// character when saving</p>
+<p>// 为true时，保存文件时光标会在文件的最后向下换一行</p>
+<p>“ensure_newline_at_eof_on_save”: false,</p>
+<p>// Set to true to automatically save files when switching to a different file</p>
+<p>// or application</p>
+<p>// 切换到其它文件标签或点击其它非本软件区域，文件自动保存</p>
+<p>“save_on_focus_lost”: false,</p>
+<p>// The encoding to use when the encoding can’t be determined automatically.</p>
+<p>// ASCII, UTF-8 and UTF-16 encodings will be automatically detected.</p>
+<p>// 编码时不能自动检测编码时，将自动检测ASCII, UTF-8 和 UTF-16</p>
+<p>“fallback_encoding”: “Western (Windows 1252)”,</p>
+<p>// Encoding used when saving new files, and files opened with an undefined</p>
+<p>// encoding (e.g., plain ascii files). If a file is opened with a specific</p>
+<p>// encoding (either detected or given explicitly), this setting will be</p>
+<p>// ignored, and the file will be saved with the encoding it was opened</p>
+<p>// with.</p>
+<p>// 默认编码格式</p>
+<p>“default_encoding”: “UTF-8″,</p>
+<p>// Files containing null bytes are opened as hexadecimal by default</p>
+<p>// 包含空字节的文件被打开默认为十六进制</p>
+<p>“enable_hexadecimal_encoding”: true,</p>
+<p>// Determines what character(s) are used to terminate each line in new files.</p>
+<p>// Valid values are ‘system’ (whatever the OS uses), ‘windows’ (CRLF) and</p>
+<p>// ‘unix’ (LF only).</p>
+<p>// 每一行结束的时候用什么字符做终止符</p>
+<p>“default_line_ending”: “system”,</p>
+<p>// When enabled, pressing tab will insert the best matching completion.</p>
+<p>// When disabled, tab will only trigger snippets or insert a tab.</p>
+<p>// Shift+tab can be used to insert an explicit tab when tab_completion is</p>
+<p>// enabled.</p>
+<p>// 设置为enabled时，在一个字符串间按Tab将插入一个制表符</p>
+<p>// 设置为true时，按Tab会根据前后环境进行代码自动匹配填补</p>
+<p>“tab_completion”: true,</p>
+<p>// Enable auto complete to be triggered automatically when typing.</p>
+<p>// 代码提示</p>
+<p>“auto_complete”: true,</p>
+<p>// The maximum file size where auto complete will be automatically triggered.</p>
+<p>// 代码提示的大小限制</p>
+<p>“auto_complete_size_limit”: 4194304,</p>
+<p>// The delay, in ms, before the auto complete window is shown after typing</p>
+<p>// 代码提示延迟显示</p>
+<p>“auto_complete_delay”: 50,</p>
+<p>// Controls what scopes auto complete will be triggered in</p>
+<p>// 代码提示的控制范围</p>
+<p>“auto_complete_selector”: “source – comment”,</p>
+<p>// Additional situations to trigger auto complete</p>
+<p>// 触发代码提示的其他情况</p>
+<p>“auto_complete_triggers”: [ {&quot;selector&quot;: &quot;text.html&quot;, &quot;characters&quot;: &quot;&lt;&quot;} ],</p>
+<p>// By default, auto complete will commit the current completion on enter.</p>
+<p>// This setting can be used to make it complete on tab instead.</p>
+<p>// Completing on tab is generally a superior option, as it removes</p>
+<p>// ambiguity between committing the completion and inserting a newline.</p>
+<p>// 设为false时，选择提示的代码按回车或点击可以输出出来，但选择true时不会输出而是直接换行</p>
+<p>“auto_complete_commit_on_tab”: false,</p>
+<p>// Controls if auto complete is shown when snippet fields are active.</p>
+<p>// Only relevant if auto_complete_commit_on_tab is true.</p>
+<p>// auto_complete_commit_on_tab必须为true，控制代码提示的活跃度（没明白…）</p>
+<p>“auto_complete_with_fields”: false,</p>
+<p>// By default, shift+tab will only unindent if the selection spans</p>
+<p>// multiple lines. When pressing shift+tab at other times, it’ll insert a</p>
+<p>// tab character – this allows tabs to be inserted when tab_completion is</p>
+<p>// enabled. Set this to true to make shift+tab always unindent, instead of</p>
+<p>// inserting tabs.</p>
+<p>// 设置为false，使用Shift + tab总是插入制表符</p>
+<p>“shift_tab_unindent”: true,</p>
+<p>// If true, the selected text will be copied into the find panel when it’s</p>
+<p>// shown.</p>
+<p>// On OS X, this value is overridden in the platform specific settings, so</p>
+<p>// you’ll need to place this line in your user settings to override it.</p>
+<p>// 选中的文本按Ctrl + f时，自动复制到查找面板的文本框里</p>
+<p>“find_selected_text”: true,</p>
+<p>//</p>
+<p>// User Interface Settings</p>
+<p>//</p>
+<p>// The theme controls the look of Sublime Text’s UI (buttons, tabs, scroll bars, etc)</p>
+<p>// Data\Packages\Theme – Default\Default.sublime-theme控制软件的主题</p>
+<p>“theme”: “Default.sublime-theme”,</p>
+<p>// Set to 0 to disable smooth scrolling. Set to a value between 0 and 1 to</p>
+<p>// scroll slower, or set to larger than 1 to scroll faster</p>
+<p>// 滚动的速度</p>
+<p>“scroll_speed”: 1.0,</p>
+<p>// Controls side bar animation when expanding or collapsing folders</p>
+<p>// 左边边栏文件夹动画</p>
+<p>“tree_animation_enabled”: true,</p>
+<p>// 标签页的关闭按钮</p>
+<p>“show_tab_close_buttons”: true,</p>
+<p>// OS X 10.7 only: Set to true to disable Lion style full screen support.</p>
+<p>// Sublime Text must be restarted for this to take effect.</p>
+<p>// 针对OS X</p>
+<p>“use_simple_full_screen”: false,</p>
+<p>// Valid values are “system”, “enabled” and “disabled”</p>
+<p>// 水平垂直滚动条：system和disabled为默认显示方式，enabled为自动隐藏显示</p>
+<p>“overlay_scroll_bars”: “system”,</p>
+<p>//</p>
+<p>// Application Behavior Settings</p>
+<p>//</p>
+<p>// Exiting the application with hot_exit enabled will cause it to close</p>
+<p>// immediately without prompting. Unsaved modifications and open files will</p>
+<p>// be preserved and restored when next starting.</p>
+<p>//</p>
+<p>// Closing a window with an associated project will also close the window</p>
+<p>// without prompting, preserving unsaved changes in the workspace file</p>
+<p>// alongside the project.</p>
+<p>// 热推出功能！退出时不会提示是否保存文件，而是直接退出</p>
+<p>// 下次打开软件时，文件保持退出前的状态，没来得及保存的内容都在，但并没有真实的写在原文件里</p>
+<p>“hot_exit”: true,</p>
+<p>// remember_open_files makes the application start up with the last set of</p>
+<p>// open files. Changing this to false will have no effect if hot_exit is</p>
+<p>// true</p>
+<p>// 软件使用最后的设定打开文件，hot_exit为true时没有效果</p>
+<p>“remember_open_files”: true,</p>
+<p>// OS X only: When files are opened from finder, or by dragging onto the</p>
+<p>// dock icon, this controls if a new window is created or not.</p>
+<p>// 针对OS X</p>
+<p>“open_files_in_new_window”: true,</p>
+<p>// Set to true to close windows as soon as the last file is closed, unless</p>
+<p>// there’s a folder open within the window. This is always enabled on OS X,</p>
+<p>// changing it here won’t modify the behavior.</p>
+<p>// 针对OS X</p>
+<p>“close_windows_when_empty”: true,</p>
+<p>// 哪些文件会被显示到边栏上</p>
+<p>// folder_exclude_patterns and file_exclude_patterns control which files</p>
+<p>// are listed in folders on the side bar. These can also be set on a per-</p>
+<p>// project basis.</p>
+<p>“folder_exclude_patterns”: [&quot;.svn&quot;, &quot;.git&quot;, &quot;.hg&quot;, &quot;CVS&quot;],</p>
+<p>“file_exclude_patterns”: [&quot;<em>.pyc&quot;, &quot;</em>.pyo&quot;, &quot;<em>.exe&quot;, &quot;</em>.dll&quot;, &quot;<em>.obj&quot;,&quot;</em>.o&quot;, &quot;<em>.a&quot;, &quot;</em>.lib&quot;, &quot;<em>.so&quot;, &quot;</em>.dylib&quot;, &quot;<em>.ncb&quot;, &quot;</em>.sdf&quot;, &quot;<em>.suo&quot;, &quot;</em>.pdb&quot;, &quot;<em>.idb&quot;, &quot;.DS_Store&quot;, &quot;</em>.class&quot;, &quot;<em>.psd&quot;, &quot;</em>.db&quot;],</p>
+<p>// These files will still show up in the side bar, but won’t be included in</p>
+<p>// Goto Anything or Find in Files</p>
+<p>“binary_file_patterns”: [&quot;<em>.jpg&quot;, &quot;</em>.jpeg&quot;, &quot;<em>.png&quot;, &quot;</em>.gif&quot;, &quot;<em>.ttf&quot;, &quot;</em>.tga&quot;, &quot;<em>.dds&quot;, &quot;</em>.ico&quot;, &quot;<em>.eot&quot;, &quot;</em>.pdf&quot;, &quot;<em>.swf&quot;, &quot;</em>.jar&quot;, &quot;*.zip&quot;],</p>
+<p>// List any packages to ignore here. When removing entries from this list,</p>
+<p>// a restart may be required if the package contains plugins.</p>
+<p>// 删除你想要忽略的插件，需要重启</p>
+<p>“ignored_packages”: [&quot;Vintage&quot;]</p>
+<p>}</p>
+<p>[/code]</p>
 ]]></content>
     </entry>
     
@@ -2919,20 +2919,6 @@ print(dir(sys))
     
     <entry>
       <title><![CDATA[Postgres 序列操作]]></title>
-      <url>http://febsky.me/2015/01/04/2014-12-11-Postgres%20%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C/</url>
-      <content type="html"><![CDATA[<p>在用到postgres的时候我们用到这么一个功能：</p>
-<ol>
-<li>需要一个自增的主键，在postgres中，要增加一列来充当自增主键的话，必须增加一个序列，</li>
-</ol>
-<p>即使用serial8类型能指定自增，我们也知道系统会默认为我们的这张表添加一个自增序列保存。</p>
-<ol>
-<li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">可用的序列函数有∶</div><div class="line"></div><div class="line">nextval</div><div class="line"></div><div class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </div><div class="line"></div><div class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</div><div class="line"></div><div class="line">currval</div><div class="line"></div><div class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </div><div class="line"></div><div class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</div><div class="line"></div><div class="line">lastval</div><div class="line"></div><div class="line">返回当前会话里最近一次 nextval 返回的数值。 </div><div class="line"></div><div class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </div><div class="line"></div><div class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</div><div class="line"></div><div class="line">setval</div><div class="line"></div><div class="line">重置序列对象的计数器数值。</div><div class="line"></div><div class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 true，</div><div class="line"></div><div class="line">表示下一次 nextval 将在返回数值之前递增该序列。</div><div class="line"></div><div class="line">在三参数形式里，is_called 可以设置为 true 或 false。</div><div class="line"></div><div class="line">如果你把它设置为 false，那么下一次 nextval 将返回这里声明的数值，</div><div class="line"></div><div class="line">而从随后的 nextval 才开始递增该序列。</div><div class="line"></div><div class="line">比如</div><div class="line"></div><div class="line">SELECT setval(&apos;序列名字&apos;, 42);    //下次nextval将返回 43</div><div class="line"></div><div class="line">SELECT setval(&apos;序列名字&apos;, 42, true);     //和上面一样</div><div class="line"></div><div class="line">SELECT setval(&apos;序列名字&apos;, 42, false);    //下次nextval将返回 42</div><div class="line"></div><div class="line">setval 返回的结果就是它的第二个参数的数值。</div></pre></td></tr></table></figure>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Postgres 序列操作]]></title>
       <url>http://febsky.me/2015/01/04/2015-01-04-Postgres%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C/</url>
       <content type="html"><![CDATA[<p>在用到postgres的时候我们用到这么一个功能：</p>
 <ol>
@@ -2943,6 +2929,20 @@ print(dir(sys))
 <li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">可用的序列函数有∶</div><div class="line"></div><div class="line">nextval</div><div class="line"></div><div class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </div><div class="line"></div><div class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</div><div class="line"></div><div class="line">currval</div><div class="line"></div><div class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </div><div class="line"></div><div class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</div><div class="line"></div><div class="line">lastval</div><div class="line"></div><div class="line">返回当前会话里最近一次 nextval 返回的数值。 </div><div class="line"></div><div class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </div><div class="line"></div><div class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</div><div class="line"></div><div class="line">setval</div><div class="line"></div><div class="line">重置序列对象的计数器数值。</div><div class="line"></div><div class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 <span class="keyword">true</span>，</div><div class="line"></div><div class="line">表示下一次 nextval 将在返回数值之前递增该序列。</div><div class="line"></div><div class="line">在三参数形式里，is_called 可以设置为 <span class="keyword">true</span> 或 <span class="keyword">false</span>。</div><div class="line"></div><div class="line">如果你把它设置为 <span class="keyword">false</span>，那么下一次 nextval 将返回这里声明的数值，</div><div class="line"></div><div class="line">而从随后的 nextval 才开始递增该序列。</div><div class="line"></div><div class="line">比如</div><div class="line"></div><div class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>)</span></span>;    <span class="comment">//下次nextval将返回 43</span></div><div class="line"></div><div class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">true</span>)</span></span>;     <span class="comment">//和上面一样</span></div><div class="line"></div><div class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">false</span>)</span></span>;    <span class="comment">//下次nextval将返回 42</span></div><div class="line"></div><div class="line">setval 返回的结果就是它的第二个参数的数值。</div></pre></td></tr></table></figure>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Postgres 序列操作]]></title>
+      <url>http://febsky.me/2015/01/04/2014-12-11-Postgres%20%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C/</url>
+      <content type="html"><![CDATA[<p>在用到postgres的时候我们用到这么一个功能：</p>
+<ol>
+<li>需要一个自增的主键，在postgres中，要增加一列来充当自增主键的话，必须增加一个序列，</li>
+</ol>
+<p>即使用serial8类型能指定自增，我们也知道系统会默认为我们的这张表添加一个自增序列保存。</p>
+<ol>
+<li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">可用的序列函数有∶</div><div class="line"></div><div class="line">nextval</div><div class="line"></div><div class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </div><div class="line"></div><div class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</div><div class="line"></div><div class="line">currval</div><div class="line"></div><div class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </div><div class="line"></div><div class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</div><div class="line"></div><div class="line">lastval</div><div class="line"></div><div class="line">返回当前会话里最近一次 nextval 返回的数值。 </div><div class="line"></div><div class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </div><div class="line"></div><div class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</div><div class="line"></div><div class="line">setval</div><div class="line"></div><div class="line">重置序列对象的计数器数值。</div><div class="line"></div><div class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 true，</div><div class="line"></div><div class="line">表示下一次 nextval 将在返回数值之前递增该序列。</div><div class="line"></div><div class="line">在三参数形式里，is_called 可以设置为 true 或 false。</div><div class="line"></div><div class="line">如果你把它设置为 false，那么下一次 nextval 将返回这里声明的数值，</div><div class="line"></div><div class="line">而从随后的 nextval 才开始递增该序列。</div><div class="line"></div><div class="line">比如</div><div class="line"></div><div class="line">SELECT setval(&apos;序列名字&apos;, 42);    //下次nextval将返回 43</div><div class="line"></div><div class="line">SELECT setval(&apos;序列名字&apos;, 42, true);     //和上面一样</div><div class="line"></div><div class="line">SELECT setval(&apos;序列名字&apos;, 42, false);    //下次nextval将返回 42</div><div class="line"></div><div class="line">setval 返回的结果就是它的第二个参数的数值。</div></pre></td></tr></table></figure>]]></content>
     </entry>
     
     <entry>
