@@ -336,7 +336,7 @@
     <link href="http://febsky.me/2016/07/26/2016-07-26-Sublime3Mac%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://febsky.me/2016/07/26/2016-07-26-Sublime3Mac下的使用/</id>
     <published>2016-07-26T01:53:35.000Z</published>
-    <updated>2016-08-12T08:40:41.000Z</updated>
+    <updated>2016-08-26T06:29:51.000Z</updated>
     
     <content type="html">&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;快捷键&lt;/p&gt;
@@ -357,6 +357,20 @@
 &lt;li&gt;Nodejs &lt;a href=&quot;https://github.com/tanepiper/SublimeText-Nodejs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/tanepiper/SublimeText-Nodejs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;常用快捷键&lt;/p&gt;
+&lt;p&gt;在Ctrl + P(Command+P)匹配到文件后，我们可以进行后续输入以跳转到更精确的位置：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;@&lt;/code&gt;符号跳转：输入@symbol跳转到symbol符号所在的位置&lt;br&gt;&lt;code&gt;#&lt;/code&gt;关键字跳转：输入#keyword跳转到keyword所在的位置&lt;br&gt;&lt;code&gt;:&lt;/code&gt;行号跳转：输入:12跳转到文件的第12行。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;打开控制台&lt;/p&gt;
+&lt;p&gt;使用Ctrl + `打开Sublime Text控制台。&lt;/p&gt;
+&lt;p&gt;comand + Shift + P打开命令板&lt;/p&gt;
+&lt;p&gt;alt 左右 光标跳到下一个或上一个单词+&lt;/p&gt;
+&lt;p&gt;command P 快速的切换文件+&lt;/p&gt;
+&lt;p&gt;commans shift f 目录查找，可以全局搜索也可以针对目录搜索&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;一个主题&lt;br&gt;&lt;a href=&quot;https://github.com/equinusocio/material-theme&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/equinusocio/material-theme&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/63760-2f3caba67950765c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/12404703a2f2f692e696d6775722e636f6d2f395079784a4d4e2e676966&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 </content>
     
@@ -375,9 +389,9 @@
     
       <category term="工具" scheme="http://febsky.me/tags/%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="Mac" scheme="http://febsky.me/tags/Mac/"/>
-    
       <category term="Sublime" scheme="http://febsky.me/tags/Sublime/"/>
+    
+      <category term="Mac" scheme="http://febsky.me/tags/Mac/"/>
     
   </entry>
   

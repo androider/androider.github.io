@@ -211,6 +211,20 @@
 <li>Nodejs <a href="https://github.com/tanepiper/SublimeText-Nodejs" target="_blank" rel="external">https://github.com/tanepiper/SublimeText-Nodejs</a></li>
 </ul>
 </li>
+<li><p>常用快捷键</p>
+<p>在Ctrl + P(Command+P)匹配到文件后，我们可以进行后续输入以跳转到更精确的位置：</p>
+<p><code>@</code>符号跳转：输入@symbol跳转到symbol符号所在的位置<br><code>#</code>关键字跳转：输入#keyword跳转到keyword所在的位置<br><code>:</code>行号跳转：输入:12跳转到文件的第12行。  </p>
+</li>
+<li><p>打开控制台</p>
+<p>使用Ctrl + `打开Sublime Text控制台。</p>
+<p>comand + Shift + P打开命令板</p>
+<p>alt 左右 光标跳到下一个或上一个单词+</p>
+<p>command P 快速的切换文件+</p>
+<p>commans shift f 目录查找，可以全局搜索也可以针对目录搜索</p>
+</li>
+<li><p>一个主题<br><a href="https://github.com/equinusocio/material-theme" target="_blank" rel="external">https://github.com/equinusocio/material-theme</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/63760-2f3caba67950765c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/12404703a2f2f692e696d6775722e636f6d2f395079784a4d4e2e676966" alt="效果图"></p>
+</li>
 </ol>
 ]]></content>
     </entry>
@@ -606,6 +620,7 @@
 <li>删除文件： Command + Delete</li>
 <li>快速预览文件： 选中按空格</li>
 <li>锁屏： Shift + Contro + 电源键</li>
+<li>Chrome 打开控制台<code>option+cammod+i</code></li>
 </ul>
 <p><strong>【参考文献】</strong></p>
 <p><a href="https://support.apple.com/zh-cn/HT201236" target="_blank" rel="external">官网-Mac 键盘快捷键</a></p>
@@ -681,16 +696,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Android 中实现倒计时]]></title>
-      <url>http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
-      <content type="html"><![CDATA[<h1 id="Android-中实现倒计时控件的方法有哪些"><a href="#Android-中实现倒计时控件的方法有哪些" class="headerlink" title="Android 中实现倒计时控件的方法有哪些"></a>Android 中实现倒计时控件的方法有哪些</h1><p>今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~</p>
-<a id="more"></a>
-<h2 id="第一种CountDownTimer"><a href="#第一种CountDownTimer" class="headerlink" title="第一种CountDownTimer"></a>第一种CountDownTimer</h2><p>位于<code>android.os.CountDownTimer</code>这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> CountDownTimer(<span class="number">30000</span>, <span class="number">1000</span>) &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTick</span><span class="params">(<span class="keyword">long</span> millisUntilFinished)</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"seconds remaining: "</span> + millisUntilFinished / <span class="number">1000</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinish</span><span class="params">()</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"done!"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div></pre></td></tr></table></figure>
-<h2 id="第二种-Timer与TimerTask-runOnUiThread-runnable-方法"><a href="#第二种-Timer与TimerTask-runOnUiThread-runnable-方法" class="headerlink" title="第二种 Timer与TimerTask + runOnUiThread(runnable)方法"></a>第二种 Timer与TimerTask + runOnUiThread(runnable)方法</h2><h2 id="第三种Handler与Message（不用TimerTask）"><a href="#第三种Handler与Message（不用TimerTask）" class="headerlink" title="第三种Handler与Message（不用TimerTask）"></a>第三种Handler与Message（不用TimerTask）</h2><h2 id="第四种Handler与Runnable（最简单型）"><a href="#第四种Handler与Runnable（最简单型）" class="headerlink" title="第四种Handler与Runnable（最简单型）"></a>第四种Handler与Runnable（最简单型）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> recLen = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">private</span> TextView txtView;  </div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line"> </div><div class="line">        setContentView(R.layout.timertask);  </div><div class="line">        txtView = (TextView)findViewById(R.id.txttime);  </div><div class="line">          </div><div class="line">        handler.postDelayed(runnable, <span class="number">1000</span>);  </div><div class="line">    &#125;     </div><div class="line"> </div><div class="line">    Handler handler = <span class="keyword">new</span> Handler();  </div><div class="line">    Runnable runnable = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            recLen++;  </div><div class="line">            txtView.setText(<span class="string">""</span> + recLen);  </div><div class="line">            handler.postDelayed(<span class="keyword">this</span>, <span class="number">1000</span>);  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Android SQLite操作]]></title>
       <url>http://febsky.me/2016/05/10/2016-05-10-Android%E6%93%8D%E4%BD%9CSQLite%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%B9%E6%B3%95/</url>
       <content type="html"><![CDATA[<h1 id="一、-SQLiteOpenHelper辅助类"><a href="#一、-SQLiteOpenHelper辅助类" class="headerlink" title="一、 SQLiteOpenHelper辅助类"></a>一、 SQLiteOpenHelper辅助类</h1><p>SQLiteOpenHelper类是一个辅助类，用于创建或打开数据库。<br>该类的使用方法一般是自定义一个子类，继承自SQLiteOpenHelper，并覆写其中最关键的两个方法：onCreate(SQLiteDatabase db)和onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)。当新建一个数据库时会调用前者，一般在里面做一些创建表或视图的操作。数据库版本升级时则会调用后者。</p>
@@ -714,6 +719,16 @@
 <p>最后记住，不管用何种方式打开了数据库，获得的SQLite对象不再使用时，都要调用close()来关闭打开的数据库，否则抛出IllegalStateException异常。</p>
 </blockquote>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android 中实现倒计时]]></title>
+      <url>http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<h1 id="Android-中实现倒计时控件的方法有哪些"><a href="#Android-中实现倒计时控件的方法有哪些" class="headerlink" title="Android 中实现倒计时控件的方法有哪些"></a>Android 中实现倒计时控件的方法有哪些</h1><p>今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~</p>
+<a id="more"></a>
+<h2 id="第一种CountDownTimer"><a href="#第一种CountDownTimer" class="headerlink" title="第一种CountDownTimer"></a>第一种CountDownTimer</h2><p>位于<code>android.os.CountDownTimer</code>这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> CountDownTimer(<span class="number">30000</span>, <span class="number">1000</span>) &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTick</span><span class="params">(<span class="keyword">long</span> millisUntilFinished)</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"seconds remaining: "</span> + millisUntilFinished / <span class="number">1000</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinish</span><span class="params">()</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"done!"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div></pre></td></tr></table></figure>
+<h2 id="第二种-Timer与TimerTask-runOnUiThread-runnable-方法"><a href="#第二种-Timer与TimerTask-runOnUiThread-runnable-方法" class="headerlink" title="第二种 Timer与TimerTask + runOnUiThread(runnable)方法"></a>第二种 Timer与TimerTask + runOnUiThread(runnable)方法</h2><h2 id="第三种Handler与Message（不用TimerTask）"><a href="#第三种Handler与Message（不用TimerTask）" class="headerlink" title="第三种Handler与Message（不用TimerTask）"></a>第三种Handler与Message（不用TimerTask）</h2><h2 id="第四种Handler与Runnable（最简单型）"><a href="#第四种Handler与Runnable（最简单型）" class="headerlink" title="第四种Handler与Runnable（最简单型）"></a>第四种Handler与Runnable（最简单型）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> recLen = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">private</span> TextView txtView;  </div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line"> </div><div class="line">        setContentView(R.layout.timertask);  </div><div class="line">        txtView = (TextView)findViewById(R.id.txttime);  </div><div class="line">          </div><div class="line">        handler.postDelayed(runnable, <span class="number">1000</span>);  </div><div class="line">    &#125;     </div><div class="line"> </div><div class="line">    Handler handler = <span class="keyword">new</span> Handler();  </div><div class="line">    Runnable runnable = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            recLen++;  </div><div class="line">            txtView.setText(<span class="string">""</span> + recLen);  </div><div class="line">            handler.postDelayed(<span class="keyword">this</span>, <span class="number">1000</span>);  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
     </entry>
     
     <entry>
@@ -777,6 +792,19 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Android 打包过程]]></title>
+      <url>http://febsky.me/2016/05/06/2016-05-06-Android%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</url>
+      <content type="html"><![CDATA[<h1 id="Android-打包过程"><a href="#Android-打包过程" class="headerlink" title="Android 打包过程"></a>Android 打包过程</h1><p>第一步：打包资源文件，生成R.java文件<br>【输入】Resource文件（就是工程中res中的文件）、Assets文件（相当于另外一种资源，这种资源Android系统并不像对res中的文件那样优化它）、AndroidManifest.xml文件（包名就是从这里读取的，因为生成R.java文件需要包名）、Android基础类库（Android.jar文件）<br>【输出】打包好的资源（一般在Android工程的bin目录可以看到一个叫resources.ap_的文件就是它了）、R.java文件（在gen目录中，大家应该很熟悉了）<br>【工具】aapt工具，它的路径在${ANDROID_SDK_HOME}/platform-tools/aapt（如果你使用的是Windows系统，按惯例路径应该这样写：%ANDROID_SDK_HOME%\platform-tools\aapt.exe，下同）。</p>
+<p>第二步：处理AIDL文件，生成对应的.java文件（当然，有很多工程没有用到AIDL，那这个过程就可以省了）<br>【输入】源码文件、aidl文件、framework.aidl文件<br>【输出】对应的.java文件<br>【工具】aidl工具</p>
+<p>第三步：编译Java文件，生成对应的.class文件<br>【输入】源码文件（包括R.java和AIDL生成的.java文件）、库文件（.jar文件）<br>【输出】.class文件<br>【工具】javac工具</p>
+<p>第四步：把.class文件转化成Davik VM支持的.dex文件<br>【输入】 .class文件（包括Aidl生成.class文件，R生成的.class文件，源文件生成的.class文件），库文件（.jar文件）<br>【输出】.dex文件<br>【工具】javac工具</p>
+<p>第五步：打包生成未签名的.apk文件<br>【输入】打包后的资源文件、打包后类文件（.dex文件）、libs文件（包括.so文件，当然很多工程都没有这样的文件，如果你不使用C/C++开发的话）<br>【输出】未签名的.apk文件<br>【工具】apkbuilder工具</p>
+<p>第六步：对未签名.apk文件进行签名<br>【输入】未签名的.apk文件<br>【输出】签名的.apk文件<br>【工具】jarsigner</p>
+<p>第七步：对签名后的.apk文件进行对齐处理（不进行对齐处理是不能发布到Google Market的）<br>【输入】签名后的.apk文件<br>【输出】对齐后的.apk文件<br>【工具】zipalign工具</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android FragmentPagerAdapter和FragmentStatePagerAdapter]]></title>
       <url>http://febsky.me/2016/05/06/2016-05-12-FragmentStatePagerAdapter%E5%92%8CFragmentPagerAdapter/</url>
       <content type="html"><![CDATA[<p>在公司查看别人的代码的时候发现个东西，在展示试题的是时候，他用的是<code>FragmentStatePagerAdapter</code>而如果是我的话，我就直接用<code>viewpager</code>+<code>PagerAdapter</code>,但是<code>FragmentStatePagerAdapter</code>是个什么鬼，我听过<code>FragmentPagerAdapter</code>可是没用过<code>FragmentStatePagerAdapter</code>啊，只怪自己学艺不精，既然人家用了就有用的道理。</p>
@@ -820,19 +848,6 @@
 <blockquote>
 <p>05-12 16:55:31.350 3043-3043/me.fesky.test I/Q_M:: onAttach2<br>05-12 16:55:31.360 3043-3043/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroyView4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroy4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDetach4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onAttach1<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroyView3<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroy3<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDetach3</p>
 </blockquote>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Android 打包过程]]></title>
-      <url>http://febsky.me/2016/05/06/2016-05-06-Android%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</url>
-      <content type="html"><![CDATA[<h1 id="Android-打包过程"><a href="#Android-打包过程" class="headerlink" title="Android 打包过程"></a>Android 打包过程</h1><p>第一步：打包资源文件，生成R.java文件<br>【输入】Resource文件（就是工程中res中的文件）、Assets文件（相当于另外一种资源，这种资源Android系统并不像对res中的文件那样优化它）、AndroidManifest.xml文件（包名就是从这里读取的，因为生成R.java文件需要包名）、Android基础类库（Android.jar文件）<br>【输出】打包好的资源（一般在Android工程的bin目录可以看到一个叫resources.ap_的文件就是它了）、R.java文件（在gen目录中，大家应该很熟悉了）<br>【工具】aapt工具，它的路径在${ANDROID_SDK_HOME}/platform-tools/aapt（如果你使用的是Windows系统，按惯例路径应该这样写：%ANDROID_SDK_HOME%\platform-tools\aapt.exe，下同）。</p>
-<p>第二步：处理AIDL文件，生成对应的.java文件（当然，有很多工程没有用到AIDL，那这个过程就可以省了）<br>【输入】源码文件、aidl文件、framework.aidl文件<br>【输出】对应的.java文件<br>【工具】aidl工具</p>
-<p>第三步：编译Java文件，生成对应的.class文件<br>【输入】源码文件（包括R.java和AIDL生成的.java文件）、库文件（.jar文件）<br>【输出】.class文件<br>【工具】javac工具</p>
-<p>第四步：把.class文件转化成Davik VM支持的.dex文件<br>【输入】 .class文件（包括Aidl生成.class文件，R生成的.class文件，源文件生成的.class文件），库文件（.jar文件）<br>【输出】.dex文件<br>【工具】javac工具</p>
-<p>第五步：打包生成未签名的.apk文件<br>【输入】打包后的资源文件、打包后类文件（.dex文件）、libs文件（包括.so文件，当然很多工程都没有这样的文件，如果你不使用C/C++开发的话）<br>【输出】未签名的.apk文件<br>【工具】apkbuilder工具</p>
-<p>第六步：对未签名.apk文件进行签名<br>【输入】未签名的.apk文件<br>【输出】签名的.apk文件<br>【工具】jarsigner</p>
-<p>第七步：对签名后的.apk文件进行对齐处理（不进行对齐处理是不能发布到Google Market的）<br>【输入】签名后的.apk文件<br>【输出】对齐后的.apk文件<br>【工具】zipalign工具</p>
 ]]></content>
     </entry>
     
@@ -2081,6 +2096,31 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Sublime下ReactNative开发环境]]></title>
+      <url>http://febsky.me/2015/08/25/2016-08-25-Sublime%E4%B8%8BReactNative%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+      <content type="html"><![CDATA[<h2 id="主要用到以下四个插件："><a href="#主要用到以下四个插件：" class="headerlink" title="主要用到以下四个插件："></a>主要用到以下四个插件：</h2><p>以下四个插件都用Package Control安装,安装后</p>
+<ul>
+<li><a href="https://packagecontrol.io/packages/Babel" target="_blank" rel="external">babel</a> </li>
+<li><a href="https://github.com/jdc0589/JsFormat" target="_blank" rel="external">JsFormat</a> jsformat 是 sublime 上 js 格式化比较好用的插件之一，通过修改它的e4x 属性可以使它支持 jsx。 </li>
+<li><a href="https://github.com/Shrugs/react-native-snippets" target="_blank" rel="external">react-native-snippets</a> 在代码编辑器中输入代码片段的缩写,就能生成完整代码</li>
+<li><a href="https://packagecontrol.io/packages/SublimeLinter-jsxhint" target="_blank" rel="external">sublimeLinter-jsxhint</a>  JSX 代码审查，实时提示语法错误, 帮助快速定位错误点.</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ol>
+<li><p>babel 使用配置：</p>
+<ul>
+<li>打开<code>.js</code>, <code>.jsx</code> 后缀的文件;</li>
+<li>打开菜单view， <code>Syntax -&gt; Open all with current extension as... -&gt; Babel -&gt; JavaScript (Babel)</code>，选择babel为默认 javascript 打开syntax</li>
+</ul>
+</li>
+<li><p>JsFormat 配置</p>
+<p>打开<code>preferences -&gt; Package Settings -&gt; JsFormat -&gt; Setting - Users</code>,输入以下代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  //支持 jsx 类型文件</div><div class="line">  "e4x": true,</div><div class="line">  // 保存时自动格式化</div><div class="line">  "format_on_save": true,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[MAC 上的软件常用]]></title>
       <url>http://febsky.me/2015/08/13/2015-08-13-MAC%20%E4%B8%8A%E7%9A%84%E8%BD%AF%E4%BB%B6/</url>
       <content type="html"><![CDATA[<h2 id="1-解压"><a href="#1-解压" class="headerlink" title="1. 解压"></a>1. 解压</h2><p> <a href="https://itunes.apple.com/app/the-unarchiver/id425424353" target="_blank" rel="external">The Unarchiver</a></p>
@@ -2466,6 +2506,16 @@
     
     <entry>
       <title><![CDATA[查看Python安装位置]]></title>
+      <url>http://febsky.me/2015/01/27/2015-02-25-%E6%9F%A5%E7%9C%8BPython%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<p>有时我们需要查看python的安装位置，好安装第三方库</p>
+<p>打开命令行，我们能输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[node@dev3 ~]$ python </div><div class="line"></div><div class="line">Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) </div><div class="line"></div><div class="line">[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2</div><div class="line"></div><div class="line">Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt; import sys</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt; sys.path</div><div class="line"></div><div class="line">[&apos;&apos;, &apos;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&apos;, &apos;/usr/lib64/python26.zip&apos;, &apos;/usr/lib64/python2.6&apos;, &apos;/usr/lib64/python2.6/plat-linux2&apos;, &apos;/usr/lib64/python2.6/lib-tk&apos;, &apos;/usr/lib64/python2.6/lib-old&apos;, &apos;/usr/lib64/python2.6/lib-dynload&apos;, &apos;/usr/lib64/python2.6/site-packages&apos;, &apos;/usr/lib64/python2.6/site-packages/gtk-2.0&apos;, &apos;/usr/lib/python2.6/site-packages&apos;, &apos;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&apos;]</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt;</div></pre></td></tr></table></figure>
+<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[查看Python安装位置]]></title>
       <url>http://febsky.me/2015/01/27/2015-02-25-Python%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E5%8F%98%E9%87%8F/</url>
       <content type="html"><![CDATA[<h2>函数（方法）</h2>
 
@@ -2490,16 +2540,6 @@ print(dir(sys))
 <p>len(s)     返回集合长度</p>
 <p>locals()     返回当前的变量列表</p>
 <p>globals()    返回一个描述当前全局符号表的字典</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[查看Python安装位置]]></title>
-      <url>http://febsky.me/2015/01/27/2015-02-25-%E6%9F%A5%E7%9C%8BPython%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<p>有时我们需要查看python的安装位置，好安装第三方库</p>
-<p>打开命令行，我们能输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[node@dev3 ~]$ python </div><div class="line"></div><div class="line">Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) </div><div class="line"></div><div class="line">[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2</div><div class="line"></div><div class="line">Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt; import sys</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt; sys.path</div><div class="line"></div><div class="line">[&apos;&apos;, &apos;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&apos;, &apos;/usr/lib64/python26.zip&apos;, &apos;/usr/lib64/python2.6&apos;, &apos;/usr/lib64/python2.6/plat-linux2&apos;, &apos;/usr/lib64/python2.6/lib-tk&apos;, &apos;/usr/lib64/python2.6/lib-old&apos;, &apos;/usr/lib64/python2.6/lib-dynload&apos;, &apos;/usr/lib64/python2.6/site-packages&apos;, &apos;/usr/lib64/python2.6/site-packages/gtk-2.0&apos;, &apos;/usr/lib/python2.6/site-packages&apos;, &apos;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&apos;]</div><div class="line"></div><div class="line">&amp;gt;&amp;gt;&amp;gt;</div></pre></td></tr></table></figure>
-<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
 ]]></content>
     </entry>
     
