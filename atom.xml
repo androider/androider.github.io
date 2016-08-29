@@ -336,49 +336,46 @@
     <link href="http://febsky.me/2016/07/26/2016-07-26-Sublime3Mac%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://febsky.me/2016/07/26/2016-07-26-Sublime3Mac下的使用/</id>
     <published>2016-07-26T01:53:35.000Z</published>
-    <updated>2016-08-26T06:46:45.000Z</updated>
+    <updated>2016-08-29T03:06:29.000Z</updated>
     
-    <content type="html">&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;快捷键&lt;/p&gt;
-&lt;p&gt;| 快捷键        | 功能         |&lt;br&gt;| :————-:|:————-:|&lt;br&gt;| ⌘ /   | 注释 |&lt;br&gt;| ⌘⌥F   | 替换 |&lt;br&gt;| ⌘T    | 前往文件 |&lt;br&gt;| ⌘KK   | 从光标处删除至行尾 |&lt;br&gt;| ⌘K⌫   | 从光标处删除至行首 |&lt;br&gt;| ⌘L    | 选择行 (重复按下将下一行加入选择) |&lt;br&gt;| ⌘D    | 选择词 (重复按下时多重选择相同的词进行多重编辑) |&lt;br&gt;| ⌘⇧F   | 在所有打开的文件中进行查找 |&lt;br&gt;| ⌘⌥1   | 拆分窗口单列 |&lt;br&gt;| ⌘⌥2   | 拆分窗口双列 |&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;1-打开命令板comand-Shift-P&quot;&gt;&lt;a href=&quot;#1-打开命令板comand-Shift-P&quot; class=&quot;headerlink&quot; title=&quot;1. 打开命令板comand + Shift + P&quot;&gt;&lt;/a&gt;1. 打开命令板&lt;code&gt;comand + Shift + P&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;这个功能超级好用，在Mac OS 系统下是上面的快捷键调出命令面板。这里面包含很多文档操作的命令和其他控制命令。比如修改当前文档语法检测类型，从普通的文本文档，改成java 或者Python。&lt;code&gt;Set Syntax:&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-PackageControl-包管理器&quot;&gt;&lt;a href=&quot;#2-PackageControl-包管理器&quot; class=&quot;headerlink&quot; title=&quot;2. PackageControl 包管理器&quot;&gt;&lt;/a&gt;2. PackageControl 包管理器&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;用途：&lt;/strong&gt;用于安装插件，当然你也可以不用，可以直接手动安装插件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;官网：&lt;/strong&gt;&lt;a href=&quot;https://packagecontrol.io/installation&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;包管理器(Sublime3)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装方式：&lt;/strong&gt; 打开控制台（&lt;code&gt;ctrl + ~&lt;/code&gt;或者 菜单栏选择 &lt;code&gt;view    -&amp;gt; show  console&lt;/code&gt;）然后输入下面代码，注意不能有回车，下面代码必须在一行中:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;import urllib.request,os; pf = &amp;#39;Package Control.sublime-package&amp;#39;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &amp;#39;wb&amp;#39;).write(urllib.request.urlopen( &amp;#39;http://sublime.wbond.net/&amp;#39; + pf.replace(&amp;#39; &amp;#39;,&amp;#39;%20&amp;#39;)).read())&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;3-卸载Sublime-3&quot;&gt;&lt;a href=&quot;#3-卸载Sublime-3&quot; class=&quot;headerlink&quot; title=&quot;3. 卸载Sublime 3&quot;&gt;&lt;/a&gt;3. 卸载Sublime 3&lt;/h2&gt;&lt;p&gt;  卸载之后再次安装的时候，会在&lt;code&gt;~/Library/Application\ Support/Sublime\ Text\ 3/&lt;/code&gt; 下存在缓存，注意要删除。&lt;/p&gt;
+&lt;h2 id=&quot;4-常用快捷功能&quot;&gt;&lt;a href=&quot;#4-常用快捷功能&quot; class=&quot;headerlink&quot; title=&quot;4. 常用快捷功能&quot;&gt;&lt;/a&gt;4. 常用快捷功能&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;在&lt;code&gt;Command+P&lt;/code&gt;匹配到文件后，我们可以进行后续输入以跳转到更精确的位置：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;@&lt;/code&gt;符号跳转：输入@symbol跳转到symbol符号所在的位置&lt;br&gt;&lt;code&gt;:&lt;/code&gt;行号跳转：输入:12跳转到文件的第12行。&lt;br&gt;&lt;code&gt;#&lt;/code&gt;关键字跳转：输入#keyword跳转到keyword所在的位置  &lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://packagecontrol.io/installation&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;包管理器(Sublime3)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;打开控制台：ctrl + ~或者菜单栏选择   view    — &amp;gt; show  console&lt;br&gt;然后输入下面代码，注意不能有回车，下面代码必须在一行中&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;import urllib.request,os; pf = &amp;apos;Package Control.sublime-package&amp;apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &amp;apos;wb&amp;apos;).write(urllib.request.urlopen( &amp;apos;http://sublime.wbond.net/&amp;apos; + pf.replace(&amp;apos; &amp;apos;,&amp;apos;%20&amp;apos;)).read())&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;li&gt;&lt;p&gt;alt 左右 光标跳到下一个或上一个单词+&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;卸载&lt;/p&gt;
-&lt;p&gt;卸载之后再次安装的时候，会在&lt;code&gt;~/Library/Application\ Support/Sublime\ Text\ 3/&lt;/code&gt; 下存在缓存，注意要删除。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;语法高亮插件&lt;/p&gt;
-&lt;ul&gt;
+&lt;li&gt;commans shift f 目录查找，可以全局搜索也可以针对目录搜索&lt;/li&gt;
+&lt;li&gt;ReindentLines 缩进功能 &lt;code&gt;command + [ 或者 command + ]&lt;/code&gt;这功能比较好，可以直接通过&lt;code&gt;command + shift + p&lt;/code&gt; 的命令面板中输入reindent lines 然后就看到这个命令了。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;auto_complete_commit_on_tab&amp;quot;: true,&lt;/code&gt;设置只有tab 键才能出发代码片段补全功能。&lt;code&gt;菜单栏 Sublime Text -&amp;gt; preference -&amp;gt; Settings-Default&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;5-用到的几个插件&quot;&gt;&lt;a href=&quot;#5-用到的几个插件&quot; class=&quot;headerlink&quot; title=&quot;5. 用到的几个插件&quot;&gt;&lt;/a&gt;5. 用到的几个插件&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Smali &lt;a href=&quot;https://github.com/ShaneWilton/sublime-smali&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/ShaneWilton/sublime-smali&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Nodejs &lt;a href=&quot;https://github.com/tanepiper/SublimeText-Nodejs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/tanepiper/SublimeText-Nodejs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sergeche/emmet-sublime&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Emmet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;一个主题 &lt;a href=&quot;https://github.com/equinusocio/material-theme&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/equinusocio/material-theme&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SyncedSideBar 打开一个文件夹中的文件的时候，左侧的目录树会自动定位到对应的文件。&lt;/li&gt;
+&lt;li&gt;AdvancedNewFile 创建文件比价方便。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/SublimeCodeIntel/SublimeCodeIntel&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SublimeCodeIntel&lt;/a&gt; 代码提示，代码跟踪&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;常用快捷键&lt;/p&gt;
-&lt;p&gt;在Ctrl + P(Command+P)匹配到文件后，我们可以进行后续输入以跳转到更精确的位置：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;@&lt;/code&gt;符号跳转：输入@symbol跳转到symbol符号所在的位置&lt;br&gt;&lt;code&gt;#&lt;/code&gt;关键字跳转：输入#keyword跳转到keyword所在的位置&lt;br&gt;&lt;code&gt;:&lt;/code&gt;行号跳转：输入:12跳转到文件的第12行。  &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;打开控制台&lt;/p&gt;
-&lt;p&gt;使用Ctrl + `打开Sublime Text控制台。&lt;/p&gt;
-&lt;p&gt;comand + Shift + P打开命令板&lt;/p&gt;
-&lt;p&gt;alt 左右 光标跳到下一个或上一个单词+&lt;/p&gt;
-&lt;p&gt;command P 快速的切换文件+&lt;/p&gt;
-&lt;p&gt;commans shift f 目录查找，可以全局搜索也可以针对目录搜索&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;一个主题&lt;br&gt;&lt;a href=&quot;https://github.com/equinusocio/material-theme&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/equinusocio/material-theme&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/63760-2f3caba67950765c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/12404703a2f2f692e696d6775722e636f6d2f395079784a4d4e2e676966&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h2 id=&quot;6-快捷键&quot;&gt;&lt;a href=&quot;#6-快捷键&quot; class=&quot;headerlink&quot; title=&quot;6. 快捷键&quot;&gt;&lt;/a&gt;6. 快捷键&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;⌘⌥F   替换&lt;/li&gt;
+&lt;li&gt;⌘L    选择行 (重复按下将下一行加入选择) &lt;/li&gt;
+&lt;li&gt;⌘D    选择词&lt;/li&gt;
+&lt;li&gt;⌘T    前往文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + -&lt;/code&gt;    回到来的光标位置&lt;/li&gt;
+&lt;li&gt;⌘⌥2  拆分窗口双列 &lt;/li&gt;
+&lt;/ul&gt;
 </content>
     
     <summary type="html">
     
-      &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;快捷键&lt;/p&gt;
-&lt;p&gt;| 快捷键        | 功能         |&lt;br&gt;| :————-:|:————-:|&lt;br&gt;| ⌘ /   | 注释 |&lt;br&gt;| ⌘⌥F   | 替换 |&lt;br&gt;| ⌘T    | 前往文件 |&lt;br&gt;| ⌘KK   
+      &lt;h2 id=&quot;1-打开命令板comand-Shift-P&quot;&gt;&lt;a href=&quot;#1-打开命令板comand-Shift-P&quot; class=&quot;headerlink&quot; title=&quot;1. 打开命令板comand + Shift + P&quot;&gt;&lt;/a&gt;1. 打开命令板&lt;code&gt;coma
     
     </summary>
     
