@@ -4,16 +4,43 @@
 
     
   <url>
-    <loc>http://febsky.me/2015/08/25/2016-08-25-Sublime%E4%B8%8BReactNative%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
-    <lastmod>2016-08-29T03:38:14.000Z</lastmod>
+    <loc>http://febsky.me/2016/05/28/2016-05-16-Android%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2016-08-31T06:13:10.000Z</lastmod>
     <data>
         <display>
-        <title>Sublime下ReactNative开发环境</title>
-        <pubTime>2015-08-25T08:12:29.000Z</pubTime>
+        <title>Android 开发中的小技巧</title>
+        <pubTime>2016-05-28T08:39:22.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://febsky.me/categories/Java/"/>
+          
+             
+              <breadCrumb title="Android" url="http://febsky.me/categories/Java/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://febsky.me/2016/07/26/2016-07-26-Sublime3_Mac%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2016-08-29T07:24:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>Sublime3 Mac下的使用</title>
+        <pubTime>2016-07-26T01:53:35.000Z</pubTime>
         
         <tag>工具</tag>
          
         <tag>Sublime</tag>
+         
+        <tag>Mac</tag>
          
          
            
@@ -29,18 +56,16 @@
 
     
   <url>
-    <loc>http://febsky.me/2016/07/26/2016-07-26-Sublime3Mac%E4%B8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2016-08-29T03:06:29.000Z</lastmod>
+    <loc>http://febsky.me/2015/08/25/2016-08-25-Sublime%E4%B8%8BReactNative%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2016-08-29T03:38:14.000Z</lastmod>
     <data>
         <display>
-        <title>Sublime3 Mac下的使用</title>
-        <pubTime>2016-07-26T01:53:35.000Z</pubTime>
+        <title>Sublime下ReactNative开发环境</title>
+        <pubTime>2015-08-25T08:12:29.000Z</pubTime>
         
         <tag>工具</tag>
          
         <tag>Sublime</tag>
-         
-        <tag>Mac</tag>
          
          
            
@@ -962,31 +987,6 @@
         
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://febsky.me/2016/05/28/2016-05-16-Android%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2016-07-06T05:36:08.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android 开发中的小技巧</title>
-        <pubTime>2016-05-28T08:39:22.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://febsky.me/categories/Java/"/>
-          
-             
-              <breadCrumb title="Android" url="http://febsky.me/categories/Java/Android/"/>
-          
         </display>
     </data>
     </url>
