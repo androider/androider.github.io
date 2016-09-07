@@ -4,19 +4,39 @@
 
     
   <url>
+    <loc>http://febsky.me/2014/11/28/2014-11-28-github%E6%93%8D%E4%BD%9C%E9%81%87%E5%88%B0%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2016-09-07T02:23:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>github操作遇到的几个问题</title>
+        <pubTime>2014-11-28T15:36:29.000Z</pubTime>
+        
+        <tag>ss</tag>
+         
+         
+           
+             
+              <breadCrumb title="ss" url="http://febsky.me/categories/ss/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://febsky.me/2015/04/20/2015-04-20-git%20(github)%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2016-09-07T01:56:46.000Z</lastmod>
+    <lastmod>2016-09-07T02:23:18.000Z</lastmod>
     <data>
         <display>
         <title>git (github)的基本使用</title>
         <pubTime>2015-04-20T03:51:49.000Z</pubTime>
         
-        <tag>Git</tag>
+        <tag>ss</tag>
          
          
            
              
-              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
+              <breadCrumb title="ss" url="http://febsky.me/categories/ss/"/>
           
         </display>
     </data>
@@ -58,9 +78,9 @@
         
         <tag>工具</tag>
          
-        <tag>Sublime</tag>
-         
         <tag>Mac</tag>
+         
+        <tag>Sublime</tag>
          
          
            
@@ -1409,26 +1429,6 @@
 
     
   <url>
-    <loc>http://febsky.me/2015/08/10/2015-08-10-git%20%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80/</loc>
-    <lastmod>2016-05-15T13:29:43.000Z</lastmod>
-    <data>
-        <display>
-        <title>git 远程分支版本回退</title>
-        <pubTime>2015-08-10T03:22:17.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://febsky.me/2015/01/24/2015-02-25-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AE%80%E4%BB%8B/</loc>
     <lastmod>2016-05-15T13:27:18.000Z</lastmod>
     <data>
@@ -1500,26 +1500,6 @@
           
              
               <breadCrumb title="Web" url="http://febsky.me/categories/HTML/Web/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://febsky.me/2014/11/28/2014-11-28-github%E6%93%8D%E4%BD%9C%E9%81%87%E5%88%B0%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2016-05-15T13:24:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>github操作遇到的几个问题</title>
-        <pubTime>2014-11-28T15:36:29.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
           
         </display>
     </data>
