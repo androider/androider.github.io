@@ -1026,6 +1026,13 @@
     </entry>
     
     <entry>
+      <title><![CDATA[2016年四月新浪微博面试部分]]></title>
+      <url>http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9AAndroid%E9%9D%A2%E8%AF%95%E9%83%A8%E5%88%86/</url>
+      <content type="html"><![CDATA[<p>整理中</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[2016年四月新浪微博面试体验]]></title>
       <url>http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AF%95%E9%A2%98/</url>
       <content type="html"><![CDATA[<p><strong>先说点个人感想（废话）：</strong>真心挺感谢新浪能给这个面试机会，作为一个非重点本科毕业学生来说，能给个面试机会已经非常不错了。不想某些大公司筛选简历一看工作年限，二看出身。很可惜自己能力有限在三面的时候彻底被虐了，今年算是止步于三面了。但是还是学到很多东西的，如果再有个一到两年的沉淀，详细自己还是可以胜任的。本来不想发出来的不知道发出来会不会影响到人家的面试。</p>
@@ -1045,13 +1052,6 @@
 </ol>
 <h2 id="8-switch-中可以用byte吗，可以用long吗，可以用String吗？"><a href="#8-switch-中可以用byte吗，可以用long吗，可以用String吗？" class="headerlink" title="8. switch 中可以用byte吗，可以用long吗，可以用String吗？"></a>8. switch 中可以用byte吗，可以用long吗，可以用String吗？</h2><p>答：switch 只能添加  <code>char,byte,short,int,Character,Byte,Short,Interger,String ,enum</code></p>
 <h2 id="9-try-catch-finally-运行流程"><a href="#9-try-catch-finally-运行流程" class="headerlink" title="9. try catch finally 运行流程"></a>9. try catch finally 运行流程</h2><h2 id="10-是一个程序找错题。"><a href="#10-是一个程序找错题。" class="headerlink" title="10. 是一个程序找错题。"></a>10. 是一个程序找错题。</h2>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[2016年四月新浪微博面试部分]]></title>
-      <url>http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9AAndroid%E9%9D%A2%E8%AF%95%E9%83%A8%E5%88%86/</url>
-      <content type="html"><![CDATA[<p>整理中</p>
-]]></content>
     </entry>
     
     <entry>
@@ -1943,13 +1943,19 @@
 <p>工作区（WorkSpace）ps中的所有调板的摆放位置构成一个工作区。</p>
 <p>Tab 和 Tab+shift  可以控制调板的显示和隐藏，</p>
 <p>导航器  在window 中得Navigator</p>
-<h2 id="视图菜单"><a href="#视图菜单" class="headerlink" title="视图菜单"></a>视图菜单</h2><p>标尺 cmd + R  拉出标尺后，可以双击标尺进行标尺的属性配置</p>
+<p>F键，全屏显示图片。</p>
+<p>图片可以以选项卡的方式显示，也可以以单独的窗口显示。</p>
+<h2 id="视图菜单"><a href="#视图菜单" class="headerlink" title="视图菜单"></a>视图菜单</h2><ol>
+<li>标尺 cmd + R  拉出标尺后，可以双击标尺进行标尺的属性配置</li>
+</ol>
 <p>标尺有个很好用的功能，就是自动吸附功能</p>
-<p>F键，全屏显示图片</p>
-<p>按住空格可以开启抓手工具</p>
-<p>按住 Alt  点击 缩小</p>
-<p>按住cmd键  点击  放大</p>
-<p>CMD 组合 “+” 和 “-” 可以放大和缩小图片(放大和导航器配套使用)</p>
+<ol>
+<li><p>按住空格可以开启抓手工具</p>
+</li>
+<li><p>按住 Alt  点击 缩小<br>按住cmd键  点击  放大<br>CMD 组合 “+” 和 “-” 可以放大和缩小图片(放大和导航器配套使用)</p>
+</li>
+<li>清除切片在视图菜单里面</li>
+</ol>
 <h2 id="图像-Image-菜单"><a href="#图像-Image-菜单" class="headerlink" title="图像 Image(菜单)"></a>图像 Image(菜单)</h2><p>调整图像大小  可以保持长宽比调整</p>
 <p>调整画布大小  可以选择相对大小，和绝对大小</p>
 <p>Alt + 鼠标托动  可以复制照片</p>
@@ -1975,6 +1981,51 @@
       <title><![CDATA[Android文件下载]]></title>
       <url>http://febsky.me/2015/09/15/2015-09-15-Android%20%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/</url>
       <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line"></div><div class="line"> *</div><div class="line"></div><div class="line"> * @param urlString    下载文件地址</div><div class="line"></div><div class="line"> * @param savePath    保存本地路径</div><div class="line"></div><div class="line"> * @param filename    保存的文件名</div><div class="line"></div><div class="line"> * @throws Exception</div><div class="line"></div><div class="line"> */</div><div class="line"></div><div class="line">public static void download(String urlString, String savePath, String filename) throws Exception &#123;</div><div class="line"></div><div class="line">    // 构造URL</div><div class="line"></div><div class="line">    URL url = new URL(urlString);</div><div class="line"></div><div class="line">    // 打开连接</div><div class="line"></div><div class="line">    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();</div><div class="line"></div><div class="line">    //设置请求超时为5s</div><div class="line"></div><div class="line">    httpURLConnection.setConnectTimeout(5 * 1000);</div><div class="line"></div><div class="line">    httpURLConnection.setRequestMethod(&amp;quot;GET&amp;quot;);</div><div class="line"></div><div class="line">    //开始下载</div><div class="line"></div><div class="line">    if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK) &#123;</div><div class="line"></div><div class="line">        // 输入流</div><div class="line"></div><div class="line">        InputStream inputStream = httpURLConnection.getInputStream();</div><div class="line"></div><div class="line">        // 输出的文件流</div><div class="line"></div><div class="line">        File savePathFile = new File(savePath);</div><div class="line"></div><div class="line">        if (!savePathFile.exists()) &#123;</div><div class="line"></div><div class="line">            savePathFile.mkdirs();</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        // 1K的数据缓冲</div><div class="line"></div><div class="line">        byte[] buffer = new byte[1024 * 4];</div><div class="line"></div><div class="line">        // 读取到的数据长度</div><div class="line"></div><div class="line">        int len;</div><div class="line"></div><div class="line">        OutputStream outputStream = new FileOutputStream(new File(savePathFile, filename));</div><div class="line"></div><div class="line">        // 开始读取</div><div class="line"></div><div class="line">        while ((len = inputStream.read(buffer)) != -1) &#123;</div><div class="line"></div><div class="line">            outputStream.write(buffer, 0, len);</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        // 完毕，关闭所有链接</div><div class="line"></div><div class="line">        outputStream.close();</div><div class="line"></div><div class="line">        inputStream.close();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[PS（PhotoShop）基础知识（二）]]></title>
+      <url>http://febsky.me/2015/09/08/2016-09-08PS%EF%BC%88PhotoShop%EF%BC%89%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+      <content type="html"><![CDATA[<p><strong>工具栏中的工具</strong></p>
+<ol>
+<li><p>移动工具 <code>V [shift]</code></p>
+<ul>
+<li>在左上角有个<code>自动选择</code> + <code>图层</code>选项，勾选后可以自动选择获得焦点图层</li>
+<li>当有多个图层中的元素被选中的时候，还可以指定对其方式</li>
+</ul>
+</li>
+<li><p>选框工具 M </p>
+<ul>
+<li>在上边的样式选项中可以指定，选区工具是固定大小的还是固定比例的。</li>
+<li>选区可以做运算，也就是两次选区的组合。相加，相减，相交等。组合键，shift ，ALT ,shift + alt. 前提是已经存在一个选区，当画第二个选区的时候，按住这些键。</li>
+<li>command + d 取消选区</li>
+<li>command + j 复制选区为新的图层</li>
+<li>按住shift 选区可以为正方形，圆 </li>
+<li>填充选区<br><code>alt + shift + delete</code>前景填充<br><code>cmd + shift + delete</code> 背景填充  </li>
+</ul>
+</li>
+<li><p>套索工具 L</p>
+<ul>
+<li>delete 键可以删除套索选择工具的点</li>
+</ul>
+</li>
+<li><p>快速选择工具</p>
+</li>
+</ol>
+<ol>
+<li><p>裁剪工具 C</p>
+<ul>
+<li>可以自定义放置裁剪变换中心点，按住alt 拖动中心点</li>
+<li>上边选项中可以选择辅助线，三等分，网格，黄金比，螺旋线等。shift + o 可以调整辅助线的位置。</li>
+<li>透视裁剪工具，可以通过自定义方式四个裁剪点，来。</li>
+<li>切片工具可以和参考线一起使用<code>基于参考线的切片</code></li>
+<li>切片选择工具，可以移动切片</li>
+</ul>
+</li>
+<li><p>吸管工具</p>
+</li>
+</ol>
+]]></content>
     </entry>
     
     <entry>
@@ -2599,20 +2650,6 @@ print(dir(sys))
     
     <entry>
       <title><![CDATA[Postgres 序列操作]]></title>
-      <url>http://febsky.me/2015/01/04/2015-01-04-Postgres%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C/</url>
-      <content type="html"><![CDATA[<p>在用到postgres的时候我们用到这么一个功能：</p>
-<ol>
-<li>需要一个自增的主键，在postgres中，要增加一列来充当自增主键的话，必须增加一个序列，</li>
-</ol>
-<p>即使用serial8类型能指定自增，我们也知道系统会默认为我们的这张表添加一个自增序列保存。</p>
-<ol>
-<li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">可用的序列函数有∶</div><div class="line"></div><div class="line">nextval</div><div class="line"></div><div class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </div><div class="line"></div><div class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</div><div class="line"></div><div class="line">currval</div><div class="line"></div><div class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </div><div class="line"></div><div class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</div><div class="line"></div><div class="line">lastval</div><div class="line"></div><div class="line">返回当前会话里最近一次 nextval 返回的数值。 </div><div class="line"></div><div class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </div><div class="line"></div><div class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</div><div class="line"></div><div class="line">setval</div><div class="line"></div><div class="line">重置序列对象的计数器数值。</div><div class="line"></div><div class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 <span class="keyword">true</span>，</div><div class="line"></div><div class="line">表示下一次 nextval 将在返回数值之前递增该序列。</div><div class="line"></div><div class="line">在三参数形式里，is_called 可以设置为 <span class="keyword">true</span> 或 <span class="keyword">false</span>。</div><div class="line"></div><div class="line">如果你把它设置为 <span class="keyword">false</span>，那么下一次 nextval 将返回这里声明的数值，</div><div class="line"></div><div class="line">而从随后的 nextval 才开始递增该序列。</div><div class="line"></div><div class="line">比如</div><div class="line"></div><div class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>)</span></span>;    <span class="comment">//下次nextval将返回 43</span></div><div class="line"></div><div class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">true</span>)</span></span>;     <span class="comment">//和上面一样</span></div><div class="line"></div><div class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">false</span>)</span></span>;    <span class="comment">//下次nextval将返回 42</span></div><div class="line"></div><div class="line">setval 返回的结果就是它的第二个参数的数值。</div></pre></td></tr></table></figure>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Postgres 序列操作]]></title>
       <url>http://febsky.me/2015/01/04/2014-12-11-Postgres%20%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C/</url>
       <content type="html"><![CDATA[<p>在用到postgres的时候我们用到这么一个功能：</p>
 <ol>
@@ -2623,6 +2660,20 @@ print(dir(sys))
 <li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">可用的序列函数有∶</div><div class="line"></div><div class="line">nextval</div><div class="line"></div><div class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </div><div class="line"></div><div class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</div><div class="line"></div><div class="line">currval</div><div class="line"></div><div class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </div><div class="line"></div><div class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</div><div class="line"></div><div class="line">lastval</div><div class="line"></div><div class="line">返回当前会话里最近一次 nextval 返回的数值。 </div><div class="line"></div><div class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </div><div class="line"></div><div class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</div><div class="line"></div><div class="line">setval</div><div class="line"></div><div class="line">重置序列对象的计数器数值。</div><div class="line"></div><div class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 true，</div><div class="line"></div><div class="line">表示下一次 nextval 将在返回数值之前递增该序列。</div><div class="line"></div><div class="line">在三参数形式里，is_called 可以设置为 true 或 false。</div><div class="line"></div><div class="line">如果你把它设置为 false，那么下一次 nextval 将返回这里声明的数值，</div><div class="line"></div><div class="line">而从随后的 nextval 才开始递增该序列。</div><div class="line"></div><div class="line">比如</div><div class="line"></div><div class="line">SELECT setval(&apos;序列名字&apos;, 42);    //下次nextval将返回 43</div><div class="line"></div><div class="line">SELECT setval(&apos;序列名字&apos;, 42, true);     //和上面一样</div><div class="line"></div><div class="line">SELECT setval(&apos;序列名字&apos;, 42, false);    //下次nextval将返回 42</div><div class="line"></div><div class="line">setval 返回的结果就是它的第二个参数的数值。</div></pre></td></tr></table></figure>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Postgres 序列操作]]></title>
+      <url>http://febsky.me/2015/01/04/2015-01-04-Postgres%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C/</url>
+      <content type="html"><![CDATA[<p>在用到postgres的时候我们用到这么一个功能：</p>
+<ol>
+<li>需要一个自增的主键，在postgres中，要增加一列来充当自增主键的话，必须增加一个序列，</li>
+</ol>
+<p>即使用serial8类型能指定自增，我们也知道系统会默认为我们的这张表添加一个自增序列保存。</p>
+<ol>
+<li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">可用的序列函数有∶</div><div class="line"></div><div class="line">nextval</div><div class="line"></div><div class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </div><div class="line"></div><div class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</div><div class="line"></div><div class="line">currval</div><div class="line"></div><div class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </div><div class="line"></div><div class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</div><div class="line"></div><div class="line">lastval</div><div class="line"></div><div class="line">返回当前会话里最近一次 nextval 返回的数值。 </div><div class="line"></div><div class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </div><div class="line"></div><div class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</div><div class="line"></div><div class="line">setval</div><div class="line"></div><div class="line">重置序列对象的计数器数值。</div><div class="line"></div><div class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 <span class="keyword">true</span>，</div><div class="line"></div><div class="line">表示下一次 nextval 将在返回数值之前递增该序列。</div><div class="line"></div><div class="line">在三参数形式里，is_called 可以设置为 <span class="keyword">true</span> 或 <span class="keyword">false</span>。</div><div class="line"></div><div class="line">如果你把它设置为 <span class="keyword">false</span>，那么下一次 nextval 将返回这里声明的数值，</div><div class="line"></div><div class="line">而从随后的 nextval 才开始递增该序列。</div><div class="line"></div><div class="line">比如</div><div class="line"></div><div class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>)</span></span>;    <span class="comment">//下次nextval将返回 43</span></div><div class="line"></div><div class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">true</span>)</span></span>;     <span class="comment">//和上面一样</span></div><div class="line"></div><div class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">false</span>)</span></span>;    <span class="comment">//下次nextval将返回 42</span></div><div class="line"></div><div class="line">setval 返回的结果就是它的第二个参数的数值。</div></pre></td></tr></table></figure>]]></content>
     </entry>
     
     <entry>
