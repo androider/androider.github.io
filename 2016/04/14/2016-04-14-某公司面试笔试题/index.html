@@ -6,6 +6,7 @@
 <li>我当时的解决是用来双重for循环来遍历，然后面试官接着问，你的算法复杂度是多少（就离不开复杂度了，😓），我说O(n²)，他说好，有没有办法一次for循环能解决。额，我解决了半天~~ 都没作对。</li>
 </ol>
 <h1 id="3-Activity在不同启动模式下的生命周期"><a href="#3-Activity在不同启动模式下的生命周期" class="headerlink" title="3. Activity在不同启动模式下的生命周期"></a>3. Activity在不同启动模式下的生命周期</h1><p>恩，好像有个<code>onNewIntent()</code>.记不清了,这个我不会。</p>
+<p>当activity的launchMode为singleTask的时候，通过Intent启到一个Activity,如果系统已经存在一个实例，系统就会将请求发送到这个实例上，但这个时候，系统就不会再调用通常情况下我们处理请求数据的onCreate方法，而是调用onNewIntent方法</p>
 </div></article></div><div class="tags"><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/面试/">面试</a></div><div class="paginator"><a href="/2016/04/16/2016-04-16-Hexo的Theme制作用到的库/" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2016/04/12/2016-04-12-新浪微博笔试最后一题/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2016/04/14/2016-04-14-某公司面试笔试题/index.html" data-title="某家公司面试题" data-url="http://febsky.me/2016/04/14/2016-04-14-某公司面试笔试题/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
 (function() {
     var ds = document.createElement('script');
