@@ -845,7 +845,7 @@
     <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/"/>
     <id>http://febsky.me/2016/07/05/2016-07-05-Android逆向工程用到的工具/</id>
     <published>2016-07-05T05:12:00.000Z</published>
-    <updated>2016-07-22T09:45:14.000Z</updated>
+    <updated>2016-10-21T02:39:02.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;第一套组合&quot;&gt;&lt;a href=&quot;#第一套组合&quot; class=&quot;headerlink&quot; title=&quot;第一套组合&quot;&gt;&lt;/a&gt;第一套组合&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Apktool&lt;/a&gt; + &lt;a href=&quot;https://github.com/pxb1988/dex2jar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dex2jar&lt;/a&gt; + &lt;a href=&quot;https://github.com/java-decompiler/jd-gui&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jd-gui&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;可惜的是apktool好像后来不再支持调试Smali文件，jd-gui 作者从 2015 年开始就停止了维护.&lt;/p&gt;
@@ -884,6 +884,12 @@
 &lt;p&gt;强烈推荐这个玩意，反编译后的代码可读性好，自带图形化界面。&lt;/p&gt;
 &lt;p&gt;这个是一款GUI界面的反编译工具，是一款点击鼠标就可以使用的跨平台工具。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/skylot/jadx/releases&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;项目在这里&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;AndroidStudio2.2 （APK Analyzer）&lt;/p&gt;
+&lt;p&gt;在Android Studio2.2 中添加了个新的功能&lt;code&gt;Build --&amp;gt;analyze apk ...&lt;/code&gt;&lt;br&gt;然后选择你要分析的 APK 文件就可以了&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.febsky.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;me&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://bbs.pediy.com/showthread.php?p=1397272&amp;amp;mode=threaded&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bbs.pediy.com/showthread.php?p=1397272&amp;amp;mode=threaded&lt;/a&gt;&lt;/p&gt;
 </content>

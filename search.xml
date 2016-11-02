@@ -500,6 +500,12 @@
 <p>强烈推荐这个玩意，反编译后的代码可读性好，自带图形化界面。</p>
 <p>这个是一款GUI界面的反编译工具，是一款点击鼠标就可以使用的跨平台工具。</p>
 <p><a href="https://github.com/skylot/jadx/releases" target="_blank" rel="external">项目在这里</a></p>
+<hr>
+<ol>
+<li><p>AndroidStudio2.2 （APK Analyzer）</p>
+<p>在Android Studio2.2 中添加了个新的功能<code>Build --&gt;analyze apk ...</code><br>然后选择你要分析的 APK 文件就可以了</p>
+</li>
+</ol>
 <p><a href="http://www.febsky.me" target="_blank" rel="external">me</a></p>
 <p><a href="http://bbs.pediy.com/showthread.php?p=1397272&amp;mode=threaded" target="_blank" rel="external">http://bbs.pediy.com/showthread.php?p=1397272&amp;mode=threaded</a></p>
 ]]></content>
@@ -2010,6 +2016,11 @@
 <li>选中图层后，delete键可以删除图层</li>
 <li>common + j 可以生成图层副本</li>
 <li>蒙版工具可以通过修改黑色的值，修改原图的透明度，为图层新建蒙版，alt 点击可以选中</li>
+<li>shift  单击蒙版停用蒙版</li>
+<li>选区可以直接创建蒙版，蒙版黑色的部分表示透明，白色表示显示。可以用画笔工具在蒙版上涂抹</li>
+<li>有个<code>智能对象</code></li>
+<li>图层样式 右下角FX按钮  双击右侧图层列表可以进入图层样式选项</li>
+<li>复杂图像不必抠图，用图像<code>混合模式</code>可以完成，去掉白色选择<code>正片叠底</code></li>
 </ul>
 </li>
 </ol>
