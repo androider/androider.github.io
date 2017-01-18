@@ -15,6 +15,12 @@
 </blockquote>
 <p><a href="https://github.com/JesusFreke/smali/wiki/Registers" target="_blank" rel="external">https://github.com/JesusFreke/smali/wiki/Registers</a></p>
 </li>
+</ol>
+<p>寄存器的命名方式</p>
+<p>有两种方式——V命名方式和P命名方式。P命名方式中的第一个寄存器就是方法中的第一个参数寄存器。在下表中我们用这两种命名方式来表示上一个例子中有5个寄存器和3个参数的方法。<br>&gt;<br>v0    第一个local register<br>v1    第二个local register<br>v2  p0  第一个parameter register<br>v3  p1  第二个parameter register<br>v4  p2  第三个parameter register  </p>
+<p>你可以用任何一种方式来引用参数寄存器——他们没有任何差别。<br>注意：baksmali(apktool)默认对参数寄存器使用P命名方式。如果想使用V命名方式，可以使用-pl—no-parameter-registers选项。但是有的工具反编译的出来的都是v命名的方式。比如（smaliviewer），使用P命名的方式可读性比较好。</p>
+<p>使用P命名方式是为了防止以后如果要在方法中增加寄存器，需要对参数寄存器重新进行编号的缺点。</p>
+<ol>
 <li><p>给原程序增加大量逻辑的办法</p>
 <p>我非常不建议在程序原有的方法上增加大量逻辑，这样可能会出现很多寄存器方面的错误导致编译失败。比较好的方法是：把想要增加的逻辑先用java写成一个apk，然后把这个apk反编译成smali文件，随后把反编译后的这部分逻辑的smali文件插入到目标程序的smali文件夹中，然后再在原来的方法上采用invoke的方式调用新加入的逻辑。这样的话不管加入再多的逻辑，也只是修改了原程序的几行代码而已。这个思路也是很多重打包病毒惯用的伎俩，确实非常方便好用。</p>
 </li>
@@ -36,4 +42,4 @@
     ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
     ds.charset = 'UTF-8';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();</script></section><div class="copyright"><p>© 2016<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>
+})();</script></section><div class="copyright"><p>© 2017<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>

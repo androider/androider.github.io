@@ -249,7 +249,7 @@
     <link href="http://febsky.me/2016/07/26/2016-07-26-Android%E4%B8%AD%E5%8F%8D%E7%BC%96%E8%AF%91Smali%E6%96%87%E4%BB%B6%E8%A7%A3%E8%AF%BB/"/>
     <id>http://febsky.me/2016/07/26/2016-07-26-Android中反编译Smali文件解读/</id>
     <published>2016-07-26T10:06:35.000Z</published>
-    <updated>2016-07-27T09:22:02.000Z</updated>
+    <updated>2017-01-18T09:22:19.000Z</updated>
     
     <content type="html">&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;寄存器&lt;/p&gt;
@@ -268,6 +268,12 @@
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/JesusFreke/smali/wiki/Registers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/JesusFreke/smali/wiki/Registers&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;寄存器的命名方式&lt;/p&gt;
+&lt;p&gt;有两种方式——V命名方式和P命名方式。P命名方式中的第一个寄存器就是方法中的第一个参数寄存器。在下表中我们用这两种命名方式来表示上一个例子中有5个寄存器和3个参数的方法。&lt;br&gt;&amp;gt;&lt;br&gt;v0    第一个local register&lt;br&gt;v1    第二个local register&lt;br&gt;v2  p0  第一个parameter register&lt;br&gt;v3  p1  第二个parameter register&lt;br&gt;v4  p2  第三个parameter register  &lt;/p&gt;
+&lt;p&gt;你可以用任何一种方式来引用参数寄存器——他们没有任何差别。&lt;br&gt;注意：baksmali(apktool)默认对参数寄存器使用P命名方式。如果想使用V命名方式，可以使用-pl—no-parameter-registers选项。但是有的工具反编译的出来的都是v命名的方式。比如（smaliviewer），使用P命名的方式可读性比较好。&lt;/p&gt;
+&lt;p&gt;使用P命名方式是为了防止以后如果要在方法中增加寄存器，需要对参数寄存器重新进行编号的缺点。&lt;/p&gt;
+&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;给原程序增加大量逻辑的办法&lt;/p&gt;
 &lt;p&gt;我非常不建议在程序原有的方法上增加大量逻辑，这样可能会出现很多寄存器方面的错误导致编译失败。比较好的方法是：把想要增加的逻辑先用java写成一个apk，然后把这个apk反编译成smali文件，随后把反编译后的这部分逻辑的smali文件插入到目标程序的smali文件夹中，然后再在原来的方法上采用invoke的方式调用新加入的逻辑。这样的话不管加入再多的逻辑，也只是修改了原程序的几行代码而已。这个思路也是很多重打包病毒惯用的伎俩，确实非常方便好用。&lt;/p&gt;
 &lt;/li&gt;
