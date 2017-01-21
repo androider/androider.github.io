@@ -635,6 +635,11 @@
 <li>锁屏： Shift + Contro + 电源键</li>
 <li>Chrome 打开控制台<code>option+cammod+i</code></li>
 </ul>
+<p>#Tree 命令</p>
+<p>安装homebrew<br>然后brew install tree</p>
+<p><strong>使用</strong> <code>tree -L 1</code></p>
+<p><strong>效果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── build.gradle</div><div class="line">├── gradle</div><div class="line">├── gradlew</div><div class="line">└── gradlew.bat</div></pre></td></tr></table></figure>
 <p><strong>【参考文献】</strong></p>
 <p><a href="https://support.apple.com/zh-cn/HT201236" target="_blank" rel="external">官网-Mac 键盘快捷键</a></p>
 ]]></content>
@@ -1583,15 +1588,6 @@
 <h1 id="8、Java线程查看工具"><a href="#8、Java线程查看工具" class="headerlink" title="8、Java线程查看工具"></a>8、Java线程查看工具</h1><p><code>jstack</code>:位于jdk安装目录下的bin目录下</p>
 <p><strong>作用</strong>：生成当前时刻线程的快照（threaddump，即当前进程中所有线程的信息）</p>
 <p><strong>参考文献</strong><br><a href="http://agapple.iteye.com/blog/970055" target="_blank" rel="external">java线程阻塞中断和LockSupport的常见问题</a></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[MacOS中的tree命令]]></title>
-      <url>http://febsky.me/2016/03/06/2016-03-06-MacOS%E4%B8%AD%E7%9A%84tree%E5%91%BD%E4%BB%A4/</url>
-      <content type="html"><![CDATA[<h1 id="最简单的方式"><a href="#最简单的方式" class="headerlink" title="最简单的方式"></a>最简单的方式</h1><hr>
-<p>安装<code>homebrew</code></p>
-<p>然后<code>brew install tree</code></p>
 ]]></content>
     </entry>
     
