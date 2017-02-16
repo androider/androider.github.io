@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://febsky.me/2015/08/04/2015-08-04-Java%E5%8D%95%E4%BE%8B%E7%9A%84%E5%86%99%E6%B3%95/</loc>
+    <lastmod>2017-02-16T07:29:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java单例的写法</title>
+        <pubTime>2015-08-04T09:12:21.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://febsky.me/2016/05/29/2016-05-29-Mac%E4%B8%8B%E7%9A%84%E6%9F%90%E4%BA%9B%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2017-01-21T08:39:38.000Z</lastmod>
     <data>
@@ -146,26 +166,6 @@
           
              
               <breadCrumb title="文件存储" url="http://febsky.me/categories/Android/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://febsky.me/2015/08/04/2015-08-04-Java%E5%8D%95%E4%BE%8B%E7%9A%84%E5%86%99%E6%B3%95/</loc>
-    <lastmod>2016-09-21T13:49:08.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java单例的写法</title>
-        <pubTime>2015-08-04T09:12:21.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
           
         </display>
     </data>
