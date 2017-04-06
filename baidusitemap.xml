@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://febsky.me/2015/04/20/2015-04-20-git%20(github)%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2017-04-06T09:03:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>git (github)的基本使用</title>
+        <pubTime>2015-04-20T03:51:49.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://febsky.me/2015/08/04/2015-08-04-Java%E5%8D%95%E4%BE%8B%E7%9A%84%E5%86%99%E6%B3%95/</loc>
     <lastmod>2017-02-16T07:29:45.000Z</lastmod>
     <data>
@@ -364,26 +384,6 @@
         <display>
         <title>git 远程分支版本回退</title>
         <pubTime>2015-08-10T03:22:17.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://febsky.me/2015/04/20/2015-04-20-git%20(github)%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2016-09-07T02:24:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>git (github)的基本使用</title>
-        <pubTime>2015-04-20T03:51:49.000Z</pubTime>
         
         <tag>Git</tag>
          
