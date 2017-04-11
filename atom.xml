@@ -852,16 +852,24 @@
     <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/"/>
     <id>http://febsky.me/2016/07/05/2016-07-05-Android逆向工程用到的工具/</id>
     <published>2016-07-05T05:12:00.000Z</published>
-    <updated>2016-10-21T02:39:02.000Z</updated>
+    <updated>2017-04-11T01:59:01.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;第一套组合&quot;&gt;&lt;a href=&quot;#第一套组合&quot; class=&quot;headerlink&quot; title=&quot;第一套组合&quot;&gt;&lt;/a&gt;第一套组合&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Apktool&lt;/a&gt; + &lt;a href=&quot;https://github.com/pxb1988/dex2jar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dex2jar&lt;/a&gt; + &lt;a href=&quot;https://github.com/java-decompiler/jd-gui&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jd-gui&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;第一套组合（入门级组合）&quot;&gt;&lt;a href=&quot;#第一套组合（入门级组合）&quot; class=&quot;headerlink&quot; title=&quot;第一套组合（入门级组合）&quot;&gt;&lt;/a&gt;第一套组合（入门级组合）&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Apktool&lt;/a&gt; + &lt;a href=&quot;https://github.com/pxb1988/dex2jar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dex2jar&lt;/a&gt; + &lt;a href=&quot;https://github.com/java-decompiler/jd-gui&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jd-gui&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;可惜的是apktool好像后来不再支持调试Smali文件，jd-gui 作者从 2015 年开始就停止了维护.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;但是AndroidStudio有个调试Smali的插件  &lt;a href=&quot;SmaliIdea：https://github.com/JesusFreke/smali/wiki/smalidea&quot;&gt;地址 https://github.com/JesusFreke/smali/wiki/smalidea&lt;/a&gt;&lt;br&gt;据说jadx 不错（推荐使用），可以取代 jd-gui &lt;a href=&quot;https://github.com/skylot/jadx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;地址 https://github.com/skylot/jadx&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&quot;Google-出的几个逆向分析工具&quot;&gt;&lt;a href=&quot;#Google-出的几个逆向分析工具&quot; class=&quot;headerlink&quot; title=&quot;Google 出的几个逆向分析工具&quot;&gt;&lt;/a&gt;Google 出的几个逆向分析工具&lt;/h1&gt;&lt;h2 id=&quot;1-enjarify&quot;&gt;&lt;a href=&quot;#1-enjarify&quot; class=&quot;headerlink&quot; title=&quot;1. enjarify  &quot;&gt;&lt;/a&gt;1. enjarify  &lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/enjarify&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/enjarify&lt;/a&gt;&lt;br&gt;功能：可直接将 apk 文件还原成为 jar 文件，也可以和 dex2jar 一样，直接操作某个dex&lt;/p&gt;
+&lt;h2 id=&quot;Google-出的几个逆向分析工具&quot;&gt;&lt;a href=&quot;#Google-出的几个逆向分析工具&quot; class=&quot;headerlink&quot; title=&quot;Google 出的几个逆向分析工具&quot;&gt;&lt;/a&gt;Google 出的几个逆向分析工具&lt;/h2&gt;&lt;h2 id=&quot;1-enjarify&quot;&gt;&lt;a href=&quot;#1-enjarify&quot; class=&quot;headerlink&quot; title=&quot;1. enjarify  &quot;&gt;&lt;/a&gt;1. enjarify  &lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/enjarify&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/enjarify&lt;/a&gt;&lt;br&gt;功能：可直接将 apk 文件还原成为 jar 文件，也可以和 dex2jar 一样，直接操作某个dex&lt;/p&gt;
 &lt;p&gt;这是 Google 出品的一个逆向分析工具，从反编译成 jar 包的流程来说，要比 dex2jar 方便得多。下载完工具到本地并配置好 Python 环境后，需要修改 enjarify 目录下的 enjarify.bat 文件，将 python3 改为 python&lt;/p&gt;
-&lt;h2 id=&quot;2-Procyon-和-cfr-和-Jad&quot;&gt;&lt;a href=&quot;#2-Procyon-和-cfr-和-Jad&quot; class=&quot;headerlink&quot; title=&quot;2. Procyon 和 cfr 和 Jad &quot;&gt;&lt;/a&gt;2. Procyon 和 cfr 和 Jad &lt;/h2&gt;&lt;p&gt;当然这几个不是Google的产物，这几个是&lt;code&gt;jar&lt;/code&gt; 和&lt;code&gt;.class&lt;/code&gt; 反编译工具。为啥要用这些，因为jd-gui，反编译java7会有问题。有些语法有点让人难以读懂。但是他有图形化界面剩下的这几个都没有。&lt;/p&gt;
+&lt;h2 id=&quot;2-ClassyShark&quot;&gt;&lt;a href=&quot;#2-ClassyShark&quot; class=&quot;headerlink&quot; title=&quot;2. ClassyShark&quot;&gt;&lt;/a&gt;2. ClassyShark&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/android-classyshark&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/android-classyshark&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;功能：可直接浏览 Apk，支持对.dex, .aar, .so，.apk, .jar, .class等文件的操作。&lt;/p&gt;
+&lt;p&gt;同是Google出品，但是只能看到方法声明，没法看到方法的定义。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;java -jar ClassyShark.jar -open XXX.apk&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;3-AndroidStudio2-2-（APK-Analyzer）&quot;&gt;&lt;a href=&quot;#3-AndroidStudio2-2-（APK-Analyzer）&quot; class=&quot;headerlink&quot; title=&quot;3. AndroidStudio2.2 （APK Analyzer）&quot;&gt;&lt;/a&gt;3. AndroidStudio2.2 （APK Analyzer）&lt;/h2&gt;&lt;p&gt;  在Android Studio2.2 中添加了个新的功能&lt;code&gt;Build --&amp;gt;analyze apk ...&lt;/code&gt;&lt;br&gt;   然后选择你要分析的 APK 文件就可以了。但是只能看到方法声明，没法看到方法的定义。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.febsky.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;me&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;procyon-和-cfr-和-Jad-，这些主要专注于jar的反编译&quot;&gt;&lt;a href=&quot;#procyon-和-cfr-和-Jad-，这些主要专注于jar的反编译&quot; class=&quot;headerlink&quot; title=&quot;procyon 和 cfr 和 Jad ，这些主要专注于jar的反编译&quot;&gt;&lt;/a&gt;procyon 和 cfr 和 Jad ，这些主要专注于jar的反编译&lt;/h2&gt;&lt;h2 id=&quot;1-orocyon-和-cfr-和-Jad&quot;&gt;&lt;a href=&quot;#1-orocyon-和-cfr-和-Jad&quot; class=&quot;headerlink&quot; title=&quot;1. orocyon 和 cfr 和 Jad &quot;&gt;&lt;/a&gt;1. orocyon 和 cfr 和 Jad &lt;/h2&gt;&lt;p&gt;当然这几个不是Google的产物，这几个是&lt;code&gt;jar&lt;/code&gt; 和&lt;code&gt;.class&lt;/code&gt; 反编译工具。为啥要用这些，因为jd-gui，反编译java7会有问题。有些语法有点让人难以读懂。但是他有图形化界面剩下的这几个都没有。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://bitbucket.org/mstrobel/procyon&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bitbucket.org/mstrobel/procyon&lt;/a&gt;&lt;br&gt;功能：将反编译得到 jar 包还原成 java 文件，同时能够更强的还原代码的逻辑结构  2016-07-12 持续更新中。。。据说有个图形化界面&lt;a href=&quot;https://github.com/deathmarine/Luyten&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/deathmarine/Luyten&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -878,32 +886,18 @@
 &lt;blockquote&gt;
 &lt;p&gt;java -jar cfr_0_79.jar example.jar -–outputdir out  &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&quot;3-ClassyShark&quot;&gt;&lt;a href=&quot;#3-ClassyShark&quot; class=&quot;headerlink&quot; title=&quot;3. ClassyShark&quot;&gt;&lt;/a&gt;3. ClassyShark&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/android-classyshark&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/android-classyshark&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;功能：可直接浏览 Apk，支持对.dex, .aar, .so，.apk, .jar, .class等文件的操作。&lt;/p&gt;
-&lt;p&gt;同意Google出品&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;java -jar ClassyShark.jar -open XXX.apk&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;4-bytecode-viewer-这是个套装&quot;&gt;&lt;a href=&quot;#4-bytecode-viewer-这是个套装&quot; class=&quot;headerlink&quot; title=&quot;4.bytecode-viewer 这是个套装&quot;&gt;&lt;/a&gt;4.bytecode-viewer 这是个套装&lt;/h2&gt;&lt;p&gt;最后说一个基于Procyon的项目 &lt;a href=&quot;https://github.com/Konloch/bytecode-viewer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bytecode-viewer&lt;/a&gt;&lt;br&gt;A Java 8 Jar &amp;amp; Android APK Reverse Engineering Suite (Decompiler, Editor, Debugger &amp;amp; More) &lt;a href=&quot;https://bytecodeviewer.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bytecodeviewer.com&lt;/a&gt;.  不知道如何没用过。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Jadx&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;强烈推荐这个玩意，反编译后的代码可读性好，自带图形化界面。&lt;/p&gt;
+&lt;h2 id=&quot;2-bytecode-viewer-这是个套装&quot;&gt;&lt;a href=&quot;#2-bytecode-viewer-这是个套装&quot; class=&quot;headerlink&quot; title=&quot;2.bytecode-viewer 这是个套装&quot;&gt;&lt;/a&gt;2.bytecode-viewer 这是个套装&lt;/h2&gt;&lt;p&gt;再来一个基于Procyon的项目 &lt;a href=&quot;https://github.com/Konloch/bytecode-viewer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bytecode-viewer&lt;/a&gt;&lt;br&gt;A Java 8 Jar &amp;amp; Android APK Reverse Engineering Suite (Decompiler, Editor, Debugger &amp;amp; More) &lt;a href=&quot;https://bytecodeviewer.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bytecodeviewer.com&lt;/a&gt;.  不知道如何没用过。&lt;/p&gt;
+&lt;h2 id=&quot;3-Jadx&quot;&gt;&lt;a href=&quot;#3-Jadx&quot; class=&quot;headerlink&quot; title=&quot;3. Jadx&quot;&gt;&lt;/a&gt;3. Jadx&lt;/h2&gt;&lt;p&gt;强烈推荐这个玩意，反编译后的代码可读性好，自带图形化界面。&lt;/p&gt;
 &lt;p&gt;这个是一款GUI界面的反编译工具，是一款点击鼠标就可以使用的跨平台工具。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/skylot/jadx/releases&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;项目在这里&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;AndroidStudio2.2 （APK Analyzer）&lt;/p&gt;
-&lt;p&gt;在Android Studio2.2 中添加了个新的功能&lt;code&gt;Build --&amp;gt;analyze apk ...&lt;/code&gt;&lt;br&gt;然后选择你要分析的 APK 文件就可以了&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h2 id=&quot;JEB-for-Android&quot;&gt;&lt;a href=&quot;#JEB-for-Android&quot; class=&quot;headerlink&quot; title=&quot;##JEB for Android &quot;&gt;&lt;/a&gt;##JEB for Android &lt;/h2&gt;&lt;p&gt;非常不错，但是不开源，不免费&lt;a href=&quot;https://www.pnfsoftware.com/jeb2/#android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.febsky.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;me&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://bbs.pediy.com/showthread.php?p=1397272&amp;amp;mode=threaded&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bbs.pediy.com/showthread.php?p=1397272&amp;amp;mode=threaded&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;第一套组合&quot;&gt;&lt;a href=&quot;#第一套组合&quot; class=&quot;headerlink&quot; title=&quot;第一套组合&quot;&gt;&lt;/a&gt;第一套组合&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_
+      &lt;h2 id=&quot;第一套组合（入门级组合）&quot;&gt;&lt;a href=&quot;#第一套组合（入门级组合）&quot; class=&quot;headerlink&quot; title=&quot;第一套组合（入门级组合）&quot;&gt;&lt;/a&gt;第一套组合（入门级组合）&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iB
     
     </summary>
     
