@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2016-08-15T03:36:11.000Z</updated>
+  <updated>2017-05-05T06:49:26.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,152 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac下Android源码（AOSP）编译环境搭建方法</title>
+    <link href="http://febsky.me/2017/05/05/2017-05-05-Mac%E4%B8%8BAndroid%E6%BA%90%E7%A0%81%EF%BC%88AOSP%EF%BC%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%96%B9%E6%B3%95/"/>
+    <id>http://febsky.me/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/</id>
+    <published>2017-05-05T06:46:31.000Z</published>
+    <updated>2017-05-05T06:49:26.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;一、编译源码的背景环境&quot;&gt;&lt;a href=&quot;#一、编译源码的背景环境&quot; class=&quot;headerlink&quot; title=&quot;一、编译源码的背景环境&quot;&gt;&lt;/a&gt;一、编译源码的背景环境&lt;/h1&gt;&lt;h2 id=&quot;Android源码编译有什么困难&quot;&gt;&lt;a href=&quot;#Android源码编译有什么困难&quot; class=&quot;headerlink&quot; title=&quot;Android源码编译有什么困难&quot;&gt;&lt;/a&gt;Android源码编译有什么困难&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;AOSP 非常庞大，需要下载，但是他是Google家的，和大陆开发者之间隔着一个GFW&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://source.android.com/source/initializing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt; 推荐使用Ubuntu 14.04进行编译。我用的是MacOS，官网也给了Mac下的编译方式，不过看起来还是挺麻烦的。而且我怕搞乱我的电脑。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;针对上面的两点，以前有这么两种解决方式，以前有这么几种解决方式&quot;&gt;&lt;a href=&quot;#针对上面的两点，以前有这么两种解决方式，以前有这么几种解决方式&quot; class=&quot;headerlink&quot; title=&quot;针对上面的两点，以前有这么两种解决方式，以前有这么几种解决方式&quot;&gt;&lt;/a&gt;针对上面的两点，以前有这么两种解决方式，以前有这么几种解决方式&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;至于下载慢，可以使用国内镜像&lt;a href=&quot;https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;清华镜像&lt;/a&gt; 和 &lt;a href=&quot;https://lug.ustc.edu.cn/wiki/mirrors/help/aosp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;科大镜像&lt;/a&gt;，好像现在google的开发者网站部分不用梯子就可以访问了[当前时间2017-04]&lt;/li&gt;
+&lt;li&gt;有人使用虚拟机，然后安装Ubuntu，然后编译源码。这方式也可以，但是Mac下三种虚拟机，免费的那个还不好用。而且编译本身就比较消耗资源，再装个虚拟机就更麻烦了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;后来有人提出用Docker&quot;&gt;&lt;a href=&quot;#后来有人提出用Docker&quot; class=&quot;headerlink&quot; title=&quot;后来有人提出用Docker&quot;&gt;&lt;/a&gt;后来有人提出用Docker&lt;/h2&gt;&lt;p&gt;而且这个人搞了一份Docker镜像出来 &lt;a href=&quot;https://github.com/kylemanna/docker-aosp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;kylemanna/docker-aosp&lt;/a&gt;，后来有人针对Docker以及天朝的网络环境做了一部分修改，fork了一份国产的 &lt;a href=&quot;https://github.com/tiann/docker-aosp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;tiann/docker-aosp&lt;/a&gt;。主要是修改了shell脚本中的下载源。但是这个东西在MAC OS上有bug&lt;a href=&quot;https://github.com/kylemanna/docker-aosp/issues/19&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;issues 19&lt;/a&gt;所以我就没用成功。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有一点题外话需要说一下，这个Docker安装后会开机默认启动，默认启动倒是也没问题，有问题的是他不可以和Android虚拟机同时运行，就是AndroidStudio自带的那个虚拟机。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;二、搭建Mac编译环境&quot;&gt;&lt;a href=&quot;#二、搭建Mac编译环境&quot; class=&quot;headerlink&quot; title=&quot;二、搭建Mac编译环境&quot;&gt;&lt;/a&gt;二、搭建Mac编译环境&lt;/h1&gt;&lt;p&gt;修改文件描述符限制&lt;br&gt;在&lt;code&gt;~/.bash_profile&lt;/code&gt;中添加以下内容&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#set the number of open files to be 1024 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ulimit -S -n 1024&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;开发环境要求&quot;&gt;&lt;a href=&quot;#开发环境要求&quot; class=&quot;headerlink&quot; title=&quot;开发环境要求&quot;&gt;&lt;/a&gt;开发环境要求&lt;/h2&gt;&lt;p&gt;1、 Mac OS v10.10 (Yosemite) 或以上，安装了 Xcode 4.5.2或以上，安装了Command Line Tools。&lt;br&gt; 2、安装&lt;a href=&quot;https://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u71-oth-JPR&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JDK 7&lt;/a&gt;。&lt;br&gt;3、安装了&lt;a href=&quot;http://www.python.org/download/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;python 2.7&lt;/a&gt;&lt;br&gt;4、&lt;a href=&quot;http://ftp.gnu.org/gnu/make/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GNU Make 3.81或3.82&lt;/a&gt;&lt;br&gt;5、&lt;a href=&quot;http://git-scm.com/download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Git&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;磁盘分区&quot;&gt;&lt;a href=&quot;#磁盘分区&quot; class=&quot;headerlink&quot; title=&quot;磁盘分区&quot;&gt;&lt;/a&gt;磁盘分区&lt;/h2&gt;&lt;p&gt;为什么在Mac上编译会很麻烦呢，因为Mac的文件系统默认不区分大小写，但是Android源码编译系统的要求区分大小写，这时候我们可以创建个区分大小写的磁盘空间。方法如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开&lt;code&gt;磁盘工具&lt;/code&gt;（在Launchpad中直接搜索就行）&lt;/li&gt;
+&lt;li&gt;如下图操作（磁盘命名为AOSP，磁盘大小为100G，磁盘格式一定要选择区分大小写） 首先选中&lt;code&gt;Macintosh HD&lt;/code&gt; 然后&lt;code&gt;Comand + N&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/797798-4c73be3dc843ab14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;磁盘分区&quot;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这个磁盘分区的名字后面要用到，磁盘大小好像官网推荐70G，以防不够还是大点吧，格式一定要选&lt;code&gt;区分大小写&lt;/code&gt;。这个磁盘分区还有另一种方式，我不知道这两种方式到底有什么区别。对应磁盘的分区使用，有人为了节省Mac上的硬盘，也为了防止搞坏系统，用了外接硬盘的方式然后操作这个外接硬盘的分区。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;下载Android源码&quot;&gt;&lt;a href=&quot;#下载Android源码&quot; class=&quot;headerlink&quot; title=&quot;下载Android源码&quot;&gt;&lt;/a&gt;下载Android源码&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://lug.ustc.edu.cn/wiki/mirrors/help/aosp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考文献&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;下载 repo 工具:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;mkdir ~/bin&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;PATH=~/bin:$PATH&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;chmod a+x ~/bin/repo&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;建立工作目录:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;cd /Volumes/AOSP/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;mkdir WORKING_DIRECTORY&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;cd WORKING_DIRECTORY&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;初始化仓库&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;repo init -u git://mirrors.ustc.edu.cn/aosp/platform/manifest&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 如果提示无法连接到 gerrit.googlesource.com，可以编辑 ~/bin/repo，把 REPO_URL 一行替换成下面的：&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## REPO_URL = &amp;apos;https://gerrit-googlesource.proxy.ustclug.org/git-repo&amp;apos;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果需要某个特定的 Android 版本(&lt;a href=&quot;https://source.android.com/source/build-numbers.html#source-code-tags-and-builds&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android 版本列表&lt;/a&gt;),可以通过下面的方式指定版本号，如果不指定则代码下载当前最新的代码。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;repo init -u git://mirrors.ustc.edu.cn/aosp/platform/manifest -b android-4.0.1_r1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;同步源码树（以后只需执行这条命令来同步）如果中途出现网络错误，可以停止后在执行下面的命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;repo sync&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后就等着吧0_0&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;编译源码&quot;&gt;&lt;a href=&quot;#编译源码&quot; class=&quot;headerlink&quot; title=&quot;编译源码&quot;&gt;&lt;/a&gt;编译源码&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;清空缓存&lt;br&gt;&lt;code&gt;$ make clobber&lt;/code&gt;  &lt;blockquote&gt;
+&lt;p&gt;注：如果运行这行命令出错看文章最后错误处理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;配置编译环境&lt;br&gt;&lt;code&gt;$ source build/envsetup.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;选择编译目标&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ lunch&lt;/code&gt; 这时候会列出一系列的选项然后选择一个如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;You&amp;apos;re building on Darwin&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Lunch menu... pick a combo:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     1. aosp_arm-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     2. aosp_arm64-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     3. aosp_mips-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     4. aosp_mips64-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     5. aosp_x86-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     6. aosp_x86_64-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     7. full_fugu-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     8. aosp_fugu-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     9. mini_emulator_arm64-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     10. m_e_arm-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     11. m_e_mips-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     12. m_e_mips64-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     13. mini_emulator_x86-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     14. mini_emulator_x86_64-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     15. aosp_dragon-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     16. aosp_dragon-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     17. aosp_marlin-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     18. aosp_sailfish-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     19. aosp_flounder-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     20. aosp_angler-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     21. aosp_bullhead-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     22. hikey-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     23. hikey960-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     24. aosp_shamu-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Which would you like? [aosp_arm-eng]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后直接输入上面选项的序号就好了这里，我选择第一个，至于上面那些名字的含义是啥看下面解释：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;官网说根据上面名字的后缀可以判断要编译那种类型的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;user：&lt;/strong&gt; limited access; suited for production(有限的访问权限，一般用于发布版)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;userdebug：&lt;/strong&gt; 这个和user类似，但是可以获取root权限，并且能够调试&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;eng：&lt;/strong&gt;    具有开发配置，并且有额外的调试工具（注:工程师模式）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;lunch&lt;/code&gt;&lt;/strong&gt;命令也可以直接这么用 &lt;code&gt;$ lunch aosp_arm-eng&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;开始编译 &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;make -j16&lt;/code&gt;  &lt;/p&gt;
+&lt;p&gt;这里指定的开启几个并行&lt;code&gt;task&lt;/code&gt;来进行编译，官网建议j后面的数字根据你电脑的线程数量的1～2倍来设置，比如电脑是双核CPU，每个CPU为双核心四线程，那么就有8个线程。所以我配置的数量为16。&lt;br&gt;然后就是漫长的等待ing…&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;烧录镜像到机器中&quot;&gt;&lt;a href=&quot;#烧录镜像到机器中&quot; class=&quot;headerlink&quot; title=&quot;烧录镜像到机器中&quot;&gt;&lt;/a&gt;烧录镜像到机器中&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;进入fastboot模式&lt;br&gt;&lt;code&gt;$ adb reboot bootloader&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;把img文件刷进去&lt;br&gt;&lt;code&gt;$ fastboot flashall -w&lt;/code&gt;  这个 &lt;code&gt;-w&lt;/code&gt; 是为了&lt;code&gt;wipes the /data partition&lt;/code&gt;擦除&lt;code&gt;/data&lt;/code&gt;分区&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://developers.google.com/android/drivers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;驱动下载&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注：&lt;strong&gt;这个烧录过程我没有测试，官网是这么写的。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;AndroidStudio中查看源码&quot;&gt;&lt;a href=&quot;#AndroidStudio中查看源码&quot; class=&quot;headerlink&quot; title=&quot;AndroidStudio中查看源码&quot;&gt;&lt;/a&gt;AndroidStudio中查看源码&lt;/h2&gt;&lt;p&gt;在android源码中有这么一个目录development/tools/idegen。&lt;br&gt;顾名思义，是生成ide的project文件，主要是生成intellij的project文件，可用于AndroidStudio。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在整个Android源码全编成功之后，然后编译idegen模块，用以生成Android studio的工程配置文件,编译成功之后就生成了idegen.jar，运行如下命名：&lt;br&gt;&lt;code&gt;$ mmm development/tools/idegen/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在根目录生成对应的android.ipr、android.iml IEDA工程配置文件。以便于AndroidStudio可以打开项目&lt;br&gt;&lt;code&gt;$ . development/tools/idegen/idegen.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;打开Android studio，点击File –&amp;gt; Open，选择刚刚生成的android.ipr就好了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;三、错误处理&quot;&gt;&lt;a href=&quot;#三、错误处理&quot; class=&quot;headerlink&quot; title=&quot;三、错误处理&quot;&gt;&lt;/a&gt;三、错误处理&lt;/h1&gt;&lt;p&gt;错误描述：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;build/core/config.mk:660: error: Error: could not find jdk tools.jar at /System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/../lib/tools.jar, please check if your JDK was installed correctly.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17:29:26 ckati failed with: exit status 1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;解决方式：&lt;br&gt;在&lt;code&gt;~/.bash_profile&lt;/code&gt;添加如下代码&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;export JAVA_HOME=$JAVA_8_HOME&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;##上面是jdk的配置，主要是添加下面这一行&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;export ANDROID_JAVA_HOME=$JAVA_HOME&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、编译源码的背景环境&quot;&gt;&lt;a href=&quot;#一、编译源码的背景环境&quot; class=&quot;headerlink&quot; title=&quot;一、编译源码的背景环境&quot;&gt;&lt;/a&gt;一、编译源码的背景环境&lt;/h1&gt;&lt;h2 id=&quot;Android源码编译有什么困难&quot;&gt;&lt;a href=&quot;#A
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="编译" scheme="http://febsky.me/categories/Android/%E7%BC%96%E8%AF%91/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="编译" scheme="http://febsky.me/tags/%E7%BC%96%E8%AF%91/"/>
+    
+      <category term="源码" scheme="http://febsky.me/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的Android混淆（Proguard文件）是怎么写的</title>
+    <link href="http://febsky.me/2017/03/24/2017-03-24-%E6%88%91%E7%9A%84Android%E6%B7%B7%E6%B7%86%EF%BC%88Proguard%E6%96%87%E4%BB%B6%EF%BC%89%E6%98%AF%E6%80%8E%E4%B9%88%E5%86%99%E7%9A%84/"/>
+    <id>http://febsky.me/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/</id>
+    <published>2017-03-24T02:01:31.000Z</published>
+    <updated>2017-05-05T06:46:48.000Z</updated>
+    
+    <content type="html">&lt;p&gt;到了一些公司后发现好多编译时候的错误是因为Proguard引起的，而且这些Proguard文件写的非常乱（其实Proguard文件是可以写的很美观整洁的），可能因为Proguard文件要靠手写，所以有时候感觉很难，但是找到规律之后也挺简单的，感觉难是因为不熟悉它的一些关键字。这里列出了常用的关键字，以及人能看懂的含义，其实要想看明白，自己写的Demo测试一下就好了，借助于反编译工具看下到底什么被混淆了，&lt;a href=&quot;http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/&quot;&gt;工具看这&lt;/a&gt;。我下面写了详细的注释&lt;a href=&quot;https://github.com/niyingxunzong/ToolBox/edit/master/app/proguard-rules.pro&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;github&lt;/a&gt;，常用的也就这么多了，其余的可以根据命令行进行调试，然后逐个添加。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;41&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;42&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;43&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;44&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;46&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;47&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;48&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;49&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;50&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;51&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;52&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;53&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;54&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;55&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;56&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;57&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;58&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;59&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;60&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;61&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;62&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;63&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;64&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;65&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;66&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;67&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;68&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;69&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;70&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;71&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;72&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;73&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;74&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;75&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;76&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;77&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;78&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;79&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;80&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;81&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;82&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;83&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;84&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;85&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;86&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;87&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;88&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;89&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;90&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;91&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;92&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;93&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;94&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;95&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;96&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;97&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;98&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;99&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;100&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;101&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;102&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;103&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;104&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;105&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;106&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;107&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;108&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;109&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;110&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;111&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;112&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;113&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;114&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;115&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;116&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;117&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;118&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;119&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;120&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;121&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;122&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;123&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;124&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;125&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;126&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;127&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;128&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;129&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;130&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;131&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;132&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;133&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;134&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#-ignorewarnings                     # 忽略警告，避免打包时某些警告出现&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-optimizationpasses 5               # 指定代码的压缩级别&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-dontusemixedcaseclassnames         # 是否使用大小写混合 混淆时不会产生形形色色的类名&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-dontskipnonpubliclibraryclasses    # 是否混淆第三方jar&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-dontpreverify                      # 混淆时是否做预校验&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-verbose                            # 混淆时是否记录日志&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-dontoptimize                       # 不优化输入的类文件&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepattributes *Annotation*, SourceFile, InnerClasses, LineNumberTable, Signature, EnclosingMethod&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*    #优化 混淆时采用的算法&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.app.Activity    # 未指定成员，仅仅保持类名不被混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.app.Application&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.app.Service&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.app.View&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.app.IntentService&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.content.BroadcastReceiver&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.content.ContentProvider&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.app.backup.BackupAgentHelper&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.preference.Preference&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.hardware.display.DisplayManager&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.os.UserManager&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class com.android.vending.licensing.ILicensingService&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.app.Fragment&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.support.v4.widget&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class * extends android.support.v4.**    #  *匹配任意字符不包括.  **匹配任意字符&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep interface android.support.v4.app.** &amp;#123; *; &amp;#125;    #&amp;#123; *;&amp;#125;    表示一个接口中的所有的东西都不被混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# 下面这行表示保持这个包下面的所有的类里面的所有内容都不混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class android.support.v4.** &amp;#123; *; &amp;#125;        &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class android.os.**&amp;#123;*;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class android.support.v8.renderscript.** &amp;#123; *; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class **.R$* &amp;#123; *; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class **.R&amp;#123; *; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#实现了android.os.Parcelable接口类的任何类，以及其内部定义的Creator内部类类型的public final静态成员变量，都不能被混淆和删除&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class * implements android.os.Parcelable &amp;#123;    # 保持Parcelable不被混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  public static final android.os.Parcelable$Creator *;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepclasseswithmembernames class * &amp;#123;     # 保持 native 方法不被混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    native &amp;lt;methods&amp;gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepclasseswithmembers class * &amp;#123;         # 保持自定义控件类不被混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    public &amp;lt;init&amp;gt;(android.content.Context, android.util.AttributeSet);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepclasseswithmembers class * &amp;#123;         # 保持自定义控件类不被混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    public &amp;lt;init&amp;gt;(android.content.Context, android.util.AttributeSet, int);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepclasseswithmembers class * &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  public &amp;lt;init&amp;gt;(android.content.Context, android.util.AttributeSet, int, int);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepclassmembers class * extends android.app.Activity &amp;#123; #保持类成员&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   public void *(android.view.View);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepclassmembers class * extends android.content.Context &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  public void *(android.view.View);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  public void *(android.view.MenuItem);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepclassmembers enum * &amp;#123;                  # 保持枚举 enum 类不被混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    public static **[] values();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    public static ** valueOf(java.lang.String);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# Explicitly preserve all serialization members. The Serializable interface&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# is only a marker interface, so it wouldn&amp;apos;t save them.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepnames class * implements java.io.Serializable&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepclassmembers class * implements java.io.Serializable &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  static final long serialVersionUID;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  private static final java.io.ObjectStreamField[] serialPersistentFields;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  private void writeObject(java.io.ObjectOutputStream);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  private void readObject(java.io.ObjectInputStream);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  java.lang.Object writeReplace();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  java.lang.Object readResolve();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#-libraryjars   libs/jar包名字.jar   #缺省proguard 会检查每一个引用是否正确，但是第三方库里面往往有些不会用到的类，没有正确引用。如果不配置的话，系统就会报错。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-dontwarn android.support.v4.**&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-dontwarn android.os.**&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#编译时关掉Log的打印，&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#-assumenosideeffects class android.util.Log &amp;#123;    #如果是自定义Log类，修改下面的包名&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#        public static *** d(...);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#        public static *** e(...);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#        public static *** i(...);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#        public static *** v(...);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#        public static *** println(...);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#        public static *** w(...);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#        public static *** wtf(...);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;##############################--------以上是Android基本配置----------##############################&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# 实体类不混淆（自己项目实体类不被混淆，因为Gson中用到了反射）&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#-keep class me.febsky.entity.** &amp;#123; *; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### -----这是个列子---- ###&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#这个类里面的所有的成员变量和方法都不混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class me.febsky.testprogard.MainActivity &amp;#123; *; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#这个类里面的内部类的所有的成员变量和方法都不混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class me.febsky.testprogard.MainActivity$* &amp;#123; *; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#这个类里面的所有public的内部类的所有的成员变量和方法都不混淆&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class me.febsky.testprogard.MainActivity$* &amp;#123; *; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#这个类里面的内部类的类名不备混淆，方法和变量还是混淆的&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class me.febsky.testprogard.MainActivity$*&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#保持一个类的类名不被混淆，里面的方法和成员变量名还是被混淆的&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep public class me.febsky.testprogard.MyOutClass&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### -----这是个列子---- ###&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## for sharedSDK&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class android.net.http.SslError&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class android.webkit.**&amp;#123;*;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class cn.sharesdk.**&amp;#123;*;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class com.sina.**&amp;#123;*;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class m.framework.**&amp;#123;*;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#butter knife&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class butterknife.** &amp;#123; *; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-dontwarn butterknife.internal.**&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keep class **$$ViewBinder &amp;#123; *; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepclasseswithmembernames class * &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    @butterknife.* &amp;lt;fields&amp;gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keepclasseswithmembernames class * &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    @butterknife.* &amp;lt;methods&amp;gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/u/1557f3d7aba5&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;我的简书&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;到了一些公司后发现好多编译时候的错误是因为Proguard引起的，而且这些Proguard文件写的非常乱（其实Proguard文件是可以写的很美观整洁的），可能因为Proguard文件要靠手写，所以有时候感觉很难，但是找到规律之后也挺简单的，感觉难是因为不熟悉它的一些关键字
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="编译" scheme="http://febsky.me/categories/Android/%E7%BC%96%E8%AF%91/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="编译" scheme="http://febsky.me/tags/%E7%BC%96%E8%AF%91/"/>
+    
+      <category term="Proguard" scheme="http://febsky.me/tags/Proguard/"/>
+    
+  </entry>
   
   <entry>
     <title>Nodejs随机数</title>
@@ -913,67 +1059,6 @@
       <category term="反编译" scheme="http://febsky.me/tags/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
     
       <category term="逆向工程" scheme="http://febsky.me/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python使用虚拟环境</title>
-    <link href="http://febsky.me/2016/06/17/2016-06-17-Python%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
-    <id>http://febsky.me/2016/06/17/2016-06-17-Python使用虚拟环境/</id>
-    <published>2016-06-17T09:46:24.000Z</published>
-    <updated>2016-07-07T06:12:28.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Python的虚拟环境可以使一个Python程序拥有独立的库library和解释器interpreter，而不用与其他Python程序共享统一个library和interpreter。虚拟环境的好处是避免了不同Python程序间的互相影响（共同使用global library 和 interpreter），例如程序A需要某个库的1.0版本，而程序B需要同样这个库的2.0版本，如果程序B执行则A就不能执行了。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;安装virtualenv：&lt;br&gt;&lt;code&gt;pip install virtualenv&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;创建虚拟环境&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;virtualenv venv&lt;/code&gt;&lt;br&gt; venv是新创建的虚拟环境的名称。 同时会创建一个与虚拟环境名称相同的文件夹venv, 里面存储了一个独立的Python执行环境。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;进入虚拟环境&lt;/p&gt;
-&lt;p&gt; &lt;code&gt;source venv/bin/activate&lt;/code&gt;&lt;br&gt; 进入虚拟环境后，命令行的提示符会加入虚拟环境的名称，例如：(venv)user@machine:~$&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;退出虚拟环境&lt;br&gt; &lt;code&gt;deactivate&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;删除虚拟环境&lt;br&gt; &lt;code&gt;rm -r venv&lt;/code&gt;&lt;br&gt; 直接删除虚拟环境所在的文件夹venv就删除了我们创建的venv虚拟环境。&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python的虚拟环境可以使一个Python程序拥有独立的库library和解释器interpreter，而不用与其他Python程序共享统一个library和interpreter。虚拟环境的好处是避免了不同Python程序间的互相影响（共同使用global librar
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Python常用的库</title>
-    <link href="http://febsky.me/2016/06/17/2016-06-17-Python%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BA%93/"/>
-    <id>http://febsky.me/2016/06/17/2016-06-17-Python常用的库/</id>
-    <published>2016-06-16T17:55:08.000Z</published>
-    <updated>2016-06-17T16:09:13.000Z</updated>
-    
-    <content type="html">&lt;ol&gt;
-&lt;li&gt;网络请求库 requests &lt;a href=&quot;http://cn.python-requests.org/zh_CN/latest/user/quickstart.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一份中文文档&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;HTML解析  pyquery 或者 beautifulsoup&lt;/li&gt;
-&lt;li&gt;orm库 sqlalchemy &lt;a href=&quot;http://gashero.yeax.com/?p=6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一份中文文档&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;种子解析libtorrent&lt;/li&gt;
-&lt;li&gt;web Flask,flask-httpauth&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;【参考】&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/vovlie/p/4182814.html?utm_source=tuicool&amp;amp;utm_medium=referral&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;用Flask设计带认证的Restfull&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;网络请求库 requests &lt;a href=&quot;http://cn.python-requests.org/zh_CN/latest/user/quickstart.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一份中文文档&lt;/a&gt;&lt;
-    
-    </summary>
-    
-      <category term="Python" scheme="http://febsky.me/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="http://febsky.me/tags/Python/"/>
     
   </entry>
   
