@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://febsky.me/about/index.html</loc>
+    
+    <lastmod>2017-05-05T06:16:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/</loc>
     
     <lastmod>2017-04-11T01:59:01.000Z</lastmod>
@@ -54,13 +61,6 @@
     <loc>http://febsky.me/2015/07/14/2015-07-14-Android%20%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/</loc>
     
     <lastmod>2016-10-11T03:02:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://febsky.me/about/index.html</loc>
-    
-    <lastmod>2016-09-18T07:43:01.000Z</lastmod>
     
   </url>
   
