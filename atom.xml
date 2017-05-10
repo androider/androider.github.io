@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2017-05-05T06:49:26.000Z</updated>
+  <updated>2017-05-10T03:16:07.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://febsky.me/2017/05/05/2017-05-05-Mac%E4%B8%8BAndroid%E6%BA%90%E7%A0%81%EF%BC%88AOSP%EF%BC%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%96%B9%E6%B3%95/"/>
     <id>http://febsky.me/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/</id>
     <published>2017-05-05T06:46:31.000Z</published>
-    <updated>2017-05-05T06:49:26.000Z</updated>
+    <updated>2017-05-10T03:16:07.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;一、编译源码的背景环境&quot;&gt;&lt;a href=&quot;#一、编译源码的背景环境&quot; class=&quot;headerlink&quot; title=&quot;一、编译源码的背景环境&quot;&gt;&lt;/a&gt;一、编译源码的背景环境&lt;/h1&gt;&lt;h2 id=&quot;Android源码编译有什么困难&quot;&gt;&lt;a href=&quot;#Android源码编译有什么困难&quot; class=&quot;headerlink&quot; title=&quot;Android源码编译有什么困难&quot;&gt;&lt;/a&gt;Android源码编译有什么困难&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;AOSP 非常庞大，需要下载，但是他是Google家的，和大陆开发者之间隔着一个GFW&lt;/li&gt;
@@ -34,9 +34,17 @@
 &lt;blockquote&gt;
 &lt;p&gt;有一点题外话需要说一下，这个Docker安装后会开机默认启动，默认启动倒是也没问题，有问题的是他不可以和Android虚拟机同时运行，就是AndroidStudio自带的那个虚拟机。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&quot;二、搭建Mac编译环境&quot;&gt;&lt;a href=&quot;#二、搭建Mac编译环境&quot; class=&quot;headerlink&quot; title=&quot;二、搭建Mac编译环境&quot;&gt;&lt;/a&gt;二、搭建Mac编译环境&lt;/h1&gt;&lt;p&gt;修改文件描述符限制&lt;br&gt;在&lt;code&gt;~/.bash_profile&lt;/code&gt;中添加以下内容&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#set the number of open files to be 1024 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ulimit -S -n 1024&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;二、搭建Mac编译环境&quot;&gt;&lt;a href=&quot;#二、搭建Mac编译环境&quot; class=&quot;headerlink&quot; title=&quot;二、搭建Mac编译环境&quot;&gt;&lt;/a&gt;二、搭建Mac编译环境&lt;/h1&gt;&lt;p&gt;修改文件描述符限制&lt;br&gt;在&lt;code&gt;~/.bash_profile&lt;/code&gt;中添加以下内容&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;the number of open files to be 1024 &lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;ulimit -S -n 1024&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h2 id=&quot;开发环境要求&quot;&gt;&lt;a href=&quot;#开发环境要求&quot; class=&quot;headerlink&quot; title=&quot;开发环境要求&quot;&gt;&lt;/a&gt;开发环境要求&lt;/h2&gt;&lt;p&gt;1、 Mac OS v10.10 (Yosemite) 或以上，安装了 Xcode 4.5.2或以上，安装了Command Line Tools。&lt;br&gt; 2、安装&lt;a href=&quot;https://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u71-oth-JPR&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JDK 7&lt;/a&gt;。&lt;br&gt;3、安装了&lt;a href=&quot;http://www.python.org/download/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;python 2.7&lt;/a&gt;&lt;br&gt;4、&lt;a href=&quot;http://ftp.gnu.org/gnu/make/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GNU Make 3.81或3.82&lt;/a&gt;&lt;br&gt;5、&lt;a href=&quot;http://git-scm.com/download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Git&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;我本机环境&quot;&gt;&lt;a href=&quot;#我本机环境&quot; class=&quot;headerlink&quot; title=&quot;我本机环境&quot;&gt;&lt;/a&gt;我本机环境&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Mac OS v10.12.4&lt;/li&gt;
+&lt;li&gt;xcode v8.0&lt;/li&gt;
+&lt;li&gt;git version 2.8.4 (Apple Git-73)&lt;/li&gt;
+&lt;li&gt;GNU Make 3.81&lt;/li&gt;
+&lt;li&gt;为了编译不同版本的Android源码，同时安装了JDK7 &amp;amp; JDK8，通过配置&lt;code&gt;.bash_profile&lt;/code&gt; 来切换&lt;/li&gt;
+&lt;li&gt;Python 2.7.11&lt;/li&gt;
+&lt;li&gt;之前我电脑还安装了homebrew &lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2 id=&quot;磁盘分区&quot;&gt;&lt;a href=&quot;#磁盘分区&quot; class=&quot;headerlink&quot; title=&quot;磁盘分区&quot;&gt;&lt;/a&gt;磁盘分区&lt;/h2&gt;&lt;p&gt;为什么在Mac上编译会很麻烦呢，因为Mac的文件系统默认不区分大小写，但是Android源码编译系统的要求区分大小写，这时候我们可以创建个区分大小写的磁盘空间。方法如下：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;打开&lt;code&gt;磁盘工具&lt;/code&gt;（在Launchpad中直接搜索就行）&lt;/li&gt;
@@ -45,7 +53,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;这个磁盘分区的名字后面要用到，磁盘大小好像官网推荐70G，以防不够还是大点吧，格式一定要选&lt;code&gt;区分大小写&lt;/code&gt;。这个磁盘分区还有另一种方式，我不知道这两种方式到底有什么区别。对应磁盘的分区使用，有人为了节省Mac上的硬盘，也为了防止搞坏系统，用了外接硬盘的方式然后操作这个外接硬盘的分区。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&quot;下载Android源码&quot;&gt;&lt;a href=&quot;#下载Android源码&quot; class=&quot;headerlink&quot; title=&quot;下载Android源码&quot;&gt;&lt;/a&gt;下载Android源码&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://lug.ustc.edu.cn/wiki/mirrors/help/aosp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考文献&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;下载Android源码&quot;&gt;&lt;a href=&quot;#下载Android源码&quot; class=&quot;headerlink&quot; title=&quot;下载Android源码&quot;&gt;&lt;/a&gt;下载Android源码&lt;/h2&gt;&lt;p&gt;下面是科大的源也可以用清华的&lt;a href=&quot;https://lug.ustc.edu.cn/wiki/mirrors/help/aosp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考文献&lt;/a&gt;，&lt;strong&gt;我下载的是Android6.0的源码，最终编译的时候选择的是x86_64&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;下载 repo 工具:&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;mkdir ~/bin&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;PATH=~/bin:$PATH&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;curl https://storage.googleapis.com/git-repo-downloads/repo &amp;gt; ~/bin/repo&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;chmod a+x ~/bin/repo&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -55,22 +63,24 @@
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;初始化仓库&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;repo init -u git://mirrors.ustc.edu.cn/aosp/platform/manifest&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 如果提示无法连接到 gerrit.googlesource.com，可以编辑 ~/bin/repo，把 REPO_URL 一行替换成下面的：&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## REPO_URL = &amp;apos;https://gerrit-googlesource.proxy.ustclug.org/git-repo&amp;apos;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;如果需要某个特定的 Android 版本(&lt;a href=&quot;https://source.android.com/source/build-numbers.html#source-code-tags-and-builds&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android 版本列表&lt;/a&gt;),可以通过下面的方式指定版本号，如果不指定则代码下载当前最新的代码。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;repo init -u git://mirrors.ustc.edu.cn/aosp/platform/manifest -b android-4.0.1_r1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;同步源码树（以后只需执行这条命令来同步）如果中途出现网络错误，可以停止后在执行下面的命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;repo sync&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;然后就等着吧0_0&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;如果需要某个特定的 Android 版本(&lt;a href=&quot;https://source.android.com/source/build-numbers.html#source-code-tags-and-builds&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android 版本列表&lt;/a&gt;),可以通过下面的方式指定版本号，如果不指定则代码下载当前最新的代码。&lt;br&gt; &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;repo init -u git://mirrors.ustc.edu.cn/aosp/platform/manifest -b android-6.0.1_r46&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注：在mac上运行这行可能会报错，GnuPG 这玩意不可用，解决方式看最后错解决&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;同步源码树（以后只需执行这条命令来同步）如果中途出现网络错误，可以停止后在执行下面的命令：&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;repo sync&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;然后就等着吧0_0&lt;/p&gt;
 &lt;h2 id=&quot;编译源码&quot;&gt;&lt;a href=&quot;#编译源码&quot; class=&quot;headerlink&quot; title=&quot;编译源码&quot;&gt;&lt;/a&gt;编译源码&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;清空缓存&lt;br&gt;&lt;code&gt;$ make clobber&lt;/code&gt;  &lt;blockquote&gt;
+&lt;li&gt;清空缓存&lt;br&gt;&lt;code&gt;$ make clobber&lt;/code&gt;&lt;blockquote&gt;
 &lt;p&gt;注：如果运行这行命令出错看文章最后错误处理&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;配置编译环境&lt;br&gt;&lt;code&gt;$ source build/envsetup.sh&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;选择编译目标&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ lunch&lt;/code&gt; 这时候会列出一系列的选项然后选择一个如下：&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;选择编译目标&lt;br&gt;&lt;code&gt;$ lunch&lt;/code&gt; 这时候会列出一系列的选项然后选择一个如下：&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;You&amp;apos;re building on Darwin&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Lunch menu... pick a combo:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     1. aosp_arm-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     2. aosp_arm64-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     3. aosp_mips-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     4. aosp_mips64-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     5. aosp_x86-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     6. aosp_x86_64-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     7. full_fugu-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     8. aosp_fugu-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     9. mini_emulator_arm64-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     10. m_e_arm-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     11. m_e_mips-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     12. m_e_mips64-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     13. mini_emulator_x86-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     14. mini_emulator_x86_64-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     15. aosp_dragon-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     16. aosp_dragon-eng&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     17. aosp_marlin-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     18. aosp_sailfish-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     19. aosp_flounder-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     20. aosp_angler-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     21. aosp_bullhead-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     22. hikey-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     23. hikey960-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     24. aosp_shamu-userdebug&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Which would you like? [aosp_arm-eng]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;然后直接输入上面选项的序号就好了这里，我选择第一个，至于上面那些名字的含义是啥看下面解释：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -78,35 +88,43 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;user：&lt;/strong&gt; limited access; suited for production(有限的访问权限，一般用于发布版)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;userdebug：&lt;/strong&gt; 这个和user类似，但是可以获取root权限，并且能够调试&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;eng：&lt;/strong&gt;    具有开发配置，并且有额外的调试工具（注:工程师模式）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;eng：&lt;/strong&gt;    具有开发配置，并且有额外的调试工具（注:工程师模式engineer）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;lunch&lt;/code&gt;&lt;/strong&gt;命令也可以直接这么用 &lt;code&gt;$ lunch aosp_arm-eng&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;开始编译 &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;make -j16&lt;/code&gt;  &lt;/p&gt;
-&lt;p&gt;这里指定的开启几个并行&lt;code&gt;task&lt;/code&gt;来进行编译，官网建议j后面的数字根据你电脑的线程数量的1～2倍来设置，比如电脑是双核CPU，每个CPU为双核心四线程，那么就有8个线程。所以我配置的数量为16。&lt;br&gt;然后就是漫长的等待ing…&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;开始编译&lt;br&gt;&lt;code&gt;make -j16&lt;/code&gt;  这里指定的开启几个并行&lt;code&gt;task&lt;/code&gt;来进行编译，官网建议j后面的数字根据你电脑的线程数量的1～2倍来设置，比如电脑是双核CPU，每个CPU为双核心四线程，那么就有8个线程。所以我配置的数量为16。&lt;br&gt;然后就是漫长的等待ing…&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;烧录镜像到机器中&quot;&gt;&lt;a href=&quot;#烧录镜像到机器中&quot; class=&quot;headerlink&quot; title=&quot;烧录镜像到机器中&quot;&gt;&lt;/a&gt;烧录镜像到机器中&lt;/h2&gt;&lt;ol&gt;
+&lt;h2 id=&quot;启动模拟器&quot;&gt;&lt;a href=&quot;#启动模拟器&quot; class=&quot;headerlink&quot; title=&quot;启动模拟器&quot;&gt;&lt;/a&gt;启动模拟器&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;$ source build/envsetup.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$ lunch&lt;/code&gt; (选择刚才你设置的目标版本,我编译的是x86_64-eng的那个)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$ emulator&lt;/code&gt;模拟器启动，这个命令有很多复杂用法，具体可参考官网。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;烧录镜像到机器中&quot;&gt;&lt;a href=&quot;#烧录镜像到机器中&quot; class=&quot;headerlink&quot; title=&quot;烧录镜像到机器中&quot;&gt;&lt;/a&gt;烧录镜像到机器中&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;这个烧录过程我没有测试，官网是这么写的。&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
 &lt;li&gt;进入fastboot模式&lt;br&gt;&lt;code&gt;$ adb reboot bootloader&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;把img文件刷进去&lt;br&gt;&lt;code&gt;$ fastboot flashall -w&lt;/code&gt;  这个 &lt;code&gt;-w&lt;/code&gt; 是为了&lt;code&gt;wipes the /data partition&lt;/code&gt;擦除&lt;code&gt;/data&lt;/code&gt;分区&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://developers.google.com/android/drivers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;驱动下载&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注：&lt;strong&gt;这个烧录过程我没有测试，官网是这么写的。&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;li&gt;&lt;p&gt;把img文件刷进去&lt;br&gt;&lt;code&gt;$ fastboot flashall -w&lt;/code&gt;  这个 &lt;code&gt;-w&lt;/code&gt; 是为了&lt;code&gt;wipes the /data partition&lt;/code&gt;擦除&lt;code&gt;/data&lt;/code&gt;分区&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developers.google.com/android/drivers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;驱动下载&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&quot;AndroidStudio中查看源码&quot;&gt;&lt;a href=&quot;#AndroidStudio中查看源码&quot; class=&quot;headerlink&quot; title=&quot;AndroidStudio中查看源码&quot;&gt;&lt;/a&gt;AndroidStudio中查看源码&lt;/h2&gt;&lt;p&gt;在android源码中有这么一个目录development/tools/idegen。&lt;br&gt;顾名思义，是生成ide的project文件，主要是生成intellij的project文件，可用于AndroidStudio。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;在整个Android源码全编成功之后，然后编译idegen模块，用以生成Android studio的工程配置文件,编译成功之后就生成了idegen.jar，运行如下命名：&lt;br&gt;&lt;code&gt;$ mmm development/tools/idegen/&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;在根目录生成对应的android.ipr、android.iml IEDA工程配置文件。以便于AndroidStudio可以打开项目&lt;br&gt;&lt;code&gt;$ . development/tools/idegen/idegen.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在整个Android源码全编成功之后，然后编译idegen模块，用以生成Android studio的工程配置文件,编译成功之后就生成了idegen.jar（out/host/darwin-x86/framework/idegen.jar），运行如下命令：&lt;br&gt;&lt;code&gt;$ mmm development/tools/idegen/&lt;/code&gt;&lt;blockquote&gt;
+&lt;p&gt;注：如果刚才编译AOSP的那个命令行窗口关闭了，必须要在执行&lt;code&gt;source build/envsetup.sh&lt;/code&gt;一次，用了初始化编译环境。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;在源码根目录生成对应的android.ipr、android.iml IEDA工程配置文件。以便于AndroidStudio可以打开项目&lt;br&gt;&lt;code&gt;$ . development/tools/idegen/idegen.sh&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;打开Android studio，点击File –&amp;gt; Open，选择刚刚生成的android.ipr就好了。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&quot;三、错误处理&quot;&gt;&lt;a href=&quot;#三、错误处理&quot; class=&quot;headerlink&quot; title=&quot;三、错误处理&quot;&gt;&lt;/a&gt;三、错误处理&lt;/h1&gt;&lt;p&gt;错误描述：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;build/core/config.mk:660: error: Error: could not find jdk tools.jar at /System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/../lib/tools.jar, please check if your JDK was installed correctly.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17:29:26 ckati failed with: exit status 1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;解决方式：&lt;br&gt;在&lt;code&gt;~/.bash_profile&lt;/code&gt;添加如下代码&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;export JAVA_HOME=$JAVA_8_HOME&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;##上面是jdk的配置，主要是添加下面这一行&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;export ANDROID_JAVA_HOME=$JAVA_HOME&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;三、错误处理&quot;&gt;&lt;a href=&quot;#三、错误处理&quot; class=&quot;headerlink&quot; title=&quot;三、错误处理&quot;&gt;&lt;/a&gt;三、错误处理&lt;/h1&gt;&lt;h2 id=&quot;执行repo-init的错误&quot;&gt;&lt;a href=&quot;#执行repo-init的错误&quot; class=&quot;headerlink&quot; title=&quot;执行repo init的错误&quot;&gt;&lt;/a&gt;执行&lt;code&gt;repo init&lt;/code&gt;的错误&lt;/h2&gt;&lt;p&gt;错误1描述&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;warning: gpg (GnuPG) is not available.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;warning: Installing it is strongly encouraged.&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;解决方法：&lt;br&gt;原因是GnuPG for osx没有安装，去&lt;a href=&quot;https://www.gnupg.org/download/下载安装即可。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.gnupg.org/download/下载安装即可。&lt;/a&gt;&lt;br&gt;我用homebrew安装的&lt;code&gt;brew install gnupg&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;执行make-clobber的错误&quot;&gt;&lt;a href=&quot;#执行make-clobber的错误&quot; class=&quot;headerlink&quot; title=&quot;执行make clobber的错误&quot;&gt;&lt;/a&gt;执行&lt;code&gt;make clobber&lt;/code&gt;的错误&lt;/h2&gt;&lt;p&gt;####错误1描述：&lt;br&gt; &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;build/core/config.mk:660: error: Error: could not find jdk tools.jar at /System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/../lib/tools.jar, please check if your JDK was installed correctly.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17:29:26 ckati failed with: exit status 1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt; 解决方式：&lt;br&gt; 在&lt;code&gt;~/.bash_profile&lt;/code&gt;添加如下代码&lt;br&gt; &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;export JAVA_HOME=$JAVA_8_HOME&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;##上面是jdk的配置，主要是添加下面这一行&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;export ANDROID_JAVA_HOME=$JAVA_HOME&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;####错误2描述&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;build/core/combo/mac_version.mk:38: *****************************************************&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;build/core/combo/mac_version.mk:39: * Can not find SDK 10.6 at /Developer/SDKs/MacOSX10.6.sdk&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;build/core/combo/mac_version.mk:40: *****************************************************&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;build/core/combo/mac_version.mk:41: *** Stop..  Stop.&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;解决方法：&lt;br&gt;出现这个错误是因为xcode的版本不对，首先查看本机安装xcode的版本，&lt;br&gt;&lt;code&gt;$ cd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/&lt;/code&gt;&lt;br&gt;然后修改&lt;code&gt;build/core/combo/mac_version.mk&lt;/code&gt;这个文件中的下面这行，把本机的版本号添加到下面，我的是10.12 添加后如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;mac_sdk_versions_supported :=  10.6 10.7 10.8 10.9 10.12&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;####错误3描述：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;system/core/libcutils/threads.c:38:10: error: &amp;apos;syscall&amp;apos; is deprecated: first deprecated in OS X 10.12 - syscall(2) is unsupported; please switch to a supported interface. For SYS_kdebug_trace use kdebug_signpost(). [-Werror,-Wdeprecated-declarations]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  return syscall(SYS_thread_selfid);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;         ^&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/unistd.h:733:6: note: &amp;apos;syscall&amp;apos; has been explicitly marked deprecated here&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;int      syscall(int, ...);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;         ^&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;1 error generated.&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;解决方式：&lt;br&gt;这个错误3归根到底是因为错误2引起的，再归根下是xcode版本引起的，（为啥说在mac上编译麻烦，这个xcode版本会出这么多破事），没办法这个我们上面用的mac sdk 10.12 版本太高了，这个版本废弃了某些方法导致编译不可用，那就去下个低版本的吧&lt;a href=&quot;https://github.com/phracker/MacOSX-SDKs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;传送门&lt;/a&gt;，&lt;a href=&quot;https://github.com/phracker/MacOSX-SDKs/releases&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;压缩包在&lt;/a&gt;这然后下载那个10.11。理论上来说，下载后把目录放到这个路径下&lt;code&gt;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/&lt;/code&gt;和这个&lt;code&gt;MacOSX10.12.sdk&lt;/code&gt;目录平级就行了，然后把错误2中添加到&lt;code&gt;build/core/combo/mac_version.mk&lt;/code&gt;中的那个10.12改成10.11就好了。但是这个东西貌似在下次xcode升级的时候会被删掉。&lt;br&gt;a oh so? 弄个软连接:&lt;br&gt;&lt;code&gt;$ mkdir ~/lib&lt;/code&gt;&lt;br&gt;然后把下载的压缩包解压到&lt;code&gt;~/lib&lt;/code&gt;下&lt;br&gt;&lt;code&gt;$ sudo ln -s ~/lib/MacOSX10.11.sdk /Applications/XCode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk&lt;/code&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
