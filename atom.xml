@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2017-05-10T03:35:53.000Z</updated>
+  <updated>2017-05-18T05:54:06.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -14,6 +14,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IPC-Android中的进程与进程间通信</title>
+    <link href="http://febsky.me/2017/05/18/%20IPC-Android%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/"/>
+    <id>http://febsky.me/2017/05/18/ IPC-Android中的进程与进程间通信/</id>
+    <published>2017-05-18T06:46:31.000Z</published>
+    <updated>2017-05-18T05:54:06.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;一、Android中的进程&quot;&gt;&lt;a href=&quot;#一、Android中的进程&quot; class=&quot;headerlink&quot; title=&quot;一、Android中的进程&quot;&gt;&lt;/a&gt;一、Android中的进程&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://developer.android.com/guide/components/processes-and-threads.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方解释&lt;/a&gt;&lt;br&gt;Android的系统架构底层是Linux，上层采用的是可以&lt;del&gt;运行java&lt;/del&gt;（其实是dex字节码）的虚拟机（Dalvik &amp;amp; ART），Dalvik的核心内容是实现库（libdvm.so），大体由C语言实现。依赖于Linux内核的一部分功能——线程机制、内存管理机制，能高效使用内存，并在低速CPU上表现出的高性能。每一个Android应用在底层都会对应一个独立的Dalvik虚拟机实例，其代码在虚拟机的解释下得以执行。&lt;/p&gt;
+&lt;h2 id=&quot;1-内核进程-确切的说是内核线程kernel-thread-和用户进程&quot;&gt;&lt;a href=&quot;#1-内核进程-确切的说是内核线程kernel-thread-和用户进程&quot; class=&quot;headerlink&quot; title=&quot;1. 内核进程(确切的说是内核线程kernel thread)和用户进程&quot;&gt;&lt;/a&gt;1. 内核进程(确切的说是内核线程kernel thread)和用户进程&lt;/h2&gt;&lt;p&gt;这个是根据进程运行空间来区分的。&lt;a href=&quot;http://www.cnblogs.com/createyuan/p/3979142.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;linux常见进程与内核线程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/797798-de74ea7e350357e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;屏幕快照 2017-05-04 13.52.55.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;上图是用ChromeADB这个工具抓取的系统进程信息，当然也可直接用adb 的ps命名查看。对上图表头的做些解释，&lt;strong&gt;&lt;code&gt;PID指的是进程id&lt;/code&gt;,&lt;code&gt;PPID指的是parent ID也就是父进程的pid&lt;/code&gt;&lt;/strong&gt;。至于VSIZE和RSS是和内存相关的，暂时不管。仔细观察pid和ppid会发现规律。&lt;/p&gt;
+&lt;p&gt;1.0. &lt;strong&gt;进程&lt;/strong&gt;这东西要从Linux说起，Android系统内核是Linux，所以Android系统启动，必须先要Linux系统启动。而Linux下有3个特殊的进程，&lt;code&gt;idle&lt;/code&gt;进程(PID = 0), &lt;code&gt;init&lt;/code&gt;进程(PID = 1)和&lt;code&gt;kthreadd&lt;/code&gt;(PID = 2)，至于这三个进程的作用，可以简答的理解为&lt;code&gt;idle（PID=0）&lt;/code&gt;的这个是操作系统boot起来后第一个线程，&lt;code&gt;init&lt;/code&gt;和&lt;code&gt;kthreadd&lt;/code&gt;都是由它通过&lt;code&gt;kernel_thread&lt;/code&gt;创建出来的。&lt;br&gt;1.1. &lt;strong&gt;kthreadd线程&lt;/strong&gt;由idle通过kernel_thread创建，并始终运行在内核空间，它的任务就是管理和调度其他内核线程kernel_thread（内核线程）。所有内核进程的用户都是root，所有的内核线程都是直接或者间接的以kthreadd为父进程 。&lt;br&gt;1.2. &lt;strong&gt;init进程:&lt;/strong&gt;由idle通过kernel_thread创建，在Linux中的定义是一个由内核启动的用户级进程， Kerner启动后会调用&lt;code&gt;/system/core/init/Init.cpp&lt;/code&gt;的main()方法，然后解析&lt;code&gt;/init.rc&lt;/code&gt;文件，包括所有的&lt;code&gt;.rc&lt;/code&gt;文件，最重要的Zygote进程启动起来。所以，init始终是第一个进程（其进程编号始终为1）。在系统启动完成完成后，init将变为守护进程监视系统其他进程。在Android中的含义也是一样的，是所有用户进程的父进程。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;//主要进程的创建（kernel_thread或者fork）关系，PID给出的那几个的PID在任何设备上都是相同的&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;idle(PID == 0)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    |---init(PID==1)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            |---servicemanager（它是整个Binder机制的守护进程）&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            |---zygote&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                 |---system_server&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                 |---com.xxx.app(每个app至少有一个进程)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            |---mediaserver&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            |--- 。。。其他进程&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    |---kthreadd(PID == 2)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            |---binder&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            |---watchdog&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            |---。。。其他进程&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其实对于Android中进程，我们主要关心的是init进程fork出来的那几个重要的进程&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;2-进程生命周期&quot;&gt;&lt;a href=&quot;#2-进程生命周期&quot; class=&quot;headerlink&quot; title=&quot;2.进程生命周期&quot;&gt;&lt;/a&gt;2.进程生命周期&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://developer.android.com/guide/components/processes-and-threads.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;看官网解释很清楚，不再抄过来了&lt;/a&gt;&lt;br&gt;Android进程的重要性，划分5级，前台进程的重要性最高，依次递减：&lt;br&gt;前台进程(Foreground process)&lt;br&gt;可见进程(Visible process)&lt;br&gt;服务进程(Service process)&lt;br&gt;后台进程(Background process)&lt;br&gt;空进程(Empty process)&lt;/p&gt;
+&lt;p&gt;作用：必要时（当资源有限时），系统会首先消除重要性最低的进程，然后是重要性略逊的进程，依此类推，以回收系统资源。&lt;/p&gt;
+&lt;h2 id=&quot;3-Android中开启进程的方式&quot;&gt;&lt;a href=&quot;#3-Android中开启进程的方式&quot; class=&quot;headerlink&quot; title=&quot;3. Android中开启进程的方式&quot;&gt;&lt;/a&gt;3. Android中开启进程的方式&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Manifest文件给&lt;code&gt;&amp;lt;activity&amp;gt;&lt;/code&gt; &lt;code&gt;&amp;lt;service&amp;gt;&lt;/code&gt; &lt;code&gt;&amp;lt;receiver&amp;gt;&lt;/code&gt; &lt;code&gt;&amp;lt;provider&amp;gt;&lt;/code&gt;设置属性&lt;code&gt;android:process&lt;/code&gt; 指定单独进程&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;!-- 假设包名为me.febsky.app --&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; &amp;lt;activity&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       android:name=&amp;quot;me.febsky.app.OtherActivity&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       android:process=&amp;quot;:remote&amp;quot; /&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;通过jni在native层fork一个进程出来&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注：&lt;code&gt;android:process=&amp;quot;:remote&amp;quot;&lt;/code&gt; 这行代码翻译一下，其实他的完整进程名为：&lt;code&gt;me.febsky.app:remote&lt;/code&gt;（假设当前应用包名为me.febsky.app）。进程名以“:”开头的进程属于当前应用的私有进程，其他应用不可以通过SharedUID的方式和他跑在同一个进程中；而如果没有用“:”，直接指定&lt;code&gt;android:process=&amp;quot;me.febsky.remote&amp;quot;&lt;/code&gt; 说明开启的这个进程是可以和别的app（这个app必须和当前app签名相同并且指定了sharedUID）共享的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;二、Android中IPC&quot;&gt;&lt;a href=&quot;#二、Android中IPC&quot; class=&quot;headerlink&quot; title=&quot;二、Android中IPC&quot;&gt;&lt;/a&gt;二、Android中IPC&lt;/h1&gt;&lt;p&gt;一个app可以开启多个进程，那么多个进程间就有可能需要通信。IPC是Inter-Process Communication（进程间通信）的首字母缩小。&lt;/p&gt;
+&lt;h2 id=&quot;1-Linux-中一些经典的IPC&quot;&gt;&lt;a href=&quot;#1-Linux-中一些经典的IPC&quot; class=&quot;headerlink&quot; title=&quot;1. Linux 中一些经典的IPC&quot;&gt;&lt;/a&gt;1. Linux 中一些经典的IPC&lt;/h2&gt;&lt;p&gt;Android系统是基于Linux内核的，而Linux内核继承和兼容了丰富的Unix系统进程间通信（IPC）机制。有传统的管道（Pipe）、信号（Signal）和跟踪（Trace），这三项通信手段只能用于父进程与子进程之间，或者兄弟进程之间；后来又增加了命令管道（Named Pipe），使得进程间通信不再局限于父子进程或者兄弟进程之间；为了更好地支持商业应用中的事务处理，在AT&amp;amp;T的Unix系统V中，又增加了三种称为“System V IPC”的进程间通信机制，分别是报文队列（Message）、共享内存（Share Memory）和信号量（Semaphore）；后来BSD Unix对“System V IPC”机制进行了重要的扩充，提供了一种称为插口（Socket）的进程间通信机制&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Socket&lt;/strong&gt;:这个东西，在学java网络编程的时候接触的。它在Android中有个经典的使用场景，在启动一个单独进程中的Activity或者Service的时候（Activity和Service的启动后面再说，这里只需知道他们都是通过AMS启动的就行了），&lt;code&gt;ActivityManagerService&lt;/code&gt;会通过Socket进程间通信机制，通知Zygote进程为这个应用程序创建一个新的进程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;2-Android上经典的IPC-Binder&quot;&gt;&lt;a href=&quot;#2-Android上经典的IPC-Binder&quot; class=&quot;headerlink&quot; title=&quot;2. Android上经典的IPC Binder&quot;&gt;&lt;/a&gt;2. Android上经典的IPC Binder&lt;/h2&gt;&lt;h2 id=&quot;进程隔离&quot;&gt;&lt;a href=&quot;#进程隔离&quot; class=&quot;headerlink&quot; title=&quot;进程隔离&quot;&gt;&lt;/a&gt;进程隔离&lt;/h2&gt;&lt;p&gt;要说IPC，先要知道进程隔离的概念&lt;br&gt;wiki解释：进程隔离是为保护操作系统中进程互不干扰而设计的一组不同硬件和软件的技术。这个技术是为了避免进程A写入进程B的情况发生。 进程的隔离实现，使用了虚拟地址空间。进程A的虚拟地址和进程B的虚拟地址不同，这样就防止进程A将数据信息写入进程B。&lt;/p&gt;
+&lt;h2 id=&quot;Binder&quot;&gt;&lt;a href=&quot;#Binder&quot; class=&quot;headerlink&quot; title=&quot;Binder&quot;&gt;&lt;/a&gt;Binder&lt;/h2&gt;&lt;p&gt;这个东西并不是Google搞出来的，Binder的前身是&lt;a href=&quot;http://www.angryredplanet.com/~hackbod/openbinder/docs/html/BinderIPCMechanism.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OpenBinder&lt;/a&gt;，而OpenBinder的作者&lt;a href=&quot;http://www.angryredplanet.com/~hackbod/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dianne Hackborn&lt;/a&gt;现在在Google工作，负责Android平台的开发工作。&lt;/p&gt;
+&lt;p&gt;Binder主要由Client（Client进程）、Server（Server进程）、ServiceManager和Binder驱动程序组成。其中Client、Service和ServiceManager运行在用户空间，而Binder驱动程序运行在内核空间。核心组件就是 Binder驱动程序了，而ServiceManager提供辅助管理的功能，类似于DNS的作用，无论是Client还是Service进行通信前首先要和ServiceManager取得联系。而ServiceManager是一个守护进程，负责管理Server并向Client提供查询Server的功能。&lt;/p&gt;
+&lt;p&gt;这里面很重要的一点是Binder驱动，进程a与进程b通信实际上是进程a先于Binder驱动通信，然后Binder驱动再与进程b通信的一个过程。其实进程a或者进程b与Binder的通信也是进程间通信，不过这个Binder驱动是个特殊的进程，他运行在内核空间，至于Binder怎么就搞到了内核空间里面去了可以搜索（Linux的动态可加载内核模块（Loadable Kernel Module，LKM））。由于进程隔离的存在，进程a打死都不可能访问到进程b中的内存的，也就不能进行不能调用进程b中的方法，但是进程a可以通过&lt;code&gt;系统调用&lt;/code&gt;的方式访问Binder进程（内核进程），而内核空间的进程能访问用户进程a或者进程b。&lt;a href=&quot;http://blog.csdn.net/tommy_wxie/article/details/17122923/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;了解下Linux内核控件和用户控件的概念&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ServiceManager是由init进程通过解析init.rc文件而创建的，其所对应的可执行程序/system/bin/servicemanager，所对应的源文件是service_manager.c，进程名为/system/bin/servicemanager。可以把&lt;code&gt;/init.rc&lt;/code&gt;文件导出来看下，没什么神秘的，创建这个进程的指令为：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;service servicemanager /system/bin/servicemanager&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    class core&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    user system&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    group system&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    critical&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    onrestart restart healthd&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    onrestart restart zygote&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    onrestart restart media&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    onrestart restart surfaceflinger&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    onrestart restart drm&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、Android中的进程&quot;&gt;&lt;a href=&quot;#一、Android中的进程&quot; class=&quot;headerlink&quot; title=&quot;一、Android中的进程&quot;&gt;&lt;/a&gt;一、Android中的进程&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://developer
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="IPC" scheme="http://febsky.me/categories/Android/IPC/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="IPC" scheme="http://febsky.me/tags/IPC/"/>
+    
+      <category term="Binder" scheme="http://febsky.me/tags/Binder/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac下Android源码（AOSP）编译环境搭建方法</title>
@@ -1018,75 +1077,6 @@
       <category term="Android" scheme="http://febsky.me/tags/Android/"/>
     
       <category term="Chrome插件" scheme="http://febsky.me/tags/Chrome%E6%8F%92%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android逆向工程用到的工具</title>
-    <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/"/>
-    <id>http://febsky.me/2016/07/05/2016-07-05-Android逆向工程用到的工具/</id>
-    <published>2016-07-05T05:12:00.000Z</published>
-    <updated>2017-04-11T01:59:01.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;第一套组合（入门级组合）&quot;&gt;&lt;a href=&quot;#第一套组合（入门级组合）&quot; class=&quot;headerlink&quot; title=&quot;第一套组合（入门级组合）&quot;&gt;&lt;/a&gt;第一套组合（入门级组合）&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iBotPeaches/Apktool&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Apktool&lt;/a&gt; + &lt;a href=&quot;https://github.com/pxb1988/dex2jar&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;dex2jar&lt;/a&gt; + &lt;a href=&quot;https://github.com/java-decompiler/jd-gui&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jd-gui&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;可惜的是apktool好像后来不再支持调试Smali文件，jd-gui 作者从 2015 年开始就停止了维护.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;但是AndroidStudio有个调试Smali的插件  &lt;a href=&quot;SmaliIdea：https://github.com/JesusFreke/smali/wiki/smalidea&quot;&gt;地址 https://github.com/JesusFreke/smali/wiki/smalidea&lt;/a&gt;&lt;br&gt;据说jadx 不错（推荐使用），可以取代 jd-gui &lt;a href=&quot;https://github.com/skylot/jadx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;地址 https://github.com/skylot/jadx&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;Google-出的几个逆向分析工具&quot;&gt;&lt;a href=&quot;#Google-出的几个逆向分析工具&quot; class=&quot;headerlink&quot; title=&quot;Google 出的几个逆向分析工具&quot;&gt;&lt;/a&gt;Google 出的几个逆向分析工具&lt;/h2&gt;&lt;h2 id=&quot;1-enjarify&quot;&gt;&lt;a href=&quot;#1-enjarify&quot; class=&quot;headerlink&quot; title=&quot;1. enjarify  &quot;&gt;&lt;/a&gt;1. enjarify  &lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/enjarify&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/enjarify&lt;/a&gt;&lt;br&gt;功能：可直接将 apk 文件还原成为 jar 文件，也可以和 dex2jar 一样，直接操作某个dex&lt;/p&gt;
-&lt;p&gt;这是 Google 出品的一个逆向分析工具，从反编译成 jar 包的流程来说，要比 dex2jar 方便得多。下载完工具到本地并配置好 Python 环境后，需要修改 enjarify 目录下的 enjarify.bat 文件，将 python3 改为 python&lt;/p&gt;
-&lt;h2 id=&quot;2-ClassyShark&quot;&gt;&lt;a href=&quot;#2-ClassyShark&quot; class=&quot;headerlink&quot; title=&quot;2. ClassyShark&quot;&gt;&lt;/a&gt;2. ClassyShark&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/google/android-classyshark&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/google/android-classyshark&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;功能：可直接浏览 Apk，支持对.dex, .aar, .so，.apk, .jar, .class等文件的操作。&lt;/p&gt;
-&lt;p&gt;同是Google出品，但是只能看到方法声明，没法看到方法的定义。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;java -jar ClassyShark.jar -open XXX.apk&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;3-AndroidStudio2-2-（APK-Analyzer）&quot;&gt;&lt;a href=&quot;#3-AndroidStudio2-2-（APK-Analyzer）&quot; class=&quot;headerlink&quot; title=&quot;3. AndroidStudio2.2 （APK Analyzer）&quot;&gt;&lt;/a&gt;3. AndroidStudio2.2 （APK Analyzer）&lt;/h2&gt;&lt;p&gt;  在Android Studio2.2 中添加了个新的功能&lt;code&gt;Build --&amp;gt;analyze apk ...&lt;/code&gt;&lt;br&gt;   然后选择你要分析的 APK 文件就可以了。但是只能看到方法声明，没法看到方法的定义。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.febsky.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;me&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;procyon-和-cfr-和-Jad-，这些主要专注于jar的反编译&quot;&gt;&lt;a href=&quot;#procyon-和-cfr-和-Jad-，这些主要专注于jar的反编译&quot; class=&quot;headerlink&quot; title=&quot;procyon 和 cfr 和 Jad ，这些主要专注于jar的反编译&quot;&gt;&lt;/a&gt;procyon 和 cfr 和 Jad ，这些主要专注于jar的反编译&lt;/h2&gt;&lt;h2 id=&quot;1-orocyon-和-cfr-和-Jad&quot;&gt;&lt;a href=&quot;#1-orocyon-和-cfr-和-Jad&quot; class=&quot;headerlink&quot; title=&quot;1. orocyon 和 cfr 和 Jad &quot;&gt;&lt;/a&gt;1. orocyon 和 cfr 和 Jad &lt;/h2&gt;&lt;p&gt;当然这几个不是Google的产物，这几个是&lt;code&gt;jar&lt;/code&gt; 和&lt;code&gt;.class&lt;/code&gt; 反编译工具。为啥要用这些，因为jd-gui，反编译java7会有问题。有些语法有点让人难以读懂。但是他有图形化界面剩下的这几个都没有。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://bitbucket.org/mstrobel/procyon&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bitbucket.org/mstrobel/procyon&lt;/a&gt;&lt;br&gt;功能：将反编译得到 jar 包还原成 java 文件，同时能够更强的还原代码的逻辑结构  2016-07-12 持续更新中。。。据说有个图形化界面&lt;a href=&quot;https://github.com/deathmarine/Luyten&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/deathmarine/Luyten&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.benf.org/other/cfr/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.benf.org/other/cfr/&lt;/a&gt; 最新版 cfr_0_116.jar (July 2016) 持续更新中。。。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/JAD_(JAva_Decompiler&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jad&lt;/a&gt;)  //这货我没用过，不知道地址，好像也不怎么更新了，给的是wiki的地址。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;procyon 反编译jar包命令：(我用的是这个，比jd-gui好很多真的)&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;$ java -jar procyon-decompiler-0.5.30.jar -jar myJar.jar -o out&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;cfr 反编译jar包命令：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;java -jar cfr_0_79.jar example.jar -–outputdir out  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;2-bytecode-viewer-这是个套装&quot;&gt;&lt;a href=&quot;#2-bytecode-viewer-这是个套装&quot; class=&quot;headerlink&quot; title=&quot;2.bytecode-viewer 这是个套装&quot;&gt;&lt;/a&gt;2.bytecode-viewer 这是个套装&lt;/h2&gt;&lt;p&gt;再来一个基于Procyon的项目 &lt;a href=&quot;https://github.com/Konloch/bytecode-viewer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bytecode-viewer&lt;/a&gt;&lt;br&gt;A Java 8 Jar &amp;amp; Android APK Reverse Engineering Suite (Decompiler, Editor, Debugger &amp;amp; More) &lt;a href=&quot;https://bytecodeviewer.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bytecodeviewer.com&lt;/a&gt;.  不知道如何没用过。&lt;/p&gt;
-&lt;h2 id=&quot;3-Jadx&quot;&gt;&lt;a href=&quot;#3-Jadx&quot; class=&quot;headerlink&quot; title=&quot;3. Jadx&quot;&gt;&lt;/a&gt;3. Jadx&lt;/h2&gt;&lt;p&gt;强烈推荐这个玩意，反编译后的代码可读性好，自带图形化界面。&lt;/p&gt;
-&lt;p&gt;这个是一款GUI界面的反编译工具，是一款点击鼠标就可以使用的跨平台工具。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/skylot/jadx/releases&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;项目在这里&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;JEB-for-Android&quot;&gt;&lt;a href=&quot;#JEB-for-Android&quot; class=&quot;headerlink&quot; title=&quot;##JEB for Android &quot;&gt;&lt;/a&gt;##JEB for Android &lt;/h2&gt;&lt;p&gt;非常不错，但是不开源，不免费&lt;a href=&quot;https://www.pnfsoftware.com/jeb2/#android&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.febsky.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;me&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://bbs.pediy.com/showthread.php?p=1397272&amp;amp;mode=threaded&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bbs.pediy.com/showthread.php?p=1397272&amp;amp;mode=threaded&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;第一套组合（入门级组合）&quot;&gt;&lt;a href=&quot;#第一套组合（入门级组合）&quot; class=&quot;headerlink&quot; title=&quot;第一套组合（入门级组合）&quot;&gt;&lt;/a&gt;第一套组合（入门级组合）&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/iB
-    
-    </summary>
-    
-      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
-    
-      <category term="反编译" scheme="http://febsky.me/categories/Android/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
-    
-      <category term="逆向工程" scheme="http://febsky.me/categories/Android/%E5%8F%8D%E7%BC%96%E8%AF%91/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="反编译" scheme="http://febsky.me/tags/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
-    
-      <category term="逆向工程" scheme="http://febsky.me/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
     
   </entry>
   
