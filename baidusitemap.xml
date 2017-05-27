@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://febsky.me/2015/04/20/2015-04-20-git%20(github)%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2017-05-27T03:25:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>git (github)的基本使用</title>
+        <pubTime>2015-04-20T03:51:49.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://febsky.me/2017/05/18/%20IPC-Android%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</loc>
     <lastmod>2017-05-18T05:54:06.000Z</lastmod>
     <data>
@@ -134,26 +154,6 @@
           
              
               <breadCrumb title="逆向工程" url="http://febsky.me/categories/Android/%E5%8F%8D%E7%BC%96%E8%AF%91/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://febsky.me/2015/04/20/2015-04-20-git%20(github)%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2017-04-06T09:03:47.000Z</lastmod>
-    <data>
-        <display>
-        <title>git (github)的基本使用</title>
-        <pubTime>2015-04-20T03:51:49.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="http://febsky.me/categories/Git/"/>
           
         </display>
     </data>
