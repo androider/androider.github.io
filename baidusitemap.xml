@@ -4,6 +4,51 @@
 
     
   <url>
+    <loc>http://febsky.me/2015/07/14/2015-07-14-Android%20%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/</loc>
+    <lastmod>2017-07-12T09:21:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android文件存储路径</title>
+        <pubTime>2015-07-14T07:34:30.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>文件存储</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://febsky.me/categories/Android/"/>
+          
+             
+              <breadCrumb title="文件存储" url="http://febsky.me/categories/Android/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://febsky.me/2016/03/23/2016-03-23-AndroidStudio%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/</loc>
+    <lastmod>2017-06-21T02:34:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>AndroidStudio中常用的插件</title>
+        <pubTime>2016-03-23T09:08:21.000Z</pubTime>
+        
+        <tag>AndroidStudio</tag>
+         
+         
+           
+             
+              <breadCrumb title="AndroidStudio" url="http://febsky.me/categories/AndroidStudio/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://febsky.me/2015/04/20/2015-04-20-git%20(github)%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2017-05-27T03:25:29.000Z</lastmod>
     <data>
@@ -275,31 +320,6 @@
 
     
   <url>
-    <loc>http://febsky.me/2015/07/14/2015-07-14-Android%20%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/</loc>
-    <lastmod>2016-10-11T03:02:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android文件存储</title>
-        <pubTime>2015-07-14T07:34:30.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>文件存储</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://febsky.me/categories/Android/"/>
-          
-             
-              <breadCrumb title="文件存储" url="http://febsky.me/categories/Android/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://febsky.me/2016/04/12/2016-04-12-%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2016-09-18T07:27:57.000Z</lastmod>
     <data>
@@ -373,26 +393,6 @@
            
              
               <breadCrumb title="Android" url="http://febsky.me/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://febsky.me/2016/03/23/2016-03-23-AndroidStudio%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/</loc>
-    <lastmod>2016-09-12T10:11:57.000Z</lastmod>
-    <data>
-        <display>
-        <title>AndroidStudio中常用的插件</title>
-        <pubTime>2016-03-23T09:08:21.000Z</pubTime>
-        
-        <tag>AndroidStudio</tag>
-         
-         
-           
-             
-              <breadCrumb title="AndroidStudio" url="http://febsky.me/categories/AndroidStudio/"/>
           
         </display>
     </data>
