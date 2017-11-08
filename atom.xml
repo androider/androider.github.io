@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://febsky.me/"/>
-  <updated>2017-05-18T05:54:06.000Z</updated>
+  <updated>2017-07-31T07:53:29.000Z</updated>
   <id>http://febsky.me/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>IPC-Android中的进程与进程间通信</title>
-    <link href="http://febsky.me/2017/05/18/%20IPC-Android%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/"/>
-    <id>http://febsky.me/2017/05/18/ IPC-Android中的进程与进程间通信/</id>
+    <link href="http://febsky.me/2017/05/18/2017-05-18-IPC-Android%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/"/>
+    <id>http://febsky.me/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/</id>
     <published>2017-05-18T06:46:31.000Z</published>
-    <updated>2017-05-18T05:54:06.000Z</updated>
+    <updated>2017-07-31T07:53:29.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;一、Android中的进程&quot;&gt;&lt;a href=&quot;#一、Android中的进程&quot; class=&quot;headerlink&quot; title=&quot;一、Android中的进程&quot;&gt;&lt;/a&gt;一、Android中的进程&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://developer.android.com/guide/components/processes-and-threads.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方解释&lt;/a&gt;&lt;br&gt;Android的系统架构底层是Linux，上层采用的是可以&lt;del&gt;运行java&lt;/del&gt;（其实是dex字节码）的虚拟机（Dalvik &amp;amp; ART），Dalvik的核心内容是实现库（libdvm.so），大体由C语言实现。依赖于Linux内核的一部分功能——线程机制、内存管理机制，能高效使用内存，并在低速CPU上表现出的高性能。每一个Android应用在底层都会对应一个独立的Dalvik虚拟机实例，其代码在虚拟机的解释下得以执行。&lt;/p&gt;
 &lt;h2 id=&quot;1-内核进程-确切的说是内核线程kernel-thread-和用户进程&quot;&gt;&lt;a href=&quot;#1-内核进程-确切的说是内核线程kernel-thread-和用户进程&quot; class=&quot;headerlink&quot; title=&quot;1. 内核进程(确切的说是内核线程kernel thread)和用户进程&quot;&gt;&lt;/a&gt;1. 内核进程(确切的说是内核线程kernel thread)和用户进程&lt;/h2&gt;&lt;p&gt;这个是根据进程运行空间来区分的。&lt;a href=&quot;http://www.cnblogs.com/createyuan/p/3979142.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;linux常见进程与内核线程&lt;/a&gt;&lt;/p&gt;
@@ -58,6 +58,49 @@
     <summary type="html">
     
       &lt;h1 id=&quot;一、Android中的进程&quot;&gt;&lt;a href=&quot;#一、Android中的进程&quot; class=&quot;headerlink&quot; title=&quot;一、Android中的进程&quot;&gt;&lt;/a&gt;一、Android中的进程&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://developer
+    
+    </summary>
+    
+      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
+    
+      <category term="IPC" scheme="http://febsky.me/categories/Android/IPC/"/>
+    
+    
+      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
+    
+      <category term="IPC" scheme="http://febsky.me/tags/IPC/"/>
+    
+      <category term="Binder" scheme="http://febsky.me/tags/Binder/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android Binder及其周边知识梳理</title>
+    <link href="http://febsky.me/2017/05/18/2017-05-18-Android%20Binder%E5%8F%8A%E5%85%B6%E5%91%A8%E8%BE%B9%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86%20/"/>
+    <id>http://febsky.me/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /</id>
+    <published>2017-05-18T06:46:31.000Z</published>
+    <updated>2017-07-31T07:56:02.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/e23d2a8b6f0d&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IPC-概述与Android中的进程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;IPC - Binder还要从Service说起&lt;/li&gt;
+&lt;li&gt;IPC -AIDL  AIDL(Android Interface Definition Language)&lt;/li&gt;
+&lt;li&gt;IPC- BinderJava层代码分析&lt;/li&gt;
+&lt;li&gt;IPC- ServiceManger&lt;/li&gt;
+&lt;li&gt;IPC-ActivityThread,ApplicationThread&lt;/li&gt;
+&lt;li&gt;IPC-ActivityManger&lt;/li&gt;
+&lt;li&gt;IPC- Activity启动过程&lt;/li&gt;
+&lt;li&gt;代理模式&lt;/li&gt;
+&lt;li&gt;ClassLoader &lt;/li&gt;
+&lt;li&gt;Binder Hook&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/e23d2a8b6f0d&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IPC-概述与Android中的进程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;IPC - Binder还要从Servi
     
     </summary>
     
@@ -638,7 +681,7 @@
     <link href="http://febsky.me/2016/07/25/2016-07-25-Android%E5%8F%8D%E7%BC%96%E8%AF%91%E5%90%8E%E9%87%8D%E6%96%B0%E6%89%93%E5%8C%85apk/"/>
     <id>http://febsky.me/2016/07/25/2016-07-25-Android反编译后重新打包apk/</id>
     <published>2016-07-25T07:53:35.000Z</published>
-    <updated>2016-07-26T10:03:28.000Z</updated>
+    <updated>2017-07-17T02:20:57.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;strong&gt;为什么要反编译别人的代码？&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -665,15 +708,15 @@
 &lt;p&gt;&lt;code&gt;apktool b test&lt;/code&gt; 这里的test是反编译test.apk 后生成的文件夹。最终的生成的新的未签名的apk的路径为&lt;code&gt;./test/dist/test.apk&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;用你自己的证书对别人的apk进行签名&lt;/p&gt;
-&lt;p&gt;这是当然了，你反编译了比人的app，可定拿不到人家的证书，但是Android系统对没有用证书签名的apk是不允许安装的。这时候我们自己生成一个证书。&lt;/p&gt;
+&lt;p&gt;这是当然了，你反编译了别人的app，可定拿不到人家的证书，但是Android系统对没有用证书签名的apk是不允许安装的。这时候我们自己生成一个证书。&lt;/p&gt;
 &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;第一步：生成RSA密钥对 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;keytool -genkeypair -alias adorkable_alias -keyalg RSA -validity &lt;span class=&quot;number&quot;&gt;400&lt;/span&gt; -keystore adorkable.keystore &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-genkeypair 指定生成密钥对 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-alias 密钥对的别名 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keyalg 密钥对用于的算法，这里用的是RSA &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-validity 密钥对的有效期，单位为天 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keystore 密钥对存储的文件名 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;输入后，根据提示输入相应的内容就好了。 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;第二步：对未签名的apk进行签名 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;jarsigner -verbose -keystore adorkable.keystore -signedjar result_singed.apk my_unsigned.apk adorkable_alias &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-verbose 输出签名详细信息 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-keystore 指定密钥对的存储路径 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-signedjar 后面三个参数分别是 签名后的APK包 未签名的APK包 和 密钥对的别名 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;签名时，会要求输入密钥对的密码，这个是你在生成密钥时输入的密码&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt; &lt;strong&gt;到这里就可以用adb install 将app安装到手机里了&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;优化apk包 &lt;/p&gt;
-&lt;p&gt;这一步是可选的，用来将apk包进行整理，以适应设备的读取等&lt;br&gt;zipalign -f -v 4 test.apk test_zip.apk &lt;/p&gt;
-&lt;p&gt;-f 强制覆盖已有的文件&lt;br&gt;-v 输出详细内容&lt;br&gt;4 指定档案整理的字节数，一般为4，及32位。如果以后android的设备有64位的，可能要改成8吧。&lt;br&gt;Magick.apk 是未整理的apk文件名&lt;br&gt;Magick_zip.apk 是整理后的apk文件名 &lt;/p&gt;
+&lt;p&gt;这一步是可选的，用来将apk包进行整理，以适应设备的读取等&lt;br&gt;zipalign -f -v 4 test.apk test_zipaligned.apk &lt;/p&gt;
+&lt;p&gt;-f 强制覆盖已有的文件&lt;br&gt;-v 输出详细内容&lt;br&gt;4 指定档案整理的字节数，一般为4，及32位。如果以后android的设备有64位的，可能要改成8吧。&lt;br&gt;test.apk 是未整理(没有zipalign)的apk文件名&lt;br&gt;test_zipaligned.apk 是整理后的apk文件名 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 </content>
@@ -1040,43 +1083,6 @@
       <category term="Hexo" scheme="http://febsky.me/tags/Hexo/"/>
     
       <category term="站内搜索" scheme="http://febsky.me/tags/%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android开发我用到的Chrome插件</title>
-    <link href="http://febsky.me/2016/07/05/2016-07-05-Android%E5%BC%80%E5%8F%91%E6%88%91%E7%94%A8%E5%88%B0%E7%9A%84Chrome%E6%8F%92%E4%BB%B6/"/>
-    <id>http://febsky.me/2016/07/05/2016-07-05-Android开发我用到的Chrome插件/</id>
-    <published>2016-07-05T05:35:51.000Z</published>
-    <updated>2016-07-06T03:24:21.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Chrome调试WebView&quot;&gt;&lt;a href=&quot;#Chrome调试WebView&quot; class=&quot;headerlink&quot; title=&quot;Chrome调试WebView&quot;&gt;&lt;/a&gt;Chrome调试WebView&lt;/h1&gt;&lt;p&gt;&lt;code&gt;前提一定要开启手机USB调试模式&lt;/code&gt;如果千万不要丢了U&lt;/p&gt;
-&lt;p&gt;在电脑上打开Chrome浏览器的菜单– 更多工具 – 检查设备（Chromemenu &amp;gt; More tools &amp;gt; Inspect Devices），或者直接在浏览器地址栏输入chrome://inspect 或者about:inspect&lt;/p&gt;
-&lt;p&gt;然后自己瞎鼓捣就行了。&lt;/p&gt;
-&lt;h1 id=&quot;Chrome（电脑端）操作Android真机（解放双手）&quot;&gt;&lt;a href=&quot;#Chrome（电脑端）操作Android真机（解放双手）&quot; class=&quot;headerlink&quot; title=&quot;Chrome（电脑端）操作Android真机（解放双手）&quot;&gt;&lt;/a&gt;Chrome（电脑端）操作Android真机（解放双手）&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Chrome有个叫做 &lt;code&gt;Vysor&lt;/code&gt; 的插件，可以直接在Chrome应用市场搜索。&lt;br&gt;可惜的是这个的免费版，画面太不清晰。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;其实还有一个不是Chrome插件的东西，是Google开发的亲儿子，（简称ASM）是一款监视手机或者模拟器屏幕的工具，主要和上面相比分辨率高   &lt;a href=&quot;https://code.google.com/archive/p/android-screen-monitor/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;android-screen-monitor&lt;/a&gt;  这个托管在GoogleCode上面，要科学上网！ 这个和上面的相比仅仅有监视的功能不能操作。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;配置方式：解压后将 &lt;code&gt;asm.jar&lt;/code&gt;拷贝到本机 &lt;code&gt;android-sdk\platform-tools&lt;/code&gt;目录下。然后命令行运行 &lt;code&gt;java -jar asm.jar&lt;/code&gt; 如果不copy到 platform-tools目录下，可能要配置Android sdk的环境变量。切记。&lt;/p&gt;
-&lt;h1 id=&quot;Facebook出了一个叫做Stetho东西&quot;&gt;&lt;a href=&quot;#Facebook出了一个叫做Stetho东西&quot; class=&quot;headerlink&quot; title=&quot;Facebook出了一个叫做Stetho东西&quot;&gt;&lt;/a&gt;Facebook出了一个叫做&lt;a href=&quot;http://facebook.github.io/stetho/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stetho&lt;/a&gt;东西&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;作用：&lt;/strong&gt; 他能在Chrome控制台中查看app的网络请求，数据抓包，和app的数据库文件等等。但是要在app中引入库，具体的操作看官网吧。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Chrome调试WebView&quot;&gt;&lt;a href=&quot;#Chrome调试WebView&quot; class=&quot;headerlink&quot; title=&quot;Chrome调试WebView&quot;&gt;&lt;/a&gt;Chrome调试WebView&lt;/h1&gt;&lt;p&gt;&lt;code&gt;前提一定要开启手机USB
-    
-    </summary>
-    
-      <category term="Android" scheme="http://febsky.me/categories/Android/"/>
-    
-      <category term="Chrome插件" scheme="http://febsky.me/categories/Android/Chrome%E6%8F%92%E4%BB%B6/"/>
-    
-    
-      <category term="Android" scheme="http://febsky.me/tags/Android/"/>
-    
-      <category term="Chrome插件" scheme="http://febsky.me/tags/Chrome%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   

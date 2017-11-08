@@ -23,15 +23,15 @@
 <p><code>apktool b test</code> 这里的test是反编译test.apk 后生成的文件夹。最终的生成的新的未签名的apk的路径为<code>./test/dist/test.apk</code></p>
 </li>
 <li><p>用你自己的证书对别人的apk进行签名</p>
-<p>这是当然了，你反编译了比人的app，可定拿不到人家的证书，但是Android系统对没有用证书签名的apk是不允许安装的。这时候我们自己生成一个证书。</p>
+<p>这是当然了，你反编译了别人的app，可定拿不到人家的证书，但是Android系统对没有用证书签名的apk是不允许安装的。这时候我们自己生成一个证书。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">第一步：生成RSA密钥对 </div><div class="line">keytool -genkeypair -alias adorkable_alias -keyalg RSA -validity <span class="number">400</span> -keystore adorkable.keystore </div><div class="line"></div><div class="line">-genkeypair 指定生成密钥对 </div><div class="line">-alias 密钥对的别名 </div><div class="line">-keyalg 密钥对用于的算法，这里用的是RSA </div><div class="line">-validity 密钥对的有效期，单位为天 </div><div class="line">-keystore 密钥对存储的文件名 </div><div class="line"></div><div class="line">输入后，根据提示输入相应的内容就好了。 </div><div class="line"></div><div class="line">第二步：对未签名的apk进行签名 </div><div class="line">jarsigner -verbose -keystore adorkable.keystore -signedjar result_singed.apk my_unsigned.apk adorkable_alias </div><div class="line"></div><div class="line">-verbose 输出签名详细信息 </div><div class="line">-keystore 指定密钥对的存储路径 </div><div class="line">-signedjar 后面三个参数分别是 签名后的APK包 未签名的APK包 和 密钥对的别名 </div><div class="line"></div><div class="line">签名时，会要求输入密钥对的密码，这个是你在生成密钥时输入的密码</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p> <strong>到这里就可以用adb install 将app安装到手机里了</strong></p>
 <ol>
 <li><p>优化apk包 </p>
-<p>这一步是可选的，用来将apk包进行整理，以适应设备的读取等<br>zipalign -f -v 4 test.apk test_zip.apk </p>
-<p>-f 强制覆盖已有的文件<br>-v 输出详细内容<br>4 指定档案整理的字节数，一般为4，及32位。如果以后android的设备有64位的，可能要改成8吧。<br>Magick.apk 是未整理的apk文件名<br>Magick_zip.apk 是整理后的apk文件名 </p>
+<p>这一步是可选的，用来将apk包进行整理，以适应设备的读取等<br>zipalign -f -v 4 test.apk test_zipaligned.apk </p>
+<p>-f 强制覆盖已有的文件<br>-v 输出详细内容<br>4 指定档案整理的字节数，一般为4，及32位。如果以后android的设备有64位的，可能要改成8吧。<br>test.apk 是未整理(没有zipalign)的apk文件名<br>test_zipaligned.apk 是整理后的apk文件名 </p>
 </li>
 </ol>
 </div></article></div><div class="tags"><a href="/tags/Android/">Android</a><a href="/tags/反编译/">反编译</a><a href="/tags/打包/">打包</a></div><div class="paginator"><a href="/2016/07/26/2016-07-26-Sublime3_Mac下的使用/" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2016/07/22/2016-07-22-Android反编译后的文件位置/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2016/07/25/2016-07-25-Android反编译后重新打包apk/index.html" data-title="Android反编译后重新打包apk" data-url="http://febsky.me/2016/07/25/2016-07-25-Android反编译后重新打包apk/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
