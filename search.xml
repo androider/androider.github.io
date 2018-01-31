@@ -4,6 +4,24 @@
   
     
     <entry>
+      <title><![CDATA[隐私权政策]]></title>
+      <url>http://febsky.me/2018/01/31/wankeguanjiabao/</url>
+      <content type="html"><![CDATA[<h2 id="隐私权政策"><a href="#隐私权政策" class="headerlink" title="隐私权政策"></a>隐私权政策</h2><p>最后修改日期： 2018-1-31</p>
+<p>我主要的服务是解决您在玩客云多账号管理上的痛点，方便进行和账号相关的各种操作，既然您选择使用我们的服务，希望您能清楚地了解我们对信息的使用方式以<br>及您对自己隐私权的保护措施。</p>
+<p>我们的隐私权政策解释了以下几个方面的问题：</p>
+<ul>
+<li>我们收集哪些信息，以及收集这些信息的原因。</li>
+<li>我们对这些信息的使用方式。</li>
+</ul>
+<p><strong>我们收集的信息</strong></p>
+<p>我们收集信息是为了向所有用户提供更好的服务，主要包括设备序列号，为了和账号做关联登陆。</p>
+<p>我们收集信息的方式如下：</p>
+<p>我们会收集设备专用的信息（例如您的硬件型号、操作系统版本、唯一设备标识符以及包括电话号码在内的移动网<br>络信息）。可能会将您的设备标识符或电话号码与您的帐户相关联。</p>
+<p><strong>我们如何使用收集到的信息</strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[IPC-Android中的进程与进程间通信]]></title>
       <url>http://febsky.me/2017/05/18/2017-05-18-IPC-Android%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</url>
       <content type="html"><![CDATA[<h1 id="一、Android中的进程"><a href="#一、Android中的进程" class="headerlink" title="一、Android中的进程"></a>一、Android中的进程</h1><p><a href="https://developer.android.com/guide/components/processes-and-threads.html" target="_blank" rel="external">官方解释</a><br>Android的系统架构底层是Linux，上层采用的是可以<del>运行java</del>（其实是dex字节码）的虚拟机（Dalvik &amp; ART），Dalvik的核心内容是实现库（libdvm.so），大体由C语言实现。依赖于Linux内核的一部分功能——线程机制、内存管理机制，能高效使用内存，并在低速CPU上表现出的高性能。每一个Android应用在底层都会对应一个独立的Dalvik虚拟机实例，其代码在虚拟机的解释下得以执行。</p>
@@ -898,16 +916,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Android 中实现倒计时]]></title>
-      <url>http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
-      <content type="html"><![CDATA[<h1 id="Android-中实现倒计时控件的方法有哪些"><a href="#Android-中实现倒计时控件的方法有哪些" class="headerlink" title="Android 中实现倒计时控件的方法有哪些"></a>Android 中实现倒计时控件的方法有哪些</h1><p>今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~</p>
-<a id="more"></a>
-<h2 id="第一种CountDownTimer"><a href="#第一种CountDownTimer" class="headerlink" title="第一种CountDownTimer"></a>第一种CountDownTimer</h2><p>位于<code>android.os.CountDownTimer</code>这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> CountDownTimer(<span class="number">30000</span>, <span class="number">1000</span>) &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTick</span><span class="params">(<span class="keyword">long</span> millisUntilFinished)</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"seconds remaining: "</span> + millisUntilFinished / <span class="number">1000</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinish</span><span class="params">()</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"done!"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div></pre></td></tr></table></figure>
-<h2 id="第二种-Timer与TimerTask-runOnUiThread-runnable-方法"><a href="#第二种-Timer与TimerTask-runOnUiThread-runnable-方法" class="headerlink" title="第二种 Timer与TimerTask + runOnUiThread(runnable)方法"></a>第二种 Timer与TimerTask + runOnUiThread(runnable)方法</h2><h2 id="第三种Handler与Message（不用TimerTask）"><a href="#第三种Handler与Message（不用TimerTask）" class="headerlink" title="第三种Handler与Message（不用TimerTask）"></a>第三种Handler与Message（不用TimerTask）</h2><h2 id="第四种Handler与Runnable（最简单型）"><a href="#第四种Handler与Runnable（最简单型）" class="headerlink" title="第四种Handler与Runnable（最简单型）"></a>第四种Handler与Runnable（最简单型）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> recLen = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">private</span> TextView txtView;  </div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line"> </div><div class="line">        setContentView(R.layout.timertask);  </div><div class="line">        txtView = (TextView)findViewById(R.id.txttime);  </div><div class="line">          </div><div class="line">        handler.postDelayed(runnable, <span class="number">1000</span>);  </div><div class="line">    &#125;     </div><div class="line"> </div><div class="line">    Handler handler = <span class="keyword">new</span> Handler();  </div><div class="line">    Runnable runnable = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            recLen++;  </div><div class="line">            txtView.setText(<span class="string">""</span> + recLen);  </div><div class="line">            handler.postDelayed(<span class="keyword">this</span>, <span class="number">1000</span>);  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Android SQLite操作]]></title>
       <url>http://febsky.me/2016/05/10/2016-05-10-Android%E6%93%8D%E4%BD%9CSQLite%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%B9%E6%B3%95/</url>
       <content type="html"><![CDATA[<h1 id="一、-SQLiteOpenHelper辅助类"><a href="#一、-SQLiteOpenHelper辅助类" class="headerlink" title="一、 SQLiteOpenHelper辅助类"></a>一、 SQLiteOpenHelper辅助类</h1><p>SQLiteOpenHelper类是一个辅助类，用于创建或打开数据库。<br>该类的使用方法一般是自定义一个子类，继承自SQLiteOpenHelper，并覆写其中最关键的两个方法：onCreate(SQLiteDatabase db)和onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)。当新建一个数据库时会调用前者，一般在里面做一些创建表或视图的操作。数据库版本升级时则会调用后者。</p>
@@ -931,6 +939,16 @@
 <p>最后记住，不管用何种方式打开了数据库，获得的SQLite对象不再使用时，都要调用close()来关闭打开的数据库，否则抛出IllegalStateException异常。</p>
 </blockquote>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android 中实现倒计时]]></title>
+      <url>http://febsky.me/2016/05/10/2016-05-10-Android%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<h1 id="Android-中实现倒计时控件的方法有哪些"><a href="#Android-中实现倒计时控件的方法有哪些" class="headerlink" title="Android 中实现倒计时控件的方法有哪些"></a>Android 中实现倒计时控件的方法有哪些</h1><p>今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~</p>
+<a id="more"></a>
+<h2 id="第一种CountDownTimer"><a href="#第一种CountDownTimer" class="headerlink" title="第一种CountDownTimer"></a>第一种CountDownTimer</h2><p>位于<code>android.os.CountDownTimer</code>这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> CountDownTimer(<span class="number">30000</span>, <span class="number">1000</span>) &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTick</span><span class="params">(<span class="keyword">long</span> millisUntilFinished)</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"seconds remaining: "</span> + millisUntilFinished / <span class="number">1000</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinish</span><span class="params">()</span> </span>&#123;</div><div class="line">                textView.setText(<span class="string">"done!"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div></pre></td></tr></table></figure>
+<h2 id="第二种-Timer与TimerTask-runOnUiThread-runnable-方法"><a href="#第二种-Timer与TimerTask-runOnUiThread-runnable-方法" class="headerlink" title="第二种 Timer与TimerTask + runOnUiThread(runnable)方法"></a>第二种 Timer与TimerTask + runOnUiThread(runnable)方法</h2><h2 id="第三种Handler与Message（不用TimerTask）"><a href="#第三种Handler与Message（不用TimerTask）" class="headerlink" title="第三种Handler与Message（不用TimerTask）"></a>第三种Handler与Message（不用TimerTask）</h2><h2 id="第四种Handler与Runnable（最简单型）"><a href="#第四种Handler与Runnable（最简单型）" class="headerlink" title="第四种Handler与Runnable（最简单型）"></a>第四种Handler与Runnable（最简单型）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> recLen = <span class="number">0</span>;  </div><div class="line">    <span class="keyword">private</span> TextView txtView;  </div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line"> </div><div class="line">        setContentView(R.layout.timertask);  </div><div class="line">        txtView = (TextView)findViewById(R.id.txttime);  </div><div class="line">          </div><div class="line">        handler.postDelayed(runnable, <span class="number">1000</span>);  </div><div class="line">    &#125;     </div><div class="line"> </div><div class="line">    Handler handler = <span class="keyword">new</span> Handler();  </div><div class="line">    Runnable runnable = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            recLen++;  </div><div class="line">            txtView.setText(<span class="string">""</span> + recLen);  </div><div class="line">            handler.postDelayed(<span class="keyword">this</span>, <span class="number">1000</span>);  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
     </entry>
     
     <entry>
@@ -997,19 +1015,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Android 打包过程]]></title>
-      <url>http://febsky.me/2016/05/06/2016-05-06-Android%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</url>
-      <content type="html"><![CDATA[<h1 id="Android-打包过程"><a href="#Android-打包过程" class="headerlink" title="Android 打包过程"></a>Android 打包过程</h1><p>第一步：打包资源文件，生成R.java文件<br>【输入】Resource文件（就是工程中res中的文件）、Assets文件（相当于另外一种资源，这种资源Android系统并不像对res中的文件那样优化它）、AndroidManifest.xml文件（包名就是从这里读取的，因为生成R.java文件需要包名）、Android基础类库（Android.jar文件）<br>【输出】打包好的资源（一般在Android工程的bin目录可以看到一个叫resources.ap_的文件就是它了）、R.java文件（在gen目录中，大家应该很熟悉了）<br>【工具】aapt工具，它的路径在${ANDROID_SDK_HOME}/platform-tools/aapt（如果你使用的是Windows系统，按惯例路径应该这样写：%ANDROID_SDK_HOME%\platform-tools\aapt.exe，下同）。</p>
-<p>第二步：处理AIDL文件，生成对应的.java文件（当然，有很多工程没有用到AIDL，那这个过程就可以省了）<br>【输入】源码文件、aidl文件、framework.aidl文件<br>【输出】对应的.java文件<br>【工具】aidl工具</p>
-<p>第三步：编译Java文件，生成对应的.class文件<br>【输入】源码文件（包括R.java和AIDL生成的.java文件）、库文件（.jar文件）<br>【输出】.class文件<br>【工具】javac工具</p>
-<p>第四步：把.class文件转化成Davik VM支持的.dex文件<br>【输入】 .class文件（包括Aidl生成.class文件，R生成的.class文件，源文件生成的.class文件），库文件（.jar文件）<br>【输出】.dex文件<br>【工具】javac工具</p>
-<p>第五步：打包生成未签名的.apk文件<br>【输入】打包后的资源文件、打包后类文件（.dex文件）、libs文件（包括.so文件，当然很多工程都没有这样的文件，如果你不使用C/C++开发的话）<br>【输出】未签名的.apk文件<br>【工具】apkbuilder工具</p>
-<p>第六步：对未签名.apk文件进行签名<br>【输入】未签名的.apk文件<br>【输出】签名的.apk文件<br>【工具】jarsigner</p>
-<p>第七步：对签名后的.apk文件进行对齐处理（不进行对齐处理是不能发布到Google Market的）<br>【输入】签名后的.apk文件<br>【输出】对齐后的.apk文件<br>【工具】zipalign工具</p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Android FragmentPagerAdapter和FragmentStatePagerAdapter]]></title>
       <url>http://febsky.me/2016/05/06/2016-05-12-FragmentStatePagerAdapter%E5%92%8CFragmentPagerAdapter/</url>
       <content type="html"><![CDATA[<p>在公司查看别人的代码的时候发现个东西，在展示试题的是时候，他用的是<code>FragmentStatePagerAdapter</code>而如果是我的话，我就直接用<code>viewpager</code>+<code>PagerAdapter</code>,但是<code>FragmentStatePagerAdapter</code>是个什么鬼，我听过<code>FragmentPagerAdapter</code>可是没用过<code>FragmentStatePagerAdapter</code>啊，只怪自己学艺不精，既然人家用了就有用的道理。</p>
@@ -1053,6 +1058,19 @@
 <blockquote>
 <p>05-12 16:55:31.350 3043-3043/me.fesky.test I/Q_M:: onAttach2<br>05-12 16:55:31.360 3043-3043/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroyView4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroy4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDetach4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onAttach1<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroyView3<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroy3<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDetach3</p>
 </blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android 打包过程]]></title>
+      <url>http://febsky.me/2016/05/06/2016-05-06-Android%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B/</url>
+      <content type="html"><![CDATA[<h1 id="Android-打包过程"><a href="#Android-打包过程" class="headerlink" title="Android 打包过程"></a>Android 打包过程</h1><p>第一步：打包资源文件，生成R.java文件<br>【输入】Resource文件（就是工程中res中的文件）、Assets文件（相当于另外一种资源，这种资源Android系统并不像对res中的文件那样优化它）、AndroidManifest.xml文件（包名就是从这里读取的，因为生成R.java文件需要包名）、Android基础类库（Android.jar文件）<br>【输出】打包好的资源（一般在Android工程的bin目录可以看到一个叫resources.ap_的文件就是它了）、R.java文件（在gen目录中，大家应该很熟悉了）<br>【工具】aapt工具，它的路径在${ANDROID_SDK_HOME}/platform-tools/aapt（如果你使用的是Windows系统，按惯例路径应该这样写：%ANDROID_SDK_HOME%\platform-tools\aapt.exe，下同）。</p>
+<p>第二步：处理AIDL文件，生成对应的.java文件（当然，有很多工程没有用到AIDL，那这个过程就可以省了）<br>【输入】源码文件、aidl文件、framework.aidl文件<br>【输出】对应的.java文件<br>【工具】aidl工具</p>
+<p>第三步：编译Java文件，生成对应的.class文件<br>【输入】源码文件（包括R.java和AIDL生成的.java文件）、库文件（.jar文件）<br>【输出】.class文件<br>【工具】javac工具</p>
+<p>第四步：把.class文件转化成Davik VM支持的.dex文件<br>【输入】 .class文件（包括Aidl生成.class文件，R生成的.class文件，源文件生成的.class文件），库文件（.jar文件）<br>【输出】.dex文件<br>【工具】javac工具</p>
+<p>第五步：打包生成未签名的.apk文件<br>【输入】打包后的资源文件、打包后类文件（.dex文件）、libs文件（包括.so文件，当然很多工程都没有这样的文件，如果你不使用C/C++开发的话）<br>【输出】未签名的.apk文件<br>【工具】apkbuilder工具</p>
+<p>第六步：对未签名.apk文件进行签名<br>【输入】未签名的.apk文件<br>【输出】签名的.apk文件<br>【工具】jarsigner</p>
+<p>第七步：对签名后的.apk文件进行对齐处理（不进行对齐处理是不能发布到Google Market的）<br>【输入】签名后的.apk文件<br>【输出】对齐后的.apk文件<br>【工具】zipalign工具</p>
 ]]></content>
     </entry>
     
