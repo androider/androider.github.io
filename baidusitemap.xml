@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://febsky.me/2016/07/27/2016-07-27-NodeJs%E5%8C%85%E7%AE%A1%E7%90%86npm/</loc>
+    <lastmod>2018-06-20T10:31:30.134Z</lastmod>
+    <data>
+        <display>
+        <title>NodeJs包管理npm</title>
+        <pubTime>2016-07-27T07:30:35.000Z</pubTime>
+        
+        <tag>Nodejs</tag>
+         
+        <tag>npm</tag>
+         
+         
+           
+             
+              <breadCrumb title="Nodejs" url="http://febsky.me/categories/Nodejs/"/>
+          
+             
+              <breadCrumb title="npm" url="http://febsky.me/categories/Nodejs/npm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://febsky.me/2018/01/31/wankeguanjiabao/</loc>
     <lastmod>2018-01-31T03:41:29.597Z</lastmod>
     <data>
@@ -826,31 +851,6 @@
           
              
               <breadCrumb title="动画" url="http://febsky.me/categories/Android/%E5%8A%A8%E7%94%BB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://febsky.me/2016/07/27/2016-07-27-NodeJs%E5%8C%85%E7%AE%A1%E7%90%86npm/</loc>
-    <lastmod>2016-07-27T07:37:04.000Z</lastmod>
-    <data>
-        <display>
-        <title>NodeJs包管理npm</title>
-        <pubTime>2016-07-27T07:30:35.000Z</pubTime>
-        
-        <tag>Nodejs</tag>
-         
-        <tag>npm</tag>
-         
-         
-           
-             
-              <breadCrumb title="Nodejs" url="http://febsky.me/categories/Nodejs/"/>
-          
-             
-              <breadCrumb title="npm" url="http://febsky.me/categories/Nodejs/npm/"/>
           
         </display>
     </data>
