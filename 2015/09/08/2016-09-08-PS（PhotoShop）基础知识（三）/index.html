@@ -1,32 +1,24 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>PS（PhotoShop）基础知识（三） · 奋斗の小鸟</title><meta name="description" content="PS（PhotoShop）基础知识（三） - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">奋斗の小鸟</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">Archive</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">Tags</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">About</a></li><li class="nav-list-item"><a href="/search.html" target="_self" class="nav-list-link">搜索</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">PS（PhotoShop）基础知识（三）</h1><div class="post-time">Sep 8, 2015</div><div class="post-content"><ol>
-<li><p>抓手工具 H</p>
-<ul>
-<li>alt + 鼠标左键 + 左右拖动鼠标，放大或者缩小图片</li>
-<li>alt + shift + 鼠标左键 + 左右拖动鼠标 放大或者缩小图片的当前位置点</li>
-<li>command + +/- 放大或者缩小图片</li>
-<li>command + 0/1   预览/完全显示图片</li>
-</ul>
-</li>
-<li><p>图层</p>
-<ul>
-<li>按住 alt 键和移动工具，可以边移动边复制图层</li>
-<li>shift + command + alt + e 合并可见图层为一个新图层</li>
-<li>选中图层后，delete键可以删除图层</li>
-<li>common + j 可以生成图层副本</li>
-<li>蒙版工具可以通过修改黑色的值，修改原图的透明度，为图层新建蒙版，alt 点击可以选中</li>
-<li>shift  单击蒙版停用蒙版</li>
-<li>选区可以直接创建蒙版，蒙版黑色的部分表示透明，白色表示显示。可以用画笔工具在蒙版上涂抹</li>
-<li>有个<code>智能对象</code></li>
-<li>图层样式 右下角FX按钮  双击右侧图层列表可以进入图层样式选项</li>
-<li>复杂图像不必抠图，用图像<code>混合模式</code>可以完成，去掉白色选择<code>正片叠底</code></li>
-</ul>
-</li>
-</ol>
-</div></article></div><div class="tags"><a href="/tags/PhotoShop/">PhotoShop</a><a href="/tags/PS笔记/">PS笔记</a></div><div class="paginator"><a href="/2015/09/15/2015-09-15-Android 文件下载/" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2015/09/08/2016-09-08PS（PhotoShop）基础知识（二）/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/index.html" data-title="PS（PhotoShop）基础知识（三）" data-url="http://febsky.me/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();</script></section><div class="copyright"><p>© 2018<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>
+extends partial/layout
+
+block site_title
+    != page.title + " · " + config.title
+
+block description
+    - desc = page.desc || page.title + ' - ' + config.author;
+    meta(name="description", content=desc)
+
+block container
+    include mixins/post
+    +post()
+
+block tags
+    include mixins/tags
+    +tags()
+
+block pagination
+    include mixins/paginator
+    +post()
+
+block comment
+    include mixins/comment
+    +comment()

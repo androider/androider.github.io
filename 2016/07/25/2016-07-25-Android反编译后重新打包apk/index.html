@@ -1,44 +1,24 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Android反编译后重新打包apk · 奋斗の小鸟</title><meta name="description" content="Android反编译后重新打包apk - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">奋斗の小鸟</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">Archive</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">Tags</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">About</a></li><li class="nav-list-item"><a href="/search.html" target="_self" class="nav-list-link">搜索</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Android反编译后重新打包apk</h1><div class="post-time">Jul 25, 2016</div><div class="post-content"><p><strong>为什么要反编译别人的代码？</strong></p>
-<ul>
-<li>人家比咱写的好，学习</li>
-<li>看中了人家的某个控件，抄袭</li>
-<li>看中了人家的本地数据库，想要</li>
-<li>但是人家的本地数据库加密了，要读源码才能解密</li>
-</ul>
-<p><strong>为什么要打包别人的apk？</strong></p>
-<ul>
-<li>反编译后的代码有些地方读不通顺。想添加log。</li>
-</ul>
-<p><strong>一个基本的逆向工程的流程。</strong></p>
-<p>apktool反编译apk –&gt; 修改图片等资源文件（或者smali源码）–&gt; apktool 打包apk –&gt; 对打包好的apk用jarsigner签名 [–&gt; zipalign优化apk，最后这步可选操作] </p>
-<p>分别对应得详细操作：</p>
-<ol>
-<li><p>apktool反编译apk</p>
-<p><code>$ apktool d test.apk</code></p>
-</li>
-<li><p>修改图片，填好string.xml,修改smali</p>
-<p>详细操作，尽情的折腾吧，隐藏某个view，添加某个view。<br><a href="https://gold.xitu.io/entry/5745388cdf0eea0063b494bb" target="_blank" rel="external">一篇有用的文章，后来补充</a></p>
-</li>
-<li><p>apktool 打包</p>
-<p><code>apktool b test</code> 这里的test是反编译test.apk 后生成的文件夹。最终的生成的新的未签名的apk的路径为<code>./test/dist/test.apk</code></p>
-</li>
-<li><p>用你自己的证书对别人的apk进行签名</p>
-<p>这是当然了，你反编译了别人的app，可定拿不到人家的证书，但是Android系统对没有用证书签名的apk是不允许安装的。这时候我们自己生成一个证书。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">第一步：生成RSA密钥对 </div><div class="line">keytool -genkeypair -alias adorkable_alias -keyalg RSA -validity <span class="number">400</span> -keystore adorkable.keystore </div><div class="line"></div><div class="line">-genkeypair 指定生成密钥对 </div><div class="line">-alias 密钥对的别名 </div><div class="line">-keyalg 密钥对用于的算法，这里用的是RSA </div><div class="line">-validity 密钥对的有效期，单位为天 </div><div class="line">-keystore 密钥对存储的文件名 </div><div class="line"></div><div class="line">输入后，根据提示输入相应的内容就好了。 </div><div class="line"></div><div class="line">第二步：对未签名的apk进行签名 </div><div class="line">jarsigner -verbose -keystore adorkable.keystore -signedjar result_singed.apk my_unsigned.apk adorkable_alias </div><div class="line"></div><div class="line">-verbose 输出签名详细信息 </div><div class="line">-keystore 指定密钥对的存储路径 </div><div class="line">-signedjar 后面三个参数分别是 签名后的APK包 未签名的APK包 和 密钥对的别名 </div><div class="line"></div><div class="line">签名时，会要求输入密钥对的密码，这个是你在生成密钥时输入的密码</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p> <strong>到这里就可以用adb install 将app安装到手机里了</strong></p>
-<ol>
-<li><p>优化apk包 </p>
-<p>这一步是可选的，用来将apk包进行整理，以适应设备的读取等<br>zipalign -f -v 4 test.apk test_zipaligned.apk </p>
-<p>-f 强制覆盖已有的文件<br>-v 输出详细内容<br>4 指定档案整理的字节数，一般为4，及32位。如果以后android的设备有64位的，可能要改成8吧。<br>test.apk 是未整理(没有zipalign)的apk文件名<br>test_zipaligned.apk 是整理后的apk文件名 </p>
-</li>
-</ol>
-</div></article></div><div class="tags"><a href="/tags/Android/">Android</a><a href="/tags/反编译/">反编译</a><a href="/tags/打包/">打包</a></div><div class="paginator"><a href="/2016/07/26/2016-07-26-Sublime3_Mac下的使用/" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2016/07/22/2016-07-22-Android反编译后的文件位置/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2016/07/25/2016-07-25-Android反编译后重新打包apk/index.html" data-title="Android反编译后重新打包apk" data-url="http://febsky.me/2016/07/25/2016-07-25-Android反编译后重新打包apk/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();</script></section><div class="copyright"><p>© 2018<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>
+extends partial/layout
+
+block site_title
+    != page.title + " · " + config.title
+
+block description
+    - desc = page.desc || page.title + ' - ' + config.author;
+    meta(name="description", content=desc)
+
+block container
+    include mixins/post
+    +post()
+
+block tags
+    include mixins/tags
+    +tags()
+
+block pagination
+    include mixins/paginator
+    +post()
+
+block comment
+    include mixins/comment
+    +comment()

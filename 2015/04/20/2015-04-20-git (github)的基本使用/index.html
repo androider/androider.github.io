@@ -1,83 +1,24 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>git (github)的基本使用 · 奋斗の小鸟</title><meta name="description" content="git (github)的基本使用 - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、基本操作"><span class="toc-text">一、基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二、-常用命令"><span class="toc-text">二、 常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-git-branch"><span class="toc-text">1. git branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-git-push"><span class="toc-text">2. git push</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-git-pull"><span class="toc-text">3. git pull</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-git-checkout"><span class="toc-text">4. git checkout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-git-log"><span class="toc-text">5. git log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-git-tag"><span class="toc-text">6. git tag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-git-追踪关系"><span class="toc-text">7. git 追踪关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何查看本地跟踪分支对应的远程分支"><span class="toc-text">如何查看本地跟踪分支对应的远程分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#获取远程服务器上某个分支"><span class="toc-text">获取远程服务器上某个分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、冲突解决"><span class="toc-text">三、冲突解决</span></a></li></ol></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">奋斗の小鸟</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">Archive</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">Tags</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">About</a></li><li class="nav-list-item"><a href="/search.html" target="_self" class="nav-list-link">搜索</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">git (github)的基本使用</h1><div class="post-time">Apr 20, 2015</div><div class="post-content"><h1 id="一、基本操作"><a href="#一、基本操作" class="headerlink" title="一、基本操作"></a>一、基本操作</h1><ol>
-<li><p>用 <code>git init</code> 来在目录中创建新的 Git 仓库。 你可以在任何时候、任何目录中这么做，完全是本地化的。</p>
-</li>
-<li><p>使用 <code>git clone</code> 拷贝一个 Git 仓库到本地，让自己能够查看该项目，或者进行修改。</p>
-</li>
-<li><p>使用 <code>git add</code> 添加需要追踪的新文件和待提交的更改到暂存区， 然后使用 <code>git status</code> 和 <code>git diff</code> 查看有何改动， 最后用 <code>git commit</code> 将你的快照记录。这就是你要用的基本流程，绝大部分时候都是这样的。</p>
-</li>
-<li><p>在当前工作目录执行命令：<code>git add .</code> Git 会递归地将你执行命令时所在的目录中的所有文件添加上去.</p>
-</li>
-<li><p>执行 <code>git status</code> 以查看在你上次提交之后有啥被修改或者临时提交了， 从而决定自己是否需要提交一次快照，同时也能知道有什么改变被记录进去了。</p>
-</li>
-<li><p><code>git diff</code> 显示已写入缓存与已修改但尚未写入缓存的改动的区别,执行 <code>git diff</code> 来查看执行 <code>git status</code> 的结果的详细信息 —— 一行一行地显示这些文件是如何被修改或写入缓存的。<br><code>git diff HEAD</code> —— 显示的是工作目录与上一次提交的更新的区别，无视缓存。</p>
-</li>
-<li><p><code>git commit -a</code> 自动将在提交前将已记录、修改的文件放入缓存区,基本上这句话的意思就是，为任何已有记录的文件执行 <code>git add .</code>不过你仍然需要执行 <code>git add 文件名</code> 来添加新文件</p>
-</li>
-<li>git 对本地文件的文件名的大小写是不敏感额，如果修改文件名的大小写不会添加修改，命令行运行下列代码，强制git对大小写敏感<br><code>$ git config core.ignorecase false</code></li>
-<li><code>git remote</code> 命令列出所有远程主机 使用<code>-v</code>选项，可以参看远程主机的网址</li>
-</ol>
-<h2 id="二、-常用命令"><a href="#二、-常用命令" class="headerlink" title="二、 常用命令"></a>二、 常用命令</h2><h2 id="1-git-branch"><a href="#1-git-branch" class="headerlink" title="1. git branch"></a>1. git branch</h2><p><strong>【  origin 指的是主机名    master 指的是分支名】</strong></p>
-<p><code>git branch -r</code> 查看远程分支</p>
-<p><code>git branch -a</code>    查看所有分支</p>
-<p><code>git branch -d （branch name）</code>    删除本地分支</p>
-<p><code>git  branch (new-branch -name)</code>    创建分支</p>
-<p><code>git branch -v</code>  查看各个分支最后一个提交对象的信息</p>
-<p><code>git branch -m &lt;old_branch_name&gt; &lt;new_branch_name&gt;</code> 重命名本地分支</p>
-<h2 id="2-git-push"><a href="#2-git-push" class="headerlink" title="2. git push"></a>2. git push</h2><p><strong>$ git push  :</strong></p>
-<p><code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code></p>
-<p> 执行 git push [alias 远程仓库名] [branch 远程分支名]，就会将你的当前 分支推送成为 [alias] 远端上的 [branch] 分支。 让我们试试推送我们的主分支到先前添加的“github”远端仓库上去。</p>
-<p><code>$ git push origin master</code>  如果省略远程分支名，则表示将本地分支推送与之存在”追踪关系”的远程分支（通常两者同名），如果该远程分支不存在，则会被新建。</p>
-<p>不带任何参数的<code>git push</code>，默认只推送当前分支，这叫做simple方式。</p>
-<p><code>git push origin --delete &lt;branchName&gt;</code> 删除一个远程分支</p>
-<p><code>git push origin :&lt;branchName&gt;</code> 推送一个空分支到远程分支，其实就相当于删除远程分支</p>
-<h2 id="3-git-pull"><a href="#3-git-pull" class="headerlink" title="3. git pull"></a>3. git pull</h2><p><strong>$ git pull</strong></p>
-<p>比如，取回origin主机的dev分支，与本地的master分支合并，需要写成下面这样。<code>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</code></p>
-<p><code>$ git pull origin dev:master</code></p>
-<p>上面命令表示，取回origin/dev分支，再与当前master分支合并。实质上，这等同于先做git fetch，再做git merge。</p>
-<p><strong>$ git fetch</strong></p>
-<p><code>$ git fetch origin dev</code></p>
-<p><code>$ git merge origin/dev</code>   合并fetch下来的远程dev分支数据到当前分支上</p>
-<p><code>git fetch origin 远程分支名:本地分支名</code></p>
-<p>上面命令表示，取回origin/next分支，再与<code>当前分支</code>合并。实质上，这等同于先做git fetch，再做git merge。</p>
-<h2 id="4-git-checkout"><a href="#4-git-checkout" class="headerlink" title="4. git checkout"></a>4. git checkout</h2><p><code>git checkout -b [分支名] [远程主机名]/[分支名]</code></p>
-<h2 id="5-git-log"><a href="#5-git-log" class="headerlink" title="5. git log"></a>5. git log</h2><p><code>git log   --oneline</code>  显示log一行摘要</p>
-<p><code>git log --author=&quot;author-name&quot;</code>   显示某个用户提交的log</p>
-<p><code>git log -p (file-name)</code>   某个文件的提交log</p>
-<h2 id="6-git-tag"><a href="#6-git-tag" class="headerlink" title="6. git tag"></a>6. git tag</h2><ul>
-<li>列出现有标签的命令<code>$ git tag</code> </li>
-<li>带有通配符的列出命令<code>$ git tag -l &#39;v1.4.2.*&#39;</code></li>
-<li>新建标签 <code>$ git tag -a v1.4 -m &#39;my version 1.4&#39;</code>引号里面的是标签说明</li>
-<li>把标签推到git服务器上<code>$ git push origin [tagname]</code></li>
-<li>一次推送所有本地新增的标签到git服务器 <code>git push origin --tags</code></li>
-</ul>
-<h2 id="7-git-追踪关系"><a href="#7-git-追踪关系" class="headerlink" title="7. git 追踪关系"></a>7. git 追踪关系</h2><p>在某些场合，Git会自动在本地分支与远程分支之间，建立一种追踪关系(tracking)。比如，在git clone的时候，所有本地分支默认与远程主机的同名分支，建立追踪关系，也就是说，本地的master分支自动”追踪”origin/master分支。</p>
-<p>Git也允许手动建立追踪关系。</p>
-<p><del><code>git branch --set-upstream master origin/dev</code></del></p>
-<p>上面命令指定本地master分支追踪远程  origin/dev分支。</p>
-<p>但是据说上面<code>--set-upstream</code>这个命令被废弃了，建议使用<code>--track 或者 --set-upstream-to</code>来代替</p>
-<p>如果当前分支与远程分支存在追踪关系，git pull就可以省略远程分支名。</p>
-<p>$ git pull origin</p>
-<p>上面命令表示，本地的当前分支自动与对应的origin主机”追踪分支”(remote-tracking branch)进行合并。</p>
-<h1 id="如何查看本地跟踪分支对应的远程分支"><a href="#如何查看本地跟踪分支对应的远程分支" class="headerlink" title="如何查看本地跟踪分支对应的远程分支"></a>如何查看本地跟踪分支对应的远程分支</h1><p><code>git branch -vv（两个v），就能够看到本地分支跟踪的远程分支。</code></p>
-<h1 id="获取远程服务器上某个分支"><a href="#获取远程服务器上某个分支" class="headerlink" title="获取远程服务器上某个分支"></a>获取远程服务器上某个分支</h1><p>加入服务器上被合作的伙伴新创建了一个分支，我们可以通过如下方式来获取：</p>
-<p><code>$ git fetch origin</code></p>
-<p>然后我门会获取到新的分支的名字</p>
-<p>值得注意的是，在 <code>fetch</code>操作下载好新的远程分支之后，你仍然无法在本地编辑该远程仓库中的分支。换句话说，在本例中，你不会有一个新的<code>new_added_branch</code>分支，有的只是一个你无法移动的 <code>origin/new_added_branch</code> 指针。</p>
-<p>如果要把该内容合并到当前分支，可以运行 <code>git merge origin/new_added_branch</code>。如果想要一份自己的 <code>new_added_branch</code> 来开发，可以在远程分支的基础上分化出一个新的分支来：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b new_added_branch origin/new_added_branch</div><div class="line">Branch new_added_branch set up to track remote branch refs/remotes/origin/new_added_branch.</div><div class="line">Switched to a new branch &quot;new_added_branch&quot;</div></pre></td></tr></table></figure>
-<p>这会切换到新建的 <code>new_added_branch</code> 本地分支，其内容同远程分支 <code>origin/new_added_branch</code> 一致，这样你就可以在里面继续开发了。</p>
-<h1 id="三、冲突解决"><a href="#三、冲突解决" class="headerlink" title="三、冲突解决"></a>三、冲突解决</h1><p>如果没有冲突的话，merge完成。有冲突的话，git会提示那个文件中有冲突，比如有如下冲突：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:test.c</div><div class="line"></div><div class="line">printf (“test1″);</div><div class="line"></div><div class="line">=======</div><div class="line"></div><div class="line">printf (“test2″);</div><div class="line"></div><div class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; issueFix:test.c</div></pre></td></tr></table></figure>
-<p>可以看到 ======= 隔开的上半部分，是 HEAD（即 master 分支，在运行 merge 命令时检出的分支）中的内容，下半部分是在 issueFix 分支中的内容。解决冲突的办法无非是二者选其一或者由你亲自整合到一起。比如你可以通过把这段内容替换为下面这样来解决：</p>
-<p>printf (“test2″);</p>
-<p>这个解决方案各采纳了两个分支中的一部分内容，而且删除了 &lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，和&gt;&gt;&gt;&gt;&gt;&gt;&gt; 这些行。</p>
-<p>在解决了所有文件里的所有冲突后，运行git add 将把它们标记为已解决（resolved）。</p>
-<p>然后使用git commit命令进行提交，merge就算完成了</p>
-</div></article></div><div class="tags"><a href="/tags/Git/">Git</a></div><div class="paginator"><a href="/2015/05/05/2015-05-05-我比价中意的几款WordPress主题/" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2015/04/10/2015-04-10-想要去做的东西/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2015/04/20/2015-04-20-git (github)的基本使用/index.html" data-title="git (github)的基本使用" data-url="http://febsky.me/2015/04/20/2015-04-20-git (github)的基本使用/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();</script></section><div class="copyright"><p>© 2018<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>
+extends partial/layout
+
+block site_title
+    != page.title + " · " + config.title
+
+block description
+    - desc = page.desc || page.title + ' - ' + config.author;
+    meta(name="description", content=desc)
+
+block container
+    include mixins/post
+    +post()
+
+block tags
+    include mixins/tags
+    +tags()
+
+block pagination
+    include mixins/paginator
+    +post()
+
+block comment
+    include mixins/comment
+    +comment()

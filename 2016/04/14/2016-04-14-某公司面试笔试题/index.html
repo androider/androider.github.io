@@ -1,17 +1,24 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>某家公司面试题 · 奋斗の小鸟</title><meta name="description" content="某家公司面试题 - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-说说ArrayList的底层实现。"><span class="toc-text">1. 说说ArrayList的底层实现。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-题目是这样的："><span class="toc-text">2. 题目是这样的：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Activity在不同启动模式下的生命周期"><span class="toc-text">3. Activity在不同启动模式下的生命周期</span></a></li></ol></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">奋斗の小鸟</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">Archive</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">Tags</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">About</a></li><li class="nav-list-item"><a href="/search.html" target="_self" class="nav-list-link">搜索</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">某家公司面试题</h1><div class="post-time">Apr 14, 2016</div><div class="post-content"><p><strong>先说点个人感想（废话）：</strong>这家公司还是不错的，面了三个星期了，14个工作日，面了12家公司.这家算是除了新浪微博之外比较正规的面试了。只记录技术二面，一面的都是比较基础的Java和Android。主要的有下面两个其余的忘了。</p>
-<a id="more"></a>
-<h1 id="1-说说ArrayList的底层实现。"><a href="#1-说说ArrayList的底层实现。" class="headerlink" title="1. 说说ArrayList的底层实现。"></a>1. 说说ArrayList的底层实现。</h1><p>延长方式，为什么要选择这种延长方式，而不是一个个延长。（面试官带着我算了一下这几种延长方式时间复杂度，幸亏为了应对微博的面试我简单复习了下算法理论知识，不至于被虐的体无完肤）但是算到log(n)的时候我真心不会了，对数函数早忘没了~~~</p>
-<h1 id="2-题目是这样的："><a href="#2-题目是这样的：" class="headerlink" title="2. 题目是这样的："></a>2. 题目是这样的：</h1><ol>
-<li>如果你知道接下来每秒的股票的价格，但是你只有一次买的机会，和一次卖的机会如何才能使收益最高。</li>
-<li>我当时的解决是用来双重for循环来遍历，然后面试官接着问，你的算法复杂度是多少（就离不开复杂度了，😓），我说O(n²)，他说好，有没有办法一次for循环能解决。额，我解决了半天~~ 都没作对。</li>
-</ol>
-<h1 id="3-Activity在不同启动模式下的生命周期"><a href="#3-Activity在不同启动模式下的生命周期" class="headerlink" title="3. Activity在不同启动模式下的生命周期"></a>3. Activity在不同启动模式下的生命周期</h1><p>恩，好像有个<code>onNewIntent()</code>.记不清了,这个我不会。</p>
-<p>当activity的launchMode为singleTask的时候，通过Intent启到一个Activity,如果系统已经存在一个实例，系统就会将请求发送到这个实例上，但这个时候，系统就不会再调用通常情况下我们处理请求数据的onCreate方法，而是调用onNewIntent方法</p>
-</div></article></div><div class="tags"><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/面试/">面试</a></div><div class="paginator"><a href="/2016/04/16/2016-04-16-Hexo的Theme制作用到的库/" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2016/04/12/2016-04-12-新浪微博笔试最后一题/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2016/04/14/2016-04-14-某公司面试笔试题/index.html" data-title="某家公司面试题" data-url="http://febsky.me/2016/04/14/2016-04-14-某公司面试笔试题/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();</script></section><div class="copyright"><p>© 2018<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>
+extends partial/layout
+
+block site_title
+    != page.title + " · " + config.title
+
+block description
+    - desc = page.desc || page.title + ' - ' + config.author;
+    meta(name="description", content=desc)
+
+block container
+    include mixins/post
+    +post()
+
+block tags
+    include mixins/tags
+    +tags()
+
+block pagination
+    include mixins/paginator
+    +post()
+
+block comment
+    include mixins/comment
+    +comment()

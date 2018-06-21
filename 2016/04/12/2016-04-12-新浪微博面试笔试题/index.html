@@ -1,26 +1,24 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>2016年四月新浪微博面试体验 · 奋斗の小鸟</title><meta name="description" content="2016年四月新浪微博面试体验 - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2016四月新浪微博面试笔试题"><span class="toc-text">2016四月新浪微博面试笔试题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？"><span class="toc-text">1. 静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-AraayList-和Vector-的区别"><span class="toc-text">2. AraayList 和Vector 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-RemoteView-在什么地方用"><span class="toc-text">3. RemoteView 在什么地方用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Fragment和Activity的生命周期"><span class="toc-text">4. Fragment和Activity的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Android-中的进程有哪些，说出它们的优先级"><span class="toc-text">5. Android 中的进程有哪些，说出它们的优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-view和Surfaceview的区别"><span class="toc-text">6. view和Surfaceview的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-onInterceptTouchEvent、onTouchEvent-的区别"><span class="toc-text">7. onInterceptTouchEvent、onTouchEvent 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-switch-中可以用byte吗，可以用long吗，可以用String吗？"><span class="toc-text">8. switch 中可以用byte吗，可以用long吗，可以用String吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-try-catch-finally-运行流程"><span class="toc-text">9. try catch finally 运行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-是一个程序找错题。"><span class="toc-text">10. 是一个程序找错题。</span></a></li></ol></li></ol></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">奋斗の小鸟</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">Archive</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">Tags</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">About</a></li><li class="nav-list-item"><a href="/search.html" target="_self" class="nav-list-link">搜索</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">2016年四月新浪微博面试体验</h1><div class="post-time">Apr 12, 2016</div><div class="post-content"><p><strong>先说点个人感想（废话）：</strong>真心挺感谢新浪能给这个面试机会，作为一个非重点本科毕业学生来说，能给个面试机会已经非常不错了。不想某些大公司筛选简历一看工作年限，二看出身。很可惜自己能力有限在三面的时候彻底被虐了，今年算是止步于三面了。但是还是学到很多东西的，如果再有个一到两年的沉淀，详细自己还是可以胜任的。本来不想发出来的不知道发出来会不会影响到人家的面试。</p>
-<a id="more"></a>
-<p>约的是下午四点的面试，面到了差不多7点。时间还是挺长的。三面完了等了打约20分钟，人事告诉我他们要的是高级工程师。然后~~~</p>
-<h1 id="2016四月新浪微博面试笔试题"><a href="#2016四月新浪微博面试笔试题" class="headerlink" title="2016四月新浪微博面试笔试题"></a>2016四月新浪微博面试笔试题</h1><h2 id="1-静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？"><a href="#1-静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？" class="headerlink" title="1. 静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？"></a>1. 静态内部类，内部类，匿名内部类，内部类为啥持有外部类的引用，是this吗？</h2><h2 id="2-AraayList-和Vector-的区别"><a href="#2-AraayList-和Vector-的区别" class="headerlink" title="2. AraayList 和Vector 的区别"></a>2. AraayList 和Vector 的区别</h2><ol>
-<li>Vector是线程安全的，也就是说是它的方法之间是线程同步的，而ArrayList是线程序不安全的</li>
-<li>记住Vector与Hashtable是旧的，是java一诞生就提供了的，它们是线程安全的，ArrayList与HashMap是java2时才提供的</li>
-<li>ArrayList与Vector都有一个初始的容量大小，当存储进它们里面的元素的个数超过了容量时，就需要增加ArrayList与Vector的存储空间，Vector默认增长为原来两倍，而ArrayList的增长策略在文档中没有明确规定（从源代码看到的是增长为原来的1.5倍） ArrayList与Vector都可以设置初始的空间大小，Vector还可以设置增长的空间大小，而ArrayList没有提供设置增长空间的方法。<br>总结：即Vector增长原来的一倍，ArrayList增加原来的0.5倍。</li>
-</ol>
-<h2 id="3-RemoteView-在什么地方用"><a href="#3-RemoteView-在什么地方用" class="headerlink" title="3. RemoteView 在什么地方用"></a>3. RemoteView 在什么地方用</h2><p>到目前为止，我发现RemoteView会用在两个地方：一个是在AppWidget,另外一个是在Notification. </p>
-<h2 id="4-Fragment和Activity的生命周期"><a href="#4-Fragment和Activity的生命周期" class="headerlink" title="4. Fragment和Activity的生命周期"></a>4. Fragment和Activity的生命周期</h2><h2 id="5-Android-中的进程有哪些，说出它们的优先级"><a href="#5-Android-中的进程有哪些，说出它们的优先级" class="headerlink" title="5. Android 中的进程有哪些，说出它们的优先级"></a>5. Android 中的进程有哪些，说出它们的优先级</h2><p><img src="/images/2016/2016-04-12-android进程" alt=""></p>
-<p><a href="http://blog.csdn.net/sinat_35763642/article/details/52101200" target="_blank" rel="external">一篇文章</a></p>
-<h2 id="6-view和Surfaceview的区别"><a href="#6-view和Surfaceview的区别" class="headerlink" title="6. view和Surfaceview的区别"></a>6. view和Surfaceview的区别</h2><h2 id="7-onInterceptTouchEvent、onTouchEvent-的区别"><a href="#7-onInterceptTouchEvent、onTouchEvent-的区别" class="headerlink" title="7. onInterceptTouchEvent、onTouchEvent 的区别"></a>7. onInterceptTouchEvent、onTouchEvent 的区别</h2><ol>
-<li><p>onTouchEvent同样也是在view中定义的一个方法。处理传递到view 的手势事件。手势事件类型包括ACTION_DOWN,ACTION_MOVE,ACTION_UP,ACTION_CANCEL四种事件。<br>一旦onTouchEvent方法被调用，并返回true则这个手势事件就结束了，并不会向下传递到子控件。</p>
-</li>
-<li><p>onInterceptTouchEvent是在ViewGroup里面定义的。Android中的layout布局类一般都是继承此类的。onInterceptTouchEvent是用于拦截手势事件的，每个手势事件都会先调用onInterceptTouchEvent<br>此方法返回false，则手势事件会向子控件传递；返回true，则调用onTouchEvent方法。  </p>
-</li>
-</ol>
-<h2 id="8-switch-中可以用byte吗，可以用long吗，可以用String吗？"><a href="#8-switch-中可以用byte吗，可以用long吗，可以用String吗？" class="headerlink" title="8. switch 中可以用byte吗，可以用long吗，可以用String吗？"></a>8. switch 中可以用byte吗，可以用long吗，可以用String吗？</h2><p>答：switch 只能添加  <code>char,byte,short,int,Character,Byte,Short,Interger,String ,enum</code></p>
-<h2 id="9-try-catch-finally-运行流程"><a href="#9-try-catch-finally-运行流程" class="headerlink" title="9. try catch finally 运行流程"></a>9. try catch finally 运行流程</h2><h2 id="10-是一个程序找错题。"><a href="#10-是一个程序找错题。" class="headerlink" title="10. 是一个程序找错题。"></a>10. 是一个程序找错题。</h2></div></article></div><div class="tags"><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/面试/">面试</a></div><div class="paginator"><a href="/2016/04/12/2016-04-12-新浪微博笔试最后一题/" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2016/04/12/2016-04-12-新浪微博Android面试部分/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2016/04/12/2016-04-12-新浪微博面试笔试题/index.html" data-title="2016年四月新浪微博面试体验" data-url="http://febsky.me/2016/04/12/2016-04-12-新浪微博面试笔试题/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();</script></section><div class="copyright"><p>© 2018<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>
+extends partial/layout
+
+block site_title
+    != page.title + " · " + config.title
+
+block description
+    - desc = page.desc || page.title + ' - ' + config.author;
+    meta(name="description", content=desc)
+
+block container
+    include mixins/post
+    +post()
+
+block tags
+    include mixins/tags
+    +tags()
+
+block pagination
+    include mixins/paginator
+    +post()
+
+block comment
+    include mixins/comment
+    +comment()

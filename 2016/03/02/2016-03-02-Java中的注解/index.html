@@ -1,80 +1,24 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Java中的注解 · 奋斗の小鸟</title><meta name="description" content="Java中的注解 - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、什么东西"><span class="toc-text">一、什么东西</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、一般干什么用"><span class="toc-text">二、一般干什么用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、四种元注解"><span class="toc-text">三、四种元注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Target：表示该注解可以用什么地方"><span class="toc-text">1. @Target：表示该注解可以用什么地方</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Retention-表示在什么级别保存该注解信息"><span class="toc-text">2. @Retention:表示在什么级别保存该注解信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Documented-将此注解包含到Javadoc中"><span class="toc-text">3. @Documented:将此注解包含到Javadoc中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Inherited：允许子类继承父类的注解"><span class="toc-text">4. @Inherited：允许子类继承父类的注解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、三种Java内置注解（编译器指令）"><span class="toc-text">四、三种Java内置注解（编译器指令）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、自定义注解"><span class="toc-text">五、自定义注解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java注解解析"><span class="toc-text">Java注解解析</span></a></li></ol></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">奋斗の小鸟</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">Archive</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">Tags</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">About</a></li><li class="nav-list-item"><a href="/search.html" target="_self" class="nav-list-link">搜索</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Java中的注解</h1><div class="post-time">Mar 2, 2016</div><div class="post-content"><blockquote>
-<h1 id="一、什么东西"><a href="#一、什么东西" class="headerlink" title="一、什么东西"></a>一、什么东西</h1></blockquote>
-<p>注解是Java 1.5引入的，目前已被广泛应用于各种Java框架，如Hibernate，Jersey，Spring。注解相当于是一种嵌入在程序中的元数据，可以使用注解解析工具或编译器对其进行解析，也可以指定注解在编译期或运行期有效。好吧没看懂~~~</p>
-<blockquote>
-<h1 id="二、一般干什么用"><a href="#二、一般干什么用" class="headerlink" title="二、一般干什么用"></a>二、一般干什么用</h1></blockquote>
-<p>Java中的注解通常扮演以下角色</p>
-<ul>
-<li>编译器指令  （@OverWrite 给java编译器使用，生成文档，在编译时进行格式检查等）</li>
-<li>构建时指令  （给maven等构建工具使用）</li>
-<li>运行时指令  (我们常见的，结合反射使用)</li>
-</ul>
-<blockquote>
-<h1 id="三、四种元注解"><a href="#三、四种元注解" class="headerlink" title="三、四种元注解"></a>三、四种元注解</h1></blockquote>
-<p>元注解主要负责注解其他注解的。</p>
-<h2 id="1-Target：表示该注解可以用什么地方"><a href="#1-Target：表示该注解可以用什么地方" class="headerlink" title="1. @Target：表示该注解可以用什么地方"></a>1. @Target：表示该注解可以用什么地方</h2><p>@Target说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
-<p><strong>作用</strong>：用于描述注解的使用范围（即：被描述的注解可以用在什么地方）</p>
-<p><strong>取值(ElementType)有</strong>：</p>
-<ol>
-<li>CONSTRUCTOR:用于描述构造器</li>
-<li>FIELD:用于描述域</li>
-<li>LOCAL_VARIABLE:用于描述局部变量</li>
-<li>METHOD:用于描述方法</li>
-<li>PACKAGE:用于描述包</li>
-<li>PARAMETER:用于描述参数</li>
-<li>TYPE:用于描述类、接口(包括注解类型) 或enum声明</li>
-</ol>
-<h2 id="2-Retention-表示在什么级别保存该注解信息"><a href="#2-Retention-表示在什么级别保存该注解信息" class="headerlink" title="2. @Retention:表示在什么级别保存该注解信息"></a>2. @Retention:表示在什么级别保存该注解信息</h2><p>可选的参数值在枚举类型 RetentionPolicy 中，包括：</p>
-<ol>
-<li>RetentionPolicy.SOURCE 注解将被编译器丢弃 </li>
-<li>RetentionPolicy.CLASS 注解在class文件中可用，但会被VM丢</li>
-<li>RetentionPolicy.RUNTIME VM将在运行期也保留注释，因此可以通过反射机制读取注解的信息。 </li>
-</ol>
-<h2 id="3-Documented-将此注解包含到Javadoc中"><a href="#3-Documented-将此注解包含到Javadoc中" class="headerlink" title="3. @Documented:将此注解包含到Javadoc中"></a>3. @Documented:将此注解包含到Javadoc中</h2><p><code>@Documented</code>用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。</p>
-<h2 id="4-Inherited：允许子类继承父类的注解"><a href="#4-Inherited：允许子类继承父类的注解" class="headerlink" title="4. @Inherited：允许子类继承父类的注解"></a>4. @Inherited：允许子类继承父类的注解</h2><ul>
-<li>@Inherited 元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。</li>
-<li><strong>注意</strong>：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。</li>
-<li>当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。</li>
-</ul>
-<blockquote>
-<h1 id="四、三种Java内置注解（编译器指令）"><a href="#四、三种Java内置注解（编译器指令）" class="headerlink" title="四、三种Java内置注解（编译器指令）"></a>四、三种Java内置注解（编译器指令）</h1></blockquote>
-<ol>
-<li>@Override – 当我们想要覆盖父类的一个方法时，需要使用该注解告知编译器我们正在覆盖一个方法。这样的话，当父类的方法被删除或修改了，编译器会提示错误信息。大家可以学习一下为什么我们总是应该在覆盖方法时使用Java覆盖注解。</li>
-<li>@Deprecated – 当我们想要让编译器知道一个方法已经被弃用(deprecate)时，应该使用这个注解。Java推荐在javadoc中提供信息，告知用户为什么这个方法被弃用了，以及替代方法是什么。</li>
-<li>@SuppressWarnings – 这个注解仅仅是告知编译器，忽略它们产生了特殊警告，比如：在java泛型中使用原始类型。它的保持性策略(retention policy)是SOURCE，在编译器中将被丢弃。</li>
-</ol>
-<blockquote>
-<h1 id="五、自定义注解"><a href="#五、自定义注解" class="headerlink" title="五、自定义注解"></a>五、自定义注解</h1></blockquote>
-<p> 使用<code>@interface</code>自定义注解时，自动继承了java.lang.annotation.Annotation接口，由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口。<code>@interface</code>用来声明一个注解，其中的每一个方法实际上是声明了一个配置参数。方法的名称就是参数的名称，返回值类型就是参数的类型（返回值类型只能是基本类型、Class、String、enum）。可以通过default来声明参数的默认值。</p>
-<p><strong>定义注解格式：</strong></p>
-<p>　　<code>public @interface 注解名 {定义体}</code></p>
-<p><strong>注解参数的可支持数据类型：</strong></p>
-<ol>
-<li>所有基本数据类型（int,float,boolean,byte,double,char,long,short)</li>
-<li>String类型</li>
-<li>Class类型</li>
-<li>enum类型</li>
-<li>Annotation类型　　　　</li>
-<li>以上所有类型的数组</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.Target;</div><div class="line"><span class="comment">//定义一个注解</span></div><div class="line"><span class="meta">@Target</span>(ElementType.METHOD)<span class="comment">//定义该注解将应用于什么地方，方法或者域</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)<span class="comment">//定义该注解在哪一个级别可用</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> UseCase &#123;</div><div class="line">    <span class="comment">//注解元素，可以指定默认值，在使用注解的时候，可以直接给元素赋值如id=5</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> "no description"</span>;</div><div class="line">     <span class="comment">//利用枚举来设置参数类型</span></div><div class="line">     <span class="keyword">public</span> <span class="keyword">enum</span> ParameterType &#123; STRING, SHORT, INT, BOOL, LONG, OBJECT &#125;;</div><div class="line">     <span class="comment">// 默认值,在使用注解的时候，只需要为元素赋值</span></div><div class="line">     <span class="function"><span class="keyword">public</span> ParameterType <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> ParameterType.STRING</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<h1 id="Java注解解析"><a href="#Java注解解析" class="headerlink" title="Java注解解析"></a>Java注解解析</h1></blockquote>
-<p>我们将使用Java反射机制从一个类中解析注解，请记住，注解保持性策略应该是RUNTIME，否则它的信息在运行期无效，我们也不能从中获取任何数据。</p>
-<p>反射中的Class类和Method类都有获取注解的方法<code>getXXX</code> 如：Method 类的<code>getDeclaredAnnotations</code>方法等。</p>
-<p>未完待续。。。</p>
-<p><strong>【参考文章】</strong></p>
-<ul>
-<li><p><a href="http://www.cnblogs.com/peida/archive/2013/04/23/3036035.html" target="_blank" rel="external">http://www.cnblogs.com/peida/archive/2013/04/23/3036035.html</a></p>
-</li>
-<li><p><a href="http://droidyue.com/blog/2016/04/24/look-into-java-annotation/" target="_blank" rel="external">http://droidyue.com/blog/2016/04/24/look-into-java-annotation/</a></p>
-</li>
-</ul>
-</div></article></div><div class="tags"><a href="/tags/Java/">Java</a></div><div class="paginator"><a href="/2016/03/04/2016-03-04-Java注解（慕课网）/" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2016/02/28/2016-02-28-Java中的多线程之内存可见性/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2016/03/02/2016-03-02-Java中的注解/index.html" data-title="Java中的注解" data-url="http://febsky.me/2016/03/02/2016-03-02-Java中的注解/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();</script></section><div class="copyright"><p>© 2018<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>
+extends partial/layout
+
+block site_title
+    != page.title + " · " + config.title
+
+block description
+    - desc = page.desc || page.title + ' - ' + config.author;
+    meta(name="description", content=desc)
+
+block container
+    include mixins/post
+    +post()
+
+block tags
+    include mixins/tags
+    +tags()
+
+block pagination
+    include mixins/paginator
+    +post()
+
+block comment
+    include mixins/comment
+    +comment()

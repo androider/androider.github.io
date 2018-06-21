@@ -1,56 +1,24 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Django  在数据库设计的时候的关系操作 · 奋斗の小鸟</title><meta name="description" content="Django  在数据库设计的时候的关系操作 - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">奋斗の小鸟</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">Archive</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">Tags</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">About</a></li><li class="nav-list-item"><a href="/search.html" target="_self" class="nav-list-link">搜索</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Django  在数据库设计的时候的关系操作</h1><div class="post-time">Nov 30, 2014</div><div class="post-content"><p>这里假设你已经建好了Django项目了。这些操作实在ubuntu命令行下面操作的，所以以下用可能会用到命令行基本操作，当然你也可以在IDE 中操作。</p>
-<p>首先我们先来看下要用到的model类，也就是对应数据库中的表：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">from django.db import models</div><div class="line"></div><div class="line"># Create your models here.</div><div class="line"></div><div class="line">class Author(models.Model):</div><div class="line"></div><div class="line">    name = models.CharField(max_length=30)</div><div class="line"></div><div class="line">    def __unicode__(self):</div><div class="line"></div><div class="line">        return self.name</div><div class="line"></div><div class="line">class Comment(models.Model):</div><div class="line"></div><div class="line">    comment_name = models.CharField(max_length=30)</div><div class="line"></div><div class="line">    ##评论的回复，递归和自己产生多对多的关系</div><div class="line"></div><div class="line">    child_comments = models.ManyToManyField(&amp;quot;self&amp;quot;,blank=True,null=True)    </div><div class="line"></div><div class="line">    def __unicode__(self):</div><div class="line"></div><div class="line">        return self.comment_name	</div><div class="line"></div><div class="line">class Book(models.Model):</div><div class="line"></div><div class="line">    ##书的名字</div><div class="line"></div><div class="line">    name = models.CharField(max_length=30)</div><div class="line"></div><div class="line">    ###这里不考虑实际，只是假设一本书只有一个作者</div><div class="line"></div><div class="line">    author = models.ForeignKey(Author)</div><div class="line"></div><div class="line">    ###这里这么应用有点牵强，因为评论是一对多的关系，可以放到每个Comment对象中做外键</div><div class="line"></div><div class="line">    ###在这里就这么用了，    </div><div class="line"></div><div class="line">    comments = models.ManyToManyField(Comment)</div><div class="line"></div><div class="line">    def __unicode__(self):</div><div class="line"></div><div class="line">        return self.name</div></pre></td></tr></table></figure>
-<p>好models.py文件修改好了，现在开始操作数据库</p>
-<p>cd到带有manage.py 文件的目录下</p>
-<p>命令行运行：python manage.py syncdb</p>
-<p>命令行运行：python manage.py shell</p>
-<p>将上面用的到三个类import进来</p>
-<p>首先创建三个作者：</p>
-<p>xiaoming = Author(name=”xiaoming”)</p>
-<p>xiaohong = Author(name=”xiaohong”)</p>
-<p>xiaogang = Author(name=”xiaogang”)</p>
-<p>以上命令只是在内存中创建了对象，现在我们把他们保存到数据库中</p>
-<p>xiaoming.save()</p>
-<p>xiaohong.save()</p>
-<p>xiaogang.save()</p>
-<p>现在三个作者都保存到数据库了，可以查看下：</p>
-<p>Author.objects.all()</p>
-<p>OK ，接下来创建两条回复（评论），和两条子评论（评论的评论）给第一条回复添加两条回复</p>
-<p>comment1 = Comment(comment_name=”First Comment!”)</p>
-<p>comment2 = Comment(comment_name=”Second Comment!”)</p>
-<p>child_comment1 = Comment(comment_name=”First Child Comment!”)</p>
-<p>child_comment2 = Comment(comment_name=”Second Child Comment!”)</p>
-<p>#####注意要想给一个Model对象添加一个多对多的关系，必须先把这个对象保存到数据库####</p>
-<p>例如：comment1.child_comments.add(child_comment1)</p>
-<p>是会报错的，因为还没有保存到数据库中</p>
-<p>必须先执行comment1.save()</p>
-<p>所以为了避免出错，我们添加关系的时候最好都是已经在数据库中存在的哦</p>
-<p>comment1.save()</p>
-<p>comment2.save()</p>
-<p>child_comment1.save()</p>
-<p>child_comment2.save()</p>
-<p>然后执行：</p>
-<p>comment1.child_comments.add(child_comment1)</p>
-<p>comment1.child_comments.add(child_comment2)</p>
-<p>或者用下面这种方式：</p>
-<p>comment1.child_comments.add(child_comment1,child_comment2)</p>
-<p>OK 评论关系添加好了，查看一下呗</p>
-<p>Comment.objects.all()</p>
-<p>comment1.child_comments.all()</p>
-<p>下面就简单了，总之和上面一样：</p>
-<p>创建Book对象</p>
-<p>book = Book(name=”The Book “,author=xiaoming)    ##xiaoming 是一个Author对象</p>
-<p>book.save()   #这里必须先save 否则下面的添加会出错</p>
-<p>book.comments.add(comment1)</p>
-<p>book.comments.add(comment2)</p>
-<p>来看看官网的文档中的例子（很详细的）：</p>
-<p><a href="https://docs.djangoproject.com/en/1.6/topics/db/examples/many_to_many/" target="_blank" rel="external">https://docs.djangoproject.com/en/1.6/topics/db/examples/many_to_many/</a></p>
-</div></article></div><div class="tags"><a href="/tags/Django/">Django</a></div><div class="paginator"><a href="/2014/12/02/2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set./" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2014/11/28/2014-11-28-github操作遇到的几个问题/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/index.html" data-title="Django  在数据库设计的时候的关系操作" data-url="http://febsky.me/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();</script></section><div class="copyright"><p>© 2018<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>
+extends partial/layout
+
+block site_title
+    != page.title + " · " + config.title
+
+block description
+    - desc = page.desc || page.title + ' - ' + config.author;
+    meta(name="description", content=desc)
+
+block container
+    include mixins/post
+    +post()
+
+block tags
+    include mixins/tags
+    +tags()
+
+block pagination
+    include mixins/paginator
+    +post()
+
+block comment
+    include mixins/comment
+    +comment()

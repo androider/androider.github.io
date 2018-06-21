@@ -1,18 +1,24 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>github操作遇到的几个问题 · 奋斗の小鸟</title><meta name="description" content="github操作遇到的几个问题 - Qiang"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><!-- fonts--><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><input type="checkbox" id="sidebar-toggle"><aside><div class="author"><a href="/."><img src="/img/author.png" class="author-img"></a><h2 class="author-name">Qiang</h2></div><div class="post-toc"><span class="toc-title">Directory</span></div></aside><div class="main"><header><div id="top"><a href="/." class="logo-link">奋斗の小鸟</a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">Archive</a></li><li class="nav-list-item"><a href="/tags/" target="_self" class="nav-list-link">Tags</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">About</a></li><li class="nav-list-item"><a href="/search.html" target="_self" class="nav-list-link">搜索</a></li></ul></div></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">github操作遇到的几个问题</h1><div class="post-time">Nov 28, 2014</div><div class="post-content"><p>今天操作github在更新数据的时候报以下错误</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">error: failed to push some refs to <span class="string">'git@github.com:itroadmap/itroadmap.github.com.git'</span></div><div class="line"></div><div class="line">To prevent you from losing history, non-fast-<span class="function">forward updates were rejected</span></div><div class="line"></div><div class="line">Merge the remote <span class="title">changes</span> <span class="params">(e.g. <span class="string">'git pull'</span>)</span> before pushing again. See the</div><div class="line"></div><div class="line">'Note about fast-forwards' section of 'git push --help' <span class="keyword">for</span> details.</div></pre></td></tr></table></figure>
-<p>有两种方式解决：</p>
-<p>第一种 用强覆盖方式用你本地的代码替代git仓库内的内容,命令行执行如下代码：</p>
-<p><code>$ git push -f</code></p>
-<p>第二种 先把git的东西fetch到你本地然后merge后再push</p>
-<p><code>$ git fetch</code></p>
-<p><code>$ git merge</code></p>
-<p>其实第二种方式的这两行代码等价于：</p>
-<p><code>$ git pull</code></p>
-</div></article></div><div class="tags"><a href="/tags/Git/">Git</a></div><div class="paginator"><a href="/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/" class="prev"><i class="fa fa-chevron-left"></i><span> Prev</span></a><a href="/2014/11/28/2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决/" class="next"><span>Next</span><i class="fa fa-chevron-right"></i></a></div></section><footer><section id="comments"><div data-thread-key="http://febsky.me/2014/11/28/2014-11-28-github操作遇到的几个问题/index.html" data-title="github操作遇到的几个问题" data-url="http://febsky.me/2014/11/28/2014-11-28-github操作遇到的几个问题/index.html" class="ds-thread"></div><script type="text/javascript">var duoshuoQuery = {short_name: "febsky" };
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();</script></section><div class="copyright"><p>© 2018<span class="heart"><i class="icon-next-heart fa fa-heart"></i></span><a href="http://febsky.me">Qiang</a></p></div></footer></div><label for="sidebar-toggle" class="sidebar-menu"><i class="fa fa-bars"></i></label><label class="back2top"> <a href="#top"><i class="fa fa-chevron-up"></i></a></label></body></html>
+extends partial/layout
+
+block site_title
+    != page.title + " · " + config.title
+
+block description
+    - desc = page.desc || page.title + ' - ' + config.author;
+    meta(name="description", content=desc)
+
+block container
+    include mixins/post
+    +post()
+
+block tags
+    include mixins/tags
+    +tags()
+
+block pagination
+    include mixins/paginator
+    +post()
+
+block comment
+    include mixins/comment
+    +comment()
