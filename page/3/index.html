@@ -1,21 +1,662 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android,Java,Python,博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="凉凉小线仔">
+<meta property="og:url" content="http://febsky.me/page/3/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="Android,Java,Python,博客">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="凉凉小线仔">
+<meta name="twitter:description" content="Android,Java,Python,博客">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != config.title
+</head>
 
-block description
-    if config.description
-        - desc = config.description;
-        meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2016-07-11-Hexo添加站内搜索" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/11/2016-07-11-Hexo添加站内搜索/">Hexo添加站内搜索</a>
+    </h1>
+  
 
-block container
-    include mixins/post
-    +posts()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/11/2016-07-11-Hexo添加站内搜索/" class="article-date">
+  <time datetime="2016-07-11T05:49:07.000Z" itemprop="datePublished">2016-07-11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hexo/">Hexo</a> <a class="article-category-link" href="/categories/Hexo/搜索/">搜索</a>
+  </div>
 
-block pagination
-    include mixins/paginator
-    +home()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Google-和-百度提供的站内搜索"><a href="#Google-和-百度提供的站内搜索" class="headerlink" title="Google 和 百度提供的站内搜索"></a>Google 和 百度提供的站内搜索</h1><p><strong>可行性：</strong>Google 呵呵，你懂。百度 据说github拒绝百度的爬虫，如果你的网站部署在github首页上，可能不能成功。</p>
+<p><strong>用法：</strong> 在google的输入框中输入  <code>site:fesky.me</code></p>
+        
+          <p class="article-more-link">
+            <a href="/2016/07/11/2016-07-11-Hexo添加站内搜索/#more">More...</a>
+          </p>
+        
+      
 
-block social
-    include mixins/social
-    +social_icon()
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-07-05-Android开发我用到的Chrome插件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/05/2016-07-05-Android开发我用到的Chrome插件/">Android开发我用到的Chrome插件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/05/2016-07-05-Android开发我用到的Chrome插件/" class="article-date">
+  <time datetime="2016-07-05T05:35:51.000Z" itemprop="datePublished">2016-07-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a> <a class="article-category-link" href="/categories/Android/Chrome插件/">Chrome插件</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chrome调试WebView"><a href="#Chrome调试WebView" class="headerlink" title="Chrome调试WebView"></a>Chrome调试WebView</h1><p><code>前提一定要开启手机USB调试模式</code>如果千万不要丢了U</p>
+<p>在电脑上打开Chrome浏览器的菜单– 更多工具 – 检查设备（Chromemenu &gt; More tools &gt; Inspect Devices），或者直接在浏览器地址栏输入chrome://inspect 或者about:inspect</p>
+<p>然后自己瞎鼓捣就行了。</p>
+<h1 id="Chrome（电脑端）操作Android真机（解放双手）"><a href="#Chrome（电脑端）操作Android真机（解放双手）" class="headerlink" title="Chrome（电脑端）操作Android真机（解放双手）"></a>Chrome（电脑端）操作Android真机（解放双手）</h1><ol>
+<li><p>Chrome有个叫做 <code>Vysor</code> 的插件，可以直接在Chrome应用市场搜索。<br>可惜的是这个的免费版，画面太不清晰。</p>
+</li>
+<li><p>其实还有一个不是Chrome插件的东西，是Google开发的亲儿子，（简称ASM）是一款监视手机或者模拟器屏幕的工具，主要和上面相比分辨率高   <a href="https://code.google.com/archive/p/android-screen-monitor/" target="_blank" rel="noopener">android-screen-monitor</a>  这个托管在GoogleCode上面，要科学上网！ 这个和上面的相比仅仅有监视的功能不能操作。</p>
+</li>
+</ol>
+<p>配置方式：解压后将 <code>asm.jar</code>拷贝到本机 <code>android-sdk\platform-tools</code>目录下。然后命令行运行 <code>java -jar asm.jar</code> 如果不copy到 platform-tools目录下，可能要配置Android sdk的环境变量。切记。</p>
+<h1 id="Facebook出了一个叫做Stetho东西"><a href="#Facebook出了一个叫做Stetho东西" class="headerlink" title="Facebook出了一个叫做Stetho东西"></a>Facebook出了一个叫做<a href="http://facebook.github.io/stetho/" target="_blank" rel="noopener">Stetho</a>东西</h1><p><strong>作用：</strong> 他能在Chrome控制台中查看app的网络请求，数据抓包，和app的数据库文件等等。但是要在app中引入库，具体的操作看官网吧。</p>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-07-05-Android逆向工程用到的工具" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/05/2016-07-05-Android逆向工程用到的工具/">Android逆向工程用到的工具</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/05/2016-07-05-Android逆向工程用到的工具/" class="article-date">
+  <time datetime="2016-07-05T05:12:00.000Z" itemprop="datePublished">2016-07-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a> <a class="article-category-link" href="/categories/Android/反编译/">反编译</a> <a class="article-category-link" href="/categories/Android/反编译/逆向工程/">逆向工程</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一套组合（入门级组合）"><a href="#第一套组合（入门级组合）" class="headerlink" title="第一套组合（入门级组合）"></a>第一套组合（入门级组合）</h2><p><a href="https://github.com/iBotPeaches/Apktool" target="_blank" rel="noopener">Apktool</a> + <a href="https://github.com/pxb1988/dex2jar" target="_blank" rel="noopener">dex2jar</a> + <a href="https://github.com/java-decompiler/jd-gui" target="_blank" rel="noopener">jd-gui</a></p>
+<p>可惜的是apktool好像后来不再支持调试Smali文件，jd-gui 作者从 2015 年开始就停止了维护.</p>
+<blockquote>
+<p>但是AndroidStudio有个调试Smali的插件  <a href="SmaliIdea：https://github.com/JesusFreke/smali/wiki/smalidea">地址 https://github.com/JesusFreke/smali/wiki/smalidea</a><br>据说jadx 不错（推荐使用），可以取代 jd-gui <a href="https://github.com/skylot/jadx" target="_blank" rel="noopener">地址 https://github.com/skylot/jadx</a></p>
+</blockquote>
+<h2 id="Google-出的几个逆向分析工具"><a href="#Google-出的几个逆向分析工具" class="headerlink" title="Google 出的几个逆向分析工具"></a>Google 出的几个逆向分析工具</h2><ol>
+<li>enjarify  </li>
+</ol>
+<hr>
+<p><a href="https://github.com/google/enjarify" target="_blank" rel="noopener">https://github.com/google/enjarify</a><br>功能：可直接将 apk 文件还原成为 jar 文件，也可以和 dex2jar 一样，直接操作某个dex</p>
+<p>这是 Google 出品的一个逆向分析工具，从反编译成 jar 包的流程来说，要比 dex2jar 方便得多。下载完工具到本地并配置好 Python 环境后，需要修改 enjarify 目录下的 enjarify.bat 文件，将 python3 改为 python</p>
+<ol start="2">
+<li>ClassyShark</li>
+</ol>
+<hr>
+<p><a href="https://github.com/google/android-classyshark" target="_blank" rel="noopener">https://github.com/google/android-classyshark</a></p>
+<p>功能：可直接浏览 Apk，支持对.dex, .aar, .so，.apk, .jar, .class等文件的操作。</p>
+<p>同是Google出品，但是只能看到方法声明，没法看到方法的定义。</p>
+<blockquote>
+<p>java -jar ClassyShark.jar -open XXX.apk</p>
+</blockquote>
+<ol start="3">
+<li>AndroidStudio2.2 （APK Analyzer）</li>
+</ol>
+<hr>
+<p>  在Android Studio2.2 中添加了个新的功能<code>Build --&gt;analyze apk ...</code><br>   然后选择你要分析的 APK 文件就可以了。但是只能看到方法声明，没法看到方法的定义。</p>
+<p><a href="http://www.febsky.me" target="_blank" rel="noopener">me</a></p>
+<h2 id="procyon-和-cfr-和-Jad-，这些主要专注于jar的反编译"><a href="#procyon-和-cfr-和-Jad-，这些主要专注于jar的反编译" class="headerlink" title="procyon 和 cfr 和 Jad ，这些主要专注于jar的反编译"></a>procyon 和 cfr 和 Jad ，这些主要专注于jar的反编译</h2><ol>
+<li>orocyon 和 cfr 和 Jad </li>
+</ol>
+<hr>
+<p>当然这几个不是Google的产物，这几个是<code>jar</code> 和<code>.class</code> 反编译工具。为啥要用这些，因为jd-gui，反编译java7会有问题。有些语法有点让人难以读懂。但是他有图形化界面剩下的这几个都没有。</p>
+<ul>
+<li><p><a href="https://bitbucket.org/mstrobel/procyon" target="_blank" rel="noopener">https://bitbucket.org/mstrobel/procyon</a><br>功能：将反编译得到 jar 包还原成 java 文件，同时能够更强的还原代码的逻辑结构  2016-07-12 持续更新中。。。据说有个图形化界面<a href="https://github.com/deathmarine/Luyten" target="_blank" rel="noopener">https://github.com/deathmarine/Luyten</a></p>
+</li>
+<li><p><a href="http://www.benf.org/other/cfr/" target="_blank" rel="noopener">http://www.benf.org/other/cfr/</a> 最新版 cfr_0_116.jar (July 2016) 持续更新中。。。</p>
+</li>
+<li><p><a href="https://en.wikipedia.org/wiki/JAD_(JAva_Decompiler" target="_blank" rel="noopener">jad</a>)  //这货我没用过，不知道地址，好像也不怎么更新了，给的是wiki的地址。</p>
+</li>
+</ul>
+<p>procyon 反编译jar包命令：(我用的是这个，比jd-gui好很多真的)</p>
+<blockquote>
+<p>$ java -jar procyon-decompiler-0.5.30.jar -jar myJar.jar -o out</p>
+</blockquote>
+<p>cfr 反编译jar包命令：</p>
+<blockquote>
+<p>java -jar cfr_0_79.jar example.jar -–outputdir out  </p>
+</blockquote>
+<h2 id="2-bytecode-viewer-这是个套装"><a href="#2-bytecode-viewer-这是个套装" class="headerlink" title="2.bytecode-viewer 这是个套装"></a>2.bytecode-viewer 这是个套装</h2><p>再来一个基于Procyon的项目 <a href="https://github.com/Konloch/bytecode-viewer" target="_blank" rel="noopener">bytecode-viewer</a><br>A Java 8 Jar &amp; Android APK Reverse Engineering Suite (Decompiler, Editor, Debugger &amp; More) <a href="https://bytecodeviewer.com" target="_blank" rel="noopener">https://bytecodeviewer.com</a>.  不知道如何没用过。</p>
+<ol start="3">
+<li>Jadx</li>
+</ol>
+<hr>
+<p>强烈推荐这个玩意，反编译后的代码可读性好，自带图形化界面。</p>
+<p>这个是一款GUI界面的反编译工具，是一款点击鼠标就可以使用的跨平台工具。</p>
+<p><a href="https://github.com/skylot/jadx/releases" target="_blank" rel="noopener">项目在这里</a></p>
+<h2 id="JEB-for-Android"><a href="#JEB-for-Android" class="headerlink" title="##JEB for Android "></a>##JEB for Android </h2><p>非常不错，但是不开源，不免费<a href="https://www.pnfsoftware.com/jeb2/#android" target="_blank" rel="noopener">官网</a></p>
+<p><a href="http://www.febsky.me" target="_blank" rel="noopener">me</a></p>
+<p><a href="http://bbs.pediy.com/showthread.php?p=1397272&amp;mode=threaded" target="_blank" rel="noopener">http://bbs.pediy.com/showthread.php?p=1397272&amp;mode=threaded</a></p>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-06-17-Python使用虚拟环境" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/17/2016-06-17-Python使用虚拟环境/">Python使用虚拟环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/06/17/2016-06-17-Python使用虚拟环境/" class="article-date">
+  <time datetime="2016-06-17T09:46:24.000Z" itemprop="datePublished">2016-06-17</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python的虚拟环境可以使一个Python程序拥有独立的库library和解释器interpreter，而不用与其他Python程序共享统一个library和interpreter。虚拟环境的好处是避免了不同Python程序间的互相影响（共同使用global library 和 interpreter），例如程序A需要某个库的1.0版本，而程序B需要同样这个库的2.0版本，如果程序B执行则A就不能执行了。</p>
+<ol>
+<li>安装virtualenv：<br><code>pip install virtualenv</code></li>
+<li><p>创建虚拟环境</p>
+<p><code>virtualenv venv</code><br> venv是新创建的虚拟环境的名称。 同时会创建一个与虚拟环境名称相同的文件夹venv, 里面存储了一个独立的Python执行环境。</p>
+</li>
+<li><p>进入虚拟环境</p>
+<p> <code>source venv/bin/activate</code><br> 进入虚拟环境后，命令行的提示符会加入虚拟环境的名称，例如：(venv)user@machine:~$</p>
+</li>
+<li>退出虚拟环境<br> <code>deactivate</code></li>
+<li>删除虚拟环境<br> <code>rm -r venv</code><br> 直接删除虚拟环境所在的文件夹venv就删除了我们创建的venv虚拟环境。</li>
+</ol>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-06-17-Python常用的库" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/17/2016-06-17-Python常用的库/">Python常用的库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/06/17/2016-06-17-Python常用的库/" class="article-date">
+  <time datetime="2016-06-16T17:55:08.000Z" itemprop="datePublished">2016-06-17</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>网络请求库 requests <a href="http://cn.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="noopener">一份中文文档</a></li>
+<li>HTML解析  pyquery 或者 beautifulsoup</li>
+<li>orm库 sqlalchemy <a href="http://gashero.yeax.com/?p=6" target="_blank" rel="noopener">一份中文文档</a></li>
+<li>种子解析libtorrent</li>
+<li>web Flask,flask-httpauth</li>
+</ol>
+<p>【参考】<br><a href="http://www.cnblogs.com/vovlie/p/4182814.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">用Flask设计带认证的Restfull</a></p>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-06-14-Python日期时间的处理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/14/2016-06-14-Python日期时间的处理/">Python日期时间的处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/06/14/2016-06-14-Python日期时间的处理/" class="article-date">
+  <time datetime="2016-06-14T14:04:19.000Z" itemprop="datePublished">2016-06-14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="首先导入时间日期模块"><a href="#首先导入时间日期模块" class="headerlink" title="首先导入时间日期模块"></a>首先导入时间日期模块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> time</span><br></pre></td></tr></table></figure>
+<h3 id="string转datetime"><a href="#string转datetime" class="headerlink" title="string转datetime"></a>string转datetime</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">'2012-11-19'</span></span><br><span class="line"></span><br><span class="line">date_time = datetime.datetime.strptime(str,<span class="string">'%Y-%m-%d'</span>)</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2016/06/14/2016-06-14-Python日期时间的处理/#more">More...</a>
+          </p>
+        
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-06-13-Android开发中的图文并排插件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/13/2016-06-13-Android开发中的图文并排插件/">Android开发中图文并排插件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/06/13/2016-06-13-Android开发中的图文并排插件/" class="article-date">
+  <time datetime="2016-06-13T09:33:37.000Z" itemprop="datePublished">2016-06-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><a href="https://github.com/sufficientlysecure/html-textview" target="_blank" rel="noopener">html-textview</a></li>
+<li><a href="https://github.com/zzhoujay/RichText" target="_blank" rel="noopener">RichText</a></li>
+</ol>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-06-03-Hexo主题目录介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/03/2016-06-03-Hexo主题目录介绍/">Hexo主题目录介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/06/03/2016-06-03-Hexo主题目录介绍/" class="article-date">
+  <time datetime="2016-06-03T04:37:28.000Z" itemprop="datePublished">2016-06-03</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="分析主题目录"><a href="#分析主题目录" class="headerlink" title="分析主题目录"></a>分析主题目录</h1><p><strong>存放所有主题的文件目录</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">themes</span><br><span class="line">    |--my_theme</span><br></pre></td></tr></table></figure>
+<p><strong>某个特定主题目录</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">my_theme</span><br><span class="line">    |-- _config.yml</span><br><span class="line">    |-- languages/</span><br><span class="line">    |-- layout/</span><br><span class="line">    	|-- _partial/</span><br><span class="line">		|-- _widget/</span><br><span class="line">		|-- archive.ejs *</span><br><span class="line">		|-- category.ejs *</span><br><span class="line">		|-- index.ejs *</span><br><span class="line">		|-- layout.ejs *</span><br><span class="line">		|-- page.ejs *</span><br><span class="line">		|-- post.ejs *</span><br><span class="line">		|-- tag.ejs *</span><br><span class="line">    |-- LICENSE</span><br><span class="line">    |-- README.md</span><br><span class="line">    |-- source/</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p><code>layout/</code><br>以上打<code>*</code>的文件表示，每个主题至少需要这些文件。所有的主题都是用layout.ejs作为默认的布局文件，你也可以自定义布局文件。</p>
+<ul>
+<li><code>_widget/</code>： 小工具目录，在my_theme主题中对右边栏的控制。</li>
+<li><code>_partial/</code>： 组件目录，给博客添加统计、评论等功能</li>
+</ul>
+</li>
+<li><p><code>source/</code><br>主题资源目录，主题用到的CSS、Javascript等文件需要放在这个目录中，会被编译到hexo的public目录中。</p>
+</li>
+<li><p><code>_config.yml</code>  </p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">menu:        #站点导航栏 （标签: 路径）</span><br><span class="line">  首页: /</span><br><span class="line">  归档: /archives</span><br><span class="line">  关于: /about</span><br><span class="line"></span><br><span class="line">widgets:        #小工具 即站点的右边一栏 页面会按这里的顺序排列</span><br><span class="line">- recent_posts</span><br><span class="line">- category</span><br><span class="line">- weibo_show</span><br><span class="line">- blogroll</span><br><span class="line"></span><br><span class="line">excerpt_link: 阅读全文   #默认是Read more 可以改成中文</span><br><span class="line"></span><br><span class="line">twitter:    #墙内很少用此鸟，so可以删掉</span><br><span class="line"></span><br><span class="line">addthis:    #这个也可以删掉</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line">fancybox: true</span><br><span class="line"></span><br><span class="line">baidu_analytics: true    #百度统计，天朝还是这个好使，没办法滴</span><br><span class="line"></span><br><span class="line">google_analytics:        #默认统计，多么希望用这个统计，可惜</span><br><span class="line"></span><br><span class="line">rss: /atom.xml        #RSS</span><br><span class="line"></span><br><span class="line">comment_provider:</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>每一个主题至少都要包含一个index模版，下面是各页面对应的模版名称：</p>
+<ul>
+<li>index 首页</li>
+<li>post 文章</li>
+<li>page 分页</li>
+<li>archive 归档</li>
+<li>category 分类归档</li>
+<li>tag 标签归档</li>
+</ul>
+</li>
+</ol>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-05-29-Mac下的某些命令" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/29/2016-05-29-Mac下的某些命令/">Mac下常用命令和快捷键</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/29/2016-05-29-Mac下的某些命令/" class="article-date">
+  <time datetime="2016-05-29T07:51:03.000Z" itemprop="datePublished">2016-05-29</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mac/">Mac</a> <a class="article-category-link" href="/categories/Mac/命令行/">命令行</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h1><ol>
+<li><code>open .</code> 打开finder为当前目录</li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/2016/05/29/2016-05-29-Mac下的某些命令/#more">More...</a>
+          </p>
+        
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-05-16-Android开发中的小技巧" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/28/2016-05-16-Android开发中的小技巧/">Android 开发中的小技巧</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/28/2016-05-16-Android开发中的小技巧/" class="article-date">
+  <time datetime="2016-05-28T08:39:22.000Z" itemprop="datePublished">2016-05-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a> <a class="article-category-link" href="/categories/Java/Android/">Android</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ListView小技巧"><a href="#ListView小技巧" class="headerlink" title="ListView小技巧"></a>ListView小技巧</h1><ul>
+<li>可以设置空白站位View <code>listView.setEmptyView(view);</code>非常有用</li>
+<li>缓慢滚动到某个位置<code>listView.smoothScrollToPosition();</code>当然还有其他的滚动方法</li>
+<li>在使用<code>adapter.notifyDataSetChanged()</code>方法的时候，必须保证传进adapter的数据List是同一个对象，否则无法实现效果（我就犯过这个错）</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2016/05/28/2016-05-16-Android开发中的小技巧/#more">More...</a>
+          </p>
+        
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

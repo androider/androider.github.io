@@ -1,24 +1,195 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android属性动画之ObjectAnimator </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="播放组合动画的三种方式： 方法一直接全部列出来，多种动画同时并发执行：1234ObjectAnimator animX = ObjectAnimator.ofFloat(myView, x, 50f).setDuration(1000).start();;ObjectAnimator animY = ObjectAnimator.ofFloat(myView, ;y, 100f).setDurat">
+<meta name="keywords" content="Android,动画">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android属性动画之ObjectAnimator">
+<meta property="og:url" content="http://febsky.me/2015/08/28/2015-08-28-Android属性动画之ObjectAnimator/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="播放组合动画的三种方式： 方法一直接全部列出来，多种动画同时并发执行：1234ObjectAnimator animX = ObjectAnimator.ofFloat(myView, x, 50f).setDuration(1000).start();;ObjectAnimator animY = ObjectAnimator.ofFloat(myView, ;y, 100f).setDurat">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-07-28T01:54:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android属性动画之ObjectAnimator">
+<meta name="twitter:description" content="播放组合动画的三种方式： 方法一直接全部列出来，多种动画同时并发执行：1234ObjectAnimator animX = ObjectAnimator.ofFloat(myView, x, 50f).setDuration(1000).start();;ObjectAnimator animY = ObjectAnimator.ofFloat(myView, ;y, 100f).setDurat">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2015-08-28-Android属性动画之ObjectAnimator" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android属性动画之ObjectAnimator
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/08/28/2015-08-28-Android属性动画之ObjectAnimator/" class="article-date">
+  <time datetime="2015-08-28T04:10:35.000Z" itemprop="datePublished">2015-08-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a> <a class="article-category-link" href="/categories/Android/动画/">动画</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>播放组合动画的三种方式：</p>
+<h2 id="方法一直接全部列出来，多种动画同时并发执行："><a href="#方法一直接全部列出来，多种动画同时并发执行：" class="headerlink" title="方法一直接全部列出来，多种动画同时并发执行："></a>方法一直接全部列出来，多种动画同时并发执行：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ObjectAnimator animX = ObjectAnimator.ofFloat(myView, x, <span class="number">50f</span>).setDuration(<span class="number">1000</span>).start();;</span><br><span class="line"></span><br><span class="line">ObjectAnimator animY = ObjectAnimator.ofFloat(myView, ;y, <span class="number">100f</span>).setDuration(<span class="number">1000</span>).start();;</span><br></pre></td></tr></table></figure>
+<h2 id="方法二：PropertyValuesHolder-多种动画同时开启"><a href="#方法二：PropertyValuesHolder-多种动画同时开启" class="headerlink" title="方法二：PropertyValuesHolder 多种动画同时开启"></a>方法二：PropertyValuesHolder 多种动画同时开启</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">PropertyValuesHolder pvhX = PropertyValuesHolder.ofFloat(x, <span class="number">50f</span>);</span><br><span class="line"></span><br><span class="line">PropertyValuesHolder pvhY = PropertyValuesHolder.ofFloat(y, <span class="number">100f</span>);</span><br><span class="line"></span><br><span class="line">ObjectAnimator.ofPropertyValuesHolder(myView, pvhX, pvyY).start();</span><br></pre></td></tr></table></figure>
+<h2 id="方法三：AnimatorSet-最灵活可以指定每个动画开启的时机"><a href="#方法三：AnimatorSet-最灵活可以指定每个动画开启的时机" class="headerlink" title="方法三：AnimatorSet 最灵活可以指定每个动画开启的时机"></a>方法三：AnimatorSet 最灵活可以指定每个动画开启的时机</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ObjectAnimator animX = ObjectAnimator.ofFloat(myView, x, <span class="number">50f</span>);</span><br><span class="line"></span><br><span class="line">ObjectAnimator animY = ObjectAnimator.ofFloat(myView, y, <span class="number">100f</span>);</span><br><span class="line"></span><br><span class="line">AnimatorSet animSetXY = <span class="keyword">new</span> AnimatorSet();</span><br><span class="line"></span><br><span class="line">animSetXY.playTogether(animX, animY);    <span class="comment">//同时执行</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//animSetXY.playSequentially(animX, animY);    //顺序执行</span></span><br><span class="line"></span><br><span class="line">animSetXY.start();</span><br></pre></td></tr></table></figure>
+<h2 id="ofFloat或者oFInt中的propertyName的已有取值"><a href="#ofFloat或者oFInt中的propertyName的已有取值" class="headerlink" title="ofFloat或者oFInt中的propertyName的已有取值"></a>ofFloat或者oFInt中的propertyName的已有取值</h2><ol>
+<li><p>translationX和translationY：这两个属性作为一种增量来控制着View对象从它布局容器的左上角坐标开始的位置。</p>
+</li>
+<li><p>rotation、rotationX和rotationY：这三个属性控制View对象围绕支点进行2D和3D旋转。</p>
+</li>
+<li><p>scaleX和scaleY：这两个属性控制着View对象围绕它的支点进行2D缩放。</p>
+</li>
+<li><p>pivotX和pivotY：这两个属性控制着View对象的支点位置，围绕这个支点进行旋转和缩放变换处理。默认情况下，该支点的位置就是View对象的中心点。</p>
+</li>
+<li><p>x和y：这是两个简单实用的属性，它描述了View对象在它的容器中的最终位置，它是最初的左上角坐标和translationX和translationY值的累计和。</p>
+</li>
+<li><p>alpha：它表示View对象的alpha透明度。默认值是1（不透明），0代表完全透明（不可见）。</p>
+</li>
+</ol>
+<p>7.left right top bottom</p>
+<ol start="8">
+<li>pivotX 和 pivotY: 这两个属性控制着枢轴点的位置，前述的旋转和缩放都是以此点为中心展开的,缺省的枢轴点是 View 对象的中心点;</li>
+</ol>
+<p>但是这种方式设置的话会吧pivotX和pivotY也做动画了，出来的效果有问题，后来发现可以用<code>view. setPivotX(int x);</code></p>
+<p>来设置ObjectAnimator旋转的中心点，设置ObjectAnimator的pivotX或者ObjectAnimator的pivotY</p>
+<p>除此之外还可以自定义</p>
+<h2 id="Android系统本身内置了一些通用的Interpolator-插值器"><a href="#Android系统本身内置了一些通用的Interpolator-插值器" class="headerlink" title="Android系统本身内置了一些通用的Interpolator(插值器),"></a>Android系统本身内置了一些通用的Interpolator(插值器),</h2>
+      
 
-block pagination
-    include mixins/paginator
-    +post()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/28/2015-08-28-Android属性动画之ValueAnimator/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android属性动画之ValueAnimator
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/25/2016-08-25-Sublime下ReactNative开发环境/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Sublime下ReactNative开发环境</div>
+    </a>
+  
+</nav>
 
-block comment
-    include mixins/comment
-    +comment()
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2015/08/28/2015-08-28-Android属性动画之ObjectAnimator/" data-title="Android属性动画之ObjectAnimator" data-url="http://febsky.me/2015/08/28/2015-08-28-Android属性动画之ObjectAnimator/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

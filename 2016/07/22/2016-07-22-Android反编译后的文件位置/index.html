@@ -1,24 +1,176 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android反编译后的文件位置 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="R.java  反编译后这个文件找不到了，但是在Activity中用的是是对应资源的id的数字表示，如何找到资源。在反编译后的res/values/public.xml 中可以找到映射关系。   反编译 非常有趣。">
+<meta name="keywords" content="Android,反编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android反编译后的文件位置">
+<meta property="og:url" content="http://febsky.me/2016/07/22/2016-07-22-Android反编译后的文件位置/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="R.java  反编译后这个文件找不到了，但是在Activity中用的是是对应资源的id的数字表示，如何找到资源。在反编译后的res/values/public.xml 中可以找到映射关系。   反编译 非常有趣。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-07-22T03:39:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android反编译后的文件位置">
+<meta name="twitter:description" content="R.java  反编译后这个文件找不到了，但是在Activity中用的是是对应资源的id的数字表示，如何找到资源。在反编译后的res/values/public.xml 中可以找到映射关系。   反编译 非常有趣。">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2016-07-22-Android反编译后的文件位置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android反编译后的文件位置
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/22/2016-07-22-Android反编译后的文件位置/" class="article-date">
+  <time datetime="2016-07-22T03:06:35.000Z" itemprop="datePublished">2016-07-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a> <a class="article-category-link" href="/categories/Android/反编译/">反编译</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>R.java </p>
+<p>反编译后这个文件找不到了，但是在Activity中用的是是对应资源的id的数字表示，如何找到资源。在反编译后的<code>res/values/public.xml</code> 中可以找到映射关系。</p>
+</li>
+</ol>
+<p>反编译 非常有趣。</p>
 
-block pagination
-    include mixins/paginator
-    +post()
+      
 
-block comment
-    include mixins/comment
-    +comment()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/25/2016-07-25-Android反编译后重新打包apk/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android反编译后重新打包apk
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/21/2016-07-21-Android-adb的使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">adb命令行的使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2016/07/22/2016-07-22-Android反编译后的文件位置/" data-title="Android反编译后的文件位置" data-url="http://febsky.me/2016/07/22/2016-07-22-Android反编译后的文件位置/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

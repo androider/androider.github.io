@@ -1,24 +1,194 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 开发中的小技巧 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ListView小技巧 可以设置空白站位View listView.setEmptyView(view);非常有用 缓慢滚动到某个位置listView.smoothScrollToPosition();当然还有其他的滚动方法 在使用adapter.notifyDataSetChanged()方法的时候，必须保证传进adapter的数据List是同一个对象，否则无法实现效果（我就犯过这个错）">
+<meta name="keywords" content="Android,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 开发中的小技巧">
+<meta property="og:url" content="http://febsky.me/2016/05/28/2016-05-16-Android开发中的小技巧/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="ListView小技巧 可以设置空白站位View listView.setEmptyView(view);非常有用 缓慢滚动到某个位置listView.smoothScrollToPosition();当然还有其他的滚动方法 在使用adapter.notifyDataSetChanged()方法的时候，必须保证传进adapter的数据List是同一个对象，否则无法实现效果（我就犯过这个错）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-08-31T06:13:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 开发中的小技巧">
+<meta name="twitter:description" content="ListView小技巧 可以设置空白站位View listView.setEmptyView(view);非常有用 缓慢滚动到某个位置listView.smoothScrollToPosition();当然还有其他的滚动方法 在使用adapter.notifyDataSetChanged()方法的时候，必须保证传进adapter的数据List是同一个对象，否则无法实现效果（我就犯过这个错）">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2016-05-16-Android开发中的小技巧" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 开发中的小技巧
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/28/2016-05-16-Android开发中的小技巧/" class="article-date">
+  <time datetime="2016-05-28T08:39:22.000Z" itemprop="datePublished">2016-05-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a> <a class="article-category-link" href="/categories/Java/Android/">Android</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ListView小技巧"><a href="#ListView小技巧" class="headerlink" title="ListView小技巧"></a>ListView小技巧</h1><ul>
+<li>可以设置空白站位View <code>listView.setEmptyView(view);</code>非常有用</li>
+<li>缓慢滚动到某个位置<code>listView.smoothScrollToPosition();</code>当然还有其他的滚动方法</li>
+<li>在使用<code>adapter.notifyDataSetChanged()</code>方法的时候，必须保证传进adapter的数据List是同一个对象，否则无法实现效果（我就犯过这个错）</li>
+</ul>
+<a id="more"></a>
+<h1 id="滚动和位置"><a href="#滚动和位置" class="headerlink" title="滚动和位置"></a>滚动和位置</h1><ul>
+<li><code>scrollTo</code>方法其实滚动的是内容，比如说TextView中滚动的是文字。比如：<code>textView.scrollTo(0, 10);</code>意思是让TextView中的内容，的（0，10）坐标去和，TextView左上角对齐。</li>
+<li>滑动多少算是滑动了<code>ViewConfiguration.get(this).getScaledTouchSlop();</code></li>
+<li>所谓的滑动，是相对于参考系的运动</li>
+<li><code>getX</code>,<code>getY</code> 获取的是相对于父view的相对位置</li>
+<li><code>getRawX</code>,<code>getRawY</code>获取的是点击位置距离屏幕左边和上边的距离</li>
+<li>Scroller类可以实现平滑的移动效果</li>
+<li>实现拖拽效果<code>DrawerLayout</code>,<code>SlidingPaneLayout</code>,<code>ViewDragHelper</code>,尤其是最后一个。非常diao~  <ul>
+<li>SlidingPaneLayout 效果是中间的内容块向右移动，以显示出左边的内容。只支持左侧显示  </li>
+<li>DrawerLayout 支持左滑右滑 效果是左右侧的内容盖住中间的内容</li>
+</ul>
+</li>
+</ul>
+<h1 id="扩大View的触摸和点击响应范围"><a href="#扩大View的触摸和点击响应范围" class="headerlink" title="扩大View的触摸和点击响应范围"></a>扩大View的触摸和点击响应范围</h1><p><code>setTouchDelegate()</code>方法</p>
+<h1 id="ScrollView-包含-RecyclerView-遇到的坑"><a href="#ScrollView-包含-RecyclerView-遇到的坑" class="headerlink" title="ScrollView 包含 RecyclerView 遇到的坑"></a>ScrollView 包含 RecyclerView 遇到的坑</h1><p>当时的布局是这样的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ScrollView</span><br><span class="line">    |--LinearyLayout</span><br><span class="line">            |--ImangeView</span><br><span class="line">            |--RecyclerView</span><br></pre></td></tr></table></figure>
+<p>遇到的问题：上来就显示RecyclerView 而不显示ImageView，滚动后才能显示ImangeView。</p>
+<p>在ScrollView 第一个控件加入：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">android:focusable=<span class="string">"true"</span></span><br><span class="line">android:focusableInTouchMode=<span class="string">"true"</span></span><br></pre></td></tr></table></figure>
+      
 
-block pagination
-    include mixins/paginator
-    +post()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/29/2016-05-29-Mac下的某些命令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mac下常用命令和快捷键
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/23/2016-05-23-AndroidSQLite存储自定义对象/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android SQLite存储自定义对象</div>
+    </a>
+  
+</nav>
 
-block comment
-    include mixins/comment
-    +comment()
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2016/05/28/2016-05-16-Android开发中的小技巧/" data-title="Android 开发中的小技巧" data-url="http://febsky.me/2016/05/28/2016-05-16-Android开发中的小技巧/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

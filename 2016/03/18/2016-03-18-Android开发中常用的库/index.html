@@ -1,24 +1,233 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android开发中常用的库 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1、网络请求库 HttpClient Apache 中HttpClient库的简单封装，在Android中已经弃用。 AsyncHttpClient An asynchronous, callback-based Http client for Android built on top of Apache’s HttpClient libraries.（好像是最早的一个吧。我以前用过后来不用了）与">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发中常用的库">
+<meta property="og:url" content="http://febsky.me/2016/03/18/2016-03-18-Android开发中常用的库/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="1、网络请求库 HttpClient Apache 中HttpClient库的简单封装，在Android中已经弃用。 AsyncHttpClient An asynchronous, callback-based Http client for Android built on top of Apache’s HttpClient libraries.（好像是最早的一个吧。我以前用过后来不用了）与">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-09-14T01:48:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发中常用的库">
+<meta name="twitter:description" content="1、网络请求库 HttpClient Apache 中HttpClient库的简单封装，在Android中已经弃用。 AsyncHttpClient An asynchronous, callback-based Http client for Android built on top of Apache’s HttpClient libraries.（好像是最早的一个吧。我以前用过后来不用了）与">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2016-03-18-Android开发中常用的库" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android开发中常用的库
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/03/18/2016-03-18-Android开发中常用的库/" class="article-date">
+  <time datetime="2016-03-18T11:33:43.000Z" itemprop="datePublished">2016-03-18</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、网络请求库"><a href="#1、网络请求库" class="headerlink" title="1、网络请求库"></a>1、网络请求库</h1><ol>
+<li><del>HttpClient</del> Apache 中HttpClient库的简单封装，在Android中已经弃用。</li>
+<li><a href="https://github.com/loopj/android-async-http" target="_blank" rel="noopener">AsyncHttpClient</a> <em>An asynchronous, callback-based Http client for Android built on top of Apache’s HttpClient libraries.</em>（好像是最早的一个吧。我以前用过后来不用了）与volley一样是异步网络库，但volley是封装的httpUrlConnection，它是封装的httpClient，而android平台不推荐用HttpClient了，所以这个库已经不适合android平台了。</li>
+<li><a href="https://github.com/square/okhttp" target="_blank" rel="noopener">Okhttp</a>这货出身好啊。square公司，这个公司开源了好多Android的框架。这个偏底层。据说很快。在AndroidStudio能搜到。okhttp是高性能的http库，支持同步、异步，而且实现了spdy、http2、websocket协议，api很简洁易用，和volley一样实现了http协议的缓存。picasso就是利用okhttp的缓存机制实现其文件缓存，实现的很优雅，很正确，反例就是UIL（universal image loader），自己做的文件缓存，而且不遵守http缓存机制。</li>
+<li><a href="https://github.com/square/retrofit" target="_blank" rel="noopener">Retrofit</a>高层封装，底层使用okhttp。也是square公司提供。其实它更像一个restful 请求客户端。</li>
+<li><a href="https://android.googlesource.com/platform/frameworks/volley" target="_blank" rel="noopener">Volley</a> Google提供，高层封装。底层使用<code>HttpURLConnection</code>或者<code>HttpClient</code>（HttpClient在2.x之后弃用了）volley是一个简单的异步http库，仅此而已。缺点是不支持同步，这点会限制开发模式；不能post大数据，所以不适合用来上传文件。</li>
+<li><a href="https://github.com/kevinsawicki/http-request" target="_blank" rel="noopener">https://github.com/kevinsawicki/http-request</a>据说还有个这玩意，没用过，真心一次都没用过，上面那几个都试用过了。</li>
+</ol>
+<p>P.S. 所谓的偏底层是指，这个库的网络请求是在子线程中完成的，它的回调接口中不能直接更新UI。即库的内部没有封装Android 中的Handler。</p>
+<h1 id="2、网络图片加载库"><a href="#2、网络图片加载库" class="headerlink" title="2、网络图片加载库"></a>2、网络图片加载库</h1><ol>
+<li><a href="https://github.com/nostra13/Android-Universal-Image-Loader" target="_blank" rel="noopener">Android-Universal-Image-Loader</a> 应该是最早的一个吧</li>
+<li><a href="https://github.com/facebook/fresco" target="_blank" rel="noopener">Fresco</a> 他爹是Facebook，有完善的中文文档</li>
+<li><a href="https://github.com/square/picasso" target="_blank" rel="noopener">Picasso</a> 他爹是square，底层应该是用的okhttp，而且是注解的方式</li>
+<li><a href="https://github.com/bumptech/glide" target="_blank" rel="noopener">Glide</a> 据说是Google推荐使用的，用法和<code>Picasso</code>很相似，还有个<a href="https://github.com/wasabeef/glide-transformations" target="_blank" rel="noopener">Glide扩展库</a></li>
+</ol>
+<h1 id="3、-gif-图片展示"><a href="#3、-gif-图片展示" class="headerlink" title="3、(gif)图片展示"></a>3、(gif)图片展示</h1><ol>
+<li><a href="https://github.com/koral--/android-gif-drawable" target="_blank" rel="noopener">android-gif-drawable</a> 和前面不同的是这个是个gif图片展示的库</li>
+<li><a href="http://code.google.com/p/gifview/" target="_blank" rel="noopener">GifView</a> 顾名思义这也是个gif图片播放的view，github上也有个同名的不知道是不是同一个。我没用过。</li>
+</ol>
+<h1 id="4、SQLite-ORM"><a href="#4、SQLite-ORM" class="headerlink" title="4、SQLite ORM"></a>4、SQLite ORM</h1><ol>
+<li><a href="https://github.com/greenrobot/greenDAO" target="_blank" rel="noopener">greenDAO</a> Orm框架</li>
+<li><a href="https://github.com/realm/realm-java" target="_blank" rel="noopener">Realm</a> Realm is a mobile database: a replacement for SQLite &amp; ORMs(一个据说能跨平台的数据库可以替换SQLite)</li>
+<li><a href="http://satyan.github.io/sugar/getting-started.html" target="_blank" rel="noopener">Sugar ORM</a></li>
+</ol>
+<h1 id="5、开发框架"><a href="#5、开发框架" class="headerlink" title="5、开发框架"></a>5、开发框架</h1><p>所谓的开发框架，就是包含了Android开发中常用的基本的库，像什么网络请求了，图片异步加载，文件上传，json数据解析了，文件下载，数据库的管理了，等等一系列工具的合集~~~前两个试用过。后两个几乎没见过。</p>
+<ol>
+<li><a href="https://github.com/yangfuhai/afinal" target="_blank" rel="noopener">Afinal框架</a></li>
+<li><a href="https://github.com/wyouflf/xUtils" target="_blank" rel="noopener">xUtils框架</a></li>
+<li><a href="https://github.com/white-cat/ThinkAndroid" target="_blank" rel="noopener">ThinkAndroid</a></li>
+<li><a href="https://github.com/gdpancheng/LoonAndroid" target="_blank" rel="noopener">LoonAndroid</a></li>
+</ol>
+<h1 id="6、消息通信"><a href="#6、消息通信" class="headerlink" title="6、消息通信"></a>6、消息通信</h1><p>为了简化android应用内组件通信</p>
+<ol>
+<li><a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">EventBus</a> 和<code>greenDAO</code>同一家公司开源的,翻译过来事件总线</li>
+<li><a href="https://github.com/square/otto" target="_blank" rel="noopener">Otto</a> 么也别说了，这货又是square公司开源的，这货依然使用的注解</li>
+</ol>
+<h1 id="7、依赖注入"><a href="#7、依赖注入" class="headerlink" title="7、依赖注入"></a>7、依赖注入</h1><ol>
+<li><a href="https://github.com/google/dagger" target="_blank" rel="noopener">Dagger2</a>  <a href="http://google.github.io/dagger/users-guide.html" target="_blank" rel="noopener">文档中心</a></li>
+<li><a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="noopener">ButterKnife</a></li>
+</ol>
+<h1 id="8、一个log库"><a href="#8、一个log库" class="headerlink" title="8、一个log库"></a>8、一个log库</h1><p>打印的log很是漂亮，并且有一个我非常喜欢的功能，打印当前线程名</p>
+<p><code>compile &#39;com.orhanobut:logger:1.4&#39;</code></p>
+<p><a href="https://github.com/orhanobut/logger" target="_blank" rel="noopener">github 地址</a></p>
+<h1 id="9、下拉刷新的库-停止维护的就不说了"><a href="#9、下拉刷新的库-停止维护的就不说了" class="headerlink" title="9、下拉刷新的库(停止维护的就不说了)"></a>9、下拉刷新的库(停止维护的就不说了)</h1><ul>
+<li>继承自RecyclerView或者ListView<ul>
+<li><a href="https://github.com/jianghejie/XRecyclerView" target="_blank" rel="noopener">XRecyclerView</a></li>
+<li><a href="https://github.com/zarics/ZrcListView" target="_blank" rel="noopener">ZrcListView</a></li>
+</ul>
+</li>
+<li>作为RecyclerView（ListView）的父View存在的【我比较喜欢这种】<ul>
+<li><a href="https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh" target="_blank" rel="noopener">android-Ultra-Pull-To-Refresh</a></li>
+<li><a href="https://github.com/baoyongzhang/android-PullRefreshLayout" target="_blank" rel="noopener">android-PullRefreshLayout</a></li>
+<li><a href="https://github.com/bingoogolapple/BGARefreshLayout-Android" target="_blank" rel="noopener">BGARefreshLayout-Android</a></li>
+<li><a href="https://github.com/android-cjj/Android-MaterialRefreshLayout" target="_blank" rel="noopener">Android-MaterialRefreshLayout</a></li>
+<li><a href="https://github.com/tuesda/CircleRefreshLayout" target="_blank" rel="noopener">CircleRefreshLayout</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ol>
+<li><a href="https://github.com/ikew0ng/SwipeBackLayout" target="_blank" rel="noopener">左右滑动返回上一页 SwipeBackLayout</a></li>
+<li><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="noopener">RxJava</a> 是一个响应式编程框架</li>
+<li><a href="https://github.com/android-cjj/BeautifulRefreshLayout" target="_blank" rel="noopener">总结下拉刷新的库</a></li>
+</ol>
 
-block pagination
-    include mixins/paginator
-    +post()
+      
 
-block comment
-    include mixins/comment
-    +comment()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/19/2016-03-19-天干地支计时推算歌诀/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          天干地支计时推算歌诀
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/15/2016-03-15-排序算法概要/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">排序算法概要</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2016/03/18/2016-03-18-Android开发中常用的库/" data-title="Android开发中常用的库" data-url="http://febsky.me/2016/03/18/2016-03-18-Android开发中常用的库/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,22 +1,502 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android,Java,Python,博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="凉凉小线仔">
+<meta property="og:url" content="http://febsky.me/archives/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="Android,Java,Python,博客">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="凉凉小线仔">
+<meta name="twitter:description" content="Android,Java,Python,博客">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    if page.archive
-        != __('Archive') + " · " + config.title
-    if page.tag
-        != page.tag + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main">
+  
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2018/01/31/wankeguanjiabao/" class="archive-article-date">
+  <time datetime="2018-01-31T02:00:10.000Z" itemprop="datePublished">Jan 31</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/01/31/wankeguanjiabao/">隐私权政策</a>
+    </h1>
+  
 
-block container
-    include mixins/post
-    if page.tag
-        +tagList()
-    if page.archive
-        +postList()
+    </header>
+  </div>
+</article>
+  
+    
+    
+      
+        </div></section>
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/" class="archive-article-date">
+  <time datetime="2017-05-18T06:46:31.000Z" itemprop="datePublished">May 18</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
+    </h1>
+  
 
-block pagination
-    include mixins/paginator
-    +home()
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /" class="archive-article-date">
+  <time datetime="2017-05-18T06:46:31.000Z" itemprop="datePublished">May 18</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/" class="archive-article-date">
+  <time datetime="2017-05-05T06:46:31.000Z" itemprop="datePublished">May 5</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/">Mac下Android源码（AOSP）编译环境搭建方法</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/" class="archive-article-date">
+  <time datetime="2017-03-24T02:01:31.000Z" itemprop="datePublished">Mar 24</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+      
+        </div></section>
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/08/15/2016-05-07-Nodejs的随机数/" class="archive-article-date">
+  <time datetime="2016-08-15T03:18:31.000Z" itemprop="datePublished">Aug 15</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/08/15/2016-05-07-Nodejs的随机数/">Nodejs随机数</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/08/10/2016-08-10-垂直方向的ViewPager/" class="archive-article-date">
+  <time datetime="2016-08-10T06:10:40.000Z" itemprop="datePublished">Aug 10</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/08/10/2016-08-10-垂直方向的ViewPager/">垂直方向的ViewPager</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/29/2016-07-29-从别人app(Android)中拿数据/" class="archive-article-date">
+  <time datetime="2016-07-29T07:30:35.000Z" itemprop="datePublished">Jul 29</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/29/2016-07-29-从别人app(Android)中拿数据/">从别人app(Android)中拿数据</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/27/2016-07-27-NodeJs包管理npm/" class="archive-article-date">
+  <time datetime="2016-07-27T07:30:35.000Z" itemprop="datePublished">Jul 27</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/27/2016-07-27-NodeJs包管理npm/">NodeJs包管理npm</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/26/2016-07-26-Android中反编译Smali文件解读/" class="archive-article-date">
+  <time datetime="2016-07-26T10:06:35.000Z" itemprop="datePublished">Jul 26</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/26/2016-07-26-Android中反编译Smali文件解读/">Android中反编译Smali文件解读</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/26/2016-07-26-Android中Notification工具类/" class="archive-article-date">
+  <time datetime="2016-07-26T03:06:35.000Z" itemprop="datePublished">Jul 26</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/26/2016-07-26-Android中Notification工具类/">Android中Notification工具类</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/26/2016-07-26-Sublime3_Mac下的使用/" class="archive-article-date">
+  <time datetime="2016-07-26T01:53:35.000Z" itemprop="datePublished">Jul 26</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/26/2016-07-26-Sublime3_Mac下的使用/">Sublime3 Mac下的使用</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/25/2016-07-25-Android反编译后重新打包apk/" class="archive-article-date">
+  <time datetime="2016-07-25T07:53:35.000Z" itemprop="datePublished">Jul 25</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/25/2016-07-25-Android反编译后重新打包apk/">Android反编译后重新打包apk</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/22/2016-07-22-Android反编译后的文件位置/" class="archive-article-date">
+  <time datetime="2016-07-22T03:06:35.000Z" itemprop="datePublished">Jul 22</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/22/2016-07-22-Android反编译后的文件位置/">Android反编译后的文件位置</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/21/2016-07-21-Android-adb的使用/" class="archive-article-date">
+  <time datetime="2016-07-21T02:50:44.000Z" itemprop="datePublished">Jul 21</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/21/2016-07-21-Android-adb的使用/">adb命令行的使用</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/20/2016-07-20-PopupWindow点击空白处隐藏/" class="archive-article-date">
+  <time datetime="2016-07-20T10:15:56.000Z" itemprop="datePublished">Jul 20</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/20/2016-07-20-PopupWindow点击空白处隐藏/">PopupWindow点击空白处隐藏</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/18/2016-07-18-Android显示HTML格式/" class="archive-article-date">
+  <time datetime="2016-07-18T09:34:30.000Z" itemprop="datePublished">Jul 18</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/18/2016-07-18-Android显示HTML格式/">Android显示HTML格式</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/14/2016-07-14-MPAndroidChart画线形图/" class="archive-article-date">
+  <time datetime="2016-07-14T07:34:30.000Z" itemprop="datePublished">Jul 14</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/14/2016-07-14-MPAndroidChart画线形图/">MPAndroidChart画线形图</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/13/2016-07-13-AndroidStudio中如何利用一个task显示出依赖库的本地存储路径/" class="archive-article-date">
+  <time datetime="2016-07-13T02:39:17.000Z" itemprop="datePublished">Jul 13</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/13/2016-07-13-AndroidStudio中如何利用一个task显示出依赖库的本地存储路径/">AndroidStudio中查看依赖库的本地存储路径</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/" class="archive-article-date">
+  <time datetime="2016-07-12T08:57:32.000Z" itemprop="datePublished">Jul 12</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/">AndroidStudio加快编译的方法</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

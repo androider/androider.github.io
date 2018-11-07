@@ -1,24 +1,170 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JNI Android NDK开发（一） </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455561. Java本地接口    是一个中间件，沟通java和本地的C函数库的中间件。2. 为什么用JNI    Java是不能进行驱动开发的，所谓的驱动开发是指，直接的操纵硬件。    从而JNI">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JNI Android NDK开发（一）">
+<meta property="og:url" content="http://febsky.me/2015/03/12/2015-03-12-JNI Android NDK开发（一）/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455561. Java本地接口    是一个中间件，沟通java和本地的C函数库的中间件。2. 为什么用JNI    Java是不能进行驱动开发的，所谓的驱动开发是指，直接的操纵硬件。    从而JNI">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-06-02T14:29:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JNI Android NDK开发（一）">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455561. Java本地接口    是一个中间件，沟通java和本地的C函数库的中间件。2. 为什么用JNI    Java是不能进行驱动开发的，所谓的驱动开发是指，直接的操纵硬件。    从而JNI">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2015-03-12-JNI Android NDK开发（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JNI Android NDK开发（一）
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/03/12/2015-03-12-JNI Android NDK开发（一）/" class="article-date">
+  <time datetime="2015-03-12T15:35:12.000Z" itemprop="datePublished">2015-03-12</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">1</span>. Java本地接口</span><br><span class="line"></span><br><span class="line">    是一个中间件，沟通java和本地的C函数库的中间件。</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>. 为什么用JNI</span><br><span class="line"></span><br><span class="line">    Java是不能进行驱动开发的，所谓的驱动开发是指，直接的操纵硬件。</span><br><span class="line"></span><br><span class="line">    从而JNI扩展了Java虚拟机的能力。</span><br><span class="line"></span><br><span class="line">    可以提高效率，增强音视频的处理，</span><br><span class="line"></span><br><span class="line">    代码复用，直接用Java调用C函数库</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.  C语言基础</span><br><span class="line"></span><br><span class="line">    typedef <span class="keyword">int</span> INT ;  <span class="comment">//给int类型起个别名，这个关键字是给某个类型起个别名</span></span><br><span class="line"></span><br><span class="line">    #define PI 3.14    //这个在编译的时候会用3.14直接替换代码中的PI这个字符</span><br><span class="line"></span><br><span class="line">    C代码在不同的CPU上运行的结果也是不一样的。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.  NDK  Native developer kits</span><br><span class="line"></span><br><span class="line">    Android提供的一个交叉编译的工具链</span><br><span class="line"></span><br><span class="line">    交叉编译：把weindows平台下写好的C代码，打包编译成Linux下可以用的函数库。</span><br><span class="line"></span><br><span class="line">    （Windows下的函数库是以.dll结尾，Linux下的函数库以.so结尾）</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.  Ndk目录结构</span><br><span class="line"></span><br><span class="line">	Build     NDK搭建环境</span><br><span class="line"></span><br><span class="line">	Docs     ndk开发的文档 </span><br><span class="line"></span><br><span class="line">	Platforms  ndk支持的平台 </span><br><span class="line"></span><br><span class="line">	Arm  平台  英国arm公司设计出来  靠专利赚钱市场占有率非常高 功耗比较低</span><br><span class="line"></span><br><span class="line">	Mips  cpu架构  龙芯    cos   copy other system</span><br><span class="line"></span><br><span class="line">	x86  intel公司  没有明显的优势   k900</span><br><span class="line"></span><br><span class="line">	Samples  提供了示例代码 </span><br><span class="line"></span><br><span class="line">	Sources  ndk是开源, ndk的源码 </span><br><span class="line"></span><br><span class="line">	Tests    测试的工具链 </span><br><span class="line"></span><br><span class="line">	Toolchains 提供了交叉编译的工具链 </span><br><span class="line"></span><br><span class="line">	ndk-build.cmd  批处理指令 ,交叉编译</span><br><span class="line"></span><br><span class="line">	把ndk-build 配置到环境变量中</span><br></pre></td></tr></table></figure>
+      
 
-block pagination
-    include mixins/paginator
-    +post()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/29/2015-03-29-记录一个Linux社区/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          记录一个Linux社区
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android 的屏幕适配（包括字体适配）</div>
+    </a>
+  
+</nav>
 
-block comment
-    include mixins/comment
-    +comment()
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2015/03/12/2015-03-12-JNI Android NDK开发（一）/" data-title="JNI Android NDK开发（一）" data-url="http://febsky.me/2015/03/12/2015-03-12-JNI Android NDK开发（一）/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

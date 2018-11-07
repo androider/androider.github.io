@@ -1,24 +1,173 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android中Notification工具类 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011021">
+<meta name="keywords" content="Android,Notification">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中Notification工具类">
+<meta property="og:url" content="http://febsky.me/2016/07/26/2016-07-26-Android中Notification工具类/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011021">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/07/26/20160120204444199.png">
+<meta property="og:updated_time" content="2016-07-26T03:38:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android中Notification工具类">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011021">
+<meta name="twitter:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/07/26/20160120204444199.png">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2016-07-26-Android中Notification工具类" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android中Notification工具类
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/07/26/2016-07-26-Android中Notification工具类/" class="article-date">
+  <time datetime="2016-07-26T03:06:35.000Z" itemprop="datePublished">2016-07-26</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a> <a class="article-category-link" href="/categories/Android/Notification/">Notification</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/07/26/20160120204444199.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">import android.app.Activity;</span><br><span class="line">import android.app.Notification;</span><br><span class="line">import android.app.NotificationManager;</span><br><span class="line">import android.app.PendingIntent;</span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.content.pm.PackageManager;</span><br><span class="line">import android.graphics.BitmapFactory;</span><br><span class="line">import android.media.RingtoneManager;</span><br><span class="line">import android.net.Uri;</span><br><span class="line">import android.os.Build;</span><br><span class="line">import android.support.v7.app.NotificationCompat;</span><br><span class="line"></span><br><span class="line">import com.eallcn.rentagent.R;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: liuqiang</span><br><span class="line"> * Date: 2016-07-07</span><br><span class="line"> * Time: 17:23</span><br><span class="line"> * 在一些国产的手机，一定在安全管理的通知管理中打开</span><br><span class="line"> * 尤其是OPPO</span><br><span class="line"> */</span><br><span class="line">public class NotificationUtil &#123;</span><br><span class="line"></span><br><span class="line">    protected static int notifyID = 0525; // start notification id</span><br><span class="line">    protected static int foregroundNotifyID = 0555;    //当前app是不是在用户可是界面</span><br><span class="line"></span><br><span class="line">    public static void send(String string, Context context, Class activity) &#123;</span><br><span class="line"></span><br><span class="line">        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);</span><br><span class="line"></span><br><span class="line">        Intent intent = new Intent(context, activity);</span><br><span class="line">        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);</span><br><span class="line">        PendingIntent pendingIntent = PendingIntent.getActivity(</span><br><span class="line">                context,</span><br><span class="line">                notifyID,</span><br><span class="line">                intent,</span><br><span class="line">                PendingIntent.FLAG_UPDATE_CURRENT);</span><br><span class="line">        mBuilder.setContentIntent(pendingIntent);// 设置通知栏点击意图</span><br><span class="line"></span><br><span class="line">        mBuilder.setContentTitle(&quot;这是标题&quot;);// 设置通知栏标题</span><br><span class="line">        mBuilder.setContentText(string);</span><br><span class="line">        mBuilder.setSmallIcon(R.drawable.ic_launcher);// 设置通知小ICON（5.0必须采用白色透明图片）</span><br><span class="line">        mBuilder.setTicker(string + &quot;有警报！&quot;); // 通知首次出现在通知栏，带上升动画效果的</span><br><span class="line"></span><br><span class="line">        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.LOLLIPOP) &#123;//悬挂式Notification，5.0后显示</span><br><span class="line">            mBuilder.setFullScreenIntent(pendingIntent, true);</span><br><span class="line">            mBuilder.setCategory(NotificationCompat.CATEGORY_MESSAGE);</span><br><span class="line">            mBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        mBuilder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher));// 设置通知大ICON</span><br><span class="line">        mBuilder.setWhen(System.currentTimeMillis());// 通知产生的时间，会在通知信息里显示，一般是系统获取到的时间</span><br><span class="line">        mBuilder.setPriority(NotificationCompat.PRIORITY_MAX); // 设置该通知优先级</span><br><span class="line">        mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);//在任何情况下都显示，不受锁屏影响。</span><br><span class="line">        mBuilder.setAutoCancel(true);// 设置这个标志当用户单击面板就可以让通知将自动取消</span><br><span class="line">        mBuilder.setOngoing(false);// ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)</span><br><span class="line">        // 向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用NotificationCompat.DEFAULT_ALL属性，可以组合</span><br><span class="line">        mBuilder.setVibrate(new long[]&#123;0, 100, 500, 100&#125;);//振动效果需要振动权限</span><br><span class="line"></span><br><span class="line">        Uri defaultSoundUrlUri = RingtoneManager</span><br><span class="line">                .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION); //声音</span><br><span class="line"></span><br><span class="line">        mBuilder.setSound(defaultSoundUrlUri);</span><br><span class="line">        mBuilder.setDefaults(NotificationCompat.DEFAULT_LIGHTS);//闪灯</span><br><span class="line"></span><br><span class="line">        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);</span><br><span class="line">        //Notification notification = mBuilder.getNotification();//API 11</span><br><span class="line"></span><br><span class="line">        Notification notification = mBuilder.build();//API 16</span><br><span class="line"></span><br><span class="line">        mNotificationManager.notify(1, notification);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void sendNotification(Context context, String message, boolean isForeground) &#123;</span><br><span class="line"></span><br><span class="line">        NotificationManager notificationManager = (NotificationManager) context</span><br><span class="line">                .getSystemService(Context.NOTIFICATION_SERVICE);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            String notifyText = message;</span><br><span class="line">            PackageManager packageManager = context.getPackageManager();</span><br><span class="line">            String appName = (String) packageManager</span><br><span class="line">                    .getApplicationLabel(context.getApplicationInfo());</span><br><span class="line"></span><br><span class="line">            // notification title</span><br><span class="line">            String contentTitle = appName;</span><br><span class="line">            String packageName = context.getApplicationInfo().packageName;</span><br><span class="line"></span><br><span class="line">            Uri defaultSoundUrlUri = RingtoneManager</span><br><span class="line">                    .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);</span><br><span class="line">            // create and send notification</span><br><span class="line">            android.support.v4.app.NotificationCompat.Builder mBuilder = new android.support.v4.app.NotificationCompat.Builder(context)</span><br><span class="line">                    .setSmallIcon(context.getApplicationInfo().icon)</span><br><span class="line">                    .setSound(defaultSoundUrlUri)</span><br><span class="line">                    .setWhen(System.currentTimeMillis())</span><br><span class="line">                    .setAutoCancel(true);</span><br><span class="line"></span><br><span class="line">            Intent msgIntent = context.getPackageManager()</span><br><span class="line">                    .getLaunchIntentForPackage(packageName);</span><br><span class="line"></span><br><span class="line">            PendingIntent pendingIntent = PendingIntent.getActivity(</span><br><span class="line">                    context,</span><br><span class="line">                    notifyID,</span><br><span class="line">                    msgIntent,</span><br><span class="line">                    PendingIntent.FLAG_UPDATE_CURRENT);</span><br><span class="line"></span><br><span class="line">            mBuilder.setPriority(NotificationCompat.PRIORITY_MAX); // 设置该通知优先级</span><br><span class="line">            mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);//在任何情况下都显示，不受锁屏影响。</span><br><span class="line">            mBuilder.setContentTitle(contentTitle);</span><br><span class="line">            mBuilder.setTicker(notifyText);</span><br><span class="line">            mBuilder.setContentText(notifyText);</span><br><span class="line">            mBuilder.setContentIntent(pendingIntent);</span><br><span class="line">            mBuilder.setFullScreenIntent(pendingIntent, true);</span><br><span class="line">            mBuilder.setOnlyAlertOnce(false);</span><br><span class="line">            mBuilder.setDefaults(NotificationCompat.DEFAULT_LIGHTS);//闪灯</span><br><span class="line">            Notification notification = mBuilder.build();</span><br><span class="line"></span><br><span class="line">            if (isForeground) &#123;</span><br><span class="line">                notificationManager.notify(foregroundNotifyID, notification);</span><br><span class="line">                notificationManager.cancel(foregroundNotifyID);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                notificationManager.notify(notifyID, notification);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
 
-block pagination
-    include mixins/paginator
-    +post()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/26/2016-07-26-Android中反编译Smali文件解读/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android中反编译Smali文件解读
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/26/2016-07-26-Sublime3_Mac下的使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Sublime3 Mac下的使用</div>
+    </a>
+  
+</nav>
 
-block comment
-    include mixins/comment
-    +comment()
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2016/07/26/2016-07-26-Android中Notification工具类/" data-title="Android中Notification工具类" data-url="http://febsky.me/2016/07/26/2016-07-26-Android中Notification工具类/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

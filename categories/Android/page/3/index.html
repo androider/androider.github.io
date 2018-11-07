@@ -1,22 +1,273 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: Android </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android,Java,Python,博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="凉凉小线仔">
+<meta property="og:url" content="http://febsky.me/categories/Android/page/3/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="Android,Java,Python,博客">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="凉凉小线仔">
+<meta name="twitter:description" content="Android,Java,Python,博客">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    if page.archive
-        != __('Archive') + " · " + config.title
-    if page.tag
-        != page.tag + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main">
+  
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2015" class="archive-year">2015</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/09/30/2015-09-30-调用Android的Dialog的show()方法dialog并没有显示/" class="archive-article-date">
+  <time datetime="2015-09-30T10:54:18.000Z" itemprop="datePublished">Sep 30</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/09/30/2015-09-30-调用Android的Dialog的show()方法dialog并没有显示/">调用Android的Dialog的show()方法dialog并没有显示</a>
+    </h1>
+  
 
-block container
-    include mixins/post
-    if page.tag
-        +tagList()
-    if page.archive
-        +postList()
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/09/15/2015-09-15-Android 文件下载/" class="archive-article-date">
+  <time datetime="2015-09-15T05:47:54.000Z" itemprop="datePublished">Sep 15</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/09/15/2015-09-15-Android 文件下载/">Android文件下载</a>
+    </h1>
+  
 
-block pagination
-    include mixins/paginator
-    +home()
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/08/28/2015-08-28-Android属性动画之ValueAnimator/" class="archive-article-date">
+  <time datetime="2015-08-28T08:13:20.000Z" itemprop="datePublished">Aug 28</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/08/28/2015-08-28-Android属性动画之ValueAnimator/">Android属性动画之ValueAnimator</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/08/28/2015-08-28-Android属性动画之ObjectAnimator/" class="archive-article-date">
+  <time datetime="2015-08-28T04:10:35.000Z" itemprop="datePublished">Aug 28</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/08/28/2015-08-28-Android属性动画之ObjectAnimator/">Android属性动画之ObjectAnimator</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/" class="archive-article-date">
+  <time datetime="2015-07-24T03:14:34.000Z" itemprop="datePublished">Jul 24</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/">Android WebView三步解决微信公众号文章不能加载视频的问题</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/07/14/2015-07-14-Android 文件存储/" class="archive-article-date">
+  <time datetime="2015-07-14T07:34:30.000Z" itemprop="datePublished">Jul 14</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/07/14/2015-07-14-Android 文件存储/">Android文件存储路径</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/03/12/2015-03-12-JNI Android NDK开发（一）/" class="archive-article-date">
+  <time datetime="2015-03-12T15:35:12.000Z" itemprop="datePublished">Mar 12</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/03/12/2015-03-12-JNI Android NDK开发（一）/">JNI Android NDK开发（一）</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" class="archive-article-date">
+  <time datetime="2015-03-08T11:33:43.000Z" itemprop="datePublished">Mar 8</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/">Android 的屏幕适配（包括字体适配）</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/" class="archive-article-date">
+  <time datetime="2015-02-08T12:18:31.000Z" itemprop="datePublished">Feb 8</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/">AndroidStudio 中我的常用的快捷键</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

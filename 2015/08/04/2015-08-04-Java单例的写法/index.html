@@ -1,24 +1,180 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java单例的写法 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.懒汉式1234567891011121314151617181920212223//懒汉式单例类.在第一次调用的时候实例化自己public class Singleton &amp;#123;    private Singleton() &amp;#123;&amp;#125;    private static Singleton single=null;    //静态工厂方法    public static">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java单例的写法">
+<meta property="og:url" content="http://febsky.me/2015/08/04/2015-08-04-Java单例的写法/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="1.懒汉式1234567891011121314151617181920212223//懒汉式单例类.在第一次调用的时候实例化自己public class Singleton &amp;#123;    private Singleton() &amp;#123;&amp;#125;    private static Singleton single=null;    //静态工厂方法    public static">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-16T07:29:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java单例的写法">
+<meta name="twitter:description" content="1.懒汉式1234567891011121314151617181920212223//懒汉式单例类.在第一次调用的时候实例化自己public class Singleton &amp;#123;    private Singleton() &amp;#123;&amp;#125;    private static Singleton single=null;    //静态工厂方法    public static">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2015-08-04-Java单例的写法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java单例的写法
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/08/04/2015-08-04-Java单例的写法/" class="article-date">
+  <time datetime="2015-08-04T09:12:21.000Z" itemprop="datePublished">2015-08-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-懒汉式"><a href="#1-懒汉式" class="headerlink" title="1.懒汉式"></a>1.懒汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//懒汉式单例类.在第一次调用的时候实例化自己</span><br><span class="line"></span><br><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    private Singleton() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    private static Singleton single=null;</span><br><span class="line"></span><br><span class="line">    //静态工厂方法</span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line"></span><br><span class="line">         if (single == null) &#123;</span><br><span class="line"></span><br><span class="line">             single = new Singleton();</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">        return single;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（事实上，通过Java反射机制是能够实例化构造方法为private的类的，那基本上会使所有的Java单例实现失效。）</p>
+<p>但是以上懒汉式单例的实现没有考虑线程安全问题，它是线程不安全的，并发环境下很可能出现多个Singleton实例。</p>
+<p>可以用以下三种方式解决：</p>
+<h2 id="2-在getInstance方法上加同步"><a href="#2-在getInstance方法上加同步" class="headerlink" title="2. 在getInstance方法上加同步"></a>2. 在getInstance方法上加同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static synchronized Singleton getInstance() &#123;  </span><br><span class="line"></span><br><span class="line">         if (single == null) &#123;    </span><br><span class="line"></span><br><span class="line">             single = new Singleton();  </span><br><span class="line"></span><br><span class="line">         &#125;    </span><br><span class="line"></span><br><span class="line">        return single;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-双重检查锁定"><a href="#3-双重检查锁定" class="headerlink" title="3. 双重检查锁定"></a>3. 双重检查锁定</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static Singleton getInstance() &#123;  </span><br><span class="line"></span><br><span class="line">        if (singleton == null) &#123;    </span><br><span class="line"></span><br><span class="line">            synchronized (Singleton.class) &#123;    </span><br><span class="line"></span><br><span class="line">               if (singleton == null) &#123;    </span><br><span class="line"></span><br><span class="line">                  singleton = new Singleton();   </span><br><span class="line"></span><br><span class="line">               &#125;    </span><br><span class="line"></span><br><span class="line">            &#125;    </span><br><span class="line"></span><br><span class="line">        &#125;    </span><br><span class="line"></span><br><span class="line">        return singleton;   </span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-静态内部类"><a href="#4-静态内部类" class="headerlink" title="4. 静态内部类"></a>4. 静态内部类</h2><p>前两种方式我不用，不再做记录，<a href="http://blog.csdn.net/jason0539/article/details/23297037" target="_blank" rel="noopener">这篇博客中有介绍</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    private static class LazyHolder &#123;</span><br><span class="line"></span><br><span class="line">       private static final Singleton INSTANCE = new Singleton();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Singleton ()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static final Singleton getInstance() &#123;</span><br><span class="line"></span><br><span class="line">       return LazyHolder.INSTANCE;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-饿汉式"><a href="#5-饿汉式" class="headerlink" title="5.饿汉式"></a>5.饿汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//饿汉式单例类.在类初始化时，已经自行实例化</span><br><span class="line"></span><br><span class="line">public class Singleton1 &#123;</span><br><span class="line"></span><br><span class="line">    private Singleton1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    private static final Singleton1 single = new Singleton1();</span><br><span class="line"></span><br><span class="line">    //静态工厂方法</span><br><span class="line"></span><br><span class="line">    public static Singleton1 getInstance() &#123;</span><br><span class="line"></span><br><span class="line">        return single;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>饿汉式在类创建的同时就已经创建好一个静态的对象供系统使用，以后不再改变，所以天生是线程安全的。</p>
 
-block pagination
-    include mixins/paginator
-    +post()
+      
 
-block comment
-    include mixins/comment
-    +comment()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/10/2015-08-10-git 远程分支版本回退/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          git 远程分支版本回退
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/03/2015-08-03-SSL 和 TLS/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SSL 和 TLS</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2015/08/04/2015-08-04-Java单例的写法/" data-title="Java单例的写法" data-url="http://febsky.me/2015/08/04/2015-08-04-Java单例的写法/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

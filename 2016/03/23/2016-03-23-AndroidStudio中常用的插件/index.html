@@ -1,24 +1,186 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>AndroidStudio中常用的插件 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为什么要插件，很多时候不必手撸代码 GsonFormatGsonFormat更加给定的json字符串，生成对应的java bean的插件，个人非常喜欢，安装后要重启 Android Parcelable Code Generator 这里用的mac版本的AndroidStudio 执行组合快捷键command+”,”，打开AS偏好设置页面，找到plugin选项，输入Parcelable搜索，搜索出">
+<meta name="keywords" content="AndroidStudio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidStudio中常用的插件">
+<meta property="og:url" content="http://febsky.me/2016/03/23/2016-03-23-AndroidStudio中常用的插件/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="为什么要插件，很多时候不必手撸代码 GsonFormatGsonFormat更加给定的json字符串，生成对应的java bean的插件，个人非常喜欢，安装后要重启 Android Parcelable Code Generator 这里用的mac版本的AndroidStudio 执行组合快捷键command+”,”，打开AS偏好设置页面，找到plugin选项，输入Parcelable搜索，搜索出">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-07-24T06:30:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AndroidStudio中常用的插件">
+<meta name="twitter:description" content="为什么要插件，很多时候不必手撸代码 GsonFormatGsonFormat更加给定的json字符串，生成对应的java bean的插件，个人非常喜欢，安装后要重启 Android Parcelable Code Generator 这里用的mac版本的AndroidStudio 执行组合快捷键command+”,”，打开AS偏好设置页面，找到plugin选项，输入Parcelable搜索，搜索出">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2016-03-23-AndroidStudio中常用的插件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AndroidStudio中常用的插件
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/03/23/2016-03-23-AndroidStudio中常用的插件/" class="article-date">
+  <time datetime="2016-03-23T09:08:21.000Z" itemprop="datePublished">2016-03-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/AndroidStudio/">AndroidStudio</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为什么要插件，很多时候不必手撸代码</p>
+<h2 id="GsonFormat"><a href="#GsonFormat" class="headerlink" title="GsonFormat"></a>GsonFormat</h2><p><a href="https://plugins.jetbrains.com/plugin/7654?pr=idea" target="_blank" rel="noopener">GsonFormat</a>更加给定的json字符串，生成对应的java bean的插件，个人非常喜欢，安装后要重启</p>
+<h2 id="Android-Parcelable-Code-Generator"><a href="#Android-Parcelable-Code-Generator" class="headerlink" title="Android Parcelable Code Generator"></a>Android Parcelable Code Generator</h2><p> 这里用的mac版本的AndroidStudio 执行组合快捷键command+”,”，打开AS偏好设置页面，找到plugin选项，输入Parcelable搜索，搜索出来的第一个五颗星的就是，点击右边的install plugin,等装完后会提示你重启as</p>
+<h2 id="ButterKnifeZelezny"><a href="#ButterKnifeZelezny" class="headerlink" title="ButterKnifeZelezny"></a>ButterKnifeZelezny</h2><p>作用：ButterKnife注解想必都用过，安装ButterKnife插件，快速生成findViewById。</p>
+<p>安装步骤：Android studio-Settings-Plugins-搜: ButterKnifeZelezny 星级最高的就是了</p>
+<p><a href="https://github.com/avast/android-butterknife-zelezny" target="_blank" rel="noopener">GitHub地址</a></p>
+<h2 id="代码行数统计"><a href="#代码行数统计" class="headerlink" title="代码行数统计"></a>代码行数统计</h2><p><a href="http://plugins.intellij.net/plugin/?idea&amp;id=4509" target="_blank" rel="noopener">Statistic </a> AndroidStudio插件</p>
+<h2 id="ADB-Idea"><a href="#ADB-Idea" class="headerlink" title="ADB Idea"></a>ADB Idea</h2><p><a href="https://github.com/pbreault/adb-idea" target="_blank" rel="noopener">adb-idea</a> 支持直接在AS面板中进行ADB操作，操作快捷菜单，快速清除数据，重启应用，卸载应用等操作。Mac 上快捷键 ctrl+shift + a 调出控制面板，这个插件不是特别好用。只能处理当前的app，我一般还用chrome adb</p>
+<p><strong>使用方式：</strong></p>
+<ul>
+<li>首先项目中要引入ButterKnife库（这不是废话吗）</li>
+<li>在Activity的onCreate()方法中，ButterKnife  bind之后，光标放到<code>setContentView(R.layout.xxx);</code> 的R.layout.xxx上</li>
+<li>然后 <code>Comand + N</code> (mac快捷键，win上好像是Ctrl+o吧？)</li>
+<li>然后选择 <code>Generate ButterKnife Injections</code> </li>
+<li>ok 剩下的自己搞吧</li>
+</ul>
 
-block pagination
-    include mixins/paginator
-    +post()
+      
 
-block comment
-    include mixins/comment
-    +comment()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/08/2016-04-08-冒泡排序Java实现/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          冒泡排序Java实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/19/2016-03-19-天干地支计时推算歌诀/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">天干地支计时推算歌诀</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2016/03/23/2016-03-23-AndroidStudio中常用的插件/" data-title="AndroidStudio中常用的插件" data-url="http://febsky.me/2016/03/23/2016-03-23-AndroidStudio中常用的插件/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

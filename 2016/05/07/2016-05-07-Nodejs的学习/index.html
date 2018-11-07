@@ -1,24 +1,227 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Nodejs的学习 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Mac 安装 检查Python 是否安装python -V 检查ruby是否安装ruby -v 首先安装homebrew,然后命令行brew install node 检查node是否安装成功 node -v 然后命令行node可以打开nodejs的交互器，和Python类似，很好玩 打开控制台输入 which node ，得到的输出结果就是node安装路径。  Hello World什么不说直接">
+<meta name="keywords" content="Nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nodejs的学习">
+<meta property="og:url" content="http://febsky.me/2016/05/07/2016-05-07-Nodejs的学习/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="Mac 安装 检查Python 是否安装python -V 检查ruby是否安装ruby -v 首先安装homebrew,然后命令行brew install node 检查node是否安装成功 node -v 然后命令行node可以打开nodejs的交互器，和Python类似，很好玩 打开控制台输入 which node ，得到的输出结果就是node安装路径。  Hello World什么不说直接">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-09-09T09:03:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nodejs的学习">
+<meta name="twitter:description" content="Mac 安装 检查Python 是否安装python -V 检查ruby是否安装ruby -v 首先安装homebrew,然后命令行brew install node 检查node是否安装成功 node -v 然后命令行node可以打开nodejs的交互器，和Python类似，很好玩 打开控制台输入 which node ，得到的输出结果就是node安装路径。  Hello World什么不说直接">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2016-05-07-Nodejs的学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nodejs的学习
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/07/2016-05-07-Nodejs的学习/" class="article-date">
+  <time datetime="2016-05-07T12:18:31.000Z" itemprop="datePublished">2016-05-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Nodejs/">Nodejs</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Mac-安装"><a href="#Mac-安装" class="headerlink" title="Mac 安装"></a>Mac 安装</h1><ul>
+<li>检查Python 是否安装<code>python -V</code></li>
+<li>检查ruby是否安装<code>ruby -v</code></li>
+<li>首先安装<code>homebrew</code>,然后命令行<code>brew install node</code></li>
+<li>检查node是否安装成功 <code>node -v</code></li>
+<li>然后命令行<code>node</code>可以打开nodejs的交互器，和Python类似，很好玩</li>
+<li>打开控制台输入 which node ，得到的输出结果就是node安装路径。</li>
+</ul>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>什么不说直接上代码，Mac命令行</p>
+<p><code>$ vim server.js</code></p>
+<p>输入下面代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">   res.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;)</span><br><span class="line">   res.end(<span class="string">'Hello World\n'</span>)</span><br><span class="line">&#125;).listen(<span class="number">1337</span>,<span class="string">'127.0.0.1'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Server running at http://127.0.0.1:1337/'</span>)</span><br></pre></td></tr></table></figure>
+<p><code>$ node server.js</code></p>
+<h1 id="模块与包管理工具"><a href="#模块与包管理工具" class="headerlink" title="模块与包管理工具"></a>模块与包管理工具</h1><p>Commonjs 规范,理解模块含义理解模块<code>export</code>和<code>requite</code></p>
+<p>模块大致分为三种：核心模块、文件模块、第三方模块</p>
+<p><strong>模块创建流程：</strong>  </p>
+<ul>
+<li>创建模块<code>teacher.js</code></li>
+<li>导出模块 <code>export.add = function{}</code></li>
+<li>加载模块 `var teacher = requite(‘./teacher.js’)</li>
+<li>使用模块 <code>teacher.add(&#39;Scott&#39;)</code></li>
+</ul>
+<p><strong>exports 和 module.exports 的区别：</strong></p>
+<ul>
+<li>exports 是指向的 module.exports 的引用  </li>
+<li>module.exports 初始值为一个空对象 {}，所以 exports 初始值也是 {}  </li>
+<li>require() 返回的是 module.exports 而不是 exports</li>
+</ul>
+<h1 id="基本API"><a href="#基本API" class="headerlink" title="基本API"></a>基本API</h1><p>查看一个model的所拥有的函数<code>$ node</code>开启nodejs交互器<br>然后输入模块名，比如想看url模块,直接在交互器输入<code>url</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; url</span><br><span class="line">&#123; parse: [Function: urlParse],</span><br><span class="line">  resolve: [Function: urlResolve],</span><br><span class="line">  resolveObject: [Function: urlResolveObject],</span><br><span class="line">  format: [Function: urlFormat],</span><br><span class="line">  Url: [Function: Url] &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="了解http-模块"><a href="#了解http-模块" class="headerlink" title="了解http 模块"></a>了解http 模块</h2><ol>
+<li>什么是回调？</li>
+<li>什么是同步/异步？</li>
+<li>什么是I/O？</li>
+<li>什么的单线程/多线程？</li>
+<li>什么是阻塞/非阻塞？</li>
+<li>什么是事件？</li>
+<li>什么是事件驱动？</li>
+<li>什么是基于事件驱动的回调？</li>
+<li>什么是事件循环？</li>
+</ol>
+<p>理解nodejs中的 this （上下文）,一般指向当前函数的拥有者。<br>但是<code>call</code>方法可以改变this上下文</p>
+<h2 id="Node的突出特点"><a href="#Node的突出特点" class="headerlink" title="Node的突出特点"></a>Node的突出特点</h2><p>NodeJS与一般的后台编译性语言有什么不同（WEB服务器）? </p>
+<ol>
+<li><p>NodeJS本身包含一个http服务器，不像asp.net程序需要一个IIS，或者java的程序需要一个apche</p>
+</li>
+<li><p>NodeJS是异步IO，事件驱动的;一般的程序调用都是执行一个命令之后，线程阻塞，一直等到命令成功之后，才会去执行下面的事情，但是NodeJS不一样，所有的IO，网络通信，磁盘操作都是由事件来控制的，Nodejs进程在同一时刻只会处理一个事件，完成后立即进入事件轮询并检查处理后面的事件。</p>
+</li>
+</ol>
+<h2 id="Node项目资源"><a href="#Node项目资源" class="headerlink" title="Node项目资源"></a>Node项目资源</h2><ol>
+<li>一个bt爬虫 <a href="https://github.com/dontcontactme/p2pspider/" target="_blank" rel="noopener">https://github.com/dontcontactme/p2pspider</a></li>
+</ol>
+<p><strong>【参考文献】</strong></p>
+<p>一个学习网站<a href="http://www.runoob.com/nodejs/nodejs-express-framework.html" target="_blank" rel="noopener">点这儿</a></p>
+<p><a href="http://www.nodeclass.com/articles/99682" target="_blank" rel="noopener">Orm2参考使用</a></p>
+<p><a href="http://docs.sequelizejs.com/en/latest/" target="_blank" rel="noopener">Sequelize github上start最多的orm</a> <a href="http://my.oschina.net/zj0303/blog/305384" target="_blank" rel="noopener">一个使用教程</a></p>
+<p><a href="http://cnodejs.org/topic/5231a630101e574521e45ef8" target="_blank" rel="noopener">包和模块管理</a></p>
 
-block pagination
-    include mixins/paginator
-    +post()
+      
 
-block comment
-    include mixins/comment
-    +comment()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/10/2016-05-10-Android中实现倒计时的方式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android 中实现倒计时
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/06/2016-05-12-FragmentStatePagerAdapter和FragmentPagerAdapter/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android FragmentPagerAdapter和FragmentStatePagerAdapter</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2016/05/07/2016-05-07-Nodejs的学习/" data-title="Nodejs的学习" data-url="http://febsky.me/2016/05/07/2016-05-07-Nodejs的学习/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

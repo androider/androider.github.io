@@ -1,24 +1,195 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android文件存储路径 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="注意：由于Android6.0+支持多用户，所以，在4.1.2 返回路径 /data/data/com.xxx.xxx/请自动看做 6.0 下的/data/user/0/com.xxx.xxx/目录  外部文件存储最容易混淆的是外部存储，如果说pc上也要区分出外部存储和内部存储的话，那么自带的硬盘算是内部存储，U盘或者移动硬盘算是外部存储，因此我们很容易带着这样的理解去看待安卓手机，认为机身固有">
+<meta name="keywords" content="Android,文件存储">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android文件存储路径">
+<meta property="og:url" content="http://febsky.me/2015/07/14/2015-07-14-Android 文件存储/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="注意：由于Android6.0+支持多用户，所以，在4.1.2 返回路径 /data/data/com.xxx.xxx/请自动看做 6.0 下的/data/user/0/com.xxx.xxx/目录  外部文件存储最容易混淆的是外部存储，如果说pc上也要区分出外部存储和内部存储的话，那么自带的硬盘算是内部存储，U盘或者移动硬盘算是外部存储，因此我们很容易带着这样的理解去看待安卓手机，认为机身固有">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-20T08:16:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android文件存储路径">
+<meta name="twitter:description" content="注意：由于Android6.0+支持多用户，所以，在4.1.2 返回路径 /data/data/com.xxx.xxx/请自动看做 6.0 下的/data/user/0/com.xxx.xxx/目录  外部文件存储最容易混淆的是外部存储，如果说pc上也要区分出外部存储和内部存储的话，那么自带的硬盘算是内部存储，U盘或者移动硬盘算是外部存储，因此我们很容易带着这样的理解去看待安卓手机，认为机身固有">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2015-07-14-Android 文件存储" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android文件存储路径
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/07/14/2015-07-14-Android 文件存储/" class="article-date">
+  <time datetime="2015-07-14T07:34:30.000Z" itemprop="datePublished">2015-07-14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a> <a class="article-category-link" href="/categories/Android/文件存储/">文件存储</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>注意：由于Android6.0+支持多用户，所以，在4.1.2 返回路径 <code>/data/data/com.xxx.xxx/</code><br>请自动看做 6.0 下的<code>/data/user/0/com.xxx.xxx/</code>目录</p>
+</blockquote>
+<h2 id="外部文件存储"><a href="#外部文件存储" class="headerlink" title="外部文件存储"></a>外部文件存储</h2><p>最容易混淆的是外部存储，如果说pc上也要区分出外部存储和内部存储的话，那么自带的硬盘算是内部存储，U盘或者移动硬盘算是外部存储，因此我们很容易带着这样的理解去看待安卓手机，认为机身固有存储是内部存储，而扩展的T卡是外部存储。比如我们任务16GB版本的Nexus 4有16G的内部存储，普通消费者可以这样理解，但是安卓的编程中不能，这16GB仍然是外部存储。</p>
+<p>所有的安卓设备都有外部存储和内部存储，这两个名称来源于安卓的早期设备，那个时候的设备内部存储确实是固定的，而外部存储确实是可以像U盘一样移动的。但是在后来的设备中，很多中高端机器都将自己的机身存储扩展到了8G以上，他们将存储在概念上分成了”内部internal” 和”外部external” 两部分，但其实都在手机内部。所以不管安卓手机是否有可移动的sdcard，他们总是有外部存储和内部存储。最关键的是，我们都是通过相同的api来访问可移动的sdcard或者手机自带的存储（外部存储）。</p>
+<h3 id="自定义外部存储Environment类"><a href="#自定义外部存储Environment类" class="headerlink" title="自定义外部存储Environment类"></a>自定义外部存储<code>Environment</code>类</h3><blockquote>
+<p>注意在<code>AndoridManifest.xml</code>中声明存储权限请求，6.0以上的系统要动态请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.MOUNT_UNMOUNT_FILESYSTEMS&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><code>static File getDataDirectory()</code>获得android <code>/data</code>的目录。</li>
+<li><code>static File getExternalStorageDirectory()</code>获取Android的<code>/storage/emulated/0</code>目录也是就<code>/sdcard</code>目录</li>
+<li><code>static File getExternalStoragePublicDirectory(String type)</code>根据类型来获取sdcard上的目录如type为<code>Environment.DIRECTORY_MUSIC</code>时，路径为<code>/storage/emulated/0/Music</code></li>
+<li><code>static File getRootDirectory()</code>获得android的<code>/system</code>目录。</li>
+<li><code>static File getDownloadCacheDirectory()</code>这个指的是<code>/cache</code>这么目录</li>
+</ul>
+<h3 id="规范化外部存储"><a href="#规范化外部存储" class="headerlink" title="规范化外部存储"></a>规范化外部存储</h3><p>应用程序在运行的过程中如果需要向手机上保存数据，一般是把数据保存在SDcard中的。</p>
+<p>大部分应用是直接在SDCard的根目录下创建一个文件夹，然后把数据保存在该文件夹中。</p>
+<p>这样当该应用被卸载后，这些数据还保留在SDCard中，留下了垃圾数据。</p>
+<p>如果你想让你的应用被卸载后，与该应用相关的数据也清除掉，该怎么办呢？</p>
+<p>通过<code>context.getExternalFilesDir()</code>方法可以获取到 sdcard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据</p>
+<p>通过<code>context.getExternalCacheDir()</code>方法可以获取到 sdcard/Android/data/你的应用包名/cache/目录，一般存放临时缓存数据</p>
+<p>如果使用上面的方法，当你的应用在被用户卸载后，sdcard/Android/data/你的应用的包名/ 这个目录下的所有文件都会被删除，不会留下垃圾信息。</p>
+<p>而且上面二个目录分别对应 设置-&gt;应用-&gt;应用详情里面的”清除数据“与”清除缓存“选项</p>
+<h2 id="路径的规律图如下"><a href="#路径的规律图如下" class="headerlink" title="路径的规律图如下"></a>路径的规律图如下</h2><p>一般地，通过<code>Context</code> 和 <code>Environment</code>相关的方法获取文件存取的路径。</p>
+<p>通过这两个类可获取各种路径，如图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">+- /data  ---&gt; Environment.getDataDirectory()</span><br><span class="line">|   |</span><br><span class="line">|   |   </span><br><span class="line">|   +- data/com.adorkable.sample</span><br><span class="line">|           |</span><br><span class="line">|           | </span><br><span class="line">|           +- files ---&gt; context.getFilesDir() </span><br><span class="line">|           |       |</span><br><span class="line">|           |       +- file1 ---&gt; context.getFileStreamPath(&quot;file1&quot;)</span><br><span class="line">|           |       |</span><br><span class="line">|           |       +- file2 ---&gt;context.openFileOutput(&quot;file2&quot;)</span><br><span class="line">|           | </span><br><span class="line">|           +- cache  ---&gt; context.getCacheDir()</span><br><span class="line">|           |</span><br><span class="line">|           +- app_$name ---&gt; context.getDir(String name, int mode)</span><br><span class="line">|           |</span><br><span class="line">|           +- shared_prefs ---&gt; context.getSharedPreferences()</span><br><span class="line">| </span><br><span class="line">|</span><br><span class="line">+- /storage/sdcard0   ---&gt; Environment.getExternalStorageDirectory()</span><br><span class="line">             |                        </span><br><span class="line">             |- Music ---&gt;Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)</span><br><span class="line">             |</span><br><span class="line">             +- dir1  ---&gt;Environment.getExternalStoragePublicDirectory(&quot;dir1&quot;)</span><br><span class="line">             |   </span><br><span class="line">             +- Andorid/data/com.adorkable.sample【注：这里是包名】</span><br><span class="line">                              |</span><br><span class="line">                              | </span><br><span class="line">                              +- files      ---&gt; context.getExternalFilesDir(&quot;&quot;)</span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- file1   ---&gt; context.getExternalFilesDir(&quot;file1&quot;)</span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- Music    ---&gt; context.getExternalFilesDir(Environment.Music)</span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- Picture  ---&gt; context.getExternalFilesDir(Environment.Picture) </span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- ...</span><br><span class="line">                              |</span><br><span class="line">                              | </span><br><span class="line">                              +- cache    ---&gt;context.getExternalCacheDir()</span><br><span class="line">                              |</span><br><span class="line">                              +- 其他</span><br></pre></td></tr></table></figure>
+      
 
-block pagination
-    include mixins/paginator
-    +post()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android WebView三步解决微信公众号文章不能加载视频的问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/25/2015-05-25-MySQL中授权命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">mysql中授权命令</div>
+    </a>
+  
+</nav>
 
-block comment
-    include mixins/comment
-    +comment()
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2015/07/14/2015-07-14-Android 文件存储/" data-title="Android文件存储路径" data-url="http://febsky.me/2015/07/14/2015-07-14-Android 文件存储/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

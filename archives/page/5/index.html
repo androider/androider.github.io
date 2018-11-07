@@ -1,22 +1,482 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android,Java,Python,博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="凉凉小线仔">
+<meta property="og:url" content="http://febsky.me/archives/page/5/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="Android,Java,Python,博客">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="凉凉小线仔">
+<meta name="twitter:description" content="Android,Java,Python,博客">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    if page.archive
-        != __('Archive') + " · " + config.title
-    if page.tag
-        != page.tag + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main">
+  
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2015" class="archive-year">2015</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/08/03/2015-08-03-SSL 和 TLS/" class="archive-article-date">
+  <time datetime="2015-08-03T10:33:24.000Z" itemprop="datePublished">Aug 3</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/08/03/2015-08-03-SSL 和 TLS/">SSL 和 TLS</a>
+    </h1>
+  
 
-block container
-    include mixins/post
-    if page.tag
-        +tagList()
-    if page.archive
-        +postList()
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/" class="archive-article-date">
+  <time datetime="2015-07-24T03:14:34.000Z" itemprop="datePublished">Jul 24</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/">Android WebView三步解决微信公众号文章不能加载视频的问题</a>
+    </h1>
+  
 
-block pagination
-    include mixins/paginator
-    +home()
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/07/14/2015-07-14-Android 文件存储/" class="archive-article-date">
+  <time datetime="2015-07-14T07:34:30.000Z" itemprop="datePublished">Jul 14</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/07/14/2015-07-14-Android 文件存储/">Android文件存储路径</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/05/25/2015-05-25-MySQL中授权命令/" class="archive-article-date">
+  <time datetime="2015-05-25T03:57:08.000Z" itemprop="datePublished">May 25</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/05/25/2015-05-25-MySQL中授权命令/">mysql中授权命令</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/05/08/2015-05-08Linux ftp 命令行登陆/" class="archive-article-date">
+  <time datetime="2015-05-08T13:57:30.000Z" itemprop="datePublished">May 8</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/05/08/2015-05-08Linux ftp 命令行登陆/">Linux ftp 命令行登陆</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/05/05/2015-05-05-我比价中意的几款WordPress主题/" class="archive-article-date">
+  <time datetime="2015-05-05T10:57:54.000Z" itemprop="datePublished">May 5</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/05/05/2015-05-05-我比价中意的几款WordPress主题/">我比价中意的几款WordPress主题</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/04/20/2015-04-20-git (github)的基本使用/" class="archive-article-date">
+  <time datetime="2015-04-20T03:51:49.000Z" itemprop="datePublished">Apr 20</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/04/20/2015-04-20-git (github)的基本使用/">git (github)的基本使用</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/04/10/2015-04-10-想要去做的东西/" class="archive-article-date">
+  <time datetime="2015-04-10T03:06:48.000Z" itemprop="datePublished">Apr 10</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/04/10/2015-04-10-想要去做的东西/">想要去做的东西</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/03/29/2015-03-29-记录一个Linux社区/" class="archive-article-date">
+  <time datetime="2015-03-29T15:03:53.000Z" itemprop="datePublished">Mar 29</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/03/29/2015-03-29-记录一个Linux社区/">记录一个Linux社区</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/03/12/2015-03-12-JNI Android NDK开发（一）/" class="archive-article-date">
+  <time datetime="2015-03-12T15:35:12.000Z" itemprop="datePublished">Mar 12</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/03/12/2015-03-12-JNI Android NDK开发（一）/">JNI Android NDK开发（一）</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" class="archive-article-date">
+  <time datetime="2015-03-08T11:33:43.000Z" itemprop="datePublished">Mar 8</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/">Android 的屏幕适配（包括字体适配）</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/02/11/2015-02-11-常用的Linux压缩命令/" class="archive-article-date">
+  <time datetime="2015-02-11T07:03:43.000Z" itemprop="datePublished">Feb 11</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/02/11/2015-02-11-常用的Linux压缩命令/">常用的Linux压缩命令</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/" class="archive-article-date">
+  <time datetime="2015-02-09T08:15:38.000Z" itemprop="datePublished">Feb 9</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/">Python中获取某天是某个月中的第几周</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/" class="archive-article-date">
+  <time datetime="2015-02-09T03:42:32.000Z" itemprop="datePublished">Feb 9</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/">Python 中其实已经自带了easy_install和pip</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/" class="archive-article-date">
+  <time datetime="2015-02-08T12:18:31.000Z" itemprop="datePublished">Feb 8</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/">AndroidStudio 中我的常用的快捷键</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/01/28/2015-01-28-Postgres时间日期处理/" class="archive-article-date">
+  <time datetime="2015-01-28T04:26:47.000Z" itemprop="datePublished">Jan 28</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/01/28/2015-01-28-Postgres时间日期处理/">Postgres时间日期处理</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/01/27/2015-02-25-Python常用内置的函数和变量/" class="archive-article-date">
+  <time datetime="2015-01-27T04:45:01.000Z" itemprop="datePublished">Jan 27</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/01/27/2015-02-25-Python常用内置的函数和变量/">查看Python安装位置</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/01/27/2015-02-25-查看Python安装位置/" class="archive-article-date">
+  <time datetime="2015-01-27T04:45:01.000Z" itemprop="datePublished">Jan 27</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/01/27/2015-02-25-查看Python安装位置/">查看Python安装位置</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/01/24/2015-02-25-字符编码简介/" class="archive-article-date">
+  <time datetime="2015-01-24T08:40:58.000Z" itemprop="datePublished">Jan 24</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/01/24/2015-02-25-字符编码简介/">字符编码简介</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/01/13/2015-01-13-PostGres数据库导入导出/" class="archive-article-date">
+  <time datetime="2015-01-13T08:06:59.000Z" itemprop="datePublished">Jan 13</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/01/13/2015-01-13-PostGres数据库导入导出/">PostGres数据库导入导出</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

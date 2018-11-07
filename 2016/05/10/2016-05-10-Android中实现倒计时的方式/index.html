@@ -1,24 +1,170 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 中实现倒计时 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android 中实现倒计时控件的方法有哪些今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~">
+<meta name="keywords" content="Android,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 中实现倒计时">
+<meta property="og:url" content="http://febsky.me/2016/05/10/2016-05-10-Android中实现倒计时的方式/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="Android 中实现倒计时控件的方法有哪些今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-06-02T15:13:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 中实现倒计时">
+<meta name="twitter:description" content="Android 中实现倒计时控件的方法有哪些今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2016-05-10-Android中实现倒计时的方式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 中实现倒计时
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/10/2016-05-10-Android中实现倒计时的方式/" class="article-date">
+  <time datetime="2016-05-10T04:14:42.000Z" itemprop="datePublished">2016-05-10</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android-中实现倒计时控件的方法有哪些"><a href="#Android-中实现倒计时控件的方法有哪些" class="headerlink" title="Android 中实现倒计时控件的方法有哪些"></a>Android 中实现倒计时控件的方法有哪些</h1><p>今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~</p>
+<a id="more"></a>
+<h2 id="第一种CountDownTimer"><a href="#第一种CountDownTimer" class="headerlink" title="第一种CountDownTimer"></a>第一种CountDownTimer</h2><p>位于<code>android.os.CountDownTimer</code>这个类很好用。可以直接查看官方文档，文档中就有实例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> CountDownTimer(<span class="number">30000</span>, <span class="number">1000</span>) &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTick</span><span class="params">(<span class="keyword">long</span> millisUntilFinished)</span> </span>&#123;</span><br><span class="line">                textView.setText(<span class="string">"seconds remaining: "</span> + millisUntilFinished / <span class="number">1000</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFinish</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                textView.setText(<span class="string">"done!"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br></pre></td></tr></table></figure>
+<h2 id="第二种-Timer与TimerTask-runOnUiThread-runnable-方法"><a href="#第二种-Timer与TimerTask-runOnUiThread-runnable-方法" class="headerlink" title="第二种 Timer与TimerTask + runOnUiThread(runnable)方法"></a>第二种 Timer与TimerTask + runOnUiThread(runnable)方法</h2><h2 id="第三种Handler与Message（不用TimerTask）"><a href="#第三种Handler与Message（不用TimerTask）" class="headerlink" title="第三种Handler与Message（不用TimerTask）"></a>第三种Handler与Message（不用TimerTask）</h2><h2 id="第四种Handler与Runnable（最简单型）"><a href="#第四种Handler与Runnable（最简单型）" class="headerlink" title="第四种Handler与Runnable（最简单型）"></a>第四种Handler与Runnable（最简单型）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> recLen = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">private</span> TextView txtView;  </span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </span><br><span class="line"> </span><br><span class="line">        setContentView(R.layout.timertask);  </span><br><span class="line">        txtView = (TextView)findViewById(R.id.txttime);  </span><br><span class="line">          </span><br><span class="line">        handler.postDelayed(runnable, <span class="number">1000</span>);  </span><br><span class="line">    &#125;     </span><br><span class="line"> </span><br><span class="line">    Handler handler = <span class="keyword">new</span> Handler();  </span><br><span class="line">    Runnable runnable = <span class="keyword">new</span> Runnable() &#123;  </span><br><span class="line">        <span class="meta">@Override</span>  </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">            recLen++;  </span><br><span class="line">            txtView.setText(<span class="string">""</span> + recLen);  </span><br><span class="line">            handler.postDelayed(<span class="keyword">this</span>, <span class="number">1000</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
 
-block tags
-    include mixins/tags
-    +tags()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/10/2016-05-10-Android操作SQLite数据库的方法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android SQLite操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/07/2016-05-07-Nodejs的学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Nodejs的学习</div>
+    </a>
+  
+</nav>
 
-block pagination
-    include mixins/paginator
-    +post()
+  
+</article>
 
-block comment
-    include mixins/comment
-    +comment()
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2016/05/10/2016-05-10-Android中实现倒计时的方式/" data-title="Android 中实现倒计时" data-url="http://febsky.me/2016/05/10/2016-05-10-Android中实现倒计时的方式/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

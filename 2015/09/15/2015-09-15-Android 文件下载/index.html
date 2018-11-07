@@ -1,24 +1,170 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android文件下载 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576/** * * @param urlString    下载文件地址 * @param savePath    保">
+<meta name="keywords" content="Android,AndroidStudio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android文件下载">
+<meta property="og:url" content="http://febsky.me/2015/09/15/2015-09-15-Android 文件下载/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576/** * * @param urlString    下载文件地址 * @param savePath    保">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-07-17T10:31:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android文件下载">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576/** * * @param urlString    下载文件地址 * @param savePath    保">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2015-09-15-Android 文件下载" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android文件下载
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/09/15/2015-09-15-Android 文件下载/" class="article-date">
+  <time datetime="2015-09-15T05:47:54.000Z" itemprop="datePublished">2015-09-15</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a> <a class="article-category-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"></span><br><span class="line"> *</span><br><span class="line"></span><br><span class="line"> * @param urlString    下载文件地址</span><br><span class="line"></span><br><span class="line"> * @param savePath    保存本地路径</span><br><span class="line"></span><br><span class="line"> * @param filename    保存的文件名</span><br><span class="line"></span><br><span class="line"> * @throws Exception</span><br><span class="line"></span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public static void download(String urlString, String savePath, String filename) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">    // 构造URL</span><br><span class="line"></span><br><span class="line">    URL url = new URL(urlString);</span><br><span class="line"></span><br><span class="line">    // 打开连接</span><br><span class="line"></span><br><span class="line">    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();</span><br><span class="line"></span><br><span class="line">    //设置请求超时为5s</span><br><span class="line"></span><br><span class="line">    httpURLConnection.setConnectTimeout(5 * 1000);</span><br><span class="line"></span><br><span class="line">    httpURLConnection.setRequestMethod(&amp;quot;GET&amp;quot;);</span><br><span class="line"></span><br><span class="line">    //开始下载</span><br><span class="line"></span><br><span class="line">    if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK) &#123;</span><br><span class="line"></span><br><span class="line">        // 输入流</span><br><span class="line"></span><br><span class="line">        InputStream inputStream = httpURLConnection.getInputStream();</span><br><span class="line"></span><br><span class="line">        // 输出的文件流</span><br><span class="line"></span><br><span class="line">        File savePathFile = new File(savePath);</span><br><span class="line"></span><br><span class="line">        if (!savePathFile.exists()) &#123;</span><br><span class="line"></span><br><span class="line">            savePathFile.mkdirs();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 1K的数据缓冲</span><br><span class="line"></span><br><span class="line">        byte[] buffer = new byte[1024 * 4];</span><br><span class="line"></span><br><span class="line">        // 读取到的数据长度</span><br><span class="line"></span><br><span class="line">        int len;</span><br><span class="line"></span><br><span class="line">        OutputStream outputStream = new FileOutputStream(new File(savePathFile, filename));</span><br><span class="line"></span><br><span class="line">        // 开始读取</span><br><span class="line"></span><br><span class="line">        while ((len = inputStream.read(buffer)) != -1) &#123;</span><br><span class="line"></span><br><span class="line">            outputStream.write(buffer, 0, len);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 完毕，关闭所有链接</span><br><span class="line"></span><br><span class="line">        outputStream.close();</span><br><span class="line"></span><br><span class="line">        inputStream.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
 
-block pagination
-    include mixins/paginator
-    +post()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/16/2015-09-16-PS（PhotoShop）基础知识（一）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PS（PhotoShop）基础知识（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PS（PhotoShop）基础知识（三）</div>
+    </a>
+  
+</nav>
 
-block comment
-    include mixins/comment
-    +comment()
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2015/09/15/2015-09-15-Android 文件下载/" data-title="Android文件下载" data-url="http://febsky.me/2015/09/15/2015-09-15-Android 文件下载/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

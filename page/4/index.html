@@ -1,21 +1,739 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android,Java,Python,博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="凉凉小线仔">
+<meta property="og:url" content="http://febsky.me/page/4/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="Android,Java,Python,博客">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="凉凉小线仔">
+<meta name="twitter:description" content="Android,Java,Python,博客">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != config.title
+</head>
 
-block description
-    if config.description
-        - desc = config.description;
-        meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2016-05-23-AndroidSQLite存储自定义对象" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/23/2016-05-23-AndroidSQLite存储自定义对象/">Android SQLite存储自定义对象</a>
+    </h1>
+  
 
-block container
-    include mixins/post
-    +posts()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/23/2016-05-23-AndroidSQLite存储自定义对象/" class="article-date">
+  <time datetime="2016-05-23T08:39:22.000Z" itemprop="datePublished">2016-05-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a> <a class="article-category-link" href="/categories/Java/Android/">Android</a>
+  </div>
 
-block pagination
-    include mixins/paginator
-    +home()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android-SQLite存储自定义对象"><a href="#Android-SQLite存储自定义对象" class="headerlink" title="Android SQLite存储自定义对象"></a>Android SQLite存储自定义对象</h1>
+        
+          <p class="article-more-link">
+            <a href="/2016/05/23/2016-05-23-AndroidSQLite存储自定义对象/#more">More...</a>
+          </p>
+        
+      
 
-block social
-    include mixins/social
-    +social_icon()
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-05-15-我认为不错的几个Hexo主题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/15/2016-05-15-我认为不错的几个Hexo主题/">我认为不错的几个Hexo主题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/15/2016-05-15-我认为不错的几个Hexo主题/" class="article-date">
+  <time datetime="2016-05-15T04:37:28.000Z" itemprop="datePublished">2016-05-15</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我认为几个不错的主题</p>
+<ol>
+<li><a href="https://github.com/kaijun/hexo-theme-huxblog/" target="_blank" rel="noopener">hexo-theme-huxblog</a>   <a href="http://huangxuan.me/" target="_blank" rel="noopener">演示地址 Hux Blog</a></li>
+<li><a href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">hexo-theme-even</a>    <a href="http://www.ahonn.me/" target="_blank" rel="noopener">演示地址</a></li>
+<li><a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">hexo-theme-icarus</a>   <a href="http://blog.zhangruipeng.me/hexo-theme-icarus/" target="_blank" rel="noopener">演示地址</a></li>
+<li><a href="https://github.com/Alex-fun/hexo-theme-jane" target="_blank" rel="noopener">hexo-theme-jane</a>   <a href="http://hejx.me/" target="_blank" rel="noopener">演示地址</a></li>
+<li><a href="https://github.com/xiangming/landscape-plus" target="_blank" rel="noopener">landscape-plus</a> <a href="http://honglu.me/" target="_blank" rel="noopener">演示地址</a>  <a href="http://arvinxiang.com/landscape-plus/" target="_blank" rel="noopener">And</a></li>
+<li><a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank" rel="noopener">hexo-theme-apollo</a> <a href="http://pinggod.com/" target="_blank" rel="noopener">演示地址</a></li>
+<li><a href="http://haojen.github.io/" target="_blank" rel="noopener">hexo-theme-Anisina</a></li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/2016/05/15/2016-05-15-我认为不错的几个Hexo主题/#more">More...</a>
+          </p>
+        
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-05-10-Android操作SQLite数据库的方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/10/2016-05-10-Android操作SQLite数据库的方法/">Android SQLite操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/10/2016-05-10-Android操作SQLite数据库的方法/" class="article-date">
+  <time datetime="2016-05-10T04:14:42.000Z" itemprop="datePublished">2016-05-10</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、-SQLiteOpenHelper辅助类"><a href="#一、-SQLiteOpenHelper辅助类" class="headerlink" title="一、 SQLiteOpenHelper辅助类"></a>一、 SQLiteOpenHelper辅助类</h1><p>SQLiteOpenHelper类是一个辅助类，用于创建或打开数据库。<br>该类的使用方法一般是自定义一个子类，继承自SQLiteOpenHelper，并覆写其中最关键的两个方法：onCreate(SQLiteDatabase db)和onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)。当新建一个数据库时会调用前者，一般在里面做一些创建表或视图的操作。数据库版本升级时则会调用后者。</p>
+<p>定义好子类后（假如叫SqlHelper），只要调用SqlHelper对象的getReadableDatabase()方法或getWritableDatabase()方法即可返回一个SQLiteDatabase对象。如果是第一次调用，则会创建数据库。随后可使用SQLiteDatabase对象的方法进行数据操作，如：execSQL(), insert(), update(), query(), rawQuery(), delete()等。</p>
+<p>PS：通过该方法创建的数据库存放的目录是固定的，其路径为/data/data/packageName/databases/。</p>
+<h1 id="二、Context类的openOrCreateDatabase-方法"><a href="#二、Context类的openOrCreateDatabase-方法" class="headerlink" title="二、Context类的openOrCreateDatabase()方法"></a>二、Context类的openOrCreateDatabase()方法</h1><p>openOrCreateDatabase(String dbName, int mode, CursorFactory factory);</p>
+<ul>
+<li>dbName：数据库名称。</li>
+<li>mode：数据库操作模式。默认值为MODE_PRIVATE（即0）。可选值：MODE_WORLD_READABLE, MODE_WORLD_WRITABLE, MODE_ENABLE_WRITE_AHEAD_LOGGING</li>
+<li>factory：附加的一个工厂类，当SQLiteDatabase实例的query函数被调用时，会使用该工厂类返回一个Cursor。可为null。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private static final String DATABASE_NAME = “myDatabase.db”;</span><br><span class="line">private static final String DATABASE_TABLE = “mainTable”;</span><br><span class="line">private static final String DATABASE_CREATE =</span><br><span class="line">“create table “ + DATABASE_TABLE +</span><br><span class="line">“ ( _id integer primary key autoincrement,” +</span><br><span class="line">“column_one text not null);”;</span><br><span class="line"> </span><br><span class="line">SQLiteDatabase myDatabase;</span><br><span class="line"> </span><br><span class="line">private void createDatabase() &#123;</span><br><span class="line">myDatabase = openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);</span><br><span class="line">myDatabase.execSQL(DATABASE_CREATE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PS：该方法得到的数据库文件，其存储路径与上一方法相同。</p>
+<h1 id="三、直接调用SQLiteDatabase类的静态方法openOrCreateDatabases"><a href="#三、直接调用SQLiteDatabase类的静态方法openOrCreateDatabases" class="headerlink" title="三、直接调用SQLiteDatabase类的静态方法openOrCreateDatabases()"></a>三、直接调用SQLiteDatabase类的静态方法openOrCreateDatabases()</h1><p>SQLiteDatabase类有几个静态方法可直接打开或创建数据库。<br>//等同于openDatabase(path, factory, SQLiteDatabase.CREATE_IF_NECESSARY)  </p>
+<p>openOrCreateDatabase(String path, CursorFactory factory)<br>//等同于openDatabase(file.getPath(), factory, SQLiteDatabase.CREATE_IF_NECESSARY)</p>
+<p>openOrCreateDatabase(File file, CursorFactory factory)<br>//等同于openDatabase(file.getPath(), factory, SQLiteDatabase.CREATE_IF_NECESSARY, errorHandler)</p>
+<p>openOrCreateDatabase(String path, CursorFactory factory, DatabaseErrorHandler errorHandler)</p>
+<p>PS：该方法打开或创建的数据库文件可与上述两个方法的路径不同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">    private static final String DATABASE_NAME = &quot;xiangjie.db&quot;;</span><br><span class="line">    private static final String DATABASE_TABLE = &quot;test&quot;;</span><br><span class="line">    private static final String DATABASE_CREATE =</span><br><span class="line">    &quot;create table &quot; + DATABASE_TABLE +</span><br><span class="line">            &quot; ( _id integer primary key autoincrement,&quot; +</span><br><span class="line">            &quot;column_one text not null)&quot;;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_green_dao);</span><br><span class="line">        </span><br><span class="line">       SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(&quot;/sdcard/&quot;+DATABASE_NAME, null);</span><br><span class="line">        </span><br><span class="line">        //db.execSQL(&quot;create table test ( _id integer primary key autoincrement,column_one text not null)&quot;);</span><br><span class="line">//        db.execSQL(&quot;insert into test (column_one) values(?)&quot;,new Object[]&#123;&quot;1111&quot;&#125;);</span><br><span class="line"></span><br><span class="line">        Cursor cursor = db.rawQuery(&quot;select * from test;&quot;,null);</span><br><span class="line">        while (cursor.moveToNext()) &#123;</span><br><span class="line">            String id = cursor.getString(0);//获取第一列的值</span><br><span class="line">            Log.d(&quot;Q_M:&quot;,id);</span><br><span class="line">        &#125;</span><br><span class="line">        cursor.close();</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最后记住，不管用何种方式打开了数据库，获得的SQLite对象不再使用时，都要调用close()来关闭打开的数据库，否则抛出IllegalStateException异常。</p>
+</blockquote>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-05-10-Android中实现倒计时的方式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/10/2016-05-10-Android中实现倒计时的方式/">Android 中实现倒计时</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/10/2016-05-10-Android中实现倒计时的方式/" class="article-date">
+  <time datetime="2016-05-10T04:14:42.000Z" itemprop="datePublished">2016-05-10</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android-中实现倒计时控件的方法有哪些"><a href="#Android-中实现倒计时控件的方法有哪些" class="headerlink" title="Android 中实现倒计时控件的方法有哪些"></a>Android 中实现倒计时控件的方法有哪些</h1><p>今天在工作中用到了倒计时功能，也就是在一个TextView上显示倒计时。突然想到当时面试的时候有家公司的面试官问我在Android中实现倒计时功能我会用哪些方法。哈哈当时竟然不知道Android sdk本身就有实现了。丢人~</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/05/10/2016-05-10-Android中实现倒计时的方式/#more">More...</a>
+          </p>
+        
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-05-07-Nodejs的学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/07/2016-05-07-Nodejs的学习/">Nodejs的学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/07/2016-05-07-Nodejs的学习/" class="article-date">
+  <time datetime="2016-05-07T12:18:31.000Z" itemprop="datePublished">2016-05-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Nodejs/">Nodejs</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Mac-安装"><a href="#Mac-安装" class="headerlink" title="Mac 安装"></a>Mac 安装</h1><ul>
+<li>检查Python 是否安装<code>python -V</code></li>
+<li>检查ruby是否安装<code>ruby -v</code></li>
+<li>首先安装<code>homebrew</code>,然后命令行<code>brew install node</code></li>
+<li>检查node是否安装成功 <code>node -v</code></li>
+<li>然后命令行<code>node</code>可以打开nodejs的交互器，和Python类似，很好玩</li>
+<li>打开控制台输入 which node ，得到的输出结果就是node安装路径。</li>
+</ul>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>什么不说直接上代码，Mac命令行</p>
+<p><code>$ vim server.js</code></p>
+<p>输入下面代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">   res.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;)</span><br><span class="line">   res.end(<span class="string">'Hello World\n'</span>)</span><br><span class="line">&#125;).listen(<span class="number">1337</span>,<span class="string">'127.0.0.1'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Server running at http://127.0.0.1:1337/'</span>)</span><br></pre></td></tr></table></figure>
+<p><code>$ node server.js</code></p>
+<h1 id="模块与包管理工具"><a href="#模块与包管理工具" class="headerlink" title="模块与包管理工具"></a>模块与包管理工具</h1><p>Commonjs 规范,理解模块含义理解模块<code>export</code>和<code>requite</code></p>
+<p>模块大致分为三种：核心模块、文件模块、第三方模块</p>
+<p><strong>模块创建流程：</strong>  </p>
+<ul>
+<li>创建模块<code>teacher.js</code></li>
+<li>导出模块 <code>export.add = function{}</code></li>
+<li>加载模块 `var teacher = requite(‘./teacher.js’)</li>
+<li>使用模块 <code>teacher.add(&#39;Scott&#39;)</code></li>
+</ul>
+<p><strong>exports 和 module.exports 的区别：</strong></p>
+<ul>
+<li>exports 是指向的 module.exports 的引用  </li>
+<li>module.exports 初始值为一个空对象 {}，所以 exports 初始值也是 {}  </li>
+<li>require() 返回的是 module.exports 而不是 exports</li>
+</ul>
+<h1 id="基本API"><a href="#基本API" class="headerlink" title="基本API"></a>基本API</h1><p>查看一个model的所拥有的函数<code>$ node</code>开启nodejs交互器<br>然后输入模块名，比如想看url模块,直接在交互器输入<code>url</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; url</span><br><span class="line">&#123; parse: [Function: urlParse],</span><br><span class="line">  resolve: [Function: urlResolve],</span><br><span class="line">  resolveObject: [Function: urlResolveObject],</span><br><span class="line">  format: [Function: urlFormat],</span><br><span class="line">  Url: [Function: Url] &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="了解http-模块"><a href="#了解http-模块" class="headerlink" title="了解http 模块"></a>了解http 模块</h2><ol>
+<li>什么是回调？</li>
+<li>什么是同步/异步？</li>
+<li>什么是I/O？</li>
+<li>什么的单线程/多线程？</li>
+<li>什么是阻塞/非阻塞？</li>
+<li>什么是事件？</li>
+<li>什么是事件驱动？</li>
+<li>什么是基于事件驱动的回调？</li>
+<li>什么是事件循环？</li>
+</ol>
+<p>理解nodejs中的 this （上下文）,一般指向当前函数的拥有者。<br>但是<code>call</code>方法可以改变this上下文</p>
+<h2 id="Node的突出特点"><a href="#Node的突出特点" class="headerlink" title="Node的突出特点"></a>Node的突出特点</h2><p>NodeJS与一般的后台编译性语言有什么不同（WEB服务器）? </p>
+<ol>
+<li><p>NodeJS本身包含一个http服务器，不像asp.net程序需要一个IIS，或者java的程序需要一个apche</p>
+</li>
+<li><p>NodeJS是异步IO，事件驱动的;一般的程序调用都是执行一个命令之后，线程阻塞，一直等到命令成功之后，才会去执行下面的事情，但是NodeJS不一样，所有的IO，网络通信，磁盘操作都是由事件来控制的，Nodejs进程在同一时刻只会处理一个事件，完成后立即进入事件轮询并检查处理后面的事件。</p>
+</li>
+</ol>
+<h2 id="Node项目资源"><a href="#Node项目资源" class="headerlink" title="Node项目资源"></a>Node项目资源</h2><ol>
+<li>一个bt爬虫 <a href="https://github.com/dontcontactme/p2pspider/" target="_blank" rel="noopener">https://github.com/dontcontactme/p2pspider</a></li>
+</ol>
+<p><strong>【参考文献】</strong></p>
+<p>一个学习网站<a href="http://www.runoob.com/nodejs/nodejs-express-framework.html" target="_blank" rel="noopener">点这儿</a></p>
+<p><a href="http://www.nodeclass.com/articles/99682" target="_blank" rel="noopener">Orm2参考使用</a></p>
+<p><a href="http://docs.sequelizejs.com/en/latest/" target="_blank" rel="noopener">Sequelize github上start最多的orm</a> <a href="http://my.oschina.net/zj0303/blog/305384" target="_blank" rel="noopener">一个使用教程</a></p>
+<p><a href="http://cnodejs.org/topic/5231a630101e574521e45ef8" target="_blank" rel="noopener">包和模块管理</a></p>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-05-12-FragmentStatePagerAdapter和FragmentPagerAdapter" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/06/2016-05-12-FragmentStatePagerAdapter和FragmentPagerAdapter/">Android FragmentPagerAdapter和FragmentStatePagerAdapter</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/06/2016-05-12-FragmentStatePagerAdapter和FragmentPagerAdapter/" class="article-date">
+  <time datetime="2016-05-06T04:14:42.000Z" itemprop="datePublished">2016-05-06</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在公司查看别人的代码的时候发现个东西，在展示试题的是时候，他用的是<code>FragmentStatePagerAdapter</code>而如果是我的话，我就直接用<code>viewpager</code>+<code>PagerAdapter</code>,但是<code>FragmentStatePagerAdapter</code>是个什么鬼，我听过<code>FragmentPagerAdapter</code>可是没用过<code>FragmentStatePagerAdapter</code>啊，只怪自己学艺不精，既然人家用了就有用的道理。</p>
+<h1 id="文档说明"><a href="#文档说明" class="headerlink" title="文档说明"></a>文档说明</h1><p>跟踪源码来看一下FragmentPagerAdapter和FragmentStatePagerAdapter的API说明。我们先来看看FragmentPagerAdapter的API（直接翻译吧）：</p>
+<blockquote>
+<p>FragmentPagerAdapter继承自PagerAdapter ，主要用来展示多个Fragment页面，并且每一个Fragment都会被保存在fragment manager中。 FragmentPagerAdapter最适用于那种少量且相对静态的页面，例如几个tab页。每一个用户访问过的fragment都会被保存在内存中，尽管他的视图层级可能会在不可见时被销毁。这可能导致大量的内存因为fragment实例能够拥有任意数量的状态。对于较多的页面集合，更推荐使用FragmentStatePagerAdapter。 当使用FragmentPagerAdapter的时候对应的ViewPager必须拥有一个有效的ID集。 FragmentPagerAdapter的派生类只需要实现getItem(int)和getCount()即可。</p>
+</blockquote>
+<p>然后是<code>FragmentStatePagerAdapter</code>:</p>
+<blockquote>
+<p>FragmentStatePagerAdapter继承自PagerAdapter，主要使用Fragment来管理每个页面。这个类同样用来保存和恢复fragment页面的状态。 FragmentStatePagerAdapter更多用于大量页面，例如视图列表。当某个页面对用户不再可见时，他们的整个fragment就会被销毁，仅保留fragment状态。相比于FragmentPagerAdapter，这样做的好处是在访问各个页面时能节约大量的内存开销，但代价是在页面切换时会增加非常多的开销。 当使用FragmentPagerAdapter的时候对应的ViewPager必须拥有一个有效的ID集。 FragmentStatePagerAdapter的派生类只需要实现getItem(int)和getCount()即可。</p>
+</blockquote>
+<p>#直接上结论，然后是分析代码</p>
+<ul>
+<li><p>FragmentStatePagerAdapter<br>顾名思义，我们的这个FragmentStatePagerAdapter，在我们切换不同的Fragment的时候，我们会把前面的Fragment销毁，所谓的销毁就是走完Fragment的生命周期，调用<code>onDestroyView</code>,<code>onDestroy</code>,直到<code>onDetach</code>为止,而我们系统在销毁前，会把我们的我们Fragment的Bundle在我们的onSaveInstanceState(Bundle)保存下来。等用户切换回来的时候，我们的Fragment就会根据我们的instance state恢复出来。并且当切换回来的时候会调用这个Fragment的整个生命周期从<code>onAttach</code>方法开始。</p>
+</li>
+<li><p>FragmentPagerAdapter<br>使用这种Adapter，我们的Fragment在切换的时候，只会把我们的Fragment的view销毁，也就是说一个Fragment的生命周期只会调用到<code>onDestroyView</code>,变不会再往下执行，下一次再滑动viewpager回到上一个<code>Fragment</code>的时候,会从这个Fragment的<code>onCreateView</code>开始执行。</p>
+</li>
+</ul>
+<h1 id="代码验证"><a href="#代码验证" class="headerlink" title="代码验证"></a>代码验证</h1><h2 id="Fragment代码"><a href="#Fragment代码" class="headerlink" title="Fragment代码"></a>Fragment代码</h2><p>为了代码简洁Fragment的布局文件就不再给出，就是一个<code>RelativeLayout</code>包含一个<code>TextView</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">package me.fesky.test.fragment;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.support.annotation.Nullable;</span><br><span class="line">import android.support.v4.app.Fragment;</span><br><span class="line">import android.util.Log;</span><br><span class="line">import android.view.LayoutInflater;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.ViewGroup;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">import me.fesky.test.R;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by Administrator on 2016/5/12.</span><br><span class="line"> */</span><br><span class="line">public class MyFragment extends Fragment &#123;</span><br><span class="line"></span><br><span class="line">    int index;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onAttach(Context context) &#123;</span><br><span class="line">        super.onAttach(context);</span><br><span class="line">        Bundle bundle = getArguments();</span><br><span class="line">        index = bundle.getInt(&quot;index&quot;);</span><br><span class="line">        Log.i(&quot;Q_M:&quot;, &quot;onAttach&quot; + index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Nullable</span><br><span class="line">    @Override</span><br><span class="line">    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) &#123;</span><br><span class="line">        View view = inflater.inflate(R.layout.fragment, container, false);</span><br><span class="line">        TextView textView = (TextView) view.findViewById(R.id.text_view);</span><br><span class="line"></span><br><span class="line">        textView.setText(textView.getText()+&quot;&quot;+index);</span><br><span class="line"></span><br><span class="line">        Log.i(&quot;Q_M:&quot;, &quot;onCreateView&quot; + index);</span><br><span class="line">        return view;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDestroyView() &#123;</span><br><span class="line">        super.onDestroyView();</span><br><span class="line"></span><br><span class="line">        Log.i(&quot;Q_M:&quot;, &quot;onDestroyView&quot; + index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line"></span><br><span class="line">        Log.i(&quot;Q_M:&quot;, &quot;onDestroy&quot; + index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDetach() &#123;</span><br><span class="line">        super.onDetach();</span><br><span class="line">        Log.i(&quot;Q_M:&quot;, &quot;onDetach&quot; + index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Activity以及adapter代码"><a href="#Activity以及adapter代码" class="headerlink" title="Activity以及adapter代码"></a>Activity以及adapter代码</h2><p>为了代码简洁<code>Activity</code>的布局文件就不再给出，就是一个<code>RelativeLayout</code>包含一个<code>android.support.v4.view.ViewPager</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">package me.fesky.test;</span><br><span class="line"></span><br><span class="line">import android.support.v4.app.Fragment;</span><br><span class="line">import android.support.v4.app.FragmentManager;</span><br><span class="line">import android.support.v4.app.FragmentPagerAdapter;</span><br><span class="line">import android.support.v4.app.FragmentStatePagerAdapter;</span><br><span class="line">import android.support.v4.view.PagerAdapter;</span><br><span class="line">import android.support.v4.view.ViewPager;</span><br><span class="line">import android.support.v7.app.AppCompatActivity;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">import me.fesky.test.fragment.MyFragment;</span><br><span class="line"></span><br><span class="line">public class TestFragmentActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    ViewPager viewPager;</span><br><span class="line"></span><br><span class="line">    List&lt;Fragment&gt; fragments;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_test_fragment);</span><br><span class="line"></span><br><span class="line">        fragments = new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         * 创建四个Fragment</span><br><span class="line">         */</span><br><span class="line">        fragments.add(new MyFragment());</span><br><span class="line">        fragments.add(new MyFragment());</span><br><span class="line">        fragments.add(new MyFragment());</span><br><span class="line">        fragments.add(new MyFragment());</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         *用这种方式向Fragment传递参数</span><br><span class="line">         */</span><br><span class="line">        Bundle bundle1 = new Bundle();</span><br><span class="line">        bundle1.putInt(&quot;index&quot;,1);</span><br><span class="line">        fragments.get(0).setArguments(bundle1);</span><br><span class="line"></span><br><span class="line">        Bundle bundle2 = new Bundle();</span><br><span class="line">        bundle2.putInt(&quot;index&quot;,2);</span><br><span class="line">        fragments.get(1).setArguments(bundle2);</span><br><span class="line"></span><br><span class="line">        Bundle bundle3 = new Bundle();</span><br><span class="line">        bundle3.putInt(&quot;index&quot;,3);</span><br><span class="line">        fragments.get(2).setArguments(bundle3);</span><br><span class="line"></span><br><span class="line">        Bundle bundle4 = new Bundle();</span><br><span class="line">        bundle4.putInt(&quot;index&quot;,4);</span><br><span class="line">        fragments.get(3).setArguments(bundle4);</span><br><span class="line"></span><br><span class="line">        viewPager = (ViewPager) findViewById(R.id.view_pager);</span><br><span class="line">        PagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());</span><br><span class="line"></span><br><span class="line">        viewPager.setAdapter(pagerAdapter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 尝试切换继承的FragmentPagerAdapter和FragmentStatePagerAdapter</span><br><span class="line">     * 观察打印结果有什么不同</span><br><span class="line">     */</span><br><span class="line">    public  class MyFragmentPagerAdapter extends FragmentPagerAdapter &#123;</span><br><span class="line"></span><br><span class="line">        public MyFragmentPagerAdapter(FragmentManager fm) &#123;</span><br><span class="line">            super(fm);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public Fragment getItem(int position) &#123;</span><br><span class="line">            return fragments.get(position);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public int getCount() &#123;</span><br><span class="line">            return fragments.size();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<font colot="red"> 注意上面所说的销毁都是建立在ViewPager缓存逻辑之上的并不是划过去就会销毁的。不了解的可以看下ViewPager的销毁机制</font>
+</blockquote>
+<p>运行上面的测试代码，可以看到，当adapter是<code>FragmentPagerAdapter</code>打印结果如下：</p>
+<p>ViewPager向后滑动结果如下：</p>
+<blockquote>
+<p>05-12 16:24:53.370 11366-11366/me.fesky.test I/Q_M:: onAttach1<br>05-12 16:24:53.380 11366-11366/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:24:53.380 11366-11366/me.fesky.test I/Q_M:: onAttach2<br>05-12 16:24:53.380 11366-11366/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:25:36.260 11366-11366/me.fesky.test I/Q_M:: onAttach3<br>05-12 16:25:36.270 11366-11366/me.fesky.test I/Q_M:: onCreateView3<br>05-12 16:25:39.980 11366-11366/me.fesky.test I/Q_M:: onDestroyView1<br>05-12 16:25:39.980 11366-11366/me.fesky.test I/Q_M:: onAttach4<br>05-12 16:25:39.980 11366-11366/me.fesky.test I/Q_M:: onCreateView4<br>05-12 16:25:44.760 11366-11366/me.fesky.test I/Q_M:: onDestroyView2</p>
+</blockquote>
+<p>ViewPager向前滑动结果如下：</p>
+<blockquote>
+<p>05-12 16:26:17.220 11366-11366/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:26:18.720 11366-11366/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:26:18.720 11366-11366/me.fesky.test I/Q_M:: onDestroyView4<br>05-12 16:26:27.450 11366-11366/me.fesky.test I/Q_M:: onDestroyView3</p>
+</blockquote>
+<p>当adapter是<code>FragmentStatePagerAdapter</code>打印结果如下：</p>
+<p>ViewPager向后(也就是向下一页滑动)滑动结果如下：</p>
+<blockquote>
+<p>05-12 16:53:36.940 3043-3043/me.fesky.test I/Q_M:: onAttach1<br>05-12 16:53:36.950 3043-3043/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:53:36.950 3043-3043/me.fesky.test I/Q_M:: onAttach2<br>05-12 16:53:36.950 3043-3043/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:53:44.500 3043-3043/me.fesky.test I/Q_M:: onAttach3<br>05-12 16:53:44.500 3043-3043/me.fesky.test I/Q_M:: onCreateView3<br>05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onDestroyView1<br>05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onDestroy1<br>05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onDetach1<br>05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onAttach4<br>05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onCreateView4</p>
+</blockquote>
+<p>ViewPager向前滑动结果如下：</p>
+<blockquote>
+<p>05-12 16:55:31.350 3043-3043/me.fesky.test I/Q_M:: onAttach2<br>05-12 16:55:31.360 3043-3043/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroyView4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroy4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDetach4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onAttach1<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroyView3<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroy3<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDetach3</p>
+</blockquote>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-05-06-Android打包过程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/06/2016-05-06-Android打包过程/">Android 打包过程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/06/2016-05-06-Android打包过程/" class="article-date">
+  <time datetime="2016-05-06T04:14:42.000Z" itemprop="datePublished">2016-05-06</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android-打包过程"><a href="#Android-打包过程" class="headerlink" title="Android 打包过程"></a>Android 打包过程</h1><p>第一步：打包资源文件，生成R.java文件<br>【输入】Resource文件（就是工程中res中的文件）、Assets文件（相当于另外一种资源，这种资源Android系统并不像对res中的文件那样优化它）、AndroidManifest.xml文件（包名就是从这里读取的，因为生成R.java文件需要包名）、Android基础类库（Android.jar文件）<br>【输出】打包好的资源（一般在Android工程的bin目录可以看到一个叫resources.ap_的文件就是它了）、R.java文件（在gen目录中，大家应该很熟悉了）<br>【工具】aapt工具，它的路径在${ANDROID_SDK_HOME}/platform-tools/aapt（如果你使用的是Windows系统，按惯例路径应该这样写：%ANDROID_SDK_HOME%\platform-tools\aapt.exe，下同）。</p>
+<p>第二步：处理AIDL文件，生成对应的.java文件（当然，有很多工程没有用到AIDL，那这个过程就可以省了）<br>【输入】源码文件、aidl文件、framework.aidl文件<br>【输出】对应的.java文件<br>【工具】aidl工具</p>
+<p>第三步：编译Java文件，生成对应的.class文件<br>【输入】源码文件（包括R.java和AIDL生成的.java文件）、库文件（.jar文件）<br>【输出】.class文件<br>【工具】javac工具</p>
+<p>第四步：把.class文件转化成Davik VM支持的.dex文件<br>【输入】 .class文件（包括Aidl生成.class文件，R生成的.class文件，源文件生成的.class文件），库文件（.jar文件）<br>【输出】.dex文件<br>【工具】javac工具</p>
+<p>第五步：打包生成未签名的.apk文件<br>【输入】打包后的资源文件、打包后类文件（.dex文件）、libs文件（包括.so文件，当然很多工程都没有这样的文件，如果你不使用C/C++开发的话）<br>【输出】未签名的.apk文件<br>【工具】apkbuilder工具</p>
+<p>第六步：对未签名.apk文件进行签名<br>【输入】未签名的.apk文件<br>【输出】签名的.apk文件<br>【工具】jarsigner</p>
+<p>第七步：对签名后的.apk文件进行对齐处理（不进行对齐处理是不能发布到Google Market的）<br>【输入】签名后的.apk文件<br>【输出】对齐后的.apk文件<br>【工具】zipalign工具</p>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-05-04-Java泛型" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/04/2016-05-04-Java泛型/">泛型（Generics）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/04/2016-05-04-Java泛型/" class="article-date">
+  <time datetime="2016-05-04T04:14:42.000Z" itemprop="datePublished">2016-05-04</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>泛型是提供给Javac编译器使用的。可以限定集合中输入的类型，让编译器挡住原始程序的非法输入，编译器编译带类型说明的集合时会去掉“类型”信息，使程序运行效率不受影响，对于参数化的泛型类型。</p>
+<h1 id="泛型中用到的术语"><a href="#泛型中用到的术语" class="headerlink" title="泛型中用到的术语"></a>泛型中用到的术语</h1><p><code>ArrayList&lt;E&gt;</code>类定义和<code>ArrayList&lt;Integer&gt;</code>类引用中涉及如下术语：整个称为ArrayList<e>泛型类型，ArrayList<e>中的E称为<strong><code>类型变量</code></strong>或<code>类型参数</code>，整个ArrayList<integer>称为<code>参数化的类型</code>，ArrayList<integer>中的Integer称为<code>类型参数的实例</code>或实际类型参数，ArrayList称为原始类型。</integer></integer></e></e></p>
+<h1 id="类型擦除"><a href="#类型擦除" class="headerlink" title="类型擦除"></a>类型擦除</h1><p>　　由于Java泛型的实现机制，使用了泛型的代码在运行期间相关的泛型参数的类型会被擦除，我们无法在运行期间获知泛型参数的具体类型（所有的泛型类型在运行时都是Object类型）。</p>
+<p>　　正确理解泛型概念的首要前提是理解类型擦除（type erasure）。 Java中的泛型基本上都是在编译器这个层次来实现的。属于编译器执行类型检查和类型诊断，然后生成普通的非泛型的字节码，也就是在生成的Java字节代码中是不包含泛型中的类型信息的，使用泛型的时候加上的类型参数，会被编译器在编译的时候去掉。这种实现技术称为类型擦除。如在代码中定义的List<object>和List<string>等类型，在编译之后都会变成List。JVM看到的只是List，而由泛型附加的类型信息对JVM来说是不可见的。Java编译器会在编译时尽可能的发现可能出错的地方，但是仍然无法避免在运行时刻出现类型转换异常的情况。</string></object></p>
+<p>很多泛型的奇怪特性都与这个类型擦除的存在有关，包括：</p>
+<ul>
+<li>泛型类并没有自己独有的Class类对象。比如并不存在List<string>.class或是List<integer>.class，而只有List.class；</integer></string></li>
+<li>静态变量是被泛型类的所有实例所共享的。对于声明为MyClass<t>的类，访问其中的静态变量的方法仍然是 MyClass.myStaticVar。不管是通过new MyClass<string>还是new MyClass<integer>创建的对象，都是共享一个静态变量。</integer></string></t></li>
+<li>泛型的类型参数不能用在Java异常处理的catch语句中。因为异常处理是由JVM在运行时刻来进行的。由于类型信息被擦除，JVM是无法区分两个异常类型MyException<string>和MyException<integer>的。对于JVM来说，它们都是MyException类型的。也就无法执行与异常对应的catch语句。</integer></string></li>
+</ul>
+<h1 id="通配符与上下界"><a href="#通配符与上下界" class="headerlink" title="通配符与上下界"></a>通配符与上下界</h1><ul>
+<li>泛型参数可以使用通配符，通配符所表示的类型是未知的。</li>
+<li>List&lt;?&gt;所声明的就是所有类型都是可以的。</li>
+<li>但是List&lt;?&gt;并不等同于List<object>。</object></li>
+<li>List&lt;? extends Number&gt;说明List中可能包含的元素类型是Number及其子类。</li>
+<li>而List&lt;? super Number&gt;则说明List中包含的是Number及其父类。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inspect</span><span class="params">(List&lt;Object&gt; list)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Object obj : list) &#123;</span><br><span class="line">        System.out.println(obj);</span><br><span class="line">    &#125;</span><br><span class="line">    list.add(<span class="number">1</span>); <span class="comment">//这个操作在当前方法的上下文是合法的。 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; strs = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    inspect(strs); <span class="comment">//编译错误 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="重新学习泛型的原因"><a href="#重新学习泛型的原因" class="headerlink" title="重新学习泛型的原因"></a>重新学习泛型的原因</h1><p>在使用Gson的时候，看源码遇到了瓶颈。在Gson中我们需要将使用了泛型的Java代码序列化或者反序列化的时候，我们确实需要获知泛型参数的类型，这个时候问题就变得比较棘手。</p>
+<p>而在Gson中用来TypeToken这个帮助类来获取泛型的具体类型。这个类的核心关键思想是<code>Class</code>对象中<code>getGenericSuperclass()</code>这个方法的使用。这个方法是干嘛的，从字面意思看是获取含有泛型的父类类型。什么玩意？哦，意思是说，如果某个类的父类含有泛型，那么它可以获取父类的字节码对象，也就是Class对象，但是呢这个方法和<code>getSuperclass（）</code>的区别是，他还能获取到父类中的泛型参数的字节码对象。而Gson中TypeToken的用法就是利用了这个设计思想，看我们每次用TypeToken都是这么用的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Type type = new TypeToken&lt;List&lt;String&gt;&gt;()&#123;&#125;.getType();</span><br><span class="line">List&lt;String&gt; list = gson.fromJson(jsonStr, type);</span><br></pre></td></tr></table></figure>
+<p>代码中的<code>new TypeToken&lt;List&lt;String&gt;&gt;(){}</code>就是创建了一个TypeToke的匿名子类对象。所以从这个对象中可以拿到父类（TypeToken）中的泛型参数（<code>List&lt;String&gt;</code>）的具体类型。</p>
+<p>当然我们可以模仿写一个试试：</p>
+<p>首先建立一个获取类型的帮助类，类似TypeToken</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> me.febsky;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by Administrator on 2016/5/4.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    Class&lt;T&gt; type;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.type = (Class&lt;T&gt;) getClass();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后看我们的测试类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package me.febsky;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.ParameterizedType;</span><br><span class="line">import java.lang.reflect.Type;</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Foo&lt;String&gt; foo = new Foo&lt;String&gt;()&#123;&#125;;</span><br><span class="line">        Type mySuperClass = foo.getClass().getGenericSuperclass();</span><br><span class="line">        Type type = ((ParameterizedType)mySuperClass).getActualTypeArguments()[0];</span><br><span class="line">        System.out.println(type);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从测试类中我成功拿到泛型类中的泛型参数的具体类型。</p>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2016-04-26-Gradle的简介和使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/26/2016-04-26-Gradle的简介和使用/">Gradle 简介和使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/04/26/2016-04-26-Gradle的简介和使用/" class="article-date">
+  <time datetime="2016-04-26T04:14:42.000Z" itemprop="datePublished">2016-04-26</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Gradle是个什么东西，从哪里入手学习，都知道在Android Studio中用到了Gradle配置，那么他和Android 以及AndroidStudio的关系是啥？他和Java的关系又是啥，他脱离AndroidStudio是否能够运行？</p>
+<blockquote>
+<p>看了官方的英文文档后发现社区竟然有热心的开发者翻译了一份中文的oh shit ~ <a href="https://github.com/DONGChuan/GradleUserGuide" target="_blank" rel="noopener">链接地址</a>  <a href="https://docs.gradle.org/current/release-notes" target="_blank" rel="noopener">官网文档</a>最近两年Gradle更新相当频繁，注意更新版本。</p>
+</blockquote>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Gradle 是一个基于JVM的构建工具。使用Groovy这种脚步语言，主要提供以下功能：</p>
+<ul>
+<li>一个像 Ant 一样的灵活的构建工具</li>
+<li>一种可切换的, 像 maven 一样的基于合约构建的框架</li>
+<li>支持强大的多工程构建</li>
+<li>支持强大的依赖管理(基于 ApacheIvy )</li>
+<li>支持已有的 maven 和 ivy 仓库</li>
+<li>支持传递性依赖管理, 而不需要远程仓库或者 pom.xml 或者 ivy 配置文件</li>
+<li>优先支持 Ant 式的任务和构建</li>
+<li>基于 groovy 的构建脚本</li>
+<li>有丰富的领域模型来描述你的构建</li>
+</ul>
+<h1 id="为啥使用Groovy这种脚步语言"><a href="#为啥使用Groovy这种脚步语言" class="headerlink" title="为啥使用Groovy这种脚步语言"></a>为啥使用Groovy这种脚步语言</h1><p>我们认为在脚本构建时，内部基于 XML 的 DSL（基于一个动态语言）优势是巨大的. 有许多动态语言在那里, 我们为什么选择 Groovy? 答案在于 Gradle 的运行环境. 虽然 Gradle 是以一个多用途的构建工具为核心，它的重点是Java项目. 在这样的项目中, 显然团队每个成员都了解 Java. 我们认为构建应尽可能对所有团队成员都是透明的, 所以选择了 Groovy.</p>
+<p>你可能会说，为什么不直接使用 Java 作为构建脚本的语言. 我们认为这是一个有效性的问题. 对于你的团队, 它要有最高的透明度和最低的学习曲线, 也就是说容易掌握. 但由于 Java 的限制, 这样的构建语言不会那么完美和强大. 如 Python，Groovy 或 Ruby 语言都可以有更高的效率. 我们选择了 Groovy 是因为它给 Java 开发人员提供了迄今为止最大的透明度. 其基本的符号和类型与 Java 是一样的，其封装结构和许多其他的地方也是如此.</p>
+<p>对于那些同样分享 Python 或 Ruby 知识的 Java 团队将会很乐意学习它. Gradle 的设计非常适合在 JRuby 和 Jython 中创建另一个构建脚本引擎. 它只是目前开发的优先级里. 我们十分支持任何人来做贡献, 创建额外的构建脚本引擎.</p>
+<h1 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h1><p>在编程方面要想快速了解一个东西，就是用一下，也就是写个Hello world!</p>
+<ul>
+<li>Gradle 需要运行在一个 Java 环境里<ul>
+<li>安装一个 Java JDK 或者 JRE. 而且 Java 版本必须至少是 6 以上.</li>
+<li>Gradle 自带 Groovy 库, 所以没必要安装 Groovy. 任何已经安装的 Groovy 会被 Gradle 忽略.</li>
+<li>去Gradle官网下载一个Gradle的版本<a href="http://www.gradle.org/downloads" target="_blank" rel="noopener">点我下载</a>，选择个比较新的解压就行。（网速可能比较慢,必要时可以选择科学上网）</li>
+<li>解压后设置环境变量（windows和Linux和Mac的不太一样），就是把解压后的bin目录设置到环境变量中。（和jdk的一样）</li>
+<li>然后在命令行中运行<code>gradle -v</code>来检测你的Gradle是否安装成功。</li>
+<li>设置JVM选项（略）</li>
+</ul>
+</li>
+</ul>
+<h1 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h1><p>安也安了，命令行也配置好了，那么就开始在命令行下用唄~其实用过git的同学（首先你得习惯用git的命令行模式而不是图形化界面）可以类比下git的使用方式。</p>
+<p>首先要理解Gradle中的几个专业术语。</p>
+<ul>
+<li><strong>projects ( 项目 )</strong>：每一个构建都是由一个或多个 projects 构成的. 一个 project 到底代表什么依赖于你想用 Gradle 做什么. 举个例子, 一个 project 可以代表一个 JAR 或者一个网页应用. 它也可能代表一个发布的 ZIP 压缩包, 这个 ZIP 可能是由许多其他项目的 JARs 构成的. 但是一个 project 不一定非要代表被构建的某个东西. 它可以代表一件**要做的事, 比如部署你的应用.</li>
+<li><strong>tasks ( 任务 )</strong>：每一个 project 是由一个或多个 tasks 构成的. 一个 task 代表一些更加细化的构建. 可能是编译一些 classes, 创建一个 JAR, 生成 javadoc, 或者生成某个目录的压缩文件.</li>
+</ul>
+<p>其实以上的官方解释可以忽略，毛线都读不明白~~~</p>
+<h1 id="Project对象和build-gradle"><a href="#Project对象和build-gradle" class="headerlink" title="Project对象和build.gradle"></a>Project对象和build.gradle</h1><p>为了不深究Gradle的实现原理（就是去读源代码），又要让大家觉得有据可依。我通过引用官方文档的一些描述来帮助大家理解Project对象。</p>
+<p>For each project in the build, Gradle creates an object of type Project and associates this Project object with the build script. (Chapter 13. Writing Build Scripts)<br>构建中的每一个project，Gradle都会创建一个Project对象，并将这个对象与构建脚本相关联。</p>
+<p>There is a one-to-one relationship between a Project and a “build.gradle” file. (Interface Project API)<br>Project对象与build.gradle是一对一的关系。</p>
+<p>First, Gradle scripts are configuration scripts. As the script executes, it configures an object of a particular type. For example, as a build script executes, it configures an object of type Project. This object is called the delegate object of the script. (Gradle Build Language Reference)<br>Gradle的脚本是配置脚本，当脚本执行时，它是在配置某一个特殊类型的对象。比如一个构建脚本的执行，它就是在配置一个Project类型的对象。这个对象叫做脚本的代理对象。</p>
+<p>读完这三句话，应该可以清楚的明白build.gradle的本质，简单的说，build.gradle是对一个Project对象的配置。</p>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>gradle 命令会在当前目录中查找一个叫 build.gradle 的文件. 我们称这个 build.gradle 文件为一个<strong>构建脚本 (build script)</strong>, 但是严格来说它是一个构建配置脚本 (build configuration script). 这个脚本定义了一个 <code>project</code> 和它的 <code>tasks</code>.</p>
+<p>你可以通过 gradle 命令运行一个 Gradle 构建.</p>
+<p>让我们来先看一个例子, 创建一个名为build.gradle的构建脚本.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">task hello &#123;</span><br><span class="line">    doLast &#123;</span><br><span class="line">        println <span class="string">'Hello world!'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在命令行里, 进入脚本所在的文件夹然后输入 <code>gradle -q hello</code> 来执行构建脚本.命令里加入 -q. 代表 quite 模式. 它不会生成 Gradle 的日志信息 (log messages).</p>
+<p>这里发生了什么? 这个构建脚本定义了一个独立的 task, 叫做 hello, 并且加入了一个 action. 当你运行 gradle hello, Gradle 执行叫做 hello 的 task, 也就是执行了你所提供的 action. 这个 action 是一个包含了一些 Groovy 代码的闭包(closure 这个概念不清楚的同学好好谷歌下).</p>
+<p>Gradle 不仅仅是想XML一样的配置文件，他是个脚本，是可以写代码的，更多操作请查看官方文档。</p>
+<h1 id="Java插件"><a href="#Java插件" class="headerlink" title="Java插件"></a>Java插件</h1><p> Gradle 是一种多用途的构建工具. 它可以在你的构建脚本里构建任何你想要实现的东西. 但前提是你必须先在构建脚本里加入代码, 不然它什么都不会执行.</p>
+<p>大都数 Java 项目是非常相像的: 你需要编译你的 Java 源文件, 运行一些单元测试, 同时创建一个包含你类文件的 JAR. 如果你可以不需要为每一个项目重复编写这些, 我想你会非常乐意的.</p>
+<p>幸运的是, 你现在不再需要做这些重复劳动了. Gradle 通过使用插件解决了这个问题. 插件是 Gradle 的扩展, 它会通过某种方式配置你的项目, 典型的有加入一些预配置任务. Gradle 自带了许多插件, 你也可以很简单地编写自己的插件并和其他开发者分享它. Java 插件就是一个这样的插件. 这个插件在你的项目里加入了许多任务， 这些任务会编译和单元测试你的源文件, 并且把它们都集成一个 JAR 文件里.</p>
+<p>Java 插件是基于合约的（<strong>约定优于配置</strong>）. 这意味着插件已经给项目的许多方面定义了默认的参数, 比如 Java 源文件的位置. 如果你在项目里遵从这些合约, 你通常不需要在你的构建脚本里加入太多东西. 如果你不想要或者是你不能遵循合约, Gradle 也允许你自己定制你的项目. 事实上, 因为对 Java 项目的支持是通过插件实现的, 如果你不想要的话, 你一点也不需要使用这个插件来构建你的项目.</p>
+<h1 id="gradle-和-groovy的关系"><a href="#gradle-和-groovy的关系" class="headerlink" title="gradle 和 groovy的关系"></a>gradle 和 groovy的关系</h1><p>那么好好的groovy怎么就变成gradle那样了呢？<br>原因就是，Gradle大量地使用了Groovy闭包的delegate（委托）机制。简单来说，delegate机制可以使我们将一个闭包中的执行代码的作用对象设置成任意其他对象。</p>
+<p><strong>参考文章</strong></p>
+<p><a href="http://benweizhu.github.io/blog/2015/03/31/deep-into-gradle-in-action-6/" target="_blank" rel="noopener">Gradle深入与实战（六）Gradle的背后是什么？</a></p>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2014-12-23-获取表和字段的元数据的方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/24/2014-12-23-获取表和字段的元数据的方法/">获取表和字段的元数据的方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/04/24/2014-12-23-获取表和字段的元数据的方法/" class="article-date">
+  <time datetime="2016-04-24T10:36:24.000Z" itemprop="datePublished">2016-04-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/postgres/">postgres</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2>外键关系查询语句</h2>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tc. CONSTRAINT_NAME,</span><br><span class="line">	tc. TABLE_NAME,</span><br><span class="line">	kcu. COLUMN_NAME,</span><br><span class="line">	ccu. TABLE_NAME <span class="keyword">AS</span> foreign_table_name,</span><br><span class="line">	ccu. COLUMN_NAME <span class="keyword">AS</span> foreign_column_name,</span><br><span class="line">	tc.is_deferrable,</span><br><span class="line">	tc.initially_deferred</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema.table_constraints <span class="keyword">AS</span> tc</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.key_column_usage <span class="keyword">AS</span> kcu <span class="keyword">ON</span> tc. CONSTRAINT_NAME = kcu. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.constraint_column_usage <span class="keyword">AS</span> ccu <span class="keyword">ON</span> ccu. CONSTRAINT_NAME = tc. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	constraint_type = <span class="string">'FOREIGN KEY'</span></span><br><span class="line"><span class="keyword">AND</span> tc. TABLE_NAME = <span class="string">'dimention_goods'</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="http://itroadmap.sinaapp.com/2014/12/23/postgres-%E8%8E%B7%E5%8F%96%E8%A1%A8%E5%92%8C%E5%AD%97%E6%AE%B5%E7%9A%84%E5%85%83%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener"><em><del>不知道如何防止被流氓网站爬取</del></em></a></p>
+<h2>字段详细信息查询语句</h2>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	col.table_schema,</span><br><span class="line">	col. TABLE_NAME,</span><br><span class="line">	col.ordinal_position,</span><br><span class="line">	col. COLUMN_NAME,</span><br><span class="line">	col.data_type,</span><br><span class="line">	col.character_maximum_length,</span><br><span class="line">	col.numeric_precision,</span><br><span class="line">	col.numeric_scale,</span><br><span class="line">	col.is_nullable,</span><br><span class="line">	col.column_default,</span><br><span class="line">	des.description</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema. <span class="keyword">COLUMNS</span> <span class="keyword">col</span></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> pg_description des <span class="keyword">ON</span> col. TABLE_NAME :: regclass = des.objoid</span><br><span class="line"><span class="keyword">AND</span> col.ordinal_position = des.objsubid</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	table_schema = <span class="string">'XXXX'</span></span><br><span class="line"><span class="keyword">AND</span> TABLE_NAME = <span class="string">'XXXX'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	ordinal_position;</span><br></pre></td></tr></table></figure>
+<h2>获取所有的表名</h2>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tablename</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	pg_tables</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	tablename <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'pg%'</span></span><br><span class="line"><span class="keyword">AND</span> tablename <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'sql_%'</span></span><br></pre></td></tr></table></figure>
+<h2>##mysql中对入插入的触发器</h2>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DELIMITER $$</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span></span><br><span class="line">    <span class="comment">/*[DEFINER = &#123; user | CURRENT_USER &#125;]*/</span></span><br><span class="line">    <span class="keyword">TRIGGER</span> <span class="string">`clinkworld_metadata`</span>.<span class="string">`add_tid_fields_relation`</span> <span class="keyword">BEFORE</span> <span class="keyword">INSERT</span></span><br><span class="line">    <span class="keyword">ON</span> <span class="string">`clinkworld_metadata`</span>.<span class="string">`fields_relation`</span></span><br><span class="line">    <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> t_id <span class="keyword">INTO</span> @f1_tid_var <span class="keyword">FROM</span> fields_info <span class="keyword">WHERE</span> <span class="keyword">id</span>=NEW.f1_id;</span><br><span class="line"><span class="keyword">SELECT</span> t_id <span class="keyword">INTO</span> @f2_tid_var <span class="keyword">FROM</span> fields_info <span class="keyword">WHERE</span> <span class="keyword">id</span>=NEW.f2_id;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> NEW.f1_tid=@f1_tid_var;</span><br><span class="line"><span class="keyword">SET</span> NEW.f2_tid=@f2_tid_var;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">END</span>$$</span><br><span class="line"></span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
+<h2>主键列信息获取</h2>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tc. CONSTRAINT_NAME,</span><br><span class="line">	ccu. TABLE_NAME <span class="keyword">AS</span> primary_table_name,</span><br><span class="line">	ccu. COLUMN_NAME <span class="keyword">AS</span> primary_column_name</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema.table_constraints <span class="keyword">AS</span> tc</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.key_column_usage <span class="keyword">AS</span> kcu <span class="keyword">ON</span> tc. CONSTRAINT_NAME = kcu. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.constraint_column_usage <span class="keyword">AS</span> ccu <span class="keyword">ON</span> ccu. CONSTRAINT_NAME = tc. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	constraint_type = <span class="string">'PRIMARY KEY'</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

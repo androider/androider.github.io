@@ -1,24 +1,183 @@
-extends partial/layout
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android Binder及其周边知识梳理 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IPC-概述与Android中的进程 IPC - Binder还要从Service说起 IPC -AIDL  AIDL(Android Interface Definition Language) IPC- BinderJava层代码分析 IPC- ServiceManger IPC-ActivityThread,ApplicationThread IPC-ActivityManger IPC-">
+<meta name="keywords" content="Android,IPC,Binder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Binder及其周边知识梳理">
+<meta property="og:url" content="http://febsky.me/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="IPC-概述与Android中的进程 IPC - Binder还要从Service说起 IPC -AIDL  AIDL(Android Interface Definition Language) IPC- BinderJava层代码分析 IPC- ServiceManger IPC-ActivityThread,ApplicationThread IPC-ActivityManger IPC-">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-07-31T07:56:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Binder及其周边知识梳理">
+<meta name="twitter:description" content="IPC-概述与Android中的进程 IPC - Binder还要从Service说起 IPC -AIDL  AIDL(Android Interface Definition Language) IPC- BinderJava层代码分析 IPC- ServiceManger IPC-ActivityThread,ApplicationThread IPC-ActivityManger IPC-">
+  
+    <link rel="alternative" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block site_title
-    != page.title + " · " + config.title
+</head>
 
-block description
-    - desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-2017-05-18-Android Binder及其周边知识梳理 " class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android Binder及其周边知识梳理
+    </h1>
+  
 
-block container
-    include mixins/post
-    +post()
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /" class="article-date">
+  <time datetime="2017-05-18T06:46:31.000Z" itemprop="datePublished">2017-05-18</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a> <a class="article-category-link" href="/categories/Android/IPC/">IPC</a>
+  </div>
 
-block tags
-    include mixins/tags
-    +tags()
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><a href="http://www.jianshu.com/p/e23d2a8b6f0d" target="_blank" rel="noopener">IPC-概述与Android中的进程</a></li>
+<li>IPC - Binder还要从Service说起</li>
+<li>IPC -AIDL  AIDL(Android Interface Definition Language)</li>
+<li>IPC- BinderJava层代码分析</li>
+<li>IPC- ServiceManger</li>
+<li>IPC-ActivityThread,ApplicationThread</li>
+<li>IPC-ActivityManger</li>
+<li>IPC- Activity启动过程</li>
+<li>代理模式</li>
+<li>ClassLoader </li>
+<li>Binder Hook</li>
+</ol>
 
-block pagination
-    include mixins/paginator
-    +post()
+      
 
-block comment
-    include mixins/comment
-    +comment()
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          IPC-Android中的进程与进程间通信
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Mac下Android源码（AOSP）编译环境搭建方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /" data-title="Android Binder及其周边知识梳理" data-url="http://febsky.me/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'febsky'};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/niyingxunzong/" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="javascript:void(0)"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2018 QX 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/niyingxunzong/" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
