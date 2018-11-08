@@ -15,13 +15,13 @@
 <meta property="og:site_name" content="凉凉小线仔">
 <meta property="og:description" content="#1、图片资源格式错误 错误Log： AAPT err(Facade for 205525644) : No Delegate set : lost message:libpng error: Not a PNG file  截图展示：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/04/09/09-eclipse%E5%AF%BC%E5%85%A5AS%E9%94%99%E8%AF%AF1.png">
+<meta property="og:image" content="http://febsky.me/images/2016/04/09/2016-04-09-eclipse导入AS错误1.png">
 <meta property="og:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/04/09/09-AndroidStudio%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F%E6%9F%A5%E7%9C%8B.png">
-<meta property="og:updated_time" content="2016-04-16T02:47:01.000Z">
+<meta property="og:updated_time" content="2018-11-08T06:39:09.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Eclipse中的Android项目导入AndroidStudio中的错误">
 <meta name="twitter:description" content="#1、图片资源格式错误 错误Log： AAPT err(Facade for 205525644) : No Delegate set : lost message:libpng error: Not a PNG file  截图展示：">
-<meta name="twitter:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/04/09/09-eclipse%E5%AF%BC%E5%85%A5AS%E9%94%99%E8%AF%AF1.png">
+<meta name="twitter:image" content="http://febsky.me/images/2016/04/09/2016-04-09-eclipse导入AS错误1.png">
   
     <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
   
@@ -102,7 +102,7 @@
 <p><strong>错误Log：</strong></p>
 <font color="red"><code>AAPT err(Facade for 205525644) : No Delegate set : lost message:libpng error: Not a PNG file</code></font>
 
-<p><strong>截图展示：</strong><br><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/04/09/09-eclipse%E5%AF%BC%E5%85%A5AS%E9%94%99%E8%AF%AF1.png" alt=""></p>
+<p><strong>截图展示：</strong><br><img src="/images/2016/04/09/2016-04-09-eclipse导入AS错误1.png" alt=""></p>
 <a id="more"></a>
 <p><strong>引发原因：</strong><br>这个引发的原因主要是没有通过正规的途径修改图片的格式，比如原来的有张图片名字为<code>icon.jpg</code>,而你没有用图片编辑器，直接修改了图片的后缀名，改为了<code>icon.png</code>,虽然图片能正常打开，但是AndroidStudio对图片资源文件的检查比较严格。一般引起的原因要么是自己作死，自己改了后缀名;另一种是你盗用别人的资源文件，反编译的时候图片文件出错（一般发生在<code>.9</code>图片）</p>
 <p><strong>解决方案：</strong>有时候Log中会标出是哪张图片出了问题，这种比较好解决，直接找到这个图片，然后进行修改或者重新做一张图就好了。还有一种就是像我这个一样的错误，没有标出到底是哪个图片出错了。这时候比较麻烦了，项目是自己的还好，你可以大体猜测一下这个项目的哪些图片可能出错。如果不是自己的只能逐个排查。</p>

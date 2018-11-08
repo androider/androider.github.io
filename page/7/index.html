@@ -220,10 +220,8 @@
 <li>线程的交互包括<strong><code>互斥</code></strong>和<strong><code>同步</code></strong></li>
 </ol>
 <h1 id="2、线程详解"><a href="#2、线程详解" class="headerlink" title="2、线程详解"></a>2、线程详解</h1><hr>
-<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/08/Thread%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png" alt="线程中常用的方法"></p>
-<blockquote>
-<p>历史是人民群众创造的但是英雄人物可以推动历史的发展</p>
-</blockquote>
+<p><img src="/images/2016/03/2016-03-08-Thread-Methods.png" alt="线程中常用的方法"></p>
+<p><strong>历史是人民群众创造的但是英雄人物可以推动历史的发展</strong></p>
 <p>和线程相关的两个类：  </p>
 <ul>
 <li>实现<code>Runnable</code>接口  </li>
@@ -231,16 +229,23 @@
 </ul>
 <p>举个栗子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class ThreadTesterA implements Runnable &#123;</span><br><span class="line"> </span><br><span class="line">    private int counter;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        while (counter &lt;= 10) &#123;</span><br><span class="line">            System.out.print(&quot;Counter = &quot; + counter + &quot; &quot;);</span><br><span class="line">            counter++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ThreadTesterB implements Runnable &#123;</span><br><span class="line"> </span><br><span class="line">    private int i;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        while (i &lt;= 10) &#123;</span><br><span class="line">            System.out.print(&quot;i = &quot; + i + &quot; &quot;);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public class ThreadTester &#123;</span><br><span class="line">    public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">        Thread t1 = new Thread(new ThreadTesterA());</span><br><span class="line">        Thread t2 = new Thread(new ThreadTesterB());</span><br><span class="line">        t1.start();</span><br><span class="line">        t1.join(); // wait t1 to be finished</span><br><span class="line">        t2.start();</span><br><span class="line">        t2.join(); // in this program, this may be removed</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<font color="red">Runnable的方式</font>可以避免Thread方式由于Java但继承特性带来的缺陷；并且<code>Runnable</code>的代码可以被多个线程（Thread实例共享），适合于多个线程处理同一资源的情况。<br><br><br># 3、如何正确停止线程<br><br>1. <del>thread.stop()</del> 这个方法是jdk1.1引入的，但是它会使线程戛然而止。已经废弃。<br>2. thread.interrupt();条件受限，不一定管用<br>3. 正确的方式是使用停止标志 flag：<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//军队线程</span></span><br><span class="line"><span class="comment">//模拟作战双方的行为</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//volatile保证了线程可以正确的读取其他线程写入的值</span></span><br><span class="line">	<span class="comment">//可见性 ref JMM， happens-before原则</span></span><br><span class="line">	<span class="keyword">volatile</span> <span class="keyword">boolean</span> keepRunning = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(keepRunning)&#123;</span><br><span class="line">				System.out.println(Thread.currentThread().getName());</span><br><span class="line">				<span class="comment">//让出了处理器时间，重新抢占资源</span></span><br><span class="line">				Thread.yield();</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+<span class="string">"结束了战斗！"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br># 4、<strong>关于中断的一点点小补充：</strong><br><br>如果该线程处在可中断状态下，（调用了xx.wait()，或者Selector.select(),Thread.sleep()等特定会发生阻塞的api），那么该线程会立即被唤醒，同时会受到一个InterruptedException，同时，如果是阻塞在io上，对应的资源会被关闭。如果该线程接下来不执行“Thread.interrupted()方法（不是interrupt），那么该线程处理任何io资源的时候，都会导致这些资源关闭。当然，解决的办法就是调用一下interrupted()，不过这里需要程序员自行根据代码的逻辑来设定，根据自己的需求确认是否可以直接忽略该中断，还是应该马上退出。<br><br>如果该线程处在不可中断状态下，就是没有调用上述api，那么java只是设置一下该线程的interrupt状态，其他事情都不会发生，如果该线程之后会调用行数阻塞API，那到时候线程会马会上跳出，并抛出InterruptedException，接下来的事情就跟第一种状况一致了。如果不会调用阻塞API，那么这个线程就会一直执行下去。除非你就是要实现这样的线程，一般高性能的代码中肯定会有wait()，yield()之类出让cpu的函数，不会发生后者的情况。<br><br><br><font color="red">Thread的interrupt处理的几个方法： </font> 
-
+<p> <strong><font color="red">Runnable的方式</font> </strong>可以避免Thread方式由于Java但继承特性带来的缺陷；并且<code>Runnable</code>的代码可以被多个线程（Thread实例共享），适合于多个线程处理同一资源的情况。</p>
+<h1 id="3、如何正确停止线程"><a href="#3、如何正确停止线程" class="headerlink" title="3、如何正确停止线程"></a>3、如何正确停止线程</h1><ol>
+<li><del>thread.stop()</del> 这个方法是jdk1.1引入的，但是它会使线程戛然而止。已经废弃。</li>
+<li>thread.interrupt();条件受限，不一定管用</li>
+<li>正确的方式是使用停止标志 flag：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//军队线程</span></span><br><span class="line"><span class="comment">//模拟作战双方的行为</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//volatile保证了线程可以正确的读取其他线程写入的值</span></span><br><span class="line">	<span class="comment">//可见性 ref JMM， happens-before原则</span></span><br><span class="line">	<span class="keyword">volatile</span> <span class="keyword">boolean</span> keepRunning = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(keepRunning)&#123;</span><br><span class="line">				System.out.println(Thread.currentThread().getName());</span><br><span class="line">				<span class="comment">//让出了处理器时间，重新抢占资源</span></span><br><span class="line">				Thread.yield();</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+<span class="string">"结束了战斗！"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4、关于中断的一点点小补充："><a href="#4、关于中断的一点点小补充：" class="headerlink" title="4、关于中断的一点点小补充："></a>4、<strong>关于中断的一点点小补充：</strong></h1><p>如果该线程处在可中断状态下，（调用了xx.wait()，或者Selector.select(),Thread.sleep()等特定会发生阻塞的api），那么该线程会立即被唤醒，同时会受到一个InterruptedException，同时，如果是阻塞在io上，对应的资源会被关闭。如果该线程接下来不执行“Thread.interrupted()方法（不是interrupt），那么该线程处理任何io资源的时候，都会导致这些资源关闭。当然，解决的办法就是调用一下interrupted()，不过这里需要程序员自行根据代码的逻辑来设定，根据自己的需求确认是否可以直接忽略该中断，还是应该马上退出。</p>
+<p>如果该线程处在不可中断状态下，就是没有调用上述api，那么java只是设置一下该线程的interrupt状态，其他事情都不会发生，如果该线程之后会调用行数阻塞API，那到时候线程会马会上跳出，并抛出InterruptedException，接下来的事情就跟第一种状况一致了。如果不会调用阻塞API，那么这个线程就会一直执行下去。除非你就是要实现这样的线程，一般高性能的代码中肯定会有wait()，yield()之类出让cpu的函数，不会发生后者的情况。</p>
+<p><strong><font color="red">Thread的interrupt处理的几个方法： </font> </strong></p>
 <ul>
 <li>public void interrupt() :  执行线程interrupt事件  </li>
 <li>public boolean isInterrupted() : 检查当前线程是否处于interrupt</li>
 <li>public static boolean interrupted() ： check当前线程是否处于interrupt，并重置interrupt信息。类似于resetAndGet()</li>
 </ul>
 <p>其中，interrupt方法是唯一能将中断状态设置为true的方法。静态方法interrupted会将当前线程的中断状态清除，但这个方法的命名极不直观，很容易造成误解，需要特别注意。</p>
-<font color="red">理解： </font> 
-
+<p><strong><font color="red">理解： </font> </strong></p>
 <ol>
 <li>每个线程都有一个interrupt status标志位，用于表明当前线程是否处于中断状态  </li>
 <li>一般调用Thread.interrupt()会有两种处理方式<br>遇到一个低优先级的block状态时，比如object.wait(),object.sleep(),object.join()。它会立马触发一个unblock解除阻塞，并throw一个InterruptedException。<br>其他情况，Thread.interrupt()仅仅只是更新了status标志位。然后你的工作线程通过Thread.isInterrrupted()进行检查，可以做相应的处理，比如也throw InterruptedException或者是清理状态，取消task等。  </li>
@@ -249,19 +254,18 @@
 <ol>
 <li><p>一般Thread编程需要关注interrupt中断不？一般怎么处理？可以用来做什么？<br>答： interrupt用途： unBlock操作，支持任务cancel， 数据清理等。</p>
 </li>
-<li><p>Thread.interrupt()方法和InterruptedException异常的关系？是由interrupt触发产生了InterruptedException异常？<br>答： Thread.interrupt()只是在Object.wait() .Object.join(), Object.sleep()几个方法会主动抛出InterruptedException异常。而在其他的的block常见，只是通过设置了Thread的一个标志位信息，需要程序自我进行处理。</p>
+<li><p>Thread.interrupt()方法和InterruptedException异常的关系？是由interrupt触发产生了InterruptedException异常？<br>答：Thread.interrupt()只是在Object.wait() .Object.join(), Object.sleep()几个方法会主动抛出InterruptedException异常。而在其他的的block常见，只是通过设置了Thread的一个标志位信息，需要程序自我进行处理。</p>
 </li>
 <li>Thread.interrupt()会中断线程什么状态的工作？ RUNNING or BLOCKING？<br>答：Thread.interrupt设计的目的主要是用于处理线程处于block状态，比如wait(),sleep()状态就是个例子。但可以在程序设计时为支持task cancel，同样可以支持RUNNING状态。比如Object.join()和一些支持interrupt的一些nio channel设计。</li>
 </ol>
-<p>#5、争用条件（RaceCondition）</p>
-<p><font color="red">概念：  </font><br>当多个线程同事共享访问同一数据（内存区域）时，每个线程都尝试操作该数据，从而导致数据被破坏（corrupted），这种现象称为争用条件。</p>
-<p><strong>线程之间的关系大致可以分为两类  </strong></p>
+<h1 id="5、争用条件（RaceCondition）"><a href="#5、争用条件（RaceCondition）" class="headerlink" title="5、争用条件（RaceCondition）"></a>5、争用条件（RaceCondition）</h1><p><font color="red">概念：  </font><br>当多个线程同事共享访问同一数据（内存区域）时，每个线程都尝试操作该数据，从而导致数据被破坏（corrupted），这种现象称为争用条件。</p>
+<p><strong>线程之间的关系大致可以分为两类</strong></p>
 <ol>
 <li>线程之间通过对资源的竞争，包括共享的数据和硬件资源，所产生的相互制约关系，这类线程间的主要问题是互斥和死锁问题，这类关系被称为<code>互斥关系</code>。</li>
 <li>线程之间的相互协同合作，彼此之间直接知道对方的存在，并了解对方的名字，这类进程常常需要通过“进程间通信”方法来协同工作，这类关系被称为<code>同步关系</code>。</li>
 </ol>
 <p><code>wait()</code>休眠自身线程，等待被唤醒。这个方法是<code>Object</code>类的方法。</p>
-<h1 id="6、线程的生命周期"><a href="#6、线程的生命周期" class="headerlink" title="6、线程的生命周期"></a>6、线程的生命周期</h1><p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/11/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE.png" alt="线程生命周期图"></p>
+<h1 id="6、线程的生命周期"><a href="#6、线程的生命周期" class="headerlink" title="6、线程的生命周期"></a>6、线程的生命周期</h1><p><img src="/images/2016/03/2016-03-08-Thread-life.png" alt="线程生命周期图"></p>
 <p><font color="red"><strong>就绪</strong>：</font>创建了线程对象之后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务，具备了运行的条件，但并不一定已经开始运行。）</p>
 <p><font color="red"><strong>运行</strong>：</font>处于就绪状态的线程，一旦获取了CPU资源，便进入到了运行状态，开始执行run()方法里面的逻辑。</p>
 <p><font color="red"><strong>终止</strong>：</font>线程的run()方法执行完毕。</p>
@@ -272,7 +276,9 @@
 </blockquote>
 <h1 id="8、Java线程查看工具"><a href="#8、Java线程查看工具" class="headerlink" title="8、Java线程查看工具"></a>8、Java线程查看工具</h1><p><code>jstack</code>:位于jdk安装目录下的bin目录下</p>
 <p><strong>作用</strong>：生成当前时刻线程的快照（threaddump，即当前进程中所有线程的信息）</p>
-<p><strong>参考文献</strong><br><a href="http://agapple.iteye.com/blog/970055" target="_blank" rel="noopener">java线程阻塞中断和LockSupport的常见问题</a></p>
+<hr>
+<p><strong>参考文献</strong>  </p>
+<p><a href="http://agapple.iteye.com/blog/970055" target="_blank" rel="noopener">java线程阻塞中断和LockSupport的常见问题</a></p>
 
       
     </div>
@@ -346,9 +352,7 @@
 </ol>
 <p>很多语言都有 bencode 的实现，Python 版本可在 pypi 里面找到: <a href="https://pypi.python.org/pypi/bencode/1.0" target="_blank" rel="noopener">bencode</a></p>
 <h1 id="bt文件结构"><a href="#bt文件结构" class="headerlink" title="bt文件结构"></a>bt文件结构</h1><hr>
-<blockquote>
 <p>根据BitTorrent协议，文件发布者会根据要发布的文件生成提供一个.torrent文件，即种子文件，也简称为“种子”。 种子文件本质上是文本文件，包含Tracker信息和文件信息两部分。Tracker信息主要是BT下载中需要用到的Tracker服务器的地址和针对Tracker服务器的设置，文件信息是根据对目标文件的计算生成的，计算结果根据BitTorrent协议内的Bencode规则进行编码。它的主要原理是需要把提供下载的文件虚拟分成大小相等的块，块大小必须为2k的整数次方（由于是虚拟分块，硬盘上并不产生各个块文件），并把每个块的索引信息和Hash验证码写入种子文件中；所以，种子文件就是被下载文件的“索引”。 下载者要下载文件内容，需要先得到相应的种子文件，然后使用BT客户端软件进行下载。 下载时，BT客户端首先解析种子文件得到Tracker地址，然后连接Tracker服务器。Tracker服务器回应下载者的请求，提供下载者其他下载者（包括发布者）的IP。下载者再连接其他下载者，根据种子文件，两者分别告知对方自己已经有的块，然后交换对方所没有的数据。此时不需要其他服务器参与，分散了单个线路上的数据流量，因此减轻了服务器负担。 下载者每得到一个块，需要算出下载块的Hash验证码与种子文件中的对比，如果一样则说明块正确，不一样则需要重新下载这个块。这种规定是为了解决下载内容准确性的问题。 一般的HTTP/FTP下载，发布文件仅在某个或某几个服务器，下载的人太多，服务器的带宽很易不胜负荷，变得很慢。而BitTorrent协议下载的特点是，下载的人越多，提供的带宽也越多，下载速度就越快。同时，拥有完整文件的用户也会越来越多，使文件的“寿命”不断延长。</p>
-</blockquote>
 <ol>
 <li><p>bt 种子文件是使用 bencode 编码的，整个文件就 dictionary</p>
 <ul>
@@ -388,10 +392,9 @@
 <li>created by， string， 可选， 文件创建者。</li>
 </ol>
 <p>综上，多文件Torrent的结构的树形图为：</p>
-<p>Multi-file Torrent<br>├─announce<br>├─announce-list<br>├─comment<br>├─comment.utf-8<br>├─creation date<br>├─encoding<br>├─info<br>│ ├─files<br>│ │ ├─length<br>│ │ ├─path<br>│ │ └─path.utf-8<br>│ ├─name<br>│ ├─name.utf-8<br>│ ├─piece length<br>│ ├─pieces<br>│ ├─publisher<br>│ ├─publisher-url<br>│ ├─publisher-url.utf-8<br>│ └─publisher.utf-8<br>└─nodes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Multi-file Torrent</span><br><span class="line">├─announce</span><br><span class="line">├─announce-list</span><br><span class="line">├─comment</span><br><span class="line">├─comment.utf-8</span><br><span class="line">├─creation date</span><br><span class="line">├─encoding</span><br><span class="line">├─info</span><br><span class="line">│ ├─files</span><br><span class="line">│ │ ├─length</span><br><span class="line">│ │ ├─path</span><br><span class="line">│ │ └─path.utf-8</span><br><span class="line">│ ├─name</span><br><span class="line">│ ├─name.utf-8</span><br><span class="line">│ ├─piece length</span><br><span class="line">│ ├─pieces</span><br><span class="line">│ ├─publisher</span><br><span class="line">│ ├─publisher-url</span><br><span class="line">│ ├─publisher-url.utf-8</span><br><span class="line">│ └─publisher.utf-8</span><br><span class="line">└─nodes</span><br></pre></td></tr></table></figure>
 <p>单文件Torrent的结构的树形图为：</p>
-<p>Single-File Torrent<br>├─announce<br>├─announce-list<br>├─comment<br>├─comment.utf-8<br>├─creation date<br>├─encoding<br>├─info<br>│ ├─length<br>│ ├─name<br>│ ├─name.utf-8<br>│ ├─piece length<br>│ ├─pieces<br>│ ├─publisher<br>│ ├─publisher-url<br>│ ├─publisher-url.utf-8<br>│ └─publisher.utf-8<br>└─nodes</p>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Single-File Torrent</span><br><span class="line">├─announce</span><br><span class="line">├─announce-list</span><br><span class="line">├─comment</span><br><span class="line">├─comment.utf-8</span><br><span class="line">├─creation date</span><br><span class="line">├─encoding</span><br><span class="line">├─info</span><br><span class="line">│ ├─length</span><br><span class="line">│ ├─name</span><br><span class="line">│ ├─name.utf-8</span><br><span class="line">│ ├─piece length</span><br><span class="line">│ ├─pieces</span><br><span class="line">│ ├─publisher</span><br><span class="line">│ ├─publisher-url</span><br><span class="line">│ ├─publisher-url.utf-8</span><br><span class="line">│ └─publisher.utf-8</span><br><span class="line">└─nodes</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
@@ -439,7 +442,6 @@
 <p>今天,移动应用程序开发的需求是非常高的。为了让app能有好的竞争力，需要使app有合适的花费和好的质量。</p>
 <p>而好的架构的选择是减少开发时间和延长运行时间的保障。</p>
 <p>IOS的开发是基于MVC的，这种架构对IOS的开发非常有利。安卓系统不需要任何模型：体系结构的选择和应用程序的质量很大程度上取决于开发人员的经验。</p>
-<p>（）</p>
 <p>MVC(模型-视图-控制器)是一个标准的软件项目,分离用户界面(View)和业务规则和数据(Model)模型使用一个中介(Controller)连接到视图。</p>
 <p>对我们来说最大的好处是MVC的关注点隔离。在MVC模型中的每部分只关注自己的工作：View只关注用户接口（UI），Model只关注数据，controller 在这两者之间发送消息。</p>
 <p>controller 为和UI相关的View提供数据模型，controller的任何变化对View来说是透明的，并且UI的改变不会影响到业务逻辑，反之亦然。</p>
@@ -513,19 +515,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><hr>
-<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/04/20160303_221615.png" alt="注解的概念"></p>
+<p><img src="/images/2016/03/04/20160303_221615.png" alt="注解的概念"></p>
 <h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><hr>
-<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/04/20160303_222935.png" alt="语法概要"></p>
-<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/04/20160303_222742.png" alt="语法要求"><br><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/04/20160303_222634.png" alt="语法要求"></p>
+<p><img src="/images/2016/03/04/20160303_222935.png" alt="语法概要"></p>
+<p><img src="/images/2016/03/04/20160303_222742.png" alt="语法要求"><br><img src="/images/2016/03/04/20160303_222634.png" alt="语法要求"></p>
 <h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><hr>
-<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/04/20160303_222446.png" alt="分类方式"></p>
-<ul>
-<li><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/04/20160303_222315.png" alt=""></li>
-<li><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/04/20160303_222308.png" alt=""></li>
-<li><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/04/20160303_222407.png" alt=""></li>
-</ul>
+<p><img src="/images/2016/03/04/20160303_222446.png" alt="分类方式"><br><img src="/images/2016/03/04/20160303_222315.png" alt=""><br><img src="/images/2016/03/04/20160303_222308.png" alt=""><br><img src="/images/2016/03/04/20160303_222407.png" alt=""></p>
 <h1 id="解析注解"><a href="#解析注解" class="headerlink" title="解析注解"></a>解析注解</h1><hr>
-<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/04/20160303_221615.png" alt=""></p>
+<p><img src="/images/2016/03/04/20160303_221615.png" alt=""></p>
 
       
     </div>
@@ -568,21 +565,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<h1 id="一、什么东西"><a href="#一、什么东西" class="headerlink" title="一、什么东西"></a>一、什么东西</h1></blockquote>
-<p>注解是Java 1.5引入的，目前已被广泛应用于各种Java框架，如Hibernate，Jersey，Spring。注解相当于是一种嵌入在程序中的元数据，可以使用注解解析工具或编译器对其进行解析，也可以指定注解在编译期或运行期有效。好吧没看懂~~~</p>
-<blockquote>
-<h1 id="二、一般干什么用"><a href="#二、一般干什么用" class="headerlink" title="二、一般干什么用"></a>二、一般干什么用</h1></blockquote>
-<p>Java中的注解通常扮演以下角色</p>
+        <h2 id="一、什么东西"><a href="#一、什么东西" class="headerlink" title="一、什么东西"></a>一、什么东西</h2><p>注解是Java 1.5引入的，目前已被广泛应用于各种Java框架，如Hibernate，Jersey，Spring。注解相当于是一种嵌入在程序中的元数据，可以使用注解解析工具或编译器对其进行解析，也可以指定注解在编译期或运行期有效。好吧没看懂~~~</p>
+<h2 id="二、一般干什么用"><a href="#二、一般干什么用" class="headerlink" title="二、一般干什么用"></a>二、一般干什么用</h2><p>Java中的注解通常扮演以下角色</p>
 <ul>
 <li>编译器指令  （@OverWrite 给java编译器使用，生成文档，在编译时进行格式检查等）</li>
 <li>构建时指令  （给maven等构建工具使用）</li>
 <li>运行时指令  (我们常见的，结合反射使用)</li>
 </ul>
-<blockquote>
-<h1 id="三、四种元注解"><a href="#三、四种元注解" class="headerlink" title="三、四种元注解"></a>三、四种元注解</h1></blockquote>
-<p>元注解主要负责注解其他注解的。</p>
-<h2 id="1-Target：表示该注解可以用什么地方"><a href="#1-Target：表示该注解可以用什么地方" class="headerlink" title="1. @Target：表示该注解可以用什么地方"></a>1. @Target：表示该注解可以用什么地方</h2><p>@Target说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
+<h2 id="三、四种元注解"><a href="#三、四种元注解" class="headerlink" title="三、四种元注解"></a>三、四种元注解</h2><p>元注解主要负责注解其他注解的。</p>
+<h3 id="1-Target：表示该注解可以用什么地方"><a href="#1-Target：表示该注解可以用什么地方" class="headerlink" title="1. @Target：表示该注解可以用什么地方"></a>1. @Target：表示该注解可以用什么地方</h3><p>@Target说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
 <p><strong>作用</strong>：用于描述注解的使用范围（即：被描述的注解可以用在什么地方）</p>
 <p><strong>取值(ElementType)有</strong>：</p>
 <ol>
@@ -594,28 +585,24 @@
 <li>PARAMETER:用于描述参数</li>
 <li>TYPE:用于描述类、接口(包括注解类型) 或enum声明</li>
 </ol>
-<h2 id="2-Retention-表示在什么级别保存该注解信息"><a href="#2-Retention-表示在什么级别保存该注解信息" class="headerlink" title="2. @Retention:表示在什么级别保存该注解信息"></a>2. @Retention:表示在什么级别保存该注解信息</h2><p>可选的参数值在枚举类型 RetentionPolicy 中，包括：</p>
+<h3 id="2-Retention-表示在什么级别保存该注解信息"><a href="#2-Retention-表示在什么级别保存该注解信息" class="headerlink" title="2. @Retention:表示在什么级别保存该注解信息"></a>2. @Retention:表示在什么级别保存该注解信息</h3><p>可选的参数值在枚举类型 RetentionPolicy 中，包括：</p>
 <ol>
 <li>RetentionPolicy.SOURCE 注解将被编译器丢弃 </li>
 <li>RetentionPolicy.CLASS 注解在class文件中可用，但会被VM丢</li>
 <li>RetentionPolicy.RUNTIME VM将在运行期也保留注释，因此可以通过反射机制读取注解的信息。 </li>
 </ol>
-<h2 id="3-Documented-将此注解包含到Javadoc中"><a href="#3-Documented-将此注解包含到Javadoc中" class="headerlink" title="3. @Documented:将此注解包含到Javadoc中"></a>3. @Documented:将此注解包含到Javadoc中</h2><p><code>@Documented</code>用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。</p>
-<h2 id="4-Inherited：允许子类继承父类的注解"><a href="#4-Inherited：允许子类继承父类的注解" class="headerlink" title="4. @Inherited：允许子类继承父类的注解"></a>4. @Inherited：允许子类继承父类的注解</h2><ul>
+<h3 id="3-Documented-将此注解包含到Javadoc中"><a href="#3-Documented-将此注解包含到Javadoc中" class="headerlink" title="3. @Documented:将此注解包含到Javadoc中"></a>3. @Documented:将此注解包含到Javadoc中</h3><p><code>@Documented</code>用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。</p>
+<h3 id="4-Inherited：允许子类继承父类的注解"><a href="#4-Inherited：允许子类继承父类的注解" class="headerlink" title="4. @Inherited：允许子类继承父类的注解"></a>4. @Inherited：允许子类继承父类的注解</h3><ul>
 <li>@Inherited 元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。</li>
 <li><strong>注意</strong>：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。</li>
 <li>当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。</li>
 </ul>
-<blockquote>
-<h1 id="四、三种Java内置注解（编译器指令）"><a href="#四、三种Java内置注解（编译器指令）" class="headerlink" title="四、三种Java内置注解（编译器指令）"></a>四、三种Java内置注解（编译器指令）</h1></blockquote>
-<ol>
+<h2 id="四、三种Java内置注解（编译器指令）"><a href="#四、三种Java内置注解（编译器指令）" class="headerlink" title="四、三种Java内置注解（编译器指令）"></a>四、三种Java内置注解（编译器指令）</h2><ol>
 <li>@Override – 当我们想要覆盖父类的一个方法时，需要使用该注解告知编译器我们正在覆盖一个方法。这样的话，当父类的方法被删除或修改了，编译器会提示错误信息。大家可以学习一下为什么我们总是应该在覆盖方法时使用Java覆盖注解。</li>
 <li>@Deprecated – 当我们想要让编译器知道一个方法已经被弃用(deprecate)时，应该使用这个注解。Java推荐在javadoc中提供信息，告知用户为什么这个方法被弃用了，以及替代方法是什么。</li>
 <li>@SuppressWarnings – 这个注解仅仅是告知编译器，忽略它们产生了特殊警告，比如：在java泛型中使用原始类型。它的保持性策略(retention policy)是SOURCE，在编译器中将被丢弃。</li>
 </ol>
-<blockquote>
-<h1 id="五、自定义注解"><a href="#五、自定义注解" class="headerlink" title="五、自定义注解"></a>五、自定义注解</h1></blockquote>
-<p> 使用<code>@interface</code>自定义注解时，自动继承了java.lang.annotation.Annotation接口，由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口。<code>@interface</code>用来声明一个注解，其中的每一个方法实际上是声明了一个配置参数。方法的名称就是参数的名称，返回值类型就是参数的类型（返回值类型只能是基本类型、Class、String、enum）。可以通过default来声明参数的默认值。</p>
+<h2 id="五、自定义注解"><a href="#五、自定义注解" class="headerlink" title="五、自定义注解"></a>五、自定义注解</h2><p> 使用<code>@interface</code>自定义注解时，自动继承了java.lang.annotation.Annotation接口，由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口。<code>@interface</code>用来声明一个注解，其中的每一个方法实际上是声明了一个配置参数。方法的名称就是参数的名称，返回值类型就是参数的类型（返回值类型只能是基本类型、Class、String、enum）。可以通过default来声明参数的默认值。</p>
 <p><strong>定义注解格式：</strong></p>
 <p>　　<code>public @interface 注解名 {定义体}</code></p>
 <p><strong>注解参数的可支持数据类型：</strong></p>
@@ -628,9 +615,7 @@
 <li>以上所有类型的数组</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"><span class="comment">//定义一个注解</span></span><br><span class="line"><span class="meta">@Target</span>(ElementType.METHOD)<span class="comment">//定义该注解将应用于什么地方，方法或者域</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)<span class="comment">//定义该注解在哪一个级别可用</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> UseCase &#123;</span><br><span class="line">    <span class="comment">//注解元素，可以指定默认值，在使用注解的时候，可以直接给元素赋值如id=5</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> "no description"</span>;</span><br><span class="line">     <span class="comment">//利用枚举来设置参数类型</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">enum</span> ParameterType &#123; STRING, SHORT, INT, BOOL, LONG, OBJECT &#125;;</span><br><span class="line">     <span class="comment">// 默认值,在使用注解的时候，只需要为元素赋值</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> ParameterType <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> ParameterType.STRING</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h1 id="Java注解解析"><a href="#Java注解解析" class="headerlink" title="Java注解解析"></a>Java注解解析</h1></blockquote>
-<p>我们将使用Java反射机制从一个类中解析注解，请记住，注解保持性策略应该是RUNTIME，否则它的信息在运行期无效，我们也不能从中获取任何数据。</p>
+<h2 id="Java注解解析"><a href="#Java注解解析" class="headerlink" title="Java注解解析"></a>Java注解解析</h2><p>我们将使用Java反射机制从一个类中解析注解，请记住，注解保持性策略应该是RUNTIME，否则它的信息在运行期无效，我们也不能从中获取任何数据。</p>
 <p>反射中的Class类和Method类都有获取注解的方法<code>getXXX</code> 如：Method 类的<code>getDeclaredAnnotations</code>方法等。</p>
 <p>未完待续。。。</p>
 <p><strong>【参考文章】</strong></p>

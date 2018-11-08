@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="凉凉小线仔">
 <meta property="og:description" content="什么事Bt下载 BT是目前最热门的下载方式之一，它的全称为“BitTorrent”简称“BT”，中文全称“比特流”。BT服务器是通过一种传销的方式来实现文件共享的，它的工作原理。举个例子来说吧，例如BT服务器将一个文件分成了N个部分，有甲、乙、丙、丁四位用户同时下载，那么BT并不会完全从服务器下载这个文件的所有部分，而是根据实际情况有选择地从其他用户的机器中下载已下载完成的部分。例如甲已经下载了第">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-03-06T15:14:15.000Z">
+<meta property="og:updated_time" content="2018-11-08T05:43:43.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bt种子和磁力链接">
 <meta name="twitter:description" content="什么事Bt下载 BT是目前最热门的下载方式之一，它的全称为“BitTorrent”简称“BT”，中文全称“比特流”。BT服务器是通过一种传销的方式来实现文件共享的，它的工作原理。举个例子来说吧，例如BT服务器将一个文件分成了N个部分，有甲、乙、丙、丁四位用户同时下载，那么BT并不会完全从服务器下载这个文件的所有部分，而是根据实际情况有选择地从其他用户的机器中下载已下载完成的部分。例如甲已经下载了第">
@@ -126,9 +126,7 @@
 </ol>
 <p>很多语言都有 bencode 的实现，Python 版本可在 pypi 里面找到: <a href="https://pypi.python.org/pypi/bencode/1.0" target="_blank" rel="noopener">bencode</a></p>
 <h1 id="bt文件结构"><a href="#bt文件结构" class="headerlink" title="bt文件结构"></a>bt文件结构</h1><hr>
-<blockquote>
 <p>根据BitTorrent协议，文件发布者会根据要发布的文件生成提供一个.torrent文件，即种子文件，也简称为“种子”。 种子文件本质上是文本文件，包含Tracker信息和文件信息两部分。Tracker信息主要是BT下载中需要用到的Tracker服务器的地址和针对Tracker服务器的设置，文件信息是根据对目标文件的计算生成的，计算结果根据BitTorrent协议内的Bencode规则进行编码。它的主要原理是需要把提供下载的文件虚拟分成大小相等的块，块大小必须为2k的整数次方（由于是虚拟分块，硬盘上并不产生各个块文件），并把每个块的索引信息和Hash验证码写入种子文件中；所以，种子文件就是被下载文件的“索引”。 下载者要下载文件内容，需要先得到相应的种子文件，然后使用BT客户端软件进行下载。 下载时，BT客户端首先解析种子文件得到Tracker地址，然后连接Tracker服务器。Tracker服务器回应下载者的请求，提供下载者其他下载者（包括发布者）的IP。下载者再连接其他下载者，根据种子文件，两者分别告知对方自己已经有的块，然后交换对方所没有的数据。此时不需要其他服务器参与，分散了单个线路上的数据流量，因此减轻了服务器负担。 下载者每得到一个块，需要算出下载块的Hash验证码与种子文件中的对比，如果一样则说明块正确，不一样则需要重新下载这个块。这种规定是为了解决下载内容准确性的问题。 一般的HTTP/FTP下载，发布文件仅在某个或某几个服务器，下载的人太多，服务器的带宽很易不胜负荷，变得很慢。而BitTorrent协议下载的特点是，下载的人越多，提供的带宽也越多，下载速度就越快。同时，拥有完整文件的用户也会越来越多，使文件的“寿命”不断延长。</p>
-</blockquote>
 <ol>
 <li><p>bt 种子文件是使用 bencode 编码的，整个文件就 dictionary</p>
 <ul>
@@ -168,10 +166,9 @@
 <li>created by， string， 可选， 文件创建者。</li>
 </ol>
 <p>综上，多文件Torrent的结构的树形图为：</p>
-<p>Multi-file Torrent<br>├─announce<br>├─announce-list<br>├─comment<br>├─comment.utf-8<br>├─creation date<br>├─encoding<br>├─info<br>│ ├─files<br>│ │ ├─length<br>│ │ ├─path<br>│ │ └─path.utf-8<br>│ ├─name<br>│ ├─name.utf-8<br>│ ├─piece length<br>│ ├─pieces<br>│ ├─publisher<br>│ ├─publisher-url<br>│ ├─publisher-url.utf-8<br>│ └─publisher.utf-8<br>└─nodes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Multi-file Torrent</span><br><span class="line">├─announce</span><br><span class="line">├─announce-list</span><br><span class="line">├─comment</span><br><span class="line">├─comment.utf-8</span><br><span class="line">├─creation date</span><br><span class="line">├─encoding</span><br><span class="line">├─info</span><br><span class="line">│ ├─files</span><br><span class="line">│ │ ├─length</span><br><span class="line">│ │ ├─path</span><br><span class="line">│ │ └─path.utf-8</span><br><span class="line">│ ├─name</span><br><span class="line">│ ├─name.utf-8</span><br><span class="line">│ ├─piece length</span><br><span class="line">│ ├─pieces</span><br><span class="line">│ ├─publisher</span><br><span class="line">│ ├─publisher-url</span><br><span class="line">│ ├─publisher-url.utf-8</span><br><span class="line">│ └─publisher.utf-8</span><br><span class="line">└─nodes</span><br></pre></td></tr></table></figure>
 <p>单文件Torrent的结构的树形图为：</p>
-<p>Single-File Torrent<br>├─announce<br>├─announce-list<br>├─comment<br>├─comment.utf-8<br>├─creation date<br>├─encoding<br>├─info<br>│ ├─length<br>│ ├─name<br>│ ├─name.utf-8<br>│ ├─piece length<br>│ ├─pieces<br>│ ├─publisher<br>│ ├─publisher-url<br>│ ├─publisher-url.utf-8<br>│ └─publisher.utf-8<br>└─nodes</p>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Single-File Torrent</span><br><span class="line">├─announce</span><br><span class="line">├─announce-list</span><br><span class="line">├─comment</span><br><span class="line">├─comment.utf-8</span><br><span class="line">├─creation date</span><br><span class="line">├─encoding</span><br><span class="line">├─info</span><br><span class="line">│ ├─length</span><br><span class="line">│ ├─name</span><br><span class="line">│ ├─name.utf-8</span><br><span class="line">│ ├─piece length</span><br><span class="line">│ ├─pieces</span><br><span class="line">│ ├─publisher</span><br><span class="line">│ ├─publisher-url</span><br><span class="line">│ ├─publisher-url.utf-8</span><br><span class="line">│ └─publisher.utf-8</span><br><span class="line">└─nodes</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">

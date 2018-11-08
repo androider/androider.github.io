@@ -7,21 +7,21 @@
   
   <title>深入浅出java多线程 | 凉凉小线仔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、进程和线程概念 进程的特征  程序（任务）的执行过程 是动态的 持有资源，这里的资源是指内存（共享内存，共享文件）和线程是资源的载体 所以进程是资源的载体，也是线程的载体  线程的特征  线程是系统中最小的执行单元 同一个进程中可以有多个线程 多个线程共享同一个进程的资源 线程的交互包括互斥和同步  2、线程详解   历史是人民群众创造的但是英雄人物可以推动历史的发展  和线程相关的两个类：">
+  <meta name="description" content="1、进程和线程概念 进程的特征  程序（任务）的执行过程 是动态的 持有资源，这里的资源是指内存（共享内存，共享文件）和线程是资源的载体 所以进程是资源的载体，也是线程的载体  线程的特征  线程是系统中最小的执行单元 同一个进程中可以有多个线程 多个线程共享同一个进程的资源 线程的交互包括互斥和同步  2、线程详解  历史是人民群众创造的但是英雄人物可以推动历史的发展 和线程相关的两个类：">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出java多线程">
 <meta property="og:url" content="http://febsky.me/2016/03/08/2016-03-08-深入浅出java多线程/index.html">
 <meta property="og:site_name" content="凉凉小线仔">
-<meta property="og:description" content="1、进程和线程概念 进程的特征  程序（任务）的执行过程 是动态的 持有资源，这里的资源是指内存（共享内存，共享文件）和线程是资源的载体 所以进程是资源的载体，也是线程的载体  线程的特征  线程是系统中最小的执行单元 同一个进程中可以有多个线程 多个线程共享同一个进程的资源 线程的交互包括互斥和同步  2、线程详解   历史是人民群众创造的但是英雄人物可以推动历史的发展  和线程相关的两个类：">
+<meta property="og:description" content="1、进程和线程概念 进程的特征  程序（任务）的执行过程 是动态的 持有资源，这里的资源是指内存（共享内存，共享文件）和线程是资源的载体 所以进程是资源的载体，也是线程的载体  线程的特征  线程是系统中最小的执行单元 同一个进程中可以有多个线程 多个线程共享同一个进程的资源 线程的交互包括互斥和同步  2、线程详解  历史是人民群众创造的但是英雄人物可以推动历史的发展 和线程相关的两个类：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/03/08/Thread%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png">
-<meta property="og:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/03/11/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE.png">
-<meta property="og:updated_time" content="2016-03-11T08:07:53.000Z">
+<meta property="og:image" content="http://febsky.me/images/2016/03/2016-03-08-Thread-Methods.png">
+<meta property="og:image" content="http://febsky.me/images/2016/03/2016-03-08-Thread-life.png">
+<meta property="og:updated_time" content="2018-11-08T06:13:24.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出java多线程">
-<meta name="twitter:description" content="1、进程和线程概念 进程的特征  程序（任务）的执行过程 是动态的 持有资源，这里的资源是指内存（共享内存，共享文件）和线程是资源的载体 所以进程是资源的载体，也是线程的载体  线程的特征  线程是系统中最小的执行单元 同一个进程中可以有多个线程 多个线程共享同一个进程的资源 线程的交互包括互斥和同步  2、线程详解   历史是人民群众创造的但是英雄人物可以推动历史的发展  和线程相关的两个类：">
-<meta name="twitter:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/03/08/Thread%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png">
+<meta name="twitter:description" content="1、进程和线程概念 进程的特征  程序（任务）的执行过程 是动态的 持有资源，这里的资源是指内存（共享内存，共享文件）和线程是资源的载体 所以进程是资源的载体，也是线程的载体  线程的特征  线程是系统中最小的执行单元 同一个进程中可以有多个线程 多个线程共享同一个进程的资源 线程的交互包括互斥和同步  2、线程详解  历史是人民群众创造的但是英雄人物可以推动历史的发展 和线程相关的两个类：">
+<meta name="twitter:image" content="http://febsky.me/images/2016/03/2016-03-08-Thread-Methods.png">
   
     <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
   
@@ -113,10 +113,8 @@
 <li>线程的交互包括<strong><code>互斥</code></strong>和<strong><code>同步</code></strong></li>
 </ol>
 <h1 id="2、线程详解"><a href="#2、线程详解" class="headerlink" title="2、线程详解"></a>2、线程详解</h1><hr>
-<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/08/Thread%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png" alt="线程中常用的方法"></p>
-<blockquote>
-<p>历史是人民群众创造的但是英雄人物可以推动历史的发展</p>
-</blockquote>
+<p><img src="/images/2016/03/2016-03-08-Thread-Methods.png" alt="线程中常用的方法"></p>
+<p><strong>历史是人民群众创造的但是英雄人物可以推动历史的发展</strong></p>
 <p>和线程相关的两个类：  </p>
 <ul>
 <li>实现<code>Runnable</code>接口  </li>
@@ -124,16 +122,23 @@
 </ul>
 <p>举个栗子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class ThreadTesterA implements Runnable &#123;</span><br><span class="line"> </span><br><span class="line">    private int counter;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        while (counter &lt;= 10) &#123;</span><br><span class="line">            System.out.print(&quot;Counter = &quot; + counter + &quot; &quot;);</span><br><span class="line">            counter++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ThreadTesterB implements Runnable &#123;</span><br><span class="line"> </span><br><span class="line">    private int i;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        while (i &lt;= 10) &#123;</span><br><span class="line">            System.out.print(&quot;i = &quot; + i + &quot; &quot;);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public class ThreadTester &#123;</span><br><span class="line">    public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">        Thread t1 = new Thread(new ThreadTesterA());</span><br><span class="line">        Thread t2 = new Thread(new ThreadTesterB());</span><br><span class="line">        t1.start();</span><br><span class="line">        t1.join(); // wait t1 to be finished</span><br><span class="line">        t2.start();</span><br><span class="line">        t2.join(); // in this program, this may be removed</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<font color="red">Runnable的方式</font>可以避免Thread方式由于Java但继承特性带来的缺陷；并且<code>Runnable</code>的代码可以被多个线程（Thread实例共享），适合于多个线程处理同一资源的情况。<br><br><br># 3、如何正确停止线程<br><br>1. <del>thread.stop()</del> 这个方法是jdk1.1引入的，但是它会使线程戛然而止。已经废弃。<br>2. thread.interrupt();条件受限，不一定管用<br>3. 正确的方式是使用停止标志 flag：<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//军队线程</span></span><br><span class="line"><span class="comment">//模拟作战双方的行为</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//volatile保证了线程可以正确的读取其他线程写入的值</span></span><br><span class="line">	<span class="comment">//可见性 ref JMM， happens-before原则</span></span><br><span class="line">	<span class="keyword">volatile</span> <span class="keyword">boolean</span> keepRunning = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(keepRunning)&#123;</span><br><span class="line">				System.out.println(Thread.currentThread().getName());</span><br><span class="line">				<span class="comment">//让出了处理器时间，重新抢占资源</span></span><br><span class="line">				Thread.yield();</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+<span class="string">"结束了战斗！"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br># 4、<strong>关于中断的一点点小补充：</strong><br><br>如果该线程处在可中断状态下，（调用了xx.wait()，或者Selector.select(),Thread.sleep()等特定会发生阻塞的api），那么该线程会立即被唤醒，同时会受到一个InterruptedException，同时，如果是阻塞在io上，对应的资源会被关闭。如果该线程接下来不执行“Thread.interrupted()方法（不是interrupt），那么该线程处理任何io资源的时候，都会导致这些资源关闭。当然，解决的办法就是调用一下interrupted()，不过这里需要程序员自行根据代码的逻辑来设定，根据自己的需求确认是否可以直接忽略该中断，还是应该马上退出。<br><br>如果该线程处在不可中断状态下，就是没有调用上述api，那么java只是设置一下该线程的interrupt状态，其他事情都不会发生，如果该线程之后会调用行数阻塞API，那到时候线程会马会上跳出，并抛出InterruptedException，接下来的事情就跟第一种状况一致了。如果不会调用阻塞API，那么这个线程就会一直执行下去。除非你就是要实现这样的线程，一般高性能的代码中肯定会有wait()，yield()之类出让cpu的函数，不会发生后者的情况。<br><br><br><font color="red">Thread的interrupt处理的几个方法： </font> 
-
+<p> <strong><font color="red">Runnable的方式</font> </strong>可以避免Thread方式由于Java但继承特性带来的缺陷；并且<code>Runnable</code>的代码可以被多个线程（Thread实例共享），适合于多个线程处理同一资源的情况。</p>
+<h1 id="3、如何正确停止线程"><a href="#3、如何正确停止线程" class="headerlink" title="3、如何正确停止线程"></a>3、如何正确停止线程</h1><ol>
+<li><del>thread.stop()</del> 这个方法是jdk1.1引入的，但是它会使线程戛然而止。已经废弃。</li>
+<li>thread.interrupt();条件受限，不一定管用</li>
+<li>正确的方式是使用停止标志 flag：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//军队线程</span></span><br><span class="line"><span class="comment">//模拟作战双方的行为</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//volatile保证了线程可以正确的读取其他线程写入的值</span></span><br><span class="line">	<span class="comment">//可见性 ref JMM， happens-before原则</span></span><br><span class="line">	<span class="keyword">volatile</span> <span class="keyword">boolean</span> keepRunning = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(keepRunning)&#123;</span><br><span class="line">				System.out.println(Thread.currentThread().getName());</span><br><span class="line">				<span class="comment">//让出了处理器时间，重新抢占资源</span></span><br><span class="line">				Thread.yield();</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+<span class="string">"结束了战斗！"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4、关于中断的一点点小补充："><a href="#4、关于中断的一点点小补充：" class="headerlink" title="4、关于中断的一点点小补充："></a>4、<strong>关于中断的一点点小补充：</strong></h1><p>如果该线程处在可中断状态下，（调用了xx.wait()，或者Selector.select(),Thread.sleep()等特定会发生阻塞的api），那么该线程会立即被唤醒，同时会受到一个InterruptedException，同时，如果是阻塞在io上，对应的资源会被关闭。如果该线程接下来不执行“Thread.interrupted()方法（不是interrupt），那么该线程处理任何io资源的时候，都会导致这些资源关闭。当然，解决的办法就是调用一下interrupted()，不过这里需要程序员自行根据代码的逻辑来设定，根据自己的需求确认是否可以直接忽略该中断，还是应该马上退出。</p>
+<p>如果该线程处在不可中断状态下，就是没有调用上述api，那么java只是设置一下该线程的interrupt状态，其他事情都不会发生，如果该线程之后会调用行数阻塞API，那到时候线程会马会上跳出，并抛出InterruptedException，接下来的事情就跟第一种状况一致了。如果不会调用阻塞API，那么这个线程就会一直执行下去。除非你就是要实现这样的线程，一般高性能的代码中肯定会有wait()，yield()之类出让cpu的函数，不会发生后者的情况。</p>
+<p><strong><font color="red">Thread的interrupt处理的几个方法： </font> </strong></p>
 <ul>
 <li>public void interrupt() :  执行线程interrupt事件  </li>
 <li>public boolean isInterrupted() : 检查当前线程是否处于interrupt</li>
 <li>public static boolean interrupted() ： check当前线程是否处于interrupt，并重置interrupt信息。类似于resetAndGet()</li>
 </ul>
 <p>其中，interrupt方法是唯一能将中断状态设置为true的方法。静态方法interrupted会将当前线程的中断状态清除，但这个方法的命名极不直观，很容易造成误解，需要特别注意。</p>
-<font color="red">理解： </font> 
-
+<p><strong><font color="red">理解： </font> </strong></p>
 <ol>
 <li>每个线程都有一个interrupt status标志位，用于表明当前线程是否处于中断状态  </li>
 <li>一般调用Thread.interrupt()会有两种处理方式<br>遇到一个低优先级的block状态时，比如object.wait(),object.sleep(),object.join()。它会立马触发一个unblock解除阻塞，并throw一个InterruptedException。<br>其他情况，Thread.interrupt()仅仅只是更新了status标志位。然后你的工作线程通过Thread.isInterrrupted()进行检查，可以做相应的处理，比如也throw InterruptedException或者是清理状态，取消task等。  </li>
@@ -142,19 +147,18 @@
 <ol>
 <li><p>一般Thread编程需要关注interrupt中断不？一般怎么处理？可以用来做什么？<br>答： interrupt用途： unBlock操作，支持任务cancel， 数据清理等。</p>
 </li>
-<li><p>Thread.interrupt()方法和InterruptedException异常的关系？是由interrupt触发产生了InterruptedException异常？<br>答： Thread.interrupt()只是在Object.wait() .Object.join(), Object.sleep()几个方法会主动抛出InterruptedException异常。而在其他的的block常见，只是通过设置了Thread的一个标志位信息，需要程序自我进行处理。</p>
+<li><p>Thread.interrupt()方法和InterruptedException异常的关系？是由interrupt触发产生了InterruptedException异常？<br>答：Thread.interrupt()只是在Object.wait() .Object.join(), Object.sleep()几个方法会主动抛出InterruptedException异常。而在其他的的block常见，只是通过设置了Thread的一个标志位信息，需要程序自我进行处理。</p>
 </li>
 <li>Thread.interrupt()会中断线程什么状态的工作？ RUNNING or BLOCKING？<br>答：Thread.interrupt设计的目的主要是用于处理线程处于block状态，比如wait(),sleep()状态就是个例子。但可以在程序设计时为支持task cancel，同样可以支持RUNNING状态。比如Object.join()和一些支持interrupt的一些nio channel设计。</li>
 </ol>
-<p>#5、争用条件（RaceCondition）</p>
-<p><font color="red">概念：  </font><br>当多个线程同事共享访问同一数据（内存区域）时，每个线程都尝试操作该数据，从而导致数据被破坏（corrupted），这种现象称为争用条件。</p>
-<p><strong>线程之间的关系大致可以分为两类  </strong></p>
+<h1 id="5、争用条件（RaceCondition）"><a href="#5、争用条件（RaceCondition）" class="headerlink" title="5、争用条件（RaceCondition）"></a>5、争用条件（RaceCondition）</h1><p><font color="red">概念：  </font><br>当多个线程同事共享访问同一数据（内存区域）时，每个线程都尝试操作该数据，从而导致数据被破坏（corrupted），这种现象称为争用条件。</p>
+<p><strong>线程之间的关系大致可以分为两类</strong></p>
 <ol>
 <li>线程之间通过对资源的竞争，包括共享的数据和硬件资源，所产生的相互制约关系，这类线程间的主要问题是互斥和死锁问题，这类关系被称为<code>互斥关系</code>。</li>
 <li>线程之间的相互协同合作，彼此之间直接知道对方的存在，并了解对方的名字，这类进程常常需要通过“进程间通信”方法来协同工作，这类关系被称为<code>同步关系</code>。</li>
 </ol>
 <p><code>wait()</code>休眠自身线程，等待被唤醒。这个方法是<code>Object</code>类的方法。</p>
-<h1 id="6、线程的生命周期"><a href="#6、线程的生命周期" class="headerlink" title="6、线程的生命周期"></a>6、线程的生命周期</h1><p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/03/11/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE.png" alt="线程生命周期图"></p>
+<h1 id="6、线程的生命周期"><a href="#6、线程的生命周期" class="headerlink" title="6、线程的生命周期"></a>6、线程的生命周期</h1><p><img src="/images/2016/03/2016-03-08-Thread-life.png" alt="线程生命周期图"></p>
 <p><font color="red"><strong>就绪</strong>：</font>创建了线程对象之后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务，具备了运行的条件，但并不一定已经开始运行。）</p>
 <p><font color="red"><strong>运行</strong>：</font>处于就绪状态的线程，一旦获取了CPU资源，便进入到了运行状态，开始执行run()方法里面的逻辑。</p>
 <p><font color="red"><strong>终止</strong>：</font>线程的run()方法执行完毕。</p>
@@ -165,7 +169,9 @@
 </blockquote>
 <h1 id="8、Java线程查看工具"><a href="#8、Java线程查看工具" class="headerlink" title="8、Java线程查看工具"></a>8、Java线程查看工具</h1><p><code>jstack</code>:位于jdk安装目录下的bin目录下</p>
 <p><strong>作用</strong>：生成当前时刻线程的快照（threaddump，即当前进程中所有线程的信息）</p>
-<p><strong>参考文献</strong><br><a href="http://agapple.iteye.com/blog/970055" target="_blank" rel="noopener">java线程阻塞中断和LockSupport的常见问题</a></p>
+<hr>
+<p><strong>参考文献</strong>  </p>
+<p><a href="http://agapple.iteye.com/blog/970055" target="_blank" rel="noopener">java线程阻塞中断和LockSupport的常见问题</a></p>
 
       
     </div>
