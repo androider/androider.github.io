@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Gradle 简介和使用 | 凉凉小线仔</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Gradle是个什么东西，从哪里入手学习，都知道在Android Studio中用到了Gradle配置，那么他和Android 以及AndroidStudio的关系是啥？他和Java的关系又是啥，他脱离AndroidStudio是否能够运行？  看了官方的英文文档后发现社区竟然有热心的开发者翻译了一份中文的oh shit ~ 链接地址  官网文档最近两年Gradle更新相当频繁，注意更新版本。">
+<meta name="keywords" content="Android,Gradle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gradle 简介和使用">
+<meta property="og:url" content="http://febsky.me/2016/04/26/2016-04-26-Gradle的简介和使用/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="Gradle是个什么东西，从哪里入手学习，都知道在Android Studio中用到了Gradle配置，那么他和Android 以及AndroidStudio的关系是啥？他和Java的关系又是啥，他脱离AndroidStudio是否能够运行？  看了官方的英文文档后发现社区竟然有热心的开发者翻译了一份中文的oh shit ~ 链接地址  官网文档最近两年Gradle更新相当频繁，注意更新版本。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-05-13T15:56:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gradle 简介和使用">
+<meta name="twitter:description" content="Gradle是个什么东西，从哪里入手学习，都知道在Android Studio中用到了Gradle配置，那么他和Android 以及AndroidStudio的关系是啥？他和Java的关系又是啥，他脱离AndroidStudio是否能够运行？  看了官方的英文文档后发现社区竟然有热心的开发者翻译了一份中文的oh shit ~ 链接地址  官网文档最近两年Gradle更新相当频繁，注意更新版本。">
+  
+    <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">凉凉小线仔</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">今年我23岁了</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://febsky.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2016-04-26-Gradle的简介和使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/26/2016-04-26-Gradle的简介和使用/" class="article-date">
+  <time datetime="2016-04-26T04:14:42.000Z" itemprop="datePublished">2016-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Gradle 简介和使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Gradle是个什么东西，从哪里入手学习，都知道在Android Studio中用到了Gradle配置，那么他和Android 以及AndroidStudio的关系是啥？他和Java的关系又是啥，他脱离AndroidStudio是否能够运行？</p>
+<blockquote>
+<p>看了官方的英文文档后发现社区竟然有热心的开发者翻译了一份中文的oh shit ~ <a href="https://github.com/DONGChuan/GradleUserGuide" target="_blank" rel="noopener">链接地址</a>  <a href="https://docs.gradle.org/current/release-notes" target="_blank" rel="noopener">官网文档</a>最近两年Gradle更新相当频繁，注意更新版本。</p>
+</blockquote>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Gradle 是一个基于JVM的构建工具。使用Groovy这种脚步语言，主要提供以下功能：</p>
+<ul>
+<li>一个像 Ant 一样的灵活的构建工具</li>
+<li>一种可切换的, 像 maven 一样的基于合约构建的框架</li>
+<li>支持强大的多工程构建</li>
+<li>支持强大的依赖管理(基于 ApacheIvy )</li>
+<li>支持已有的 maven 和 ivy 仓库</li>
+<li>支持传递性依赖管理, 而不需要远程仓库或者 pom.xml 或者 ivy 配置文件</li>
+<li>优先支持 Ant 式的任务和构建</li>
+<li>基于 groovy 的构建脚本</li>
+<li>有丰富的领域模型来描述你的构建</li>
+</ul>
+<h1 id="为啥使用Groovy这种脚步语言"><a href="#为啥使用Groovy这种脚步语言" class="headerlink" title="为啥使用Groovy这种脚步语言"></a>为啥使用Groovy这种脚步语言</h1><p>我们认为在脚本构建时，内部基于 XML 的 DSL（基于一个动态语言）优势是巨大的. 有许多动态语言在那里, 我们为什么选择 Groovy? 答案在于 Gradle 的运行环境. 虽然 Gradle 是以一个多用途的构建工具为核心，它的重点是Java项目. 在这样的项目中, 显然团队每个成员都了解 Java. 我们认为构建应尽可能对所有团队成员都是透明的, 所以选择了 Groovy.</p>
+<p>你可能会说，为什么不直接使用 Java 作为构建脚本的语言. 我们认为这是一个有效性的问题. 对于你的团队, 它要有最高的透明度和最低的学习曲线, 也就是说容易掌握. 但由于 Java 的限制, 这样的构建语言不会那么完美和强大. 如 Python，Groovy 或 Ruby 语言都可以有更高的效率. 我们选择了 Groovy 是因为它给 Java 开发人员提供了迄今为止最大的透明度. 其基本的符号和类型与 Java 是一样的，其封装结构和许多其他的地方也是如此.</p>
+<p>对于那些同样分享 Python 或 Ruby 知识的 Java 团队将会很乐意学习它. Gradle 的设计非常适合在 JRuby 和 Jython 中创建另一个构建脚本引擎. 它只是目前开发的优先级里. 我们十分支持任何人来做贡献, 创建额外的构建脚本引擎.</p>
+<h1 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h1><p>在编程方面要想快速了解一个东西，就是用一下，也就是写个Hello world!</p>
+<ul>
+<li>Gradle 需要运行在一个 Java 环境里<ul>
+<li>安装一个 Java JDK 或者 JRE. 而且 Java 版本必须至少是 6 以上.</li>
+<li>Gradle 自带 Groovy 库, 所以没必要安装 Groovy. 任何已经安装的 Groovy 会被 Gradle 忽略.</li>
+<li>去Gradle官网下载一个Gradle的版本<a href="http://www.gradle.org/downloads" target="_blank" rel="noopener">点我下载</a>，选择个比较新的解压就行。（网速可能比较慢,必要时可以选择科学上网）</li>
+<li>解压后设置环境变量（windows和Linux和Mac的不太一样），就是把解压后的bin目录设置到环境变量中。（和jdk的一样）</li>
+<li>然后在命令行中运行<code>gradle -v</code>来检测你的Gradle是否安装成功。</li>
+<li>设置JVM选项（略）</li>
+</ul>
+</li>
+</ul>
+<h1 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h1><p>安也安了，命令行也配置好了，那么就开始在命令行下用唄~其实用过git的同学（首先你得习惯用git的命令行模式而不是图形化界面）可以类比下git的使用方式。</p>
+<p>首先要理解Gradle中的几个专业术语。</p>
+<ul>
+<li><strong>projects ( 项目 )</strong>：每一个构建都是由一个或多个 projects 构成的. 一个 project 到底代表什么依赖于你想用 Gradle 做什么. 举个例子, 一个 project 可以代表一个 JAR 或者一个网页应用. 它也可能代表一个发布的 ZIP 压缩包, 这个 ZIP 可能是由许多其他项目的 JARs 构成的. 但是一个 project 不一定非要代表被构建的某个东西. 它可以代表一件**要做的事, 比如部署你的应用.</li>
+<li><strong>tasks ( 任务 )</strong>：每一个 project 是由一个或多个 tasks 构成的. 一个 task 代表一些更加细化的构建. 可能是编译一些 classes, 创建一个 JAR, 生成 javadoc, 或者生成某个目录的压缩文件.</li>
+</ul>
+<p>其实以上的官方解释可以忽略，毛线都读不明白~~~</p>
+<h1 id="Project对象和build-gradle"><a href="#Project对象和build-gradle" class="headerlink" title="Project对象和build.gradle"></a>Project对象和build.gradle</h1><p>为了不深究Gradle的实现原理（就是去读源代码），又要让大家觉得有据可依。我通过引用官方文档的一些描述来帮助大家理解Project对象。</p>
+<p>For each project in the build, Gradle creates an object of type Project and associates this Project object with the build script. (Chapter 13. Writing Build Scripts)<br>构建中的每一个project，Gradle都会创建一个Project对象，并将这个对象与构建脚本相关联。</p>
+<p>There is a one-to-one relationship between a Project and a “build.gradle” file. (Interface Project API)<br>Project对象与build.gradle是一对一的关系。</p>
+<p>First, Gradle scripts are configuration scripts. As the script executes, it configures an object of a particular type. For example, as a build script executes, it configures an object of type Project. This object is called the delegate object of the script. (Gradle Build Language Reference)<br>Gradle的脚本是配置脚本，当脚本执行时，它是在配置某一个特殊类型的对象。比如一个构建脚本的执行，它就是在配置一个Project类型的对象。这个对象叫做脚本的代理对象。</p>
+<p>读完这三句话，应该可以清楚的明白build.gradle的本质，简单的说，build.gradle是对一个Project对象的配置。</p>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>gradle 命令会在当前目录中查找一个叫 build.gradle 的文件. 我们称这个 build.gradle 文件为一个<strong>构建脚本 (build script)</strong>, 但是严格来说它是一个构建配置脚本 (build configuration script). 这个脚本定义了一个 <code>project</code> 和它的 <code>tasks</code>.</p>
+<p>你可以通过 gradle 命令运行一个 Gradle 构建.</p>
+<p>让我们来先看一个例子, 创建一个名为build.gradle的构建脚本.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">task hello &#123;</span><br><span class="line">    doLast &#123;</span><br><span class="line">        println <span class="string">'Hello world!'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在命令行里, 进入脚本所在的文件夹然后输入 <code>gradle -q hello</code> 来执行构建脚本.命令里加入 -q. 代表 quite 模式. 它不会生成 Gradle 的日志信息 (log messages).</p>
+<p>这里发生了什么? 这个构建脚本定义了一个独立的 task, 叫做 hello, 并且加入了一个 action. 当你运行 gradle hello, Gradle 执行叫做 hello 的 task, 也就是执行了你所提供的 action. 这个 action 是一个包含了一些 Groovy 代码的闭包(closure 这个概念不清楚的同学好好谷歌下).</p>
+<p>Gradle 不仅仅是想XML一样的配置文件，他是个脚本，是可以写代码的，更多操作请查看官方文档。</p>
+<h1 id="Java插件"><a href="#Java插件" class="headerlink" title="Java插件"></a>Java插件</h1><p> Gradle 是一种多用途的构建工具. 它可以在你的构建脚本里构建任何你想要实现的东西. 但前提是你必须先在构建脚本里加入代码, 不然它什么都不会执行.</p>
+<p>大都数 Java 项目是非常相像的: 你需要编译你的 Java 源文件, 运行一些单元测试, 同时创建一个包含你类文件的 JAR. 如果你可以不需要为每一个项目重复编写这些, 我想你会非常乐意的.</p>
+<p>幸运的是, 你现在不再需要做这些重复劳动了. Gradle 通过使用插件解决了这个问题. 插件是 Gradle 的扩展, 它会通过某种方式配置你的项目, 典型的有加入一些预配置任务. Gradle 自带了许多插件, 你也可以很简单地编写自己的插件并和其他开发者分享它. Java 插件就是一个这样的插件. 这个插件在你的项目里加入了许多任务， 这些任务会编译和单元测试你的源文件, 并且把它们都集成一个 JAR 文件里.</p>
+<p>Java 插件是基于合约的（<strong>约定优于配置</strong>）. 这意味着插件已经给项目的许多方面定义了默认的参数, 比如 Java 源文件的位置. 如果你在项目里遵从这些合约, 你通常不需要在你的构建脚本里加入太多东西. 如果你不想要或者是你不能遵循合约, Gradle 也允许你自己定制你的项目. 事实上, 因为对 Java 项目的支持是通过插件实现的, 如果你不想要的话, 你一点也不需要使用这个插件来构建你的项目.</p>
+<h1 id="gradle-和-groovy的关系"><a href="#gradle-和-groovy的关系" class="headerlink" title="gradle 和 groovy的关系"></a>gradle 和 groovy的关系</h1><p>那么好好的groovy怎么就变成gradle那样了呢？<br>原因就是，Gradle大量地使用了Groovy闭包的delegate（委托）机制。简单来说，delegate机制可以使我们将一个闭包中的执行代码的作用对象设置成任意其他对象。</p>
+<p><strong>参考文章</strong></p>
+<p><a href="http://benweizhu.github.io/blog/2015/03/31/deep-into-gradle-in-action-6/" target="_blank" rel="noopener">Gradle深入与实战（六）Gradle的背后是什么？</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2016/04/26/2016-04-26-Gradle的简介和使用/" data-id="cjo6zqtk7005tuc24pbt7w8mr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gradle/">Gradle</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/04/2016-05-04-Java泛型/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          泛型（Generics）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/24/2014-12-23-获取表和字段的元数据的方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">获取表和字段的元数据的方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/">反编译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/逆向工程/">逆向工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/隐私权政策/">隐私权政策</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反编译/">反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向工程/">逆向工程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/反编译/" style="font-size: 13.75px;">反编译</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/31/wankeguanjiabao/">隐私权政策</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/">Mac下Android源码（AOSP）编译环境搭建方法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 QX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

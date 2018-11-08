@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Android FragmentPagerAdapter和FragmentStatePagerAdapter | 凉凉小线仔</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在公司查看别人的代码的时候发现个东西，在展示试题的是时候，他用的是FragmentStatePagerAdapter而如果是我的话，我就直接用viewpager+PagerAdapter,但是FragmentStatePagerAdapter是个什么鬼，我听过FragmentPagerAdapter可是没用过FragmentStatePagerAdapter啊，只怪自己学艺不精，既然人家用了就有用">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android FragmentPagerAdapter和FragmentStatePagerAdapter">
+<meta property="og:url" content="http://febsky.me/2016/05/06/2016-05-12-FragmentStatePagerAdapter和FragmentPagerAdapter/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="在公司查看别人的代码的时候发现个东西，在展示试题的是时候，他用的是FragmentStatePagerAdapter而如果是我的话，我就直接用viewpager+PagerAdapter,但是FragmentStatePagerAdapter是个什么鬼，我听过FragmentPagerAdapter可是没用过FragmentStatePagerAdapter啊，只怪自己学艺不精，既然人家用了就有用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-05-13T15:56:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android FragmentPagerAdapter和FragmentStatePagerAdapter">
+<meta name="twitter:description" content="在公司查看别人的代码的时候发现个东西，在展示试题的是时候，他用的是FragmentStatePagerAdapter而如果是我的话，我就直接用viewpager+PagerAdapter,但是FragmentStatePagerAdapter是个什么鬼，我听过FragmentPagerAdapter可是没用过FragmentStatePagerAdapter啊，只怪自己学艺不精，既然人家用了就有用">
+  
+    <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">凉凉小线仔</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">今年我23岁了</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://febsky.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2016-05-12-FragmentStatePagerAdapter和FragmentPagerAdapter" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/06/2016-05-12-FragmentStatePagerAdapter和FragmentPagerAdapter/" class="article-date">
+  <time datetime="2016-05-06T04:14:42.000Z" itemprop="datePublished">2016-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android FragmentPagerAdapter和FragmentStatePagerAdapter
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在公司查看别人的代码的时候发现个东西，在展示试题的是时候，他用的是<code>FragmentStatePagerAdapter</code>而如果是我的话，我就直接用<code>viewpager</code>+<code>PagerAdapter</code>,但是<code>FragmentStatePagerAdapter</code>是个什么鬼，我听过<code>FragmentPagerAdapter</code>可是没用过<code>FragmentStatePagerAdapter</code>啊，只怪自己学艺不精，既然人家用了就有用的道理。</p>
+<h1 id="文档说明"><a href="#文档说明" class="headerlink" title="文档说明"></a>文档说明</h1><p>跟踪源码来看一下FragmentPagerAdapter和FragmentStatePagerAdapter的API说明。我们先来看看FragmentPagerAdapter的API（直接翻译吧）：</p>
+<blockquote>
+<p>FragmentPagerAdapter继承自PagerAdapter ，主要用来展示多个Fragment页面，并且每一个Fragment都会被保存在fragment manager中。 FragmentPagerAdapter最适用于那种少量且相对静态的页面，例如几个tab页。每一个用户访问过的fragment都会被保存在内存中，尽管他的视图层级可能会在不可见时被销毁。这可能导致大量的内存因为fragment实例能够拥有任意数量的状态。对于较多的页面集合，更推荐使用FragmentStatePagerAdapter。 当使用FragmentPagerAdapter的时候对应的ViewPager必须拥有一个有效的ID集。 FragmentPagerAdapter的派生类只需要实现getItem(int)和getCount()即可。</p>
+</blockquote>
+<p>然后是<code>FragmentStatePagerAdapter</code>:</p>
+<blockquote>
+<p>FragmentStatePagerAdapter继承自PagerAdapter，主要使用Fragment来管理每个页面。这个类同样用来保存和恢复fragment页面的状态。 FragmentStatePagerAdapter更多用于大量页面，例如视图列表。当某个页面对用户不再可见时，他们的整个fragment就会被销毁，仅保留fragment状态。相比于FragmentPagerAdapter，这样做的好处是在访问各个页面时能节约大量的内存开销，但代价是在页面切换时会增加非常多的开销。 当使用FragmentPagerAdapter的时候对应的ViewPager必须拥有一个有效的ID集。 FragmentStatePagerAdapter的派生类只需要实现getItem(int)和getCount()即可。</p>
+</blockquote>
+<p>#直接上结论，然后是分析代码</p>
+<ul>
+<li><p>FragmentStatePagerAdapter<br>顾名思义，我们的这个FragmentStatePagerAdapter，在我们切换不同的Fragment的时候，我们会把前面的Fragment销毁，所谓的销毁就是走完Fragment的生命周期，调用<code>onDestroyView</code>,<code>onDestroy</code>,直到<code>onDetach</code>为止,而我们系统在销毁前，会把我们的我们Fragment的Bundle在我们的onSaveInstanceState(Bundle)保存下来。等用户切换回来的时候，我们的Fragment就会根据我们的instance state恢复出来。并且当切换回来的时候会调用这个Fragment的整个生命周期从<code>onAttach</code>方法开始。</p>
+</li>
+<li><p>FragmentPagerAdapter<br>使用这种Adapter，我们的Fragment在切换的时候，只会把我们的Fragment的view销毁，也就是说一个Fragment的生命周期只会调用到<code>onDestroyView</code>,变不会再往下执行，下一次再滑动viewpager回到上一个<code>Fragment</code>的时候,会从这个Fragment的<code>onCreateView</code>开始执行。</p>
+</li>
+</ul>
+<h1 id="代码验证"><a href="#代码验证" class="headerlink" title="代码验证"></a>代码验证</h1><h2 id="Fragment代码"><a href="#Fragment代码" class="headerlink" title="Fragment代码"></a>Fragment代码</h2><p>为了代码简洁Fragment的布局文件就不再给出，就是一个<code>RelativeLayout</code>包含一个<code>TextView</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">package me.fesky.test.fragment;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.support.annotation.Nullable;</span><br><span class="line">import android.support.v4.app.Fragment;</span><br><span class="line">import android.util.Log;</span><br><span class="line">import android.view.LayoutInflater;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.ViewGroup;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">import me.fesky.test.R;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by Administrator on 2016/5/12.</span><br><span class="line"> */</span><br><span class="line">public class MyFragment extends Fragment &#123;</span><br><span class="line"></span><br><span class="line">    int index;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onAttach(Context context) &#123;</span><br><span class="line">        super.onAttach(context);</span><br><span class="line">        Bundle bundle = getArguments();</span><br><span class="line">        index = bundle.getInt(&quot;index&quot;);</span><br><span class="line">        Log.i(&quot;Q_M:&quot;, &quot;onAttach&quot; + index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Nullable</span><br><span class="line">    @Override</span><br><span class="line">    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) &#123;</span><br><span class="line">        View view = inflater.inflate(R.layout.fragment, container, false);</span><br><span class="line">        TextView textView = (TextView) view.findViewById(R.id.text_view);</span><br><span class="line"></span><br><span class="line">        textView.setText(textView.getText()+&quot;&quot;+index);</span><br><span class="line"></span><br><span class="line">        Log.i(&quot;Q_M:&quot;, &quot;onCreateView&quot; + index);</span><br><span class="line">        return view;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDestroyView() &#123;</span><br><span class="line">        super.onDestroyView();</span><br><span class="line"></span><br><span class="line">        Log.i(&quot;Q_M:&quot;, &quot;onDestroyView&quot; + index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line"></span><br><span class="line">        Log.i(&quot;Q_M:&quot;, &quot;onDestroy&quot; + index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDetach() &#123;</span><br><span class="line">        super.onDetach();</span><br><span class="line">        Log.i(&quot;Q_M:&quot;, &quot;onDetach&quot; + index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Activity以及adapter代码"><a href="#Activity以及adapter代码" class="headerlink" title="Activity以及adapter代码"></a>Activity以及adapter代码</h2><p>为了代码简洁<code>Activity</code>的布局文件就不再给出，就是一个<code>RelativeLayout</code>包含一个<code>android.support.v4.view.ViewPager</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">package me.fesky.test;</span><br><span class="line"></span><br><span class="line">import android.support.v4.app.Fragment;</span><br><span class="line">import android.support.v4.app.FragmentManager;</span><br><span class="line">import android.support.v4.app.FragmentPagerAdapter;</span><br><span class="line">import android.support.v4.app.FragmentStatePagerAdapter;</span><br><span class="line">import android.support.v4.view.PagerAdapter;</span><br><span class="line">import android.support.v4.view.ViewPager;</span><br><span class="line">import android.support.v7.app.AppCompatActivity;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">import me.fesky.test.fragment.MyFragment;</span><br><span class="line"></span><br><span class="line">public class TestFragmentActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    ViewPager viewPager;</span><br><span class="line"></span><br><span class="line">    List&lt;Fragment&gt; fragments;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_test_fragment);</span><br><span class="line"></span><br><span class="line">        fragments = new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         * 创建四个Fragment</span><br><span class="line">         */</span><br><span class="line">        fragments.add(new MyFragment());</span><br><span class="line">        fragments.add(new MyFragment());</span><br><span class="line">        fragments.add(new MyFragment());</span><br><span class="line">        fragments.add(new MyFragment());</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         *用这种方式向Fragment传递参数</span><br><span class="line">         */</span><br><span class="line">        Bundle bundle1 = new Bundle();</span><br><span class="line">        bundle1.putInt(&quot;index&quot;,1);</span><br><span class="line">        fragments.get(0).setArguments(bundle1);</span><br><span class="line"></span><br><span class="line">        Bundle bundle2 = new Bundle();</span><br><span class="line">        bundle2.putInt(&quot;index&quot;,2);</span><br><span class="line">        fragments.get(1).setArguments(bundle2);</span><br><span class="line"></span><br><span class="line">        Bundle bundle3 = new Bundle();</span><br><span class="line">        bundle3.putInt(&quot;index&quot;,3);</span><br><span class="line">        fragments.get(2).setArguments(bundle3);</span><br><span class="line"></span><br><span class="line">        Bundle bundle4 = new Bundle();</span><br><span class="line">        bundle4.putInt(&quot;index&quot;,4);</span><br><span class="line">        fragments.get(3).setArguments(bundle4);</span><br><span class="line"></span><br><span class="line">        viewPager = (ViewPager) findViewById(R.id.view_pager);</span><br><span class="line">        PagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());</span><br><span class="line"></span><br><span class="line">        viewPager.setAdapter(pagerAdapter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 尝试切换继承的FragmentPagerAdapter和FragmentStatePagerAdapter</span><br><span class="line">     * 观察打印结果有什么不同</span><br><span class="line">     */</span><br><span class="line">    public  class MyFragmentPagerAdapter extends FragmentPagerAdapter &#123;</span><br><span class="line"></span><br><span class="line">        public MyFragmentPagerAdapter(FragmentManager fm) &#123;</span><br><span class="line">            super(fm);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public Fragment getItem(int position) &#123;</span><br><span class="line">            return fragments.get(position);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public int getCount() &#123;</span><br><span class="line">            return fragments.size();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<font colot="red"> 注意上面所说的销毁都是建立在ViewPager缓存逻辑之上的并不是划过去就会销毁的。不了解的可以看下ViewPager的销毁机制</font>
+</blockquote>
+<p>运行上面的测试代码，可以看到，当adapter是<code>FragmentPagerAdapter</code>打印结果如下：</p>
+<p>ViewPager向后滑动结果如下：</p>
+<blockquote>
+<p>05-12 16:24:53.370 11366-11366/me.fesky.test I/Q_M:: onAttach1<br>05-12 16:24:53.380 11366-11366/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:24:53.380 11366-11366/me.fesky.test I/Q_M:: onAttach2<br>05-12 16:24:53.380 11366-11366/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:25:36.260 11366-11366/me.fesky.test I/Q_M:: onAttach3<br>05-12 16:25:36.270 11366-11366/me.fesky.test I/Q_M:: onCreateView3<br>05-12 16:25:39.980 11366-11366/me.fesky.test I/Q_M:: onDestroyView1<br>05-12 16:25:39.980 11366-11366/me.fesky.test I/Q_M:: onAttach4<br>05-12 16:25:39.980 11366-11366/me.fesky.test I/Q_M:: onCreateView4<br>05-12 16:25:44.760 11366-11366/me.fesky.test I/Q_M:: onDestroyView2</p>
+</blockquote>
+<p>ViewPager向前滑动结果如下：</p>
+<blockquote>
+<p>05-12 16:26:17.220 11366-11366/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:26:18.720 11366-11366/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:26:18.720 11366-11366/me.fesky.test I/Q_M:: onDestroyView4<br>05-12 16:26:27.450 11366-11366/me.fesky.test I/Q_M:: onDestroyView3</p>
+</blockquote>
+<p>当adapter是<code>FragmentStatePagerAdapter</code>打印结果如下：</p>
+<p>ViewPager向后(也就是向下一页滑动)滑动结果如下：</p>
+<blockquote>
+<p>05-12 16:53:36.940 3043-3043/me.fesky.test I/Q_M:: onAttach1<br>05-12 16:53:36.950 3043-3043/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:53:36.950 3043-3043/me.fesky.test I/Q_M:: onAttach2<br>05-12 16:53:36.950 3043-3043/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:53:44.500 3043-3043/me.fesky.test I/Q_M:: onAttach3<br>05-12 16:53:44.500 3043-3043/me.fesky.test I/Q_M:: onCreateView3<br>05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onDestroyView1<br>05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onDestroy1<br>05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onDetach1<br>05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onAttach4<br>05-12 16:53:46.250 3043-3043/me.fesky.test I/Q_M:: onCreateView4</p>
+</blockquote>
+<p>ViewPager向前滑动结果如下：</p>
+<blockquote>
+<p>05-12 16:55:31.350 3043-3043/me.fesky.test I/Q_M:: onAttach2<br>05-12 16:55:31.360 3043-3043/me.fesky.test I/Q_M:: onCreateView2<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroyView4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDestroy4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onDetach4<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onAttach1<br>05-12 16:55:33.620 3043-3043/me.fesky.test I/Q_M:: onCreateView1<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroyView3<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDestroy3<br>05-12 16:55:35.040 3043-3043/me.fesky.test I/Q_M:: onDetach3</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2016/05/06/2016-05-12-FragmentStatePagerAdapter和FragmentPagerAdapter/" data-id="cjo6zqtkd006auc247sg4tqld" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/07/2016-05-07-Nodejs的学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Nodejs的学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/06/2016-05-06-Android打包过程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android 打包过程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/">反编译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/逆向工程/">逆向工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/隐私权政策/">隐私权政策</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反编译/">反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向工程/">逆向工程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/反编译/" style="font-size: 13.75px;">反编译</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/31/wankeguanjiabao/">隐私权政策</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/">Mac下Android源码（AOSP）编译环境搭建方法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 QX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

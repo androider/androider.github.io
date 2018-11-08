@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>凉凉小线仔</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android,Java,Python,博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="凉凉小线仔">
+<meta property="og:url" content="http://febsky.me/page/8/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="Android,Java,Python,博客">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="凉凉小线仔">
+<meta name="twitter:description" content="Android,Java,Python,博客">
+  
+    <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">凉凉小线仔</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">今年我23岁了</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://febsky.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2015-09-15-Android 文件下载" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/15/2015-09-15-Android 文件下载/" class="article-date">
+  <time datetime="2015-09-15T05:47:54.000Z" itemprop="datePublished">2015-09-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/15/2015-09-15-Android 文件下载/">Android文件下载</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"></span><br><span class="line"> *</span><br><span class="line"></span><br><span class="line"> * @param urlString    下载文件地址</span><br><span class="line"></span><br><span class="line"> * @param savePath    保存本地路径</span><br><span class="line"></span><br><span class="line"> * @param filename    保存的文件名</span><br><span class="line"></span><br><span class="line"> * @throws Exception</span><br><span class="line"></span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public static void download(String urlString, String savePath, String filename) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">    // 构造URL</span><br><span class="line"></span><br><span class="line">    URL url = new URL(urlString);</span><br><span class="line"></span><br><span class="line">    // 打开连接</span><br><span class="line"></span><br><span class="line">    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();</span><br><span class="line"></span><br><span class="line">    //设置请求超时为5s</span><br><span class="line"></span><br><span class="line">    httpURLConnection.setConnectTimeout(5 * 1000);</span><br><span class="line"></span><br><span class="line">    httpURLConnection.setRequestMethod(&amp;quot;GET&amp;quot;);</span><br><span class="line"></span><br><span class="line">    //开始下载</span><br><span class="line"></span><br><span class="line">    if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK) &#123;</span><br><span class="line"></span><br><span class="line">        // 输入流</span><br><span class="line"></span><br><span class="line">        InputStream inputStream = httpURLConnection.getInputStream();</span><br><span class="line"></span><br><span class="line">        // 输出的文件流</span><br><span class="line"></span><br><span class="line">        File savePathFile = new File(savePath);</span><br><span class="line"></span><br><span class="line">        if (!savePathFile.exists()) &#123;</span><br><span class="line"></span><br><span class="line">            savePathFile.mkdirs();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 1K的数据缓冲</span><br><span class="line"></span><br><span class="line">        byte[] buffer = new byte[1024 * 4];</span><br><span class="line"></span><br><span class="line">        // 读取到的数据长度</span><br><span class="line"></span><br><span class="line">        int len;</span><br><span class="line"></span><br><span class="line">        OutputStream outputStream = new FileOutputStream(new File(savePathFile, filename));</span><br><span class="line"></span><br><span class="line">        // 开始读取</span><br><span class="line"></span><br><span class="line">        while ((len = inputStream.read(buffer)) != -1) &#123;</span><br><span class="line"></span><br><span class="line">            outputStream.write(buffer, 0, len);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 完毕，关闭所有链接</span><br><span class="line"></span><br><span class="line">        outputStream.close();</span><br><span class="line"></span><br><span class="line">        inputStream.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/09/15/2015-09-15-Android 文件下载/" data-id="cjo6zqtj30035uc24xfj0wrq1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-09-08-PS（PhotoShop）基础知识（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/" class="article-date">
+  <time datetime="2015-09-08T02:01:31.000Z" itemprop="datePublished">2015-09-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PhotoShop/">PhotoShop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/">PS（PhotoShop）基础知识（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>抓手工具 H</p>
+<ul>
+<li>alt + 鼠标左键 + 左右拖动鼠标，放大或者缩小图片</li>
+<li>alt + shift + 鼠标左键 + 左右拖动鼠标 放大或者缩小图片的当前位置点</li>
+<li>command + +/- 放大或者缩小图片</li>
+<li>command + 0/1   预览/完全显示图片</li>
+</ul>
+</li>
+<li><p>图层</p>
+<ul>
+<li>按住 alt 键和移动工具，可以边移动边复制图层</li>
+<li>shift + command + alt + e 合并可见图层为一个新图层</li>
+<li>选中图层后，delete键可以删除图层</li>
+<li>common + j 可以生成图层副本</li>
+<li>蒙版工具可以通过修改黑色的值，修改原图的透明度，为图层新建蒙版，alt 点击可以选中</li>
+<li>shift  单击蒙版停用蒙版</li>
+<li>选区可以直接创建蒙版，蒙版黑色的部分表示透明，白色表示显示。可以用画笔工具在蒙版上涂抹</li>
+<li>有个<code>智能对象</code></li>
+<li>图层样式 右下角FX按钮  双击右侧图层列表可以进入图层样式选项</li>
+<li>复杂图像不必抠图，用图像<code>混合模式</code>可以完成，去掉白色选择<code>正片叠底</code></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/" data-id="cjo6zqtlg0094uc247o8od3ta" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-09-08-PS（PhotoShop）基础知识（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（二）/" class="article-date">
+  <time datetime="2015-09-08T02:01:31.000Z" itemprop="datePublished">2015-09-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PhotoShop/">PhotoShop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（二）/">PS（PhotoShop）基础知识（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>工具栏中的工具</strong></p>
+<ol>
+<li><p>移动工具 <code>V [shift]</code></p>
+<ul>
+<li>在左上角有个<code>自动选择</code> + <code>图层</code>选项，勾选后可以自动选择获得焦点图层</li>
+<li>当有多个图层中的元素被选中的时候，还可以指定对其方式</li>
+</ul>
+</li>
+<li><p>选框工具 M </p>
+<ul>
+<li>在上边的样式选项中可以指定，选区工具是固定大小的还是固定比例的。</li>
+<li>选区可以做运算，也就是两次选区的组合。相加，相减，相交等。组合键，shift ，ALT ,shift + alt. 前提是已经存在一个选区，当画第二个选区的时候，按住这些键。</li>
+<li>command + d 取消选区</li>
+<li>command + j 复制选区为新的图层</li>
+<li>按住shift 选区可以为正方形，圆 </li>
+<li>填充选区<br><code>alt + shift + delete</code>前景填充<br><code>cmd + shift + delete</code> 背景填充  </li>
+</ul>
+</li>
+<li><p>套索工具 L</p>
+<ul>
+<li>delete 键可以删除套索选择工具的点</li>
+</ul>
+</li>
+<li><p>快速选择工具</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>裁剪工具 C</p>
+<ul>
+<li>可以自定义放置裁剪变换中心点，按住alt 拖动中心点</li>
+<li>上边选项中可以选择辅助线，三等分，网格，黄金比，螺旋线等。shift + o 可以调整辅助线的位置。</li>
+<li>透视裁剪工具，可以通过自定义方式四个裁剪点，来。</li>
+<li>切片工具可以和参考线一起使用<code>基于参考线的切片</code></li>
+<li>切片选择工具，可以移动切片</li>
+</ul>
+</li>
+</ol>
+<ol start="6">
+<li><p>吸管工具</p>
+<ul>
+<li>吸到前景色</li>
+<li>按住alt + 鼠标左键 吸到背景色</li>
+<li>通过<code>样本</code>选项，可设置是吸取当前图层还是图层叠加</li>
+<li>通过<code>取样大小</code>可以设置是取一个像素点，还是周围几个像素点的像素评价运算</li>
+<li><code>颜色取样器工具</code>和<code>信息窗口</code>一块用</li>
+<li>标尺拉直工具 可以将倾斜的图层拉直</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（二）/" data-id="cjo81xam100012r24g5nbbapq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-09-01-Mac Pro Mounty挂载NTFS硬盘报错" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/01/2015-09-01-Mac Pro Mounty挂载NTFS硬盘报错/" class="article-date">
+  <time datetime="2015-09-01T14:07:43.000Z" itemprop="datePublished">2015-09-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mac/">Mac</a>►<a class="article-category-link" href="/categories/Mac/其他/">其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/01/2015-09-01-Mac Pro Mounty挂载NTFS硬盘报错/">Mac Pro Mounty挂载NTFS硬盘报错</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原来用的是Linux或者Win系统，后来鸟枪换炮整了个MacPro结果发现移动硬盘，只能读不能写。</p>
+<p>原来Mac不能直接读取NTFS格式化的硬盘，卧槽。后来发现有个软件可以解决叫做Mounty。恩，好。</p>
+<p>可是我把移动硬盘插上，然后地接确认挂载。</p>
+<p>靠！告诉我~</p>
+<p>The volume 电影 is not re-mountable in read/write mode .Probably it was not clean unmounted before.</p>
+<p>什么吊意思，说什么不能被重新挂载，因为以前没有clean 卸载。</p>
+<p>好吧，我英语不好。意思是说磁盘在win下面没有安全删除就拔出来了，导致文件系统中有错误区块，所以在MAC中不能挂载成读写模式。到win下面chkdsk /f一下就好了.</p>
+<ol>
+<li><p>插入移动硬盘到win下面</p>
+</li>
+<li><p>打开dos命令行。输入<code>chkdsk /f</code>,然后回车</p>
+</li>
+<li><p>Y</p>
+</li>
+<li><p>好吧，下次拔出移动硬盘之前，记得，右下角的安全删除。。。。</p>
+</li>
+</ol>
+<p>然后再插到mac上就OK了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/09/01/2015-09-01-Mac Pro Mounty挂载NTFS硬盘报错/" data-id="cjo6zqtj20030uc24pw98kdo3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-08-28-Android属性动画之ValueAnimator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/28/2015-08-28-Android属性动画之ValueAnimator/" class="article-date">
+  <time datetime="2015-08-28T08:13:20.000Z" itemprop="datePublished">2015-08-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/28/2015-08-28-Android属性动画之ValueAnimator/">Android属性动画之ValueAnimator</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一个对ListView做伸缩的例子"><a href="#一个对ListView做伸缩的例子" class="headerlink" title="一个对ListView做伸缩的例子"></a>一个对ListView做伸缩的例子</h2><p>用ValueAnimator来实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 隐藏或显示ListView的动画</span></span><br><span class="line"><span class="comment"> *  参数分别为ListView的其实高度和最终高度</span></span><br><span class="line"><span class="comment"> *  这种写法有缺陷，繁琐了</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hideOrShowListViewAnimator</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> startValue,<span class="keyword">final</span> <span class="keyword">int</span> endValue)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//1.设置属性的初始值和结束值</span></span><br><span class="line"></span><br><span class="line">		ValueAnimator mAnimator = ValueAnimator.ofInt(<span class="number">0</span>,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//2.为目标对象的属性变化设置监听器</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">//(每个时间片调用一次   调用次数=setDuration的时常/时间片（系统每隔多长时间执行一次）)</span></span><br><span class="line"></span><br><span class="line">		mAnimator.addUpdateListener(<span class="keyword">new</span> AnimatorUpdateListener() &#123;</span><br><span class="line"></span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationUpdate</span><span class="params">(ValueAnimator animation)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">				<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">				<span class="keyword">int</span> animatorValue = (<span class="keyword">int</span>)animation.getAnimatedValue();</span><br><span class="line"></span><br><span class="line">				<span class="keyword">float</span> fraction = animatorValue/<span class="number">100f</span>;</span><br><span class="line"></span><br><span class="line">				IntEvaluator mEvaluator = <span class="keyword">new</span> IntEvaluator();</span><br><span class="line"></span><br><span class="line">				<span class="comment">//3.使用IntEvaluator计算属性值并赋值给ListView的高</span></span><br><span class="line"></span><br><span class="line">				mListView.getLayoutParams().height = mEvaluator.evaluate(fraction, startValue, endValue);</span><br><span class="line"></span><br><span class="line">				mListView.requestLayout();</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//4.为ValueAnimator设置LinearInterpolator</span></span><br><span class="line"></span><br><span class="line">		mAnimator.setInterpolator(<span class="keyword">new</span> LinearInterpolator());</span><br><span class="line"></span><br><span class="line">		<span class="comment">//5.设置动画的持续时间</span></span><br><span class="line"></span><br><span class="line">		mAnimator.setDuration(<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//6.为ValueAnimator设置目标对象并开始执行动画</span></span><br><span class="line"></span><br><span class="line">		mAnimator.setTarget(mListView);</span><br><span class="line"></span><br><span class="line">		mAnimator.start();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码列表中，需传递的两个参数分别为属性值的初始值和结束值，当需要显示ListView时，传入0和800像素值，当需要隐藏ListView时，传入800和0像素值，ListView的初始化高度默认是0。</p>
+<h2 id="原理解释"><a href="#原理解释" class="headerlink" title="原理解释"></a>原理解释</h2><p>其实ValueAnimator叫做动画，他其实并不是我们视觉上的动画，他是对某个范围的值做动画。</p>
+<p>例如：</p>
+<p><code>ValueAnimator mAnimator = ValueAnimator.ofInt(0,100);</code></p>
+<p><code>mAnimator.setDuration(500);</code></p>
+<p>其实在默认的差值器的情况下，ValueAnimator是把0-100的数在500毫秒内数完。也就是说500ms内执行了100次，</p>
+<p>每5ms执行一次。没执行一次调用一次AnimatorUpdateListener接口的回调方法。</p>
+<h3 id="在Property-Animation中，可以对动画应用以下属性："><a href="#在Property-Animation中，可以对动画应用以下属性：" class="headerlink" title="在Property Animation中，可以对动画应用以下属性："></a>在Property Animation中，可以对动画应用以下属性：</h3><p>1）Duration：动画的持续时间</p>
+<p>2）TimeInterpolation：Interpolator 时间插值类，定义动画变换的速度。属性的计算方式，如先快后慢，计算后得到（fraction）</p>
+<p>3）TypeEvaluator：根据属性的开始值、结束值与【TimeInterpolation计算出的因子（fraction）】计算出当前时间的属性值【开始值&lt;=当前值&lt;=结束值】</p>
+<p>4）Repeat Country and behavoir:重复次数与方式，如播放3次，5次，无限循环，可以此动画一直重复，或者播放完时再反向播放。</p>
+<p>5) Animation sets:动画集合，即可以同时对一个对象应用几个动画，这些动画可以同时播放也可以对不同的动画设置不同开始偏移</p>
+<p>6）Frame refreash delay:多少时间刷新一次，即每隔多少时间计算一次属性值，默认为10ms，最终的刷新时间，还受到系统进程调度与硬件的影响。</p>
+<h2 id="Interpolator"><a href="#Interpolator" class="headerlink" title="Interpolator"></a>Interpolator</h2><p><strong>作用：</strong>根据时间流逝的百分比计算出当前属性值改变的百分比。</p>
+<p>插值器它定义了动画变化过程中的属性变化规则，它根据时间比例因子计算出一个插值因子，用于设定目标对象的动画执行是否为线性变化、非线性变化或先加速后减速等等.</p>
+<p>其实说白了就是上面提到的数数的快慢的变化的一个数值。上面说的在500ms内执行了100次，这一百次是匀速执行的，也就是没隔5ms执行一次，叫做线性变化，</p>
+<p>也就是线性差值器。其实差值器类似于物理中的加速度。</p>
+<p><strong>如下为系统定义的差值器：</strong></p>
+<ul>
+<li>AccelerateDecelerateInterpolator：先加速再减速。</li>
+<li>AccelerateInterpolator：一直加速。</li>
+<li>AnticipateInterpolator：先往后一下，再嗖的一声一往无前。</li>
+<li>AnticipateOvershootInterpolator：先往后一下，再一直往前超过终点，再往回收一下。</li>
+<li>BounceInterpolator：最后像个小球弹几下。</li>
+<li>CycleInterpolator：重复几次，感觉就是环形进度条那种，具体我还没试过。</li>
+<li>DecelerateInterpolator：一直减速。</li>
+<li>LinearInterpolator：线性，这个就是我们上面讲到的很均匀的了。</li>
+<li>OvershootInterpolator：到了终点之后，超过一点，再往回走。有个参数可以定义，超过的力度。</li>
+</ul>
+<p>可以自己定义差值器：</p>
+<p>继承TimeInterpolator类，重写getInterpolation(float input)方法，并在该方法通过相关的计算，再返回计算后的结果(插值因子)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterpolator</span> <span class="keyword">implements</span> <span class="title">TimeInterpolator</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getInterpolation</span><span class="params">(<span class="keyword">float</span> input)</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">        <span class="comment">// 编写相关的逻辑计算  </span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> input * input;  </span><br><span class="line"></span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="TypeEvaluator"><a href="#TypeEvaluator" class="headerlink" title="TypeEvaluator"></a>TypeEvaluator</h2><p><strong>作用：</strong>根据当前属性改变的百分比来计算改变后的属性值。</p>
+<p>大多数时候，我们是在自定义这个东西。一般来说系统预留的差值器，就够用了。</p>
+<p><strong>系统定义的估值器</strong></p>
+<ul>
+<li>IntEvaluator：针对整型属性 </li>
+<li>FloatEvaluator：针对浮点型属性 </li>
+<li>ArgbEvaluator：针对Color属性</li>
+</ul>
+<p>例如FloatEvaluator的源码为:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FloatEvaluator</span> <span class="keyword">implements</span> <span class="title">TypeEvaluator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//fraction  差值器计算出来的一个小数值，也即是属性要变化的百分比</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">evaluate</span><span class="params">(<span class="keyword">float</span> fraction, Object startValue, Object endValue)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">float</span> startFloat = ((Number) startValue).floatValue();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> startFloat + fraction * (((Number) endValue).floatValue() - startFloat);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PS总结：</p>
+<p>从用户看来，界面的变化率是根据差值器变化的，其实，代码调用界面重绘的频率是一定的</p>
+<p>比如：没10ms调用一次界面重绘，但是每次重绘的时候值的变化是不同的。</p>
+<p>比如，修改View的位移变化。使用DecelerateInterpolator差值器，动画导致View刷新屏幕界面，</p>
+<p>这个调用代码的频率是一样的，为了体现先快后慢得效果，我们必须在调用频率相同的情况想，改变每次变化的大小。</p>
+<p>而每次变化的大小由TypeEvaluator计算出来，它计算的时候用到三个值，其中两个很好理解，就是我们在创建动画的时候</p>
+<p>传入的开始值，和结束值。以位移动画来比喻的话就是开始位置和结束位置。最重要的一个值是fraction这个值是由Interpolator</p>
+<p>计算出来的。因为每次Interpolator计算的值不同，所以导致了TypeEvaluator计算的值不同，从而导致每次刷新界面的时候</p>
+<p>View的位移的值不同，因为刷新频率一定，从视觉上导致，看起来动画有了减速（或者加速）效果。</p>
+<p>很重要的一点是理解Interpolator计算出来的到底是个什么东西，其实应该是<code>时间片因子</code>。</p>
+<p>怎么理解呢：如果设置动画时常为500ms，系统默认的是每10ms调用一次动画变换。这个10ms叫做一个时间片。</p>
+<p>也就是说这个动画会在调用50次之后结束。那么要想实现非线性变换，必须在每次调用的时候返回不同的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"></span><br><span class="line">    * Maps a value representing the elapsed fraction of an animation to a value that represents</span><br><span class="line"></span><br><span class="line">    * the interpolated fraction. This interpolated value is then multiplied by the change in</span><br><span class="line"></span><br><span class="line">    * value of an animation to derive the animated value at the current elapsed animation time.</span><br><span class="line"></span><br><span class="line">    *</span><br><span class="line"></span><br><span class="line">    * @param input A value between 0 and 1.0 indicating our current point</span><br><span class="line"></span><br><span class="line">    *        in the animation where 0 represents the start and 1.0 represents</span><br><span class="line"></span><br><span class="line">    *        the end</span><br><span class="line"></span><br><span class="line">    * @return The interpolation value. This value can be more than 1.0 for</span><br><span class="line"></span><br><span class="line">    *         interpolators which overshoot their targets, or less than 0 for</span><br><span class="line"></span><br><span class="line">    *         interpolators that undershoot their targets.</span><br><span class="line"></span><br><span class="line">    */</span><br><span class="line"></span><br><span class="line">   float getInterpolation(float input);</span><br></pre></td></tr></table></figure>
+<p>从注释上来看，这个Interpolator接收一个0-1的参数，0表示动画的开始，1表示动画的结束。这个系数代表了动画已经完成的百分比，0意味着0%、1意味着100%。</p>
+<p>比如我们上面的例子中如果设置动画时常为500ms，系统默认的是每10ms调用一次动画变换。这个10ms叫做一个时间片。</p>
+<p>那么第一次调用的时候会传递：0，第二次调用传入：1.0 / (500ms/10ms)，这是线性差值器的效果，</p>
+<p>所以<code>public float getInterpolation(float input)</code>此函数的本次执行的参数是上次运行的返回值；</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/08/28/2015-08-28-Android属性动画之ValueAnimator/" data-id="cjo6zqtj1002yuc24nhr0lnwc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-08-28-Android属性动画之ObjectAnimator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/28/2015-08-28-Android属性动画之ObjectAnimator/" class="article-date">
+  <time datetime="2015-08-28T04:10:35.000Z" itemprop="datePublished">2015-08-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/动画/">动画</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/28/2015-08-28-Android属性动画之ObjectAnimator/">Android属性动画之ObjectAnimator</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>播放组合动画的三种方式：</p>
+<h2 id="方法一直接全部列出来，多种动画同时并发执行："><a href="#方法一直接全部列出来，多种动画同时并发执行：" class="headerlink" title="方法一直接全部列出来，多种动画同时并发执行："></a>方法一直接全部列出来，多种动画同时并发执行：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ObjectAnimator animX = ObjectAnimator.ofFloat(myView, x, <span class="number">50f</span>).setDuration(<span class="number">1000</span>).start();;</span><br><span class="line"></span><br><span class="line">ObjectAnimator animY = ObjectAnimator.ofFloat(myView, ;y, <span class="number">100f</span>).setDuration(<span class="number">1000</span>).start();;</span><br></pre></td></tr></table></figure>
+<h2 id="方法二：PropertyValuesHolder-多种动画同时开启"><a href="#方法二：PropertyValuesHolder-多种动画同时开启" class="headerlink" title="方法二：PropertyValuesHolder 多种动画同时开启"></a>方法二：PropertyValuesHolder 多种动画同时开启</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">PropertyValuesHolder pvhX = PropertyValuesHolder.ofFloat(x, <span class="number">50f</span>);</span><br><span class="line"></span><br><span class="line">PropertyValuesHolder pvhY = PropertyValuesHolder.ofFloat(y, <span class="number">100f</span>);</span><br><span class="line"></span><br><span class="line">ObjectAnimator.ofPropertyValuesHolder(myView, pvhX, pvyY).start();</span><br></pre></td></tr></table></figure>
+<h2 id="方法三：AnimatorSet-最灵活可以指定每个动画开启的时机"><a href="#方法三：AnimatorSet-最灵活可以指定每个动画开启的时机" class="headerlink" title="方法三：AnimatorSet 最灵活可以指定每个动画开启的时机"></a>方法三：AnimatorSet 最灵活可以指定每个动画开启的时机</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ObjectAnimator animX = ObjectAnimator.ofFloat(myView, x, <span class="number">50f</span>);</span><br><span class="line"></span><br><span class="line">ObjectAnimator animY = ObjectAnimator.ofFloat(myView, y, <span class="number">100f</span>);</span><br><span class="line"></span><br><span class="line">AnimatorSet animSetXY = <span class="keyword">new</span> AnimatorSet();</span><br><span class="line"></span><br><span class="line">animSetXY.playTogether(animX, animY);    <span class="comment">//同时执行</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//animSetXY.playSequentially(animX, animY);    //顺序执行</span></span><br><span class="line"></span><br><span class="line">animSetXY.start();</span><br></pre></td></tr></table></figure>
+<h2 id="ofFloat或者oFInt中的propertyName的已有取值"><a href="#ofFloat或者oFInt中的propertyName的已有取值" class="headerlink" title="ofFloat或者oFInt中的propertyName的已有取值"></a>ofFloat或者oFInt中的propertyName的已有取值</h2><ol>
+<li><p>translationX和translationY：这两个属性作为一种增量来控制着View对象从它布局容器的左上角坐标开始的位置。</p>
+</li>
+<li><p>rotation、rotationX和rotationY：这三个属性控制View对象围绕支点进行2D和3D旋转。</p>
+</li>
+<li><p>scaleX和scaleY：这两个属性控制着View对象围绕它的支点进行2D缩放。</p>
+</li>
+<li><p>pivotX和pivotY：这两个属性控制着View对象的支点位置，围绕这个支点进行旋转和缩放变换处理。默认情况下，该支点的位置就是View对象的中心点。</p>
+</li>
+<li><p>x和y：这是两个简单实用的属性，它描述了View对象在它的容器中的最终位置，它是最初的左上角坐标和translationX和translationY值的累计和。</p>
+</li>
+<li><p>alpha：它表示View对象的alpha透明度。默认值是1（不透明），0代表完全透明（不可见）。</p>
+</li>
+</ol>
+<p>7.left right top bottom</p>
+<ol start="8">
+<li>pivotX 和 pivotY: 这两个属性控制着枢轴点的位置，前述的旋转和缩放都是以此点为中心展开的,缺省的枢轴点是 View 对象的中心点;</li>
+</ol>
+<p>但是这种方式设置的话会吧pivotX和pivotY也做动画了，出来的效果有问题，后来发现可以用<code>view. setPivotX(int x);</code></p>
+<p>来设置ObjectAnimator旋转的中心点，设置ObjectAnimator的pivotX或者ObjectAnimator的pivotY</p>
+<p>除此之外还可以自定义</p>
+<h2 id="Android系统本身内置了一些通用的Interpolator-插值器"><a href="#Android系统本身内置了一些通用的Interpolator-插值器" class="headerlink" title="Android系统本身内置了一些通用的Interpolator(插值器),"></a>Android系统本身内置了一些通用的Interpolator(插值器),</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/08/28/2015-08-28-Android属性动画之ObjectAnimator/" data-id="cjo6zqtj0002uuc2432idxyw5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动画/">动画</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-08-25-Sublime下ReactNative开发环境" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/25/2016-08-25-Sublime下ReactNative开发环境/" class="article-date">
+  <time datetime="2015-08-25T08:12:29.000Z" itemprop="datePublished">2015-08-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Sublime/">Sublime</a>►<a class="article-category-link" href="/categories/Sublime/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/25/2016-08-25-Sublime下ReactNative开发环境/">Sublime下ReactNative开发环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="主要用到以下四个插件："><a href="#主要用到以下四个插件：" class="headerlink" title="主要用到以下四个插件："></a>主要用到以下四个插件：</h2><p>以下四个插件都用Package Control安装,安装后</p>
+<ul>
+<li><a href="https://packagecontrol.io/packages/Babel" target="_blank" rel="noopener">babel</a> 代码高亮 他还带有一个代码片段的插件<a href="https://github.com/babel/babel-sublime-snippets" target="_blank" rel="noopener">Babel Snippets</a></li>
+<li><p><a href="https://github.com/facebookarchive/sublime-react" target="_blank" rel="noopener">sublime-react（插件名字ReactJS）</a> Sublime Text helpers for React. Syntax highlighting DEPRECATED in favor of babel/babel-sublime</p>
+</li>
+<li><p><a href="https://github.com/jdc0589/JsFormat" target="_blank" rel="noopener">JsFormat</a> jsformat 是 sublime 上 js 格式化比较好用的插件之一，通过修改它的e4x 属性可以使它支持 jsx。 当有js和jsx混合写的时候，格式化会出错。</p>
+</li>
+<li><a href="https://github.com/Shrugs/react-native-snippets" target="_blank" rel="noopener">react-native-snippets</a> 在代码编辑器中输入代码片段的缩写,就能生成完整代码</li>
+<li><a href="https://packagecontrol.io/packages/SublimeLinter-jsxhint" target="_blank" rel="noopener">sublimeLinter-jsxhint</a>  JSX 代码审查，实时提示语法错误, 帮助快速定位错误点.</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ol>
+<li><p>babel 使用配置：</p>
+<ul>
+<li>打开<code>.js</code>, <code>.jsx</code> 后缀的文件;</li>
+<li>打开菜单view， <code>Syntax -&gt; Open all with current extension as... -&gt; Babel -&gt; JavaScript (Babel)</code>，选择babel为默认 javascript 打开syntax</li>
+</ul>
+</li>
+<li><p>JsFormat 配置</p>
+<p>打开<code>preferences -&gt; Package Settings -&gt; JsFormat -&gt; Setting - Users</code>,输入以下代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  //支持 jsx 类型文件</span><br><span class="line">  "e4x": true,</span><br><span class="line">  // 保存时自动格式化</span><br><span class="line">  "format_on_save": true,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/08/25/2016-08-25-Sublime下ReactNative开发环境/" data-id="cjo6zqtlf0091uc24m67nlt7n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-08-13-MAC 上的软件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/13/2015-08-13-MAC 上的软件/" class="article-date">
+  <time datetime="2015-08-13T05:13:11.000Z" itemprop="datePublished">2015-08-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mac/">Mac</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/13/2015-08-13-MAC 上的软件/">MAC 上的软件常用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-解压"><a href="#1-解压" class="headerlink" title="1. 解压"></a>1. 解压</h2><p> <a href="https://itunes.apple.com/app/the-unarchiver/id425424353" target="_blank" rel="noopener">The Unarchiver</a></p>
+<p>1、The Unarchiver</p>
+<p>若想要免费的解压缩工具，这个几乎是必备的，原因是使用 Windows 资源管理器创建的 zip 压缩包不保存文件名编码信息，在 Mac OS X 上使用有些解压缩工具可能会遇到文件名乱码。The Unarchiver 支持文件名编码检测，可最大程度解决文件名乱码问题。</p>
+<p>但作为免费应用，有功能限制：该应用无法预览压缩包内容，无法单独对压缩包内的部分文件进行解压缩。可以配合使用 BetterZip 家免费的 BetterZip Quick Look Generator 这款 Finder 插件来预览压缩包内容。</p>
+<p>2、The Archive Browser</p>
+<p>The Archive Browser 是上面推荐的 The Unarchiver 的收费扩展版，除 The Unarchiver 的全部功能外，还可预览压缩包内容，可单独对压缩包内的部分文件进行解压缩。原价 3.99 美元，可在官方网站也可在 Mac App Store 购买。其中 Mac App Store 版经常降价促销（0.99 - 1.99 美元），喜欢的朋友可以关注一下。</p>
+<p>3、Keka</p>
+<p>官方网站下载版免费，Mac App Store 版收费 1.99 美元。该应用支持在创建压缩包时将 Mac OS X 在文件夹下自动生成的隐藏系统文件排除，且压缩包包含文件名编码信息，不会造成文件在 Windows 下解压缩时文件名乱码。</p>
+<p>以上推荐的应用中，建议 Keka 为必备，日常创建压缩包都用这个应用；The Unarchiver 和 The Archive Browser 中按个人需求二选一作为解压缩工具。</p>
+<h2 id="数据库图形化界面"><a href="#数据库图形化界面" class="headerlink" title="数据库图形化界面"></a>数据库图形化界面</h2><p>Navicate    收费，但是~~~呵呵，破解的有很多、如果不会破解。。某宝上有很多卖号的、</p>
+<h2 id="播放gif图片"><a href="#播放gif图片" class="headerlink" title="播放gif图片"></a>播放gif图片</h2><p>一开始的时候，我发现MAC自带的图片浏览器会把gif图片分解成多张静态图，</p>
+<p>然后为了看gif图我把它拖到浏览器中，</p>
+<p>后来发现，直接选中图片按键盘空格键。就可以播放gif了，挺方便的。</p>
+<h2 id="虚拟机（都收费）"><a href="#虚拟机（都收费）" class="headerlink" title="虚拟机（都收费）"></a>虚拟机（都收费）</h2><ol>
+<li>VMware-Fusion <a href="https://download3.vmware.com/software/fusion/file/VMware-Fusion-8.0.0-2985594.dmg" target="_blank" rel="noopener">下载地址</a></li>
+</ol>
+<p>注册码：</p>
+<p>FA3RK-FHGD5-M88TZ-V4WEZ-MVAW0</p>
+<p>FU75U-4KD5L-0845Z-JEXNZ-MLKD8</p>
+<p>UV7XK-4PXEJ-080WY-4WXQT-NC0ZF</p>
+<p>VC79R-6NF81-M84XZ-VNW5G-NKUW8</p>
+<p>GC1HA-01Z14-H8D2P-04NNZ-Z6RY0</p>
+<ol start="2">
+<li>Parallels Desktop </li>
+</ol>
+<p>据说不错，但是太贵了，没找到免费破解方式</p>
+<ol start="3">
+<li>Virtual Box 呵呵，免费开源，太low</li>
+</ol>
+<h2 id="挂载移动硬盘NTFS格式的"><a href="#挂载移动硬盘NTFS格式的" class="headerlink" title="挂载移动硬盘NTFS格式的"></a>挂载移动硬盘NTFS格式的</h2><p>mounty</p>
+<h2 id="屏幕截取"><a href="#屏幕截取" class="headerlink" title="屏幕截取"></a>屏幕截取</h2><ol>
+<li><p>shift + command + 4 截取任意位置，保存图片到桌面</p>
+<p>shift  + command + 3 截取整个桌面</p>
+</li>
+<li><p>Mac 还自带了一个叫做，抓图的软件 英文名字叫做：Grab   ，打开这个软件后，菜单栏有四个截屏命令。</p>
+</li>
+<li><p>QQ也可以截图的。</p>
+</li>
+<li><p>snip</p>
+<p>截屏，编辑。软件主页以及下载地址 <a href="http://snip.qq.com/" target="_blank" rel="noopener">http://snip.qq.com/</a>  主要是他有编辑功能</p>
+</li>
+</ol>
+<h2 id="屏幕录制"><a href="#屏幕录制" class="headerlink" title="屏幕录制"></a>屏幕录制</h2><p>在windows中我们用<a href="http://blog.bahraniapps.com/gifcam/" target="_blank" rel="noopener">GifCam</a>挺爽的，可惜这个玩意貌似没有mac版的，不知道为啥</p>
+<p>在Mac中我用的是<strong><a href="http://www.cockos.com/licecap/" target="_blank" rel="noopener">cockos</a></strong>和GifCam长的差不多。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/08/13/2015-08-13-MAC 上的软件/" data-id="cjo6zqtiy002puc24d3ck2vsu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-08-10-git 远程分支版本回退" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/10/2015-08-10-git 远程分支版本回退/" class="article-date">
+  <time datetime="2015-08-10T03:22:17.000Z" itemprop="datePublished">2015-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/10/2015-08-10-git 远程分支版本回退/">git 远程分支版本回退</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>方法: </p>
+<pre><code>`git reset --hard commit_id`(可用 git log --oneline 查看)     ###本地代码回退
+
+`git push origin HEAD --force`    ###远程提交回退
+</code></pre><p>或者</p>
+<p><code>git reset --hard HEAD~1</code></p>
+<p><code>git push --force</code></p>
+<p>PS.</p>
+<h2 id="git-revert-和-git-reset的区别"><a href="#git-revert-和-git-reset的区别" class="headerlink" title="git revert 和 git reset的区别"></a>git revert 和 git reset的区别</h2><ol>
+<li><p>git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit。 </p>
+</li>
+<li><p>在回滚这一操作上看，效果差不多。但是在日后继续merge以前的老版本时有区别。因为git revert是用一次逆向的commit“中和”之前的提交，因此日后合并老的branch时，导致这部分改变不会再次出现，但是git reset是之间把某些commit在某个branch上删除，因而和老的branch再次merge时，这些被回滚的commit应该还会被引入。 </p>
+</li>
+<li><p>git reset 是把HEAD向后移动了一下，而git revert是HEAD继续前进，只是新的commit的内容和要revert的内容正好相反，能够抵消要被revert的内容。</p>
+</li>
+</ol>
+<p>git reset + commit号</p>
+<p>git reset命令后面是需要加2种参数的：”–hard”和”–soft”。这条命令默认情况下是”–soft”。执行上述命令时，这该条commit号之后（时间作为参考点）的所有commit的修改都会退回到git缓冲区中。使用git status命令可以在缓冲区中看到这些修改。而如果加上”–hard”参数，则缓冲区中不会存储这些修改，git会直接丢弃这部分内容。但需要注意的一个问题是：由于这样的重置是直接在本地的修改，无法提交到远程服务器，如果直接丢弃的内容已经被推到远程服务器上了，则会造成本地和服务器无法同步的问题。即git reset –hard只能针对本地操作，不能针对远程服务器进行同样操作。如果从本地删掉的内容没有推到服务器上，则不会有副作用；如果被推到服务器，则下次本地和服务器进行同步时，这部分删掉的内容仍然会回来。</p>
+<p>而上面注意中提到的问题则可以很好的被git revert 命令解决。</p>
+<p>git revert + commit 号</p>
+<p>该命令撤销对某个commit的提交，这一撤销动作会作为一个新的修改存储起来，这样，当你和服务器同步时，就不会产生什么副作用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/08/10/2015-08-10-git 远程分支版本回退/" data-id="cjo6zqtiz002ruc24gsj9y0or" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-08-04-Java单例的写法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/04/2015-08-04-Java单例的写法/" class="article-date">
+  <time datetime="2015-08-04T09:12:21.000Z" itemprop="datePublished">2015-08-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/04/2015-08-04-Java单例的写法/">Java单例的写法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-懒汉式"><a href="#1-懒汉式" class="headerlink" title="1.懒汉式"></a>1.懒汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//懒汉式单例类.在第一次调用的时候实例化自己</span><br><span class="line"></span><br><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    private Singleton() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    private static Singleton single=null;</span><br><span class="line"></span><br><span class="line">    //静态工厂方法</span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line"></span><br><span class="line">         if (single == null) &#123;</span><br><span class="line"></span><br><span class="line">             single = new Singleton();</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">        return single;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（事实上，通过Java反射机制是能够实例化构造方法为private的类的，那基本上会使所有的Java单例实现失效。）</p>
+<p>但是以上懒汉式单例的实现没有考虑线程安全问题，它是线程不安全的，并发环境下很可能出现多个Singleton实例。</p>
+<p>可以用以下三种方式解决：</p>
+<h2 id="2-在getInstance方法上加同步"><a href="#2-在getInstance方法上加同步" class="headerlink" title="2. 在getInstance方法上加同步"></a>2. 在getInstance方法上加同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static synchronized Singleton getInstance() &#123;  </span><br><span class="line"></span><br><span class="line">         if (single == null) &#123;    </span><br><span class="line"></span><br><span class="line">             single = new Singleton();  </span><br><span class="line"></span><br><span class="line">         &#125;    </span><br><span class="line"></span><br><span class="line">        return single;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-双重检查锁定"><a href="#3-双重检查锁定" class="headerlink" title="3. 双重检查锁定"></a>3. 双重检查锁定</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static Singleton getInstance() &#123;  </span><br><span class="line"></span><br><span class="line">        if (singleton == null) &#123;    </span><br><span class="line"></span><br><span class="line">            synchronized (Singleton.class) &#123;    </span><br><span class="line"></span><br><span class="line">               if (singleton == null) &#123;    </span><br><span class="line"></span><br><span class="line">                  singleton = new Singleton();   </span><br><span class="line"></span><br><span class="line">               &#125;    </span><br><span class="line"></span><br><span class="line">            &#125;    </span><br><span class="line"></span><br><span class="line">        &#125;    </span><br><span class="line"></span><br><span class="line">        return singleton;   </span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-静态内部类"><a href="#4-静态内部类" class="headerlink" title="4. 静态内部类"></a>4. 静态内部类</h2><p>前两种方式我不用，不再做记录，<a href="http://blog.csdn.net/jason0539/article/details/23297037" target="_blank" rel="noopener">这篇博客中有介绍</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    private static class LazyHolder &#123;</span><br><span class="line"></span><br><span class="line">       private static final Singleton INSTANCE = new Singleton();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Singleton ()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static final Singleton getInstance() &#123;</span><br><span class="line"></span><br><span class="line">       return LazyHolder.INSTANCE;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-饿汉式"><a href="#5-饿汉式" class="headerlink" title="5.饿汉式"></a>5.饿汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//饿汉式单例类.在类初始化时，已经自行实例化</span><br><span class="line"></span><br><span class="line">public class Singleton1 &#123;</span><br><span class="line"></span><br><span class="line">    private Singleton1() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    private static final Singleton1 single = new Singleton1();</span><br><span class="line"></span><br><span class="line">    //静态工厂方法</span><br><span class="line"></span><br><span class="line">    public static Singleton1 getInstance() &#123;</span><br><span class="line"></span><br><span class="line">        return single;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>饿汉式在类创建的同时就已经创建好一个静态的对象供系统使用，以后不再改变，所以天生是线程安全的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/08/04/2015-08-04-Java单例的写法/" data-id="cjo6zqtix002luc24anghb0ww" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/">反编译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/逆向工程/">逆向工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/隐私权政策/">隐私权政策</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反编译/">反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向工程/">逆向工程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/反编译/" style="font-size: 13.75px;">反编译</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/31/wankeguanjiabao/">隐私权政策</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/">Mac下Android源码（AOSP）编译环境搭建方法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 QX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
