@@ -5,20 +5,20 @@
   
 
   
-  <title>PS（PhotoShop）基础知识（三） | 凉凉小线仔</title>
+  <title>Nodejs随机数 | 凉凉小线仔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="抓手工具 H  alt + 鼠标左键 + 左右拖动鼠标，放大或者缩小图片 alt + shift + 鼠标左键 + 左右拖动鼠标 放大或者缩小图片的当前位置点 command + +/- 放大或者缩小图片 command + 0/1   预览/完全显示图片   图层  按住 alt 键和移动工具，可以边移动边复制图层 shift + command + alt + e 合并可见图层为一个新图层">
-<meta name="keywords" content="PhotoShop,PS笔记">
+  <meta name="description" content="Math：数学对象，提供对数据的数学计算。  Math.random(); 结果为0-1间的一个随机数(包括0,不包括1)   Math.ceil(n); 返回大于等于n的最小整数。用Math.ceil(Math.random()*10);时，主要获取1到10的随机整数，取0的几率极小。  Math.round(num); 返回num四舍五入后整数的值。用Math.round(Math.rando">
+<meta name="keywords" content="Nodejs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PS（PhotoShop）基础知识（三）">
-<meta property="og:url" content="http://febsky.me/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/index.html">
+<meta property="og:title" content="Nodejs随机数">
+<meta property="og:url" content="http://febsky.me/2016/05/07/2016-05-07-Nodejs的随机数/index.html">
 <meta property="og:site_name" content="凉凉小线仔">
-<meta property="og:description" content="抓手工具 H  alt + 鼠标左键 + 左右拖动鼠标，放大或者缩小图片 alt + shift + 鼠标左键 + 左右拖动鼠标 放大或者缩小图片的当前位置点 command + +/- 放大或者缩小图片 command + 0/1   预览/完全显示图片   图层  按住 alt 键和移动工具，可以边移动边复制图层 shift + command + alt + e 合并可见图层为一个新图层">
+<meta property="og:description" content="Math：数学对象，提供对数据的数学计算。  Math.random(); 结果为0-1间的一个随机数(包括0,不包括1)   Math.ceil(n); 返回大于等于n的最小整数。用Math.ceil(Math.random()*10);时，主要获取1到10的随机整数，取0的几率极小。  Math.round(num); 返回num四舍五入后整数的值。用Math.round(Math.rando">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-11-02T01:51:19.000Z">
+<meta property="og:updated_time" content="2018-11-08T07:43:59.889Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PS（PhotoShop）基础知识（三）">
-<meta name="twitter:description" content="抓手工具 H  alt + 鼠标左键 + 左右拖动鼠标，放大或者缩小图片 alt + shift + 鼠标左键 + 左右拖动鼠标 放大或者缩小图片的当前位置点 command + +/- 放大或者缩小图片 command + 0/1   预览/完全显示图片   图层  按住 alt 键和移动工具，可以边移动边复制图层 shift + command + alt + e 合并可见图层为一个新图层">
+<meta name="twitter:title" content="Nodejs随机数">
+<meta name="twitter:description" content="Math：数学对象，提供对数据的数学计算。  Math.random(); 结果为0-1间的一个随机数(包括0,不包括1)   Math.ceil(n); 返回大于等于n的最小整数。用Math.ceil(Math.random()*10);时，主要获取1到10的随机整数，取0的几率极小。  Math.round(num); 返回num四舍五入后整数的值。用Math.round(Math.rando">
   
     <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
   
@@ -69,14 +69,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-2016-09-08-PS（PhotoShop）基础知识（三）" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2016-05-07-Nodejs的随机数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/" class="article-date">
-  <time datetime="2015-09-08T02:01:31.000Z" itemprop="datePublished">2015-09-08</time>
+    <a href="/2016/05/07/2016-05-07-Nodejs的随机数/" class="article-date">
+  <time datetime="2016-05-07T03:18:31.000Z" itemprop="datePublished">2016-05-07</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/PhotoShop/">PhotoShop</a>
+    <a class="article-category-link" href="/categories/Nodejs/">Nodejs</a>
   </div>
 
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      PS（PhotoShop）基础知识（三）
+      Nodejs随机数
     </h1>
   
 
@@ -95,38 +95,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>抓手工具 H</p>
-<ul>
-<li>alt + 鼠标左键 + 左右拖动鼠标，放大或者缩小图片</li>
-<li>alt + shift + 鼠标左键 + 左右拖动鼠标 放大或者缩小图片的当前位置点</li>
-<li>command + +/- 放大或者缩小图片</li>
-<li>command + 0/1   预览/完全显示图片</li>
-</ul>
+        <p>Math：数学对象，提供对数据的数学计算。</p>
+<ol>
+<li><p>Math.random(); 结果为0-1间的一个随机数(包括0,不包括1) </p>
 </li>
-<li><p>图层</p>
-<ul>
-<li>按住 alt 键和移动工具，可以边移动边复制图层</li>
-<li>shift + command + alt + e 合并可见图层为一个新图层</li>
-<li>选中图层后，delete键可以删除图层</li>
-<li>common + j 可以生成图层副本</li>
-<li>蒙版工具可以通过修改黑色的值，修改原图的透明度，为图层新建蒙版，alt 点击可以选中</li>
-<li>shift  单击蒙版停用蒙版</li>
-<li>选区可以直接创建蒙版，蒙版黑色的部分表示透明，白色表示显示。可以用画笔工具在蒙版上涂抹</li>
-<li>有个<code>智能对象</code></li>
-<li>图层样式 右下角FX按钮  双击右侧图层列表可以进入图层样式选项</li>
-<li>复杂图像不必抠图，用图像<code>混合模式</code>可以完成，去掉白色选择<code>正片叠底</code></li>
-</ul>
+<li><p>Math.ceil(n); 返回大于等于n的最小整数。用Math.ceil(Math.random()*10);时，主要获取1到10的随机整数，取0的几率极小。</p>
+</li>
+<li><p>Math.round(num); 返回num四舍五入后整数的值。用Math.round(Math.random());可均衡获取0到1的随机整数。<br>用Math.round(Math.random()*10);时，可基本均衡获取0到10的随机整数，其中获取最小值0和最大值10的几率少一半。</p>
+</li>
+<li><p>Math.floor(num); 参数num为一个数值，函数结果为num的整数部分。 用Math.floor(Math.random()*10);时，可均衡获取0到9的随机整数。</p>
 </li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/" data-id="cjo6zqtlg0094uc247o8od3ta" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2016/05/07/2016-05-07-Nodejs的随机数/" data-id="cjo6zqtkb0063uc24lo8r7xh7" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/">Nodejs</a></li></ul>
 
     </footer>
   </div>
@@ -134,19 +121,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/09/15/2015-09-15-Android 文件下载/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/05/07/2016-05-07-Nodejs的学习/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Android文件下载
+          Nodejs的学习
         
       </div>
     </a>
   
   
-    <a href="/2015/09/08/2016-09-08-PS（PhotoShop）基础知识（二）/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/05/06/2016-05-06-Android打包过程/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">PS（PhotoShop）基础知识（二）</div>
+      <div class="article-nav-title">Android 打包过程</div>
     </a>
   
 </nav>
@@ -191,7 +178,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
     </div>
   </div>
 
@@ -208,11 +195,11 @@
           </li>
         
           <li>
-            <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
+            <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
           </li>
         
           <li>
-            <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
+            <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
           </li>
         
           <li>
