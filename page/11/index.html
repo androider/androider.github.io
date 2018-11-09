@@ -69,9 +69,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2014-12-11-Postgres 序列操作" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-01-04-Postgres序列操作" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/04/2014-12-11-Postgres 序列操作/" class="article-date">
+    <a href="/2015/01/04/2015-01-04-Postgres序列操作/" class="article-date">
   <time datetime="2015-01-04T03:23:39.000Z" itemprop="datePublished">2015-01-04</time>
 </a>
     
@@ -87,7 +87,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/2014-12-11-Postgres 序列操作/">Postgres 序列操作</a>
+      <a class="article-title" href="/2015/01/04/2015-01-04-Postgres序列操作/">Postgres 序列操作</a>
     </h1>
   
 
@@ -103,11 +103,11 @@
 <ol start="2">
 <li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可用的序列函数有∶</span><br><span class="line"></span><br><span class="line">nextval</span><br><span class="line"></span><br><span class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </span><br><span class="line"></span><br><span class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</span><br><span class="line"></span><br><span class="line">currval</span><br><span class="line"></span><br><span class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </span><br><span class="line"></span><br><span class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</span><br><span class="line"></span><br><span class="line">lastval</span><br><span class="line"></span><br><span class="line">返回当前会话里最近一次 nextval 返回的数值。 </span><br><span class="line"></span><br><span class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </span><br><span class="line"></span><br><span class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</span><br><span class="line"></span><br><span class="line">setval</span><br><span class="line"></span><br><span class="line">重置序列对象的计数器数值。</span><br><span class="line"></span><br><span class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 true，</span><br><span class="line"></span><br><span class="line">表示下一次 nextval 将在返回数值之前递增该序列。</span><br><span class="line"></span><br><span class="line">在三参数形式里，is_called 可以设置为 true 或 false。</span><br><span class="line"></span><br><span class="line">如果你把它设置为 false，那么下一次 nextval 将返回这里声明的数值，</span><br><span class="line"></span><br><span class="line">而从随后的 nextval 才开始递增该序列。</span><br><span class="line"></span><br><span class="line">比如</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42);    //下次nextval将返回 43</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42, true);     //和上面一样</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42, false);    //下次nextval将返回 42</span><br><span class="line"></span><br><span class="line">setval 返回的结果就是它的第二个参数的数值。</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可用的序列函数有∶</span><br><span class="line"></span><br><span class="line">nextval</span><br><span class="line"></span><br><span class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </span><br><span class="line"></span><br><span class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</span><br><span class="line"></span><br><span class="line">currval</span><br><span class="line"></span><br><span class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </span><br><span class="line"></span><br><span class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</span><br><span class="line"></span><br><span class="line">lastval</span><br><span class="line"></span><br><span class="line">返回当前会话里最近一次 nextval 返回的数值。 </span><br><span class="line"></span><br><span class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </span><br><span class="line"></span><br><span class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</span><br><span class="line"></span><br><span class="line">setval</span><br><span class="line"></span><br><span class="line">重置序列对象的计数器数值。</span><br><span class="line"></span><br><span class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 <span class="keyword">true</span>，</span><br><span class="line"></span><br><span class="line">表示下一次 nextval 将在返回数值之前递增该序列。</span><br><span class="line"></span><br><span class="line">在三参数形式里，is_called 可以设置为 <span class="keyword">true</span> 或 <span class="keyword">false</span>。</span><br><span class="line"></span><br><span class="line">如果你把它设置为 <span class="keyword">false</span>，那么下一次 nextval 将返回这里声明的数值，</span><br><span class="line"></span><br><span class="line">而从随后的 nextval 才开始递增该序列。</span><br><span class="line"></span><br><span class="line">比如</span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>)</span></span>;    <span class="comment">//下次nextval将返回 43</span></span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">true</span>)</span></span>;     <span class="comment">//和上面一样</span></span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">false</span>)</span></span>;    <span class="comment">//下次nextval将返回 42</span></span><br><span class="line"></span><br><span class="line">setval 返回的结果就是它的第二个参数的数值。</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/01/04/2014-12-11-Postgres 序列操作/" data-id="cjo9li2fo000b2n242l60z9no" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2015/01/04/2015-01-04-Postgres序列操作/" data-id="cjo9lkai1000m3724sw1papc8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
@@ -156,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/12/23/2014-12-23-获取表和字段的元数据的方法/" data-id="cjo9li2fr000f2n2408r3okvr" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2014/12/23/2014-12-23-获取表和字段的元数据的方法/" data-id="cjo9lkahw000h3724p9sf0tn4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgres/">postgres</a></li></ul>
@@ -206,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/" data-id="cjo9li2fs000h2n2406rs2hv5" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/" data-id="cjo9lkahu000f37248c01ynng" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -263,7 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/12/18/2014-12-11-PostGreSQL ERROR/" data-id="cjo9li2fl00072n24f9x0nnne" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2014/12/18/2014-12-11-PostGreSQL ERROR/" data-id="cjo9lkahm00083724ro9pijbt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
@@ -318,7 +318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/12/11/2014-12-11-Hive添加数据和查看索引/" data-id="cjo9li2fm00082n24oyidalzn" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2014/12/11/2014-12-11-Hive添加数据和查看索引/" data-id="cjo9lkahk00073724xio9qvg9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hive/">Hive</a></li></ul>
@@ -395,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/12/09/2015-02-25-Django应用uWSGI  admin的样式丢失了  解决方案/" data-id="cjo9li2g200142n24oi5o83s3" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2014/12/09/2015-02-25-Django应用uWSGI  admin的样式丢失了  解决方案/" data-id="cjo9lkaid00103724rawdbw1d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -441,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/12/08/2014-12-08-改变html中鼠标形状/" data-id="cjo9li2fk00062n24urp3fqc6" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2014/12/08/2014-12-08-改变html中鼠标形状/" data-id="cjo9lkahj00063724kjnsot33" class="article-share-link">Share</a>
       
       
     </footer>
@@ -489,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/12/04/2015-02-25-centos6 配置Django服务器运行环境(一)-------Python安装/" data-id="cjo9li2g9001i2n24lrpnam05" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2014/12/04/2015-02-25-centos6 配置Django服务器运行环境(一)-------Python安装/" data-id="cjo9lkail001h37247qreyner" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -547,7 +547,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/12/02/2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set./" data-id="cjo9li2fp000c2n24wlqwpj5m" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2014/12/02/2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set./" data-id="cjo9lkahr000c37243v225yj8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
@@ -637,7 +637,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/" data-id="cjo9li2g100122n24yaypuyo4" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/" data-id="cjo9lkaib000z3724wa8gdgka" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
