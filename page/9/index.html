@@ -69,118 +69,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2015-07-14-Android 文件存储" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/14/2015-07-14-Android 文件存储/" class="article-date">
-  <time datetime="2015-07-14T07:34:30.000Z" itemprop="datePublished">2015-07-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/文件存储/">文件存储</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/14/2015-07-14-Android 文件存储/">Android文件存储路径</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>注意：由于Android6.0+支持多用户，所以，在4.1.2 返回路径 <code>/data/data/com.xxx.xxx/</code><br>请自动看做 6.0 下的<code>/data/user/0/com.xxx.xxx/</code>目录</p>
-</blockquote>
-<h2 id="外部文件存储"><a href="#外部文件存储" class="headerlink" title="外部文件存储"></a>外部文件存储</h2><p>最容易混淆的是外部存储，如果说pc上也要区分出外部存储和内部存储的话，那么自带的硬盘算是内部存储，U盘或者移动硬盘算是外部存储，因此我们很容易带着这样的理解去看待安卓手机，认为机身固有存储是内部存储，而扩展的T卡是外部存储。比如我们任务16GB版本的Nexus 4有16G的内部存储，普通消费者可以这样理解，但是安卓的编程中不能，这16GB仍然是外部存储。</p>
-<p>所有的安卓设备都有外部存储和内部存储，这两个名称来源于安卓的早期设备，那个时候的设备内部存储确实是固定的，而外部存储确实是可以像U盘一样移动的。但是在后来的设备中，很多中高端机器都将自己的机身存储扩展到了8G以上，他们将存储在概念上分成了”内部internal” 和”外部external” 两部分，但其实都在手机内部。所以不管安卓手机是否有可移动的sdcard，他们总是有外部存储和内部存储。最关键的是，我们都是通过相同的api来访问可移动的sdcard或者手机自带的存储（外部存储）。</p>
-<h3 id="自定义外部存储Environment类"><a href="#自定义外部存储Environment类" class="headerlink" title="自定义外部存储Environment类"></a>自定义外部存储<code>Environment</code>类</h3><blockquote>
-<p>注意在<code>AndoridManifest.xml</code>中声明存储权限请求，6.0以上的系统要动态请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.MOUNT_UNMOUNT_FILESYSTEMS&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<ul>
-<li><code>static File getDataDirectory()</code>获得android <code>/data</code>的目录。</li>
-<li><code>static File getExternalStorageDirectory()</code>获取Android的<code>/storage/emulated/0</code>目录也是就<code>/sdcard</code>目录</li>
-<li><code>static File getExternalStoragePublicDirectory(String type)</code>根据类型来获取sdcard上的目录如type为<code>Environment.DIRECTORY_MUSIC</code>时，路径为<code>/storage/emulated/0/Music</code></li>
-<li><code>static File getRootDirectory()</code>获得android的<code>/system</code>目录。</li>
-<li><code>static File getDownloadCacheDirectory()</code>这个指的是<code>/cache</code>这么目录</li>
-</ul>
-<h3 id="规范化外部存储"><a href="#规范化外部存储" class="headerlink" title="规范化外部存储"></a>规范化外部存储</h3><p>应用程序在运行的过程中如果需要向手机上保存数据，一般是把数据保存在SDcard中的。</p>
-<p>大部分应用是直接在SDCard的根目录下创建一个文件夹，然后把数据保存在该文件夹中。</p>
-<p>这样当该应用被卸载后，这些数据还保留在SDCard中，留下了垃圾数据。</p>
-<p>如果你想让你的应用被卸载后，与该应用相关的数据也清除掉，该怎么办呢？</p>
-<p>通过<code>context.getExternalFilesDir()</code>方法可以获取到 sdcard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据</p>
-<p>通过<code>context.getExternalCacheDir()</code>方法可以获取到 sdcard/Android/data/你的应用包名/cache/目录，一般存放临时缓存数据</p>
-<p>如果使用上面的方法，当你的应用在被用户卸载后，sdcard/Android/data/你的应用的包名/ 这个目录下的所有文件都会被删除，不会留下垃圾信息。</p>
-<p>而且上面二个目录分别对应 设置-&gt;应用-&gt;应用详情里面的”清除数据“与”清除缓存“选项</p>
-<h2 id="路径的规律图如下"><a href="#路径的规律图如下" class="headerlink" title="路径的规律图如下"></a>路径的规律图如下</h2><p>一般地，通过<code>Context</code> 和 <code>Environment</code>相关的方法获取文件存取的路径。</p>
-<p>通过这两个类可获取各种路径，如图：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">+- /data  ---&gt; Environment.getDataDirectory()</span><br><span class="line">|   |</span><br><span class="line">|   |   </span><br><span class="line">|   +- data/com.adorkable.sample</span><br><span class="line">|           |</span><br><span class="line">|           | </span><br><span class="line">|           +- files ---&gt; context.getFilesDir() </span><br><span class="line">|           |       |</span><br><span class="line">|           |       +- file1 ---&gt; context.getFileStreamPath(&quot;file1&quot;)</span><br><span class="line">|           |       |</span><br><span class="line">|           |       +- file2 ---&gt;context.openFileOutput(&quot;file2&quot;)</span><br><span class="line">|           | </span><br><span class="line">|           +- cache  ---&gt; context.getCacheDir()</span><br><span class="line">|           |</span><br><span class="line">|           +- app_$name ---&gt; context.getDir(String name, int mode)</span><br><span class="line">|           |</span><br><span class="line">|           +- shared_prefs ---&gt; context.getSharedPreferences()</span><br><span class="line">| </span><br><span class="line">|</span><br><span class="line">+- /storage/sdcard0   ---&gt; Environment.getExternalStorageDirectory()</span><br><span class="line">             |                        </span><br><span class="line">             |- Music ---&gt;Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)</span><br><span class="line">             |</span><br><span class="line">             +- dir1  ---&gt;Environment.getExternalStoragePublicDirectory(&quot;dir1&quot;)</span><br><span class="line">             |   </span><br><span class="line">             +- Andorid/data/com.adorkable.sample【注：这里是包名】</span><br><span class="line">                              |</span><br><span class="line">                              | </span><br><span class="line">                              +- files      ---&gt; context.getExternalFilesDir(&quot;&quot;)</span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- file1   ---&gt; context.getExternalFilesDir(&quot;file1&quot;)</span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- Music    ---&gt; context.getExternalFilesDir(Environment.Music)</span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- Picture  ---&gt; context.getExternalFilesDir(Environment.Picture) </span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- ...</span><br><span class="line">                              |</span><br><span class="line">                              | </span><br><span class="line">                              +- cache    ---&gt;context.getExternalCacheDir()</span><br><span class="line">                              |</span><br><span class="line">                              +- 其他</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/07/14/2015-07-14-Android 文件存储/" data-id="cjo9t73ry002yqx24qejvkh9y" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件存储/">文件存储</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-05-25-MySQL中授权命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/05/25/2015-05-25-MySQL中授权命令/" class="article-date">
-  <time datetime="2015-05-25T03:57:08.000Z" itemprop="datePublished">2015-05-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>►<a class="article-category-link" href="/categories/MySQL/SQL/">SQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/25/2015-05-25-MySQL中授权命令/">mysql中授权命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mysql中授权命令<span class="keyword">grant</span>用法详解: </span><br><span class="line"></span><br><span class="line">mysql中可以给你一个用户授予如<span class="keyword">select</span>,<span class="keyword">insert</span>,<span class="keyword">update</span>,<span class="keyword">delete</span>等其中的一个或者多个权限,主要使用<span class="keyword">grant</span>命令,用法格式为： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 权限 <span class="keyword">on</span> 数据库对象 <span class="keyword">to</span> 用户 </span><br><span class="line"></span><br><span class="line">一、<span class="keyword">grant</span> 普通数据用户，查询、插入、更新、删除 数据库中所有表数据的权利。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">insert</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">update</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">delete</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line">或者，用一条 MySQL 命令来替代： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>, <span class="keyword">insert</span>, <span class="keyword">update</span>, <span class="keyword">delete</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line">二、<span class="keyword">grant</span> 数据库开发人员，创建表、索引、视图、存储过程、函数。。。等权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 创建、修改、删除 MySQL 数据表结构权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">alter</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">drop</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 操作 MySQL 外键权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">references</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 操作 MySQL 临时表权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">temporary</span> <span class="keyword">tables</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 操作 MySQL 索引权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">index</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 操作 MySQL 视图、查看视图源代码 权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">view</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">show</span> <span class="keyword">view</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 操作 MySQL 存储过程、函数 权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> routine <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; <span class="comment">-- now, can show procedure status </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">alter</span> routine <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; <span class="comment">-- now, you can drop a procedure </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">execute</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line">三、<span class="keyword">grant</span> 普通 DBA 管理某个 MySQL 数据库的权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> testdb <span class="keyword">to</span> dba@’localhost’ </span><br><span class="line"></span><br><span class="line">其中，关键字 “<span class="keyword">privileges</span>” 可以省略。 </span><br><span class="line"></span><br><span class="line">四、<span class="keyword">grant</span> 高级 DBA 管理 MySQL 中所有数据库的权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@’localhost’ </span><br><span class="line"></span><br><span class="line">五、MySQL <span class="keyword">grant</span> 权限，分别可以作用在多个层次上。 </span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> <span class="keyword">grant</span> 作用在整个 MySQL 服务器上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@localhost; <span class="comment">-- dba 可以查询 MySQL 中所有数据库中的表。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@localhost; <span class="comment">-- dba 可以管理 MySQL 中的所有数据库 </span></span><br><span class="line"></span><br><span class="line">2. <span class="keyword">grant</span> 作用在单个数据库上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> dba@localhost; <span class="comment">-- dba 可以查询 testdb 中的表。 </span></span><br><span class="line"></span><br><span class="line">3. <span class="keyword">grant</span> 作用在单个数据表上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>, <span class="keyword">insert</span>, <span class="keyword">update</span>, <span class="keyword">delete</span> <span class="keyword">on</span> testdb.orders <span class="keyword">to</span> dba@localhost; </span><br><span class="line"></span><br><span class="line">4. <span class="keyword">grant</span> 作用在表中的列上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>(<span class="keyword">id</span>, se, <span class="keyword">rank</span>) <span class="keyword">on</span> testdb.apache_log <span class="keyword">to</span> dba@localhost; </span><br><span class="line"></span><br><span class="line">5. <span class="keyword">grant</span> 作用在存储过程、函数上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">execute</span> <span class="keyword">on</span> <span class="keyword">procedure</span> testdb.pr_add <span class="keyword">to</span> ’dba’@’localhost’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">execute</span> <span class="keyword">on</span> <span class="keyword">function</span> testdb.fn_add <span class="keyword">to</span> ’dba’@’localhost’ </span><br><span class="line"></span><br><span class="line">六、查看 MySQL 用户权限 </span><br><span class="line"></span><br><span class="line">查看当前用户（自己）权限： </span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">grants</span>; </span><br><span class="line"></span><br><span class="line">查看其他 MySQL 用户权限： </span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">grants</span> <span class="keyword">for</span> dba@localhost; </span><br><span class="line"></span><br><span class="line">七、撤销已经赋予给 MySQL 用户权限的权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">revoke</span> 跟 <span class="keyword">grant</span> 的语法差不多，只需要把关键字 “<span class="keyword">to</span>” 换成 “<span class="keyword">from</span>” 即可： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@localhost; </span><br><span class="line"></span><br><span class="line"><span class="keyword">revoke</span> all <span class="keyword">on</span> *.* <span class="keyword">from</span> dba@localhost; </span><br><span class="line"></span><br><span class="line">八、MySQL <span class="keyword">grant</span>、<span class="keyword">revoke</span> 用户权限注意事项 </span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> <span class="keyword">grant</span>, <span class="keyword">revoke</span> 用户权限后，该用户只有重新连接 MySQL 数据库，权限才能生效。 </span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 如果想让授权的用户，也可以将这些权限 <span class="keyword">grant</span> 给其他用户，需要选项 “<span class="keyword">grant</span> <span class="keyword">option</span>“ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> dba@localhost <span class="keyword">with</span> <span class="keyword">grant</span> <span class="keyword">option</span>; </span><br><span class="line"></span><br><span class="line">这个特性一般用不到。实际中，数据库权限最好由 DBA 来统一管理。</span><br></pre></td></tr></table></figure>
-<h2 id="还有一组我常用的"><a href="#还有一组我常用的" class="headerlink" title="还有一组我常用的"></a>还有一组我常用的</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">向表中插入数据</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">test</span> (<span class="keyword">id</span>,S_name) <span class="keyword">VALUE</span>(<span class="number">1234</span>,<span class="string">"yantai"</span>);</span><br><span class="line"></span><br><span class="line">把一张表中的数据插入另一张表</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> test2 (id2) </span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> <span class="keyword">test</span> ;</span><br><span class="line"></span><br><span class="line">修改表数据</span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> test2 <span class="keyword">SET</span> age=<span class="number">2</span>;		<span class="comment">-- 修改所有的元组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> test2 <span class="keyword">SET</span> age=<span class="number">22</span> <span class="keyword">WHERE</span> id2=<span class="number">1234</span>;  <span class="comment">-- 修改一行</span></span><br><span class="line"></span><br><span class="line">创建用户</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> liuqiang <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'123'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> liuqiang@localhost <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'123'</span>;</span><br><span class="line"></span><br><span class="line">给某个用户授权</span><br><span class="line"></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> userinfo <span class="keyword">TO</span> liuqiang;</span><br><span class="line"></span><br><span class="line">把名为test的数据库的所有权限授权个某个用户</span><br><span class="line"></span><br><span class="line"><span class="keyword">GRANT</span> ALL <span class="keyword">ON</span> test.* <span class="keyword">TO</span> <span class="string">'liuqiang'</span>;</span><br></pre></td></tr></table></figure>
-<h1 id="修改root-密码"><a href="#修改root-密码" class="headerlink" title="修改root 密码"></a>修改root 密码</h1><p><code>mysql&gt; SET PASSWORD FOR &#39;root&#39;@&#39;localhost&#39; = PASSWORD(&#39;newpass&#39;);</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/05/25/2015-05-25-MySQL中授权命令/" data-id="cjo9t73rw002vqx24c7mdfvk0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-2015-05-08-Linux ftp 命令行登陆" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/05/08/2015-05-08-Linux ftp 命令行登陆/" class="article-date">
@@ -676,11 +564,102 @@
 
 
   
+    <article id="post-2015-02-25-Python中获取某天是某个月中的第几周" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/" class="article-date">
+  <time datetime="2015-02-09T08:15:38.000Z" itemprop="datePublished">2015-02-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/">Python中获取某天是某个月中的第几周</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>找了半天竟然没找到，如何在Python的datetime处理上，获取某年某月某日，是属于这个月的第几周。</p>
+<p>无奈之下求助同学，同学给写了一个模块。【如果你知道Python有这个原生的库，请不吝赐教】</p>
+<p>我稍作整理记录在下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">__author__ = <span class="string">'####'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_week_of_month</span><span class="params">(year, month, day)</span>:</span></span><br><span class="line"></span><br><span class="line">    &amp;quot;&amp;quot;&amp;quot;</span><br><span class="line"></span><br><span class="line">    获取指定的某天是某个月中的第几周</span><br><span class="line"></span><br><span class="line">    周一作为一周的开始</span><br><span class="line"></span><br><span class="line">    &amp;quot;&amp;quot;&amp;quot;</span><br><span class="line"></span><br><span class="line">    end = int(datetime.datetime(year, month, day).strftime(&amp;quot;%W&amp;quot;))</span><br><span class="line"></span><br><span class="line">    begin = int(datetime.datetime(year, month, <span class="number">1</span>).strftime(&amp;quot;%W&amp;quot;))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> end - begin + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">18</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/" data-id="cjo9t73rf001uqx24v1vshhci" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-02-25-Python 中其实已经自带了easy_install和pip" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/" class="article-date">
+  <time datetime="2015-02-09T03:42:32.000Z" itemprop="datePublished">2015-02-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/">Python 中其实已经自带了easy_install和pip</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以前每次安装Python的时候为了能更快的下载第三方插件都要先安装easy_install或者pip</p>
+<p>但是后来发现，Python的安装文件中其实已经安装了这两个东西，只是没有放到环境变量中所以无法直接在命令行引用</p>
+<p>假设我的Python直接安装在C盘的根目录下，win7上的路径为：C:\Python27\Scripts，只要把这个路径配置到win7的path下面就能直接在命令行使用了。</p>
+<p>至于Linux也是一样，只是配置环境变量的方式不同而已。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/" data-id="cjo9t73re001rqx24bhjn36v1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -711,7 +690,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/反编译/" style="font-size: 13.75px;">反编译</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.25px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/反编译/" style="font-size: 13.75px;">反编译</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
     </div>
   </div>
 

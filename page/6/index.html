@@ -69,100 +69,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2016-04-09-选择排序Java实现" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/09/2016-04-09-选择排序Java实现/" class="article-date">
-  <time datetime="2016-04-09T02:25:02.000Z" itemprop="datePublished">2016-04-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>►<a class="article-category-link" href="/categories/Java/算法/">算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/09/2016-04-09-选择排序Java实现/">选择排序Java实现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>选择排序的基本思想是每一趟在 n-i+i(i=1,2,3,…,n-1)个记录中选取关键字最小的记录作为有序序列的第i个记录。</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/04/09/2016-04-09-选择排序Java实现/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/04/09/2016-04-09-选择排序Java实现/" data-id="cjo9t73t30064qx24bbsvd6b3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-04-08-冒泡排序Java实现" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/08/2016-04-08-冒泡排序Java实现/" class="article-date">
-  <time datetime="2016-04-08T14:07:00.000Z" itemprop="datePublished">2016-04-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>►<a class="article-category-link" href="/categories/Java/算法/">算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/08/2016-04-08-冒泡排序Java实现/">冒泡排序Java实现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>冒泡排序是一种交换排序，它的基本思想是：两两比较相邻记录的关键字，如果反序则交换，知道没有反序的记录为止。冒泡的实现上有很多种变化，我们主要介绍3中。</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/04/08/2016-04-08-冒泡排序Java实现/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/04/08/2016-04-08-冒泡排序Java实现/" data-id="cjo9t73sz005rqx24e7t7h1pr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-2016-03-23-AndroidStudio中常用的插件" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/23/2016-03-23-AndroidStudio中常用的插件/" class="article-date">
@@ -624,11 +530,237 @@
 
 
   
+    <article id="post-2016-03-10-Java实现Base64-加密" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/10/2016-03-10-Java实现Base64-加密/" class="article-date">
+  <time datetime="2016-03-10T05:24:40.000Z" itemprop="datePublished">2016-03-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/10/2016-03-10-Java实现Base64-加密/">java使用Base64(加密)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="密码学常用术语"><a href="#密码学常用术语" class="headerlink" title="密码学常用术语"></a>密码学常用术语</h1><ul>
+<li><strong>明文</strong>：待加密的信息</li>
+<li><strong>密文</strong>：经过加密后的明文</li>
+<li><strong>加密</strong>：明文转为密文的过程</li>
+<li><strong>加密算法</strong>：明文转为密文的转换算法</li>
+<li><strong>加密秘钥</strong>：通过加密算法进行加密操作的秘钥</li>
+<li><strong>解密</strong>：将密文转为明文的过程</li>
+<li><strong>解密算法</strong>：密文转为明文的算法</li>
+<li><strong>解密密钥</strong>：通过解密算法进行解密操作的密钥</li>
+<li><strong>密码分析</strong>：截获密文者试图通过分析截获的密文从而推断出原来的明文或者密钥的过程</li>
+<li><strong>主动攻击</strong>：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺   骗。（对密文具有破坏作用）</li>
+<li><strong>被动攻击</strong>：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用）</li>
+<li><strong>密码体制</strong>：由明文空间、密文空间、密钥空间、加密算法和解密算法五部分组成。</li>
+<li><strong>密码协议</strong>：也称为安全协议，指以密码学为基础的消息交互的通信协议，目的是在网络环境中提供安全的服务。</li>
+<li><strong>密码系统</strong>：指用于加密、解密的系统</li>
+<li><strong>柯克霍夫原则</strong>：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。—现代密码学设计的基本原则。</li>
+</ul>
+<h1 id="Java安全组成"><a href="#Java安全组成" class="headerlink" title="Java安全组成"></a>Java安全组成</h1><ul>
+<li>JCA（Java Cryptography Architecture）</li>
+<li>JCE（Java Cryptography Extension） 这是个扩展包，像一些DES、AES、RSA等加密算法由它提供。</li>
+<li>JSSE（Java Secure Socket Extension）提供基于SSL的加密算法，主要用于网络传输</li>
+<li>JAAS（Java Authentication and Authentication Service）</li>
+</ul>
+<h1 id="相关的java包和类"><a href="#相关的java包和类" class="headerlink" title="相关的java包和类"></a>相关的java包和类</h1><ul>
+<li><code>java.security</code>  消息摘要</li>
+<li><code>javax.crypto</code>  安全消息摘要，消息认证（鉴别）码</li>
+<li><code>java.net.ssl</code> 安全套接字，基于网咯的加解密 例如：HttpsURLConnection、SSLContext</li>
+</ul>
+<h1 id="第三方java扩展"><a href="#第三方java扩展" class="headerlink" title="第三方java扩展"></a>第三方java扩展</h1><ol>
+<li>Bouncy Castle 两种支持（使用）方案：<ul>
+<li>配置（修改配置文件）</li>
+<li>调用（代码里面动态加载）</li>
+</ul>
+</li>
+<li>Commons Codec<ul>
+<li>Apache 提供的</li>
+<li>Base64、二进制、十六进制、字符集编码</li>
+<li>Url编码/解码</li>
+</ul>
+</li>
+</ol>
+<h1 id="Base64算法"><a href="#Base64算法" class="headerlink" title="Base64算法"></a>Base64算法</h1><ul>
+<li><p><strong>定义</strong> ： 基于64个字符的编码算法</p>
+</li>
+<li><p>算法实现</p>
+<ol>
+<li>JDK的实现</li>
+<li>Commons Codec的实现</li>
+<li>Bouncy Castle 实现</li>
+</ol>
+</li>
+</ul>
+<p>Base64是一种用64个字符来表示任意二进制数据的方法。</p>
+<p>用记事本打开exe、jpg、pdf这些文件时，我们都会看到一大堆乱码，因为二进制文件包含很多无法显示和打印的字符，所以，如果要让记事本这样的文本处理软件能处理二进制数据，就需要一个二进制到字符串的转换方法。Base64是一种最常见的二进制编码方法。</p>
+<p>Base64的原理很简单，首先，准备一个包含64个字符的数组：</p>
+<p><code>[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, ... &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, ... &#39;0&#39;, &#39;1&#39;, ... &#39;+&#39;, &#39;/&#39;]</code><br>然后，对二进制数据进行处理，每3个字节一组，一共是3x8=24bit，划为4组，每组正好6个bit.</p>
+<p>这样我们得到4个数字作为索引，然后查表，获得相应的4个字符，就是编码后的字符串。</p>
+<p>所以，Base64编码会把3字节的二进制数据编码为4字节的文本数据，长度增加33%，好处是编码后的文本数据可以在邮件正文、网页等直接显示。</p>
+<p>如果要编码的二进制数据不是3的倍数，最后会剩下1个或2个字节怎么办？Base64用\x00字节在末尾补足后，再在编码的末尾加上1个或2个=号，表示补了多少字节，解码的时候，会自动去掉。</p>
+<font color="red">jdk自带的实现</font>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"www.febsky.me"</span>;</span><br><span class="line">BASE64Encoder encoder = <span class="keyword">new</span> BASE64Encoder();</span><br><span class="line"></span><br><span class="line">String base64Str = encoder.encode(str.getBytes());</span><br><span class="line">System.out.println(base64Str);</span><br></pre></td></tr></table></figure>
+<h1 id="Base64用途"><a href="#Base64用途" class="headerlink" title="Base64用途"></a>Base64用途</h1><ul>
+<li>Base64是一种通过查表的编码方法，不能用于加密，即使使用自定义的编码表也不行。</li>
+<li>Base64适用于小段内容的编码，比如数字证书签名、Cookie的内容等。</li>
+</ul>
+<p><strong>【参考文献】</strong><br><a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001399413803339f4bbda5c01fc479cbea98b1387390748000" target="_blank" rel="noopener">base64</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2008/06/base64.html" target="_blank" rel="noopener">阮一峰</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2016/03/10/2016-03-10-Java实现Base64-加密/" data-id="cjo9t73sq004yqx24dws427o5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/加密/">加密</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-03-08-深入浅出java多线程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/08/2016-03-08-深入浅出java多线程/" class="article-date">
+  <time datetime="2016-03-08T07:28:03.000Z" itemprop="datePublished">2016-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/08/2016-03-08-深入浅出java多线程/">深入浅出java多线程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、进程和线程概念"><a href="#1、进程和线程概念" class="headerlink" title="1、进程和线程概念"></a>1、进程和线程概念</h1><hr>
+<p><strong>进程的特征</strong></p>
+<ol>
+<li>程序（任务）的执行过程 <font color="red">是动态的</font></li>
+<li>持有资源，这里的资源是指内存（共享内存，共享文件）和线程<font color="red">是资源的载体</font></li>
+<li>所以进程是资源的载体，也是线程的载体</li>
+</ol>
+<p><strong>线程的特征</strong></p>
+<ol>
+<li>线程是系统中最小的执行单元</li>
+<li>同一个进程中可以有多个线程</li>
+<li>多个线程共享同一个进程的资源</li>
+<li>线程的交互包括<strong><code>互斥</code></strong>和<strong><code>同步</code></strong></li>
+</ol>
+<h1 id="2、线程详解"><a href="#2、线程详解" class="headerlink" title="2、线程详解"></a>2、线程详解</h1><hr>
+<p><img src="/images/2016/03/2016-03-08-Thread-Methods.png" alt="线程中常用的方法"></p>
+<p><strong>历史是人民群众创造的但是英雄人物可以推动历史的发展</strong></p>
+<p>和线程相关的两个类：  </p>
+<ul>
+<li>实现<code>Runnable</code>接口  </li>
+<li>继承<code>Thread</code> 类</li>
+</ul>
+<p>举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class ThreadTesterA implements Runnable &#123;</span><br><span class="line"> </span><br><span class="line">    private int counter;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        while (counter &lt;= 10) &#123;</span><br><span class="line">            System.out.print(&quot;Counter = &quot; + counter + &quot; &quot;);</span><br><span class="line">            counter++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ThreadTesterB implements Runnable &#123;</span><br><span class="line"> </span><br><span class="line">    private int i;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        while (i &lt;= 10) &#123;</span><br><span class="line">            System.out.print(&quot;i = &quot; + i + &quot; &quot;);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public class ThreadTester &#123;</span><br><span class="line">    public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">        Thread t1 = new Thread(new ThreadTesterA());</span><br><span class="line">        Thread t2 = new Thread(new ThreadTesterB());</span><br><span class="line">        t1.start();</span><br><span class="line">        t1.join(); // wait t1 to be finished</span><br><span class="line">        t2.start();</span><br><span class="line">        t2.join(); // in this program, this may be removed</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <strong><font color="red">Runnable的方式</font> </strong>可以避免Thread方式由于Java但继承特性带来的缺陷；并且<code>Runnable</code>的代码可以被多个线程（Thread实例共享），适合于多个线程处理同一资源的情况。</p>
+<h1 id="3、如何正确停止线程"><a href="#3、如何正确停止线程" class="headerlink" title="3、如何正确停止线程"></a>3、如何正确停止线程</h1><ol>
+<li><del>thread.stop()</del> 这个方法是jdk1.1引入的，但是它会使线程戛然而止。已经废弃。</li>
+<li>thread.interrupt();条件受限，不一定管用</li>
+<li>正确的方式是使用停止标志 flag：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//军队线程</span></span><br><span class="line"><span class="comment">//模拟作战双方的行为</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//volatile保证了线程可以正确的读取其他线程写入的值</span></span><br><span class="line">	<span class="comment">//可见性 ref JMM， happens-before原则</span></span><br><span class="line">	<span class="keyword">volatile</span> <span class="keyword">boolean</span> keepRunning = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(keepRunning)&#123;</span><br><span class="line">				System.out.println(Thread.currentThread().getName());</span><br><span class="line">				<span class="comment">//让出了处理器时间，重新抢占资源</span></span><br><span class="line">				Thread.yield();</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+<span class="string">"结束了战斗！"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4、关于中断的一点点小补充："><a href="#4、关于中断的一点点小补充：" class="headerlink" title="4、关于中断的一点点小补充："></a>4、<strong>关于中断的一点点小补充：</strong></h1><p>如果该线程处在可中断状态下，（调用了xx.wait()，或者Selector.select(),Thread.sleep()等特定会发生阻塞的api），那么该线程会立即被唤醒，同时会受到一个InterruptedException，同时，如果是阻塞在io上，对应的资源会被关闭。如果该线程接下来不执行“Thread.interrupted()方法（不是interrupt），那么该线程处理任何io资源的时候，都会导致这些资源关闭。当然，解决的办法就是调用一下interrupted()，不过这里需要程序员自行根据代码的逻辑来设定，根据自己的需求确认是否可以直接忽略该中断，还是应该马上退出。</p>
+<p>如果该线程处在不可中断状态下，就是没有调用上述api，那么java只是设置一下该线程的interrupt状态，其他事情都不会发生，如果该线程之后会调用行数阻塞API，那到时候线程会马会上跳出，并抛出InterruptedException，接下来的事情就跟第一种状况一致了。如果不会调用阻塞API，那么这个线程就会一直执行下去。除非你就是要实现这样的线程，一般高性能的代码中肯定会有wait()，yield()之类出让cpu的函数，不会发生后者的情况。</p>
+<p><strong><font color="red">Thread的interrupt处理的几个方法： </font> </strong></p>
+<ul>
+<li>public void interrupt() :  执行线程interrupt事件  </li>
+<li>public boolean isInterrupted() : 检查当前线程是否处于interrupt</li>
+<li>public static boolean interrupted() ： check当前线程是否处于interrupt，并重置interrupt信息。类似于resetAndGet()</li>
+</ul>
+<p>其中，interrupt方法是唯一能将中断状态设置为true的方法。静态方法interrupted会将当前线程的中断状态清除，但这个方法的命名极不直观，很容易造成误解，需要特别注意。</p>
+<p><strong><font color="red">理解： </font> </strong></p>
+<ol>
+<li>每个线程都有一个interrupt status标志位，用于表明当前线程是否处于中断状态  </li>
+<li>一般调用Thread.interrupt()会有两种处理方式<br>遇到一个低优先级的block状态时，比如object.wait(),object.sleep(),object.join()。它会立马触发一个unblock解除阻塞，并throw一个InterruptedException。<br>其他情况，Thread.interrupt()仅仅只是更新了status标志位。然后你的工作线程通过Thread.isInterrrupted()进行检查，可以做相应的处理，比如也throw InterruptedException或者是清理状态，取消task等。  </li>
+</ol>
+<hr>
+<ol>
+<li><p>一般Thread编程需要关注interrupt中断不？一般怎么处理？可以用来做什么？<br>答： interrupt用途： unBlock操作，支持任务cancel， 数据清理等。</p>
+</li>
+<li><p>Thread.interrupt()方法和InterruptedException异常的关系？是由interrupt触发产生了InterruptedException异常？<br>答：Thread.interrupt()只是在Object.wait() .Object.join(), Object.sleep()几个方法会主动抛出InterruptedException异常。而在其他的的block常见，只是通过设置了Thread的一个标志位信息，需要程序自我进行处理。</p>
+</li>
+<li>Thread.interrupt()会中断线程什么状态的工作？ RUNNING or BLOCKING？<br>答：Thread.interrupt设计的目的主要是用于处理线程处于block状态，比如wait(),sleep()状态就是个例子。但可以在程序设计时为支持task cancel，同样可以支持RUNNING状态。比如Object.join()和一些支持interrupt的一些nio channel设计。</li>
+</ol>
+<h1 id="5、争用条件（RaceCondition）"><a href="#5、争用条件（RaceCondition）" class="headerlink" title="5、争用条件（RaceCondition）"></a>5、争用条件（RaceCondition）</h1><p><font color="red">概念：  </font><br>当多个线程同事共享访问同一数据（内存区域）时，每个线程都尝试操作该数据，从而导致数据被破坏（corrupted），这种现象称为争用条件。</p>
+<p><strong>线程之间的关系大致可以分为两类</strong></p>
+<ol>
+<li>线程之间通过对资源的竞争，包括共享的数据和硬件资源，所产生的相互制约关系，这类线程间的主要问题是互斥和死锁问题，这类关系被称为<code>互斥关系</code>。</li>
+<li>线程之间的相互协同合作，彼此之间直接知道对方的存在，并了解对方的名字，这类进程常常需要通过“进程间通信”方法来协同工作，这类关系被称为<code>同步关系</code>。</li>
+</ol>
+<p><code>wait()</code>休眠自身线程，等待被唤醒。这个方法是<code>Object</code>类的方法。</p>
+<h1 id="6、线程的生命周期"><a href="#6、线程的生命周期" class="headerlink" title="6、线程的生命周期"></a>6、线程的生命周期</h1><p><img src="/images/2016/03/2016-03-08-Thread-life.png" alt="线程生命周期图"></p>
+<p><font color="red"><strong>就绪</strong>：</font>创建了线程对象之后，调用了线程的start()方法（此时线程只是进入了线程队列，等待获取CPU服务，具备了运行的条件，但并不一定已经开始运行。）</p>
+<p><font color="red"><strong>运行</strong>：</font>处于就绪状态的线程，一旦获取了CPU资源，便进入到了运行状态，开始执行run()方法里面的逻辑。</p>
+<p><font color="red"><strong>终止</strong>：</font>线程的run()方法执行完毕。</p>
+<p><font color="red"><strong>阻塞</strong>：</font>一个正在执行的线程在某些情况下，由于某种原因而暂时让出了CPU资源，暂停了自己的执行，便进入了阻塞状态，如调用sleep()方法。</p>
+<h1 id="7、守护线程"><a href="#7、守护线程" class="headerlink" title="7、守护线程"></a>7、守护线程</h1><p><strong>概念</strong>：运行在后台，为其他前台线程服务<br><strong>特点</strong>：一旦所有的用户线程都结束运行守护线程会随JVM一起结束工作<br><strong>应用</strong>：数据库连接池中的检测线程；JVM虚拟机启动后的检测线程;垃圾回收线程<br><strong>运用方式</strong> ：通过调用Thread类的setDaemon(true)方法来设置当前线程为守护线程。</p>
+<blockquote>
+<p>注意：<code>setDaemon(true)</code>必须在<code>start()</code>方法之前调用；在守护线程中开启的线程也是守护线程；守护线程中不能处理读写操作；</p>
+</blockquote>
+<h1 id="8、Java线程查看工具"><a href="#8、Java线程查看工具" class="headerlink" title="8、Java线程查看工具"></a>8、Java线程查看工具</h1><p><code>jstack</code>:位于jdk安装目录下的bin目录下</p>
+<p><strong>作用</strong>：生成当前时刻线程的快照（threaddump，即当前进程中所有线程的信息）</p>
+<hr>
+<p><strong>参考文献</strong>  </p>
+<p><a href="http://agapple.iteye.com/blog/970055" target="_blank" rel="noopener">java线程阻塞中断和LockSupport的常见问题</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2016/03/08/2016-03-08-深入浅出java多线程/" data-id="cjo9t73so004rqx24tcb081gq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -659,7 +791,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/反编译/" style="font-size: 13.75px;">反编译</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.25px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/反编译/" style="font-size: 13.75px;">反编译</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
     </div>
   </div>
 
