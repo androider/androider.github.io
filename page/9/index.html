@@ -69,57 +69,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/" class="article-date">
-  <time datetime="2015-07-24T03:14:34.000Z" itemprop="datePublished">2015-07-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/">Android WebView三步解决微信公众号文章不能加载视频的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>问题描述：想在自己的应用中通过WebView加载微信公众号中的一些文章，因为有些文章带有视频，所以必须要有播放功能，ISO能播放，Android怎么能说不能。。。</p>
-<p>测试机型：小米，华为，摩托</p>
-<p>Android系统：4.x~~~5.0</p>
-<h2 id="1-如果是Android4-0以上的系统在manifest中设置Activity的hardwareAccelerated为true，开启硬件加速"><a href="#1-如果是Android4-0以上的系统在manifest中设置Activity的hardwareAccelerated为true，开启硬件加速" class="headerlink" title="1. 如果是Android4.0以上的系统在manifest中设置Activity的hardwareAccelerated为true，开启硬件加速"></a>1. 如果是Android4.0以上的系统在manifest中设置Activity的hardwareAccelerated为true，开启硬件加速</h2><p><code>android:hardwareAccelerated=&quot;true&quot;</code></p>
-<h2 id="2-如果是Android4-0以上的系统在layout中设置WebView的layerType为hardware"><a href="#2-如果是Android4-0以上的系统在layout中设置WebView的layerType为hardware" class="headerlink" title="2.如果是Android4.0以上的系统在layout中设置WebView的layerType为hardware"></a>2.如果是Android4.0以上的系统在layout中设置<code>WebView</code>的layerType为hardware</h2><p><code>android:layerType=&quot;hardware&quot;</code></p>
-<h2 id="3-最重要的部分给WebView设置settings信息"><a href="#3-最重要的部分给WebView设置settings信息" class="headerlink" title="3. 最重要的部分给WebView设置settings信息"></a>3. 最重要的部分给WebView设置settings信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">settings = webview_video.getSettings();</span><br><span class="line"></span><br><span class="line">        settings.setJavaScriptEnabled(true);</span><br><span class="line"></span><br><span class="line">        settings.setAllowFileAccess(true);</span><br><span class="line"></span><br><span class="line">        settings.setDatabaseEnabled(true);</span><br><span class="line"></span><br><span class="line">        settings.setDomStorageEnabled(true);</span><br><span class="line"></span><br><span class="line">        settings.setSaveFormData(false);</span><br><span class="line"></span><br><span class="line">        settings.setAppCacheEnabled(true);</span><br><span class="line"></span><br><span class="line">       settings.setCacheMode(WebSettings.LOAD_DEFAULT);</span><br><span class="line"></span><br><span class="line">        settings.setLoadWithOverviewMode(false);</span><br><span class="line"></span><br><span class="line">        settings.setUseWideViewPort(true);</span><br><span class="line">        </span><br><span class="line">        /**</span><br><span class="line">         * Author:</span><br><span class="line">         * Time: 2016-12-05 16:49</span><br><span class="line">         * Description:</span><br><span class="line">         * 解决https 中包含http重定向的问题</span><br><span class="line">         * Android 5.0+ 以后对WebView添加安全机制</span><br><span class="line">         */</span><br><span class="line">        if (Build.VERSION.SDK_INT &gt;= 21) &#123;</span><br><span class="line">       settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>这行是最重要的<code>settings.setDomStorageEnabled(true);</code></p>
-<hr>
-<h2 id="PS-Activity-最小化的时候停止播放视频："><a href="#PS-Activity-最小化的时候停止播放视频：" class="headerlink" title="PS .Activity 最小化的时候停止播放视频："></a>PS .Activity 最小化的时候停止播放视频：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Override</span><br><span class="line"></span><br><span class="line"> public boolean onKeyDown(int keyCode, KeyEvent event) &#123;</span><br><span class="line"></span><br><span class="line">     if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) &#123;</span><br><span class="line"></span><br><span class="line">         webview_video.loadData(&amp;quot;&amp;quot;, &amp;quot;text/html; charset=UTF-8&amp;quot;, null);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     return super.onKeyDown(keyCode, event);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line"></span><br><span class="line"> public void onPause() &#123;</span><br><span class="line"></span><br><span class="line">     super.onPause();</span><br><span class="line"></span><br><span class="line">     webview_video.onPause();</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line"></span><br><span class="line"> public void onResume() &#123;</span><br><span class="line"></span><br><span class="line">     super.onResume();</span><br><span class="line"></span><br><span class="line">     webview_video.onResume();</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="关于webview-setting-的注释"><a href="#关于webview-setting-的注释" class="headerlink" title="关于webview setting 的注释"></a>关于webview setting 的注释</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">setJavaScriptEnabled(true);  //支持js</span><br><span class="line">setPluginsEnabled(true);  //支持插件 </span><br><span class="line">setUseWideViewPort(false);  //将图片调整到适合webview的大小 </span><br><span class="line">setSupportZoom(true);  //支持缩放 </span><br><span class="line">setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN); //支持内容重新布局  </span><br><span class="line">supportMultipleWindows();  //多窗口 </span><br><span class="line">setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);  //关闭webview中缓存 </span><br><span class="line">setAllowFileAccess(true);  //设置可以访问文件 </span><br><span class="line">setNeedInitialFocus(true); //当webview调用requestFocus时为webview设置节点</span><br><span class="line">webview webSettings.setBuiltInZoomControls(true); //设置支持缩放 </span><br><span class="line">setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口 </span><br><span class="line">setLoadWithOverviewMode(true); // 缩放至屏幕的大小</span><br><span class="line">setLoadsImagesAutomatically(true);  //支持自动加载图片</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/" data-id="cjo9lkakc005537244flehqbr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-2015-07-14-Android 文件存储" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/14/2015-07-14-Android 文件存储/" class="article-date">
@@ -175,7 +124,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/07/14/2015-07-14-Android 文件存储/" data-id="cjo9lkakf0058372476e7gzt8" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2015/07/14/2015-07-14-Android 文件存储/" data-id="cjo9sh3o2002eo824jkr5o0j9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件存储/">文件存储</a></li></ul>
@@ -220,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/05/25/2015-05-25-MySQL中授权命令/" data-id="cjo9lkaiz002737248isubu0x" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2015/05/25/2015-05-25-MySQL中授权命令/" data-id="cjo9sh3o1002bo824mfs3f43q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li></ul>
@@ -266,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/05/08/2015-05-08-Linux ftp 命令行登陆/" data-id="cjo9lkaiw0020372449eape0b" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2015/05/08/2015-05-08-Linux ftp 命令行登陆/" data-id="cjo9sh3o00027o8244zwfz1bz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令行/">命令行</a></li></ul>
@@ -331,7 +280,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/05/05/2015-05-05-我比较中意的几款WordPress主题/" data-id="cjo9lkaiu001v3724hxsf2icj" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2015/05/05/2015-05-05-我比较中意的几款WordPress主题/" data-id="cjo9sh3nz0024o824adenpc1f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WorPress/">WorPress</a></li></ul>
@@ -448,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/04/20/2015-04-20-git (github)的基本使用/" data-id="cjo9lkaix0022372444n7bbet" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2015/04/20/2015-04-20-git (github)的基本使用/" data-id="cjo9sh3ny0020o824foy68rri" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -521,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/04/10/2015-04-10-想要去做的东西/" data-id="cjo9lkait001u3724v56cwh1y" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2015/04/10/2015-04-10-想要去做的东西/" data-id="cjo9sh3nx001zo824id97i43n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/个人想法/">个人想法</a></li></ul>
@@ -565,7 +514,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/03/29/2015-03-29-记录一个Linux社区/" data-id="cjo9lkaio001m3724q9nw0hhx" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2015/03/29/2015-03-29-记录一个Linux社区/" data-id="cjo9sh3nw001vo824j7zrsvwa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -607,7 +556,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/03/12/2015-03-12-JNI Android NDK开发（一）/" data-id="cjo9lkair001q3724diczoua8" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2015/03/12/2015-03-12-JNI Android NDK开发（一）/" data-id="cjo9sh3nw001to824vluvx027" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -673,10 +622,52 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" data-id="cjo9lkaiq001o3724g60ocadw" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" data-id="cjo9sh3nv001ro8246vggueg1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-02-11-常用的Linux压缩命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/11/2015-02-11-常用的Linux压缩命令/" class="article-date">
+  <time datetime="2015-02-11T07:03:43.000Z" itemprop="datePublished">2015-02-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/压缩/">压缩</a>►<a class="article-category-link" href="/categories/Linux/压缩/Zip/">Zip</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/11/2015-02-11-常用的Linux压缩命令/">常用的Linux压缩命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">tar命令</span><br><span class="line"></span><br><span class="line">　　解包：tar zxvf FileName.tar</span><br><span class="line"></span><br><span class="line">　　打包：tar czvf FileName.tar DirName</span><br><span class="line"></span><br><span class="line">gz命令</span><br><span class="line"></span><br><span class="line">　　.tar.gz 和 .tgz</span><br><span class="line"></span><br><span class="line">　　解压：tar zxvf FileName.tar.gz</span><br><span class="line"></span><br><span class="line">　　压缩：tar zcvf FileName.tar.gz DirName</span><br><span class="line"></span><br><span class="line">zip命令</span><br><span class="line"></span><br><span class="line">　　解压：unzip FileName.zip</span><br><span class="line"></span><br><span class="line">　　压缩：zip FileName.zip DirName</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/02/11/2015-02-11-常用的Linux压缩命令/" data-id="cjo9sh3nk000xo824sixeqsq4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zip/">Zip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/压缩/">压缩</a></li></ul>
 
     </footer>
   </div>
@@ -700,7 +691,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/">反编译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/逆向工程/">逆向工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/隐私权政策/">隐私权政策</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/">反编译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/逆向工程/">逆向工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
     </div>
   </div>
 
@@ -729,7 +720,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
     </div>
   </div>
 
@@ -740,10 +731,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2018/01/31/wankeguanjiabao/">隐私权政策</a>
-          </li>
         
           <li>
             <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
@@ -759,6 +746,10 @@
         
           <li>
             <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（二）/">PS（PhotoShop）基础知识（二）</a>
           </li>
         
       </ul>

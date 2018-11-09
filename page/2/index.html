@@ -69,90 +69,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2016-07-26-Android中反编译Smali文件解读" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/26/2016-07-26-Android中反编译Smali文件解读/" class="article-date">
-  <time datetime="2016-07-26T10:06:35.000Z" itemprop="datePublished">2016-07-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Smali/">Smali</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/26/2016-07-26-Android中反编译Smali文件解读/">Android中反编译Smali文件解读</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>寄存器</p>
-<p> 修改Smali时有一件很重要的事情就是要注意寄存器。如果乱用寄存器的话可能会导致程序崩溃。每个方法开头声明了registers的数量，这个数量是参数和本地变量总和。参数统一用P表示。如果是非静态方法p0代表this，p1-pN代表各个参数。如果是静态方法的话，p0-pN代表各个参数。本地变量统一用v表示。如果想要增加的新的本地变量，需要在方法开头的registers数量上增加相应的数值。</p>
-<p>比如下面这个方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> # direct methods</span><br><span class="line">.method public constructor &lt;init&gt;()V</span><br><span class="line">    .registers 1</span><br><span class="line"></span><br><span class="line">	 .prologue</span><br><span class="line">	 .line 7</span><br><span class="line">    invoke-direct &#123;p0&#125;, Ljava/lang/Object;-&gt;&lt;init&gt;()V</span><br><span class="line"></span><br><span class="line">    return-void</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
-<p>因为这不是静态方法，所以p0代表this。如果想要增加一个新的本地变量，比如v0。就需要把.registers 1改为.registers 2。</p>
-<blockquote>
-<p>有两种方式指定一个方法中有多少寄存器是可用的</p>
-</blockquote>
-<blockquote>
-<ol>
-<li><code>.registers</code> 使用这个指令指定方法中寄存器的总数</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
-<li><code>.locals</code> 使用这个指定表明方法中非参寄存器的总数，放在方法的第一行。</li>
-</ol>
-</blockquote>
-<p><a href="https://github.com/JesusFreke/smali/wiki/Registers" target="_blank" rel="noopener">https://github.com/JesusFreke/smali/wiki/Registers</a></p>
-<p>寄存器的命名方式</p>
-<p>有两种方式——V命名方式和P命名方式。P命名方式中的第一个寄存器就是方法中的第一个参数寄存器。在下表中我们用这两种命名方式来表示上一个例子中有5个寄存器和3个参数的方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">v0    第一个local register  </span><br><span class="line">v1    第二个local register  </span><br><span class="line">v2  p0  第一个parameter register  </span><br><span class="line">v3  p1  第二个parameter register  </span><br><span class="line">v4  p2  第三个parameter register</span><br></pre></td></tr></table></figure>
-<p>你可以用任何一种方式来引用参数寄存器——他们没有任何差别。<br>注意：baksmali(apktool)默认对参数寄存器使用P命名方式。如果想使用V命名方式，可以使用-pl—no-parameter-registers选项。但是有的工具反编译的出来的都是v命名的方式。比如（smaliviewer），使用P命名的方式可读性比较好。</p>
-<p>使用P命名方式是为了防止以后如果要在方法中增加寄存器，需要对参数寄存器重新进行编号的缺点。</p>
-</li>
-</ol>
-<ol start="2">
-<li><p>给原程序增加大量逻辑的办法</p>
-<p>我非常不建议在程序原有的方法上增加大量逻辑，这样可能会出现很多寄存器方面的错误导致编译失败。比较好的方法是：把想要增加的逻辑先用java写成一个apk，然后把这个apk反编译成smali文件，随后把反编译后的这部分逻辑的smali文件插入到目标程序的smali文件夹中，然后再在原来的方法上采用invoke的方式调用新加入的逻辑。这样的话不管加入再多的逻辑，也只是修改了原程序的几行代码而已。这个思路也是很多重打包病毒惯用的伎俩，确实非常方便好用。</p>
-</li>
-<li><p>方法中出现的关键字</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> .method &lt;访问权限&gt;[修饰关键字]&lt;方法原型&gt;</span><br><span class="line">    &lt;.locals&gt;                    # 指定了使用的局部变量个数</span><br><span class="line">    [.parameter]                 # 指定了方法的参数,如果有三个参数就有三个.parameter</span><br><span class="line">    [.prologue]                  # 指定了代码开始段,混淆过的代码可能去掉了改段落</span><br><span class="line">    [.line]                      # 指定了该处指令在源代码中的行数,混淆过的代码可能会去掉,主要用于调试。</span><br><span class="line">    &lt;代码体&gt;</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">invoke-super　　调用父函数</span><br><span class="line">const/high16 v0, 0x7fo3　　把0x7fo3赋值给v0</span><br><span class="line">invoke-direct　　调用函数</span><br><span class="line">return-void　　函数返回void</span><br><span class="line">new-instance　　创建实例</span><br><span class="line">iput-object　　对象赋值</span><br><span class="line">iget-object　　调用对象</span><br><span class="line">invoke-static　　调用静态函数</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>【参考文章】</strong></p>
-<p> Smali 语法：</p>
-<p> <a href="http://www.cnblogs.com/lee0oo0/p/3728271.html" target="_blank" rel="noopener">http://www.cnblogs.com/lee0oo0/p/3728271.html</a></p>
-<p> <a href="http://dalufan.com/2015/01/14/android-Smail-learn/" target="_blank" rel="noopener">http://dalufan.com/2015/01/14/android-Smail-learn/</a></p>
-<p> 官网文档：<br> <a href="http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html" target="_blank" rel="noopener">转载官网</a> 、<a href="https://source.android.com/devices/tech/dalvik/dalvik-bytecode.html" target="_blank" rel="noopener">Android官网，科学上网</a></p>
-<p> <a href="http://zke1ev3n.me/2015/12/02/Android-Dalvik%E5%AD%97%E8%8A%82%E7%A0%81%E8%A7%A3%E6%9E%90/" target="_blank" rel="noopener">Dalvik字节码</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/07/26/2016-07-26-Android中反编译Smali文件解读/" data-id="cjo9lkang00bt372434s9dnvm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Smali/">Smali</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-2016-07-26-Android中Notification工具类" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/26/2016-07-26-Android中Notification工具类/" class="article-date">
@@ -184,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/07/26/2016-07-26-Android中Notification工具类/" data-id="cjo9lkand00bl3724h5lrb26g" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2016/07/26/2016-07-26-Android中Notification工具类/" data-id="cjo9sh3qg008po824kvsp2ai4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Notification/">Notification</a></li></ul>
@@ -260,7 +176,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/07/26/2016-07-26-Sublime3_Mac下的使用/" data-id="cjo9lkane00bp3724jsh769yj" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2016/07/26/2016-07-26-Sublime3_Mac下的使用/" data-id="cjo9sh3qi008xo824j7905f82" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -338,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/07/25/2016-07-25-Android反编译后重新打包apk/" data-id="cjo9lkana00bd3724ty7ctq8q" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2016/07/25/2016-07-25-Android反编译后重新打包apk/" data-id="cjo9sh3qe008ko824y2i78gp0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/反编译/">反编译</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/打包/">打包</a></li></ul>
@@ -386,7 +302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/07/22/2016-07-22-Android反编译后的文件位置/" data-id="cjo9lkan800b637247raa146q" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2016/07/22/2016-07-22-Android反编译后的文件位置/" data-id="cjo9sh3qd008ho8246admn3u3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/反编译/">反编译</a></li></ul>
@@ -437,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/07/21/2016-07-21-Android-adb的使用/" data-id="cjo9lkan900b93724nwhksrmz" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2016/07/21/2016-07-21-Android-adb的使用/" data-id="cjo9sh3qc008co82454klc65n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/adb/">adb</a></li></ul>
@@ -493,7 +409,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/07/20/2016-07-20-PopupWindow点击空白处隐藏/" data-id="cjo9lkan500ay3724vrr76jrw" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2016/07/20/2016-07-20-PopupWindow点击空白处隐藏/" data-id="cjo9sh3qb0089o824rhfx1v6w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -549,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/07/18/2016-07-18-Android显示HTML格式/" data-id="cjo9lkan000al372425wcy4fs" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2016/07/18/2016-07-18-Android显示HTML格式/" data-id="cjo9sh3q90084o824y0q95m3c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -598,7 +514,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/07/14/2016-07-14-MPAndroidChart画线形图/" data-id="cjo9lkan600b13724mgwoseip" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2016/07/14/2016-07-14-MPAndroidChart画线形图/" data-id="cjo9sh3q50082o8247hg8w6r4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li></ul>
@@ -651,7 +567,54 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2016/07/13/2016-07-13-AndroidStudio中如何利用一个task显示出依赖库的本地存储路径/" data-id="cjo9lkan300at3724ig360x27" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2016/07/13/2016-07-13-AndroidStudio中如何利用一个task显示出依赖库的本地存储路径/" data-id="cjo9sh3q3007xo824lwrg0lar" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-07-12-AndroidStudio加快编译的方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/" class="article-date">
+  <time datetime="2016-07-12T08:57:32.000Z" itemprop="datePublished">2016-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/">AndroidStudio加快编译的方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Gradle 给我们的Android开发带来很大的便利，同事Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/" data-id="cjo9sh3q2007uo82426eu1znf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li></ul>
@@ -678,7 +641,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/">反编译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/逆向工程/">逆向工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/隐私权政策/">隐私权政策</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/">反编译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/反编译/逆向工程/">逆向工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
     </div>
   </div>
 
@@ -707,7 +670,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
     </div>
   </div>
 
@@ -718,10 +681,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2018/01/31/wankeguanjiabao/">隐私权政策</a>
-          </li>
         
           <li>
             <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
@@ -737,6 +696,10 @@
         
           <li>
             <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（二）/">PS（PhotoShop）基础知识（二）</a>
           </li>
         
       </ul>
