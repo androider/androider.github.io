@@ -69,6 +69,247 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2015-03-08-Android的屏幕适配（包括字体适配）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" class="article-date">
+  <time datetime="2015-03-08T11:33:43.000Z" itemprop="datePublished">2015-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/">Android 的屏幕适配（包括字体适配）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>2018-11-09 修改</strong></p>
+<h2 id="1、适配"><a href="#1、适配" class="headerlink" title="1、适配"></a>1、适配</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">最好的适配方案 多套图，有多少个分辨率就切多少套图，</span><br><span class="line">800*480 1280*720 1920*1080</span><br><span class="line">一般小应用只是一套图的话用（1280*720）</span><br><span class="line">适配方式：(这些屏幕都是16:9的长宽比)</span><br></pre></td></tr></table></figure>
+<h4 id="a-图片适配-和手机的像素密度有关，这个像素密度可以用勾股定理来计算"><a href="#a-图片适配-和手机的像素密度有关，这个像素密度可以用勾股定理来计算" class="headerlink" title="a) 图片适配(和手机的像素密度有关，这个像素密度可以用勾股定理来计算)"></a>a) 图片适配(和手机的像素密度有关，这个像素密度可以用勾股定理来计算)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ldpi  ---&gt;;  <span class="number">320</span>*<span class="number">240</span>   <span class="number">1</span>dp = <span class="number">0.75</span>px      ~<span class="number">120</span></span><br><span class="line"></span><br><span class="line">mdpi  ---&gt;;  <span class="number">480</span>*<span class="number">320</span>   <span class="number">1</span>dp = <span class="number">1</span>px    如果没有，加载hdpi里面的图片     ~<span class="number">160</span></span><br><span class="line"></span><br><span class="line">hdpi  ---&gt;;  <span class="number">800</span>*<span class="number">480</span>   <span class="number">1</span>dp = <span class="number">1.5</span>px   <span class="number">3.7</span>-<span class="number">4.3</span>寸左右     ~<span class="number">240</span></span><br><span class="line"></span><br><span class="line">xhdpi ---&gt;;  <span class="number">1280</span>*<span class="number">720</span>  <span class="number">1</span>dp = <span class="number">2</span>px(可以以这个为标准设计和切图)       ~<span class="number">320</span></span><br><span class="line"></span><br><span class="line">xxhdpi  ---&gt;; <span class="number">1920</span>*<span class="number">1080</span>  <span class="number">1</span>dp = <span class="number">3</span>px     ~<span class="number">480</span></span><br><span class="line"></span><br><span class="line">xxxhdpi ---&gt;; <span class="number">1440</span> * <span class="number">2560</span> <span class="number">1</span>dp = <span class="number">4</span>px     ~<span class="number">640</span></span><br><span class="line"></span><br><span class="line">综上来看dp是达不到完全适配的。</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意，Android手机会自动缩放图片，比如，你的手机是xxhdpi的，但是只有一张图片，假设这张图片</span></span><br><span class="line"><span class="comment">//的大小是512*512 的，你把这张图片放大xxxhdpi的文件夹下，那么你的手机也会找到这张图片的的，</span></span><br><span class="line"><span class="comment">//不过，他会把这张图片尺寸缩小，缩成384*384尺寸的放到你的ImageView中，假设你的ImageView的宽高</span></span><br><span class="line"><span class="comment">//设置的是自适应。那这个384是怎么来的那，就是按照上面的dp和px的比例算出来的。512 * (3/4) = 384</span></span><br><span class="line"><span class="comment">//下面是当面流行的安卓手机的屏幕尺寸和分辨率：</span></span><br><span class="line"><span class="comment">//小米 3和小米4 屏幕尺寸和分辨率：        5英寸 1920×1080像素</span></span><br><span class="line"><span class="comment">//魅族MX2 屏幕尺寸和分辨率：                 4.4英寸 1280×800像</span></span><br><span class="line"><span class="comment">//魅族MX3 屏幕尺寸和分辨率：                 5.1英寸 1800×1080像素</span></span><br><span class="line"><span class="comment">//HTC  one屏幕尺寸和分辨率：               4.7英寸 1920×1080像素</span></span><br><span class="line"><span class="comment">//华为荣耀6屏幕尺寸和分辨率：             5英寸 1920×1080像素</span></span><br><span class="line"><span class="comment">//华为p6屏幕尺寸和分辨率：                 4.7英寸 1280×720像素</span></span><br><span class="line"><span class="comment">//华为p7屏幕尺寸和分辨率：                  5英寸 1920×1080像素</span></span><br></pre></td></tr></table></figure>
+<h4 id="b-dimens-xml-适配-放置了一些宽高的尺寸信息"><a href="#b-dimens-xml-适配-放置了一些宽高的尺寸信息" class="headerlink" title="b) dimens.xml 适配(放置了一些宽高的尺寸信息)"></a>b) dimens.xml 适配(放置了一些宽高的尺寸信息)</h4><p>为了适配不同像素密度的手机，我们创建适配的value文件夹，命名为：(value-1280x720)然后在里面创建dimens.xml ,不过这个xml里面有的数据，都要在value文件夹下的dimens.xml中存在一份，只是值不一样而已。</p>
+<h4 id="c-布局适配-layout-文件夹"><a href="#c-布局适配-layout-文件夹" class="headerlink" title="c) 布局适配 layout/文件夹"></a>c) 布局适配 layout/文件夹</h4><p>和上面一样，为了适配特别像素的手机，我们同样正在res目录下创建一个名为：(layout-1280x720)的文件夹。</p>
+<h4 id="d-java代码适配"><a href="#d-java代码适配" class="headerlink" title="d) java代码适配"></a>d) java代码适配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">给当前的控件设置宽高为屏幕的宽高的百分比</span><br><span class="line">//创建一个存储屏幕相关信息的对象</span><br><span class="line">DisplayMetrics displayMetrics = new DisplayMetrics();</span><br><span class="line">//通过下面的方式把屏幕信息存储到displayMetrics对象中</span><br><span class="line">getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);</span><br><span class="line">//获取宽高</span><br><span class="line">int width = displayMetrics.widthPixels;</span><br><span class="line">int height = displayMetrics.heightPixels;</span><br><span class="line"></span><br><span class="line">//将对应的宽高设置在其父控件上，然后作用在子控件上</span><br><span class="line">//假设这个layout为一本RelativeLayout中包含一个TextView</span><br><span class="line">//我们想要这个TextView为RelativeLayout的一半。</span><br><span class="line">RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams((int)(width*0.5+0.5),    //从数学角度进行四舍五入，取屏幕宽带的一半(int)(height*0.5+0.5));</span><br><span class="line">TextView tv = (TextView)findViewById(R.id.tv);</span><br><span class="line">tv.setLayoutParams(layoutParams);</span><br></pre></td></tr></table></figure>
+<h4 id="e-权重适配"><a href="#e-权重适配" class="headerlink" title="e) 权重适配"></a>e) 权重适配</h4><p>剩余空间的分配规则，首先要设置<code>android:layout_width=&quot;0dp&quot;</code>或者<code>android:layout_height=&quot;0dp&quot;</code> 然后设置<code>android:layout_weight=&quot;1&quot;</code> 并且只能在LinearLayout中使用</p>
+<h2 id="2、px和dp相互转换工具方法"><a href="#2、px和dp相互转换工具方法" class="headerlink" title="2、px和dp相互转换工具方法"></a>2、px和dp相互转换工具方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DensityUtil</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 根据手机的分辨率从 dp 的单位 转成为 px(像素) </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">dip2px</span><span class="params">(Context context, <span class="keyword">float</span> dpValue)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density;  </span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (dpValue * scale + <span class="number">0.5f</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">px2dip</span><span class="params">(Context context, <span class="keyword">float</span> pxValue)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density;  </span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (pxValue / scale + <span class="number">0.5f</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3、字体适配"><a href="#3、字体适配" class="headerlink" title="3、字体适配"></a>3、字体适配</h2><p>安卓4.0之后用的字体是Roboto。中文字体：方正兰亭黑体</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以在在<span class="number">720</span>*<span class="number">1280</span>的基础上的字体设计大小。</span><br><span class="line">注释最小字体：<span class="number">12</span>sp  ==  <span class="number">24</span>px</span><br><span class="line">文本字体：<span class="number">14</span>sp  ==  <span class="number">28</span>px</span><br><span class="line">文章标题或图标名称：<span class="number">16</span>sp  ==   <span class="number">32</span>px</span><br><span class="line">导航标题：<span class="number">18</span>sp  ==   <span class="number">36</span>px</span><br></pre></td></tr></table></figure>
+<p>Android 界面设计的一片文章</p>
+<p><a href="http://www.25xt.com/appdesign/6536.html" target="_blank" rel="noopener">http://www.25xt.com/appdesign/6536.html</a></p>
+<h2 id="4、图标设计"><a href="#4、图标设计" class="headerlink" title="4、图标设计"></a>4、图标设计</h2><p>应用程序图标 （Icon）应当是一个 Alpha 通道透明的32位 PNG 图片。由于安卓设备众多，一个应用程序图标需要设计几种不同大小，如：</p>
+<p>LDPI (Low Density Screen，120 DPI)，其图标大小为 36 x 36 px。</p>
+<p>MDPI (Medium Density Screen, 160 DPI)，其图标大小为 48 x 48 px。</p>
+<p>HDPI (High Density Screen, 240 DPI)，其图标大小为 72 x 72 px。</p>
+<p>xhdpi (Extra-high density screen, 320 DPI)，其图标大小为 96 x 96 px。</p>
+<p>xxhdpi 其图标大小为 144 x 144 px。</p>
+<p>xxxhdpi 其图标大小为 192 x 192 px。</p>
+<p> 建议在设计过程中，在四周空出几个像素点使得设计的图标与其他图标在视觉上一致，例如，</p>
+<p>96 x 96 px 图标可以画图区域大小可以设为 88 x 88 px， 四周留出4个像素用于填充（无底色）。</p>
+<p>72 x 72 px 图标可以画图区域大小可以设为 68 x 68 px， 四周留出2个像素用于填充（无底色）。</p>
+<p>48 x 48 px 图标可以画图区域大小可以设为 46 x 46 px， 四周留出1个像素用于填充（无底色）。</p>
+<p>36 x 36 px 图标可以画图区域大小可以设为 34 x 34 px， 四周留出1个像素用于填充（无底色）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" data-id="cjoduesfe001nj324qzc8zc3i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-03-03-Android 图片操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/03/2015-03-03-Android 图片操作/" class="article-date">
+  <time datetime="2015-03-03T09:55:04.000Z" itemprop="datePublished">2015-03-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/03/2015-03-03-Android 图片操作/">Android 图片操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">大图片的加载问题：</span><br><span class="line"></span><br><span class="line">虚拟机分配给每个应用程序的内存大小是有限的，一般为16M如果一个图片太大，用BitmapFactory加载的时候就会出现内存溢出。</span><br><span class="line"></span><br><span class="line">这时候可以：</span><br><span class="line"></span><br><span class="line">BitmapFactory.Options options = new Options();    //设置图片解析选项</span><br><span class="line"></span><br><span class="line">options.inJustDecodeBounds = true;    //因为图片太大无法解析，只能先获取其元数据，从而获取图片的长宽，然后根据屏幕的大小计算缩放比例</span><br><span class="line"></span><br><span class="line">BitmapFactory.decodeFile(&amp;quot;文件路径&amp;quot;,options);    //开始获取文件元数据</span><br><span class="line"></span><br><span class="line">int height = options.outHeight;    //得到图片的高度</span><br><span class="line"></span><br><span class="line">int width = options.outWidth; </span><br><span class="line"></span><br><span class="line">//然后获取屏幕宽高，根据屏幕宽高和图片宽高的比例，得到合适的缩放比</span><br><span class="line"></span><br><span class="line">options.inJustDecodeBounds = false;    //真正的解析图片，如果为True只解析图片的元数据</span><br><span class="line"></span><br><span class="line">options.inSampleSize = 4 ; // 设置图片的缩放比例，以四分之一缩放</span><br><span class="line"></span><br><span class="line">BitmapFactory.decodeFile(&amp;quot;文件路径&amp;quot;,options);</span><br><span class="line"></span><br><span class="line">获取图片的信息：</span><br><span class="line"></span><br><span class="line">ExifInterFace exif = new ExifInterFace(&amp;quot;图片路径.jpg&amp;quot;);</span><br><span class="line"></span><br><span class="line">String pic_time = exif.getAttribute(ExifInterFace.TAG_DATETIME);   //这个获取拍摄时间，获取属性中的参数，类中定义了很多常量</span><br><span class="line"></span><br><span class="line">从系统图库中选择一张图片：</span><br><span class="line"></span><br><span class="line">Intent intent = new Intent();</span><br><span class="line"></span><br><span class="line">intent.setAction(Intent.ACTION_PICK);</span><br><span class="line"></span><br><span class="line">intent.setType(&amp;quot;image/*&amp;quot;);</span><br><span class="line"></span><br><span class="line">//startActivity(intent);</span><br><span class="line"></span><br><span class="line">startActivityForResult(intent,0);    //请求码暂时用不到，设为0</span><br><span class="line"></span><br><span class="line">重写Activity的onActivityResult(。。。。);方法</span><br><span class="line"></span><br><span class="line">创建一个可以被修改的Bitmap:</span><br><span class="line"></span><br><span class="line">Bitmap.createBitmap(高度,宽度,Bitmap.Config.*);    //得到一个空白Bitmap对象</span><br><span class="line"></span><br><span class="line">模拟一个消息，通知系统sd卡被重新挂载：</span><br><span class="line"></span><br><span class="line">Intent intent = new Intent();</span><br><span class="line"></span><br><span class="line">intent.setAction(Intent.ACTION_MEDIA_MOUNTED);</span><br><span class="line"></span><br><span class="line">intent.setData(Uri.fromFile(Environment.getExternalStorageDirectory()));</span><br><span class="line"></span><br><span class="line">sendBroadcast(intent);</span><br><span class="line"></span><br><span class="line">9.path图片必须是png格式的。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/03/03/2015-03-03-Android 图片操作/" data-id="cjol7cdtf0000nn24lgu0i77k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-02-11-常用的Linux压缩命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/11/2015-02-11-常用的Linux压缩命令/" class="article-date">
+  <time datetime="2015-02-11T07:03:43.000Z" itemprop="datePublished">2015-02-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/压缩/">压缩</a>►<a class="article-category-link" href="/categories/Linux/压缩/Zip/">Zip</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/11/2015-02-11-常用的Linux压缩命令/">常用的Linux压缩命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">tar命令</span><br><span class="line"></span><br><span class="line">　　解包：tar zxvf FileName.tar</span><br><span class="line"></span><br><span class="line">　　打包：tar czvf FileName.tar DirName</span><br><span class="line"></span><br><span class="line">gz命令</span><br><span class="line"></span><br><span class="line">　　.tar.gz 和 .tgz</span><br><span class="line"></span><br><span class="line">　　解压：tar zxvf FileName.tar.gz</span><br><span class="line"></span><br><span class="line">　　压缩：tar zcvf FileName.tar.gz DirName</span><br><span class="line"></span><br><span class="line">zip命令</span><br><span class="line"></span><br><span class="line">　　解压：unzip FileName.zip</span><br><span class="line"></span><br><span class="line">　　压缩：zip FileName.zip DirName</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/02/11/2015-02-11-常用的Linux压缩命令/" data-id="cjoduesf2000wj324oh8y2moh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zip/">Zip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/压缩/">压缩</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-02-25-Python中获取某天是某个月中的第几周" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/" class="article-date">
+  <time datetime="2015-02-09T08:15:38.000Z" itemprop="datePublished">2015-02-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/">Python中获取某天是某个月中的第几周</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>找了半天竟然没找到，如何在Python的datetime处理上，获取某年某月某日，是属于这个月的第几周。</p>
+<p>无奈之下求助同学，同学给写了一个模块。【如果你知道Python有这个原生的库，请不吝赐教】</p>
+<p>我稍作整理记录在下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">__author__ = <span class="string">'####'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_week_of_month</span><span class="params">(year, month, day)</span>:</span></span><br><span class="line"></span><br><span class="line">    &amp;quot;&amp;quot;&amp;quot;</span><br><span class="line"></span><br><span class="line">    获取指定的某天是某个月中的第几周</span><br><span class="line"></span><br><span class="line">    周一作为一周的开始</span><br><span class="line"></span><br><span class="line">    &amp;quot;&amp;quot;&amp;quot;</span><br><span class="line"></span><br><span class="line">    end = int(datetime.datetime(year, month, day).strftime(&amp;quot;%W&amp;quot;))</span><br><span class="line"></span><br><span class="line">    begin = int(datetime.datetime(year, month, <span class="number">1</span>).strftime(&amp;quot;%W&amp;quot;))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> end - begin + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">18</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/" data-id="cjoduesf80018j324em8fkku3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-02-25-Python 中其实已经自带了easy_install和pip" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/" class="article-date">
+  <time datetime="2015-02-09T03:42:32.000Z" itemprop="datePublished">2015-02-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/">Python 中其实已经自带了easy_install和pip</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以前每次安装Python的时候为了能更快的下载第三方插件都要先安装easy_install或者pip</p>
+<p>但是后来发现，Python的安装文件中其实已经安装了这两个东西，只是没有放到环境变量中所以无法直接在命令行引用</p>
+<p>假设我的Python直接安装在C盘的根目录下，win7上的路径为：C:\Python27\Scripts，只要把这个路径配置到win7的path下面就能直接在命令行使用了。</p>
+<p>至于Linux也是一样，只是配置环境变量的方式不同而已。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/" data-id="cjoduesf60011j324pyjq4a04" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2015-02-08-AndroidStudio中我的常用快捷键" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/" class="article-date">
@@ -325,271 +566,11 @@ print(dir(sys))
 
 
   
-    <article id="post-2015-01-13-PostGres数据库导入导出" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/13/2015-01-13-PostGres数据库导入导出/" class="article-date">
-  <time datetime="2015-01-13T08:06:59.000Z" itemprop="datePublished">2015-01-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/13/2015-01-13-PostGres数据库导入导出/">PostGres数据库导入导出</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="数据导出，备份"><a href="#数据导出，备份" class="headerlink" title="数据导出，备份"></a>数据导出，备份</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[node@gpmather ~]$ pg_dump -f clickworld.sql -i  -C -E UTF8 -n public  -U admin -h 192.168.1.87 -W clinkworld</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">假设我在192.168.1.87 上有一个名为 clinkworld的数据库，想把它备份到装有pg_dump服务的任何主机上，我在这个装有pg_dump服务的主机或者客户端，运行以上代码</span><br><span class="line"></span><br><span class="line">[code lang=&quot;sql&quot;]</span><br><span class="line"></span><br><span class="line">一般选项:</span><br><span class="line"></span><br><span class="line">  -f, --file=FILENAME          输出文件或目录名</span><br><span class="line"></span><br><span class="line">  -F, --format=c|d|t|p         输出文件格式 (定制, 目录, tar)</span><br><span class="line"></span><br><span class="line">                               明文 (默认值))</span><br><span class="line"></span><br><span class="line">  -v, --verbose                详细模式</span><br><span class="line"></span><br><span class="line">  -V, --version                输出版本信息，然后退出</span><br><span class="line"></span><br><span class="line">  -Z, --compress=0-9           被压缩格式的压缩级别</span><br><span class="line"></span><br><span class="line">  --lock-wait-timeout=TIMEOUT  在等待表锁超时后操作失败</span><br><span class="line"></span><br><span class="line">  -?, --help                   显示此帮助, 然后退出</span><br><span class="line"></span><br><span class="line">控制输出内容选项:</span><br><span class="line"></span><br><span class="line">  -a, --data-only              只转储数据,不包括模式</span><br><span class="line"></span><br><span class="line">  -b, --blobs                  在转储中包括大对象</span><br><span class="line"></span><br><span class="line">  -c, --clean                  在重新创建之前，先清除（删除）数据库对象</span><br><span class="line"></span><br><span class="line">  -C, --create                 在转储中包括命令,以便创建数据库</span><br><span class="line"></span><br><span class="line">  -E, --encoding=ENCODING      转储以ENCODING形式编码的数据</span><br><span class="line"></span><br><span class="line">  -n, --schema=SCHEMA          只转储指定名称的模式</span><br><span class="line"></span><br><span class="line">  -N, --exclude-schema=SCHEMA  不转储已命名的模式</span><br><span class="line"></span><br><span class="line">  -o, --oids                   在转储中包括 OID</span><br><span class="line"></span><br><span class="line">  -O, --no-owner               在明文格式中, 忽略恢复对象所属者</span><br><span class="line"></span><br><span class="line">  -s, --schema-only            只转储模式, 不包括数据    只导出数据库结构</span><br><span class="line"></span><br><span class="line">  -S, --superuser=NAME         在明文格式中使用指定的超级用户名</span><br><span class="line"></span><br><span class="line">  -t, --table=TABLE            只转储指定名称的表</span><br><span class="line"></span><br><span class="line">  -T, --exclude-table=TABLE    不转储指定名称的表</span><br><span class="line"></span><br><span class="line">  -x, --no-privileges          不要转储权限 (grant/revoke)</span><br><span class="line"></span><br><span class="line">  --binary-upgrade             只能由升级工具使用</span><br><span class="line"></span><br><span class="line">  --column-inserts             以带有列名的INSERT命令形式转储数据</span><br><span class="line"></span><br><span class="line">  --disable-dollar-quoting     取消美元 (符号) 引号, 使用 SQL 标准引号</span><br><span class="line"></span><br><span class="line">  --disable-triggers           在只恢复数据的过程中禁用触发器</span><br><span class="line"></span><br><span class="line">  --exclude-table-data=TABLE   不转储指定名称的表中的数据</span><br><span class="line"></span><br><span class="line">  --inserts                    以INSERT命令，而不是COPY命令的形式转储数据</span><br><span class="line"></span><br><span class="line">  --no-security-labels         不转储安全标签的分配</span><br><span class="line"></span><br><span class="line">  --no-tablespaces             不转储表空间分配信息</span><br><span class="line"></span><br><span class="line">  --no-unlogged-table-data     不转储没有日志的表数据</span><br><span class="line"></span><br><span class="line">  --quote-all-identifiers      所有标识符加引号，即使不是关键字</span><br><span class="line"></span><br><span class="line">  --section=SECTION            备份命名的节 (数据前, 数据, 及 数据后)</span><br><span class="line"></span><br><span class="line">  --serializable-deferrable   等到备份可以无异常运行</span><br><span class="line"></span><br><span class="line">  --use-set-session-authorization</span><br><span class="line"></span><br><span class="line">                               使用 SESSION AUTHORIZATION 命令代替</span><br><span class="line"></span><br><span class="line">                ALTER OWNER 命令来设置所有权</span><br><span class="line"></span><br><span class="line">联接选项:</span><br><span class="line"></span><br><span class="line">  -h, --host=主机名        数据库服务器的主机名或套接字目录</span><br><span class="line"></span><br><span class="line">  -p, --port=端口号        数据库服务器的端口号</span><br><span class="line"></span><br><span class="line">  -U, --username=名字      以指定的数据库用户联接</span><br><span class="line"></span><br><span class="line">  -w, --no-password        永远不提示输入口令</span><br><span class="line"></span><br><span class="line">  -W, --password           强制口令提示 (自动)</span><br><span class="line"></span><br><span class="line">  --role=ROLENAME          在转储前运行SET ROLE</span><br></pre></td></tr></table></figure>
-<h2 id="数据导入，数据恢复"><a href="#数据导入，数据恢复" class="headerlink" title="数据导入，数据恢复"></a>数据导入，数据恢复</h2><p><code>[node@gpmather ~]$  psql -f clickworld.sql -h 192.168.1.108 -U admin -W clinkworld</code></p>
-<p>我把本地的 clickworld.sql 这个文件中的数据恢复到192.168.1.108 这台主机，并且创建表，但是在192.168.1.108 上 clinkworld 是先要创建好的。</p>
-<p>附：</p>
-<p>   最后一个参数，是数据库名称了</p>
-<ol>
-<li><p>只导出所有对象的数据库结构</p>
-<p>C:>pg_dump -f backup.sql -i  -C -E UTF8 -n public -s  -U admin -h localhost -W clinkworld</p>
-</li>
-<li><p>导出所有对象的数据库结构和数据</p>
-<p>C:>pg_dump -f backup.sql -i  -C -E UTF8 -n public  -U admin -h localhost -W clinkworld</p>
-<p>没有-s参数</p>
-</li>
-<li><p>只导出所有的表数据</p>
-<p>C:>pg_dump -f backup.sql -i -a -C -E UTF8 -n public  -U admin -h localhost -W clinkworld</p>
-<p>-a 只导出数据</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/01/13/2015-01-13-PostGres数据库导入导出/" data-id="cjoduesez000pj324ioi43gsy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2014-12-11-Postgres 序列操作" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/04/2014-12-11-Postgres 序列操作/" class="article-date">
-  <time datetime="2015-01-04T03:23:39.000Z" itemprop="datePublished">2015-01-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/2014-12-11-Postgres 序列操作/">Postgres 序列操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在用到postgres的时候我们用到这么一个功能：</p>
-<ol>
-<li>需要一个自增的主键，在postgres中，要增加一列来充当自增主键的话，必须增加一个序列，</li>
-</ol>
-<p>即使用serial8类型能指定自增，我们也知道系统会默认为我们的这张表添加一个自增序列保存。</p>
-<ol start="2">
-<li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可用的序列函数有∶</span><br><span class="line"></span><br><span class="line">nextval</span><br><span class="line"></span><br><span class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </span><br><span class="line"></span><br><span class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</span><br><span class="line"></span><br><span class="line">currval</span><br><span class="line"></span><br><span class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </span><br><span class="line"></span><br><span class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</span><br><span class="line"></span><br><span class="line">lastval</span><br><span class="line"></span><br><span class="line">返回当前会话里最近一次 nextval 返回的数值。 </span><br><span class="line"></span><br><span class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </span><br><span class="line"></span><br><span class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</span><br><span class="line"></span><br><span class="line">setval</span><br><span class="line"></span><br><span class="line">重置序列对象的计数器数值。</span><br><span class="line"></span><br><span class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 true，</span><br><span class="line"></span><br><span class="line">表示下一次 nextval 将在返回数值之前递增该序列。</span><br><span class="line"></span><br><span class="line">在三参数形式里，is_called 可以设置为 true 或 false。</span><br><span class="line"></span><br><span class="line">如果你把它设置为 false，那么下一次 nextval 将返回这里声明的数值，</span><br><span class="line"></span><br><span class="line">而从随后的 nextval 才开始递增该序列。</span><br><span class="line"></span><br><span class="line">比如</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42);    //下次nextval将返回 43</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42, true);     //和上面一样</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42, false);    //下次nextval将返回 42</span><br><span class="line"></span><br><span class="line">setval 返回的结果就是它的第二个参数的数值。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/01/04/2014-12-11-Postgres 序列操作/" data-id="cjodueseq000cj324yvvinugg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-01-04-Postgres序列操作" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/04/2015-01-04-Postgres序列操作/" class="article-date">
-  <time datetime="2015-01-04T03:23:39.000Z" itemprop="datePublished">2015-01-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/2015-01-04-Postgres序列操作/">Postgres 序列操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在用到postgres的时候我们用到这么一个功能：</p>
-<ol>
-<li>需要一个自增的主键，在postgres中，要增加一列来充当自增主键的话，必须增加一个序列，</li>
-</ol>
-<p>即使用serial8类型能指定自增，我们也知道系统会默认为我们的这张表添加一个自增序列保存。</p>
-<ol start="2">
-<li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可用的序列函数有∶</span><br><span class="line"></span><br><span class="line">nextval</span><br><span class="line"></span><br><span class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </span><br><span class="line"></span><br><span class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</span><br><span class="line"></span><br><span class="line">currval</span><br><span class="line"></span><br><span class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </span><br><span class="line"></span><br><span class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</span><br><span class="line"></span><br><span class="line">lastval</span><br><span class="line"></span><br><span class="line">返回当前会话里最近一次 nextval 返回的数值。 </span><br><span class="line"></span><br><span class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </span><br><span class="line"></span><br><span class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</span><br><span class="line"></span><br><span class="line">setval</span><br><span class="line"></span><br><span class="line">重置序列对象的计数器数值。</span><br><span class="line"></span><br><span class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 <span class="keyword">true</span>，</span><br><span class="line"></span><br><span class="line">表示下一次 nextval 将在返回数值之前递增该序列。</span><br><span class="line"></span><br><span class="line">在三参数形式里，is_called 可以设置为 <span class="keyword">true</span> 或 <span class="keyword">false</span>。</span><br><span class="line"></span><br><span class="line">如果你把它设置为 <span class="keyword">false</span>，那么下一次 nextval 将返回这里声明的数值，</span><br><span class="line"></span><br><span class="line">而从随后的 nextval 才开始递增该序列。</span><br><span class="line"></span><br><span class="line">比如</span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>)</span></span>;    <span class="comment">//下次nextval将返回 43</span></span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">true</span>)</span></span>;     <span class="comment">//和上面一样</span></span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">false</span>)</span></span>;    <span class="comment">//下次nextval将返回 42</span></span><br><span class="line"></span><br><span class="line">setval 返回的结果就是它的第二个参数的数值。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/01/04/2015-01-04-Postgres序列操作/" data-id="cjoduesex000nj324laadppam" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2014-12-23-获取表和字段的元数据的方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/12/23/2014-12-23-获取表和字段的元数据的方法/" class="article-date">
-  <time datetime="2014-12-23T10:36:24.000Z" itemprop="datePublished">2014-12-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/postgres/">postgres</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/23/2014-12-23-获取表和字段的元数据的方法/">获取表和字段的元数据的方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="外键关系查询语句"><a href="#外键关系查询语句" class="headerlink" title="外键关系查询语句"></a>外键关系查询语句</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tc. CONSTRAINT_NAME,</span><br><span class="line">	tc. TABLE_NAME,</span><br><span class="line">	kcu. COLUMN_NAME,</span><br><span class="line">	ccu. TABLE_NAME <span class="keyword">AS</span> foreign_table_name,</span><br><span class="line">	ccu. COLUMN_NAME <span class="keyword">AS</span> foreign_column_name,</span><br><span class="line">	tc.is_deferrable,</span><br><span class="line">	tc.initially_deferred</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema.table_constraints <span class="keyword">AS</span> tc</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.key_column_usage <span class="keyword">AS</span> kcu <span class="keyword">ON</span> tc. CONSTRAINT_NAME = kcu. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.constraint_column_usage <span class="keyword">AS</span> ccu <span class="keyword">ON</span> ccu. CONSTRAINT_NAME = tc. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	constraint_type = <span class="string">'FOREIGN KEY'</span></span><br><span class="line"><span class="keyword">AND</span> tc. TABLE_NAME = <span class="string">'dimention_goods'</span>;</span><br></pre></td></tr></table></figure>
-<p><a href="http://itroadmap.sinaapp.com/2014/12/23/postgres-%E8%8E%B7%E5%8F%96%E8%A1%A8%E5%92%8C%E5%AD%97%E6%AE%B5%E7%9A%84%E5%85%83%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener"><em><del>不知道如何防止被流氓网站爬取</del></em></a></p>
-<h2>字段详细信息查询语句</h2>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	col.table_schema,</span><br><span class="line">	col. TABLE_NAME,</span><br><span class="line">	col.ordinal_position,</span><br><span class="line">	col. COLUMN_NAME,</span><br><span class="line">	col.data_type,</span><br><span class="line">	col.character_maximum_length,</span><br><span class="line">	col.numeric_precision,</span><br><span class="line">	col.numeric_scale,</span><br><span class="line">	col.is_nullable,</span><br><span class="line">	col.column_default,</span><br><span class="line">	des.description</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema. <span class="keyword">COLUMNS</span> <span class="keyword">col</span></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> pg_description des <span class="keyword">ON</span> col. TABLE_NAME :: regclass = des.objoid</span><br><span class="line"><span class="keyword">AND</span> col.ordinal_position = des.objsubid</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	table_schema = <span class="string">'XXXX'</span></span><br><span class="line"><span class="keyword">AND</span> TABLE_NAME = <span class="string">'XXXX'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	ordinal_position;</span><br></pre></td></tr></table></figure>
-<h2 id="获取所有的表名"><a href="#获取所有的表名" class="headerlink" title="获取所有的表名"></a>获取所有的表名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tablename</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	pg_tables</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	tablename <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'pg%'</span></span><br><span class="line"><span class="keyword">AND</span> tablename <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'sql_%'</span></span><br></pre></td></tr></table></figure>
-<h2 id="mysql中对入插入的触发器"><a href="#mysql中对入插入的触发器" class="headerlink" title="mysql中对入插入的触发器"></a>mysql中对入插入的触发器</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DELIMITER $$</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span></span><br><span class="line">    <span class="comment">/*[DEFINER = &#123; user | CURRENT_USER &#125;]*/</span></span><br><span class="line">    <span class="keyword">TRIGGER</span> <span class="string">`clinkworld_metadata`</span>.<span class="string">`add_tid_fields_relation`</span> <span class="keyword">BEFORE</span> <span class="keyword">INSERT</span></span><br><span class="line">    <span class="keyword">ON</span> <span class="string">`clinkworld_metadata`</span>.<span class="string">`fields_relation`</span></span><br><span class="line">    <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> t_id <span class="keyword">INTO</span> @f1_tid_var <span class="keyword">FROM</span> fields_info <span class="keyword">WHERE</span> <span class="keyword">id</span>=NEW.f1_id;</span><br><span class="line"><span class="keyword">SELECT</span> t_id <span class="keyword">INTO</span> @f2_tid_var <span class="keyword">FROM</span> fields_info <span class="keyword">WHERE</span> <span class="keyword">id</span>=NEW.f2_id;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> NEW.f1_tid=@f1_tid_var;</span><br><span class="line"><span class="keyword">SET</span> NEW.f2_tid=@f2_tid_var;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">END</span>$$</span><br><span class="line"></span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
-<h2 id="主键列信息获取"><a href="#主键列信息获取" class="headerlink" title="主键列信息获取"></a>主键列信息获取</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tc. CONSTRAINT_NAME,</span><br><span class="line">	ccu. TABLE_NAME <span class="keyword">AS</span> primary_table_name,</span><br><span class="line">	ccu. COLUMN_NAME <span class="keyword">AS</span> primary_column_name</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema.table_constraints <span class="keyword">AS</span> tc</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.key_column_usage <span class="keyword">AS</span> kcu <span class="keyword">ON</span> tc. CONSTRAINT_NAME = kcu. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.constraint_column_usage <span class="keyword">AS</span> ccu <span class="keyword">ON</span> ccu. CONSTRAINT_NAME = tc. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	constraint_type = <span class="string">'PRIMARY KEY'</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/12/23/2014-12-23-获取表和字段的元数据的方法/" data-id="cjoduesev000ij324my2nfo3q" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgres/">postgres</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/" class="article-date">
-  <time datetime="2014-12-22T09:33:37.000Z" itemprop="datePublished">2014-12-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SQL/">SQL</a>►<a class="article-category-link" href="/categories/SQL/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/">Navicat Premium 连接sqlserver2008 提示Client安装失败</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>具体保存信息如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Installation of this product failed because it is not supported on this operating system. For information on supported configurations,</span><br><span class="line"></span><br><span class="line">see the product documentation.</span><br></pre></td></tr></table></figure>
-<p><img src="/images/2014/12/03/sqlserver_error.png" alt=""></p>
-<p>解决方法：</p>
-<p>这个要安装一个叫做sqlncli_x64.msi的东西，手动安装，它在你的Navicat的安装目录下面，比如我的在：</p>
-<p><code>D:\Program Files\PremiumSoft\Navicat Premium</code></p>
-<p>如果你的电脑是64位的，就运行安装那个64位的，如果是32 的就运行那个sqlncli.msi。</p>
-<p>然后再进行Sqlserver的链接就不再提示安装出错了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://febsky.me/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/" data-id="cjodueseu000gj324rtfzz8ai" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/11/">Next &raquo;</a>
   </nav>
 
 </section>

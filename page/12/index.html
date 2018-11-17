@@ -5,20 +5,18 @@
   
 
   
-  <title>Mac Pro Mounty挂载NTFS硬盘报错 | 凉凉小线仔</title>
+  <title>凉凉小线仔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原来用的是Linux或者Win系统，后来鸟枪换炮整了个MacPro结果发现移动硬盘，只能读不能写。 原来Mac不能直接读取NTFS格式化的硬盘，卧槽。后来发现有个软件可以解决叫做Mounty。恩，好。 可是我把移动硬盘插上，然后地接确认挂载。 靠！告诉我~ The volume 电影 is not re-mountable in read/write mode .Probably it was n">
-<meta name="keywords" content="Mac,其他">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Mac Pro Mounty挂载NTFS硬盘报错">
-<meta property="og:url" content="http://febsky.me/2015/09/01/2015-09-01-Mac Pro Mounty挂载NTFS硬盘报错/index.html">
+  <meta name="description" content="Android,Java,Python,博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="凉凉小线仔">
+<meta property="og:url" content="http://febsky.me/page/12/index.html">
 <meta property="og:site_name" content="凉凉小线仔">
-<meta property="og:description" content="原来用的是Linux或者Win系统，后来鸟枪换炮整了个MacPro结果发现移动硬盘，只能读不能写。 原来Mac不能直接读取NTFS格式化的硬盘，卧槽。后来发现有个软件可以解决叫做Mounty。恩，好。 可是我把移动硬盘插上，然后地接确认挂载。 靠！告诉我~ The volume 电影 is not re-mountable in read/write mode .Probably it was n">
+<meta property="og:description" content="Android,Java,Python,博客">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-05-13T15:40:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac Pro Mounty挂载NTFS硬盘报错">
-<meta name="twitter:description" content="原来用的是Linux或者Win系统，后来鸟枪换炮整了个MacPro结果发现移动硬盘，只能读不能写。 原来Mac不能直接读取NTFS格式化的硬盘，卧槽。后来发现有个软件可以解决叫做Mounty。恩，好。 可是我把移动硬盘插上，然后地接确认挂载。 靠！告诉我~ The volume 电影 is not re-mountable in read/write mode .Probably it was n">
+<meta name="twitter:title" content="凉凉小线仔">
+<meta name="twitter:description" content="Android,Java,Python,博客">
   
     <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
   
@@ -69,14 +67,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-2015-09-01-Mac Pro Mounty挂载NTFS硬盘报错" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set." class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/09/01/2015-09-01-Mac Pro Mounty挂载NTFS硬盘报错/" class="article-date">
-  <time datetime="2015-09-01T14:07:43.000Z" itemprop="datePublished">2015-09-01</time>
+    <a href="/2014/12/02/2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set./" class="article-date">
+  <time datetime="2014-12-02T14:20:17.000Z" itemprop="datePublished">2014-12-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Mac/">Mac</a>►<a class="article-category-link" href="/categories/Mac/其他/">其他</a>
+    <a class="article-category-link" href="/categories/Hadoop/">Hadoop</a>
   </div>
 
   </div>
@@ -86,8 +86,8 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      Mac Pro Mounty挂载NTFS硬盘报错
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/02/2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set./">hadoop 2.4.1单击模式启动报错JAVA_HOME is not set.</a>
     </h1>
   
 
@@ -95,58 +95,266 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原来用的是Linux或者Win系统，后来鸟枪换炮整了个MacPro结果发现移动硬盘，只能读不能写。</p>
-<p>原来Mac不能直接读取NTFS格式化的硬盘，卧槽。后来发现有个软件可以解决叫做Mounty。恩，好。</p>
-<p>可是我把移动硬盘插上，然后地接确认挂载。</p>
-<p>靠！告诉我~</p>
-<p>The volume 电影 is not re-mountable in read/write mode .Probably it was not clean unmounted before.</p>
-<p>什么吊意思，说什么不能被重新挂载，因为以前没有clean 卸载。</p>
-<p>好吧，我英语不好。意思是说磁盘在win下面没有安全删除就拔出来了，导致文件系统中有错误区块，所以在MAC中不能挂载成读写模式。到win下面chkdsk /f一下就好了.</p>
-<ol>
-<li><p>插入移动硬盘到win下面</p>
-</li>
-<li><p>打开dos命令行。输入<code>chkdsk /f</code>,然后回车</p>
-</li>
-<li><p>Y</p>
-</li>
-<li><p>好吧，下次拔出移动硬盘之前，记得，右下角的安全删除。。。。</p>
-</li>
-</ol>
-<p>然后再插到mac上就OK了。</p>
+        <p>Hadoop  启动服务的时候报如下错误：</p>
+<p>[code lang=”java”]</p>
+<p>[root@localhost hadoop-2.4.1]# start-all.sh    </p>
+<p>This script is Deprecated. Instead use start-dfs.sh and start-mapred.sh   </p>
+<p>starting namenode, logging to /home/hadoop/hadoop-2.4.1/bin/../logs/hadoop-root-namenode-ubuntu.out   </p>
+<p>localhost: Error: JAVA_HOME is not set.   </p>
+<p>localhost: Error: JAVA_HOME is not set.   </p>
+<p>starting jobtracker, logging to /home/hadoop/hadoop-2.4.1/bin/../logs/hadoop-root-jobtracker-ubuntu.out   </p>
+<p>localhost: Error: JAVA_HOME is not set.  </p>
+<p>[/code]</p>
+<p>我明明已经在 /etc/profile 中配置了JAVA_HOME 了，不知打为什么这里还报错。</p>
+<p>但是通过下面的方法可以解决：</p>
+<p>解决方法：</p>
+<p>编辑 etc/hadoop/hadoop-env.sh</p>
+<p>把 JAVA_HOME 设置为 java 安装的根路径</p>
+<p>JAVA_HOME=/home/jdk/jdk1.6.0_16  # 这里需要根据自己的安装路径来写</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://febsky.me/2015/09/01/2015-09-01-Mac Pro Mounty挂载NTFS硬盘报错/" data-id="cjoduesfz0031j324yookc83f" class="article-share-link">Share</a>
+      <a data-url="http://febsky.me/2014/12/02/2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set./" data-id="cjodueses000dj324po9n6p1q" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
 
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2015/09/15/2015-09-15-Android 文件下载/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Android文件下载
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/08/31/2015-08-31-Android PopupWindow和AlertDialog的比较/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Android PopupWindow和AlertDialog的比较</div>
-    </a>
-  
-</nav>
+</article>
+
 
   
+    <article id="post-2015-02-25-Django  在数据库设计的时候的关系操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/" class="article-date">
+  <time datetime="2014-11-30T06:25:07.000Z" itemprop="datePublished">2014-11-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Django/">Django</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/">Django  在数据库设计的时候的关系操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这里假设你已经建好了Django项目了。这些操作实在ubuntu命令行下面操作的，所以以下用可能会用到命令行基本操作，当然你也可以在IDE 中操作。</p>
+<p>首先我们先来看下要用到的model类，也就是对应数据库中的表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line"># Create your models here.</span><br><span class="line"></span><br><span class="line">class Author(models.Model):</span><br><span class="line"></span><br><span class="line">    name = models.CharField(max_length=30)</span><br><span class="line"></span><br><span class="line">    def __unicode__(self):</span><br><span class="line"></span><br><span class="line">        return self.name</span><br><span class="line"></span><br><span class="line">class Comment(models.Model):</span><br><span class="line"></span><br><span class="line">    comment_name = models.CharField(max_length=30)</span><br><span class="line"></span><br><span class="line">    ##评论的回复，递归和自己产生多对多的关系</span><br><span class="line"></span><br><span class="line">    child_comments = models.ManyToManyField(&amp;quot;self&amp;quot;,blank=True,null=True)    </span><br><span class="line"></span><br><span class="line">    def __unicode__(self):</span><br><span class="line"></span><br><span class="line">        return self.comment_name	</span><br><span class="line"></span><br><span class="line">class Book(models.Model):</span><br><span class="line"></span><br><span class="line">    ##书的名字</span><br><span class="line"></span><br><span class="line">    name = models.CharField(max_length=30)</span><br><span class="line"></span><br><span class="line">    ###这里不考虑实际，只是假设一本书只有一个作者</span><br><span class="line"></span><br><span class="line">    author = models.ForeignKey(Author)</span><br><span class="line"></span><br><span class="line">    ###这里这么应用有点牵强，因为评论是一对多的关系，可以放到每个Comment对象中做外键</span><br><span class="line"></span><br><span class="line">    ###在这里就这么用了，    </span><br><span class="line"></span><br><span class="line">    comments = models.ManyToManyField(Comment)</span><br><span class="line"></span><br><span class="line">    def __unicode__(self):</span><br><span class="line"></span><br><span class="line">        return self.name</span><br></pre></td></tr></table></figure>
+<p>好models.py文件修改好了，现在开始操作数据库</p>
+<p>cd到带有manage.py 文件的目录下</p>
+<p>命令行运行：python manage.py syncdb</p>
+<p>命令行运行：python manage.py shell</p>
+<p>将上面用的到三个类import进来</p>
+<p>首先创建三个作者：</p>
+<p>xiaoming = Author(name=”xiaoming”)</p>
+<p>xiaohong = Author(name=”xiaohong”)</p>
+<p>xiaogang = Author(name=”xiaogang”)</p>
+<p>以上命令只是在内存中创建了对象，现在我们把他们保存到数据库中</p>
+<p>xiaoming.save()</p>
+<p>xiaohong.save()</p>
+<p>xiaogang.save()</p>
+<p>现在三个作者都保存到数据库了，可以查看下：</p>
+<p>Author.objects.all()</p>
+<p>OK ，接下来创建两条回复（评论），和两条子评论（评论的评论）给第一条回复添加两条回复</p>
+<p>comment1 = Comment(comment_name=”First Comment!”)</p>
+<p>comment2 = Comment(comment_name=”Second Comment!”)</p>
+<p>child_comment1 = Comment(comment_name=”First Child Comment!”)</p>
+<p>child_comment2 = Comment(comment_name=”Second Child Comment!”)</p>
+<p>#####注意要想给一个Model对象添加一个多对多的关系，必须先把这个对象保存到数据库####</p>
+<p>例如：comment1.child_comments.add(child_comment1)</p>
+<p>是会报错的，因为还没有保存到数据库中</p>
+<p>必须先执行comment1.save()</p>
+<p>所以为了避免出错，我们添加关系的时候最好都是已经在数据库中存在的哦</p>
+<p>comment1.save()</p>
+<p>comment2.save()</p>
+<p>child_comment1.save()</p>
+<p>child_comment2.save()</p>
+<p>然后执行：</p>
+<p>comment1.child_comments.add(child_comment1)</p>
+<p>comment1.child_comments.add(child_comment2)</p>
+<p>或者用下面这种方式：</p>
+<p>comment1.child_comments.add(child_comment1,child_comment2)</p>
+<p>OK 评论关系添加好了，查看一下呗</p>
+<p>Comment.objects.all()</p>
+<p>comment1.child_comments.all()</p>
+<p>下面就简单了，总之和上面一样：</p>
+<p>创建Book对象</p>
+<p>book = Book(name=”The Book “,author=xiaoming)    ##xiaoming 是一个Author对象</p>
+<p>book.save()   #这里必须先save 否则下面的添加会出错</p>
+<p>book.comments.add(comment1)</p>
+<p>book.comments.add(comment2)</p>
+<p>来看看官网的文档中的例子（很详细的）：</p>
+<p><a href="https://docs.djangoproject.com/en/1.6/topics/db/examples/many_to_many/" target="_blank" rel="noopener">https://docs.djangoproject.com/en/1.6/topics/db/examples/many_to_many/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/" data-id="cjoduesf50010j324h6n3ccax" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
+
+    </footer>
+  </div>
+  
 </article>
+
+
+  
+    <article id="post-2014-11-28-github操作遇到的几个问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/28/2014-11-28-github操作遇到的几个问题/" class="article-date">
+  <time datetime="2014-11-28T15:36:29.000Z" itemprop="datePublished">2014-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/28/2014-11-28-github操作遇到的几个问题/">github操作遇到的几个问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天操作github在更新数据的时候报以下错误</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">error: failed to push some refs to <span class="string">'git@github.com:itroadmap/itroadmap.github.com.git'</span></span><br><span class="line"></span><br><span class="line">To prevent you from losing history, non-fast-forward updates were rejected</span><br><span class="line"></span><br><span class="line"><span class="function">Merge the remote <span class="title">changes</span> <span class="params">(e.g. <span class="string">'git pull'</span>)</span> before pushing again. See the</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">'Note about fast-forwards' section of 'git push --help' <span class="keyword">for</span> details.</span></span><br></pre></td></tr></table></figure>
+<p>有两种方式解决：</p>
+<p>第一种 用强覆盖方式用你本地的代码替代git仓库内的内容,命令行执行如下代码：</p>
+<p><code>$ git push -f</code></p>
+<p>第二种 先把git的东西fetch到你本地然后merge后再push</p>
+<p><code>$ git fetch</code></p>
+<p><code>$ git merge</code></p>
+<p>其实第二种方式的这两行代码等价于：</p>
+<p><code>$ git pull</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2014/11/28/2014-11-28-github操作遇到的几个问题/" data-id="cjodueseh0003j324zkjdh4s0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/28/2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决/" class="article-date">
+  <time datetime="2014-11-28T15:00:10.000Z" itemprop="datePublished">2014-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/blog/">blog</a>►<a class="article-category-link" href="/categories/blog/Jekyll/">Jekyll</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/28/2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决/">Jekyll 本地运行环境搭建以及遇到的错误解决</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="首先安装Ruby环境"><a href="#首先安装Ruby环境" class="headerlink" title="首先安装Ruby环境"></a>首先安装Ruby环境</h2><p>至于下载方式不同的操作系统安装方式不同，这里不再详细给出</p>
+<p>`</p>
+<p>Ubuntu系统下，可用：sudo apt-get install ruby</p>
+<p>centos系统下，可用：sudo yum install ruby</p>
+<p>`</p>
+<h2 id="安装Jekyll"><a href="#安装Jekyll" class="headerlink" title="安装Jekyll"></a>安装Jekyll</h2><p>当Ruby环境配置完成后（不提示任何错误），就可以安装Jekyll了。执行 gem jekyll install</p>
+<p>【错误】安装Jekyll 时候出错。</p>
+<p>`</p>
+<p>ERROR: Could not find a valid gem ‘jekyll’ (&gt;= 0) in any repository</p>
+<p>ERROR: Possible alternatives: jekyll`</p>
+<p>`</p>
+<p>【解决方案】如下有解决方案</p>
+<p>`</p>
+<p>$ gem sources –remove <a href="http://rubygems.org/" target="_blank" rel="noopener">http://rubygems.org/</a></p>
+<p>$ gem sources -a <a href="http://ruby.taobao.org/" target="_blank" rel="noopener">http://ruby.taobao.org/</a></p>
+<p>$ gem sources -l</p>
+<p><strong><em> CURRENT SOURCES </em></strong></p>
+<p><a href="http://ruby.taobao.org" target="_blank" rel="noopener">http://ruby.taobao.org</a></p>
+<p>$ gem install rack</p>
+<p>`</p>
+<p>然后继续执行 gem install jekyll 即可。等待片刻，会提示 gems installed jekyll 安装完毕。</p>
+<p>【错误】启动jekyll服务的时候报错</p>
+<p>/var/lib/gems/1.9.1/gems/execjs-2.2.2/lib/execjs/runtimes.rb:51:in `autodetect’: Could not find a JavaScript runtime. See <a href="https://github.com/sstephenson/execjs" target="_blank" rel="noopener">https://github.com/sstephenson/execjs</a> for a list of available runtimes. (ExecJS::RuntimeUnavailable)</p>
+<p>【解决方案】如下有解决方案</p>
+<p>`</p>
+<p>gem install execjs</p>
+<p>gem install therubyracer ###这个我也没安装成，不过貌似没问题了</p>
+<p>sudo apt-get install nodejs</p>
+<p>`</p>
+<h2 id="以下是在用git和jekll写blog过程中常用密令"><a href="#以下是在用git和jekll写blog过程中常用密令" class="headerlink" title="以下是在用git和jekll写blog过程中常用密令"></a>以下是在用git和jekll写blog过程中常用密令</h2><p>`</p>
+<p>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:heiniuhaha/heiniuhaha.github.com.git//本地如果无远程代码，先做这步，不然就忽略</p>
+<p>cd .ssh/heiniuhaha.github.com//定位到你blog的目录下</p>
+<p>git pull origin master //先同步远程文件，后面的参数会自动连接你远程的文件</p>
+<p>git status //查看本地自己修改了多少文件</p>
+<p>git add .//添加远程不存在的git文件</p>
+<p>git commit * -m “what I want told to someone”</p>
+<p>git push origin master //更新到远程服务器上</p>
+<p>`</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://febsky.me/2014/11/28/2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决/" data-id="cjoduesed0001j3240vgoxpjp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span>
+  </nav>
 
 </section>
         
