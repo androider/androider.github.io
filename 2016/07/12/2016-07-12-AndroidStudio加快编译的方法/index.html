@@ -7,20 +7,20 @@
   
   <title>AndroidStudio加快编译的方法 | 凉凉小线仔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Gradle 给我们的Android开发带来很大的便利，同事Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。">
+  <meta name="description" content="Gradle 给我们的Android开发带来很大的便利，同时Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。">
 <meta name="keywords" content="Android,AndroidStudio">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AndroidStudio加快编译的方法">
 <meta property="og:url" content="http://febsky.me/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/index.html">
 <meta property="og:site_name" content="凉凉小线仔">
-<meta property="og:description" content="Gradle 给我们的Android开发带来很大的便利，同事Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。">
+<meta property="og:description" content="Gradle 给我们的Android开发带来很大的便利，同时Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/07/14/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-12%2017.15.54.png">
-<meta property="og:updated_time" content="2016-07-15T11:06:16.000Z">
+<meta property="og:image" content="http://febsky.me/images/2016/07/2016-07-12-as修改内存.jpg">
+<meta property="og:updated_time" content="2018-11-19T02:16:17.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AndroidStudio加快编译的方法">
-<meta name="twitter:description" content="Gradle 给我们的Android开发带来很大的便利，同事Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。">
-<meta name="twitter:image" content="http://7xripg.com1.z0.glb.clouddn.com/2016/07/14/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-12%2017.15.54.png">
+<meta name="twitter:description" content="Gradle 给我们的Android开发带来很大的便利，同时Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。">
+<meta name="twitter:image" content="http://febsky.me/images/2016/07/2016-07-12-as修改内存.jpg">
   
     <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
   
@@ -97,30 +97,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Gradle 给我们的Android开发带来很大的便利，同事Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。</p>
+        <p>Gradle 给我们的Android开发带来很大的便利，同时Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。</p>
 <a id="more"></a>
-<p>在网上搜索的时候我们能找到很多优化AndroidStudio Gradle编译的方法，例如：</p>
-<ol>
-<li><p>配置 <code>gradle.properties</code> 在文件中添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">org.gradle.daemon = true</span><br><span class="line">org.gradle.parallel = true</span><br><span class="line">org.gradle.configureondemand=true</span><br><span class="line">org.gradle.jvmargs=-Xms256m -Xmx1024m</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>把 gradle 设置成离线模式  <code>offline work</code></p>
-<p> 离线模式下 ，应该不能修改任何 build.gradle 文件。也就是说如果gradle 在Androidstudio中提示你要 <strong><code>sync</code></strong> 时，必须要联网。</p>
-</li>
-<li><p>set up large vm heap size: 2G  （这个是别人说的我也不知道怎么设置）</p>
-</li>
-</ol>
-<hr>
-<h1 id="Gradle-为什么慢？"><a href="#Gradle-为什么慢？" class="headerlink" title="Gradle 为什么慢？"></a>Gradle 为什么慢？</h1><ul>
+<blockquote>
+<p>2018-11-19 第一次修改更新。当前AS版本：Android Studio 3.2.1<br>Build #AI-181.5540.7.32.5056338, built on October 9, 2018<br>JRE: 1.8.0_152-release-1136-b06 x86_64<br>JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o<br>macOS 10.14.1</p>
+</blockquote>
+<h3 id="Gradle-为什么慢？"><a href="#Gradle-为什么慢？" class="headerlink" title="Gradle 为什么慢？"></a>Gradle 为什么慢？</h3><ul>
 <li>有些task运行起来就很慢</li>
-<li>设置了multiDexEnabled</li>
+<li>设置了 multiDexEnabled</li>
 <li>依赖库太多，下载慢</li>
+<li>gradle 下载需要访问外网，网络不通</li>
 </ul>
-<h1 id="如何知道自己项目中是由那个原因引起的"><a href="#如何知道自己项目中是由那个原因引起的" class="headerlink" title="如何知道自己项目中是由那个原因引起的"></a>如何知道自己项目中是由那个原因引起的</h1><p>可以在gradle 运行的时候给每个task添加一个参数  <code>--profile</code> ,用了监视task的运行，并打印log  最终log以html的方式打印在你的项目下的 <code>build/reports/profile/</code> 中，根据不同时间命名的。</p>
-<p>可以配置到AndroidStudio中，或者直接在命令行运行的时候添加<code>./gradlew clean buildAll --profile</code></p>
+<h3 id="优化AndroidStudio-Gradle编译的方法，例如："><a href="#优化AndroidStudio-Gradle编译的方法，例如：" class="headerlink" title="优化AndroidStudio Gradle编译的方法，例如："></a>优化AndroidStudio Gradle编译的方法，例如：</h3><h4 id="1-配置-gradle-properties-在文件中添加如下代码"><a href="#1-配置-gradle-properties-在文件中添加如下代码" class="headerlink" title="1. 配置 gradle.properties 在文件中添加如下代码"></a>1. 配置 <code>gradle.properties</code> 在文件中添加如下代码</h4>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">org.gradle.daemon = true</span><br><span class="line">org.gradle.parallel = true</span><br><span class="line">org.gradle.configureondemand=true</span><br><span class="line">org.gradle.jvmargs=-Xms256m -Xmx1024m</span><br></pre></td></tr></table></figure>
+<h4 id="2-把-gradle-设置成离线模式-offline-work"><a href="#2-把-gradle-设置成离线模式-offline-work" class="headerlink" title="2. 把 gradle 设置成离线模式  offline work"></a>2. 把 gradle 设置成离线模式  <code>offline work</code></h4><p>离线模式下 ，应该不能修改任何 build.gradle 文件。也就是说如果gradle 在Androidstudio中提示你要 <strong><code>sync</code></strong> 时，必须要联网。</p>
+<h4 id="3-修改AndroidStudio-可使用内存"><a href="#3-修改AndroidStudio-可使用内存" class="headerlink" title="3. 修改AndroidStudio 可使用内存"></a>3. 修改AndroidStudio 可使用内存</h4><p><img src="/images/2016/07/2016-07-12-as修改内存.jpg" alt="AndroidStudio 修改内存"></p>
 <p>其他优化办法就是就代码依赖库进行删减了，没什么技术含量，还有就是选择编译。</p>
-<p>如下图所示：</p>
-<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/07/14/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-12%2017.15.54.png" alt=""></p>
+<h3 id="如何知道自己项目中是由那个原因引起的"><a href="#如何知道自己项目中是由那个原因引起的" class="headerlink" title="如何知道自己项目中是由那个原因引起的"></a>如何知道自己项目中是由那个原因引起的</h3><p>可以在gradle 运行的时候给每个task添加一个参数  <code>--profile</code> ,用了监视task的运行，并打印log  最终log以html的方式打印在你的项目下的 <code>build/reports/profile/</code> 中，根据不同时间命名的。</p>
+<p>可以配置到AndroidStudio中，或者直接在命令行运行的时候添加<code>./gradlew clean buildAll --profile</code></p>
 <p><strong>【参考文章】</strong></p>
 <ul>
 <li><a href="http://www.liaohuqiu.net/posts/speed-up-your-build/" target="_blank" rel="noopener">http://www.liaohuqiu.net/posts/speed-up-your-build/</a></li>
