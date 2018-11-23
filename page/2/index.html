@@ -138,8 +138,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-打开命令板comand-Shift-P"><a href="#1-打开命令板comand-Shift-P" class="headerlink" title="1. 打开命令板comand + Shift + P"></a>1. 打开命令板<code>comand + Shift + P</code></h2><p>这个功能超级好用，在Mac OS 系统下是上面的快捷键调出命令面板。这里面包含很多文档操作的命令和其他控制命令。比如修改当前文档语法检测类型，从普通的文本文档，改成java 或者Python。<code>Set Syntax:</code></p>
-<h2 id="2-PackageControl-包管理器"><a href="#2-PackageControl-包管理器" class="headerlink" title="2. PackageControl 包管理器"></a>2. PackageControl 包管理器</h2><p><strong>用途：</strong>用于安装插件，当然你也可以不用，可以直接手动安装插件。</p>
+        <h2 id="1-打开命令板comand-Shift-P"><a href="#1-打开命令板comand-Shift-P" class="headerlink" title="1. 打开命令板comand + Shift + P"></a>1. 打开命令板<code>comand + Shift + P</code></h2><p>这个功能超级好用，在Mac OS 系统下是上面的快捷键调出命令面板。这里面包含很多文档操作的命令和其他控制命令。</p>
+<ul>
+<li>比如修改当前文档语法检测类型，从普通的文本文档，改成 Java，输入：<code>Set Syntax:Java</code></li>
+<li>比如安装某个包 输入 <code>Install Package</code> 选择 <code>Package Control: Install Package</code> 回车，然后再选则你要安装的包就行了</li>
+</ul>
+<h2 id="2-PackageControl-包管理器"><a href="#2-PackageControl-包管理器" class="headerlink" title="2. PackageControl 包管理器"></a>2. PackageControl 包管理器</h2><p>也就是上面提到的在命令控制面板中用到的命令：<code>Package Control: Install Package</code></p>
+<p><strong>用途：</strong> 用于安装插件，当然你也可以不用，可以直接手动安装插件。</p>
 <p><strong>官网：</strong><a href="https://packagecontrol.io/installation" target="_blank" rel="noopener">包管理器(Sublime3)</a></p>
 <p><strong>安装方式：</strong> 打开控制台（<code>ctrl + ~</code>或者 菜单栏选择 <code>view    -&gt; show  console</code>）然后输入下面代码，注意不能有回车，下面代码必须在一行中:</p>
 <p><code>import urllib.request,os; pf = &#39;Package Control.sublime-package&#39;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &#39;wb&#39;).write(urllib.request.urlopen( &#39;http://sublime.wbond.net/&#39; + pf.replace(&#39; &#39;,&#39;%20&#39;)).read())</code></p>
@@ -148,9 +153,8 @@
 <li><p>在<code>Command+P</code>匹配到文件后，我们可以进行后续输入以跳转到更精确的位置：</p>
 <p><code>@</code>符号跳转：输入@symbol跳转到symbol符号所在的位置<br><code>:</code>行号跳转：输入:12跳转到文件的第12行。<br><code>#</code>关键字跳转：输入#keyword跳转到keyword所在的位置  </p>
 </li>
-<li><p>alt 左右 光标跳到下一个或上一个单词+</p>
+<li><p>commans + shift + f 目录查找，可以全局搜索也可以针对目录搜索</p>
 </li>
-<li>commans shift f 目录查找，可以全局搜索也可以针对目录搜索</li>
 <li>ReindentLines 缩进功能 <code>command + [ 或者 command + ]</code>这功能比较好，可以直接通过<code>command + shift + p</code> 的命令面板中输入reindent lines 然后就看到这个命令了。</li>
 <li><code>&quot;auto_complete_commit_on_tab&quot;: true,</code>设置只有tab 键才能出发代码片段补全功能。<code>菜单栏 Sublime Text -&gt; preference -&gt; Settings-Default</code></li>
 </ul>
@@ -160,7 +164,7 @@
 <li><a href="https://github.com/sergeche/emmet-sublime" target="_blank" rel="noopener">Emmet</a></li>
 <li>一个主题 <a href="https://github.com/equinusocio/material-theme" target="_blank" rel="noopener">https://github.com/equinusocio/material-theme</a></li>
 <li>SyncedSideBar 打开一个文件夹中的文件的时候，左侧的目录树会自动定位到对应的文件。</li>
-<li>AdvancedNewFile 创建文件比价方便。</li>
+<li>AdvancedNewFile 创建文件比较方便。</li>
 <li><a href="https://github.com/SublimeCodeIntel/SublimeCodeIntel" target="_blank" rel="noopener">SublimeCodeIntel</a> 代码提示，代码跟踪</li>
 </ul>
 <h2 id="6-快捷键"><a href="#6-快捷键" class="headerlink" title="6. 快捷键"></a>6. 快捷键</h2><ul>
