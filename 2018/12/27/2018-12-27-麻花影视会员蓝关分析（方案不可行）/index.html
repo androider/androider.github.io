@@ -15,12 +15,12 @@
 <meta property="og:site_name" content="凉凉小线仔">
 <meta property="og:description" content="这种金币记录一般在后台记录，而蓝关权限的购买也是发生在服务的。所以最好的办法是刷出无线金币来。  先把结论写在这里，结论是我处理不了，没有办法绕过无服务端的检查，直接请求1080p的播放地址值，但是得到的播放地址的规律上来看，应该是某个东西的md5值，如果能够破解生成算法那么有可能能解决。  看下他做任务赚金币的过程也只能是每天有次数控制。所以可以模拟请求，尝试下修改日期能不能行，这里行不行就看后">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/2aaa20465ab7ce4c8e624e2e5969be9b/xmlnote/3CA6A2F4807449A1A7989674BEEF93FD/2234">
-<meta property="og:updated_time" content="2019-01-02T07:42:29.336Z">
+<meta property="og:image" content="http://andx.site/images/2018/12/2018-12-27-1.png">
+<meta property="og:updated_time" content="2019-01-02T08:45:01.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018-12-27-麻花影视会员蓝关分析（方案不可行）">
 <meta name="twitter:description" content="这种金币记录一般在后台记录，而蓝关权限的购买也是发生在服务的。所以最好的办法是刷出无线金币来。  先把结论写在这里，结论是我处理不了，没有办法绕过无服务端的检查，直接请求1080p的播放地址值，但是得到的播放地址的规律上来看，应该是某个东西的md5值，如果能够破解生成算法那么有可能能解决。  看下他做任务赚金币的过程也只能是每天有次数控制。所以可以模拟请求，尝试下修改日期能不能行，这里行不行就看后">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/2aaa20465ab7ce4c8e624e2e5969be9b/xmlnote/3CA6A2F4807449A1A7989674BEEF93FD/2234">
+<meta name="twitter:image" content="http://andx.site/images/2018/12/2018-12-27-1.png">
   
     <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
   
@@ -104,7 +104,7 @@
 <p>看下他做任务赚金币的过程也只能是每天有次数控制。所以可以模拟请求，尝试下修改日期能不能行，这里行不行就看后台有没有限制了。。。</p>
 <p>我们仔细看下这个获取1080p的流程，打开视频，切换清晰度，如果你切换1080 的时候，会先判断当前用户是否有权限观看，如果有,那么请求，如果没有那么提示购买权限，然后就是购买过程了。</p>
 <p>我们不走购买流程、能不能直接请求1080 p的播放地址，先来尝试一下。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/2aaa20465ab7ce4c8e624e2e5969be9b/xmlnote/3CA6A2F4807449A1A7989674BEEF93FD/2234" alt="切换蓝关的时候，提示是否购买蓝关体验权限"></p>
+<p><img src="/images/2018/12/2018-12-27-1.png" alt="切换蓝关的时候，提示是否购买蓝关体验权限"></p>
 <p>根据关键字，我们查找一下这个对话框是什么时候弹出来的，我们绕过弹出的代码，直接往下执行，看看行不行。</p>
 <p>我们jadx 全局搜索，<code>是否花费</code>，这几个关键字，总共能搜到两处：</p>
 <ul>
