@@ -205,7 +205,7 @@
           
           <category> Android </category>
           
-          <category> 反编译 </category>
+          <category> 逆向 </category>
           
       </categories>
       
@@ -214,9 +214,9 @@
             
             <tag> Android </tag>
             
-            <tag> 反编译 </tag>
-            
             <tag> 解密 </tag>
+            
+            <tag> 逆向 </tag>
             
         </tags>
       
@@ -344,7 +344,7 @@
           
           <category> Android </category>
           
-          <category> 反编译 </category>
+          <category> 逆向 </category>
           
       </categories>
       
@@ -353,9 +353,9 @@
             
             <tag> Android </tag>
             
-            <tag> 反编译 </tag>
-            
             <tag> 打包 </tag>
+            
+            <tag> 逆向 </tag>
             
         </tags>
       
@@ -373,7 +373,7 @@
           
           <category> Android </category>
           
-          <category> 反编译 </category>
+          <category> 逆向 </category>
           
       </categories>
       
@@ -382,7 +382,7 @@
             
             <tag> Android </tag>
             
-            <tag> 反编译 </tag>
+            <tag> 逆向 </tag>
             
         </tags>
       
@@ -608,9 +608,7 @@
           
           <category> Android </category>
           
-          <category> 反编译 </category>
-          
-          <category> 逆向工程 </category>
+          <category> 逆向 </category>
           
       </categories>
       
@@ -619,9 +617,7 @@
             
             <tag> Android </tag>
             
-            <tag> 反编译 </tag>
-            
-            <tag> 逆向工程 </tag>
+            <tag> 逆向 </tag>
             
         </tags>
       
