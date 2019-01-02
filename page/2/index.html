@@ -69,14 +69,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2016-07-26-Android中Notification工具类" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2018-05-22-Android ndk-build编译jni动态库" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/26/2016-07-26-Android中Notification工具类/" class="article-date">
-  <time datetime="2016-07-26T03:06:35.000Z" itemprop="datePublished">2016-07-26</time>
+    <a href="/2018/05/22/2018-05-22-Android ndk-build编译jni动态库/" class="article-date">
+  <time datetime="2018-05-22T06:46:31.000Z" itemprop="datePublished">2018-05-22</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Notification/">Notification</a>
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/ndk/">ndk</a>►<a class="article-category-link" href="/categories/Android/ndk/jni/">jni</a>
   </div>
 
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/26/2016-07-26-Android中Notification工具类/">Android中Notification工具类</a>
+      <a class="article-title" href="/2018/05/22/2018-05-22-Android ndk-build编译jni动态库/">Mac 配置PHP环境</a>
     </h1>
   
 
@@ -95,384 +95,348 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/images/2016/07/20160120204444199.png" alt="效果图"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">import android.app.Activity;</span><br><span class="line">import android.app.Notification;</span><br><span class="line">import android.app.NotificationManager;</span><br><span class="line">import android.app.PendingIntent;</span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.content.pm.PackageManager;</span><br><span class="line">import android.graphics.BitmapFactory;</span><br><span class="line">import android.media.RingtoneManager;</span><br><span class="line">import android.net.Uri;</span><br><span class="line">import android.os.Build;</span><br><span class="line">import android.support.v7.app.NotificationCompat;</span><br><span class="line"></span><br><span class="line">import com.eallcn.rentagent.R;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: liuqiang</span><br><span class="line"> * Date: 2016-07-07</span><br><span class="line"> * Time: 17:23</span><br><span class="line"> * 在一些国产的手机，一定在安全管理的通知管理中打开</span><br><span class="line"> * 尤其是OPPO</span><br><span class="line"> */</span><br><span class="line">public class NotificationUtil &#123;</span><br><span class="line"></span><br><span class="line">    protected static int notifyID = 0525; // start notification id</span><br><span class="line">    protected static int foregroundNotifyID = 0555;    //当前app是不是在用户可是界面</span><br><span class="line"></span><br><span class="line">    public static void send(String string, Context context, Class activity) &#123;</span><br><span class="line"></span><br><span class="line">        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);</span><br><span class="line"></span><br><span class="line">        Intent intent = new Intent(context, activity);</span><br><span class="line">        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);</span><br><span class="line">        PendingIntent pendingIntent = PendingIntent.getActivity(</span><br><span class="line">                context,</span><br><span class="line">                notifyID,</span><br><span class="line">                intent,</span><br><span class="line">                PendingIntent.FLAG_UPDATE_CURRENT);</span><br><span class="line">        mBuilder.setContentIntent(pendingIntent);// 设置通知栏点击意图</span><br><span class="line"></span><br><span class="line">        mBuilder.setContentTitle(&quot;这是标题&quot;);// 设置通知栏标题</span><br><span class="line">        mBuilder.setContentText(string);</span><br><span class="line">        mBuilder.setSmallIcon(R.drawable.ic_launcher);// 设置通知小ICON（5.0必须采用白色透明图片）</span><br><span class="line">        mBuilder.setTicker(string + &quot;有警报！&quot;); // 通知首次出现在通知栏，带上升动画效果的</span><br><span class="line"></span><br><span class="line">        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.LOLLIPOP) &#123;//悬挂式Notification，5.0后显示</span><br><span class="line">            mBuilder.setFullScreenIntent(pendingIntent, true);</span><br><span class="line">            mBuilder.setCategory(NotificationCompat.CATEGORY_MESSAGE);</span><br><span class="line">            mBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        mBuilder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher));// 设置通知大ICON</span><br><span class="line">        mBuilder.setWhen(System.currentTimeMillis());// 通知产生的时间，会在通知信息里显示，一般是系统获取到的时间</span><br><span class="line">        mBuilder.setPriority(NotificationCompat.PRIORITY_MAX); // 设置该通知优先级</span><br><span class="line">        mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);//在任何情况下都显示，不受锁屏影响。</span><br><span class="line">        mBuilder.setAutoCancel(true);// 设置这个标志当用户单击面板就可以让通知将自动取消</span><br><span class="line">        mBuilder.setOngoing(false);// ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)</span><br><span class="line">        // 向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用NotificationCompat.DEFAULT_ALL属性，可以组合</span><br><span class="line">        mBuilder.setVibrate(new long[]&#123;0, 100, 500, 100&#125;);//振动效果需要振动权限</span><br><span class="line"></span><br><span class="line">        Uri defaultSoundUrlUri = RingtoneManager</span><br><span class="line">                .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION); //声音</span><br><span class="line"></span><br><span class="line">        mBuilder.setSound(defaultSoundUrlUri);</span><br><span class="line">        mBuilder.setDefaults(NotificationCompat.DEFAULT_LIGHTS);//闪灯</span><br><span class="line"></span><br><span class="line">        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);</span><br><span class="line">        //Notification notification = mBuilder.getNotification();//API 11</span><br><span class="line"></span><br><span class="line">        Notification notification = mBuilder.build();//API 16</span><br><span class="line"></span><br><span class="line">        mNotificationManager.notify(1, notification);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void sendNotification(Context context, String message, boolean isForeground) &#123;</span><br><span class="line"></span><br><span class="line">        NotificationManager notificationManager = (NotificationManager) context</span><br><span class="line">                .getSystemService(Context.NOTIFICATION_SERVICE);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            String notifyText = message;</span><br><span class="line">            PackageManager packageManager = context.getPackageManager();</span><br><span class="line">            String appName = (String) packageManager</span><br><span class="line">                    .getApplicationLabel(context.getApplicationInfo());</span><br><span class="line"></span><br><span class="line">            // notification title</span><br><span class="line">            String contentTitle = appName;</span><br><span class="line">            String packageName = context.getApplicationInfo().packageName;</span><br><span class="line"></span><br><span class="line">            Uri defaultSoundUrlUri = RingtoneManager</span><br><span class="line">                    .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);</span><br><span class="line">            // create and send notification</span><br><span class="line">            android.support.v4.app.NotificationCompat.Builder mBuilder = new android.support.v4.app.NotificationCompat.Builder(context)</span><br><span class="line">                    .setSmallIcon(context.getApplicationInfo().icon)</span><br><span class="line">                    .setSound(defaultSoundUrlUri)</span><br><span class="line">                    .setWhen(System.currentTimeMillis())</span><br><span class="line">                    .setAutoCancel(true);</span><br><span class="line"></span><br><span class="line">            Intent msgIntent = context.getPackageManager()</span><br><span class="line">                    .getLaunchIntentForPackage(packageName);</span><br><span class="line"></span><br><span class="line">            PendingIntent pendingIntent = PendingIntent.getActivity(</span><br><span class="line">                    context,</span><br><span class="line">                    notifyID,</span><br><span class="line">                    msgIntent,</span><br><span class="line">                    PendingIntent.FLAG_UPDATE_CURRENT);</span><br><span class="line"></span><br><span class="line">            mBuilder.setPriority(NotificationCompat.PRIORITY_MAX); // 设置该通知优先级</span><br><span class="line">            mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);//在任何情况下都显示，不受锁屏影响。</span><br><span class="line">            mBuilder.setContentTitle(contentTitle);</span><br><span class="line">            mBuilder.setTicker(notifyText);</span><br><span class="line">            mBuilder.setContentText(notifyText);</span><br><span class="line">            mBuilder.setContentIntent(pendingIntent);</span><br><span class="line">            mBuilder.setFullScreenIntent(pendingIntent, true);</span><br><span class="line">            mBuilder.setOnlyAlertOnce(false);</span><br><span class="line">            mBuilder.setDefaults(NotificationCompat.DEFAULT_LIGHTS);//闪灯</span><br><span class="line">            Notification notification = mBuilder.build();</span><br><span class="line"></span><br><span class="line">            if (isForeground) &#123;</span><br><span class="line">                notificationManager.notify(foregroundNotifyID, notification);</span><br><span class="line">                notificationManager.cancel(foregroundNotifyID);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                notificationManager.notify(notifyID, notification);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/26/2016-07-26-Android中Notification工具类/" data-id="cjqeijzb700968w24ehb8yyu6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Notification/">Notification</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-07-26-Sublime3_Mac下的使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/26/2016-07-26-Sublime3_Mac下的使用/" class="article-date">
-  <time datetime="2016-07-26T01:53:35.000Z" itemprop="datePublished">2016-07-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Sublime/">Sublime</a>►<a class="article-category-link" href="/categories/Sublime/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/26/2016-07-26-Sublime3_Mac下的使用/">Sublime3 Mac下的使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-打开命令板comand-Shift-P"><a href="#1-打开命令板comand-Shift-P" class="headerlink" title="1. 打开命令板comand + Shift + P"></a>1. 打开命令板<code>comand + Shift + P</code></h2><p>这个功能超级好用，在Mac OS 系统下是上面的快捷键调出命令面板。这里面包含很多文档操作的命令和其他控制命令。</p>
-<ul>
-<li>比如修改当前文档语法检测类型，从普通的文本文档，改成 Java，输入：<code>Set Syntax:Java</code></li>
-<li>比如安装某个包 输入 <code>Install Package</code> 选择 <code>Package Control: Install Package</code> 回车，然后再选则你要安装的包就行了</li>
-</ul>
-<h2 id="2-PackageControl-包管理器"><a href="#2-PackageControl-包管理器" class="headerlink" title="2. PackageControl 包管理器"></a>2. PackageControl 包管理器</h2><p>也就是上面提到的在命令控制面板中用到的命令：<code>Package Control: Install Package</code></p>
-<p><strong>用途：</strong> 用于安装插件，当然你也可以不用，可以直接手动安装插件。</p>
-<p><strong>官网：</strong><a href="https://packagecontrol.io/installation" target="_blank" rel="noopener">包管理器(Sublime3)</a></p>
-<p><strong>安装方式：</strong> 打开控制台（<code>ctrl + ~</code>或者 菜单栏选择 <code>view    -&gt; show  console</code>）然后输入下面代码，注意不能有回车，下面代码必须在一行中:</p>
-<p><code>import urllib.request,os; pf = &#39;Package Control.sublime-package&#39;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &#39;wb&#39;).write(urllib.request.urlopen( &#39;http://sublime.wbond.net/&#39; + pf.replace(&#39; &#39;,&#39;%20&#39;)).read())</code></p>
-<h2 id="3-卸载Sublime-3"><a href="#3-卸载Sublime-3" class="headerlink" title="3. 卸载Sublime 3"></a>3. 卸载Sublime 3</h2><p>  卸载之后再次安装的时候，会在<code>~/Library/Application\ Support/Sublime\ Text\ 3/</code> 下存在缓存，注意要删除。</p>
-<h2 id="4-常用快捷功能"><a href="#4-常用快捷功能" class="headerlink" title="4. 常用快捷功能"></a>4. 常用快捷功能</h2><ul>
-<li><p>在<code>Command+P</code>匹配到文件后，我们可以进行后续输入以跳转到更精确的位置：</p>
-<p><code>@</code>符号跳转：输入@symbol跳转到symbol符号所在的位置<br><code>:</code>行号跳转：输入:12跳转到文件的第12行。<br><code>#</code>关键字跳转：输入#keyword跳转到keyword所在的位置  </p>
-</li>
-<li><p>commans + shift + f 目录查找，可以全局搜索也可以针对目录搜索</p>
-</li>
-<li>ReindentLines 缩进功能 <code>command + [ 或者 command + ]</code>这功能比较好，可以直接通过<code>command + shift + p</code> 的命令面板中输入reindent lines 然后就看到这个命令了。</li>
-<li><code>&quot;auto_complete_commit_on_tab&quot;: true,</code>设置只有tab 键才能出发代码片段补全功能。<code>菜单栏 Sublime Text -&gt; preference -&gt; Settings-Default</code></li>
-</ul>
-<h2 id="5-用到的几个插件"><a href="#5-用到的几个插件" class="headerlink" title="5. 用到的几个插件"></a>5. 用到的几个插件</h2><ul>
-<li>Smali <a href="https://github.com/ShaneWilton/sublime-smali" target="_blank" rel="noopener">https://github.com/ShaneWilton/sublime-smali</a></li>
-<li>Nodejs <a href="https://github.com/tanepiper/SublimeText-Nodejs" target="_blank" rel="noopener">https://github.com/tanepiper/SublimeText-Nodejs</a></li>
-<li><a href="https://github.com/sergeche/emmet-sublime" target="_blank" rel="noopener">Emmet</a></li>
-<li>一个主题 <a href="https://github.com/equinusocio/material-theme" target="_blank" rel="noopener">https://github.com/equinusocio/material-theme</a></li>
-<li>SyncedSideBar 打开一个文件夹中的文件的时候，左侧的目录树会自动定位到对应的文件。</li>
-<li>AdvancedNewFile 创建文件比较方便。</li>
-<li><a href="https://github.com/SublimeCodeIntel/SublimeCodeIntel" target="_blank" rel="noopener">SublimeCodeIntel</a> 代码提示，代码跟踪</li>
-</ul>
-<h2 id="6-快捷键"><a href="#6-快捷键" class="headerlink" title="6. 快捷键"></a>6. 快捷键</h2><ul>
-<li>⌘⌥F   替换</li>
-<li>⌘L    选择行 (重复按下将下一行加入选择) </li>
-<li>⌘D    选择词</li>
-<li>⌘T    前往文件</li>
-<li><code>Ctrl + -</code>    回到来的光标位置</li>
-<li>⌘⌥2  拆分窗口双列 </li>
-<li>super+alt+[ 代码折叠</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/26/2016-07-26-Sublime3_Mac下的使用/" data-id="cjqeijzbb009i8w24n6p1q7jv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-07-25-Android反编译后重新打包apk" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/25/2016-07-25-Android反编译后重新打包apk/" class="article-date">
-  <time datetime="2016-07-25T07:53:35.000Z" itemprop="datePublished">2016-07-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/逆向/">逆向</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/25/2016-07-25-Android反编译后重新打包apk/">Android反编译后重新打包apk</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>为什么要反编译别人的代码？</strong></p>
-<ul>
-<li>人家比咱写的好，学习</li>
-<li>看中了人家的某个控件，抄袭</li>
-<li>看中了人家的本地数据库，想要</li>
-<li>但是人家的本地数据库加密了，要读源码才能解密</li>
-</ul>
-<p><strong>为什么要打包别人的apk？</strong></p>
-<ul>
-<li>反编译后的代码有些地方读不通顺。想添加log。</li>
-</ul>
-<p><strong>一个基本的逆向工程的流程。</strong></p>
-<p>apktool反编译apk –&gt; 修改图片等资源文件（或者smali源码）–&gt; apktool 打包apk –&gt; 对打包好的apk用jarsigner签名 [–&gt; zipalign优化apk，最后这步可选操作] </p>
-<p>分别对应得详细操作：</p>
+        <h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>能快速，简单（主要是指脱离AndroidStudio）的把c/c++ 源码进行交叉编译成Android上的动态库，静态库，或者可执行文件。从而为逆向分析构建demo节省时间。</p>
+<h1 id="编译环境配置"><a href="#编译环境配置" class="headerlink" title="编译环境配置"></a>编译环境配置</h1><p>电脑：Mac OS 10.13.4<br>NDK：<a href="https://developer.android.com/ndk/downloads/index.html" target="_blank" rel="noopener">官网下载</a>，目前最新的好像android-ndk-r17  我用的是 android-ndk-r14b，ndk不需要安装官网下载后解压就行。<br>测试机： 华为EVA-AL00 Android7.0 </p>
+<h1 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h1><p>为了方便使用ndk的命令行工具，我们配置环境变量<br>在 <code>~/.bash_profile</code>  文件中添加如下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export ANDROID_NDK_HOME=/Users/user01/Development/android-ndk-r14b</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;ANDROID_NDK_HOME&#125;:$&#123;ANDROID_NDK_HOME&#125;/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin</span><br></pre></td></tr></table></figure>
+<p>然后命令行运行如下命令：</p>
+<p><code>$ source ~/.bash_profile</code></p>
+<p>然后命令行运行：</p>
+<p><code>$ ndk-build -h</code></p>
+<p>如果能打印出 ndk-build 这个工具的帮助文档说明环境变量配置成功</p>
+<h1 id="测试简单的例子"><a href="#测试简单的例子" class="headerlink" title="测试简单的例子"></a>测试简单的例子</h1><p>创建如下目录结构(注意jni这层目录很重要，名字不要随便取)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">~/Desktop/test/</span><br><span class="line">└── jni/</span><br><span class="line">    ├── Android.mk</span><br><span class="line">    ├── Application.mk</span><br><span class="line">    └── test.c</span><br></pre></td></tr></table></figure></p>
+<p>主要有三个文件，其中Android.mk和Application.mk 是辅助ndk-build进行编译的，test.c是我们的c测试用例</p>
 <ol>
-<li><p>apktool反编译apk</p>
-<p><code>$ apktool d test.apk</code></p>
-</li>
-<li><p>修改图片，填好string.xml,修改smali</p>
-<p>详细操作，尽情的折腾吧，隐藏某个view，添加某个view。<br><a href="https://gold.xitu.io/entry/5745388cdf0eea0063b494bb" target="_blank" rel="noopener">一篇有用的文章，后来补充</a></p>
-</li>
-<li><p>apktool 打包</p>
-<p><code>apktool b test</code> 这里的test是反编译test.apk 后生成的文件夹。最终的生成的新的未签名的apk的路径为<code>./test/dist/test.apk</code></p>
-</li>
-<li><p>用你自己的证书对别人的apk进行签名</p>
-<p>这是当然了，你反编译了别人的app，可定拿不到人家的证书，但是Android系统对没有用证书签名的apk是不允许安装的。这时候我们自己生成一个证书。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">第一步：生成RSA密钥对 </span><br><span class="line">keytool -genkeypair -alias adorkable_alias -keyalg RSA -validity <span class="number">400</span> -keystore adorkable.keystore </span><br><span class="line"></span><br><span class="line">-genkeypair 指定生成密钥对 </span><br><span class="line">-alias 密钥对的别名 </span><br><span class="line">-keyalg 密钥对用于的算法，这里用的是RSA </span><br><span class="line">-validity 密钥对的有效期，单位为天 </span><br><span class="line">-keystore 密钥对存储的文件名 </span><br><span class="line"></span><br><span class="line">输入后，根据提示输入相应的内容就好了。 </span><br><span class="line"></span><br><span class="line">第二步：对未签名的apk进行签名 </span><br><span class="line">jarsigner -verbose -keystore adorkable.keystore -signedjar result_singed.apk my_unsigned.apk adorkable_alias </span><br><span class="line"></span><br><span class="line">-verbose 输出签名详细信息 </span><br><span class="line">-keystore 指定密钥对的存储路径 </span><br><span class="line">-signedjar 后面三个参数分别是 签名后的APK包 未签名的APK包 和 密钥对的别名 </span><br><span class="line"></span><br><span class="line">签名时，会要求输入密钥对的密码，这个是你在生成密钥时输入的密码</span><br></pre></td></tr></table></figure>
-</li>
+<li>Application.mk</li>
 </ol>
-<p> <strong>到这里就可以用adb install 将app安装到手机里了</strong></p>
-<ol start="5">
-<li><p>优化apk包 </p>
-<p>这一步是可选的，用来将apk包进行整理，以适应设备的读取等<br>zipalign -f -v 4 test.apk test_zipaligned.apk </p>
-<p>-f 强制覆盖已有的文件<br>-v 输出详细内容<br>4 指定档案整理的字节数，一般为4，及32位。如果以后android的设备有64位的，可能要改成8吧。<br>test.apk 是未整理(没有zipalign)的apk文件名<br>test_zipaligned.apk 是整理后的apk文件名 </p>
-</li>
+<p>主要指定生成哪些cpu架构的动态库，这里只生成armeabi 和armeabi-v7a架构的库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">APP_ABI      := armeabi armeabi-v7a</span><br><span class="line">APP_PLATFORM := android-14</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Android.mk</li>
 </ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/25/2016-07-25-Android反编译后重新打包apk/" data-id="cjqeijzb3008v8w24gkntv6jw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/打包/">打包</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-07-22-Android反编译后的文件位置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/22/2016-07-22-Android反编译后的文件位置/" class="article-date">
-  <time datetime="2016-07-22T03:06:35.000Z" itemprop="datePublished">2016-07-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/逆向/">逆向</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/22/2016-07-22-Android反编译后的文件位置/">Android反编译后的文件位置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>R.java </p>
-<p>反编译后这个文件找不到了，但是在Activity中用的是是对应资源的id的数字表示，如何找到资源。在反编译后的<code>res/values/public.xml</code> 中可以找到映射关系。</p>
-</li>
+<p>具体Android.mk的更详细的配置自行Google</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH := $(call my-dir)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line"># 生成的so库的名字为libdemo.so</span><br><span class="line">LOCAL_MODULE    := demo</span><br><span class="line"># 用于编译的c文件</span><br><span class="line">LOCAL_SRC_FILES := test.c</span><br><span class="line"># 生成库的类型，是动态库，静态库还是可执行文件，这里先来生成一个动态库</span><br><span class="line">include $(BUILD_SHARED_LIBRARY)</span><br><span class="line"># 下面这么写是生成可执行文件</span><br><span class="line">#include $(BUILD_EXECUTABLE)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>test.c </li>
 </ol>
-<p>反编译 非常有趣。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/22/2016-07-22-Android反编译后的文件位置/" data-id="cjqeijzb4008y8w24zbe3cs3m" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-07-21-Android-adb的使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/21/2016-07-21-Android-adb的使用/" class="article-date">
-  <time datetime="2016-07-21T02:50:44.000Z" itemprop="datePublished">2016-07-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/adb/">adb</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/21/2016-07-21-Android-adb的使用/">adb命令行的使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>查看当前Activity堆栈信息</p>
-<p><code>$ adb shell dumpsys activity activities</code></p>
-</li>
-<li><p>查看未root手机的/data/data/com.xxx.xxx/ 下的内容</p>
-<p><code>$ adb shell</code><br><code>shell@R9:/ $ run-as com.xxx.xxx</code> </p>
-<p> com.xxx.xxx 是包名，并且这个包名的APP处于debug模式</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/21/2016-07-21-Android-adb的使用/" data-id="cjqeijzb1008n8w24ysvv3viv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/adb/">adb</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-07-20-PopupWindow点击空白处隐藏" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/20/2016-07-20-PopupWindow点击空白处隐藏/" class="article-date">
-  <time datetime="2016-07-20T10:15:56.000Z" itemprop="datePublished">2016-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/20/2016-07-20-PopupWindow点击空白处隐藏/">PopupWindow点击空白处隐藏</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>方法一</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mPopupWindow.setBackgroundDrawable(new BitmapDrawable());    //这个BitmapDrawable废弃了可以用下面的这个</span><br><span class="line">//mPopupWindow.setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));</span><br><span class="line">mPopupWindow.setOutsideTouchable(true);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>监听Activity的OnTouchEvent </p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean onTouchEvent(MotionEvent event) &#123;</span><br><span class="line">    if (popupWindow != null &amp;&amp; popupWindow.isShowing()) &#123;</span><br><span class="line">        popupWindow.dismiss();</span><br><span class="line">        //popupWindow = null;</span><br><span class="line">    &#125;</span><br><span class="line">    return super.onTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>点击空白处的时候让PopupWindow消失的一点说明</strong></p>
-<p>关于PopupWindow最搞笑的地方是setOutsideTouchable方法，原本以为如果你setOutsideTouchable(true)则点击PopupWindow之外的地方PopupWindow会消失，其实这玩意儿好像一点用都没有。</p>
-<p>要让点击PopupWindow之外的地方PopupWindow消失你需要调用setBackgroundDrawable(new BitmapDrawable());</p>
-<p>设置背景，为了不影响样式，这个背景是空的。还可以这样写，觉得这样要保险些：</p>
-<p>setBackgroundDrawable(new ColorDrawable(0x00000000));</p>
-<p>背景不为空但是完全透明。如此设置还能让PopupWindow在点击back的时候消失。其实一直觉得很奇怪，不明白为什么一个背景会影响点击事件，只知道这样用可</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/20/2016-07-20-PopupWindow点击空白处隐藏/" data-id="cjqeijzb600938w242ttodply" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2016-07-18-Android显示HTML格式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/18/2016-07-18-Android显示HTML格式/" class="article-date">
-  <time datetime="2016-07-18T09:34:30.000Z" itemprop="datePublished">2016-07-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/18/2016-07-18-Android显示HTML格式/">Android显示HTML格式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>实现如下效果：</p>
-<p>Hello! <font color="red">小傻</font>You have 5 new messages.</p>
+<p>很简单就是打印一句 hello world!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main(const int argc,const char* args[])&#123;</span><br><span class="line"></span><br><span class="line">const char* str  = &quot;hello world!&quot;;</span><br><span class="line">printf(&quot;%s\n&quot;,str);</span><br><span class="line">return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后命令行进入到test目录下面：</p>
+<p><code>$ cd ~/Desktop/test</code></p>
+<p><code>$ ndk-build -C ./jni</code></p>
+<p>然后会生成如下目录结构，obj目录下是生成动态库的中间文件，libs里面是最终生成的不同CPU架构的动态库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">test</span><br><span class="line">├── jni</span><br><span class="line">│   ├── Android.mk</span><br><span class="line">│   ├── Application.mk</span><br><span class="line">│   └── test.c</span><br><span class="line">├── libs</span><br><span class="line">│   ├── armeabi</span><br><span class="line">│   │   └── libdemo.so</span><br><span class="line">│   └── armeabi-v7a</span><br><span class="line">│       └── libdemo.so</span><br><span class="line">└── obj</span><br><span class="line">    └── local</span><br><span class="line">        ├── armeabi</span><br><span class="line">        │   ├── libdemo.so</span><br><span class="line">        │   └── objs</span><br><span class="line">        │       └── demo</span><br><span class="line">        │           ├── test.o</span><br><span class="line">        │           └── test.o.d</span><br><span class="line">        └── armeabi-v7a</span><br><span class="line">            ├── libdemo.so</span><br><span class="line">            └── objs</span><br><span class="line">                └── demo</span><br><span class="line">                    ├── test.o</span><br><span class="line">                    └── test.o.d</span><br></pre></td></tr></table></figure>
+<h1 id="为什么非要有jni那一层目录"><a href="#为什么非要有jni那一层目录" class="headerlink" title="为什么非要有jni那一层目录"></a>为什么非要有jni那一层目录</h1><p>约定优于配置，没有不行吗？行，但是要改点东西。去掉jni那层目录再编译一次，当前目录结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test/</span><br><span class="line">├── Android.mk</span><br><span class="line">├── Application.mk</span><br><span class="line">└── test.c</span><br></pre></td></tr></table></figure>
+<p>命令行执行</p>
 <ol>
-<li><p>在<code>string.xml</code>中</p>
-<p><code>&lt;string name=&quot;welcome_messages&quot;&gt;&lt;![CDATA[Hello! &lt;font color=&quot;#ff0000&quot;&gt;%1$s&lt;/font&gt;You have %2$d new messages.]]&gt;&lt;/string&gt;</code></p>
+<li><code>$ cd ~/Desktop/test</code></li>
+<li><code>$ ndk-build</code></li>
+</ol>
+<p>结果报错如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Android NDK: Could not find application project directory !</span><br><span class="line">Android NDK: Please define the NDK_PROJECT_PATH variable to point to it.</span><br></pre></td></tr></table></figure>
+<p>错误日志上说什么路径找不到错误，需要定义一个xx变量，我们只需要把编译命令改成如下就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk NDK_APPLICATION_MK=./Application.mk</span><br></pre></td></tr></table></figure>
+<h1 id="编译一个可以允许的文件"><a href="#编译一个可以允许的文件" class="headerlink" title="编译一个可以允许的文件"></a>编译一个可以允许的文件</h1><p>修改Android.mk 文件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH := $(call my-dir)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE    := demo</span><br><span class="line">LOCAL_SRC_FILES := test.c</span><br><span class="line">#include $(BUILD_SHARED_LIBRARY)</span><br><span class="line"></span><br><span class="line"># Android4.4 以后 调用的可执行文件不是基于PIE方式编译的，则无法运行</span><br><span class="line">LOCAL_CFLAGS += -pie -fPIE</span><br><span class="line">LOCAL_LDFLAGS += -pie -fPIE</span><br><span class="line"># 编译一个可执行文件</span><br><span class="line">include $(BUILD_EXECUTABLE)</span><br></pre></td></tr></table></figure>
+<p>这个可执行文件在电脑上是没法执行的，只能放到手机里面执行，执行如下命令，我们把刚生成的文件放到手机上：</p>
+<ol>
+<li>push 文件到手机<br><code>$ adb push libs/armeabi-v7a/demo /data/local/tmp</code></li>
+<li>为手机中的demo文件添加可执行权限(为了方便直接给予所有权限了)<br><code>$ adb shell &#39;chmod 777 /data/local/tmp/demo&#39;</code></li>
+<li>用手机环境运行demo这个文件<br><code>$ adb shell &#39;/data/local/tmp/demo&#39;</code></li>
+</ol>
+<p>运行结果会打印一行<br><code>hello world!</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2018/05/22/2018-05-22-Android ndk-build编译jni动态库/" data-id="cjqeui66t0004jl24kdzryuix" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jni/">jni</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ndk/">ndk</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-05-18-Android Binder及其周边知识梳理 " class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /" class="article-date">
+  <time datetime="2017-05-18T06:46:31.000Z" itemprop="datePublished">2017-05-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/IPC/">IPC</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><a href="http://www.jianshu.com/p/e23d2a8b6f0d" target="_blank" rel="noopener">IPC-概述与Android中的进程</a></li>
+<li>IPC - Binder还要从Service说起</li>
+<li>IPC -AIDL  AIDL(Android Interface Definition Language)</li>
+<li>IPC- BinderJava层代码分析</li>
+<li>IPC- ServiceManger</li>
+<li>IPC-ActivityThread,ApplicationThread</li>
+<li>IPC-ActivityManger</li>
+<li>IPC- Activity启动过程</li>
+<li>代理模式</li>
+<li>ClassLoader </li>
+<li>Binder Hook</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /" data-id="cjqeijzbk00a88w24qaly5jrp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binder/">Binder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPC/">IPC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-05-18-IPC-Android中的进程与进程间通信" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/" class="article-date">
+  <time datetime="2017-05-18T06:46:31.000Z" itemprop="datePublished">2017-05-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/IPC/">IPC</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、Android中的进程"><a href="#一、Android中的进程" class="headerlink" title="一、Android中的进程"></a>一、Android中的进程</h1><p><a href="https://developer.android.com/guide/components/processes-and-threads.html" target="_blank" rel="noopener">官方解释</a><br>Android的系统架构底层是Linux，上层采用的是可以<del>运行java</del>（其实是dex字节码）的虚拟机（Dalvik &amp; ART），Dalvik的核心内容是实现库（libdvm.so），大体由C语言实现。依赖于Linux内核的一部分功能——线程机制、内存管理机制，能高效使用内存，并在低速CPU上表现出的高性能。每一个Android应用在底层都会对应一个独立的Dalvik虚拟机实例，其代码在虚拟机的解释下得以执行。</p>
+<h2 id="1-内核进程-确切的说是内核线程kernel-thread-和用户进程"><a href="#1-内核进程-确切的说是内核线程kernel-thread-和用户进程" class="headerlink" title="1. 内核进程(确切的说是内核线程kernel thread)和用户进程"></a>1. 内核进程(确切的说是内核线程kernel thread)和用户进程</h2><p>这个是根据进程运行空间来区分的。<a href="http://www.cnblogs.com/createyuan/p/3979142.html" target="_blank" rel="noopener">linux常见进程与内核线程</a></p>
+<p><img src="/images/2017/05/2017-05-18-adb_ps_capture.png" alt="adb ps 命令的带的"></p>
+<p>上图是用ChromeADB这个工具抓取的系统进程信息，当然也可直接用adb 的ps命名查看。对上图表头的做些解释，<strong><code>PID指的是进程id</code>,<code>PPID指的是parent ID也就是父进程的pid</code></strong>。至于VSIZE和RSS是和内存相关的，暂时不管。仔细观察pid和ppid会发现规律。</p>
+<p>1.0. <strong>进程</strong>这东西要从Linux说起，Android系统内核是Linux，所以Android系统启动，必须先要Linux系统启动。而Linux下有3个特殊的进程，<code>idle</code>进程(PID = 0), <code>init</code>进程(PID = 1)和<code>kthreadd</code>(PID = 2)，至于这三个进程的作用，可以简答的理解为<code>idle（PID=0）</code>的这个是操作系统boot起来后第一个线程，<code>init</code>和<code>kthreadd</code>都是由它通过<code>kernel_thread</code>创建出来的。<br>1.1. <strong>kthreadd线程</strong>由idle通过kernel_thread创建，并始终运行在内核空间，它的任务就是管理和调度其他内核线程kernel_thread（内核线程）。所有内核进程的用户都是root，所有的内核线程都是直接或者间接的以kthreadd为父进程 。<br>1.2. <strong>init进程:</strong>由idle通过kernel_thread创建，在Linux中的定义是一个由内核启动的用户级进程， Kerner启动后会调用<code>/system/core/init/Init.cpp</code>的main()方法，然后解析<code>/init.rc</code>文件，包括所有的<code>.rc</code>文件，最重要的Zygote进程启动起来。所以，init始终是第一个进程（其进程编号始终为1）。在系统启动完成完成后，init将变为守护进程监视系统其他进程。在Android中的含义也是一样的，是所有用户进程的父进程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//主要进程的创建（kernel_thread或者fork）关系，PID给出的那几个的PID在任何设备上都是相同的</span><br><span class="line">idle(PID == 0)</span><br><span class="line">    |---init(PID==1)</span><br><span class="line">            |---servicemanager（它是整个Binder机制的守护进程）</span><br><span class="line">            |---zygote</span><br><span class="line">                 |---system_server</span><br><span class="line">                 |---com.xxx.app(每个app至少有一个进程)</span><br><span class="line">            |---mediaserver</span><br><span class="line">            |--- 。。。其他进程</span><br><span class="line">    |---kthreadd(PID == 2)</span><br><span class="line">            |---binder</span><br><span class="line">            |---watchdog</span><br><span class="line">            |---。。。其他进程</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>注意html中的引号，如果用单引号就要加转译字符<code>\</code>,为了方便就用双引号吧。</p>
+<p>其实对于Android中进程，我们主要关心的是init进程fork出来的那几个重要的进程</p>
+</blockquote>
+<h2 id="2-进程生命周期"><a href="#2-进程生命周期" class="headerlink" title="2.进程生命周期"></a>2.进程生命周期</h2><p><a href="https://developer.android.com/guide/components/processes-and-threads.html" target="_blank" rel="noopener">看官网解释很清楚，不再抄过来了</a><br>Android进程的重要性，划分5级，前台进程的重要性最高，依次递减：<br>前台进程(Foreground process)<br>可见进程(Visible process)<br>服务进程(Service process)<br>后台进程(Background process)<br>空进程(Empty process)</p>
+<p>作用：必要时（当资源有限时），系统会首先消除重要性最低的进程，然后是重要性略逊的进程，依此类推，以回收系统资源。</p>
+<h2 id="3-Android中开启进程的方式"><a href="#3-Android中开启进程的方式" class="headerlink" title="3. Android中开启进程的方式"></a>3. Android中开启进程的方式</h2><ul>
+<li><p>Manifest文件给<code>&lt;activity&gt;</code> <code>&lt;service&gt;</code> <code>&lt;receiver&gt;</code> <code>&lt;provider&gt;</code>设置属性<code>android:process</code> 指定单独进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 假设包名为me.febsky.app --&gt;</span><br><span class="line"> &lt;activity</span><br><span class="line">       android:name=&quot;me.febsky.app.OtherActivity&quot;</span><br><span class="line">       android:process=&quot;:remote&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过jni在native层fork一个进程出来</p>
+</li>
+</ul>
+<blockquote>
+<p>注：<code>android:process=&quot;:remote&quot;</code> 这行代码翻译一下，其实他的完整进程名为：<code>me.febsky.app:remote</code>（假设当前应用包名为me.febsky.app）。进程名以“:”开头的进程属于当前应用的私有进程，其他应用不可以通过SharedUID的方式和他跑在同一个进程中；而如果没有用“:”，直接指定<code>android:process=&quot;me.febsky.remote&quot;</code> 说明开启的这个进程是可以和别的app（这个app必须和当前app签名相同并且指定了sharedUID）共享的。</p>
+</blockquote>
+<h1 id="二、Android中IPC"><a href="#二、Android中IPC" class="headerlink" title="二、Android中IPC"></a>二、Android中IPC</h1><p>一个app可以开启多个进程，那么多个进程间就有可能需要通信。IPC是Inter-Process Communication（进程间通信）的首字母缩小。</p>
+<h2 id="1-Linux-中一些经典的IPC"><a href="#1-Linux-中一些经典的IPC" class="headerlink" title="1. Linux 中一些经典的IPC"></a>1. Linux 中一些经典的IPC</h2><p>Android系统是基于Linux内核的，而Linux内核继承和兼容了丰富的Unix系统进程间通信（IPC）机制。有传统的管道（Pipe）、信号（Signal）和跟踪（Trace），这三项通信手段只能用于父进程与子进程之间，或者兄弟进程之间；后来又增加了命令管道（Named Pipe），使得进程间通信不再局限于父子进程或者兄弟进程之间；为了更好地支持商业应用中的事务处理，在AT&amp;T的Unix系统V中，又增加了三种称为“System V IPC”的进程间通信机制，分别是报文队列（Message）、共享内存（Share Memory）和信号量（Semaphore）；后来BSD Unix对“System V IPC”机制进行了重要的扩充，提供了一种称为插口（Socket）的进程间通信机制</p>
+<blockquote>
+<p><strong>Socket</strong>:这个东西，在学java网络编程的时候接触的。它在Android中有个经典的使用场景，在启动一个单独进程中的Activity或者Service的时候（Activity和Service的启动后面再说，这里只需知道他们都是通过AMS启动的就行了），<code>ActivityManagerService</code>会通过Socket进程间通信机制，通知Zygote进程为这个应用程序创建一个新的进程。</p>
+</blockquote>
+<h2 id="2-Android上经典的IPC-Binder"><a href="#2-Android上经典的IPC-Binder" class="headerlink" title="2. Android上经典的IPC Binder"></a>2. Android上经典的IPC Binder</h2><h2 id="进程隔离"><a href="#进程隔离" class="headerlink" title="进程隔离"></a>进程隔离</h2><p>要说IPC，先要知道进程隔离的概念<br>wiki解释：进程隔离是为保护操作系统中进程互不干扰而设计的一组不同硬件和软件的技术。这个技术是为了避免进程A写入进程B的情况发生。 进程的隔离实现，使用了虚拟地址空间。进程A的虚拟地址和进程B的虚拟地址不同，这样就防止进程A将数据信息写入进程B。</p>
+<h2 id="Binder"><a href="#Binder" class="headerlink" title="Binder"></a>Binder</h2><p>这个东西并不是Google搞出来的，Binder的前身是<a href="http://www.angryredplanet.com/~hackbod/openbinder/docs/html/BinderIPCMechanism.html" target="_blank" rel="noopener">OpenBinder</a>，而OpenBinder的作者<a href="http://www.angryredplanet.com/~hackbod/" target="_blank" rel="noopener">Dianne Hackborn</a>现在在Google工作，负责Android平台的开发工作。</p>
+<p>Binder主要由Client（Client进程）、Server（Server进程）、ServiceManager和Binder驱动程序组成。其中Client、Service和ServiceManager运行在用户空间，而Binder驱动程序运行在内核空间。核心组件就是 Binder驱动程序了，而ServiceManager提供辅助管理的功能，类似于DNS的作用，无论是Client还是Service进行通信前首先要和ServiceManager取得联系。而ServiceManager是一个守护进程，负责管理Server并向Client提供查询Server的功能。</p>
+<p>这里面很重要的一点是Binder驱动，进程a与进程b通信实际上是进程a先于Binder驱动通信，然后Binder驱动再与进程b通信的一个过程。其实进程a或者进程b与Binder的通信也是进程间通信，不过这个Binder驱动是个特殊的进程，他运行在内核空间，至于Binder怎么就搞到了内核空间里面去了可以搜索（Linux的动态可加载内核模块（Loadable Kernel Module，LKM））。由于进程隔离的存在，进程a打死都不可能访问到进程b中的内存的，也就不能进行不能调用进程b中的方法，但是进程a可以通过<code>系统调用</code>的方式访问Binder进程（内核进程），而内核空间的进程能访问用户进程a或者进程b。<a href="http://blog.csdn.net/tommy_wxie/article/details/17122923/" target="_blank" rel="noopener">了解下Linux内核控件和用户控件的概念</a></p>
+<p>ServiceManager是由init进程通过解析init.rc文件而创建的，其所对应的可执行程序/system/bin/servicemanager，所对应的源文件是service_manager.c，进程名为/system/bin/servicemanager。可以把<code>/init.rc</code>文件导出来看下，没什么神秘的，创建这个进程的指令为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">service servicemanager /system/bin/servicemanager</span><br><span class="line">    class core</span><br><span class="line">    user system</span><br><span class="line">    group system</span><br><span class="line">    critical</span><br><span class="line">    onrestart restart healthd</span><br><span class="line">    onrestart restart zygote</span><br><span class="line">    onrestart restart media</span><br><span class="line">    onrestart restart surfaceflinger</span><br><span class="line">    onrestart restart drm</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/" data-id="cjqeijzbn00af8w24hmcze43f" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binder/">Binder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPC/">IPC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/" class="article-date">
+  <time datetime="2017-05-05T06:46:31.000Z" itemprop="datePublished">2017-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/编译/">编译</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/">Mac下Android源码（AOSP）编译环境搭建方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、编译源码的背景环境"><a href="#一、编译源码的背景环境" class="headerlink" title="一、编译源码的背景环境"></a>一、编译源码的背景环境</h1><h2 id="Android源码编译有什么困难"><a href="#Android源码编译有什么困难" class="headerlink" title="Android源码编译有什么困难"></a>Android源码编译有什么困难</h2><ol>
+<li>AOSP 非常庞大，需要下载，但是他是Google家的，和大陆开发者之间隔着一个GFW</li>
+<li><a href="https://source.android.com/source/initializing.html" target="_blank" rel="noopener">官方文档</a> 推荐使用Ubuntu 14.04进行编译。我用的是MacOS，官网也给了Mac下的编译方式，不过看起来还是挺麻烦的。而且我怕搞乱我的电脑。</li>
+</ol>
+<h2 id="针对上面的两点，以前有这么两种解决方式，以前有这么几种解决方式"><a href="#针对上面的两点，以前有这么两种解决方式，以前有这么几种解决方式" class="headerlink" title="针对上面的两点，以前有这么两种解决方式，以前有这么几种解决方式"></a>针对上面的两点，以前有这么两种解决方式，以前有这么几种解决方式</h2><ol>
+<li>至于下载慢，可以使用国内镜像<a href="https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/" target="_blank" rel="noopener">清华镜像</a> 和 <a href="https://lug.ustc.edu.cn/wiki/mirrors/help/aosp" target="_blank" rel="noopener">科大镜像</a>，好像现在google的开发者网站部分不用梯子就可以访问了[当前时间2017-04]</li>
+<li>有人使用虚拟机，然后安装Ubuntu，然后编译源码。这方式也可以，但是Mac下三种虚拟机，免费的那个还不好用。而且编译本身就比较消耗资源，再装个虚拟机就更麻烦了</li>
+</ol>
+<h2 id="后来有人提出用Docker"><a href="#后来有人提出用Docker" class="headerlink" title="后来有人提出用Docker"></a>后来有人提出用Docker</h2><p> 而且这个人搞了一份Docker镜像出来 <a href="https://github.com/kylemanna/docker-aosp" target="_blank" rel="noopener">kylemanna/docker-aosp</a>，后来有人针对Docker以及天朝的网络环境做了一部分修改，fork了一份国产的 <a href="https://github.com/tiann/docker-aosp" target="_blank" rel="noopener">tiann/docker-aosp</a>。主要是修改了shell脚本中的下载源。但是这个东西在MAC OS上有bug<a href="https://github.com/kylemanna/docker-aosp/issues/19" target="_blank" rel="noopener">issues 19</a>所以我就没用成功。</p>
+<blockquote>
+<p>有一点题外话需要说一下，这个Docker安装后会开机默认启动，默认启动倒是也没问题，有问题的是他不可以和Android虚拟机同时运行，就是AndroidStudio自带的那个虚拟机。</p>
+</blockquote>
+<h1 id="二、搭建Mac编译环境"><a href="#二、搭建Mac编译环境" class="headerlink" title="二、搭建Mac编译环境"></a>二、搭建Mac编译环境</h1><p>修改文件描述符限制<br>在<code>~/.bash_profile</code>中添加以下内容<br><figure class="highlight plain"><figcaption><span>the number of open files to be 1024 </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -S -n 1024</span><br></pre></td></tr></table></figure></p>
+<h2 id="开发环境要求"><a href="#开发环境要求" class="headerlink" title="开发环境要求"></a>开发环境要求</h2><ol>
+<li>Mac OS v10.10 (Yosemite) 或以上，安装了 Xcode 4.5.2或以上，安装了Command Line Tools。</li>
+<li>安装<a href="https://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u71-oth-JPR" target="_blank" rel="noopener">JDK 7</a>。</li>
+<li>安装了<a href="http://www.python.org/download/" target="_blank" rel="noopener">python 2.7</a></li>
+<li><a href="http://ftp.gnu.org/gnu/make/" target="_blank" rel="noopener">GNU Make 3.81或3.82</a> </li>
+<li><a href="http://git-scm.com/download" target="_blank" rel="noopener">Git</a></li>
+</ol>
+<h2 id="我本机环境"><a href="#我本机环境" class="headerlink" title="我本机环境"></a>我本机环境</h2><ol>
+<li>Mac OS v10.12.4</li>
+<li>xcode v8.0</li>
+<li>git version 2.8.4 (Apple Git-73)</li>
+<li>GNU Make 3.81</li>
+<li>为了编译不同版本的Android源码，同时安装了JDK7 &amp; JDK8，通过配置<code>.bash_profile</code> 来切换</li>
+<li>Python 2.7.11</li>
+<li>之前我电脑还安装了homebrew </li>
+</ol>
+<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><p> 为什么在Mac上编译会很麻烦呢，因为Mac的文件系统默认不区分大小写，但是Android源码编译系统的要求区分大小写，这时候我们可以创建个区分大小写的磁盘空间。方法如下：</p>
+<ol>
+<li>打开<code>磁盘工具</code>（在Launchpad中直接搜索就行）</li>
+<li>如下图操作（磁盘命名为AOSP，磁盘大小为100G，磁盘格式一定要选择区分大小写） 首先选中<code>Macintosh HD</code> 然后<code>Comand + N</code></li>
+</ol>
+<p><img src="/images/2017/05/2017-05-05-android_source_Macintosh.png" alt="磁盘分区"></p>
+<blockquote>
+<p>这个磁盘分区的名字后面要用到，磁盘大小好像官网推荐70G，以防不够还是大点吧，格式一定要选<code>区分大小写</code>。这个磁盘分区还有另一种方式，我不知道这两种方式到底有什么区别。对应磁盘的分区使用，有人为了节省Mac上的硬盘，也为了防止搞坏系统，用了外接硬盘的方式然后操作这个外接硬盘的分区。</p>
+</blockquote>
+<h2 id="下载Android源码"><a href="#下载Android源码" class="headerlink" title="下载Android源码"></a>下载Android源码</h2><p>下面是科大的源也可以用清华的<a href="https://lug.ustc.edu.cn/wiki/mirrors/help/aosp" target="_blank" rel="noopener">参考文献</a>，<strong>我下载的是Android6.0的源码，最终编译的时候选择的是x86_64</strong></p>
+<ol>
+<li><p>下载 repo 工具:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/bin</span><br><span class="line">PATH=~/bin:$PATH</span><br><span class="line">curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</span><br><span class="line">chmod a+x ~/bin/repo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建立工作目录:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /Volumes/AOSP/</span><br><span class="line">mkdir WORKING_DIRECTORY</span><br><span class="line">cd WORKING_DIRECTORY</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">repo init -u git://mirrors.ustc.edu.cn/aosp/platform/manifest</span><br><span class="line">## 如果提示无法连接到 gerrit.googlesource.com，可以编辑 ~/bin/repo，把 REPO_URL 一行替换成下面的：</span><br><span class="line">## REPO_URL = &apos;https://gerrit-googlesource.proxy.ustclug.org/git-repo&apos;</span><br></pre></td></tr></table></figure>
+<p>如果需要某个特定的 Android 版本(<a href="https://source.android.com/source/build-numbers.html#source-code-tags-and-builds" target="_blank" rel="noopener">Android 版本列表</a>),可以通过下面的方式指定版本号，如果不指定则代码下载当前最新的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo init -u git://mirrors.ustc.edu.cn/aosp/platform/manifest -b android-6.0.1_r46</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：在mac上运行这行可能会报错，GnuPG 这玩意不可用，解决方式看最后错解决</p>
 </blockquote>
 </li>
-<li><p>在Activity中动态获取并设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Resources resources = getResources();</span><br><span class="line">String htmlStr = resources.getString(R.string.welcome_messages,&quot;小傻&quot;,5);</span><br><span class="line">Spanned spannedText = Html.fromHtml(htmlStr);</span><br><span class="line">textView.setText(spannedText);</span><br></pre></td></tr></table></figure>
+<li><p>同步源码树（以后只需执行这条命令来同步）如果中途出现网络错误，可以停止后在执行下面的命令：</p>
 </li>
 </ol>
-<p> 其实上面的代码可以写成一行：<br> <code>textView.setText(Html.fromHtml(getResources().getString(R.string.welcome_messages,&quot;小傻&quot;,5)));</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo sync</span><br></pre></td></tr></table></figure>
+<p>然后就等着吧0_0</p>
+<h2 id="编译源码"><a href="#编译源码" class="headerlink" title="编译源码"></a>编译源码</h2><ol>
+<li>清空缓存<br><code>$ make clobber</code><blockquote>
+<p>注：如果运行这行命令出错看文章最后错误处理</p>
+</blockquote>
+</li>
+<li>配置编译环境<br><code>$ source build/envsetup.sh</code></li>
+<li><p>选择编译目标<br><code>$ lunch</code> 这时候会列出一系列的选项然后选择一个如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">You&apos;re building on Darwin</span><br><span class="line">Lunch menu... pick a combo:</span><br><span class="line">     1. aosp_arm-eng</span><br><span class="line">     2. aosp_arm64-eng</span><br><span class="line">     3. aosp_mips-eng</span><br><span class="line">     4. aosp_mips64-eng</span><br><span class="line">     5. aosp_x86-eng</span><br><span class="line">     6. aosp_x86_64-eng</span><br><span class="line">     7. full_fugu-userdebug</span><br><span class="line">     8. aosp_fugu-userdebug</span><br><span class="line">     9. mini_emulator_arm64-userdebug</span><br><span class="line">     10. m_e_arm-userdebug</span><br><span class="line">     11. m_e_mips-userdebug</span><br><span class="line">     12. m_e_mips64-eng</span><br><span class="line">     13. mini_emulator_x86-userdebug</span><br><span class="line">     14. mini_emulator_x86_64-userdebug</span><br><span class="line">     15. aosp_dragon-userdebug</span><br><span class="line">     16. aosp_dragon-eng</span><br><span class="line">     17. aosp_marlin-userdebug</span><br><span class="line">     18. aosp_sailfish-userdebug</span><br><span class="line">     19. aosp_flounder-userdebug</span><br><span class="line">     20. aosp_angler-userdebug</span><br><span class="line">     21. aosp_bullhead-userdebug</span><br><span class="line">     22. hikey-userdebug</span><br><span class="line">     23. hikey960-userdebug</span><br><span class="line">     24. aosp_shamu-userdebug</span><br><span class="line">Which would you like? [aosp_arm-eng]</span><br></pre></td></tr></table></figure>
+<p>然后直接输入上面选项的序号就好了这里，我选择第一个，至于上面那些名字的含义是啥看下面解释：</p>
+<blockquote>
+<p>官网说根据上面名字的后缀可以判断要编译那种类型的：</p>
+<ul>
+<li><strong>user：</strong> limited access; suited for production(有限的访问权限，一般用于发布版)</li>
+<li><strong>userdebug：</strong> 这个和user类似，但是可以获取root权限，并且能够调试</li>
+<li><strong>eng：</strong>    具有开发配置，并且有额外的调试工具（注:工程师模式engineer）</li>
+</ul>
+</blockquote>
+<p><strong><code>lunch</code></strong>命令也可以直接这么用 <code>$ lunch aosp_arm-eng</code></p>
+</li>
+<li><p>开始编译<br><code>make -j16</code>  这里指定的开启几个并行<code>task</code>来进行编译，官网建议j后面的数字根据你电脑的线程数量的1～2倍来设置，比如电脑是双核CPU，每个CPU为双核心四线程，那么就有8个线程。所以我配置的数量为16。<br>然后就是漫长的等待ing…</p>
+</li>
+</ol>
+<h2 id="启动模拟器"><a href="#启动模拟器" class="headerlink" title="启动模拟器"></a>启动模拟器</h2><ol>
+<li><code>$ source build/envsetup.sh</code></li>
+<li><code>$ lunch</code> (选择刚才你设置的目标版本,我编译的是x86_64-eng的那个)</li>
+<li><code>$ emulator</code>模拟器启动，这个命令有很多复杂用法，具体可参考官网。</li>
+</ol>
+<h2 id="烧录镜像到机器中"><a href="#烧录镜像到机器中" class="headerlink" title="烧录镜像到机器中"></a>烧录镜像到机器中</h2><p><strong>这个烧录过程我没有测试，官网是这么写的。</strong></p>
+<ol>
+<li>进入fastboot模式<br><code>$ adb reboot bootloader</code></li>
+<li><p>把img文件刷进去<br><code>$ fastboot flashall -w</code>  这个 <code>-w</code> 是为了<code>wipes the /data partition</code>擦除<code>/data</code>分区</p>
+<p><a href="https://developers.google.com/android/drivers" target="_blank" rel="noopener">驱动下载</a></p>
+</li>
+</ol>
+<h2 id="AndroidStudio中查看源码"><a href="#AndroidStudio中查看源码" class="headerlink" title="AndroidStudio中查看源码"></a>AndroidStudio中查看源码</h2><p>在android源码中有这么一个目录development/tools/idegen。<br>顾名思义，是生成ide的project文件，主要是生成intellij的project文件，可用于AndroidStudio。</p>
+<ol>
+<li>在整个Android源码全编成功之后，然后编译idegen模块，用以生成Android studio的工程配置文件,编译成功之后就生成了idegen.jar（out/host/darwin-x86/framework/idegen.jar），运行如下命令：<br><code>$ mmm development/tools/idegen/</code><blockquote>
+<p>注：如果刚才编译AOSP的那个命令行窗口关闭了，必须要在执行<code>source build/envsetup.sh</code>一次，用了初始化编译环境。</p>
+</blockquote>
+</li>
+<li>在源码根目录生成对应的android.ipr、android.iml IEDA工程配置文件。以便于AndroidStudio可以打开项目<br><code>$ . development/tools/idegen/idegen.sh</code></li>
+<li>打开Android studio，点击File –&gt; Open，选择刚刚生成的android.ipr就好了。</li>
+</ol>
+<h1 id="三、错误处理"><a href="#三、错误处理" class="headerlink" title="三、错误处理"></a>三、错误处理</h1><h2 id="执行repo-init的错误"><a href="#执行repo-init的错误" class="headerlink" title="执行repo init的错误"></a>执行<code>repo init</code>的错误</h2><p>错误1描述</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">warning: gpg (GnuPG) is not available.</span><br><span class="line">warning: Installing it is strongly encouraged.</span><br></pre></td></tr></table></figure>
+<p>解决方法：<br>原因是GnuPG for osx没有安装，去<a href="https://www.gnupg.org/download/下载安装即可。" target="_blank" rel="noopener">https://www.gnupg.org/download/下载安装即可。</a><br>我用homebrew安装的<code>brew install gnupg</code></p>
+<h2 id="执行make-clobber的错误"><a href="#执行make-clobber的错误" class="headerlink" title="执行make clobber的错误"></a>执行<code>make clobber</code>的错误</h2><h4 id="错误1描述："><a href="#错误1描述：" class="headerlink" title="错误1描述："></a>错误1描述：</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">build/core/config.mk:660: error: Error: could not find jdk tools.jar at /System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/../lib/tools.jar, please check if your JDK was installed correctly.</span><br><span class="line">17:29:26 ckati failed with: exit status 1</span><br></pre></td></tr></table></figure>
+<p> 解决方式：<br> 在<code>~/.bash_profile</code>添加如下代码</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home</span><br><span class="line">export JAVA_HOME=$JAVA_8_HOME</span><br><span class="line">##上面是jdk的配置，主要是添加下面这一行</span><br><span class="line">export ANDROID_JAVA_HOME=$JAVA_HOME</span><br></pre></td></tr></table></figure>
+<h4 id="错误2描述"><a href="#错误2描述" class="headerlink" title="错误2描述"></a>错误2描述</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">build/core/combo/mac_version.mk:38: *****************************************************</span><br><span class="line">build/core/combo/mac_version.mk:39: * Can not find SDK 10.6 at /Developer/SDKs/MacOSX10.6.sdk</span><br><span class="line">build/core/combo/mac_version.mk:40: *****************************************************</span><br><span class="line">build/core/combo/mac_version.mk:41: *** Stop..  Stop.</span><br></pre></td></tr></table></figure>
+<p>解决方法：<br>出现这个错误是因为xcode的版本不对，首先查看本机安装xcode的版本，<br><code>$ cd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/</code><br>然后修改<code>build/core/combo/mac_version.mk</code>这个文件中的下面这行，把本机的版本号添加到下面，我的是10.12 添加后如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mac_sdk_versions_supported :=  10.6 10.7 10.8 10.9 10.12</span><br></pre></td></tr></table></figure>
+<h4 id="错误3描述："><a href="#错误3描述：" class="headerlink" title="错误3描述："></a>错误3描述：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">system/core/libcutils/threads.c:38:10: error: &apos;syscall&apos; is deprecated: first deprecated in OS X 10.12 - syscall(2) is unsupported; please switch to a supported interface. For SYS_kdebug_trace use kdebug_signpost(). [-Werror,-Wdeprecated-declarations]</span><br><span class="line">  return syscall(SYS_thread_selfid);</span><br><span class="line">         ^</span><br><span class="line">/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/unistd.h:733:6: note: &apos;syscall&apos; has been explicitly marked deprecated here</span><br><span class="line">int      syscall(int, ...);</span><br><span class="line">         ^</span><br><span class="line">1 error generated.</span><br></pre></td></tr></table></figure>
+<p>解决方式：<br>这个错误3归根到底是因为错误2引起的，再归根下是xcode版本引起的，（为啥说在mac上编译麻烦，这个xcode版本会出这么多破事），没办法这个我们上面用的mac sdk 10.12 版本太高了，这个版本废弃了某些方法导致编译不可用，那就去下个低版本的吧<a href="https://github.com/phracker/MacOSX-SDKs" target="_blank" rel="noopener">传送门</a>，<a href="https://github.com/phracker/MacOSX-SDKs/releases" target="_blank" rel="noopener">压缩包在</a>这然后下载那个10.11。理论上来说，下载后把目录放到这个路径下<code>/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/</code>和这个<code>MacOSX10.12.sdk</code>目录平级就行了，然后把错误2中添加到<code>build/core/combo/mac_version.mk</code>中的那个10.12改成10.11就好了。但是这个东西貌似在下次xcode升级的时候会被删掉。<br>a oh so? 弄个软连接:<br><code>$ mkdir ~/lib</code><br>然后把下载的压缩包解压到<code>~/lib</code>下<br><code>$ sudo ln -s ~/lib/MacOSX10.11.sdk /Applications/XCode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/18/2016-07-18-Android显示HTML格式/" data-id="cjqeijzay008f8w248rcfuwnj" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/" data-id="cjqeijzbm00ab8w24k8z0dbf7" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码/">源码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编译/">编译</a></li></ul>
 
     </footer>
   </div>
@@ -481,14 +445,14 @@
 
 
   
-    <article id="post-2016-07-14-MPAndroidChart画线形图" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-03-24-我的Android混淆（Proguard文件）是怎么写的" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/14/2016-07-14-MPAndroidChart画线形图/" class="article-date">
-  <time datetime="2016-07-14T07:34:30.000Z" itemprop="datePublished">2016-07-14</time>
+    <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/" class="article-date">
+  <time datetime="2017-03-24T02:01:31.000Z" itemprop="datePublished">2017-03-24</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a>
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/编译/">编译</a>
   </div>
 
   </div>
@@ -499,7 +463,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/14/2016-07-14-MPAndroidChart画线形图/">MPAndroidChart画线形图</a>
+      <a class="article-title" href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
     </h1>
   
 
@@ -507,21 +471,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近要做一个折线图，就搜到了 <a href="https://github.com/PhilJay/MPAndroidChart" target="_blank" rel="noopener">MPAndroidChart</a></p>
-<p><strong>效果图如下</strong></p>
-<p><img src="http://7xripg.com1.z0.glb.clouddn.com/2016/07/14/device-2016-07-14-153535.png" alt="MPAndroidChart绘制后的效果图"></p>
-<p><strong>gradle 引入</strong></p>
-<p><code>compile &#39;com.github.PhilJay:MPAndroidChart:v3.0.0-beta&#39;</code></p>
-<p><strong>以下是Activity的代码</strong></p>
-<p>布局文件很简单就包含一个<code>com.github.mikephil.charting.charts.LineChart</code>标签，不再给出：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> febsky.me.testmpchart;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.graphics.Color;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.charts.LineChart;</span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.components.AxisBase;</span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.components.Legend;</span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.components.XAxis;</span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.components.YAxis;</span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.data.Entry;</span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.data.LineData;</span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.data.LineDataSet;</span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.formatter.AxisValueFormatter;</span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.highlight.Highlight;</span><br><span class="line"><span class="keyword">import</span> com.github.mikephil.charting.listener.OnChartValueSelectedListener;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiLineActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">OnChartValueSelectedListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> LineChart mChart;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] mColors = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;</span><br><span class="line">            Color.rgb(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>),    <span class="comment">//红色</span></span><br><span class="line">            Color.rgb(<span class="number">2</span>, <span class="number">196</span>, <span class="number">244</span>),    <span class="comment">//淡蓝色</span></span><br><span class="line">            Color.rgb(<span class="number">2</span>, <span class="number">123</span>, <span class="number">243</span>)    <span class="comment">//深蓝</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">protected</span> String[] mMonths = <span class="keyword">new</span> String[]&#123;</span><br><span class="line">            <span class="string">"1月"</span>, <span class="string">"2月"</span>, <span class="string">"3月"</span>, <span class="string">"4月"</span>, <span class="string">"5月"</span>, <span class="string">"6月"</span>, <span class="string">"7月"</span>, <span class="string">"8月"</span>, <span class="string">"9月"</span>, <span class="string">"10月"</span>, <span class="string">"11月"</span>, <span class="string">"12月"</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_mulit_line);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        mChart = (LineChart) findViewById(R.id.chart);</span><br><span class="line">        mChart.setOnChartValueSelectedListener(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">        initChartView();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**-------------这里的数据不重要，主要用随机数的方式生成点坐标-------------**/</span></span><br><span class="line">        <span class="comment">//设置模拟数据</span></span><br><span class="line">        ArrayList&lt;Entry&gt; yVals = <span class="keyword">new</span> ArrayList&lt;Entry&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">12</span>; i++) &#123;</span><br><span class="line">            yVals.add(<span class="keyword">new</span> Entry(i, (<span class="keyword">float</span>) (Math.random() * <span class="number">10000f</span>)));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ArrayList&lt;Entry&gt; yVals2 = <span class="keyword">new</span> ArrayList&lt;Entry&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">12</span>; i++) &#123;</span><br><span class="line">            yVals2.add(<span class="keyword">new</span> Entry(i, (<span class="keyword">float</span>) (Math.random() * <span class="number">10000f</span>)));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        addDataSet(yVals, <span class="string">"一居"</span>);</span><br><span class="line">        addDataSet(yVals2, <span class="string">"两居"</span>);</span><br><span class="line">        <span class="comment">/**--------------------------**/</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//图标的下边的指示块  图例</span></span><br><span class="line">        Legend l = mChart.getLegend();</span><br><span class="line">        l.setForm(Legend.LegendForm.LINE);</span><br><span class="line">        l.setXEntrySpace(<span class="number">40</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initChartView</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mChart.setDrawGridBackground(<span class="keyword">false</span>);</span><br><span class="line">        mChart.setDescription(<span class="string">""</span>);    <span class="comment">//右下角说明文字</span></span><br><span class="line">        mChart.setDrawBorders(<span class="keyword">false</span>);    <span class="comment">//四周是不是有边框</span></span><br><span class="line"><span class="comment">//        mChart.setBorderColor();    //边框颜色，默认黑色？</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//控制轴上的坐标绘制在什么地方 上边下边左边右边</span></span><br><span class="line">        XAxis xAxis = mChart.getXAxis();</span><br><span class="line">        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);</span><br><span class="line">        xAxis.enableGridDashedLine(<span class="number">10f</span>, <span class="number">10f</span>, <span class="number">0f</span>);    <span class="comment">//给整成虚线</span></span><br><span class="line">        xAxis.setAxisMinValue(<span class="number">0f</span>);    <span class="comment">//设置轴的最小值。这样设置将不会根据提供的数据自动计算。</span></span><br><span class="line">        xAxis.setGranularity(<span class="number">1f</span>);    <span class="comment">//缩放的时候有用，比如放大的时候，我不想把横轴的月份再细分</span></span><br><span class="line">        xAxis.setValueFormatter(<span class="keyword">new</span> AxisValueFormatter() &#123;    <span class="comment">//绘制横轴显示</span></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> String <span class="title">getFormattedValue</span><span class="params">(<span class="keyword">float</span> value, AxisBase axis)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> mMonths[(<span class="keyword">int</span>) value % mMonths.length];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDecimalDigits</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        xAxis.setDrawLabels(<span class="keyword">true</span>);    <span class="comment">//是不是显示轴上的刻度</span></span><br><span class="line"></span><br><span class="line">        mChart.getAxisRight().setEnabled(<span class="keyword">false</span>);</span><br><span class="line">        YAxis leftAxis = mChart.getAxisLeft();</span><br><span class="line">        leftAxis.setEnabled(<span class="keyword">true</span>);</span><br><span class="line">        leftAxis.enableGridDashedLine(<span class="number">10f</span>, <span class="number">10f</span>, <span class="number">0f</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// enable touch gestures</span></span><br><span class="line">        mChart.setTouchEnabled(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">// if disabled, scaling can be done on x- and y-axis separately</span></span><br><span class="line">        mChart.setPinchZoom(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">// enable scaling and dragging</span></span><br><span class="line">        mChart.setDragEnabled(<span class="keyword">true</span>);</span><br><span class="line">        mChart.setScaleEnabled(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//一个chart中包含一个Data对象，一个Data对象包含多个DataSet对象，</span></span><br><span class="line">        <span class="comment">// 每个DataSet是对应一条线上的所有点(相对于折线图来说)</span></span><br><span class="line">        mChart.setData(<span class="keyword">new</span> LineData());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addDataSet</span><span class="params">(ArrayList&lt;Entry&gt; entryList, String dataSetName)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        LineData data = mChart.getData();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (data != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> count = data.getDataSetCount();</span><br><span class="line"></span><br><span class="line">            LineDataSet set = <span class="keyword">new</span> LineDataSet(entryList, dataSetName);</span><br><span class="line">            set.setLineWidth(<span class="number">1.5f</span>);</span><br><span class="line">            set.setCircleRadius(<span class="number">3.5f</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> color = mColors[count % mColors.length];</span><br><span class="line"></span><br><span class="line">            set.setColor(color);</span><br><span class="line">            set.setCircleColor(color);</span><br><span class="line">            set.setValueTextSize(<span class="number">10f</span>);</span><br><span class="line">            set.setDrawValues(<span class="keyword">false</span>);    <span class="comment">//节点不显示具体数值</span></span><br><span class="line">            set.setValueTextColor(color);</span><br><span class="line">            set.setDrawHorizontalHighlightIndicator(<span class="keyword">false</span>);<span class="comment">//取消横向辅助线</span></span><br><span class="line">            set.setDrawVerticalHighlightIndicator(<span class="keyword">false</span>);    <span class="comment">//取消纵向辅助线</span></span><br><span class="line"></span><br><span class="line">            data.addDataSet(set);</span><br><span class="line">            data.notifyDataChanged();</span><br><span class="line">            mChart.notifyDataSetChanged();</span><br><span class="line">            mChart.invalidate();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onValueSelected</span><span class="params">(Entry e, Highlight h)</span> </span>&#123;</span><br><span class="line">        Log.i(<span class="string">"Q_M:"</span>, e.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNothingSelected</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="当前环境"><a href="#当前环境" class="headerlink" title="当前环境"></a>当前环境</h2><p>Android Studio： 3.2.1<br>Gradle 插件： ‘com.android.tools.build:gradle:3.2.1’<br>Gradle ： gradle-4.6</p>
+<h2 id="具体配置"><a href="#具体配置" class="headerlink" title="具体配置"></a>具体配置</h2><p>因为proguard文件要靠手写，所以有时候感觉很难，但是找到规律之后也挺简单的，感觉难是因为，不熟悉它的一些关键字，这里列出了常用的关键字，以及人能看懂的含义，其实要想看明白，自己写的Demo测试一下就好了，借助于反编译工具看下到底什么被混淆了，<a href="/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/">工具看这</a>。我下面写了详细的注释<a href="https://github.com/androider/ToolBox/edit/master/app/proguard-rules.pro" target="_blank" rel="noopener">github</a>，常用的也就这么多了，其余的可以根据命令行进行调试，然后逐个添加。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line">#-ignorewarnings                     # 忽略警告，避免打包时某些警告出现</span><br><span class="line">-optimizationpasses 5               # 指定代码的压缩级别</span><br><span class="line">-dontusemixedcaseclassnames         # 是否使用大小写混合 混淆时不会产生形形色色的类名</span><br><span class="line">-dontskipnonpubliclibraryclasses    # 是否混淆第三方jar</span><br><span class="line">-dontpreverify                      # 混淆时是否做预校验</span><br><span class="line">-verbose                            # 混淆时是否记录日志</span><br><span class="line">-dontoptimize                       # 不优化输入的类文件</span><br><span class="line"></span><br><span class="line">-keepattributes *Annotation*, SourceFile, InnerClasses, LineNumberTable, Signature, EnclosingMethod</span><br><span class="line">-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*    #优化 混淆时采用的算法</span><br><span class="line"></span><br><span class="line">-keep public class * extends android.app.Activity    # 未指定成员，仅仅保持类名不被混淆</span><br><span class="line">-keep public class * extends android.app.Application</span><br><span class="line">-keep public class * extends android.app.Service</span><br><span class="line">-keep public class * extends android.app.View</span><br><span class="line">-keep public class * extends android.app.IntentService</span><br><span class="line">-keep public class * extends android.content.BroadcastReceiver</span><br><span class="line">-keep public class * extends android.content.ContentProvider</span><br><span class="line">-keep public class * extends android.app.backup.BackupAgentHelper</span><br><span class="line">-keep public class * extends android.preference.Preference</span><br><span class="line">-keep public class * extends android.hardware.display.DisplayManager</span><br><span class="line">-keep public class * extends android.os.UserManager</span><br><span class="line">-keep public class com.android.vending.licensing.ILicensingService</span><br><span class="line">-keep public class * extends android.app.Fragment</span><br><span class="line"></span><br><span class="line">-keep public class * extends android.support.v4.widget</span><br><span class="line">#  *匹配任意字符不包括 “ . ” ，**匹配任意字符</span><br><span class="line">#  下面这行的意思是，保留v4下面的类名及其v4下面子包的类名不被混淆</span><br><span class="line">-keep public class * extends android.support.v4.**  </span><br><span class="line"># 下面 这行表示一个接口中的所有的东西都不被混淆  </span><br><span class="line">-keep interface android.support.v4.app.** &#123; *; &#125;    </span><br><span class="line"># 下面这行表示保持这个包及其子包下面的所有类的类名及其类里面的所有内容都不混淆</span><br><span class="line">-keep class android.support.v4.** &#123; *; &#125;        </span><br><span class="line">-keep class android.os.**&#123;*;&#125;</span><br><span class="line">-keep class android.support.v8.renderscript.** &#123; *; &#125;</span><br><span class="line"></span><br><span class="line">-keep class **.R$* &#123; *; &#125;</span><br><span class="line">-keep class **.R&#123; *; &#125;</span><br><span class="line"></span><br><span class="line">#实现了android.os.Parcelable接口类的任何类，以及其内部定义的Creator内部类类型的public final静态成员变量，都不能被混淆和删除</span><br><span class="line">-keep class * implements android.os.Parcelable &#123;    # 保持Parcelable不被混淆</span><br><span class="line">  public static final android.os.Parcelable$Creator *;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#keepclasseswithmembernames  保留类和类中的成员，防止被混淆，保留指明的成员，成员没有引用会被移除</span><br><span class="line"># 保持 native 方法不被混淆</span><br><span class="line">-keepclasseswithmembernames class * &#123;     </span><br><span class="line">    native &lt;methods&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#keepclasseswithmembers 保留类和类中的成员，防止被混淆或移除，保留指明的成员</span><br><span class="line">#  保持自定义控件类不被混淆</span><br><span class="line">-keepclasseswithmembers class * &#123;        </span><br><span class="line">    public &lt;init&gt;(android.content.Context, android.util.AttributeSet);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keepclasseswithmembers class * &#123;         # 保持自定义控件类不被混淆</span><br><span class="line">    public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keepclasseswithmembers class * &#123;</span><br><span class="line">  public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int, int);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keepclassmembers class * extends android.app.Activity &#123; #保持类成员</span><br><span class="line">   public void *(android.view.View);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keepclassmembers class * extends android.content.Context &#123;</span><br><span class="line">  public void *(android.view.View);</span><br><span class="line">  public void *(android.view.MenuItem);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-keepclassmembers enum * &#123;                  # 保持枚举 enum 类不被混淆</span><br><span class="line">    public static **[] values();</span><br><span class="line">    public static ** valueOf(java.lang.String);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Explicitly preserve all serialization members. The Serializable interface</span><br><span class="line"># is only a marker interface, so it wouldn&apos;t save them.</span><br><span class="line">-keepnames class * implements java.io.Serializable</span><br><span class="line"></span><br><span class="line">-keepclassmembers class * implements java.io.Serializable &#123;</span><br><span class="line">  static final long serialVersionUID;</span><br><span class="line">  private static final java.io.ObjectStreamField[] serialPersistentFields;</span><br><span class="line">  private void writeObject(java.io.ObjectOutputStream);</span><br><span class="line">  private void readObject(java.io.ObjectInputStream);</span><br><span class="line">  java.lang.Object writeReplace();</span><br><span class="line">  java.lang.Object readResolve();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#####################上面这些是系统默认配置的#####################3</span><br><span class="line">## 一般来说上面的这些即使我们不写，开了混淆也会自动启用</span><br><span class="line">## 现在我用的 Android Studio Gradle的插件是 3.2.1 这个插件自带默认混淆文件</span><br><span class="line">## 在启用混淆的时候解压出来，详情参考 /项目名/build/intermediates/proguard-files/proguard-android.txt-3.2.1 里面的注释</span><br><span class="line">## 注释上说gradle 的 Android 插件，从2.2 版本开始，不再使用sdk本地的Proguard，而以后gradle插件自带默认Proguard配置文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#-libraryjars   libs/jar包名字.jar   #缺省proguard 会检查每一个引用是否正确，但是第三方库里面往往有些不会用到的类，没有正确引用。如果不配置的话，系统就会报错。</span><br><span class="line">-dontwarn android.support.v4.**</span><br><span class="line">-dontwarn android.os.**</span><br><span class="line"></span><br><span class="line">#编译时关掉Log的打印，</span><br><span class="line">#-assumenosideeffects class android.util.Log &#123;    #如果是自定义Log类，修改下面的包名</span><br><span class="line">#        public static *** d(...);</span><br><span class="line">#        public static *** e(...);</span><br><span class="line">#        public static *** i(...);</span><br><span class="line">#        public static *** v(...);</span><br><span class="line">#        public static *** println(...);</span><br><span class="line">#        public static *** w(...);</span><br><span class="line">#        public static *** wtf(...);</span><br><span class="line">#&#125;</span><br><span class="line"></span><br><span class="line">##############################--------以上是Android基本配置----------##############################</span><br><span class="line"></span><br><span class="line"># 实体类不混淆（自己项目实体类不被混淆，因为Gson中用到了反射）</span><br><span class="line">#-keep class me.febsky.entity.** &#123; *; &#125;</span><br><span class="line">### -----这是个列子---- ###</span><br><span class="line">#这个类里面的所有的成员变量和方法都不混淆</span><br><span class="line">-keep class me.febsky.testprogard.MainActivity &#123; *; &#125;</span><br><span class="line">#这个类里面的内部类的所有的成员变量和方法都不混淆</span><br><span class="line">-keep class me.febsky.testprogard.MainActivity$* &#123; *; &#125;</span><br><span class="line">#这个类里面的所有public的内部类的所有的成员变量和方法都不混淆</span><br><span class="line">-keep public class me.febsky.testprogard.MainActivity$* &#123; *; &#125;</span><br><span class="line">#这个类里面的内部类的类名不备混淆，方法和变量还是混淆的</span><br><span class="line">-keep class me.febsky.testprogard.MainActivity$*</span><br><span class="line">#保持一个类的类名不被混淆，里面的方法和成员变量名还是被混淆的</span><br><span class="line">-keep public class me.febsky.testprogard.MyOutClass</span><br><span class="line">### -----这是个列子---- ###</span><br><span class="line"></span><br><span class="line">## for sharedSDK</span><br><span class="line">-keep class android.net.http.SslError</span><br><span class="line">-keep class android.webkit.**&#123;*;&#125;</span><br><span class="line">-keep class cn.sharesdk.**&#123;*;&#125;</span><br><span class="line">-keep class com.sina.**&#123;*;&#125;</span><br><span class="line">-keep class m.framework.**&#123;*;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#butter knife</span><br><span class="line">-keep class butterknife.** &#123; *; &#125;</span><br><span class="line">-dontwarn butterknife.internal.**</span><br><span class="line">-keep class **$$ViewBinder &#123; *; &#125;</span><br><span class="line">-keepclasseswithmembernames class * &#123;</span><br><span class="line">    @butterknife.* &lt;fields&gt;;</span><br><span class="line">&#125;</span><br><span class="line">-keepclasseswithmembernames class * &#123;</span><br><span class="line">    @butterknife.* &lt;methods&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><a href="http://www.jianshu.com/u/1557f3d7aba5" target="_blank" rel="noopener">我的简书</a></li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/14/2016-07-14-MPAndroidChart画线形图/" data-id="cjqeijzb2008q8w24r0lnsmi5" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/" data-id="cjqeijzbi00a18w24kto14niy" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编译/">编译</a></li></ul>
 
     </footer>
   </div>
@@ -530,14 +492,14 @@
 
 
   
-    <article id="post-2016-07-13-AndroidStudio中如何利用一个task显示出依赖库的本地存储路径" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-09-08-PS（PhotoShop）基础知识（二）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/13/2016-07-13-AndroidStudio中如何利用一个task显示出依赖库的本地存储路径/" class="article-date">
-  <time datetime="2016-07-13T02:39:17.000Z" itemprop="datePublished">2016-07-13</time>
+    <a href="/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（二）/" class="article-date">
+  <time datetime="2016-09-08T02:01:31.000Z" itemprop="datePublished">2016-09-08</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/AndroidStudio/">AndroidStudio</a>►<a class="article-category-link" href="/categories/AndroidStudio/Android/">Android</a>
+    <a class="article-category-link" href="/categories/PhotoShop/">PhotoShop</a>
   </div>
 
   </div>
@@ -548,7 +510,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/13/2016-07-13-AndroidStudio中如何利用一个task显示出依赖库的本地存储路径/">AndroidStudio中查看依赖库的本地存储路径</a>
+      <a class="article-title" href="/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（二）/">PS（PhotoShop）基础知识（二）</a>
     </h1>
   
 
@@ -556,25 +518,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这两天由于公司网速慢，每次要下载v4  和 v7 包非常耗时。把gradle 改成离线模式就好多了。据说离线模式不再重新下载依赖。但是很好奇，AndroidStudio的gradle 引入的第三方库到底缓存到本地的什么位置了。</p>
-<p>可以在app目录下的<code>build.gradle</code>的文件的最后添加：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">task showMeCache &lt;&lt; &#123;</span><br><span class="line">    configurations.compile.each &#123; println it &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后，在命令行切换到你的项目根目录下运行：</p>
-<p><code>./gradlew showMeCache</code></p>
-<p>这时候控制台就好打印出依赖库的缓存位置(下面是我显示的环信一个demo的所有的依赖库，包括lib引入，和在gradle的maven库引入的。)：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">liuqiangs-MacBook-Pro:TestHx liuqiang$ ./gradlew showMeCache</span><br><span class="line">Incremental java compilation is an incubating feature.</span><br><span class="line">:app:showMeCache</span><br><span class="line">/Users/liuqiang/Workspace/meiliwu/TestHx/app/libs/hyphenatechat_3.1.3.jar</span><br><span class="line">/Users/liuqiang/Development/android-sdk-macosx/extras/android/m2repository/com/android/support/appcompat-v7/23.4.0/appcompat-v7-23.4.0.aar</span><br><span class="line">/Users/liuqiang/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar</span><br><span class="line">/Users/liuqiang/Development/android-sdk-macosx/extras/android/m2repository/com/android/support/design/23.4.0/design-23.4.0.aar</span><br><span class="line">/Users/liuqiang/Development/android-sdk-macosx/extras/android/m2repository/com/android/support/animated-vector-drawable/23.4.0/animated-vector-drawable-23.4.0.aar</span><br><span class="line">/Users/liuqiang/Development/android-sdk-macosx/extras/android/m2repository/com/android/support/support-v4/23.4.0/support-v4-23.4.0.aar</span><br><span class="line">/Users/liuqiang/Development/android-sdk-macosx/extras/android/m2repository/com/android/support/support-vector-drawable/23.4.0/support-vector-drawable-23.4.0.aar</span><br><span class="line">/Users/liuqiang/Development/android-sdk-macosx/extras/android/m2repository/com/android/support/recyclerview-v7/23.4.0/recyclerview-v7-23.4.0.aar</span><br><span class="line">/Users/liuqiang/Development/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar</span><br></pre></td></tr></table></figure>
-<p>我们可以看到，v4 和 v7的支持包，是下载下来放到你本地Android sdk的extras 目录下的，所以，我猜测，可以直接从别人电脑拷贝这个文件夹的内容，然后使用gradle的离线模式编译。这样就不会再网速差的情况下去下载 v4 和 v7  。这种想法仅仅是用于 v4和v7 其他的第三方依赖库可以看到是放到 ~/.gradle/cache 目录下的。</p>
-<p><strong>【参考文献】</strong></p>
-<p><a href="http://blog.csdn.net/asd6340370/article/details/51829847" target="_blank" rel="noopener">在AndroidStudio中如何利用一个task显示出依赖库的本地存储路径
-</a></p>
+        <p><strong>工具栏中的工具</strong></p>
+<ol>
+<li><p>移动工具 <code>V [shift]</code></p>
+<ul>
+<li>在左上角有个<code>自动选择</code> + <code>图层</code>选项，勾选后可以自动选择获得焦点图层</li>
+<li>当有多个图层中的元素被选中的时候，还可以指定对其方式</li>
+</ul>
+</li>
+<li><p>选框工具 M </p>
+<ul>
+<li>在上边的样式选项中可以指定，选区工具是固定大小的还是固定比例的。</li>
+<li>选区可以做运算，也就是两次选区的组合。相加，相减，相交等。组合键，shift ，ALT ,shift + alt. 前提是已经存在一个选区，当画第二个选区的时候，按住这些键。</li>
+<li>command + d 取消选区</li>
+<li>command + j 复制选区为新的图层</li>
+<li>按住shift 选区可以为正方形，圆 </li>
+<li>填充选区<br><code>alt + shift + delete</code>前景填充<br><code>cmd + shift + delete</code> 背景填充  </li>
+</ul>
+</li>
+<li><p>套索工具 L</p>
+<ul>
+<li>delete 键可以删除套索选择工具的点</li>
+</ul>
+</li>
+<li><p>快速选择工具</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>裁剪工具 C</p>
+<ul>
+<li>可以自定义放置裁剪变换中心点，按住alt 拖动中心点</li>
+<li>上边选项中可以选择辅助线，三等分，网格，黄金比，螺旋线等。shift + o 可以调整辅助线的位置。</li>
+<li>透视裁剪工具，可以通过自定义方式四个裁剪点，来。</li>
+<li>切片工具可以和参考线一起使用<code>基于参考线的切片</code></li>
+<li>切片选择工具，可以移动切片</li>
+</ul>
+</li>
+</ol>
+<ol start="6">
+<li><p>吸管工具</p>
+<ul>
+<li>吸到前景色</li>
+<li>按住alt + 鼠标左键 吸到背景色</li>
+<li>通过<code>样本</code>选项，可设置是吸取当前图层还是图层叠加</li>
+<li>通过<code>取样大小</code>可以设置是取一个像素点，还是周围几个像素点的像素评价运算</li>
+<li><code>颜色取样器工具</code>和<code>信息窗口</code>一块用</li>
+<li>标尺拉直工具 可以将倾斜的图层拉直</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/13/2016-07-13-AndroidStudio中如何利用一个task显示出依赖库的本地存储路径/" data-id="cjqeijzaz008i8w24v6feeenr" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（二）/" data-id="cjqeijzbg009u8w24ijlfbu6l" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li></ul>
 
     </footer>
   </div>
@@ -583,14 +583,14 @@
 
 
   
-    <article id="post-2016-07-12-AndroidStudio加快编译的方法" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-09-08-PS（PhotoShop）基础知识（三）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/" class="article-date">
-  <time datetime="2016-07-12T08:57:32.000Z" itemprop="datePublished">2016-07-12</time>
+    <a href="/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/" class="article-date">
+  <time datetime="2016-09-08T02:01:31.000Z" itemprop="datePublished">2016-09-08</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a>
+    <a class="article-category-link" href="/categories/PhotoShop/">PhotoShop</a>
   </div>
 
   </div>
@@ -601,7 +601,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/">AndroidStudio加快编译的方法</a>
+      <a class="article-title" href="/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/">PS（PhotoShop）基础知识（三）</a>
     </h1>
   
 
@@ -609,19 +609,277 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Gradle 给我们的Android开发带来很大的便利，同时Gradle也是很灵活的，配置起来很’方便’，而且我们的开发工具AndroidStudio也是基于Gradle的，但是随着我们项目越来越大，依赖也越来越多，导致了编译起来非常慢。</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/#more">Read More</a>
-          </p>
-        
+        <ol>
+<li><p>抓手工具 H</p>
+<ul>
+<li>alt + 鼠标左键 + 左右拖动鼠标，放大或者缩小图片</li>
+<li>alt + shift + 鼠标左键 + 左右拖动鼠标 放大或者缩小图片的当前位置点</li>
+<li>command + +/- 放大或者缩小图片</li>
+<li>command + 0/1   预览/完全显示图片</li>
+</ul>
+</li>
+<li><p>图层</p>
+<ul>
+<li>按住 alt 键和移动工具，可以边移动边复制图层</li>
+<li>shift + command + alt + e 合并可见图层为一个新图层</li>
+<li>选中图层后，delete键可以删除图层</li>
+<li>common + j 可以生成图层副本</li>
+<li>蒙版工具可以通过修改黑色的值，修改原图的透明度，为图层新建蒙版，alt 点击可以选中</li>
+<li>shift  单击蒙版停用蒙版</li>
+<li>选区可以直接创建蒙版，蒙版黑色的部分表示透明，白色表示显示。可以用画笔工具在蒙版上涂抹</li>
+<li>有个<code>智能对象</code></li>
+<li>图层样式 右下角FX按钮  双击右侧图层列表可以进入图层样式选项</li>
+<li>复杂图像不必抠图，用图像<code>混合模式</code>可以完成，去掉白色选择<code>正片叠底</code></li>
+</ul>
+</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/12/2016-07-12-AndroidStudio加快编译的方法/" data-id="cjqeijzaw008b8w249e93xqyk" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/" data-id="cjqeijzbh009x8w240mqkdn36" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-08-10-垂直方向的ViewPager" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/2016-08-10-垂直方向的ViewPager/" class="article-date">
+  <time datetime="2016-08-10T06:10:40.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/2016-08-10-垂直方向的ViewPager/">垂直方向的ViewPager</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>竖直方向的ViewPager</p>
+<p><a href="http://stackoverflow.com/questions/13477820/android-vertical-viewpager" target="_blank" rel="noopener">出处</a></p>
+<p><img src="/images/2016/08/2016-08-10-垂直ViewPager.gif" alt="效果图"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Uses a combination of a PageTransformer and swapping X &amp; Y coordinates</span></span><br><span class="line"><span class="comment"> * of touch events to create the illusion of a vertically scrolling ViewPager. </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Requires API 11+</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VerticalViewPager</span> <span class="keyword">extends</span> <span class="title">ViewPager</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">VerticalViewPager</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">VerticalViewPager</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// The majority of the magic happens here</span></span><br><span class="line">        setPageTransformer(<span class="keyword">true</span>, <span class="keyword">new</span> VerticalPageTransformer());</span><br><span class="line">        <span class="comment">// The easiest way to get rid of the overscroll drawing that happens on the left and right</span></span><br><span class="line">        setOverScrollMode(OVER_SCROLL_NEVER);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">VerticalPageTransformer</span> <span class="keyword">implements</span> <span class="title">ViewPager</span>.<span class="title">PageTransformer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transformPage</span><span class="params">(View view, <span class="keyword">float</span> position)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (position &lt; -<span class="number">1</span>) &#123; <span class="comment">// [-Infinity,-1)</span></span><br><span class="line">                <span class="comment">// This page is way off-screen to the left.</span></span><br><span class="line">                view.setAlpha(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (position &lt;= <span class="number">1</span>) &#123; <span class="comment">// [-1,1]</span></span><br><span class="line">                view.setAlpha(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// Counteract the default slide transition</span></span><br><span class="line">                view.setTranslationX(view.getWidth() * -position);</span><br><span class="line"></span><br><span class="line">                <span class="comment">//set Y position to swipe in from top</span></span><br><span class="line">                <span class="keyword">float</span> yPosition = position * view.getHeight();</span><br><span class="line">                view.setTranslationY(yPosition);</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// (1,+Infinity]</span></span><br><span class="line">                <span class="comment">// This page is way off-screen to the right.</span></span><br><span class="line">                view.setAlpha(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Swaps the X and Y coordinates of your touch event.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> MotionEvent <span class="title">swapXY</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">float</span> width = getWidth();</span><br><span class="line">        <span class="keyword">float</span> height = getHeight();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">float</span> newX = (ev.getY() / height) * width;</span><br><span class="line">        <span class="keyword">float</span> newY = (ev.getX() / width) * height;</span><br><span class="line"></span><br><span class="line">        ev.setLocation(newX, newY);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ev;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span></span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> intercepted = <span class="keyword">super</span>.onInterceptTouchEvent(swapXY(ev));</span><br><span class="line">        swapXY(ev); <span class="comment">// return touch coordinates to original reference frame for any child views</span></span><br><span class="line">        <span class="keyword">return</span> intercepted;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(swapXY(ev));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2016/08/10/2016-08-10-垂直方向的ViewPager/" data-id="cjqeijzba009e8w24snwiuf8x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ViewPager/">ViewPager</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-07-29-从别人app(Android)中拿数据" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/29/2016-07-29-从别人app(Android)中拿数据/" class="article-date">
+  <time datetime="2016-07-29T07:30:35.000Z" itemprop="datePublished">2016-07-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/逆向/">逆向</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/29/2016-07-29-从别人app(Android)中拿数据/">从别人app(Android)中拿数据</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>开篇之前，我一直考虑这算不算侵权？只是兴趣，如果有人告知侵权的话，立马删除。</p>
+<p>我所说的数据不是指拿别人app中的图片资源。而是程序运行所需要的数据。</p>
+<p>App中的数据无非两种，一种是网络数据，一种是本地数据。网络请求我们一般用抓包工具（Mac上的Charles 或者Windows上的Fiddler）来获取Api，然后在用程序循环请求，获取所有的数据。而另一种是app存储到本地的数据，一种是存储到文件中的，一种是存储到数据库中的。</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-logo.png" alt="快快查汉语词典"></p>
+<p>一次偶然的机会，发现<code>快快查汉语词典</code>这个app作为汉语词典来说，还算是比较良心的app，免费，而且界面还是比较干净的。而且词库比较全。所以我想获取这个词典的所有词库，作为自己的词库使用。像这种词典，一般汉字都用拼音散列开了。所以我想获取汉字和拼音的映射。好吧，用了一个周的时间，边学习，变反编译，并且学习了Smali语法。终于把数据解析出来了。</p>
+<p>大体流程：<code>数据解密</code>—&gt;<code>数据格式化</code>—&gt;<code>格式化后的数据</code></p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-search-result.png" alt="快快查汉语词典" width="250px"></p>
+<p>作为一个词典来说，我感觉这个app做的相当不错。有很多值得我们学习的地方。so，我给反编译了。</p>
+<ol>
+<li><p>首先确定数据来源。</p>
+<p>分析一下数据到底来源于网络呢，还是本地数据存储呢。这个很容易判断，第一次安装好app之后，断开网络，如果仍然能查询，说明本地有数据缓存，如果不能查询，说明必须要访问网络。<strong>好，测试之后我们发现能查询，说明本地可定有一份可供查询的数据存储</strong>。</p>
+<p>有些app会做双重数据存储。也就是说数据源，既有网络也有本地，比如有道词典，会做一部分本地存储，详细信息要从网络查询。所以还要做，有网和无网情况下查询详情是不是一样，来判断本地是否存有所有的数据。<strong>经过比较发现本地确实有完整的数据存储</strong></p>
+</li>
+<li><p>如果数据存储在本地，存在哪了？</p>
+<p><strong>猜测：</strong> 本地数据</p>
+<p><strong>理由：</strong> 像<code>字--拼音--解释</code>这种数据结构，一般不适合存放到文件中。</p>
+<p><strong>实践：</strong>数据库存放无非三个位置，一个是<code>/data/data/包名</code>目录下，一个是<code>/sdcard/Android/data/包名</code>,最后一个就是SD卡了，随便建个文件夹就可以存储。<a href="http://febsky.me/2015/07/14/2015-07-14-Android%20%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/" target="_blank" rel="noopener">参考,Android文件存放位置</a>，那么如何判断数据库文件存放在这三个位置中的那个呢？我们来一个个排除：</p>
+<ul>
+<li>要访问真机的/data/data目录必须要root权限。当然我的测试机是roo了的。发现里面并没有任何有价值的数据库。</li>
+<li><code>/sdcard/Android/data/包名</code>这个目录是可以访问的，<code>adb shell</code>的方式访问之后也没有发现任何有价值的数据。</li>
+<li>那就剩下最后一个sd卡了。这个比较麻烦，因为这个路径不固定，可以任意创建文件夹。如果是测试机，那么sd卡上没有几个文件夹比价好排查。这里可以用一些小技巧。比如我们app的包名为<code>com.kk.dict</code> 所以按照一般程序员命名规则，这个文件夹如果真的在SD卡上的话，那么有很大的可能性和<code>kk</code>或者<code>dict</code>有关，哈哈，经过查找，在sd卡上有个叫<code>kkdict</code>的文件夹，最后发现所有的离线数据库都在这里面<code>/sdcard/kkdict/dict/</code></li>
+<li>其实上面的三种排查方式比较大众化，也就是可以用于所有的情况下的排查，但是在分析别人的app的时候，我们的方法还是比较灵活的，不拘泥于这么几种，比如我们要分析的这个快快查词典。并不需要这么麻烦。这个app在<code>我的--&gt;设置--&gt;功能包下载</code>里面能够设置离线的数据库的存储路径。</li>
+</ul>
+</li>
+</ol>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-lib-download.png" alt="词库下载位置"></p>
+<ul>
+<li><p>由上图可以发现，在这之前的所有分析，都不用了，从离线路径可以分析出来，这数据查询就保存在本地，而且保存路径都可以看到了。</p>
+<p><strong>结果：</strong> 和我们猜想的一样。</p>
+</li>
+</ul>
+<ol start="3">
+<li><p>好那接下来我们就从数据库中拿数据了哦~</p>
+<p>可以看到<code>/sdcard/kkdict/dict/</code>目录下主要有以下数据库：<br><img src="/images/2016/07/2016-07-09-kuaikuaicha-db.png" alt="快快查词典包含的主要数据库"></p>
+<p>从名字结合app的界面可以大体分析出数据库中存储的内容。我们来看详解这个库，应该存储的是每个字的详细解释。用数据库查看软件查看一下我用的<code>Navicate</code>Mac上没发现什么好用的sqlite3可视化查看软件。打开数据库，找到里面主要的表，这下懵逼了。表里的数据是用二进制Blob存储的。<br><img src="/images/2016/07/2016-07-09-kuaikuaicha-db-table.png" alt="xiangjie.db/xiangjie表"></p>
+<p><strong>下面的主要任务就是把这个zhujie的字段表示的数据解析出来：how？</strong>这种分析主要从哪下手、我一般主要从两方面下手：直接分析数据库；从界面反编译代码后，从代码查询。显然后者难度很大，如果代码混淆了，读起来相当困难。我们先来实验第一种方式，看是否能够成功。也就是直接解析<code>zhujie</code>字段的二进制，翻译成字符串。</p>
+<p><strong>猜测这个二进制是什么：</strong>有这么几种可能，<code>对象</code>，直接把数据所对应的对象存到数据库，以二进制的方式；<code>字符串</code>，把字符串转换成二进制数据写入数据库；<code>加密</code>，这也是最头疼的方式，如果真的加密了，必须去源码中找到加密算法和相应的解密密钥。</p>
+<p><strong>试验：</strong>试着猜想一下，这种数据库中可能存放对象吗？我感觉以我的经验来说不大可能，这种存对象的方式，平台适用性太低。如果使用java存的对象，只能用java读出来，那么这个库完全无法再别的（如：<code>IOS</code>）平台上使用。这种不是不行只是不太理想。当时我猜测的最大可能是<code>字符串</code>的二进制格式，因为我以为这种数据没必要加密。所以，我就试着验证了一下。如何读数据库就不说了，<a href="http://febsky.me/2016/05/10/2016-05-10-Android%E6%93%8D%E4%BD%9CSQLite%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">参考</a>；</p>
+<p>从数据库以二进制的方式读入，然后用String解码。一运行，我靠，兄弟乱码？？<br><img src="/images/2016/07/2016-07-09-kuaikuaicha-db-read.png" alt="测试代码及运行结果"></p>
+</li>
+</ol>
+<p>从上图看出，以我多年解决乱码的经验，出现乱码<font color="#ff0000">大多数</font>是由于编码方式不正确引起的。吆西，编码那我改还不行吗？</p>
+<p>于是有了下图的测试代码：<br><img src="/images/2016/07/2016-07-09-kuaikuaicha-db-read2.png" alt="对二进制进行不同的字符编码"></p>
+<p>额。。。全是乱码，从查词的结果来看一定包含中文，我知道的能处理中文的常用编码也就这么三种，你说全是乱码。这。。。</p>
+<p><strong>结果：</strong>没办法猜想错误，0.0，只能继续猜测呗。</p>
+<p><strong>继续猜测：</strong> 会不会数据库存放的是Base64的二进制方式，作者会不会用Base64的方式对数据进行了简单的加密？ 但是仔细一想，Base64主要作用是把二进制转换成字符来显示和表达的。把一个字符串，转换成二进制在转换成Base64再换成二进制，再存储。好像能有这种想法的人有点，那啥吧？？既然没有别的办法也只能试试喽。测试代码就不给了，就是Base64的基本操作，就是流程绕了点，后来测试发现也是乱码。（:- </p>
+<p><strong>继续猜想：</strong>看了数据库的这个字段的数据真的加密了。只从数据库入手好像无法解决。加密有难有易，但是无论如何，他既然会显示到界面的数据是正常的明文，说明即使加密了，apk源码中也有解密代码。看了现在找到这个解密的代码是非常关键的。这个解密的代码也有难有易，如果做的简单点就是一个java的Util类。如果做的难了，用jni做到so文件中。但愿他在java中吧。这样反编译起来还简单些。</p>
+<p><strong>测试：</strong>要把apk中的dex拿出来反编译成jar，然后查看这个jar中的源文件。具体如何反编译拿到jar，不再给出，可以参考这个。<a href="http://febsky.me/2016/07/05/2016-07-05-Android%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7/" target="_blank" rel="noopener">参考</a> 至于查看浏览这个jar包中的java代码，我主要借助两个工具<code>jd-gui-1.3.0.jar</code>和<code>jadx-0.6.0</code>为什么要接着两个，我能力有限，查看反编译后的java代码，如果这个代码被混淆了，读起来相当困难，而这两个tool反编译后的java代码各有优缺点。前者有代码跟进功能，后者的代码反编译的可读性比较好，但是后者代码综合性比较强，比如能简写的他会简写。这样读起来也比价困难。结合来看就轻松多了。</p>
+<p>好，我们可以看到最终数据会被现实到，汉字查询结果页面。如下：</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-search-result2.png" alt="汉字查询结果页面2"></p>
+<p>那么我们找到这个页面，然后就可以进行数据分析了，接下来的问题，这个页面怎么找？？</p>
+<p><strong>猜测：</strong>这是个Activity，既然是详情页面，那么根据中国，程序员的英语水平命名的话，应该和Detail  和 Activity有关。好找一下。</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-jd-gui-class-list.png" alt="jd-gui显示jar包文件"></p>
+<p>如图所示，可以看到，这个jar里面大多数是没有用的，都是些第三方的引入。被打包进来的。真正我们写的代码在如图箭头指向的包中。是主要的Activity。找来找去，还真找到了一个叫<code>DetailActivity.class</code>的类。哈哈…</p>
+<p>打开一看彻底懵逼：全是a啊b啊的。这特么怎么看。没办法，反编译比人的工程代码，需要极大的耐心。慢慢来看，有些小技巧在里面，我们并不需要全看，要想理解大体思路，也需要一定的代码基础。至少自己独立架构过一个项目。或者参与过很多项目。</p>
+<p><strong>思路：</strong>接下来要做的就是<code>找到显示着段文字的View</code>—&gt;<code>找到这个View的赋值过程</code>—&gt;<code>找到这个值得来源</code>—&gt;<code>这个来源中一定包含解密过程</code>这个思路想起了简单，但是操作起来想当复制，我们可以看到这个<code>DetailActivity.class</code>类大约有几千行代码啊。如何找？</p>
+<p><strong>猜测：</strong>据我所知，在Android常用的显示文本的控件也就那么三个<code>TextView</code>,<code>EditText</code>,<code>WebView</code>。到底是哪个，我们要借助于一个工具叫<code>Android Device Monitor</code> 这是分析比人程序布局的利器啊。如何使用？<a href="http://febsky.me" target="_blank" rel="noopener">这个地方先空一下，改天补上</a> 因为用起来不难，但是描述起来很烦人。来看分析截图：</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-search-result-adm.png" alt="字典详情页面分析截图"></p>
+<p>从红色箭头标出的部分看，6不6，这界面用了什么View，View的层级关系，View的Id都能得到。拿到了这些再去<code>DetailActivity.class</code>中分析是不是就简单多了。可以确定这个就是为WebView赋值而已嘛。找到WebView的赋值的地方，也就找到了数据源了。这时候就兴奋的去<code>DetailActivity.class</code>中找<code>WevView</code>了，我去，没有？？？why?  </p>
+<p><strong>猜测：</strong>页面用了Fragment，数据在Fragment中，界面用了组合View，WebView在组合View中。分析到这里似乎难以用一种固定的方式分析了，好像要凭感觉？怎么办，转向layout 的xml文件，找点突破口。这时候就用到jadx出厂了，为啥？自己对比。<br><img src="/images/2016/07/2016-07-09-kuaikuaicha-jadx.png" alt="jadx"></p>
+<p>从图片中可以看到，我们很容易拿到了，这个activity的布局文件。打开它。</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-search-result-layout.png" alt="detail.xml"></p>
+<p>分析后发现果然，主要的数据都放到了ViewPager中。好啊，接下来的主要工作就转战这个ViewPager，在这个DetailActivity中可定有这个Viewpager的引用。继续用jadx。搜索这个ViewPager的id找到，他的引用。如下图。</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-search-result-viewpager.png" alt="查找ViewPager的引用"></p>
+<p>好嘛，兄弟，你在Activity中的引用叫this.B啊，让我这个好找啊。既然找到了ViewPager，我们想要ViewPager中的每一个Pager的数据，怎么找，找啥？找<code>Adapter</code>不论是啥，一定会有setAdapter这个方法。继续搜索。<code>this.B.setAdapter</code></p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-search-jadx-adapter.png" alt="查找Adapter的设置方法。"></p>
+<p>一切如上图。其实感觉好的可以看到我们的方框框起来的就是我们最终要找的。好这个PagerAdapter的名字竟然叫<code>j</code>。Adapter有两种方式存在，一种是单独的文件，另一种是匿类的方式，这就是我们的开发常识了。先猜测就在本文件中吧。搜索<code>Adapter</code>.如下图：</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-search-detail.png" alt="Adapter搜索。"></p>
+<p>从上图中我们可以分析出ViewPager的View集合了，<code>this.a.C</code>认真读下代码，这个<code>this</code>指的是<code>j</code>也即是PagerAdapter的实例对象。而a，指的是<code>DetailActivity.this</code>,好了，集合对象找到了就是DetailActivity中的<code>C</code>,搜索<code>this.C</code>,结果如下图：</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-jadx-this-c.png" alt="搜索this.C ViewPager的Pager页"></p>
+<p>图片中包含唯一的自定义View就是<code>DetailContentView</code>,打开它看看。哈，果然WebView就在这里面。如下图：</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-DetailContentView.png" alt="DetailContentView"></p>
+<p>这货对外暴露的设置内容的方法为<code>a(string)</code>,好。在DetailActivity中可以看到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">this.U = (DetailContentView) inflate.findViewById(R.id.detail_zhujie_id);</span><br><span class="line">this.V = (DetailContentView) inflate.findViewById(R.id.detail_xiangjie);</span><br><span class="line">this.W = (DetailContentView) inflate.findViewById(R.id.detail_guhanyu);</span><br><span class="line">this.X = (DetailContentView) inflate.findViewById(R.id.detail_kangxi);</span><br><span class="line">this.Y = (DetailContentView) inflate.findViewById(R.id.detail_shuowen);</span><br><span class="line">this.Z = (DetailContentView) inflate.findViewById(R.id.detail_wys_id);</span><br></pre></td></tr></table></figure>
+<p>我们从这里面随便拿一个分析就行。我就选<code>this.W</code>吧。这个对应详情页的<code>古汉语</code>展开的详情。</p>
+<p>那么这个this.W要想设置数据可定调用了a方法。搜索this.W 大小写敏感。注意自己过滤一些无关的搜索。结果可以看到唯一符合条件的是：</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-jadx-this.W.png" alt="搜索赋值方法"></p>
+<p>可以看到，这个<code>p.c(this,this.aX.c)+this.aX.c)</code>就是获取数据源的方法。猜测，这个<code>p.c</code>方法可能是某个帮助类。对数据进行处理，也可能是某个查询类根据传入的参数来查询，到底是什么呢？我们用jd-gui来帮助我们跟进代码。来跟进参数<code>this.aX.c</code>打这个东西。（P.S.这个p.c也是相当有用的。剧透一下用于字符串的格式化）如下图：</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-jd-gui-this.a.c.png" alt="数据库查询类"></p>
+<p>可以看到 aX就是上图中a这个类的对象，而c就是这个对象的成员，在结合上面的拼音，我们断定，这个a类是和数据库表结构对应的Bean类。进而我断定这个a的外部类就是数据库表的查询类。查询方法在上面。数据库表结构如下图：</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-db-table-ui.png" alt="古汉语的表结构"></p>
+<p>从上上个图中，我们从a类的定义往上看，猜我看到了啥。哈哈，<code>getBlob</code>方法，很多时候感觉还是很重要的。一种熟悉的感觉有木有。一开始的时候我们就是用他读的数据的那个二进制字段。从这行代码往下读，看不懂？我也看不懂。但是我读出来，这个a类中的c字段就是我们要的东西。继续看这个c是怎么获取来的？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locala.c = q.a(paramList,i)    //paramlist 就是我们的二进制byte数组，是数组的长度，哈哈，这个方法就是解密方法喽。</span><br></pre></td></tr></table></figure></p>
+<p>我们要做的就是找到，这个方法，把他提取出来，就能解密数据所有的二进制了。这是个静态方法，是比较独立的工具类。所以提取没有什么难度？但是也遇到很多问题，关键是有些加密代码看不懂。</p>
+<hr>
+<p>万里长征走一半了？No，才刚刚开始。还记得我们要干嘛嘛？要拿到解密后数据的数据。继续吧：</p>
+<p>用<code>jd-gui</code>跟进代码。<code>q.a(byte[],int)</code>。反编译查找方法时候一定注意方法签名。有可能都是特么的<code>a</code> 但都是重载，别找错了。这个方法传递一个加密后的二进制数据和他的长度进去，返回一个解密后的字符串。</p>
+<p>我发现不能再往下写了，再写人家的加密算法就给拿出来了。</p>
+<p>来看这个方法的签名：<br><img src="/images/2016/07/2016-07-09-kuaikuaicha-encrypt-method.png" alt="解密方法签名"><br><strong>P.S.看反编译后的代码要学会自动过滤无关代码</strong></p>
+<p>这个方法有用的即使三行。而这三行中唯一不知道的就是d也就是<code>d.getBytes()</code>中的d，继续分析这个类看看这个d是如何获取的。a(byte[],int)是个静态方法，所以d不可能在构造方法中初始化，一定在这个方法内初始化的，为啥找不到？？？对比<code>jadx</code>，效果如下图：</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-mtehod-a.png" alt="jadx反编译a方法"></p>
+<p>从上图可以看到，jadx的反编译结果，比jd-gui多了一个调用<code>a()</code>a的空方法，这才符合我的猜想嘛。接下来看看这个a()的定义，只要能拿到d的值。这个解密过程就算完成了。哈哈，这个不能贴了，这是人家的密钥生成方式。不过这个方法我是真心看不懂，不过没关系，这个方法没有引用其他的东西，直接拷出来，引入生成一个d就行了。至此解密完成。如下图所示：</p>
+<p><img src="/images/2016/07/2016-07-09-kuaikuaicha-result.png" alt="解密后的数据"></p>
+<p>这不太对啊。这数据格式太丑了，还包含什么乱七八糟的字符？要处理这些就是前面所说的字符串格式化。加入css样式和加入html标签。这个过程更是相当复杂。各种猜测和尝试，其中还借助了Smali文件，重新打包，打印log等。不过还好，最终成功了，我给封装成<code>ExplainUtil</code>,哈哈他的app中也是这么命名的，不过混淆过后就成了a，b，c。。。这种乱七八糟的东西了。</p>
+<p>这篇文章写了五个小时~~~</p>
+<p><a href="http://febsky.me" target="_blank" rel="noopener">http://febsky.me</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2016/07/29/2016-07-29-从别人app(Android)中拿数据/" data-id="cjqeijzbj00a48w24za5i3veb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/解密/">解密</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2016-07-27-NodeJs包管理npm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/27/2016-07-27-NodeJs包管理npm/" class="article-date">
+  <time datetime="2016-07-27T07:30:35.000Z" itemprop="datePublished">2016-07-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Nodejs/">Nodejs</a>►<a class="article-category-link" href="/categories/Nodejs/npm/">npm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/27/2016-07-27-NodeJs包管理npm/">NodeJs包管理npm</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>node 版本更新 n 的使用</p>
+<p> node有一个模块叫 <code>n</code>，是专门用来管理node.js的版本的。</p>
+<p> <code>$ npm install -g n</code>  安装n模块：</p>
+<p> <code>$ sudo n stable</code>  升级node.js到最新稳定版</p>
+<p> <code>$ sudo n 5.8.0</code>   升级node.js到指定版本号</p>
+<p> 输入n后输出当前已经安装的node版本以及正在使用的版本（前面有一个o），你可以通过移动上下方向键来选择要使用的版本，最后按回车生效。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ n</span><br><span class="line">     6.0.0 </span><br><span class="line"> o   5.8.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>npm的常用命令</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">npm -v          <span class="comment">#显示版本，检查npm 是否正确安装。</span></span><br><span class="line">npm install express   <span class="comment">#安装express模块</span></span><br><span class="line">npm install -g express  <span class="comment">#全局安装express模块</span></span><br><span class="line">npm list         <span class="comment">#列出已安装模块</span></span><br><span class="line">npm show express     <span class="comment">#显示模块详情</span></span><br><span class="line">npm update        <span class="comment">#升级当前目录下的项目的所有模块</span></span><br><span class="line">npm update express    <span class="comment">#升级当前目录下的项目的指定模块</span></span><br><span class="line">npm update -g express  <span class="comment">#升级全局安装的express模块</span></span><br><span class="line">npm uninstall express  <span class="comment">#删除指定的模块</span></span><br><span class="line">npm update –g  更新你已经安装的NPM库</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>n 的基本操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> 安装</span><br><span class="line">$ n 8.0.0</span><br><span class="line">安装最新版本</span><br><span class="line">$ n latest</span><br><span class="line">安装稳定版本</span><br><span class="line">$ n stable</span><br><span class="line">删除某个版本</span><br><span class="line">$ n rm 8.0.0</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2016/07/27/2016-07-27-NodeJs包管理npm/" data-id="cjqeijzbc009m8w24xlxxudcq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
 
     </footer>
   </div>
@@ -634,7 +892,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -645,7 +903,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/逆向/">逆向</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/">ndk</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/jni/">jni</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/逆向/">逆向</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
     </div>
   </div>
 
@@ -655,7 +913,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jni/">jni</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ndk/">ndk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
     </div>
   </div>
 
@@ -665,7 +923,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.25px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向/" style="font-size: 13.75px;">逆向</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 15.56px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.11px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.11px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.11px;">Django</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.11px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.11px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.89px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.22px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.22px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PS笔记/" style="font-size: 12.22px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.22px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.33px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.11px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.11px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/jni/" style="font-size: 10px;">jni</a> <a href="/tags/ndk/" style="font-size: 10px;">ndk</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.11px;">其他</a> <a href="/tags/加密/" style="font-size: 13.33px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.11px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.22px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 14.44px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.22px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向/" style="font-size: 17.78px;">逆向</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a> <a href="/tags/麻花影视/" style="font-size: 16.67px;">麻花影视</a>
     </div>
   </div>
 
@@ -674,7 +932,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
     </div>
   </div>
 
@@ -687,23 +945,23 @@
       <ul>
         
           <li>
-            <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
+            <a href="/2018/12/27/2018-12-27-麻花影视会员蓝关分析（方案不可行）/">2018-12-27-麻花影视会员蓝关分析（方案不可行）</a>
           </li>
         
           <li>
-            <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
+            <a href="/2018/12/25/2018-12-25-麻花影视去除热门视频强制分享的要求（完成）/">2018-12-25-麻花影视去除热门视频强制分享的要求（完成）</a>
           </li>
         
           <li>
-            <a href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/">Mac下Android源码（AOSP）编译环境搭建方法</a>
+            <a href="/2018/12/18/2018-12-18-麻花影视模拟发送请求（完成）/">2018-12-18-麻花影视模拟发送请求（完成）</a>
           </li>
         
           <li>
-            <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
+            <a href="/2018/12/17/2018-12-17-解密麻花影视视频播放地址（完成）/">2018-12-17-解密麻花影视视频播放地址（完成）</a>
           </li>
         
           <li>
-            <a href="/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/">PS（PhotoShop）基础知识（三）</a>
+            <a href="/2018/12/16/2018-12-16-绕过麻花影视抓包检测（完成）/">2018-12-16-绕过麻花影视抓包检测（完成）</a>
           </li>
         
       </ul>

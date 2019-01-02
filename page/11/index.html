@@ -69,14 +69,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2015-01-13-PostGres数据库导入导出" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-03-12-JNI Android NDK开发（一）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/13/2015-01-13-PostGres数据库导入导出/" class="article-date">
-  <time datetime="2015-01-13T08:06:59.000Z" itemprop="datePublished">2015-01-13</time>
+    <a href="/2015/03/12/2015-03-12-JNI Android NDK开发（一）/" class="article-date">
+  <time datetime="2015-03-12T15:35:12.000Z" itemprop="datePublished">2015-03-12</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
+    <a class="article-category-link" href="/categories/Android/">Android</a>
   </div>
 
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/13/2015-01-13-PostGres数据库导入导出/">PostGres数据库导入导出</a>
+      <a class="article-title" href="/2015/03/12/2015-03-12-JNI Android NDK开发（一）/">JNI Android NDK开发（一）</a>
     </h1>
   
 
@@ -95,33 +95,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="数据导出，备份"><a href="#数据导出，备份" class="headerlink" title="数据导出，备份"></a>数据导出，备份</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[node@gpmather ~]$ pg_dump -f clickworld.sql -i  -C -E UTF8 -n public  -U admin -h 192.168.1.87 -W clinkworld</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">假设我在192.168.1.87 上有一个名为 clinkworld的数据库，想把它备份到装有pg_dump服务的任何主机上，我在这个装有pg_dump服务的主机或者客户端，运行以上代码</span><br><span class="line"></span><br><span class="line">[code lang=&quot;sql&quot;]</span><br><span class="line"></span><br><span class="line">一般选项:</span><br><span class="line"></span><br><span class="line">  -f, --file=FILENAME          输出文件或目录名</span><br><span class="line"></span><br><span class="line">  -F, --format=c|d|t|p         输出文件格式 (定制, 目录, tar)</span><br><span class="line"></span><br><span class="line">                               明文 (默认值))</span><br><span class="line"></span><br><span class="line">  -v, --verbose                详细模式</span><br><span class="line"></span><br><span class="line">  -V, --version                输出版本信息，然后退出</span><br><span class="line"></span><br><span class="line">  -Z, --compress=0-9           被压缩格式的压缩级别</span><br><span class="line"></span><br><span class="line">  --lock-wait-timeout=TIMEOUT  在等待表锁超时后操作失败</span><br><span class="line"></span><br><span class="line">  -?, --help                   显示此帮助, 然后退出</span><br><span class="line"></span><br><span class="line">控制输出内容选项:</span><br><span class="line"></span><br><span class="line">  -a, --data-only              只转储数据,不包括模式</span><br><span class="line"></span><br><span class="line">  -b, --blobs                  在转储中包括大对象</span><br><span class="line"></span><br><span class="line">  -c, --clean                  在重新创建之前，先清除（删除）数据库对象</span><br><span class="line"></span><br><span class="line">  -C, --create                 在转储中包括命令,以便创建数据库</span><br><span class="line"></span><br><span class="line">  -E, --encoding=ENCODING      转储以ENCODING形式编码的数据</span><br><span class="line"></span><br><span class="line">  -n, --schema=SCHEMA          只转储指定名称的模式</span><br><span class="line"></span><br><span class="line">  -N, --exclude-schema=SCHEMA  不转储已命名的模式</span><br><span class="line"></span><br><span class="line">  -o, --oids                   在转储中包括 OID</span><br><span class="line"></span><br><span class="line">  -O, --no-owner               在明文格式中, 忽略恢复对象所属者</span><br><span class="line"></span><br><span class="line">  -s, --schema-only            只转储模式, 不包括数据    只导出数据库结构</span><br><span class="line"></span><br><span class="line">  -S, --superuser=NAME         在明文格式中使用指定的超级用户名</span><br><span class="line"></span><br><span class="line">  -t, --table=TABLE            只转储指定名称的表</span><br><span class="line"></span><br><span class="line">  -T, --exclude-table=TABLE    不转储指定名称的表</span><br><span class="line"></span><br><span class="line">  -x, --no-privileges          不要转储权限 (grant/revoke)</span><br><span class="line"></span><br><span class="line">  --binary-upgrade             只能由升级工具使用</span><br><span class="line"></span><br><span class="line">  --column-inserts             以带有列名的INSERT命令形式转储数据</span><br><span class="line"></span><br><span class="line">  --disable-dollar-quoting     取消美元 (符号) 引号, 使用 SQL 标准引号</span><br><span class="line"></span><br><span class="line">  --disable-triggers           在只恢复数据的过程中禁用触发器</span><br><span class="line"></span><br><span class="line">  --exclude-table-data=TABLE   不转储指定名称的表中的数据</span><br><span class="line"></span><br><span class="line">  --inserts                    以INSERT命令，而不是COPY命令的形式转储数据</span><br><span class="line"></span><br><span class="line">  --no-security-labels         不转储安全标签的分配</span><br><span class="line"></span><br><span class="line">  --no-tablespaces             不转储表空间分配信息</span><br><span class="line"></span><br><span class="line">  --no-unlogged-table-data     不转储没有日志的表数据</span><br><span class="line"></span><br><span class="line">  --quote-all-identifiers      所有标识符加引号，即使不是关键字</span><br><span class="line"></span><br><span class="line">  --section=SECTION            备份命名的节 (数据前, 数据, 及 数据后)</span><br><span class="line"></span><br><span class="line">  --serializable-deferrable   等到备份可以无异常运行</span><br><span class="line"></span><br><span class="line">  --use-set-session-authorization</span><br><span class="line"></span><br><span class="line">                               使用 SESSION AUTHORIZATION 命令代替</span><br><span class="line"></span><br><span class="line">                ALTER OWNER 命令来设置所有权</span><br><span class="line"></span><br><span class="line">联接选项:</span><br><span class="line"></span><br><span class="line">  -h, --host=主机名        数据库服务器的主机名或套接字目录</span><br><span class="line"></span><br><span class="line">  -p, --port=端口号        数据库服务器的端口号</span><br><span class="line"></span><br><span class="line">  -U, --username=名字      以指定的数据库用户联接</span><br><span class="line"></span><br><span class="line">  -w, --no-password        永远不提示输入口令</span><br><span class="line"></span><br><span class="line">  -W, --password           强制口令提示 (自动)</span><br><span class="line"></span><br><span class="line">  --role=ROLENAME          在转储前运行SET ROLE</span><br></pre></td></tr></table></figure>
-<h2 id="数据导入，数据恢复"><a href="#数据导入，数据恢复" class="headerlink" title="数据导入，数据恢复"></a>数据导入，数据恢复</h2><p><code>[node@gpmather ~]$  psql -f clickworld.sql -h 192.168.1.108 -U admin -W clinkworld</code></p>
-<p>我把本地的 clickworld.sql 这个文件中的数据恢复到192.168.1.108 这台主机，并且创建表，但是在192.168.1.108 上 clinkworld 是先要创建好的。</p>
-<p>附：</p>
-<p>   最后一个参数，是数据库名称了</p>
-<ol>
-<li><p>只导出所有对象的数据库结构</p>
-<p>C:>pg_dump -f backup.sql -i  -C -E UTF8 -n public -s  -U admin -h localhost -W clinkworld</p>
-</li>
-<li><p>导出所有对象的数据库结构和数据</p>
-<p>C:>pg_dump -f backup.sql -i  -C -E UTF8 -n public  -U admin -h localhost -W clinkworld</p>
-<p>没有-s参数</p>
-</li>
-<li><p>只导出所有的表数据</p>
-<p>C:>pg_dump -f backup.sql -i -a -C -E UTF8 -n public  -U admin -h localhost -W clinkworld</p>
-<p>-a 只导出数据</p>
-</li>
-</ol>
-
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">1</span>. Java本地接口</span><br><span class="line"></span><br><span class="line">    是一个中间件，沟通java和本地的C函数库的中间件。</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>. 为什么用JNI</span><br><span class="line"></span><br><span class="line">    Java是不能进行驱动开发的，所谓的驱动开发是指，直接的操纵硬件。</span><br><span class="line"></span><br><span class="line">    从而JNI扩展了Java虚拟机的能力。</span><br><span class="line"></span><br><span class="line">    可以提高效率，增强音视频的处理，</span><br><span class="line"></span><br><span class="line">    代码复用，直接用Java调用C函数库</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.  C语言基础</span><br><span class="line"></span><br><span class="line">    typedef <span class="keyword">int</span> INT ;  <span class="comment">//给int类型起个别名，这个关键字是给某个类型起个别名</span></span><br><span class="line"></span><br><span class="line">    #define PI 3.14    //这个在编译的时候会用3.14直接替换代码中的PI这个字符</span><br><span class="line"></span><br><span class="line">    C代码在不同的CPU上运行的结果也是不一样的。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.  NDK  Native developer kits</span><br><span class="line"></span><br><span class="line">    Android提供的一个交叉编译的工具链</span><br><span class="line"></span><br><span class="line">    交叉编译：把weindows平台下写好的C代码，打包编译成Linux下可以用的函数库。</span><br><span class="line"></span><br><span class="line">    （Windows下的函数库是以.dll结尾，Linux下的函数库以.so结尾）</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.  Ndk目录结构</span><br><span class="line"></span><br><span class="line">	Build     NDK搭建环境</span><br><span class="line"></span><br><span class="line">	Docs     ndk开发的文档 </span><br><span class="line"></span><br><span class="line">	Platforms  ndk支持的平台 </span><br><span class="line"></span><br><span class="line">	Arm  平台  英国arm公司设计出来  靠专利赚钱市场占有率非常高 功耗比较低</span><br><span class="line"></span><br><span class="line">	Mips  cpu架构  龙芯    cos   copy other system</span><br><span class="line"></span><br><span class="line">	x86  intel公司  没有明显的优势   k900</span><br><span class="line"></span><br><span class="line">	Samples  提供了示例代码 </span><br><span class="line"></span><br><span class="line">	Sources  ndk是开源, ndk的源码 </span><br><span class="line"></span><br><span class="line">	Tests    测试的工具链 </span><br><span class="line"></span><br><span class="line">	Toolchains 提供了交叉编译的工具链 </span><br><span class="line"></span><br><span class="line">	ndk-build.cmd  批处理指令 ,交叉编译</span><br><span class="line"></span><br><span class="line">	把ndk-build 配置到环境变量中</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2015/01/13/2015-01-13-PostGres数据库导入导出/" data-id="cjqeijz80000s8w24ilyb536m" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2015/03/12/2015-03-12-JNI Android NDK开发（一）/" data-id="cjqeijz8g001x8w24rjav73s7" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
   </div>
@@ -130,14 +111,14 @@
 
 
   
-    <article id="post-2014-12-11-Postgres 序列操作" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-03-08-Android的屏幕适配（包括字体适配）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/04/2014-12-11-Postgres 序列操作/" class="article-date">
-  <time datetime="2015-01-04T03:23:39.000Z" itemprop="datePublished">2015-01-04</time>
+    <a href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" class="article-date">
+  <time datetime="2015-03-08T11:33:43.000Z" itemprop="datePublished">2015-03-08</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
+    <a class="article-category-link" href="/categories/Android/">Android</a>
   </div>
 
   </div>
@@ -148,7 +129,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/2014-12-11-Postgres 序列操作/">Postgres 序列操作</a>
+      <a class="article-title" href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/">Android 的屏幕适配（包括字体适配）</a>
     </h1>
   
 
@@ -156,22 +137,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在用到postgres的时候我们用到这么一个功能：</p>
-<ol>
-<li>需要一个自增的主键，在postgres中，要增加一列来充当自增主键的话，必须增加一个序列，</li>
-</ol>
-<p>即使用serial8类型能指定自增，我们也知道系统会默认为我们的这张表添加一个自增序列保存。</p>
-<ol start="2">
-<li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可用的序列函数有∶</span><br><span class="line"></span><br><span class="line">nextval</span><br><span class="line"></span><br><span class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </span><br><span class="line"></span><br><span class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</span><br><span class="line"></span><br><span class="line">currval</span><br><span class="line"></span><br><span class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </span><br><span class="line"></span><br><span class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</span><br><span class="line"></span><br><span class="line">lastval</span><br><span class="line"></span><br><span class="line">返回当前会话里最近一次 nextval 返回的数值。 </span><br><span class="line"></span><br><span class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </span><br><span class="line"></span><br><span class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</span><br><span class="line"></span><br><span class="line">setval</span><br><span class="line"></span><br><span class="line">重置序列对象的计数器数值。</span><br><span class="line"></span><br><span class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 true，</span><br><span class="line"></span><br><span class="line">表示下一次 nextval 将在返回数值之前递增该序列。</span><br><span class="line"></span><br><span class="line">在三参数形式里，is_called 可以设置为 true 或 false。</span><br><span class="line"></span><br><span class="line">如果你把它设置为 false，那么下一次 nextval 将返回这里声明的数值，</span><br><span class="line"></span><br><span class="line">而从随后的 nextval 才开始递增该序列。</span><br><span class="line"></span><br><span class="line">比如</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42);    //下次nextval将返回 43</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42, true);     //和上面一样</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42, false);    //下次nextval将返回 42</span><br><span class="line"></span><br><span class="line">setval 返回的结果就是它的第二个参数的数值。</span><br></pre></td></tr></table></figure>
+        <p><strong>2018-11-09 修改</strong></p>
+<h2 id="1、适配"><a href="#1、适配" class="headerlink" title="1、适配"></a>1、适配</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">最好的适配方案 多套图，有多少个分辨率就切多少套图，</span><br><span class="line">800*480 1280*720 1920*1080</span><br><span class="line">一般小应用只是一套图的话用（1280*720）</span><br><span class="line">适配方式：(这些屏幕都是16:9的长宽比)</span><br></pre></td></tr></table></figure>
+<h4 id="a-图片适配-和手机的像素密度有关，这个像素密度可以用勾股定理来计算"><a href="#a-图片适配-和手机的像素密度有关，这个像素密度可以用勾股定理来计算" class="headerlink" title="a) 图片适配(和手机的像素密度有关，这个像素密度可以用勾股定理来计算)"></a>a) 图片适配(和手机的像素密度有关，这个像素密度可以用勾股定理来计算)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ldpi  ---&gt;;  <span class="number">320</span>*<span class="number">240</span>   <span class="number">1</span>dp = <span class="number">0.75</span>px      ~<span class="number">120</span></span><br><span class="line"></span><br><span class="line">mdpi  ---&gt;;  <span class="number">480</span>*<span class="number">320</span>   <span class="number">1</span>dp = <span class="number">1</span>px    如果没有，加载hdpi里面的图片     ~<span class="number">160</span></span><br><span class="line"></span><br><span class="line">hdpi  ---&gt;;  <span class="number">800</span>*<span class="number">480</span>   <span class="number">1</span>dp = <span class="number">1.5</span>px   <span class="number">3.7</span>-<span class="number">4.3</span>寸左右     ~<span class="number">240</span></span><br><span class="line"></span><br><span class="line">xhdpi ---&gt;;  <span class="number">1280</span>*<span class="number">720</span>  <span class="number">1</span>dp = <span class="number">2</span>px(可以以这个为标准设计和切图)       ~<span class="number">320</span></span><br><span class="line"></span><br><span class="line">xxhdpi  ---&gt;; <span class="number">1920</span>*<span class="number">1080</span>  <span class="number">1</span>dp = <span class="number">3</span>px     ~<span class="number">480</span></span><br><span class="line"></span><br><span class="line">xxxhdpi ---&gt;; <span class="number">1440</span> * <span class="number">2560</span> <span class="number">1</span>dp = <span class="number">4</span>px     ~<span class="number">640</span></span><br><span class="line"></span><br><span class="line">综上来看dp是达不到完全适配的。</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意，Android手机会自动缩放图片，比如，你的手机是xxhdpi的，但是只有一张图片，假设这张图片</span></span><br><span class="line"><span class="comment">//的大小是512*512 的，你把这张图片放大xxxhdpi的文件夹下，那么你的手机也会找到这张图片的的，</span></span><br><span class="line"><span class="comment">//不过，他会把这张图片尺寸缩小，缩成384*384尺寸的放到你的ImageView中，假设你的ImageView的宽高</span></span><br><span class="line"><span class="comment">//设置的是自适应。那这个384是怎么来的那，就是按照上面的dp和px的比例算出来的。512 * (3/4) = 384</span></span><br><span class="line"><span class="comment">//下面是当面流行的安卓手机的屏幕尺寸和分辨率：</span></span><br><span class="line"><span class="comment">//小米 3和小米4 屏幕尺寸和分辨率：        5英寸 1920×1080像素</span></span><br><span class="line"><span class="comment">//魅族MX2 屏幕尺寸和分辨率：                 4.4英寸 1280×800像</span></span><br><span class="line"><span class="comment">//魅族MX3 屏幕尺寸和分辨率：                 5.1英寸 1800×1080像素</span></span><br><span class="line"><span class="comment">//HTC  one屏幕尺寸和分辨率：               4.7英寸 1920×1080像素</span></span><br><span class="line"><span class="comment">//华为荣耀6屏幕尺寸和分辨率：             5英寸 1920×1080像素</span></span><br><span class="line"><span class="comment">//华为p6屏幕尺寸和分辨率：                 4.7英寸 1280×720像素</span></span><br><span class="line"><span class="comment">//华为p7屏幕尺寸和分辨率：                  5英寸 1920×1080像素</span></span><br></pre></td></tr></table></figure>
+<h4 id="b-dimens-xml-适配-放置了一些宽高的尺寸信息"><a href="#b-dimens-xml-适配-放置了一些宽高的尺寸信息" class="headerlink" title="b) dimens.xml 适配(放置了一些宽高的尺寸信息)"></a>b) dimens.xml 适配(放置了一些宽高的尺寸信息)</h4><p>为了适配不同像素密度的手机，我们创建适配的value文件夹，命名为：(value-1280x720)然后在里面创建dimens.xml ,不过这个xml里面有的数据，都要在value文件夹下的dimens.xml中存在一份，只是值不一样而已。</p>
+<h4 id="c-布局适配-layout-文件夹"><a href="#c-布局适配-layout-文件夹" class="headerlink" title="c) 布局适配 layout/文件夹"></a>c) 布局适配 layout/文件夹</h4><p>和上面一样，为了适配特别像素的手机，我们同样正在res目录下创建一个名为：(layout-1280x720)的文件夹。</p>
+<h4 id="d-java代码适配"><a href="#d-java代码适配" class="headerlink" title="d) java代码适配"></a>d) java代码适配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">给当前的控件设置宽高为屏幕的宽高的百分比</span><br><span class="line">//创建一个存储屏幕相关信息的对象</span><br><span class="line">DisplayMetrics displayMetrics = new DisplayMetrics();</span><br><span class="line">//通过下面的方式把屏幕信息存储到displayMetrics对象中</span><br><span class="line">getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);</span><br><span class="line">//获取宽高</span><br><span class="line">int width = displayMetrics.widthPixels;</span><br><span class="line">int height = displayMetrics.heightPixels;</span><br><span class="line"></span><br><span class="line">//将对应的宽高设置在其父控件上，然后作用在子控件上</span><br><span class="line">//假设这个layout为一本RelativeLayout中包含一个TextView</span><br><span class="line">//我们想要这个TextView为RelativeLayout的一半。</span><br><span class="line">RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams((int)(width*0.5+0.5),    //从数学角度进行四舍五入，取屏幕宽带的一半(int)(height*0.5+0.5));</span><br><span class="line">TextView tv = (TextView)findViewById(R.id.tv);</span><br><span class="line">tv.setLayoutParams(layoutParams);</span><br></pre></td></tr></table></figure>
+<h4 id="e-权重适配"><a href="#e-权重适配" class="headerlink" title="e) 权重适配"></a>e) 权重适配</h4><p>剩余空间的分配规则，首先要设置<code>android:layout_width=&quot;0dp&quot;</code>或者<code>android:layout_height=&quot;0dp&quot;</code> 然后设置<code>android:layout_weight=&quot;1&quot;</code> 并且只能在LinearLayout中使用</p>
+<h2 id="2、px和dp相互转换工具方法"><a href="#2、px和dp相互转换工具方法" class="headerlink" title="2、px和dp相互转换工具方法"></a>2、px和dp相互转换工具方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DensityUtil</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 根据手机的分辨率从 dp 的单位 转成为 px(像素) </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">dip2px</span><span class="params">(Context context, <span class="keyword">float</span> dpValue)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density;  </span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (dpValue * scale + <span class="number">0.5f</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">px2dip</span><span class="params">(Context context, <span class="keyword">float</span> pxValue)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density;  </span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (pxValue / scale + <span class="number">0.5f</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3、字体适配"><a href="#3、字体适配" class="headerlink" title="3、字体适配"></a>3、字体适配</h2><p>安卓4.0之后用的字体是Roboto。中文字体：方正兰亭黑体</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以在在<span class="number">720</span>*<span class="number">1280</span>的基础上的字体设计大小。</span><br><span class="line">注释最小字体：<span class="number">12</span>sp  ==  <span class="number">24</span>px</span><br><span class="line">文本字体：<span class="number">14</span>sp  ==  <span class="number">28</span>px</span><br><span class="line">文章标题或图标名称：<span class="number">16</span>sp  ==   <span class="number">32</span>px</span><br><span class="line">导航标题：<span class="number">18</span>sp  ==   <span class="number">36</span>px</span><br></pre></td></tr></table></figure>
+<p>Android 界面设计的一片文章</p>
+<p><a href="http://www.25xt.com/appdesign/6536.html" target="_blank" rel="noopener">http://www.25xt.com/appdesign/6536.html</a></p>
+<h2 id="4、图标设计"><a href="#4、图标设计" class="headerlink" title="4、图标设计"></a>4、图标设计</h2><p>应用程序图标 （Icon）应当是一个 Alpha 通道透明的32位 PNG 图片。由于安卓设备众多，一个应用程序图标需要设计几种不同大小，如：</p>
+<p>LDPI (Low Density Screen，120 DPI)，其图标大小为 36 x 36 px。</p>
+<p>MDPI (Medium Density Screen, 160 DPI)，其图标大小为 48 x 48 px。</p>
+<p>HDPI (High Density Screen, 240 DPI)，其图标大小为 72 x 72 px。</p>
+<p>xhdpi (Extra-high density screen, 320 DPI)，其图标大小为 96 x 96 px。</p>
+<p>xxhdpi 其图标大小为 144 x 144 px。</p>
+<p>xxxhdpi 其图标大小为 192 x 192 px。</p>
+<p> 建议在设计过程中，在四周空出几个像素点使得设计的图标与其他图标在视觉上一致，例如，</p>
+<p>96 x 96 px 图标可以画图区域大小可以设为 88 x 88 px， 四周留出4个像素用于填充（无底色）。</p>
+<p>72 x 72 px 图标可以画图区域大小可以设为 68 x 68 px， 四周留出2个像素用于填充（无底色）。</p>
+<p>48 x 48 px 图标可以画图区域大小可以设为 46 x 46 px， 四周留出1个像素用于填充（无底色）。</p>
+<p>36 x 36 px 图标可以画图区域大小可以设为 34 x 34 px， 四周留出1个像素用于填充（无底色）。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2015/01/04/2014-12-11-Postgres 序列操作/" data-id="cjqeijz7s000c8w242c7sot5u" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" data-id="cjqeijz8i00228w24hxk4o56p" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
   </div>
@@ -180,14 +177,14 @@
 
 
   
-    <article id="post-2015-01-04-Postgres序列操作" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-03-03-Android 图片操作" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/04/2015-01-04-Postgres序列操作/" class="article-date">
-  <time datetime="2015-01-04T03:23:39.000Z" itemprop="datePublished">2015-01-04</time>
+    <a href="/2015/03/03/2015-03-03-Android 图片操作/" class="article-date">
+  <time datetime="2015-03-03T09:55:04.000Z" itemprop="datePublished">2015-03-03</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
+    <a class="article-category-link" href="/categories/Android/">Android</a>
   </div>
 
   </div>
@@ -198,7 +195,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/2015-01-04-Postgres序列操作/">Postgres 序列操作</a>
+      <a class="article-title" href="/2015/03/03/2015-03-03-Android 图片操作/">Android 图片操作</a>
     </h1>
   
 
@@ -206,22 +203,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在用到postgres的时候我们用到这么一个功能：</p>
-<ol>
-<li>需要一个自增的主键，在postgres中，要增加一列来充当自增主键的话，必须增加一个序列，</li>
-</ol>
-<p>即使用serial8类型能指定自增，我们也知道系统会默认为我们的这张表添加一个自增序列保存。</p>
-<ol start="2">
-<li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可用的序列函数有∶</span><br><span class="line"></span><br><span class="line">nextval</span><br><span class="line"></span><br><span class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </span><br><span class="line"></span><br><span class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</span><br><span class="line"></span><br><span class="line">currval</span><br><span class="line"></span><br><span class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </span><br><span class="line"></span><br><span class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</span><br><span class="line"></span><br><span class="line">lastval</span><br><span class="line"></span><br><span class="line">返回当前会话里最近一次 nextval 返回的数值。 </span><br><span class="line"></span><br><span class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </span><br><span class="line"></span><br><span class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</span><br><span class="line"></span><br><span class="line">setval</span><br><span class="line"></span><br><span class="line">重置序列对象的计数器数值。</span><br><span class="line"></span><br><span class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 <span class="keyword">true</span>，</span><br><span class="line"></span><br><span class="line">表示下一次 nextval 将在返回数值之前递增该序列。</span><br><span class="line"></span><br><span class="line">在三参数形式里，is_called 可以设置为 <span class="keyword">true</span> 或 <span class="keyword">false</span>。</span><br><span class="line"></span><br><span class="line">如果你把它设置为 <span class="keyword">false</span>，那么下一次 nextval 将返回这里声明的数值，</span><br><span class="line"></span><br><span class="line">而从随后的 nextval 才开始递增该序列。</span><br><span class="line"></span><br><span class="line">比如</span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>)</span></span>;    <span class="comment">//下次nextval将返回 43</span></span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">true</span>)</span></span>;     <span class="comment">//和上面一样</span></span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">false</span>)</span></span>;    <span class="comment">//下次nextval将返回 42</span></span><br><span class="line"></span><br><span class="line">setval 返回的结果就是它的第二个参数的数值。</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">大图片的加载问题：</span><br><span class="line"></span><br><span class="line">虚拟机分配给每个应用程序的内存大小是有限的，一般为16M如果一个图片太大，用BitmapFactory加载的时候就会出现内存溢出。</span><br><span class="line"></span><br><span class="line">这时候可以：</span><br><span class="line"></span><br><span class="line">BitmapFactory.Options options = new Options();    //设置图片解析选项</span><br><span class="line"></span><br><span class="line">options.inJustDecodeBounds = true;    //因为图片太大无法解析，只能先获取其元数据，从而获取图片的长宽，然后根据屏幕的大小计算缩放比例</span><br><span class="line"></span><br><span class="line">BitmapFactory.decodeFile(&amp;quot;文件路径&amp;quot;,options);    //开始获取文件元数据</span><br><span class="line"></span><br><span class="line">int height = options.outHeight;    //得到图片的高度</span><br><span class="line"></span><br><span class="line">int width = options.outWidth; </span><br><span class="line"></span><br><span class="line">//然后获取屏幕宽高，根据屏幕宽高和图片宽高的比例，得到合适的缩放比</span><br><span class="line"></span><br><span class="line">options.inJustDecodeBounds = false;    //真正的解析图片，如果为True只解析图片的元数据</span><br><span class="line"></span><br><span class="line">options.inSampleSize = 4 ; // 设置图片的缩放比例，以四分之一缩放</span><br><span class="line"></span><br><span class="line">BitmapFactory.decodeFile(&amp;quot;文件路径&amp;quot;,options);</span><br><span class="line"></span><br><span class="line">获取图片的信息：</span><br><span class="line"></span><br><span class="line">ExifInterFace exif = new ExifInterFace(&amp;quot;图片路径.jpg&amp;quot;);</span><br><span class="line"></span><br><span class="line">String pic_time = exif.getAttribute(ExifInterFace.TAG_DATETIME);   //这个获取拍摄时间，获取属性中的参数，类中定义了很多常量</span><br><span class="line"></span><br><span class="line">从系统图库中选择一张图片：</span><br><span class="line"></span><br><span class="line">Intent intent = new Intent();</span><br><span class="line"></span><br><span class="line">intent.setAction(Intent.ACTION_PICK);</span><br><span class="line"></span><br><span class="line">intent.setType(&amp;quot;image/*&amp;quot;);</span><br><span class="line"></span><br><span class="line">//startActivity(intent);</span><br><span class="line"></span><br><span class="line">startActivityForResult(intent,0);    //请求码暂时用不到，设为0</span><br><span class="line"></span><br><span class="line">重写Activity的onActivityResult(。。。。);方法</span><br><span class="line"></span><br><span class="line">创建一个可以被修改的Bitmap:</span><br><span class="line"></span><br><span class="line">Bitmap.createBitmap(高度,宽度,Bitmap.Config.*);    //得到一个空白Bitmap对象</span><br><span class="line"></span><br><span class="line">模拟一个消息，通知系统sd卡被重新挂载：</span><br><span class="line"></span><br><span class="line">Intent intent = new Intent();</span><br><span class="line"></span><br><span class="line">intent.setAction(Intent.ACTION_MEDIA_MOUNTED);</span><br><span class="line"></span><br><span class="line">intent.setData(Uri.fromFile(Environment.getExternalStorageDirectory()));</span><br><span class="line"></span><br><span class="line">sendBroadcast(intent);</span><br><span class="line"></span><br><span class="line">9.path图片必须是png格式的。</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2015/01/04/2015-01-04-Postgres序列操作/" data-id="cjqeijz7x000l8w24fuekxqyq" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2015/03/03/2015-03-03-Android 图片操作/" data-id="cjqeijz8f001u8w242n3wvp1l" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
   </div>
@@ -230,14 +219,14 @@
 
 
   
-    <article id="post-2014-12-23-获取表和字段的元数据的方法" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-02-11-常用的Linux压缩命令" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/12/23/2014-12-23-获取表和字段的元数据的方法/" class="article-date">
-  <time datetime="2014-12-23T10:36:24.000Z" itemprop="datePublished">2014-12-23</time>
+    <a href="/2015/02/11/2015-02-11-常用的Linux压缩命令/" class="article-date">
+  <time datetime="2015-02-11T07:03:43.000Z" itemprop="datePublished">2015-02-11</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/postgres/">postgres</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/压缩/">压缩</a>►<a class="article-category-link" href="/categories/Linux/压缩/Zip/">Zip</a>
   </div>
 
   </div>
@@ -248,7 +237,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/23/2014-12-23-获取表和字段的元数据的方法/">获取表和字段的元数据的方法</a>
+      <a class="article-title" href="/2015/02/11/2015-02-11-常用的Linux压缩命令/">常用的Linux压缩命令</a>
     </h1>
   
 
@@ -256,21 +245,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="外键关系查询语句"><a href="#外键关系查询语句" class="headerlink" title="外键关系查询语句"></a>外键关系查询语句</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tc. CONSTRAINT_NAME,</span><br><span class="line">	tc. TABLE_NAME,</span><br><span class="line">	kcu. COLUMN_NAME,</span><br><span class="line">	ccu. TABLE_NAME <span class="keyword">AS</span> foreign_table_name,</span><br><span class="line">	ccu. COLUMN_NAME <span class="keyword">AS</span> foreign_column_name,</span><br><span class="line">	tc.is_deferrable,</span><br><span class="line">	tc.initially_deferred</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema.table_constraints <span class="keyword">AS</span> tc</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.key_column_usage <span class="keyword">AS</span> kcu <span class="keyword">ON</span> tc. CONSTRAINT_NAME = kcu. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.constraint_column_usage <span class="keyword">AS</span> ccu <span class="keyword">ON</span> ccu. CONSTRAINT_NAME = tc. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	constraint_type = <span class="string">'FOREIGN KEY'</span></span><br><span class="line"><span class="keyword">AND</span> tc. TABLE_NAME = <span class="string">'dimention_goods'</span>;</span><br></pre></td></tr></table></figure>
-<p><a href="http://itroadmap.sinaapp.com/2014/12/23/postgres-%E8%8E%B7%E5%8F%96%E8%A1%A8%E5%92%8C%E5%AD%97%E6%AE%B5%E7%9A%84%E5%85%83%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener"><em><del>不知道如何防止被流氓网站爬取</del></em></a></p>
-<h2>字段详细信息查询语句</h2>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	col.table_schema,</span><br><span class="line">	col. TABLE_NAME,</span><br><span class="line">	col.ordinal_position,</span><br><span class="line">	col. COLUMN_NAME,</span><br><span class="line">	col.data_type,</span><br><span class="line">	col.character_maximum_length,</span><br><span class="line">	col.numeric_precision,</span><br><span class="line">	col.numeric_scale,</span><br><span class="line">	col.is_nullable,</span><br><span class="line">	col.column_default,</span><br><span class="line">	des.description</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema. <span class="keyword">COLUMNS</span> <span class="keyword">col</span></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> pg_description des <span class="keyword">ON</span> col. TABLE_NAME :: regclass = des.objoid</span><br><span class="line"><span class="keyword">AND</span> col.ordinal_position = des.objsubid</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	table_schema = <span class="string">'XXXX'</span></span><br><span class="line"><span class="keyword">AND</span> TABLE_NAME = <span class="string">'XXXX'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	ordinal_position;</span><br></pre></td></tr></table></figure>
-<h2 id="获取所有的表名"><a href="#获取所有的表名" class="headerlink" title="获取所有的表名"></a>获取所有的表名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tablename</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	pg_tables</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	tablename <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'pg%'</span></span><br><span class="line"><span class="keyword">AND</span> tablename <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'sql_%'</span></span><br></pre></td></tr></table></figure>
-<h2 id="mysql中对入插入的触发器"><a href="#mysql中对入插入的触发器" class="headerlink" title="mysql中对入插入的触发器"></a>mysql中对入插入的触发器</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DELIMITER $$</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span></span><br><span class="line">    <span class="comment">/*[DEFINER = &#123; user | CURRENT_USER &#125;]*/</span></span><br><span class="line">    <span class="keyword">TRIGGER</span> <span class="string">`clinkworld_metadata`</span>.<span class="string">`add_tid_fields_relation`</span> <span class="keyword">BEFORE</span> <span class="keyword">INSERT</span></span><br><span class="line">    <span class="keyword">ON</span> <span class="string">`clinkworld_metadata`</span>.<span class="string">`fields_relation`</span></span><br><span class="line">    <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> t_id <span class="keyword">INTO</span> @f1_tid_var <span class="keyword">FROM</span> fields_info <span class="keyword">WHERE</span> <span class="keyword">id</span>=NEW.f1_id;</span><br><span class="line"><span class="keyword">SELECT</span> t_id <span class="keyword">INTO</span> @f2_tid_var <span class="keyword">FROM</span> fields_info <span class="keyword">WHERE</span> <span class="keyword">id</span>=NEW.f2_id;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> NEW.f1_tid=@f1_tid_var;</span><br><span class="line"><span class="keyword">SET</span> NEW.f2_tid=@f2_tid_var;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">END</span>$$</span><br><span class="line"></span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
-<h2 id="主键列信息获取"><a href="#主键列信息获取" class="headerlink" title="主键列信息获取"></a>主键列信息获取</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tc. CONSTRAINT_NAME,</span><br><span class="line">	ccu. TABLE_NAME <span class="keyword">AS</span> primary_table_name,</span><br><span class="line">	ccu. COLUMN_NAME <span class="keyword">AS</span> primary_column_name</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema.table_constraints <span class="keyword">AS</span> tc</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.key_column_usage <span class="keyword">AS</span> kcu <span class="keyword">ON</span> tc. CONSTRAINT_NAME = kcu. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.constraint_column_usage <span class="keyword">AS</span> ccu <span class="keyword">ON</span> ccu. CONSTRAINT_NAME = tc. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	constraint_type = <span class="string">'PRIMARY KEY'</span></span><br></pre></td></tr></table></figure>
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">tar命令</span><br><span class="line"></span><br><span class="line">　　解包：tar zxvf FileName.tar</span><br><span class="line"></span><br><span class="line">　　打包：tar czvf FileName.tar DirName</span><br><span class="line"></span><br><span class="line">gz命令</span><br><span class="line"></span><br><span class="line">　　.tar.gz 和 .tgz</span><br><span class="line"></span><br><span class="line">　　解压：tar zxvf FileName.tar.gz</span><br><span class="line"></span><br><span class="line">　　压缩：tar zcvf FileName.tar.gz DirName</span><br><span class="line"></span><br><span class="line">zip命令</span><br><span class="line"></span><br><span class="line">　　解压：unzip FileName.zip</span><br><span class="line"></span><br><span class="line">　　压缩：zip FileName.zip DirName</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2014/12/23/2014-12-23-获取表和字段的元数据的方法/" data-id="cjqeijz7w000h8w24txy1u7nn" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2015/02/11/2015-02-11-常用的Linux压缩命令/" data-id="cjqeijz82000x8w24kk2yulz5" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgres/">postgres</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zip/">Zip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/压缩/">压缩</a></li></ul>
 
     </footer>
   </div>
@@ -279,293 +261,10 @@
 
 
   
-    <article id="post-2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-02-25-Python中获取某天是某个月中的第几周" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/" class="article-date">
-  <time datetime="2014-12-22T09:33:37.000Z" itemprop="datePublished">2014-12-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SQL/">SQL</a>►<a class="article-category-link" href="/categories/SQL/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/">Navicat Premium 连接sqlserver2008 提示Client安装失败</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>具体保存信息如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Installation of this product failed because it is not supported on this operating system. For information on supported configurations,</span><br><span class="line"></span><br><span class="line">see the product documentation.</span><br></pre></td></tr></table></figure>
-<p><img src="/images/2014/12/03/sqlserver_error.png" alt=""></p>
-<p>解决方法：</p>
-<p>这个要安装一个叫做sqlncli_x64.msi的东西，手动安装，它在你的Navicat的安装目录下面，比如我的在：</p>
-<p><code>D:\Program Files\PremiumSoft\Navicat Premium</code></p>
-<p>如果你的电脑是64位的，就运行安装那个64位的，如果是32 的就运行那个sqlncli.msi。</p>
-<p>然后再进行Sqlserver的链接就不再提示安装出错了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/" data-id="cjqeijz7v000f8w240k175knv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2014-12-11-PostGreSQL ERROR" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/12/18/2014-12-11-PostGreSQL ERROR/" class="article-date">
-  <time datetime="2014-12-18T06:26:53.000Z" itemprop="datePublished">2014-12-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/18/2014-12-11-PostGreSQL ERROR/">PostGreSQL ERROR</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天在用PostGreSQL的命令行操作数据的时候出了下面的一个错误</p>
-<p><a href="http://www.febsky.me/" target="_blank" rel="noopener">我的网站总被一个流氓网站爬取</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mytestdb=# select * from FACTS_SALES;</span><br><span class="line"></span><br><span class="line">ERROR:  relation &amp;quot;facts_sales&amp;quot; does not exist</span><br><span class="line"></span><br><span class="line">LINE 1: select * from FACTS_SALES;</span><br><span class="line"></span><br><span class="line">                      ^</span><br></pre></td></tr></table></figure>
-<p>我就郁闷了，这怎么会没有呢，命名用  \d 命令查看数据库的所有表的时候都能看到啊。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mytestdb=<span class="comment"># \d</span></span><br><span class="line"></span><br><span class="line">                         List of relations</span><br><span class="line"></span><br><span class="line"> Schema |              Name               | Type  | Owner | Storage </span><br><span class="line"></span><br><span class="line">--------+---------------------------------+-------+-------+---------</span><br><span class="line"></span><br><span class="line"> public | FACTS_CATEGORY_SALES_TARGET     | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_INVENTORY_WAREHOUSE       | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_PROCUREMENT               | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_SALES                     | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_SALES_PAYMENT             | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_SALES_PROMOTION           | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_STORE_INVENTORY           | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_STORE_SALES_TARGET        | table | admin | heap</span><br><span class="line"></span><br><span class="line">(<span class="number">8</span> rows)</span><br></pre></td></tr></table></figure>
-<p>原来还有这么一说，如下是网友的解答，很有道理</p>
-<p>建表的时候你在表名上加了双引号，表示表名的强制的和双引号里面的内容一致，也就是说现在表名是大写的。</p>
-<p>你查询的时候如果使用select <em> from ASSIGN_INFO_W; 表名会自动变小写，也就是select </em> from assign_info_w; 这样就查询不到表，</p>
-<p>如果你想要查询到表，可以用这种方式：select * from “ASSIGN_INFO_W”;这样就可以查到了。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test=&gt; select * from ASSIGN_INFO_W;</span><br><span class="line">ERROR:  relation "assign_info_w" does not exist</span><br><span class="line">test=&gt; select * from "ASSIGN_INFO_W";</span><br><span class="line"> DDC_PROJ_NO | RES_ID | ASSIGN_START_DATE | ASSIGN_END_DATE | ASSIGN_PERSENT | ASSIGN_PRE_FLG | INS_USER_ID | INS_TIMESTAMP | INS_PROG_ID | UPD_USER_ID | UPD_TIMESTAMP | UPD_PROG_ID</span><br><span class="line"><span class="comment">-------------+--------+-------------------+-----------------+----------------+----------------+-------------+---------------+-------------+-------------+---------------+-------------</span></span><br><span class="line">(0 rows)</span><br></pre></td></tr></table></figure>
-<p>提示：这种处理方式通常不被建议，最好还是在建表和查询时都不要使用双引号。</p>
-<p>经过网友提示，我发现的确是这么回事，因为我的SQL语句是用数据库建模工具导出的，</p>
-<p>而建模工具自动给加上了双引号。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE TABLE &amp;quot;FACTS_SALES&amp;quot; (</span><br><span class="line"></span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">）；</span><br></pre></td></tr></table></figure>
-<p>暂时还不知道如何取消掉建模工具中的双引号。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2014/12/18/2014-12-11-PostGreSQL ERROR/" data-id="cjqeijz7p00078w24dng6f97e" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2014-12-11-Hive添加数据和查看索引" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/12/11/2014-12-11-Hive添加数据和查看索引/" class="article-date">
-  <time datetime="2014-12-11T01:35:06.000Z" itemprop="datePublished">2014-12-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hive/">Hive</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/11/2014-12-11-Hive添加数据和查看索引/">Hive添加数据和查看索引</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h2><p>#本机路径（跳板机）</p>
-<p>LOAD DATA LOCAL INPATH <code>/tmp/date.txt</code> OVERWRITE INTO TABLE page_view PARTITION(pt=’2008-06-08’)</p>
-<p>#Hadoop路径</p>
-<p>LOAD DATA INPATH <code>/tmp/date.txt</code> OVERWRITE INTO TABLE page_view PARTITION(pt=’2008-06-08’)</p>
-<p>#上面OVERWRITE关键会全表覆盖，如果只是想附加数据，将OVERWRITE去掉即可。 #添加一个分区到表</p>
-<p>ALTER TABLE tmp_xx ADD PARTITION (pt=’100610’) location ‘/group/mywork/hive/xx/pt=100610’ ;</p>
-<p>#当然你可以直接从从其它的表拖数据过来</p>
-<p>INSERT OVERWRITE TABLE TMP_T1 SELECT * FROM TMP_T2;</p>
-<h2 id="显示表的索引-formatted是可选"><a href="#显示表的索引-formatted是可选" class="headerlink" title="显示表的索引 #formatted是可选"></a>显示表的索引 #formatted是可选</h2><p>show formatted index on employees</p>
-<p>show formatted indexed on employees</p>
-<p>索引表的handler，会初始化，定义，验证索引表的schema</p>
-<p>在索引建立时，会使用rebuilding process，读取表为索引表并且写到索引数据库中，所有的存储都会</p>
-<p>索引删除时，会删除明显的索引数据库</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2014/12/11/2014-12-11-Hive添加数据和查看索引/" data-id="cjqeijz7r000b8w246owkqi1z" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hive/">Hive</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-02-25-Django应用uWSGI  admin的样式丢失了  解决方案" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/12/09/2015-02-25-Django应用uWSGI  admin的样式丢失了  解决方案/" class="article-date">
-  <time datetime="2014-12-09T15:14:45.000Z" itemprop="datePublished">2014-12-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Python/">Python</a>►<a class="article-category-link" href="/categories/Python/Django/">Django</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/09/2015-02-25-Django应用uWSGI  admin的样式丢失了  解决方案/">Django应用uWSGI  admin的样式丢失了  解决方案</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Django Admin管理界面样式丢失</p>
-<p>上网搜索了不少文档，多是Apache环境下的解决方案，我配置的是Nginx服务器，所以根据Apache的解决提示</p>
-<p>进而摸索办法，最终要解决这个问题我这里总结有3步（假设已经配置好admin登录系统）：</p>
-<ol>
-<li>修改settings.py中STATIC_ROOT为你的static静态文件的物理路径，比如说我静态文件存放在</li>
-</ol>
-<p>/home/user/www/static中，首先创建www目录下的static文件夹，最后修改settings.py中STATIC_ROOT</p>
-<p>指向/home/user/www/static。</p>
-<ol start="2">
-<li>运行python manage.py collectstatic命令，这将从Django资源包中复制必须的静态文件到STATIC_ROOT</li>
-</ol>
-<p>指示的static文件夹中，这其中包括admin界面所必须的样式表（style）、图片（image）及脚本（js）等。</p>
-<p>这里提示一下，假如不做第1步的话，直接运行这个命令会导致如下的错误提示（最后几行）：</p>
-<p>  `File “/usr/lib/python2.7/dist-packages/django/contrib/staticfiles/management/commands/collectstatic.py”, line 41, in <strong>init</strong></p>
-<pre><code>self.storage = get_storage_class(settings.STATICFILES_STORAGE)()
-</code></pre><p>  File “/usr/lib/python2.7/dist-packages/django/contrib/staticfiles/storage.py”, line 23, in <strong>init</strong></p>
-<pre><code>raise ImproperlyConfigured(&quot;You&apos;re using the staticfiles app &quot;
-</code></pre><p>django.core.exceptions.ImproperlyConfigured: You’re using the staticfiles app without having set the STATIC_ROOT setting.`</p>
-<p>其实已经提示需要配置STATIC_ROOT文件了（You’re using the staticfiles app without having set the </p>
-<p>STATIC_ROOT setting）。</p>
-<ol start="3">
-<li>修改Nginx配置，Debian系统下/etc/nginx/nginx.conf或者/etc/nginx/sites-enabled/里面的配置文件，</li>
-</ol>
-<p>在server节中添加如下内容（请根据实际情况修改）：</p>
-<p>`server {</p>
-<h1 id="…-其余内容略"><a href="#…-其余内容略" class="headerlink" title="… 其余内容略"></a>… 其余内容略</h1><p>  location /static {</p>
-<pre><code>root /home/user/www;
-</code></pre><p>  }</p>
-<p>}`</p>
-<p>此处不修改的话，我测试下来结果貌似默认处理会交由Django，但是依旧会由Django提示Page not found (404)。</p>
-<p>完成上面三步后，重新加载相应设置：</p>
-<p>`invoke-rc.d uwsgi reload</p>
-<p>nginx -s reload</p>
-<p>blog地址</p>
-<p><a href="http://wangye.org/blog/archives/572/`" target="_blank" rel="noopener">http://wangye.org/blog/archives/572/`</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2014/12/09/2015-02-25-Django应用uWSGI  admin的样式丢失了  解决方案/" data-id="cjqeijz8500148w24j0lat58q" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2014-12-08-改变html中鼠标形状" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/12/08/2014-12-08-改变html中鼠标形状/" class="article-date">
-  <time datetime="2014-12-08T05:48:44.000Z" itemprop="datePublished">2014-12-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/HTML/">HTML</a>►<a class="article-category-link" href="/categories/HTML/Web/">Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/08/2014-12-08-改变html中鼠标形状/">改变html中鼠标形状</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>要修改的属性是：</p>
-<p><code>style=&quot;cursor:default&quot;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pointer:是手型。</span><br><span class="line"></span><br><span class="line">　　 crosshair:是十字型，就是小乌龟首页所用的样式。</span><br><span class="line"></span><br><span class="line">　　 text:是平时鼠标移动到文本上的样式。</span><br><span class="line"></span><br><span class="line">　　 wait:是等待的效果。</span><br><span class="line"></span><br><span class="line">　　 default:是默认的那种效果。</span><br><span class="line"></span><br><span class="line">　　 help:是带问号的鼠标样式。</span><br><span class="line"></span><br><span class="line">　　 e-resize:是向右的箭头。</span><br><span class="line"></span><br><span class="line">　　 ne-resize:是向右上方的箭头。</span><br><span class="line"></span><br><span class="line">　　 n-resize:是向上的箭头。</span><br><span class="line"></span><br><span class="line">　　 nw-resize:是向左上方的箭头。</span><br><span class="line"></span><br><span class="line">　　 w-resize:是向左的箭关。</span><br><span class="line"></span><br><span class="line">　　 sw-resize:是向左下的箭头。</span><br><span class="line"></span><br><span class="line">　　 s-resize:是向下的箭头。</span><br><span class="line"></span><br><span class="line">　　 se-resize:是向右下方的箭头。</span><br><span class="line"></span><br><span class="line">　　 auto:是系统自动的效果。</span><br></pre></td></tr></table></figure>
-<p>当然一般的修改我是通过js或者jQuery的事件来改变鼠标样式属性的。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2014/12/08/2014-12-08-改变html中鼠标形状/" data-id="cjqeijz7k00028w241yycm7n4" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-02-25-centos6 配置Django服务器运行环境(一)-------Python安装" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/12/04/2015-02-25-centos6 配置Django服务器运行环境(一)-------Python安装/" class="article-date">
-  <time datetime="2014-12-04T12:06:24.000Z" itemprop="datePublished">2014-12-04</time>
+    <a href="/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/" class="article-date">
+  <time datetime="2015-02-09T08:15:38.000Z" itemprop="datePublished">2015-02-09</time>
 </a>
     
   <div class="article-category">
@@ -580,7 +279,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/04/2015-02-25-centos6 配置Django服务器运行环境(一)-------Python安装/">centos6 配置Django服务器运行环境(一)-------Python安装</a>
+      <a class="article-title" href="/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/">Python中获取某天是某个月中的第几周</a>
     </h1>
   
 
@@ -588,19 +287,258 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-安装wget"><a href="#1-安装wget" class="headerlink" title="1.安装wget"></a>1.安装wget</h2><p>yum install wget</p>
-<h2 id="2-下载Python安装包"><a href="#2-下载Python安装包" class="headerlink" title="2.下载Python安装包"></a>2.下载Python安装包</h2><p>wget <a href="http://www.python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2" target="_blank" rel="noopener">http://www.python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2</a></p>
-<p>如果报错</p>
-<p>ERROR: certificate common name <code>*.python.org&#39; doesn&#39;t match requested host name</code>python.org’.</p>
-<p>To connect to python.org insecurely, use `–no-check-certificate’.</p>
-<p>Unable to establish SSL connection.</p>
-<p>在上述命令上添加 –no-check-certificate</p>
-<h2 id="3-复制本机文件到远程服务器"><a href="#3-复制本机文件到远程服务器" class="headerlink" title="3.复制本机文件到远程服务器"></a>3.复制本机文件到远程服务器</h2><p><code>scp /filepath/filename.rar root@192.168.138.151:/home/user/download</code></p>
-<h2 id="4-解压Python安装包，并安装"><a href="#4-解压Python安装包，并安装" class="headerlink" title="4.解压Python安装包，并安装"></a>4.解压Python安装包，并安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">tar jxvf Python-2.7.5.tar.bz2</span><br><span class="line"></span><br><span class="line">cd Python-2.7.5</span><br><span class="line"></span><br><span class="line">./configure --prefix=/usr/local</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make altinstall</span><br><span class="line"></span><br><span class="line">创建软链接</span><br><span class="line"></span><br><span class="line">mv /usr/bin/python /usr/bin/python2.6</span><br><span class="line"></span><br><span class="line">ln -s /usr/local/bin/python2.7 /usr/bin/python</span><br></pre></td></tr></table></figure>
+        <p>找了半天竟然没找到，如何在Python的datetime处理上，获取某年某月某日，是属于这个月的第几周。</p>
+<p>无奈之下求助同学，同学给写了一个模块。【如果你知道Python有这个原生的库，请不吝赐教】</p>
+<p>我稍作整理记录在下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">__author__ = <span class="string">'####'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_week_of_month</span><span class="params">(year, month, day)</span>:</span></span><br><span class="line"></span><br><span class="line">    &amp;quot;&amp;quot;&amp;quot;</span><br><span class="line"></span><br><span class="line">    获取指定的某天是某个月中的第几周</span><br><span class="line"></span><br><span class="line">    周一作为一周的开始</span><br><span class="line"></span><br><span class="line">    &amp;quot;&amp;quot;&amp;quot;</span><br><span class="line"></span><br><span class="line">    end = int(datetime.datetime(year, month, day).strftime(&amp;quot;%W&amp;quot;))</span><br><span class="line"></span><br><span class="line">    begin = int(datetime.datetime(year, month, <span class="number">1</span>).strftime(&amp;quot;%W&amp;quot;))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> end - begin + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">18</span>)</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2014/12/04/2015-02-25-centos6 配置Django服务器运行环境(一)-------Python安装/" data-id="cjqeijz88001b8w24khj7ynx8" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/" data-id="cjqeijz89001f8w248c4zle3u" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-02-25-Python 中其实已经自带了easy_install和pip" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/" class="article-date">
+  <time datetime="2015-02-09T03:42:32.000Z" itemprop="datePublished">2015-02-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/">Python 中其实已经自带了easy_install和pip</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以前每次安装Python的时候为了能更快的下载第三方插件都要先安装easy_install或者pip</p>
+<p>但是后来发现，Python的安装文件中其实已经安装了这两个东西，只是没有放到环境变量中所以无法直接在命令行引用</p>
+<p>假设我的Python直接安装在C盘的根目录下，win7上的路径为：C:\Python27\Scripts，只要把这个路径配置到win7的path下面就能直接在命令行使用了。</p>
+<p>至于Linux也是一样，只是配置环境变量的方式不同而已。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/" data-id="cjqeijz8700188w24yxgv55tw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-02-08-AndroidStudio中我的常用快捷键" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/" class="article-date">
+  <time datetime="2015-02-08T12:18:31.000Z" itemprop="datePublished">2015-02-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/">AndroidStudio 中我的常用的快捷键</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MAC下的快捷键"><a href="#MAC下的快捷键" class="headerlink" title="MAC下的快捷键"></a>MAC下的快捷键</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line"></span><br><span class="line">ctrl + space 代码提示</span><br><span class="line"></span><br><span class="line">ctrl + t   显示重构的快捷操作</span><br><span class="line"></span><br><span class="line">ctrl + H 显示类的集成关系</span><br><span class="line"></span><br><span class="line">ctrl + o重写父类中的方法</span><br><span class="line"></span><br><span class="line">alt + enter  智能修改提示（类似Eclipse中的ctrl + <span class="number">1</span>）</span><br><span class="line"></span><br><span class="line">shift + 鼠标滚轮   水平滑动滚动条</span><br><span class="line"></span><br><span class="line">F1查看类或者方法或者变量的注释</span><br><span class="line"></span><br><span class="line">command + / 注释一行</span><br><span class="line"></span><br><span class="line">command + E 查看最近访问过的文件</span><br><span class="line"></span><br><span class="line">command + J 一个提示代码模板的快捷键，像在Eclipse中输入syso就能完成一个打印语句一样</span><br><span class="line"></span><br><span class="line">command + N 生成get/set方法或者构造方法</span><br><span class="line"></span><br><span class="line">command + B 跳到类声明处，或者一个方法或字段被引用的地方（和command + 鼠标左键一个效果）</span><br><span class="line"></span><br><span class="line">command + D 复制粘贴上一行</span><br><span class="line"></span><br><span class="line">command + X 剪切一行</span><br><span class="line"></span><br><span class="line">command + delete 删除一行</span><br><span class="line"></span><br><span class="line">command + o 类名查找</span><br><span class="line"></span><br><span class="line">command + r 查找和替换</span><br><span class="line"></span><br><span class="line">command + l 跳到某一行（跳到指定行）</span><br><span class="line"></span><br><span class="line">command + 鼠标左键 跟踪方法到定义（接口中的定义）</span><br><span class="line"></span><br><span class="line">option + command + 鼠标左键    跟踪方法到实习类中的定义</span><br><span class="line"></span><br><span class="line">Cmd + Shift + U  大小写转换</span><br><span class="line"></span><br><span class="line">option + command + F 局部变量提取成成员变量</span><br><span class="line"></span><br><span class="line">command + option（alt）+ T 生成<span class="keyword">try</span>/catch代码块</span><br><span class="line"></span><br><span class="line">Ctrl+ option（alt）+O   优化导入的类和包</span><br><span class="line"></span><br><span class="line">shift + command + delete （backspace）回到最近修改的位置</span><br><span class="line"></span><br><span class="line">shift + command + F7 高亮显示某个变量在本文件中的应用位置，command + G 在各个使用位置中移动（esc退出高亮查找）</span><br><span class="line"></span><br><span class="line">ctrl + shift + Q 查看当前所在的方法（就是查看你当前在写哪个方法，在文档的上面显示方法名）</span><br><span class="line"></span><br><span class="line">ctrl + shift + J 把两行弄成一行，貌似没什么用</span><br><span class="line"></span><br><span class="line">alt + shift + c 查看最近改变</span><br></pre></td></tr></table></figure>
+<h2 id="win7下的快捷键"><a href="#win7下的快捷键" class="headerlink" title="win7下的快捷键"></a>win7下的快捷键</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">Alt+回车 导入包,自动修正(比如添加强制类型转换,非常有用)</span><br><span class="line"></span><br><span class="line">Shift+F6  重构-重命名</span><br><span class="line"></span><br><span class="line">Alt+ left/right 切换代码视图</span><br><span class="line"></span><br><span class="line">Ctrl+Alt+Space 代码提示</span><br><span class="line"></span><br><span class="line">Ctrl+J  自动代码(代码片段)</span><br><span class="line"></span><br><span class="line">Alt+Insert 生成代码(如get,set方法,构造函数等)</span><br><span class="line"></span><br><span class="line">Ctrl+O：子类想重写父类的方法时，按此组合键可显示所有父类的方法。</span><br><span class="line"></span><br><span class="line">Ctrl+Tab：打开界面切换窗口，保持按住Ctrl键，选中相应的要打开的窗口。</span><br><span class="line"></span><br><span class="line">Ctrl+N   查找类</span><br><span class="line"></span><br><span class="line">Ctrl+Shift+N 查找文件</span><br><span class="line"></span><br><span class="line">Ctrl+Alt+L  格式化代码</span><br><span class="line"></span><br><span class="line">Ctrl+Alt+O 优化导入的类和包</span><br><span class="line"></span><br><span class="line">Ctrl+R 替换文本</span><br><span class="line"></span><br><span class="line">Ctrl+F 查找文本</span><br><span class="line"></span><br><span class="line">Ctrl+H 显示类结构图</span><br><span class="line"></span><br><span class="line">Ctrl+Q 显示注释文档</span><br><span class="line"></span><br><span class="line">Ctrl+B 转到声明处</span><br><span class="line"></span><br><span class="line">Ctrl+W 选择当前的单词</span><br><span class="line"></span><br><span class="line">Ctrl+X 删除行</span><br><span class="line"></span><br><span class="line">Ctrl+D 复制行</span><br><span class="line"></span><br><span class="line">Ctrl+P 方法参数提示</span><br><span class="line"></span><br><span class="line">Alt＋Up <span class="keyword">and</span> Alt＋Down可在方法间快速移动</span><br><span class="line"></span><br><span class="line">Alt+Shift+C 对比最近修改的代码</span><br><span class="line"></span><br><span class="line">Ctrl+E或者Alt+Shift+C  最近更改的代码</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">###</span></span><br><span class="line"></span><br><span class="line">搜索这个功能向来非常重要</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、Search &amp;amp; Navigation各种快速查找</span><br><span class="line"></span><br><span class="line">Cmd + O —— 查找Class</span><br><span class="line"></span><br><span class="line"> * 连按两次的技巧</span><br><span class="line"></span><br><span class="line"> * Option的功能</span><br><span class="line"></span><br><span class="line">Cmd + Shift + O —— 查找文件 比如Resource Assets等</span><br><span class="line"></span><br><span class="line">Cmd + Option + O —— 查找方法和变量</span><br><span class="line"></span><br><span class="line">Partial Matching 局部匹配</span><br><span class="line"></span><br><span class="line">MainActivity —&amp;gt; Mi</span><br><span class="line"></span><br><span class="line">Mi:<span class="number">22</span></span><br><span class="line"></span><br><span class="line">Cmd + L不知道命令快捷键时怎么办？</span><br><span class="line"></span><br><span class="line">Cmd + Shift + A —— 查找命令</span><br><span class="line"></span><br><span class="line">Double Shift —— Search everywhere最近文件历史，方便快速切换：</span><br><span class="line"></span><br><span class="line">Cmd + E —— Recently opened files</span><br><span class="line"></span><br><span class="line">Cmd + Shift + E —— Recently edited files</span><br><span class="line"></span><br><span class="line">cmd+alt+left/right —— Navigate Back/Forward</span><br><span class="line"></span><br><span class="line">cmd+shift+backspace —— Last Edit Location关于方法和引用的快捷键：</span><br><span class="line"></span><br><span class="line">Cmd + F12 —— Class Members</span><br><span class="line"></span><br><span class="line">Option + F7 ——查找哪里引用了该方法</span><br><span class="line"></span><br><span class="line">Cmd + Option + F7 —— 列出引用的列表</span><br><span class="line"></span><br><span class="line">Ctrl + H —— 显示层级结构</span><br><span class="line"></span><br><span class="line">Ctrl + Option + H —— 显示所有调用方法的地方强大而方便的全局查找：</span><br><span class="line"></span><br><span class="line">Cmd + F —— 在当前文件内查找</span><br><span class="line"></span><br><span class="line">Cmd + Shift + F —— 在全局内查找（可自定义）一些其它常用快捷键：</span><br><span class="line"></span><br><span class="line">Cmd + B —— 跳转到申明</span><br><span class="line"></span><br><span class="line">Cmd + Option + B —— 跳转到实现</span><br><span class="line"></span><br><span class="line">Cmd + U 跳转到超类</span><br><span class="line"></span><br><span class="line">Cmd +Shift + B —— 类型申明</span><br><span class="line"></span><br><span class="line">Cmd +Ctrl + ↑ —— 相关联的文件</span><br><span class="line"></span><br><span class="line">Cmd + P —— 方法参数</span><br><span class="line"></span><br><span class="line">Ctrl + J —— 方法文档</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、Refactor一些基础功能：</span><br><span class="line"></span><br><span class="line">Ctrl + T —— 重构</span><br><span class="line"></span><br><span class="line">Shift + F6 —— 重命名</span><br><span class="line"></span><br><span class="line">F5 copy</span><br><span class="line"></span><br><span class="line">Cmd + D —— 复制当前行在下方</span><br><span class="line"></span><br><span class="line">Cmd + delete —— 安全删除</span><br><span class="line"></span><br><span class="line">Cmd + Shift + ↑ —— 上下移动当前行 或者方法</span><br><span class="line"></span><br><span class="line">Cmd + Shift + Enter —— 补全我比较喜欢的几个功能：</span><br><span class="line"></span><br><span class="line">F6 move</span><br><span class="line"></span><br><span class="line">Ctrl + Shift + J —— 合并行</span><br><span class="line"></span><br><span class="line">Shift + Enter —— 换行</span><br><span class="line"></span><br><span class="line">Option + F1 —— 选择菜单</span><br><span class="line"></span><br><span class="line">非常赞建议必须记住的几个快捷键：</span><br><span class="line"></span><br><span class="line">Cmd + Option + V —— Variable</span><br><span class="line"></span><br><span class="line">Cmd + Option + C —— Constant</span><br><span class="line"></span><br><span class="line">Cmd + Option + F —— Field</span><br><span class="line"></span><br><span class="line">Cmd + Option + P —— Parameter</span><br><span class="line"></span><br><span class="line">Cmd + Option + M —— Member</span><br><span class="line"></span><br><span class="line">Cmd + Option + T —— Surround <span class="keyword">with</span></span><br><span class="line"></span><br><span class="line">其它的一些不错的功能</span><br><span class="line"></span><br><span class="line">Cmd + N New</span><br><span class="line"></span><br><span class="line">Option + Enter</span><br><span class="line"></span><br><span class="line">Find <span class="keyword">and</span> replace code duplicates</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、Debug</span><br><span class="line"></span><br><span class="line">Run / Debug / Step ……（常用功能我就不啰嗦了）</span><br><span class="line"></span><br><span class="line">Attach Debugger 建议自己设定快捷键</span><br><span class="line"></span><br><span class="line">Toggle Breakpoints Cmd+F8</span><br><span class="line"></span><br><span class="line">Conditional Breakpoints</span><br><span class="line"></span><br><span class="line">Logging Breakpoints</span><br><span class="line"></span><br><span class="line">Temporary Breakpoints</span><br><span class="line"></span><br><span class="line">Disable Breakpoints</span><br><span class="line"></span><br><span class="line">Evaluate Expression</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>、Other</span><br><span class="line"></span><br><span class="line">a、布局预览</span><br><span class="line"></span><br><span class="line">xmlns:tools=”http://schemas.android.com/tools“</span><br><span class="line"></span><br><span class="line">tools:visibility=“invisible”</span><br><span class="line"></span><br><span class="line">b、自动导入：Preferences -&amp;gt; Editor -&amp;gt; Auto Import -&amp;gt; Java</span><br><span class="line"></span><br><span class="line">c、Navigation Menu</span><br><span class="line"></span><br><span class="line">d、 Setting up the Android Studio Proxy</span><br><span class="line"></span><br><span class="line">Android Studio supports HTTP proxy settings so you can run Android Studio behind a firewall <span class="keyword">or</span> secure network.</span><br><span class="line"></span><br><span class="line">e、use github &amp;amp; gist &amp;amp; sh are project on Github</span><br><span class="line"></span><br><span class="line">f、 Live Templates</span><br><span class="line"></span><br><span class="line">g、生成Doc文档</span><br><span class="line"></span><br><span class="line">h、plugin (eg: .gitignore)</span><br><span class="line"></span><br><span class="line">i、analyze （eg: Inspect code Android lint)</span><br><span class="line"></span><br><span class="line">j、bookmark</span><br><span class="line"></span><br><span class="line">k、Presentation Mode</span><br><span class="line"></span><br><span class="line">Option + F1 —— 选择菜单</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/" data-id="cjqeijz81000u8w24zl0hi3p6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-01-28-Postgres时间日期处理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/28/2015-01-28-Postgres时间日期处理/" class="article-date">
+  <time datetime="2015-01-28T04:26:47.000Z" itemprop="datePublished">2015-01-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/28/2015-01-28-Postgres时间日期处理/">Postgres时间日期处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>一个需求想要给某个字段设置自动插入时间</p>
+<p>于是想用now()函数给timestamp类型添加默认值，但是生成后的时间格式是这样的：2015-01-28 12:15:59.233123</p>
+<p>其实我不想要小数点后面的数值，然后就把默认值now() 改成LOCALTIMESTAMP(0)就可以了。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/01/28/2015-01-28-Postgres时间日期处理/" data-id="cjqeijz7z000n8w24ovfwaltl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-02-25-Python常用内置的函数和变量" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/27/2015-02-25-Python常用内置的函数和变量/" class="article-date">
+  <time datetime="2015-01-27T04:45:01.000Z" itemprop="datePublished">2015-01-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/27/2015-02-25-Python常用内置的函数和变量/">查看Python安装位置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2>函数（方法）</h2>
+
+
+<p></p><h3>help()</h3><br>可以看到详细信息，–More–上回车，滚动信息。q 退出帮助.<p></p>
+<pre class="prettyprint linenums">
+import sys  
+print(help(sys))  
+</pre>
+
+
+<p></p><h3>dir()</h3><br>列出模块定义的标识符(类、函数、变量）<p></p>
+<p>列出对象定义的标识符(函数、变量）</p>
+<p>列出方法定义的标识符(变量）</p>
+<pre class="prettyprint linenums">
+import sys  
+print(dir(sys))  
+</pre>
+
+
+<p></p><h3>type(object)</h3><br>返回该object的类型<p></p>
+<p>len(s)     返回集合长度</p>
+<p>locals()     返回当前的变量列表</p>
+<p>globals()    返回一个描述当前全局符号表的字典</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/01/27/2015-02-25-Python常用内置的函数和变量/" data-id="cjqeijz8a001i8w24d0rpc6wu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-02-25-查看Python安装位置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/27/2015-02-25-查看Python安装位置/" class="article-date">
+  <time datetime="2015-01-27T04:45:01.000Z" itemprop="datePublished">2015-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/27/2015-02-25-查看Python安装位置/">查看Python安装位置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时我们需要查看python的安装位置，好安装第三方库</p>
+<p>打开命令行，我们能输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[node@dev3 ~]$ python </span><br><span class="line"></span><br><span class="line">Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) </span><br><span class="line"></span><br><span class="line">[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2</span><br><span class="line"></span><br><span class="line">Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.</span><br><span class="line"></span><br><span class="line">&amp;gt;&amp;gt;&amp;gt; import sys</span><br><span class="line"></span><br><span class="line">&amp;gt;&amp;gt;&amp;gt; sys.path</span><br><span class="line"></span><br><span class="line">[&apos;&apos;, &apos;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&apos;, &apos;/usr/lib64/python26.zip&apos;, &apos;/usr/lib64/python2.6&apos;, &apos;/usr/lib64/python2.6/plat-linux2&apos;, &apos;/usr/lib64/python2.6/lib-tk&apos;, &apos;/usr/lib64/python2.6/lib-old&apos;, &apos;/usr/lib64/python2.6/lib-dynload&apos;, &apos;/usr/lib64/python2.6/site-packages&apos;, &apos;/usr/lib64/python2.6/site-packages/gtk-2.0&apos;, &apos;/usr/lib/python2.6/site-packages&apos;, &apos;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&apos;]</span><br><span class="line"></span><br><span class="line">&amp;gt;&amp;gt;&amp;gt;</span><br></pre></td></tr></table></figure>
+<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/01/27/2015-02-25-查看Python安装位置/" data-id="cjqeijz8b001m8w24esu1r5a7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -616,7 +554,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -627,7 +565,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/逆向/">逆向</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/">ndk</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/jni/">jni</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/逆向/">逆向</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
     </div>
   </div>
 
@@ -637,7 +575,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jni/">jni</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ndk/">ndk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
     </div>
   </div>
 
@@ -647,7 +585,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.25px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向/" style="font-size: 13.75px;">逆向</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 15.56px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.11px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.11px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.11px;">Django</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.11px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.11px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.89px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.22px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.22px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PS笔记/" style="font-size: 12.22px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.22px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.33px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.11px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.11px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/jni/" style="font-size: 10px;">jni</a> <a href="/tags/ndk/" style="font-size: 10px;">ndk</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.11px;">其他</a> <a href="/tags/加密/" style="font-size: 13.33px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.11px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.22px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 14.44px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.22px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向/" style="font-size: 17.78px;">逆向</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a> <a href="/tags/麻花影视/" style="font-size: 16.67px;">麻花影视</a>
     </div>
   </div>
 
@@ -656,7 +594,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
     </div>
   </div>
 
@@ -669,23 +607,23 @@
       <ul>
         
           <li>
-            <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
+            <a href="/2018/12/27/2018-12-27-麻花影视会员蓝关分析（方案不可行）/">2018-12-27-麻花影视会员蓝关分析（方案不可行）</a>
           </li>
         
           <li>
-            <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
+            <a href="/2018/12/25/2018-12-25-麻花影视去除热门视频强制分享的要求（完成）/">2018-12-25-麻花影视去除热门视频强制分享的要求（完成）</a>
           </li>
         
           <li>
-            <a href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/">Mac下Android源码（AOSP）编译环境搭建方法</a>
+            <a href="/2018/12/18/2018-12-18-麻花影视模拟发送请求（完成）/">2018-12-18-麻花影视模拟发送请求（完成）</a>
           </li>
         
           <li>
-            <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
+            <a href="/2018/12/17/2018-12-17-解密麻花影视视频播放地址（完成）/">2018-12-17-解密麻花影视视频播放地址（完成）</a>
           </li>
         
           <li>
-            <a href="/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/">PS（PhotoShop）基础知识（三）</a>
+            <a href="/2018/12/16/2018-12-16-绕过麻花影视抓包检测（完成）/">2018-12-16-绕过麻花影视抓包检测（完成）</a>
           </li>
         
       </ul>

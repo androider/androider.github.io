@@ -69,10 +69,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2015-03-08-Android的屏幕适配（包括字体适配）" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" class="article-date">
-  <time datetime="2015-03-08T11:33:43.000Z" itemprop="datePublished">2015-03-08</time>
+    <a href="/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/" class="article-date">
+  <time datetime="2015-07-24T03:14:34.000Z" itemprop="datePublished">2015-07-24</time>
 </a>
     
   <div class="article-category">
@@ -87,7 +87,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/">Android 的屏幕适配（包括字体适配）</a>
+      <a class="article-title" href="/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/">Android WebView三步解决微信公众号文章不能加载视频的问题</a>
     </h1>
   
 
@@ -95,258 +95,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>2018-11-09 修改</strong></p>
-<h2 id="1、适配"><a href="#1、适配" class="headerlink" title="1、适配"></a>1、适配</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">最好的适配方案 多套图，有多少个分辨率就切多少套图，</span><br><span class="line">800*480 1280*720 1920*1080</span><br><span class="line">一般小应用只是一套图的话用（1280*720）</span><br><span class="line">适配方式：(这些屏幕都是16:9的长宽比)</span><br></pre></td></tr></table></figure>
-<h4 id="a-图片适配-和手机的像素密度有关，这个像素密度可以用勾股定理来计算"><a href="#a-图片适配-和手机的像素密度有关，这个像素密度可以用勾股定理来计算" class="headerlink" title="a) 图片适配(和手机的像素密度有关，这个像素密度可以用勾股定理来计算)"></a>a) 图片适配(和手机的像素密度有关，这个像素密度可以用勾股定理来计算)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ldpi  ---&gt;;  <span class="number">320</span>*<span class="number">240</span>   <span class="number">1</span>dp = <span class="number">0.75</span>px      ~<span class="number">120</span></span><br><span class="line"></span><br><span class="line">mdpi  ---&gt;;  <span class="number">480</span>*<span class="number">320</span>   <span class="number">1</span>dp = <span class="number">1</span>px    如果没有，加载hdpi里面的图片     ~<span class="number">160</span></span><br><span class="line"></span><br><span class="line">hdpi  ---&gt;;  <span class="number">800</span>*<span class="number">480</span>   <span class="number">1</span>dp = <span class="number">1.5</span>px   <span class="number">3.7</span>-<span class="number">4.3</span>寸左右     ~<span class="number">240</span></span><br><span class="line"></span><br><span class="line">xhdpi ---&gt;;  <span class="number">1280</span>*<span class="number">720</span>  <span class="number">1</span>dp = <span class="number">2</span>px(可以以这个为标准设计和切图)       ~<span class="number">320</span></span><br><span class="line"></span><br><span class="line">xxhdpi  ---&gt;; <span class="number">1920</span>*<span class="number">1080</span>  <span class="number">1</span>dp = <span class="number">3</span>px     ~<span class="number">480</span></span><br><span class="line"></span><br><span class="line">xxxhdpi ---&gt;; <span class="number">1440</span> * <span class="number">2560</span> <span class="number">1</span>dp = <span class="number">4</span>px     ~<span class="number">640</span></span><br><span class="line"></span><br><span class="line">综上来看dp是达不到完全适配的。</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意，Android手机会自动缩放图片，比如，你的手机是xxhdpi的，但是只有一张图片，假设这张图片</span></span><br><span class="line"><span class="comment">//的大小是512*512 的，你把这张图片放大xxxhdpi的文件夹下，那么你的手机也会找到这张图片的的，</span></span><br><span class="line"><span class="comment">//不过，他会把这张图片尺寸缩小，缩成384*384尺寸的放到你的ImageView中，假设你的ImageView的宽高</span></span><br><span class="line"><span class="comment">//设置的是自适应。那这个384是怎么来的那，就是按照上面的dp和px的比例算出来的。512 * (3/4) = 384</span></span><br><span class="line"><span class="comment">//下面是当面流行的安卓手机的屏幕尺寸和分辨率：</span></span><br><span class="line"><span class="comment">//小米 3和小米4 屏幕尺寸和分辨率：        5英寸 1920×1080像素</span></span><br><span class="line"><span class="comment">//魅族MX2 屏幕尺寸和分辨率：                 4.4英寸 1280×800像</span></span><br><span class="line"><span class="comment">//魅族MX3 屏幕尺寸和分辨率：                 5.1英寸 1800×1080像素</span></span><br><span class="line"><span class="comment">//HTC  one屏幕尺寸和分辨率：               4.7英寸 1920×1080像素</span></span><br><span class="line"><span class="comment">//华为荣耀6屏幕尺寸和分辨率：             5英寸 1920×1080像素</span></span><br><span class="line"><span class="comment">//华为p6屏幕尺寸和分辨率：                 4.7英寸 1280×720像素</span></span><br><span class="line"><span class="comment">//华为p7屏幕尺寸和分辨率：                  5英寸 1920×1080像素</span></span><br></pre></td></tr></table></figure>
-<h4 id="b-dimens-xml-适配-放置了一些宽高的尺寸信息"><a href="#b-dimens-xml-适配-放置了一些宽高的尺寸信息" class="headerlink" title="b) dimens.xml 适配(放置了一些宽高的尺寸信息)"></a>b) dimens.xml 适配(放置了一些宽高的尺寸信息)</h4><p>为了适配不同像素密度的手机，我们创建适配的value文件夹，命名为：(value-1280x720)然后在里面创建dimens.xml ,不过这个xml里面有的数据，都要在value文件夹下的dimens.xml中存在一份，只是值不一样而已。</p>
-<h4 id="c-布局适配-layout-文件夹"><a href="#c-布局适配-layout-文件夹" class="headerlink" title="c) 布局适配 layout/文件夹"></a>c) 布局适配 layout/文件夹</h4><p>和上面一样，为了适配特别像素的手机，我们同样正在res目录下创建一个名为：(layout-1280x720)的文件夹。</p>
-<h4 id="d-java代码适配"><a href="#d-java代码适配" class="headerlink" title="d) java代码适配"></a>d) java代码适配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">给当前的控件设置宽高为屏幕的宽高的百分比</span><br><span class="line">//创建一个存储屏幕相关信息的对象</span><br><span class="line">DisplayMetrics displayMetrics = new DisplayMetrics();</span><br><span class="line">//通过下面的方式把屏幕信息存储到displayMetrics对象中</span><br><span class="line">getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);</span><br><span class="line">//获取宽高</span><br><span class="line">int width = displayMetrics.widthPixels;</span><br><span class="line">int height = displayMetrics.heightPixels;</span><br><span class="line"></span><br><span class="line">//将对应的宽高设置在其父控件上，然后作用在子控件上</span><br><span class="line">//假设这个layout为一本RelativeLayout中包含一个TextView</span><br><span class="line">//我们想要这个TextView为RelativeLayout的一半。</span><br><span class="line">RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams((int)(width*0.5+0.5),    //从数学角度进行四舍五入，取屏幕宽带的一半(int)(height*0.5+0.5));</span><br><span class="line">TextView tv = (TextView)findViewById(R.id.tv);</span><br><span class="line">tv.setLayoutParams(layoutParams);</span><br></pre></td></tr></table></figure>
-<h4 id="e-权重适配"><a href="#e-权重适配" class="headerlink" title="e) 权重适配"></a>e) 权重适配</h4><p>剩余空间的分配规则，首先要设置<code>android:layout_width=&quot;0dp&quot;</code>或者<code>android:layout_height=&quot;0dp&quot;</code> 然后设置<code>android:layout_weight=&quot;1&quot;</code> 并且只能在LinearLayout中使用</p>
-<h2 id="2、px和dp相互转换工具方法"><a href="#2、px和dp相互转换工具方法" class="headerlink" title="2、px和dp相互转换工具方法"></a>2、px和dp相互转换工具方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DensityUtil</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 根据手机的分辨率从 dp 的单位 转成为 px(像素) </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">dip2px</span><span class="params">(Context context, <span class="keyword">float</span> dpValue)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density;  </span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (dpValue * scale + <span class="number">0.5f</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">px2dip</span><span class="params">(Context context, <span class="keyword">float</span> pxValue)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">float</span> scale = context.getResources().getDisplayMetrics().density;  </span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (pxValue / scale + <span class="number">0.5f</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3、字体适配"><a href="#3、字体适配" class="headerlink" title="3、字体适配"></a>3、字体适配</h2><p>安卓4.0之后用的字体是Roboto。中文字体：方正兰亭黑体</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以在在<span class="number">720</span>*<span class="number">1280</span>的基础上的字体设计大小。</span><br><span class="line">注释最小字体：<span class="number">12</span>sp  ==  <span class="number">24</span>px</span><br><span class="line">文本字体：<span class="number">14</span>sp  ==  <span class="number">28</span>px</span><br><span class="line">文章标题或图标名称：<span class="number">16</span>sp  ==   <span class="number">32</span>px</span><br><span class="line">导航标题：<span class="number">18</span>sp  ==   <span class="number">36</span>px</span><br></pre></td></tr></table></figure>
-<p>Android 界面设计的一片文章</p>
-<p><a href="http://www.25xt.com/appdesign/6536.html" target="_blank" rel="noopener">http://www.25xt.com/appdesign/6536.html</a></p>
-<h2 id="4、图标设计"><a href="#4、图标设计" class="headerlink" title="4、图标设计"></a>4、图标设计</h2><p>应用程序图标 （Icon）应当是一个 Alpha 通道透明的32位 PNG 图片。由于安卓设备众多，一个应用程序图标需要设计几种不同大小，如：</p>
-<p>LDPI (Low Density Screen，120 DPI)，其图标大小为 36 x 36 px。</p>
-<p>MDPI (Medium Density Screen, 160 DPI)，其图标大小为 48 x 48 px。</p>
-<p>HDPI (High Density Screen, 240 DPI)，其图标大小为 72 x 72 px。</p>
-<p>xhdpi (Extra-high density screen, 320 DPI)，其图标大小为 96 x 96 px。</p>
-<p>xxhdpi 其图标大小为 144 x 144 px。</p>
-<p>xxxhdpi 其图标大小为 192 x 192 px。</p>
-<p> 建议在设计过程中，在四周空出几个像素点使得设计的图标与其他图标在视觉上一致，例如，</p>
-<p>96 x 96 px 图标可以画图区域大小可以设为 88 x 88 px， 四周留出4个像素用于填充（无底色）。</p>
-<p>72 x 72 px 图标可以画图区域大小可以设为 68 x 68 px， 四周留出2个像素用于填充（无底色）。</p>
-<p>48 x 48 px 图标可以画图区域大小可以设为 46 x 46 px， 四周留出1个像素用于填充（无底色）。</p>
-<p>36 x 36 px 图标可以画图区域大小可以设为 34 x 34 px， 四周留出1个像素用于填充（无底色）。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2015/03/08/2015-03-08-Android的屏幕适配（包括字体适配）/" data-id="cjqeijz8i00228w24hxk4o56p" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-03-03-Android 图片操作" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/03/2015-03-03-Android 图片操作/" class="article-date">
-  <time datetime="2015-03-03T09:55:04.000Z" itemprop="datePublished">2015-03-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/03/2015-03-03-Android 图片操作/">Android 图片操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">大图片的加载问题：</span><br><span class="line"></span><br><span class="line">虚拟机分配给每个应用程序的内存大小是有限的，一般为16M如果一个图片太大，用BitmapFactory加载的时候就会出现内存溢出。</span><br><span class="line"></span><br><span class="line">这时候可以：</span><br><span class="line"></span><br><span class="line">BitmapFactory.Options options = new Options();    //设置图片解析选项</span><br><span class="line"></span><br><span class="line">options.inJustDecodeBounds = true;    //因为图片太大无法解析，只能先获取其元数据，从而获取图片的长宽，然后根据屏幕的大小计算缩放比例</span><br><span class="line"></span><br><span class="line">BitmapFactory.decodeFile(&amp;quot;文件路径&amp;quot;,options);    //开始获取文件元数据</span><br><span class="line"></span><br><span class="line">int height = options.outHeight;    //得到图片的高度</span><br><span class="line"></span><br><span class="line">int width = options.outWidth; </span><br><span class="line"></span><br><span class="line">//然后获取屏幕宽高，根据屏幕宽高和图片宽高的比例，得到合适的缩放比</span><br><span class="line"></span><br><span class="line">options.inJustDecodeBounds = false;    //真正的解析图片，如果为True只解析图片的元数据</span><br><span class="line"></span><br><span class="line">options.inSampleSize = 4 ; // 设置图片的缩放比例，以四分之一缩放</span><br><span class="line"></span><br><span class="line">BitmapFactory.decodeFile(&amp;quot;文件路径&amp;quot;,options);</span><br><span class="line"></span><br><span class="line">获取图片的信息：</span><br><span class="line"></span><br><span class="line">ExifInterFace exif = new ExifInterFace(&amp;quot;图片路径.jpg&amp;quot;);</span><br><span class="line"></span><br><span class="line">String pic_time = exif.getAttribute(ExifInterFace.TAG_DATETIME);   //这个获取拍摄时间，获取属性中的参数，类中定义了很多常量</span><br><span class="line"></span><br><span class="line">从系统图库中选择一张图片：</span><br><span class="line"></span><br><span class="line">Intent intent = new Intent();</span><br><span class="line"></span><br><span class="line">intent.setAction(Intent.ACTION_PICK);</span><br><span class="line"></span><br><span class="line">intent.setType(&amp;quot;image/*&amp;quot;);</span><br><span class="line"></span><br><span class="line">//startActivity(intent);</span><br><span class="line"></span><br><span class="line">startActivityForResult(intent,0);    //请求码暂时用不到，设为0</span><br><span class="line"></span><br><span class="line">重写Activity的onActivityResult(。。。。);方法</span><br><span class="line"></span><br><span class="line">创建一个可以被修改的Bitmap:</span><br><span class="line"></span><br><span class="line">Bitmap.createBitmap(高度,宽度,Bitmap.Config.*);    //得到一个空白Bitmap对象</span><br><span class="line"></span><br><span class="line">模拟一个消息，通知系统sd卡被重新挂载：</span><br><span class="line"></span><br><span class="line">Intent intent = new Intent();</span><br><span class="line"></span><br><span class="line">intent.setAction(Intent.ACTION_MEDIA_MOUNTED);</span><br><span class="line"></span><br><span class="line">intent.setData(Uri.fromFile(Environment.getExternalStorageDirectory()));</span><br><span class="line"></span><br><span class="line">sendBroadcast(intent);</span><br><span class="line"></span><br><span class="line">9.path图片必须是png格式的。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2015/03/03/2015-03-03-Android 图片操作/" data-id="cjqeijz8f001u8w242n3wvp1l" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-02-11-常用的Linux压缩命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/02/11/2015-02-11-常用的Linux压缩命令/" class="article-date">
-  <time datetime="2015-02-11T07:03:43.000Z" itemprop="datePublished">2015-02-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/压缩/">压缩</a>►<a class="article-category-link" href="/categories/Linux/压缩/Zip/">Zip</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/11/2015-02-11-常用的Linux压缩命令/">常用的Linux压缩命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">tar命令</span><br><span class="line"></span><br><span class="line">　　解包：tar zxvf FileName.tar</span><br><span class="line"></span><br><span class="line">　　打包：tar czvf FileName.tar DirName</span><br><span class="line"></span><br><span class="line">gz命令</span><br><span class="line"></span><br><span class="line">　　.tar.gz 和 .tgz</span><br><span class="line"></span><br><span class="line">　　解压：tar zxvf FileName.tar.gz</span><br><span class="line"></span><br><span class="line">　　压缩：tar zcvf FileName.tar.gz DirName</span><br><span class="line"></span><br><span class="line">zip命令</span><br><span class="line"></span><br><span class="line">　　解压：unzip FileName.zip</span><br><span class="line"></span><br><span class="line">　　压缩：zip FileName.zip DirName</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2015/02/11/2015-02-11-常用的Linux压缩命令/" data-id="cjqeijz82000x8w24kk2yulz5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zip/">Zip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/压缩/">压缩</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-02-25-Python中获取某天是某个月中的第几周" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/" class="article-date">
-  <time datetime="2015-02-09T08:15:38.000Z" itemprop="datePublished">2015-02-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/">Python中获取某天是某个月中的第几周</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>找了半天竟然没找到，如何在Python的datetime处理上，获取某年某月某日，是属于这个月的第几周。</p>
-<p>无奈之下求助同学，同学给写了一个模块。【如果你知道Python有这个原生的库，请不吝赐教】</p>
-<p>我稍作整理记录在下。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">__author__ = <span class="string">'####'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_week_of_month</span><span class="params">(year, month, day)</span>:</span></span><br><span class="line"></span><br><span class="line">    &amp;quot;&amp;quot;&amp;quot;</span><br><span class="line"></span><br><span class="line">    获取指定的某天是某个月中的第几周</span><br><span class="line"></span><br><span class="line">    周一作为一周的开始</span><br><span class="line"></span><br><span class="line">    &amp;quot;&amp;quot;&amp;quot;</span><br><span class="line"></span><br><span class="line">    end = int(datetime.datetime(year, month, day).strftime(&amp;quot;%W&amp;quot;))</span><br><span class="line"></span><br><span class="line">    begin = int(datetime.datetime(year, month, <span class="number">1</span>).strftime(&amp;quot;%W&amp;quot;))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> end - begin + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> get_week_of_month(<span class="number">2015</span>, <span class="number">1</span>, <span class="number">18</span>)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2015/02/09/2015-02-25-Python中获取某天是某个月中的第几周/" data-id="cjqeijz89001f8w248c4zle3u" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-02-25-Python 中其实已经自带了easy_install和pip" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/" class="article-date">
-  <time datetime="2015-02-09T03:42:32.000Z" itemprop="datePublished">2015-02-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/">Python 中其实已经自带了easy_install和pip</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>以前每次安装Python的时候为了能更快的下载第三方插件都要先安装easy_install或者pip</p>
-<p>但是后来发现，Python的安装文件中其实已经安装了这两个东西，只是没有放到环境变量中所以无法直接在命令行引用</p>
-<p>假设我的Python直接安装在C盘的根目录下，win7上的路径为：C:\Python27\Scripts，只要把这个路径配置到win7的path下面就能直接在命令行使用了。</p>
-<p>至于Linux也是一样，只是配置环境变量的方式不同而已。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2015/02/09/2015-02-25-Python 中其实已经自带了easy_install和pip/" data-id="cjqeijz8700188w24yxgv55tw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-02-08-AndroidStudio中我的常用快捷键" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/" class="article-date">
-  <time datetime="2015-02-08T12:18:31.000Z" itemprop="datePublished">2015-02-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/">AndroidStudio 中我的常用的快捷键</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="MAC下的快捷键"><a href="#MAC下的快捷键" class="headerlink" title="MAC下的快捷键"></a>MAC下的快捷键</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line"></span><br><span class="line">ctrl + space 代码提示</span><br><span class="line"></span><br><span class="line">ctrl + t   显示重构的快捷操作</span><br><span class="line"></span><br><span class="line">ctrl + H 显示类的集成关系</span><br><span class="line"></span><br><span class="line">ctrl + o重写父类中的方法</span><br><span class="line"></span><br><span class="line">alt + enter  智能修改提示（类似Eclipse中的ctrl + <span class="number">1</span>）</span><br><span class="line"></span><br><span class="line">shift + 鼠标滚轮   水平滑动滚动条</span><br><span class="line"></span><br><span class="line">F1查看类或者方法或者变量的注释</span><br><span class="line"></span><br><span class="line">command + / 注释一行</span><br><span class="line"></span><br><span class="line">command + E 查看最近访问过的文件</span><br><span class="line"></span><br><span class="line">command + J 一个提示代码模板的快捷键，像在Eclipse中输入syso就能完成一个打印语句一样</span><br><span class="line"></span><br><span class="line">command + N 生成get/set方法或者构造方法</span><br><span class="line"></span><br><span class="line">command + B 跳到类声明处，或者一个方法或字段被引用的地方（和command + 鼠标左键一个效果）</span><br><span class="line"></span><br><span class="line">command + D 复制粘贴上一行</span><br><span class="line"></span><br><span class="line">command + X 剪切一行</span><br><span class="line"></span><br><span class="line">command + delete 删除一行</span><br><span class="line"></span><br><span class="line">command + o 类名查找</span><br><span class="line"></span><br><span class="line">command + r 查找和替换</span><br><span class="line"></span><br><span class="line">command + l 跳到某一行（跳到指定行）</span><br><span class="line"></span><br><span class="line">command + 鼠标左键 跟踪方法到定义（接口中的定义）</span><br><span class="line"></span><br><span class="line">option + command + 鼠标左键    跟踪方法到实习类中的定义</span><br><span class="line"></span><br><span class="line">Cmd + Shift + U  大小写转换</span><br><span class="line"></span><br><span class="line">option + command + F 局部变量提取成成员变量</span><br><span class="line"></span><br><span class="line">command + option（alt）+ T 生成<span class="keyword">try</span>/catch代码块</span><br><span class="line"></span><br><span class="line">Ctrl+ option（alt）+O   优化导入的类和包</span><br><span class="line"></span><br><span class="line">shift + command + delete （backspace）回到最近修改的位置</span><br><span class="line"></span><br><span class="line">shift + command + F7 高亮显示某个变量在本文件中的应用位置，command + G 在各个使用位置中移动（esc退出高亮查找）</span><br><span class="line"></span><br><span class="line">ctrl + shift + Q 查看当前所在的方法（就是查看你当前在写哪个方法，在文档的上面显示方法名）</span><br><span class="line"></span><br><span class="line">ctrl + shift + J 把两行弄成一行，貌似没什么用</span><br><span class="line"></span><br><span class="line">alt + shift + c 查看最近改变</span><br></pre></td></tr></table></figure>
-<h2 id="win7下的快捷键"><a href="#win7下的快捷键" class="headerlink" title="win7下的快捷键"></a>win7下的快捷键</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">Alt+回车 导入包,自动修正(比如添加强制类型转换,非常有用)</span><br><span class="line"></span><br><span class="line">Shift+F6  重构-重命名</span><br><span class="line"></span><br><span class="line">Alt+ left/right 切换代码视图</span><br><span class="line"></span><br><span class="line">Ctrl+Alt+Space 代码提示</span><br><span class="line"></span><br><span class="line">Ctrl+J  自动代码(代码片段)</span><br><span class="line"></span><br><span class="line">Alt+Insert 生成代码(如get,set方法,构造函数等)</span><br><span class="line"></span><br><span class="line">Ctrl+O：子类想重写父类的方法时，按此组合键可显示所有父类的方法。</span><br><span class="line"></span><br><span class="line">Ctrl+Tab：打开界面切换窗口，保持按住Ctrl键，选中相应的要打开的窗口。</span><br><span class="line"></span><br><span class="line">Ctrl+N   查找类</span><br><span class="line"></span><br><span class="line">Ctrl+Shift+N 查找文件</span><br><span class="line"></span><br><span class="line">Ctrl+Alt+L  格式化代码</span><br><span class="line"></span><br><span class="line">Ctrl+Alt+O 优化导入的类和包</span><br><span class="line"></span><br><span class="line">Ctrl+R 替换文本</span><br><span class="line"></span><br><span class="line">Ctrl+F 查找文本</span><br><span class="line"></span><br><span class="line">Ctrl+H 显示类结构图</span><br><span class="line"></span><br><span class="line">Ctrl+Q 显示注释文档</span><br><span class="line"></span><br><span class="line">Ctrl+B 转到声明处</span><br><span class="line"></span><br><span class="line">Ctrl+W 选择当前的单词</span><br><span class="line"></span><br><span class="line">Ctrl+X 删除行</span><br><span class="line"></span><br><span class="line">Ctrl+D 复制行</span><br><span class="line"></span><br><span class="line">Ctrl+P 方法参数提示</span><br><span class="line"></span><br><span class="line">Alt＋Up <span class="keyword">and</span> Alt＋Down可在方法间快速移动</span><br><span class="line"></span><br><span class="line">Alt+Shift+C 对比最近修改的代码</span><br><span class="line"></span><br><span class="line">Ctrl+E或者Alt+Shift+C  最近更改的代码</span><br></pre></td></tr></table></figure>
+        <p>问题描述：想在自己的应用中通过WebView加载微信公众号中的一些文章，因为有些文章带有视频，所以必须要有播放功能，ISO能播放，Android怎么能说不能。。。</p>
+<p>测试机型：小米，华为，摩托</p>
+<p>Android系统：4.x~~~5.0</p>
+<h2 id="1-如果是Android4-0以上的系统在manifest中设置Activity的hardwareAccelerated为true，开启硬件加速"><a href="#1-如果是Android4-0以上的系统在manifest中设置Activity的hardwareAccelerated为true，开启硬件加速" class="headerlink" title="1. 如果是Android4.0以上的系统在manifest中设置Activity的hardwareAccelerated为true，开启硬件加速"></a>1. 如果是Android4.0以上的系统在manifest中设置Activity的hardwareAccelerated为true，开启硬件加速</h2><p><code>android:hardwareAccelerated=&quot;true&quot;</code></p>
+<h2 id="2-如果是Android4-0以上的系统在layout中设置WebView的layerType为hardware"><a href="#2-如果是Android4-0以上的系统在layout中设置WebView的layerType为hardware" class="headerlink" title="2.如果是Android4.0以上的系统在layout中设置WebView的layerType为hardware"></a>2.如果是Android4.0以上的系统在layout中设置<code>WebView</code>的layerType为hardware</h2><p><code>android:layerType=&quot;hardware&quot;</code></p>
+<h2 id="3-最重要的部分给WebView设置settings信息"><a href="#3-最重要的部分给WebView设置settings信息" class="headerlink" title="3. 最重要的部分给WebView设置settings信息"></a>3. 最重要的部分给WebView设置settings信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">settings = webview_video.getSettings();</span><br><span class="line"></span><br><span class="line">        settings.setJavaScriptEnabled(true);</span><br><span class="line"></span><br><span class="line">        settings.setAllowFileAccess(true);</span><br><span class="line"></span><br><span class="line">        settings.setDatabaseEnabled(true);</span><br><span class="line"></span><br><span class="line">        settings.setDomStorageEnabled(true);</span><br><span class="line"></span><br><span class="line">        settings.setSaveFormData(false);</span><br><span class="line"></span><br><span class="line">        settings.setAppCacheEnabled(true);</span><br><span class="line"></span><br><span class="line">       settings.setCacheMode(WebSettings.LOAD_DEFAULT);</span><br><span class="line"></span><br><span class="line">        settings.setLoadWithOverviewMode(false);</span><br><span class="line"></span><br><span class="line">        settings.setUseWideViewPort(true);</span><br><span class="line">        </span><br><span class="line">        /**</span><br><span class="line">         * Author:</span><br><span class="line">         * Time: 2016-12-05 16:49</span><br><span class="line">         * Description:</span><br><span class="line">         * 解决https 中包含http重定向的问题</span><br><span class="line">         * Android 5.0+ 以后对WebView添加安全机制</span><br><span class="line">         */</span><br><span class="line">        if (Build.VERSION.SDK_INT &gt;= 21) &#123;</span><br><span class="line">       settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>这行是最重要的<code>settings.setDomStorageEnabled(true);</code></p>
 <hr>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">###</span></span><br><span class="line"></span><br><span class="line">搜索这个功能向来非常重要</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、Search &amp;amp; Navigation各种快速查找</span><br><span class="line"></span><br><span class="line">Cmd + O —— 查找Class</span><br><span class="line"></span><br><span class="line"> * 连按两次的技巧</span><br><span class="line"></span><br><span class="line"> * Option的功能</span><br><span class="line"></span><br><span class="line">Cmd + Shift + O —— 查找文件 比如Resource Assets等</span><br><span class="line"></span><br><span class="line">Cmd + Option + O —— 查找方法和变量</span><br><span class="line"></span><br><span class="line">Partial Matching 局部匹配</span><br><span class="line"></span><br><span class="line">MainActivity —&amp;gt; Mi</span><br><span class="line"></span><br><span class="line">Mi:<span class="number">22</span></span><br><span class="line"></span><br><span class="line">Cmd + L不知道命令快捷键时怎么办？</span><br><span class="line"></span><br><span class="line">Cmd + Shift + A —— 查找命令</span><br><span class="line"></span><br><span class="line">Double Shift —— Search everywhere最近文件历史，方便快速切换：</span><br><span class="line"></span><br><span class="line">Cmd + E —— Recently opened files</span><br><span class="line"></span><br><span class="line">Cmd + Shift + E —— Recently edited files</span><br><span class="line"></span><br><span class="line">cmd+alt+left/right —— Navigate Back/Forward</span><br><span class="line"></span><br><span class="line">cmd+shift+backspace —— Last Edit Location关于方法和引用的快捷键：</span><br><span class="line"></span><br><span class="line">Cmd + F12 —— Class Members</span><br><span class="line"></span><br><span class="line">Option + F7 ——查找哪里引用了该方法</span><br><span class="line"></span><br><span class="line">Cmd + Option + F7 —— 列出引用的列表</span><br><span class="line"></span><br><span class="line">Ctrl + H —— 显示层级结构</span><br><span class="line"></span><br><span class="line">Ctrl + Option + H —— 显示所有调用方法的地方强大而方便的全局查找：</span><br><span class="line"></span><br><span class="line">Cmd + F —— 在当前文件内查找</span><br><span class="line"></span><br><span class="line">Cmd + Shift + F —— 在全局内查找（可自定义）一些其它常用快捷键：</span><br><span class="line"></span><br><span class="line">Cmd + B —— 跳转到申明</span><br><span class="line"></span><br><span class="line">Cmd + Option + B —— 跳转到实现</span><br><span class="line"></span><br><span class="line">Cmd + U 跳转到超类</span><br><span class="line"></span><br><span class="line">Cmd +Shift + B —— 类型申明</span><br><span class="line"></span><br><span class="line">Cmd +Ctrl + ↑ —— 相关联的文件</span><br><span class="line"></span><br><span class="line">Cmd + P —— 方法参数</span><br><span class="line"></span><br><span class="line">Ctrl + J —— 方法文档</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、Refactor一些基础功能：</span><br><span class="line"></span><br><span class="line">Ctrl + T —— 重构</span><br><span class="line"></span><br><span class="line">Shift + F6 —— 重命名</span><br><span class="line"></span><br><span class="line">F5 copy</span><br><span class="line"></span><br><span class="line">Cmd + D —— 复制当前行在下方</span><br><span class="line"></span><br><span class="line">Cmd + delete —— 安全删除</span><br><span class="line"></span><br><span class="line">Cmd + Shift + ↑ —— 上下移动当前行 或者方法</span><br><span class="line"></span><br><span class="line">Cmd + Shift + Enter —— 补全我比较喜欢的几个功能：</span><br><span class="line"></span><br><span class="line">F6 move</span><br><span class="line"></span><br><span class="line">Ctrl + Shift + J —— 合并行</span><br><span class="line"></span><br><span class="line">Shift + Enter —— 换行</span><br><span class="line"></span><br><span class="line">Option + F1 —— 选择菜单</span><br><span class="line"></span><br><span class="line">非常赞建议必须记住的几个快捷键：</span><br><span class="line"></span><br><span class="line">Cmd + Option + V —— Variable</span><br><span class="line"></span><br><span class="line">Cmd + Option + C —— Constant</span><br><span class="line"></span><br><span class="line">Cmd + Option + F —— Field</span><br><span class="line"></span><br><span class="line">Cmd + Option + P —— Parameter</span><br><span class="line"></span><br><span class="line">Cmd + Option + M —— Member</span><br><span class="line"></span><br><span class="line">Cmd + Option + T —— Surround <span class="keyword">with</span></span><br><span class="line"></span><br><span class="line">其它的一些不错的功能</span><br><span class="line"></span><br><span class="line">Cmd + N New</span><br><span class="line"></span><br><span class="line">Option + Enter</span><br><span class="line"></span><br><span class="line">Find <span class="keyword">and</span> replace code duplicates</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、Debug</span><br><span class="line"></span><br><span class="line">Run / Debug / Step ……（常用功能我就不啰嗦了）</span><br><span class="line"></span><br><span class="line">Attach Debugger 建议自己设定快捷键</span><br><span class="line"></span><br><span class="line">Toggle Breakpoints Cmd+F8</span><br><span class="line"></span><br><span class="line">Conditional Breakpoints</span><br><span class="line"></span><br><span class="line">Logging Breakpoints</span><br><span class="line"></span><br><span class="line">Temporary Breakpoints</span><br><span class="line"></span><br><span class="line">Disable Breakpoints</span><br><span class="line"></span><br><span class="line">Evaluate Expression</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>、Other</span><br><span class="line"></span><br><span class="line">a、布局预览</span><br><span class="line"></span><br><span class="line">xmlns:tools=”http://schemas.android.com/tools“</span><br><span class="line"></span><br><span class="line">tools:visibility=“invisible”</span><br><span class="line"></span><br><span class="line">b、自动导入：Preferences -&amp;gt; Editor -&amp;gt; Auto Import -&amp;gt; Java</span><br><span class="line"></span><br><span class="line">c、Navigation Menu</span><br><span class="line"></span><br><span class="line">d、 Setting up the Android Studio Proxy</span><br><span class="line"></span><br><span class="line">Android Studio supports HTTP proxy settings so you can run Android Studio behind a firewall <span class="keyword">or</span> secure network.</span><br><span class="line"></span><br><span class="line">e、use github &amp;amp; gist &amp;amp; sh are project on Github</span><br><span class="line"></span><br><span class="line">f、 Live Templates</span><br><span class="line"></span><br><span class="line">g、生成Doc文档</span><br><span class="line"></span><br><span class="line">h、plugin (eg: .gitignore)</span><br><span class="line"></span><br><span class="line">i、analyze （eg: Inspect code Android lint)</span><br><span class="line"></span><br><span class="line">j、bookmark</span><br><span class="line"></span><br><span class="line">k、Presentation Mode</span><br><span class="line"></span><br><span class="line">Option + F1 —— 选择菜单</span><br></pre></td></tr></table></figure>
+<h2 id="PS-Activity-最小化的时候停止播放视频："><a href="#PS-Activity-最小化的时候停止播放视频：" class="headerlink" title="PS .Activity 最小化的时候停止播放视频："></a>PS .Activity 最小化的时候停止播放视频：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Override</span><br><span class="line"></span><br><span class="line"> public boolean onKeyDown(int keyCode, KeyEvent event) &#123;</span><br><span class="line"></span><br><span class="line">     if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) &#123;</span><br><span class="line"></span><br><span class="line">         webview_video.loadData(&amp;quot;&amp;quot;, &amp;quot;text/html; charset=UTF-8&amp;quot;, null);</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     return super.onKeyDown(keyCode, event);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line"></span><br><span class="line"> public void onPause() &#123;</span><br><span class="line"></span><br><span class="line">     super.onPause();</span><br><span class="line"></span><br><span class="line">     webview_video.onPause();</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line"></span><br><span class="line"> public void onResume() &#123;</span><br><span class="line"></span><br><span class="line">     super.onResume();</span><br><span class="line"></span><br><span class="line">     webview_video.onResume();</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="关于webview-setting-的注释"><a href="#关于webview-setting-的注释" class="headerlink" title="关于webview setting 的注释"></a>关于webview setting 的注释</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">setJavaScriptEnabled(true);  //支持js</span><br><span class="line">setPluginsEnabled(true);  //支持插件 </span><br><span class="line">setUseWideViewPort(false);  //将图片调整到适合webview的大小 </span><br><span class="line">setSupportZoom(true);  //支持缩放 </span><br><span class="line">setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN); //支持内容重新布局  </span><br><span class="line">supportMultipleWindows();  //多窗口 </span><br><span class="line">setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);  //关闭webview中缓存 </span><br><span class="line">setAllowFileAccess(true);  //设置可以访问文件 </span><br><span class="line">setNeedInitialFocus(true); //当webview调用requestFocus时为webview设置节点</span><br><span class="line">webview webSettings.setBuiltInZoomControls(true); //设置支持缩放 </span><br><span class="line">setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口 </span><br><span class="line">setLoadWithOverviewMode(true); // 缩放至屏幕的大小</span><br><span class="line">setLoadsImagesAutomatically(true);  //支持自动加载图片</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2015/02/08/2015-02-08-AndroidStudio中我的常用快捷键/" data-id="cjqeijz81000u8w24zl0hi3p6" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2015/07/24/2015-07-24-WebView三步解决微信公众号文章不能加载视频的问题/" data-id="cjqeijz8s002q8w246czxsk7p" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
   </div>
@@ -355,14 +120,14 @@
 
 
   
-    <article id="post-2015-01-28-Postgres时间日期处理" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-07-14-Android 文件存储" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/28/2015-01-28-Postgres时间日期处理/" class="article-date">
-  <time datetime="2015-01-28T04:26:47.000Z" itemprop="datePublished">2015-01-28</time>
+    <a href="/2015/07/14/2015-07-14-Android 文件存储/" class="article-date">
+  <time datetime="2015-07-14T07:34:30.000Z" itemprop="datePublished">2015-07-14</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/文件存储/">文件存储</a>
   </div>
 
   </div>
@@ -373,7 +138,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/28/2015-01-28-Postgres时间日期处理/">Postgres时间日期处理</a>
+      <a class="article-title" href="/2015/07/14/2015-07-14-Android 文件存储/">Android文件存储路径</a>
     </h1>
   
 
@@ -381,60 +146,532 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>一个需求想要给某个字段设置自动插入时间</p>
-<p>于是想用now()函数给timestamp类型添加默认值，但是生成后的时间格式是这样的：2015-01-28 12:15:59.233123</p>
-<p>其实我不想要小数点后面的数值，然后就把默认值now() 改成LOCALTIMESTAMP(0)就可以了。</p>
+        <blockquote>
+<p>注意：由于Android6.0+支持多用户，所以，在4.1.2 返回路径 <code>/data/data/com.xxx.xxx/</code><br>请自动看做 6.0 下的<code>/data/user/0/com.xxx.xxx/</code>目录</p>
+</blockquote>
+<h2 id="外部文件存储"><a href="#外部文件存储" class="headerlink" title="外部文件存储"></a>外部文件存储</h2><p>最容易混淆的是外部存储，如果说pc上也要区分出外部存储和内部存储的话，那么自带的硬盘算是内部存储，U盘或者移动硬盘算是外部存储，因此我们很容易带着这样的理解去看待安卓手机，认为机身固有存储是内部存储，而扩展的T卡是外部存储。比如我们任务16GB版本的Nexus 4有16G的内部存储，普通消费者可以这样理解，但是安卓的编程中不能，这16GB仍然是外部存储。</p>
+<p>所有的安卓设备都有外部存储和内部存储，这两个名称来源于安卓的早期设备，那个时候的设备内部存储确实是固定的，而外部存储确实是可以像U盘一样移动的。但是在后来的设备中，很多中高端机器都将自己的机身存储扩展到了8G以上，他们将存储在概念上分成了”内部internal” 和”外部external” 两部分，但其实都在手机内部。所以不管安卓手机是否有可移动的sdcard，他们总是有外部存储和内部存储。最关键的是，我们都是通过相同的api来访问可移动的sdcard或者手机自带的存储（外部存储）。</p>
+<h3 id="自定义外部存储Environment类"><a href="#自定义外部存储Environment类" class="headerlink" title="自定义外部存储Environment类"></a>自定义外部存储<code>Environment</code>类</h3><blockquote>
+<p>注意在<code>AndoridManifest.xml</code>中声明存储权限请求，6.0以上的系统要动态请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.MOUNT_UNMOUNT_FILESYSTEMS&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><code>static File getDataDirectory()</code>获得android <code>/data</code>的目录。</li>
+<li><code>static File getExternalStorageDirectory()</code>获取Android的<code>/storage/emulated/0</code>目录也是就<code>/sdcard</code>目录</li>
+<li><code>static File getExternalStoragePublicDirectory(String type)</code>根据类型来获取sdcard上的目录如type为<code>Environment.DIRECTORY_MUSIC</code>时，路径为<code>/storage/emulated/0/Music</code></li>
+<li><code>static File getRootDirectory()</code>获得android的<code>/system</code>目录。</li>
+<li><code>static File getDownloadCacheDirectory()</code>这个指的是<code>/cache</code>这么目录</li>
+</ul>
+<h3 id="规范化外部存储"><a href="#规范化外部存储" class="headerlink" title="规范化外部存储"></a>规范化外部存储</h3><p>应用程序在运行的过程中如果需要向手机上保存数据，一般是把数据保存在SDcard中的。</p>
+<p>大部分应用是直接在SDCard的根目录下创建一个文件夹，然后把数据保存在该文件夹中。</p>
+<p>这样当该应用被卸载后，这些数据还保留在SDCard中，留下了垃圾数据。</p>
+<p>如果你想让你的应用被卸载后，与该应用相关的数据也清除掉，该怎么办呢？</p>
+<p>通过<code>context.getExternalFilesDir()</code>方法可以获取到 sdcard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据</p>
+<p>通过<code>context.getExternalCacheDir()</code>方法可以获取到 sdcard/Android/data/你的应用包名/cache/目录，一般存放临时缓存数据</p>
+<p>如果使用上面的方法，当你的应用在被用户卸载后，sdcard/Android/data/你的应用的包名/ 这个目录下的所有文件都会被删除，不会留下垃圾信息。</p>
+<p>而且上面二个目录分别对应 设置-&gt;应用-&gt;应用详情里面的”清除数据“与”清除缓存“选项</p>
+<h2 id="路径的规律图如下"><a href="#路径的规律图如下" class="headerlink" title="路径的规律图如下"></a>路径的规律图如下</h2><p>一般地，通过<code>Context</code> 和 <code>Environment</code>相关的方法获取文件存取的路径。</p>
+<p>通过这两个类可获取各种路径，如图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">+- /data  ---&gt; Environment.getDataDirectory()</span><br><span class="line">|   |</span><br><span class="line">|   |   </span><br><span class="line">|   +- data/com.adorkable.sample</span><br><span class="line">|           |</span><br><span class="line">|           | </span><br><span class="line">|           +- files ---&gt; context.getFilesDir() </span><br><span class="line">|           |       |</span><br><span class="line">|           |       +- file1 ---&gt; context.getFileStreamPath(&quot;file1&quot;)</span><br><span class="line">|           |       |</span><br><span class="line">|           |       +- file2 ---&gt;context.openFileOutput(&quot;file2&quot;)</span><br><span class="line">|           | </span><br><span class="line">|           +- cache  ---&gt; context.getCacheDir()</span><br><span class="line">|           |</span><br><span class="line">|           +- app_$name ---&gt; context.getDir(String name, int mode)</span><br><span class="line">|           |</span><br><span class="line">|           +- shared_prefs ---&gt; context.getSharedPreferences()</span><br><span class="line">| </span><br><span class="line">|</span><br><span class="line">+- /storage/sdcard0   ---&gt; Environment.getExternalStorageDirectory()</span><br><span class="line">             |                        </span><br><span class="line">             |- Music ---&gt;Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)</span><br><span class="line">             |</span><br><span class="line">             +- dir1  ---&gt;Environment.getExternalStoragePublicDirectory(&quot;dir1&quot;)</span><br><span class="line">             |   </span><br><span class="line">             +- Andorid/data/com.adorkable.sample【注：这里是包名】</span><br><span class="line">                              |</span><br><span class="line">                              | </span><br><span class="line">                              +- files      ---&gt; context.getExternalFilesDir(&quot;&quot;)</span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- file1   ---&gt; context.getExternalFilesDir(&quot;file1&quot;)</span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- Music    ---&gt; context.getExternalFilesDir(Environment.Music)</span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- Picture  ---&gt; context.getExternalFilesDir(Environment.Picture) </span><br><span class="line">                              |   |</span><br><span class="line">                              |   +- ...</span><br><span class="line">                              |</span><br><span class="line">                              | </span><br><span class="line">                              +- cache    ---&gt;context.getExternalCacheDir()</span><br><span class="line">                              |</span><br><span class="line">                              +- 其他</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/07/14/2015-07-14-Android 文件存储/" data-id="cjqeijz8t002s8w24no1y28m4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件存储/">文件存储</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-05-25-MySQL中授权命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/25/2015-05-25-MySQL中授权命令/" class="article-date">
+  <time datetime="2015-05-25T03:57:08.000Z" itemprop="datePublished">2015-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>►<a class="article-category-link" href="/categories/MySQL/SQL/">SQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/25/2015-05-25-MySQL中授权命令/">mysql中授权命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mysql中授权命令<span class="keyword">grant</span>用法详解: </span><br><span class="line"></span><br><span class="line">mysql中可以给你一个用户授予如<span class="keyword">select</span>,<span class="keyword">insert</span>,<span class="keyword">update</span>,<span class="keyword">delete</span>等其中的一个或者多个权限,主要使用<span class="keyword">grant</span>命令,用法格式为： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 权限 <span class="keyword">on</span> 数据库对象 <span class="keyword">to</span> 用户 </span><br><span class="line"></span><br><span class="line">一、<span class="keyword">grant</span> 普通数据用户，查询、插入、更新、删除 数据库中所有表数据的权利。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">insert</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">update</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">delete</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line">或者，用一条 MySQL 命令来替代： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>, <span class="keyword">insert</span>, <span class="keyword">update</span>, <span class="keyword">delete</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> common_user@’%’ </span><br><span class="line"></span><br><span class="line">二、<span class="keyword">grant</span> 数据库开发人员，创建表、索引、视图、存储过程、函数。。。等权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 创建、修改、删除 MySQL 数据表结构权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">alter</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">drop</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 操作 MySQL 外键权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">references</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 操作 MySQL 临时表权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">temporary</span> <span class="keyword">tables</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 操作 MySQL 索引权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">index</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 操作 MySQL 视图、查看视图源代码 权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">view</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">show</span> <span class="keyword">view</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> 操作 MySQL 存储过程、函数 权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> routine <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; <span class="comment">-- now, can show procedure status </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">alter</span> routine <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; <span class="comment">-- now, you can drop a procedure </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">execute</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> developer@’<span class="number">192.168</span><span class="number">.0</span>.%’; </span><br><span class="line"></span><br><span class="line">三、<span class="keyword">grant</span> 普通 DBA 管理某个 MySQL 数据库的权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> testdb <span class="keyword">to</span> dba@’localhost’ </span><br><span class="line"></span><br><span class="line">其中，关键字 “<span class="keyword">privileges</span>” 可以省略。 </span><br><span class="line"></span><br><span class="line">四、<span class="keyword">grant</span> 高级 DBA 管理 MySQL 中所有数据库的权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@’localhost’ </span><br><span class="line"></span><br><span class="line">五、MySQL <span class="keyword">grant</span> 权限，分别可以作用在多个层次上。 </span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> <span class="keyword">grant</span> 作用在整个 MySQL 服务器上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@localhost; <span class="comment">-- dba 可以查询 MySQL 中所有数据库中的表。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@localhost; <span class="comment">-- dba 可以管理 MySQL 中的所有数据库 </span></span><br><span class="line"></span><br><span class="line">2. <span class="keyword">grant</span> 作用在单个数据库上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> dba@localhost; <span class="comment">-- dba 可以查询 testdb 中的表。 </span></span><br><span class="line"></span><br><span class="line">3. <span class="keyword">grant</span> 作用在单个数据表上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>, <span class="keyword">insert</span>, <span class="keyword">update</span>, <span class="keyword">delete</span> <span class="keyword">on</span> testdb.orders <span class="keyword">to</span> dba@localhost; </span><br><span class="line"></span><br><span class="line">4. <span class="keyword">grant</span> 作用在表中的列上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>(<span class="keyword">id</span>, se, <span class="keyword">rank</span>) <span class="keyword">on</span> testdb.apache_log <span class="keyword">to</span> dba@localhost; </span><br><span class="line"></span><br><span class="line">5. <span class="keyword">grant</span> 作用在存储过程、函数上： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">execute</span> <span class="keyword">on</span> <span class="keyword">procedure</span> testdb.pr_add <span class="keyword">to</span> ’dba’@’localhost’ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">execute</span> <span class="keyword">on</span> <span class="keyword">function</span> testdb.fn_add <span class="keyword">to</span> ’dba’@’localhost’ </span><br><span class="line"></span><br><span class="line">六、查看 MySQL 用户权限 </span><br><span class="line"></span><br><span class="line">查看当前用户（自己）权限： </span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">grants</span>; </span><br><span class="line"></span><br><span class="line">查看其他 MySQL 用户权限： </span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">grants</span> <span class="keyword">for</span> dba@localhost; </span><br><span class="line"></span><br><span class="line">七、撤销已经赋予给 MySQL 用户权限的权限。 </span><br><span class="line"></span><br><span class="line"><span class="keyword">revoke</span> 跟 <span class="keyword">grant</span> 的语法差不多，只需要把关键字 “<span class="keyword">to</span>” 换成 “<span class="keyword">from</span>” 即可： </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> all <span class="keyword">on</span> *.* <span class="keyword">to</span> dba@localhost; </span><br><span class="line"></span><br><span class="line"><span class="keyword">revoke</span> all <span class="keyword">on</span> *.* <span class="keyword">from</span> dba@localhost; </span><br><span class="line"></span><br><span class="line">八、MySQL <span class="keyword">grant</span>、<span class="keyword">revoke</span> 用户权限注意事项 </span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> <span class="keyword">grant</span>, <span class="keyword">revoke</span> 用户权限后，该用户只有重新连接 MySQL 数据库，权限才能生效。 </span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 如果想让授权的用户，也可以将这些权限 <span class="keyword">grant</span> 给其他用户，需要选项 “<span class="keyword">grant</span> <span class="keyword">option</span>“ </span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> testdb.* <span class="keyword">to</span> dba@localhost <span class="keyword">with</span> <span class="keyword">grant</span> <span class="keyword">option</span>; </span><br><span class="line"></span><br><span class="line">这个特性一般用不到。实际中，数据库权限最好由 DBA 来统一管理。</span><br></pre></td></tr></table></figure>
+<h2 id="还有一组我常用的"><a href="#还有一组我常用的" class="headerlink" title="还有一组我常用的"></a>还有一组我常用的</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">向表中插入数据</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">test</span> (<span class="keyword">id</span>,S_name) <span class="keyword">VALUE</span>(<span class="number">1234</span>,<span class="string">"yantai"</span>);</span><br><span class="line"></span><br><span class="line">把一张表中的数据插入另一张表</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> test2 (id2) </span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> <span class="keyword">test</span> ;</span><br><span class="line"></span><br><span class="line">修改表数据</span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> test2 <span class="keyword">SET</span> age=<span class="number">2</span>;		<span class="comment">-- 修改所有的元组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> test2 <span class="keyword">SET</span> age=<span class="number">22</span> <span class="keyword">WHERE</span> id2=<span class="number">1234</span>;  <span class="comment">-- 修改一行</span></span><br><span class="line"></span><br><span class="line">创建用户</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> liuqiang <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'123'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> liuqiang@localhost <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'123'</span>;</span><br><span class="line"></span><br><span class="line">给某个用户授权</span><br><span class="line"></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> userinfo <span class="keyword">TO</span> liuqiang;</span><br><span class="line"></span><br><span class="line">把名为test的数据库的所有权限授权个某个用户</span><br><span class="line"></span><br><span class="line"><span class="keyword">GRANT</span> ALL <span class="keyword">ON</span> test.* <span class="keyword">TO</span> <span class="string">'liuqiang'</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="修改root-密码"><a href="#修改root-密码" class="headerlink" title="修改root 密码"></a>修改root 密码</h1><p><code>mysql&gt; SET PASSWORD FOR &#39;root&#39;@&#39;localhost&#39; = PASSWORD(&#39;newpass&#39;);</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/05/25/2015-05-25-MySQL中授权命令/" data-id="cjqeijz8r002n8w249ip9zfze" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-05-08-Linux ftp 命令行登陆" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/08/2015-05-08-Linux ftp 命令行登陆/" class="article-date">
+  <time datetime="2015-05-08T13:57:30.000Z" itemprop="datePublished">2015-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/命令行/">命令行</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/08/2015-05-08-Linux ftp 命令行登陆/">Linux ftp 命令行登陆</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>liuqiang@liuqiang-Lenovo:~$ sudo apt-get lftp</code></p>
+<p><code>liuqiang@liuqiang-Lenovo:~$ lftp 用户名:密码@121.42.96.11</code></p>
+<p>现在就可以进行一般的linux文件命令了</p>
+<p>ls  rm  等等</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/05/08/2015-05-08-Linux ftp 命令行登陆/" data-id="cjqeijz8n002e8w2483ccivgz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令行/">命令行</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-05-05-我比较中意的几款WordPress主题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/05/2015-05-05-我比较中意的几款WordPress主题/" class="article-date">
+  <time datetime="2015-05-05T10:57:54.000Z" itemprop="datePublished">2015-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Blog/">Blog</a>►<a class="article-category-link" href="/categories/Blog/WorPress/">WorPress</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/05/2015-05-05-我比较中意的几款WordPress主题/">我比价中意的几款WordPress主题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="以下这几个都能直接在WordPress市场上搜到，都是免费的"><a href="#以下这几个都能直接在WordPress市场上搜到，都是免费的" class="headerlink" title="以下这几个都能直接在WordPress市场上搜到，都是免费的"></a>以下这几个都能直接在WordPress市场上搜到，都是免费的</h2><p>EverBox也不错，这个还是比较简洁的，稍微修改下就可以了，以蓝色调为主比较干净</p>
+<ul>
+<li><p>FlatBox做少许修改也行</p>
+</li>
+<li><p>Iconic One评论界面有点问题</p>
+</li>
+<li><p>Icy 这个怎么说呢，他有收费版，所以免费版的还是有少许缺陷</p>
+</li>
+<li><p>NewPersonal大气但是问题也挺大的</p>
+</li>
+<li><p>Swell Lite也还凑合</p>
+</li>
+<li><p>Hexa这个是时间轴样式的，配色如果不是技术类型的文章的话，还是不错的</p>
+</li>
+<li><p>Roda这个也是挺大气的，不过要想使用，需要自己做一些调节，太大气了、</p>
+</li>
+</ul>
+<h2 id="还有几款在WordPress市场之外也不错"><a href="#还有几款在WordPress市场之外也不错" class="headerlink" title="还有几款在WordPress市场之外也不错"></a>还有几款在WordPress市场之外也不错</h2><ul>
+<li><p>YuSi，就是颜色太重了，不太喜欢他的1.x版本的绿色，如果换个绿色就好了</p>
+</li>
+<li><p>Nucleare这个比较简洁，这个也是绿色调的</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/05/05/2015-05-05-我比较中意的几款WordPress主题/" data-id="cjqeijz8k00288w247kwjxjlk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WorPress/">WorPress</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-05-04-Android 中View的位置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/04/2015-05-04-Android 中View的位置/" class="article-date">
+  <time datetime="2015-05-04T08:42:30.000Z" itemprop="datePublished">2015-05-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/04/2015-05-04-Android 中View的位置/">Android 中View在屏幕中的位置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>2018-11-19 对文章进行第一次更新</p>
+</blockquote>
+<h2 id="一、Android-中View的位置"><a href="#一、Android-中View的位置" class="headerlink" title="一、Android 中View的位置"></a>一、Android 中View的位置</h2><h3 id="1-View-getTop-、View-getLeft-、View-getBottom-、View-getRight"><a href="#1-View-getTop-、View-getLeft-、View-getBottom-、View-getRight" class="headerlink" title="1. View.getTop()、View.getLeft()、View.getBottom()、View.getRight();"></a>1. View.getTop()、View.getLeft()、View.getBottom()、View.getRight();</h3><p>这四个参数都是相对于父视图来说的。layout的过程就是确定View在屏幕上显示的具体位置，这里的具体位置都是相对与父视图的位置。mLeft代表当前view.layout的这个view的左边缘离它的父视图左边缘的距离，<strong>mTop指当前view的上边缘离父视图上边缘的距离。而以此为界，mRight所指的是当前view的右边缘离父视图左边缘的距离（mLeft+自己的宽度），mBottom也是指当前view的下边缘离父视图的上边缘的距离。</strong></p>
+<p><strong>视图左侧位置:</strong> <code>view.getLeft()= 父ViewGroup的 padding left + view 的marginLeft</code></p>
+<p><strong>视图右侧位置:</strong> <code>view.getRight()= view.getLeft() + view.getWidth()</code></p>
+<p>其他两个依次类推。</p>
+<p>这四个方法所获取到的各个左上右下的值与layout的四个参数代表的是一样的，都是相对父视图的左边缘与上边缘。</p>
+<p>通过这四个方法对应的set方法，能够设置一个view 在父view中占的占据位置和大小。</p>
+<p><img src="/images/2015/05/view-left-bottom.png" alt="图片来自别人的文章"></p>
+<h4 id="2-View-getTranslationX-、View-getTranslationY"><a href="#2-View-getTranslationX-、View-getTranslationY" class="headerlink" title="2. View.getTranslationX()、View.getTranslationY();"></a>2. View.getTranslationX()、View.getTranslationY();</h4><p>view.getTranslationX() 计算的是该view的偏移量，通过调用setTranslationX(translationX)来设置。初始值为0，向左偏移值为负，向右偏移值为正。<strong>当 View 未发生平移操作时，translationX 与 translationY 都为 0。</strong></p>
+<p>通过这两个方法对应的set方法，可以设置view在父view中的位置，对view进行上下左右平移变换。</p>
+<h3 id="3-View-getX-、View-getY"><a href="#3-View-getX-、View-getY" class="headerlink" title="3 View.getX()、View.getY();"></a>3 View.getX()、View.getY();</h3><p>view.getX() 相当于该view（发生平移变换之后）距离父容器左边缘的距离，即：<code>view.getX()= view.getLeft()+getTranslationX()</code>。 </p>
+<p>我们去看一下这个view.setX(100)方法的定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//一目了然，这个setX其实通过调用 setTranslationX 来实现的</span><br><span class="line">   public void setX(float x) &#123;</span><br><span class="line">       setTranslationX(x - mLeft);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-view-getLocationInWindow-int-position"><a href="#4-view-getLocationInWindow-int-position" class="headerlink" title="4. view.getLocationInWindow(int[] position);"></a>4. view.getLocationInWindow(int[] position);</h3><p>顾名思义，获取view在window中的位置，那么什么是window呢？</p>
+<blockquote>
+<p>Window 有三种类型，分别是应用 Window、子 Window 和系统 Window。应用类 Window 对应一个 Acitivity，子 Window 不能单独存在，需要依附在特定的父 Window 中，比如常见的一些 Dialog 就是一个子 Window。系统 Window是需要声明权限才能创建的 Window，比如 Toast 和系统状态栏都是系统 Window。Window 是分层的，每个 Window 都有对应的 z-ordered，层级大的会覆盖在层级小的 Window 上面，这和 HTML 中的 z-index 概念是完全一致的。在三种 Window 中，应用 Window 层级范围是 1~99，子 Window 层级范围是 1000~1999，系统 Window 层级范围是 2000~2999</p>
+</blockquote>
+<p>View.getLocationInWindow()和 View.getLocationOnScreen() 在window占据全部screen时，返回值相同，不同的典型情况是在Dialog中时。当Dialog出现在屏幕中间时，View.getLocationOnScreen()取得的值要比View.getLocationInWindow()取得的值要大。</p>
+<h3 id="5-view-getLocationOnScreen-int-position"><a href="#5-view-getLocationOnScreen-int-position" class="headerlink" title="5. view.getLocationOnScreen(int[] position);"></a>5. view.getLocationOnScreen(int[] position);</h3><p>getLocationOnScreen方法获取到的是View左上顶点在屏幕中的绝对位置.(屏幕范围包括状态栏).</p>
+<h3 id="6-MotionEvent类中-getRawX-和-getRawY"><a href="#6-MotionEvent类中-getRawX-和-getRawY" class="headerlink" title="6. MotionEvent类中 getRawX()和 getRawY()"></a>6. MotionEvent类中 getRawX()和 getRawY()</h3><p>event.getRowX()：触摸点相对于手机屏幕原点的x坐标，不管App是否有状态栏、全屏等。</p>
+<p>event.getX()： 触摸点相对于自身组件原点(一般是view的左上角)的x坐标 ，触摸点到触摸点所在控件左上角的X轴距离</p>
+<h2 id="二、Activity中获取View宽高的方式"><a href="#二、Activity中获取View宽高的方式" class="headerlink" title="二、Activity中获取View宽高的方式"></a>二、Activity中获取View宽高的方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">    //方法一  ------------------------------------------------</span><br><span class="line"></span><br><span class="line">    int w = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);  </span><br><span class="line"></span><br><span class="line">    int h = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);  </span><br><span class="line"></span><br><span class="line">    imageView.measure(w, h);  </span><br><span class="line"></span><br><span class="line">    int height =imageView.getMeasuredHeight();  </span><br><span class="line"></span><br><span class="line">    int width =imageView.getMeasuredWidth();  </span><br><span class="line"></span><br><span class="line">    textView.append(&quot;---height:&quot;+height+&quot;---width:&quot;+width);  </span><br><span class="line"></span><br><span class="line">    //方法二  -----------------------------------------------</span><br><span class="line"></span><br><span class="line">    ViewTreeObserver vto = imageView.getViewTreeObserver();  </span><br><span class="line"></span><br><span class="line">    vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() &#123;  </span><br><span class="line"></span><br><span class="line">        public boolean onPreDraw() &#123;  </span><br><span class="line"></span><br><span class="line">            int height = imageView.getMeasuredHeight();  </span><br><span class="line"></span><br><span class="line">            int width = imageView.getMeasuredWidth();  </span><br><span class="line"></span><br><span class="line">            textView.append(&quot;---height:&quot;+height+&quot;--width:&quot;+width);  </span><br><span class="line"></span><br><span class="line">            return true;  </span><br><span class="line"></span><br><span class="line">        &#125;  </span><br><span class="line"></span><br><span class="line">    &#125;);  </span><br><span class="line"></span><br><span class="line">    //方法三   -----------------------------------------------  </span><br><span class="line"></span><br><span class="line">    ViewTreeObserver vto2 = imageView.getViewTreeObserver();   </span><br><span class="line"></span><br><span class="line">    vto2.addOnGlobalLayoutListener(new OnGlobalLayoutListener() &#123;  </span><br><span class="line"></span><br><span class="line">        @Override   </span><br><span class="line"></span><br><span class="line">        public void onGlobalLayout() &#123;  </span><br><span class="line"></span><br><span class="line">            imageView.getViewTreeObserver().removeGlobalOnLayoutListener(this);   </span><br><span class="line"></span><br><span class="line">            textView.append(&quot;---height:&quot;+imageView.getHeight()+&quot;---width:&quot;+imageView.getWidth());  </span><br><span class="line"></span><br><span class="line">        &#125;   </span><br><span class="line"></span><br><span class="line">    &#125;);    </span><br><span class="line"></span><br><span class="line">//方法四 --------------------------------------</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line"></span><br><span class="line">    public void onWindowFocusChanged(boolean hasFocus) &#123;</span><br><span class="line"></span><br><span class="line">        super.onWindowFocusChanged(hasFocus);</span><br><span class="line"></span><br><span class="line">        System.out.println(tv.getLeft() + &quot;Q_M&quot; + tv.getRight());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>总结:那么需要获取控件的宽高该用那个方法呢?</p>
+<ul>
+<li>方法一: 比其他的两个方法多了一次计算,也就是多调用了一次onMeasure()方法,该方法虽然看上去简单,但是如果要目标控件计算耗时比较大的话(如listView等),不建议使用.</li>
+<li>方法二,它的回调方法会调用很多次,并且滑动TextView的时候仍然会调用,所以不建议使用.</li>
+<li>方法三,比较合适.当然,实际应用的时候需要根据实际情况而定.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/05/04/2015-05-04-Android 中View的位置/" data-id="cjqeijz8p002i8w24m11r6dq8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-04-20-git (github)的基本使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/20/2015-04-20-git (github)的基本使用/" class="article-date">
+  <time datetime="2015-04-20T03:51:49.000Z" itemprop="datePublished">2015-04-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/20/2015-04-20-git (github)的基本使用/">git (github)的基本使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、基本操作"><a href="#一、基本操作" class="headerlink" title="一、基本操作"></a>一、基本操作</h1><ol>
+<li><p>用 <code>git init</code> 来在目录中创建新的 Git 仓库。 你可以在任何时候、任何目录中这么做，完全是本地化的。</p>
+</li>
+<li><p>使用 <code>git clone</code> 拷贝一个 Git 仓库到本地，让自己能够查看该项目，或者进行修改。</p>
+</li>
+<li><p>使用 <code>git add</code> 添加需要追踪的新文件和待提交的更改到暂存区， 然后使用 <code>git status</code> 和 <code>git diff</code> 查看有何改动， 最后用 <code>git commit</code> 将你的快照记录。这就是你要用的基本流程，绝大部分时候都是这样的。</p>
+</li>
+<li><p>在当前工作目录执行命令：<code>git add .</code> Git 会递归地将你执行命令时所在的目录中的所有文件添加上去.</p>
+</li>
+<li><p>执行 <code>git status</code> 以查看在你上次提交之后有啥被修改或者临时提交了， 从而决定自己是否需要提交一次快照，同时也能知道有什么改变被记录进去了。</p>
+</li>
+<li><p><code>git diff</code> 显示已写入缓存与已修改但尚未写入缓存的改动的区别,执行 <code>git diff</code> 来查看执行 <code>git status</code> 的结果的详细信息 —— 一行一行地显示这些文件是如何被修改或写入缓存的。<br><code>git diff HEAD</code> —— 显示的是工作目录与上一次提交的更新的区别，无视缓存。</p>
+</li>
+<li><p><code>git commit -a</code> 自动将在提交前将已记录、修改的文件放入缓存区,基本上这句话的意思就是，为任何已有记录的文件执行 <code>git add .</code>不过你仍然需要执行 <code>git add 文件名</code> 来添加新文件</p>
+</li>
+<li>git 对本地文件的文件名的大小写是不敏感额，如果修改文件名的大小写不会添加修改，命令行运行下列代码，强制git对大小写敏感<br><code>$ git config core.ignorecase false</code></li>
+<li><code>git remote</code> 命令列出所有远程主机 使用<code>-v</code>选项，可以参看远程主机的网址</li>
+</ol>
+<h2 id="二、-常用命令"><a href="#二、-常用命令" class="headerlink" title="二、 常用命令"></a>二、 常用命令</h2><h2 id="1-git-branch"><a href="#1-git-branch" class="headerlink" title="1. git branch"></a>1. git branch</h2><p><strong>【  origin 指的是主机名    master 指的是分支名】</strong></p>
+<p><code>git branch -r</code> 查看远程分支</p>
+<p><code>git branch -a</code>    查看所有分支</p>
+<p><code>git branch -d （branch name）</code>    删除本地分支</p>
+<p><code>git  branch (new-branch -name)</code>    创建分支</p>
+<p><code>git branch -v</code>  查看各个分支最后一个提交对象的信息</p>
+<p><code>git branch -m &lt;old_branch_name&gt; &lt;new_branch_name&gt;</code> 重命名本地分支</p>
+<h2 id="2-git-push"><a href="#2-git-push" class="headerlink" title="2. git push"></a>2. git push</h2><p><strong>$ git push  :</strong></p>
+<p><code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code></p>
+<p> 执行 git push [alias 远程仓库名] [branch 远程分支名]，就会将你的当前 分支推送成为 [alias] 远端上的 [branch] 分支。 让我们试试推送我们的主分支到先前添加的“github”远端仓库上去。</p>
+<p><code>$ git push origin master</code>  如果省略远程分支名，则表示将本地分支推送与之存在”追踪关系”的远程分支（通常两者同名），如果该远程分支不存在，则会被新建。</p>
+<p>不带任何参数的<code>git push</code>，默认只推送当前分支，这叫做simple方式。</p>
+<p><code>git push origin --delete &lt;branchName&gt;</code> 删除一个远程分支</p>
+<p><code>git push origin :&lt;branchName&gt;</code> 推送一个空分支到远程分支，其实就相当于删除远程分支</p>
+<h2 id="3-git-pull"><a href="#3-git-pull" class="headerlink" title="3. git pull"></a>3. git pull</h2><p><strong>$ git pull</strong></p>
+<p>比如，取回origin主机的dev分支，与本地的master分支合并，需要写成下面这样。<code>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</code></p>
+<p><code>$ git pull origin dev:master</code></p>
+<p>上面命令表示，取回origin/dev分支，再与当前master分支合并。实质上，这等同于先做git fetch，再做git merge。</p>
+<p><strong>$ git fetch</strong></p>
+<p><code>$ git fetch origin dev</code></p>
+<p><code>$ git merge origin/dev</code>   合并fetch下来的远程dev分支数据到当前分支上</p>
+<p><code>git fetch origin 远程分支名:本地分支名</code></p>
+<p>上面命令表示，取回origin/next分支，再与<code>当前分支</code>合并。实质上，这等同于先做git fetch，再做git merge。</p>
+<h2 id="4-git-checkout"><a href="#4-git-checkout" class="headerlink" title="4. git checkout"></a>4. git checkout</h2><p><code>git checkout -b [分支名] [远程主机名]/[分支名]</code></p>
+<h2 id="5-git-log"><a href="#5-git-log" class="headerlink" title="5. git log"></a>5. git log</h2><p><code>git log   --oneline</code>  显示log一行摘要</p>
+<p><code>git log --author=&quot;author-name&quot;</code>   显示某个用户提交的log</p>
+<p><code>git log -p (file-name)</code>   某个文件的提交log</p>
+<h2 id="6-git-tag"><a href="#6-git-tag" class="headerlink" title="6. git tag"></a>6. git tag</h2><ul>
+<li>列出现有标签的命令<code>$ git tag</code> </li>
+<li>带有通配符的列出命令<code>$ git tag -l &#39;v1.4.2.*&#39;</code></li>
+<li>新建标签 <code>$ git tag -a v1.4 -m &#39;my version 1.4&#39;</code>引号里面的是标签说明</li>
+<li>把标签推到git服务器上<code>$ git push origin [tagname]</code></li>
+<li>一次推送所有本地新增的标签到git服务器 <code>git push origin --tags</code></li>
+</ul>
+<h2 id="7-git-追踪关系"><a href="#7-git-追踪关系" class="headerlink" title="7. git 追踪关系"></a>7. git 追踪关系</h2><p>在某些场合，Git会自动在本地分支与远程分支之间，建立一种追踪关系(tracking)。比如，在git clone的时候，所有本地分支默认与远程主机的同名分支，建立追踪关系，也就是说，本地的master分支自动”追踪”origin/master分支。</p>
+<p>Git也允许手动建立追踪关系。</p>
+<p><del><code>git branch --set-upstream master origin/dev</code></del></p>
+<p>上面命令指定本地master分支追踪远程  origin/dev分支。</p>
+<p>但是据说上面<code>--set-upstream</code>这个命令被废弃了，建议使用<code>--track 或者 --set-upstream-to</code>来代替</p>
+<p>如果当前分支与远程分支存在追踪关系，git pull就可以省略远程分支名。</p>
+<p>$ git pull origin</p>
+<p>上面命令表示，本地的当前分支自动与对应的origin主机”追踪分支”(remote-tracking branch)进行合并。</p>
+<h1 id="如何查看本地跟踪分支对应的远程分支"><a href="#如何查看本地跟踪分支对应的远程分支" class="headerlink" title="如何查看本地跟踪分支对应的远程分支"></a>如何查看本地跟踪分支对应的远程分支</h1><p><code>git branch -vv（两个v），就能够看到本地分支跟踪的远程分支。</code></p>
+<h1 id="获取远程服务器上某个分支"><a href="#获取远程服务器上某个分支" class="headerlink" title="获取远程服务器上某个分支"></a>获取远程服务器上某个分支</h1><p>加入服务器上被合作的伙伴新创建了一个分支，我们可以通过如下方式来获取：</p>
+<p><code>$ git fetch origin</code></p>
+<p>然后我门会获取到新的分支的名字</p>
+<p>值得注意的是，在 <code>fetch</code>操作下载好新的远程分支之后，你仍然无法在本地编辑该远程仓库中的分支。换句话说，在本例中，你不会有一个新的<code>new_added_branch</code>分支，有的只是一个你无法移动的 <code>origin/new_added_branch</code> 指针。</p>
+<p>如果要把该内容合并到当前分支，可以运行 <code>git merge origin/new_added_branch</code>。如果想要一份自己的 <code>new_added_branch</code> 来开发，可以在远程分支的基础上分化出一个新的分支来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b new_added_branch origin/new_added_branch</span><br><span class="line">Branch new_added_branch set up to track remote branch refs/remotes/origin/new_added_branch.</span><br><span class="line">Switched to a new branch &quot;new_added_branch&quot;</span><br></pre></td></tr></table></figure>
+<p>这会切换到新建的 <code>new_added_branch</code> 本地分支，其内容同远程分支 <code>origin/new_added_branch</code> 一致，这样你就可以在里面继续开发了。</p>
+<h1 id="三、冲突解决"><a href="#三、冲突解决" class="headerlink" title="三、冲突解决"></a>三、冲突解决</h1><p>如果没有冲突的话，merge完成。有冲突的话，git会提示那个文件中有冲突，比如有如下冲突：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:test.c</span><br><span class="line"></span><br><span class="line">printf (“test1″);</span><br><span class="line"></span><br><span class="line">=======</span><br><span class="line"></span><br><span class="line">printf (“test2″);</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; issueFix:test.c</span><br></pre></td></tr></table></figure>
+<p>可以看到 ======= 隔开的上半部分，是 HEAD（即 master 分支，在运行 merge 命令时检出的分支）中的内容，下半部分是在 issueFix 分支中的内容。解决冲突的办法无非是二者选其一或者由你亲自整合到一起。比如你可以通过把这段内容替换为下面这样来解决：</p>
+<p>printf (“test2″);</p>
+<p>这个解决方案各采纳了两个分支中的一部分内容，而且删除了 &lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，和&gt;&gt;&gt;&gt;&gt;&gt;&gt; 这些行。</p>
+<p>在解决了所有文件里的所有冲突后，运行git add 将把它们标记为已解决（resolved）。</p>
+<p>然后使用git commit命令进行提交，merge就算完成了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/04/20/2015-04-20-git (github)的基本使用/" data-id="cjqeijz8m002c8w24tco276ep" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-04-14-Android 中的事件分发" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/14/2015-04-14-Android 中的事件分发/" class="article-date">
+  <time datetime="2015-04-14T13:39:51.000Z" itemprop="datePublished">2015-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/14/2015-04-14-Android 中的事件分发/">Android 中的事件分发</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="View的事件分发"><a href="#View的事件分发" class="headerlink" title="View的事件分发"></a>View的事件分发</h2><p>  1.</p>
+<p>   dispatchTouchEvent(MotionEvent event)这个方法在View类中定义</p>
+<p>   返回值 True if the event was handled by the view, false otherwise.</p>
+<p>   如果返回True 表示事件被这个View处理了，如果返回false表示事件没有被处理完。</p>
+<p>   也就是说，如果返回True,当前View会直接处理完所有的事件。否则，只处理一个（总共有四个？）</p>
+<p>   并向外部控件传递。</p>
+<p>   这个方法的返回值受到，OnTouchListener中的onTouch方法的返回值的影响，如果我们在onTouch方法里返回false，</p>
+<p>   就会再去执行onTouchEvent(event)方法。onTouchEvent会调用onClick（OnClickListener对象中的方法）并受其返回值影响</p>
+<p>   而如果在onTouch方法里返回了true，就会让dispatchTouchEvent方法直接返回true，不会再继续往下执行。</p>
+<p>   其实onClick事件只不过是MotionEvent中的Action_up 事件，所以点击事件只不过是</p>
+<p>   手势抬起事件的一个回调方法。所以事件总共是四种 按下，抬起，移动，取消。</p>
+<h2 id="ViewGroup的事件分发和拦截"><a href="#ViewGroup的事件分发和拦截" class="headerlink" title="ViewGroup的事件分发和拦截"></a>ViewGroup的事件分发和拦截</h2><p>   2.</p>
+<pre><code>传递过程，消费过程。从最外层的ViewGroup开始传递。从最里层的View开始响应。
+
+ViewGroup 重写了dispatchTouchEvent(MotionEvent event)这个方法，在某个条件成立的情况下会调用
+
+onInterceptTouchEvent方法，此方法负责对touch事件进行拦截，如果此方法返回true，则调用ViewGroup父类的
+
+dispatchTouchEvent方法，也就是View中的那个，也就是ViewGroup决定自己处理事件，同时事件不再向里面传递；
+
+如果返回false，表示不拦截事件，事件继续往里面传递，同时遍历所有子View，找到触发事件的那个调用他的
+
+dispatchTouchEvent方法，如果这个仍然是个ViewGroup（包括其子类）那么重复上面的步骤，如果是个View(包括
+
+其直接子类，除Viewgroup外的所有子类)则直接掉用这个View的dispatchTouchEvent，此方法会根据条件适当的决定
+
+自己的返回值，同时决定是否调用OnTouchListener接口中的onTouch方法和自己的onTouchEvent(event)方法。
+
+如果dispatchTouchEvent执行完毕后，返回之为true，说明事件被完全消费掉了，也就是说不会再向外层View
+</code></pre><p>   （广义的View其实应该是ViewGroup的子类才对，因为Android中View不能包含View）传递，</p>
+<pre><code>如果返回的false,说明当前View视图对此事件不做处理或者处理不了，怎么办呢？儿子不行老爸来，
+
+于是事件就交到了外层ViewGroup视图的onTouchEvent方法中。（依次向外寻求能够处理此事件的onTouchEvent方法）
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/04/14/2015-04-14-Android 中的事件分发/" data-id="cjqeijz8h00218w24nbyu53er" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-04-10-想要去做的东西" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/10/2015-04-10-想要去做的东西/" class="article-date">
+  <time datetime="2015-04-10T03:06:48.000Z" itemprop="datePublished">2015-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/个人想法/">个人想法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/10/2015-04-10-想要去做的东西/">想要去做的东西</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1. 古汉语词典—个人非常喜欢古文</p>
+<p>2.狗尾续貂—多人微小说平台</p>
+<p>3.仿ios桌面悬浮控制图标【比上面两个简单】</p>
+<p>4.图片处理程序</p>
+<p>5.知识百科</p>
+<ol start="6">
+<li>更新我的手电筒应用，使其能支持4.0以下的版本，增加崩溃统计，甚至增加摇一摇功能，能在某个设置的时间后，摇动手机</li>
+</ol>
+<p>点亮屏幕或者闪光灯、</p>
+<hr>
+<h2 id="Java操作网络"><a href="#Java操作网络" class="headerlink" title="Java操作网络"></a>Java操作网络</h2><p>网络请求：HttpURLConnection <code>okhttp</code></p>
+<p>HTML 分析： <code>jsoup</code> htmlparser</p>
+<p>ORM ： <code>mybatis</code>只是ibatis的第二个名字而已，建议使用mybatis，轻量级的orm框架，执行效率高，便于书写各种sql</p>
+<p>orm工具的基本思想</p>
+<p>无论是用过的hibernate,mybatis,你都可以法相他们有一个共同点：</p>
+<ol>
+<li><p>从配置文件(通常是XML配置文件中)得到 sessionfactory.</p>
+</li>
+<li><p>由sessionfactory  产生 session</p>
+</li>
+<li><p>在session 中完成对数据的增删改查和事务提交等.</p>
+</li>
+<li><p>在用完之后关闭session 。</p>
+</li>
+<li><p>在java 对象和 数据库之间有做mapping 的配置文件，也通常是xml 文件。</p>
 </li>
 </ol>
+<p>其实JSON 是可以传输图片的，所以我决定为了方便保存把图片保存到数据库中。</p>
+<h2 id="Python-操作网络"><a href="#Python-操作网络" class="headerlink" title="Python 操作网络"></a>Python 操作网络</h2><p>网络请求：urlib urlib2</p>
+<p>HTML 分析：<code>pyquery</code> BeautifulSoup lxml</p>
+<p>ORM ：<code>sqlalchemy</code> SQLObject</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2015/01/28/2015-01-28-Postgres时间日期处理/" data-id="cjqeijz7z000n8w24ovfwaltl" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2015/04/10/2015-04-10-想要去做的东西/" data-id="cjqeijz8j00268w24t4ukt656" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-02-25-查看Python安装位置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/27/2015-02-25-查看Python安装位置/" class="article-date">
-  <time datetime="2015-01-27T04:45:01.000Z" itemprop="datePublished">2015-01-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/27/2015-02-25-查看Python安装位置/">查看Python安装位置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>有时我们需要查看python的安装位置，好安装第三方库</p>
-<p>打开命令行，我们能输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[node@dev3 ~]$ python </span><br><span class="line"></span><br><span class="line">Python 2.6.6 (r266:84292, Jan 22 2014, 09:42:36) </span><br><span class="line"></span><br><span class="line">[GCC 4.4.7 20120313 (Red Hat 4.4.7-4)] on linux2</span><br><span class="line"></span><br><span class="line">Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.</span><br><span class="line"></span><br><span class="line">&amp;gt;&amp;gt;&amp;gt; import sys</span><br><span class="line"></span><br><span class="line">&amp;gt;&amp;gt;&amp;gt; sys.path</span><br><span class="line"></span><br><span class="line">[&apos;&apos;, &apos;/usr/lib64/python2.6/site-packages/tornado-4.0.2-py2.6-linux-x86_64.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/backports.ssl_match_hostname-3.4.0.2-py2.6.egg&apos;, &apos;/usr/lib64/python2.6/site-packages/certifi-14.05.14-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/pip-1.5.5-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/DBUtils-1.1-py2.6.egg&apos;, &apos;/usr/lib/python2.6/site-packages/redis-2.10.3-py2.6.egg&apos;, &apos;/usr/lib64/python26.zip&apos;, &apos;/usr/lib64/python2.6&apos;, &apos;/usr/lib64/python2.6/plat-linux2&apos;, &apos;/usr/lib64/python2.6/lib-tk&apos;, &apos;/usr/lib64/python2.6/lib-old&apos;, &apos;/usr/lib64/python2.6/lib-dynload&apos;, &apos;/usr/lib64/python2.6/site-packages&apos;, &apos;/usr/lib64/python2.6/site-packages/gtk-2.0&apos;, &apos;/usr/lib/python2.6/site-packages&apos;, &apos;/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info&apos;]</span><br><span class="line"></span><br><span class="line">&amp;gt;&amp;gt;&amp;gt;</span><br></pre></td></tr></table></figure>
-<p>好，<code>/usr/lib64/python2.6/</code>这个就是你的Python的安装路径</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2015/01/27/2015-02-25-查看Python安装位置/" data-id="cjqeijz8b001m8w24esu1r5a7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/个人想法/">个人想法</a></li></ul>
 
     </footer>
   </div>
@@ -443,14 +680,14 @@
 
 
   
-    <article id="post-2015-02-25-Python常用内置的函数和变量" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-03-29-记录一个Linux社区" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/01/27/2015-02-25-Python常用内置的函数和变量/" class="article-date">
-  <time datetime="2015-01-27T04:45:01.000Z" itemprop="datePublished">2015-01-27</time>
+    <a href="/2015/03/29/2015-03-29-记录一个Linux社区/" class="article-date">
+  <time datetime="2015-03-29T15:03:53.000Z" itemprop="datePublished">2015-03-29</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
   </div>
 
   </div>
@@ -461,7 +698,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/27/2015-02-25-Python常用内置的函数和变量/">查看Python安装位置</a>
+      <a class="article-title" href="/2015/03/29/2015-03-29-记录一个Linux社区/">记录一个Linux社区</a>
     </h1>
   
 
@@ -469,95 +706,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2>函数（方法）</h2>
-
-
-<p></p><h3>help()</h3><br>可以看到详细信息，–More–上回车，滚动信息。q 退出帮助.<p></p>
-<pre class="prettyprint linenums">
-import sys  
-print(help(sys))  
-</pre>
-
-
-<p></p><h3>dir()</h3><br>列出模块定义的标识符(类、函数、变量）<p></p>
-<p>列出对象定义的标识符(函数、变量）</p>
-<p>列出方法定义的标识符(变量）</p>
-<pre class="prettyprint linenums">
-import sys  
-print(dir(sys))  
-</pre>
-
-
-<p></p><h3>type(object)</h3><br>返回该object的类型<p></p>
-<p>len(s)     返回集合长度</p>
-<p>locals()     返回当前的变量列表</p>
-<p>globals()    返回一个描述当前全局符号表的字典</p>
+        <p>地址在 <a href="http://linux.linuxidc.com/" target="_blank" rel="noopener">http://linux.linuxidc.com/</a></p>
+<p>用户名与密码都是<a href="http://www.linuxidc.com" target="_blank" rel="noopener">www.linuxidc.com</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2015/01/27/2015-02-25-Python常用内置的函数和变量/" data-id="cjqeijz8a001i8w24d0rpc6wu" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2015/03/29/2015-03-29-记录一个Linux社区/" data-id="cjqeijz8e001r8w24czgs4m3l" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015-02-25-字符编码简介" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/24/2015-02-25-字符编码简介/" class="article-date">
-  <time datetime="2015-01-24T08:40:58.000Z" itemprop="datePublished">2015-01-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/编码/">编码</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/24/2015-02-25-字符编码简介/">字符编码简介</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先声明这篇文章是抄的，<a href="http://www.cnblogs.com/huxi/articles/1897271.html" target="_blank" rel="noopener">原文出处</a></p>
-<h2 id="字符编码简介"><a href="#字符编码简介" class="headerlink" title="字符编码简介"></a>字符编码简介</h2><h3 id="1-1-ASCII"><a href="#1-1-ASCII" class="headerlink" title="1.1. ASCII"></a>1.1. ASCII</h3><p>ASCII(American Standard Code for Information Interchange)，是一种单字节的编码。计算机世界里一开始只有英文，而单字节可以表示256个不同的字符，可以表示所有的英文字符和许多的控制符号。不过ASCII只用到了其中的一半（\x80以下），这也是MBCS得以实现的基础。</p>
-<h3 id="1-2-MBCS"><a href="#1-2-MBCS" class="headerlink" title="1.2. MBCS"></a>1.2. MBCS</h3><p>然而计算机世界里很快就有了其他语言，单字节的ASCII已无法满足需求。后来每个语言就制定了一套自己的编码，由于单字节能表示的字符太少，而且同时也需要与ASCII编码保持兼容，所以这些编码纷纷使用了多字节来表示字符，如GBxxx、BIGxxx等等，他们的规则是，如果第一个字节是\x80以下，则仍然表示ASCII字符；而如果是\x80以上，则跟下一个字节一起（共两个字节）表示一个字符，然后跳过下一个字节，继续往下判断。</p>
-<p>这里，IBM发明了一个叫Code Page的概念，将这些编码都收入囊中并分配页码，GBK是第936页，也就是CP936。所以，也可以使用CP936表示GBK。</p>
-<p>MBCS(Multi-Byte Character Set)是这些编码的统称。目前为止大家都是用了双字节，所以有时候也叫做DBCS(Double-Byte Character Set)。必须明确的是，MBCS并不是某一种特定的编码，Windows里根据你设定的区域不同，MBCS指代不同的编码，而Linux里无法使用MBCS作为编码。在Windows中你看不到MBCS这几个字符，因为微软为了更加洋气，使用了ANSI来吓唬人，记事本的另存为对话框里编码ANSI就是MBCS。同时，在简体中文Windows默认的区域设定里，指代GBK。</p>
-<h3 id="1-3-Unicode"><a href="#1-3-Unicode" class="headerlink" title="1.3. Unicode"></a>1.3. Unicode</h3><p>后来，有人开始觉得太多编码导致世界变得过于复杂了，让人脑袋疼，于是大家坐在一起拍脑袋想出来一个方法：所有语言的字符都用同一种字符集来表示，这就是Unicode。</p>
-<p>最初的Unicode标准UCS-2使用两个字节表示一个字符，所以你常常可以听到Unicode使用两个字节表示一个字符的说法。但过了不久有人觉得256*256太少了，还是不够用，于是出现了UCS-4标准，它使用4个字节表示一个字符，不过我们用的最多的仍然是UCS-2。</p>
-<p>UCS(Unicode Character Set)还仅仅是字符对应码位的一张表而已，比如”汉”这个字的码位是6C49。字符具体如何传输和储存则是由UTF(UCS Transformation Format)来负责。</p>
-<p>一开始这事很简单，直接使用UCS的码位来保存，这就是UTF-16，比如，”汉”直接使用\x6C\x49保存(UTF-16-BE)，或是倒过来使用\x49\x6C保存(UTF-16-LE)。但用着用着美国人觉得自己吃了大亏，以前英文字母只需要一个字节就能保存了，现在大锅饭一吃变成了两个字节，空间消耗大了一倍……于是UTF-8横空出世。</p>
-<p>UTF-8是一种很别扭的编码，具体表现在他是变长的，并且兼容ASCII，ASCII字符使用1字节表示。然而这里省了的必定是从别的地方抠出来的，你肯定也听说过UTF-8里中文字符使用3个字节来保存吧？4个字节保存的字符更是在泪奔……（具体UCS-2是怎么变成UTF-8的请自行搜索）</p>
-<p>另外值得一提的是BOM(Byte Order Mark)。我们在储存文件时，文件使用的编码并没有保存，打开时则需要我们记住原先保存时使用的编码并使用这个编码打开，这样一来就产生了许多麻烦。（你可能想说记事本打开文件时并没有让选编码？不妨先打开记事本再使用文件 -&gt; 打开看看）而UTF则引入了BOM来表示自身编码，如果一开始读入的几个字节是其中之一，则代表接下来要读取的文字使用的编码是相应的编码：</p>
-<p>BOM_UTF8 ‘\xef\xbb\xbf’ </p>
-<p>BOM_UTF16_LE ‘\xff\xfe’ </p>
-<p>BOM_UTF16_BE ‘\xfe\xff’</p>
-<p>并不是所有的编辑器都会写入BOM，但即使没有BOM，Unicode还是可以读取的，只是像MBCS的编码一样，需要另行指定具体的编码，否则解码将会失败。</p>
-<p>你可能听说过UTF-8不需要BOM，这种说法是不对的，只是绝大多数编辑器在没有BOM时都是以UTF-8作为默认编码读取。即使是保存时默认使用ANSI(MBCS)的记事本，在读取文件时也是先使用UTF-8测试编码，如果可以成功解码，则使用UTF-8解码。记事本这个别扭的做法造成了一个BUG：如果你新建文本文件并输入”姹塧”然后使用ANSI(MBCS)保存，再打开就会变成”汉a”，你不妨试试 ：）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://andx.site/2015/01/24/2015-02-25-字符编码简介/" data-id="cjqeijz8d001n8w24l1hj1yag" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编码/">编码</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
 
     </footer>
   </div>
@@ -570,7 +728,7 @@ print(dir(sys))
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/11/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/11/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -581,7 +739,7 @@ print(dir(sys))
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/逆向/">逆向</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/">ndk</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/jni/">jni</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/逆向/">逆向</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
     </div>
   </div>
 
@@ -591,7 +749,7 @@ print(dir(sys))
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jni/">jni</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ndk/">ndk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
     </div>
   </div>
 
@@ -601,7 +759,7 @@ print(dir(sys))
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.25px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向/" style="font-size: 13.75px;">逆向</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 15.56px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.11px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.11px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.11px;">Django</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.11px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.11px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.89px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.22px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.22px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PS笔记/" style="font-size: 12.22px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.22px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.33px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.11px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.11px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/jni/" style="font-size: 10px;">jni</a> <a href="/tags/ndk/" style="font-size: 10px;">ndk</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.11px;">其他</a> <a href="/tags/加密/" style="font-size: 13.33px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.11px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.22px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 14.44px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.22px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向/" style="font-size: 17.78px;">逆向</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a> <a href="/tags/麻花影视/" style="font-size: 16.67px;">麻花影视</a>
     </div>
   </div>
 
@@ -610,7 +768,7 @@ print(dir(sys))
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
     </div>
   </div>
 
@@ -623,23 +781,23 @@ print(dir(sys))
       <ul>
         
           <li>
-            <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
+            <a href="/2018/12/27/2018-12-27-麻花影视会员蓝关分析（方案不可行）/">2018-12-27-麻花影视会员蓝关分析（方案不可行）</a>
           </li>
         
           <li>
-            <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
+            <a href="/2018/12/25/2018-12-25-麻花影视去除热门视频强制分享的要求（完成）/">2018-12-25-麻花影视去除热门视频强制分享的要求（完成）</a>
           </li>
         
           <li>
-            <a href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/">Mac下Android源码（AOSP）编译环境搭建方法</a>
+            <a href="/2018/12/18/2018-12-18-麻花影视模拟发送请求（完成）/">2018-12-18-麻花影视模拟发送请求（完成）</a>
           </li>
         
           <li>
-            <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
+            <a href="/2018/12/17/2018-12-17-解密麻花影视视频播放地址（完成）/">2018-12-17-解密麻花影视视频播放地址（完成）</a>
           </li>
         
           <li>
-            <a href="/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/">PS（PhotoShop）基础知识（三）</a>
+            <a href="/2018/12/16/2018-12-16-绕过麻花影视抓包检测（完成）/">2018-12-16-绕过麻花影视抓包检测（完成）</a>
           </li>
         
       </ul>

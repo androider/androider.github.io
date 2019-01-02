@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Android 上关于设备唯一标识的调研 | 凉凉小线仔</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="看看官网怎么说的唯一标识符最佳做法 一、先来明白几个概念：什么是IMEI？IMEI(International Mobile Equipment Identity)是国际移动设备身份码的缩写，国际移动装备辨识码，是由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的。每一部手机在组装完成后都将被赋予一个全球唯一的一组号码，这个号码从生产到交付使用都将被制造生产的厂商所记录。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 上关于设备唯一标识的调研">
+<meta property="og:url" content="http://andx.site/2018/08/02/2018-08-02-Android 上关于设备唯一标识的调研/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="看看官网怎么说的唯一标识符最佳做法 一、先来明白几个概念：什么是IMEI？IMEI(International Mobile Equipment Identity)是国际移动设备身份码的缩写，国际移动装备辨识码，是由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的。每一部手机在组装完成后都将被赋予一个全球唯一的一组号码，这个号码从生产到交付使用都将被制造生产的厂商所记录。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-02T05:59:34.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 上关于设备唯一标识的调研">
+<meta name="twitter:description" content="看看官网怎么说的唯一标识符最佳做法 一、先来明白几个概念：什么是IMEI？IMEI(International Mobile Equipment Identity)是国际移动设备身份码的缩写，国际移动装备辨识码，是由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的。每一部手机在组装完成后都将被赋予一个全球唯一的一组号码，这个号码从生产到交付使用都将被制造生产的厂商所记录。">
+  
+    <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">凉凉小线仔</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">基于Android 高于Android</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://andx.site"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2018-08-02-Android 上关于设备唯一标识的调研" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/02/2018-08-02-Android 上关于设备唯一标识的调研/" class="article-date">
+  <time datetime="2018-08-02T06:46:31.000Z" itemprop="datePublished">2018-08-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 上关于设备唯一标识的调研
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>看看官网怎么说的<a href="https://developer.android.com/training/articles/user-data-ids" target="_blank" rel="noopener">唯一标识符最佳做法</a></p>
+<h2 id="一、先来明白几个概念："><a href="#一、先来明白几个概念：" class="headerlink" title="一、先来明白几个概念："></a>一、先来明白几个概念：</h2><p>什么是IMEI？<br>IMEI(International Mobile Equipment Identity)是国际移动设备身份码的缩写，国际移动装备辨识码，是由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的。每一部手机在组装完成后都将被赋予一个全球唯一的一组号码，这个号码从生产到交付使用都将被制造生产的厂商所记录。IMEI码由GSM（全球移动通信协会）统一分配，授权BABT（英国通信认证管理委员会）审受。<br>IMEI组成为：<br>1、前6位数（TAC，Type ApprovalCode)是”型号核准号码”，一般代表机型。<br>2、接着的2位数（FAC，Final Assembly Code)是”最后装配号”，一般代表产地。<br>3、之后的6位数（SNR)是”串号”，一般代表生产顺序号。<br>4、最后1位数（SP)通常是”0”，为检验码，备用。</p>
+<p>一般在Android手机上可以在关于手机里面查看到</p>
+<p><strong>什么是IMSI？</strong><br>国际移动用户识别码（IMSI：International Mobile Subscriber Identification Number）是区别移动用户的标志，储存在SIM卡中，可用于区别移动用户的有效信息。其总长度不超过15位，同样使用0～9的数字。</p>
+<p><strong>什么是ICCID？</strong><br>ICCID：Integrate circuit card identity 集成电路卡识别码（固化在手机SIM卡中），简单来说就是SIM卡序列号，它拥有独一无二的特性，类似于手机的序列号，仅仅指向一张手机卡。共有20位数字组成，不同运营商编码格式不一样。并且前六位数字为运营商代码：比如中国移动的为：898600；中国联通的为：898601，中国电信的为：898603。</p>
+<blockquote>
+<p>简而言之：IMEI / MEID 是和设备相关的，移动设备的唯一标志码；而IMSI 和 ICCID 是和手机卡相关的，信息存储到手机卡上，没有安装手机卡的手机，上面获取这两个值为null。</p>
+</blockquote>
+<h2 id="二、TelephonyManager-相关"><a href="#二、TelephonyManager-相关" class="headerlink" title="二、TelephonyManager 相关"></a>二、TelephonyManager 相关</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//注意代码使用需要在Manifest配置权限</span><br><span class="line">// &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt; </span><br><span class="line">//在API 23（Android6.0 ）及其以上版本phone组权限需要动态申请</span><br><span class="line">TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);  </span><br><span class="line">String deviceid = tm.getDeviceId();   //取 IMEI或者MEID</span><br><span class="line">String tel = tm.getLine1Number();     //取出用户手机号码,手机没有安装SIM卡，值为null</span><br><span class="line">String imsi =tm.getSubscriberId();     //取出IMSI,手机没有安装SIM卡，值为null</span><br><span class="line">String imei =tm.getSimSerialNumber();  //取出ICCID,手机没有安装SIM卡，值为null</span><br></pre></td></tr></table></figure>
+<p>其实上面的信息分开来看总共分为两部分，一部分是设备相关的信息，一部分是SIM卡相关的信息。关于SIM卡相关的信息，一般来说没有办法标志设备，因为手机可以任意替换SIM卡，而且现在手机都是双卡双待的，关于双卡手机获取和手机卡相关的信息参考<a href="https://www.jianshu.com/p/1269e4ba99c9" target="_blank" rel="noopener">这篇文章</a></p>
+<p>我们这里主要关心设备ID（IMEI或者MEID），解释下这两个东西：IMEI是国际移动设备识别码的简称，而MEID是 动设备识别码的简称，一般IMEI是所有设备都有，而MEID一般只在只有支持CDMA制式的设备才有的。</p>
+<p>OPPO 手机：进入手机设置–常规–关于手机–状态信息–IMEI即可看到。<br>小米手机： 设置–我的设备–全部参数–状态信息—IMEI信息<br>华为手机：设置—关于手机</p>
+<blockquote>
+<p>注意：平板没有imei号</p>
+</blockquote>
+<h2 id="三、设备唯一ID"><a href="#三、设备唯一ID" class="headerlink" title="三、设备唯一ID"></a>三、设备唯一ID</h2><h3 id="1-IMEI或者MEID"><a href="#1-IMEI或者MEID" class="headerlink" title="1. IMEI或者MEID"></a>1. IMEI或者MEID</h3><blockquote>
+<p>Android系统关于双卡的支持的知识需要知道一些，在Android4.x及其以下版本的时候，原生Android是不支持双卡的，在5.x左右开始支持，但是api是隐藏的，在Android 6.0 才开始公开开放双卡的API。</p>
+</blockquote>
+<p>来看下我们获取IMEI或者MEID的基本方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//注意动态权限申请</span><br><span class="line">TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);</span><br><span class="line">String imei = telephonyManager.getDeviceId();</span><br></pre></td></tr></table></figure></p>
+<p>这个方法在4.x及其以下版本的时候，运行这个方法是没有问题的，因为4.x是不支持双卡的，也就是说4.x的手机要么是GSM要么是CDMA制式的。所以，<code>getDeviceId</code>的文档这样写道：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Returns the unique device ID, for example, the IMEI for GSM and the MEID</span><br><span class="line"> * or ESN for CDMA phones. Return null if device ID is not available.</span><br><span class="line"> * 翻译过来就是：这个方法会返回唯一的设备id，</span><br><span class="line"> * 比如在GSM的手机上返回的是IMEI，而在CDMA 手机上返回的是MEID或者ESN。</span><br><span class="line"> * 如果设备id不可读取，那么返回null。</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<p>但是这种情况到了Android 6.0 （先不考虑5.x 那个版本不稳定）上就不一样了，6.0支持双卡，也就是说手机上不可以能只有一个IMEI或者MEID，这个时候就需要根据手机卡槽获取了，这个卡槽里面装的是什么制式的卡，那么对于下标获取的就是IMEI或者MEID：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public void onClick(View view) &#123;</span><br><span class="line"></span><br><span class="line">    TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);</span><br><span class="line">    </span><br><span class="line">    Log.d(&quot;Q_M&quot;, &quot;meid：&quot; + tm.getDeviceId());</span><br><span class="line">    Log.d(&quot;Q_M&quot;, &quot;meid：&quot; + tm.getDeviceId(0));</span><br><span class="line">    Log.d(&quot;Q_M&quot;, &quot;meid：&quot; + tm.getDeviceId(1));</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试结果来自网络，我没有验证（我对不插卡的情况存在疑问）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">我的两张联通卡分别获取的是imei1和imei2</span><br><span class="line"></span><br><span class="line">    1、不插卡（或两张卡都是GSM卡）</span><br><span class="line"></span><br><span class="line">      getDeviceId()  返回 imei1</span><br><span class="line">      getDeviceId(0) 返回 imei1</span><br><span class="line">      getDeviceId(1) 返回 imei2</span><br><span class="line"></span><br><span class="line">      2、卡1插CDMA卡，卡2不插卡（或卡2插GSM卡）</span><br><span class="line"></span><br><span class="line">      getDeviceId()   返回 meid</span><br><span class="line">      getDeviceId(0) 返回 meid</span><br><span class="line">      getDeviceId(1) 返回 imei2</span><br><span class="line"></span><br><span class="line">      3、卡1不插卡（或卡1插GSM卡）卡2插CDMA卡</span><br><span class="line"></span><br><span class="line">      getDeviceId()   返回 imei1</span><br><span class="line">      getDeviceId(0) 返回 imei1</span><br><span class="line">      getDeviceId(1) 返回 meid</span><br></pre></td></tr></table></figure></p>
+<p>后来到了Android 8.0 ，方法控制更为精细了，所以这个getDeviceId 方法就被废弃了，不再推荐使用。而推荐使用 <code>getImei</code>和<code>getMeid</code> 同时这两个方法支持传入卡槽的下标来确定要读取那个卡对应的值。在8.0 及其以上的手机上可以这么严重：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public void onClick(View view) &#123;</span><br><span class="line"></span><br><span class="line">    TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);</span><br><span class="line"></span><br><span class="line">    //手机上存在两个imei值，分配给两个卡槽</span><br><span class="line">    Log.d(&quot;Q_M&quot;, &quot;imei：&quot; + tm.getImei());</span><br><span class="line">    Log.d(&quot;Q_M&quot;, &quot;imei0：&quot; + tm.getImei(0));</span><br><span class="line">    Log.d(&quot;Q_M&quot;, &quot;imei1：&quot; + tm.getImei(1));</span><br><span class="line">    </span><br><span class="line">    //手机上只会存在一个meid,两个卡槽获取的一样</span><br><span class="line">    Log.d(&quot;Q_M&quot;, &quot;meid：&quot; + tm.getMeid());</span><br><span class="line">    Log.d(&quot;Q_M&quot;, &quot;meid0：&quot; + tm.getMeid(0));</span><br><span class="line">    Log.d(&quot;Q_M&quot;, &quot;meid1：&quot; + tm.getMeid(1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后来看一眼友盟的代码里面获取 Imei 的方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public static String getImeiNew(Context var0) &#123;</span><br><span class="line">    String var1 = null;</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        if(var0 != null) &#123;</span><br><span class="line">            TelephonyManager var2 = (TelephonyManager)var0.getSystemService(&quot;phone&quot;);</span><br><span class="line">            if(var2 != null &amp;&amp; checkPermission(var0, &quot;android.permission.READ_PHONE_STATE&quot;)) &#123;</span><br><span class="line">                if(VERSION.SDK_INT &gt;= 26) &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        Method var3 = var2.getClass().getMethod(&quot;getImei&quot;, new Class[0]);</span><br><span class="line">                        var3.setAccessible(true);</span><br><span class="line">                        var1 = (String)var3.invoke(var2, new Object[0]);</span><br><span class="line">                    &#125; catch (Exception var4) &#123;</span><br><span class="line">                        ;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    if(TextUtils.isEmpty(var1)) &#123;</span><br><span class="line">                        var1 = var2.getDeviceId();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    var1 = var2.getDeviceId();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (Exception var5) &#123;</span><br><span class="line">        if(AnalyticsConstants.UM_DEBUG) &#123;</span><br><span class="line">            MLog.w(&quot;No IMEI.&quot;, var5);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return var1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-ANDROIDID"><a href="#2-ANDROIDID" class="headerlink" title="2. ANDROIDID"></a>2. ANDROIDID</h3><p>在设备首次启动时，系统会随机生成一个64位的数字，并把这个数字以16进制字符串的形式保存下来，这个16进制的字符串就是ANDROID_ID，当设备被wipe后该值会被重置。设备恢复出厂设置，这个值也会改变。如果设备被root，这个值可以任意改变。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String androidID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-Serial-Number-设备序列号"><a href="#3-Serial-Number-设备序列号" class="headerlink" title="3. Serial Number (设备序列号)"></a>3. Serial Number (设备序列号)</h3><p>这个东西理论上来说是来自硬件，出厂是就设置好了，但是有些设备厂商会随便写一个值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> Build.SERIAL</span><br><span class="line">在 api&gt;=26的时候</span><br><span class="line">可以这么获取 Build.getSerial();</span><br></pre></td></tr></table></figure>
+<h3 id="4-Mac地址"><a href="#4-Mac地址" class="headerlink" title="4. Mac地址"></a>4. Mac地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--访问WIFI的权限--&gt;</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>Mac地址，在6.0以上不能按正常方式获取，7.0以上很难获取，并且Mac地址也不一定唯一。</p>
+<ol>
+<li><p><strong>在6.0 以下后去mac地址方式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);</span><br><span class="line">WifiInfo winfo = wifi.getConnectionInfo();</span><br><span class="line">String mac =  winfo.getMacAddress();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>在6.0 及其以上8.0以下</strong><br>上面的方法在7.0 的设备获取的永远是<code>02:00:00:00:00:00</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 通过网络接口取</span><br><span class="line"> * 记得添加网络权限</span><br><span class="line"> * &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line"> *</span><br><span class="line"> * @return mac 地址字符串</span><br><span class="line"> */</span><br><span class="line">private static String getNewMac() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        List&lt;NetworkInterface&gt; all = Collections.list(NetworkInterface.getNetworkInterfaces());</span><br><span class="line">        for (NetworkInterface nif : all) &#123;</span><br><span class="line">            if (!nif.getName().equalsIgnoreCase(&quot;wlan0&quot;)) continue;</span><br><span class="line"></span><br><span class="line">            byte[] macBytes = nif.getHardwareAddress();</span><br><span class="line">            if (macBytes == null) &#123;</span><br><span class="line">                return null;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            StringBuilder res1 = new StringBuilder();</span><br><span class="line">            for (byte b : macBytes) &#123;</span><br><span class="line">                res1.append(String.format(&quot;%02X:&quot;, b));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (res1.length() &gt; 0) &#123;</span><br><span class="line">                res1.deleteCharAt(res1.length() - 1);</span><br><span class="line">            &#125;</span><br><span class="line">            return res1.toString();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (Exception ex) &#123;</span><br><span class="line">        ex.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注：通过adb命令行可以查看手机mac地址，不过需要root手机：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">命令行</span><br><span class="line">$ adb shell </span><br><span class="line">$ su </span><br><span class="line">$ cat /sys/class/net/wlan0/address</span><br></pre></td></tr></table></figure></p>
+<p>【参考文章】<br><a href="http://www.cnblogs.com/sfbrzkh/p/5165873.html" target="_blank" rel="noopener">http://www.cnblogs.com/sfbrzkh/p/5165873.html</a><br><a href="https://developer.android.com/training/articles/user-data-ids" target="_blank" rel="noopener">https://developer.android.com/training/articles/user-data-ids</a><br><a href="https://blog.csdn.net/yangbin0513/article/details/68490291" target="_blank" rel="noopener">https://blog.csdn.net/yangbin0513/article/details/68490291</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2018/08/02/2018-08-02-Android 上关于设备唯一标识的调研/" data-id="cjqeui6690001jl24zfbywef3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/13/2018-12-13-麻花影视分析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2018-12-13-麻花影视分析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/10/2018-07-10-Mac 配置PHP环境/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Mac 配置PHP环境</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/">ndk</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/jni/">jni</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/逆向/">逆向</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jni/">jni</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ndk/">ndk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 15.56px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.11px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.11px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.11px;">Django</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.11px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.11px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.89px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.22px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.22px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PS笔记/" style="font-size: 12.22px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.22px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.33px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.11px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.11px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/jni/" style="font-size: 10px;">jni</a> <a href="/tags/ndk/" style="font-size: 10px;">ndk</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.11px;">其他</a> <a href="/tags/加密/" style="font-size: 13.33px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.11px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.22px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 14.44px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.22px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向/" style="font-size: 17.78px;">逆向</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a> <a href="/tags/麻花影视/" style="font-size: 16.67px;">麻花影视</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/27/2018-12-27-麻花影视会员蓝关分析（方案不可行）/">2018-12-27-麻花影视会员蓝关分析（方案不可行）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/25/2018-12-25-麻花影视去除热门视频强制分享的要求（完成）/">2018-12-25-麻花影视去除热门视频强制分享的要求（完成）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/18/2018-12-18-麻花影视模拟发送请求（完成）/">2018-12-18-麻花影视模拟发送请求（完成）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/17/2018-12-17-解密麻花影视视频播放地址（完成）/">2018-12-17-解密麻花影视视频播放地址（完成）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/16/2018-12-16-绕过麻花影视抓包检测（完成）/">2018-12-16-绕过麻花影视抓包检测（完成）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 QX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

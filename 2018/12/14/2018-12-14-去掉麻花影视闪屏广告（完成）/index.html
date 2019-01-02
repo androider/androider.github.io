@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>2018-12-14-去掉麻花影视闪屏广告（完成） | 凉凉小线仔</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="目的：去掉每次启动的5秒等待 妈的每次测试进入都要等待5秒，等五秒就算了，还要手动点击进入。5秒浪费人生宝贵时间。先把它干掉。 猜测一下好，这个玩意等待需要时间，等待完成，肯定要进入主Activity，获取下这个主要Activity的名字，MainActivity，然后在SplashActivity里面查找一下，发现是在h方法里面，那好说了，我们在他源码启动等待计时器的地方，直接调用这个h方法就行">
+<meta name="keywords" content="Android,逆向,麻花影视">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018-12-14-去掉麻花影视闪屏广告（完成）">
+<meta property="og:url" content="http://andx.site/2018/12/14/2018-12-14-去掉麻花影视闪屏广告（完成）/index.html">
+<meta property="og:site_name" content="凉凉小线仔">
+<meta property="og:description" content="目的：去掉每次启动的5秒等待 妈的每次测试进入都要等待5秒，等五秒就算了，还要手动点击进入。5秒浪费人生宝贵时间。先把它干掉。 猜测一下好，这个玩意等待需要时间，等待完成，肯定要进入主Activity，获取下这个主要Activity的名字，MainActivity，然后在SplashActivity里面查找一下，发现是在h方法里面，那好说了，我们在他源码启动等待计时器的地方，直接调用这个h方法就行">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-02T07:43:10.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018-12-14-去掉麻花影视闪屏广告（完成）">
+<meta name="twitter:description" content="目的：去掉每次启动的5秒等待 妈的每次测试进入都要等待5秒，等五秒就算了，还要手动点击进入。5秒浪费人生宝贵时间。先把它干掉。 猜测一下好，这个玩意等待需要时间，等待完成，肯定要进入主Activity，获取下这个主要Activity的名字，MainActivity，然后在SplashActivity里面查找一下，发现是在h方法里面，那好说了，我们在他源码启动等待计时器的地方，直接调用这个h方法就行">
+  
+    <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">凉凉小线仔</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">基于Android 高于Android</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://andx.site"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2018-12-14-去掉麻花影视闪屏广告（完成）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/14/2018-12-14-去掉麻花影视闪屏广告（完成）/" class="article-date">
+  <time datetime="2018-12-14T06:46:31.000Z" itemprop="datePublished">2018-12-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/逆向/">逆向</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2018-12-14-去掉麻花影视闪屏广告（完成）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目的：去掉每次启动的5秒等待</p>
+<p>妈的每次测试进入都要等待5秒，等五秒就算了，还要手动点击进入。5秒浪费人生宝贵时间。先把它干掉。</p>
+<p>猜测一下好，这个玩意等待需要时间，等待完成，肯定要进入主Activity，获取下这个主要Activity的名字，MainActivity，然后在SplashActivity里面查找一下，发现是在h方法里面，那好说了，我们在他源码启动等待计时器的地方，直接调用这个h方法就行了。h方法签名如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void h() &#123;</span><br><span class="line">    if (this.f &amp;&amp; !this.i) &#123;   //要想调用h方法，这两个判断条件必须通过</span><br><span class="line">        if (this.m != null) &#123;</span><br><span class="line">            this.m.cancel();</span><br><span class="line">        &#125;</span><br><span class="line">        startActivity(new Intent(this, MainActivity.class));</span><br><span class="line">        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);</span><br><span class="line">        finish();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>就是分析发现，g方法是启动定时器的地方，而g被f调用，那么我们直接在f里面调用h就行了，但是h里面会有if判断，让判断为true就行了。</p>
+<p>这种方式很简单，但是发现还是会有个”大美女”一闪而过，我特么每次不想看到这个东西。我们来看下这个美女怎么出来的。</p>
+<p>通过monitor分析，得到显示图片的ImageView 的id为：</p>
+<p><code>com.amahua.ompimdrt:id/splash_bg</code>  </p>
+<p>所以找到设置图片的地方就ok了，去SplashActivity里面看看，搜索splash_bg 得到 ，this.c ,然后搜索this.c</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//根据变量名猜测这玩意就是设置广告的地方，直接把这个方法屏蔽掉。</span><br><span class="line">    public void a(long j, List&lt;AdsResponse&gt; list, boolean z) &#123;</span><br><span class="line">        int i = 1;</span><br><span class="line">        this.g = true;</span><br><span class="line">        this.h = z;</span><br><span class="line">        //从这个命名可以看出，这个项目用了mvp架构，</span><br><span class="line">        //那么这个方法，从结构上猜测应该是网络请求之后的回调，</span><br><span class="line">        //那么应该属于view的接口方法，那么应该在 SplashPresenter 里面调用。</span><br><span class="line">        //根据继承关系查看，这个方法是在 com.mh.movie.core.mvp.a.ba.b 里面声明的</span><br><span class="line">        ((SplashPresenter) this.b).e();</span><br><span class="line">        ((SplashPresenter) this.b).g();</span><br><span class="line">        if (!(list == null || list.isEmpty())) &#123;</span><br><span class="line">            int c = d.c(this, com.mh.movie.core.mvp.ui.b.w);</span><br><span class="line">            int i2 = 0;</span><br><span class="line">            if (this.e == null || !((AdsResponse) this.e.get(0)).getThumbnailUrl().equals(((AdsResponse) list.get(0)).getThumbnailUrl())) &#123;</span><br><span class="line">                d.a((Context) this, com.mh.movie.core.mvp.ui.b.q, new e().a((Object) list));</span><br><span class="line">                while (i &lt; list.size()) &#123;</span><br><span class="line">                    if (!TextUtils.isEmpty(((AdsResponse) list.get(i)).getThumbnailUrl())) &#123;</span><br><span class="line">                        Glide.with((FragmentActivity) this).load(((AdsResponse) list.get(i)).getThumbnailUrl()).preload();</span><br><span class="line">                    &#125;</span><br><span class="line">                    i++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                i2 = (c + 1) % list.size();</span><br><span class="line">            &#125;</span><br><span class="line">            d.a((Context) this, com.mh.movie.core.mvp.ui.b.w, i2);</span><br><span class="line">            this.d = (AdsResponse) list.get(i2);</span><br><span class="line">            Glide.with((FragmentActivity) this).load(this.d.getThumbnailUrl()).apply(new RequestOptions().placeholder(this.c.getDrawable())).into(this.c);</span><br><span class="line">            com.mh.movie.core.mvp.ui.b.c = d.b(this.r, &quot;is_first_partner&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        f();//倒计时在这个方法调用的g方法里面。所以如果屏蔽当前方法，那么这个启动主界面的操作必须手动调用</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>直接在a方法里面打断点，然后运行项目观察调用堆栈</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span> a(J<span class="class">Ljava/util/List;</span>Z)V</span><br><span class="line"><span class="keyword">    .locals</span> 2</span><br><span class="line"><span class="keyword">    .annotation</span><span class="keyword"> system</span> <span class="class">Ldalvik/annotation/Signature;</span></span><br><span class="line">        value = &#123;</span><br><span class="line">            <span class="string">"(J"</span>,</span><br><span class="line">            <span class="string">"Ljava/util/List&lt;"</span>,</span><br><span class="line">            <span class="string">"Lcom/mh/movie/core/mvp/model/entity/response/AdsResponse;"</span>,</span><br><span class="line">            <span class="string">"&gt;;Z)V"</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="keyword">    .end annotation</span></span><br><span class="line"><span class="comment">#只是为了查看调用堆栈，断点打在下面这行就行</span></span><br><span class="line">   <span class="built_in"> const/4 </span>p1, 0x1</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 332</span><br><span class="line">   <span class="built_in"> iput-boolean </span>p1, p0, <span class="class">Lcom/mh/movie/core/mvp/ui/activity/SplashActivity;</span>-&gt;g:Z</span><br><span class="line">    <span class="comment">##。。。。。 省略无用代码</span></span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a:332, SplashActivity (com.mh.movie.core.mvp.ui.activity)</span><br><span class="line"># $1 理论上来说是这个类里面的第一个匿名内部类</span><br><span class="line">a:122, SplashPresenter$1 (com.mh.movie.core.mvp.presenter)</span><br><span class="line">a:103, SplashPresenter$1 (com.mh.movie.core.mvp.presenter)</span><br><span class="line">a:69, b (com.mh.movie.core.mvp.model.a)</span><br><span class="line">##....省略无用堆栈</span><br></pre></td></tr></table></figure>
+<p>根据特征码，可以定位到如下方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">    public void a(LoginRequest loginRequest, boolean z) &#123;</span><br><span class="line">        ((a) this.c).a(loginRequest).compose(a(this.f, this.d, z)).subscribe(new com.mh.movie.core.mvp.model.a.b&lt;LoginResponse&gt;(this.e, new com.google.gson.b.a&lt;BaseResponse&lt;LoginResponse&gt;&gt;() &#123;</span><br><span class="line">        &#125;.getType()) &#123;</span><br><span class="line">            public void a(LoginResponse loginResponse) &#123;</span><br><span class="line">                com.mh.movie.core.mvp.ui.b.a(loginResponse.getUserInfo());</span><br><span class="line">                if (loginResponse.getUserInfo().getUserType() == 0) &#123;</span><br><span class="line">                    d.a(SplashPresenter.this.f.getBaseContext(), com.mh.movie.core.mvp.ui.b.i, false);</span><br><span class="line">                &#125;</span><br><span class="line">                com.mh.movie.core.mvp.ui.b.a(SplashPresenter.this.f.getBaseContext(), loginResponse.getUserInfo().getToken());</span><br><span class="line">                com.mh.movie.core.mvp.ui.b.a(SplashPresenter.this.f.getBaseContext(), loginResponse.getUid());</span><br><span class="line">                d.a(SplashPresenter.this.f, com.mh.movie.core.mvp.ui.b.f, XMLUtils.bean2Json(loginResponse.getUserInfo()));</span><br><span class="line">                d.a(SplashPresenter.this.f, com.mh.movie.core.mvp.ui.b.h, loginResponse.getUid());</span><br><span class="line">                com.mh.movie.core.mvp.ui.b.a(loginResponse.getUrlMap());</span><br><span class="line">                com.mh.movie.core.mvp.ui.b.a(true);</span><br><span class="line">                //看下面这一行，就是调用显示广告的额地方，理论上来说直接屏蔽这行就行了，其实仔细分析下，第三个参数，从名字上来看说是要不要加载广告</span><br><span class="line">                ((b) SplashPresenter.this.d).a(loginResponse.getUid(), loginResponse.getAdsList(), loginResponse.isBootadSwitch());</span><br><span class="line">                SplashPresenter.this.f();</span><br><span class="line">                SplashPresenter.this.j();</span><br><span class="line">                SplashPresenter.this.i();</span><br><span class="line">                SplashPresenter.this.k();</span><br><span class="line">            &#125;</span><br><span class="line">            //省略代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们尝试修改第三个参数为false。找到loginResponse.isBootadSwitch() 方法，然后让她永远返回false就好了：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span> isBootadSwitch()Z</span><br><span class="line"><span class="keyword">    .locals</span> 1</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 77</span><br><span class="line">    <span class="comment">#iget-boolean v0, p0, Lcom/mh/movie/core/mvp/model/entity/response/LoginResponse;-&gt;bootadSwitch:Z</span></span><br><span class="line">const/4 v0, 0x0</span><br><span class="line">   <span class="built_in"> return </span>v0</span><br><span class="line"><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+<p>发现没起作用。。。。</p>
+<p>然后我们把尝试下，把 a的调用注释点也即是 下面这行代码，注释掉：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((b) SplashPresenter.this.d).a(loginResponse.getUid(), loginResponse.getAdsList(),</span><br></pre></td></tr></table></figure>
+<p>发现还是有闪屏广告，我擦嘞。。。。想一下，那这个地方的广告应该是有缓存，就是在没有网的情况下也可以显示。ok，继续去看 SplashActivity，如果存在这种情况肯定在这个Activity初始化的时候就有了。</p>
+<p>继续搜索，this.c </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public void b(@Nullable Bundle bundle) &#123;</span><br><span class="line">    this.k = (TextView) findViewById(R.id.button_enter);</span><br><span class="line">    this.l = (ViewPager) findViewById(R.id.features);</span><br><span class="line">    this.c = (ImageView) findViewById(R.id.splash_bg);</span><br><span class="line">    this.o = (TextView) findViewById(R.id.tv_start);</span><br><span class="line">    this.c.setOnClickListener(this.j);</span><br><span class="line">    com.jakewharton.rxbinding.view.b.a(this.k).a(1, TimeUnit.SECONDS).a(new aw(this));</span><br><span class="line">    //下面的都删了就行</span><br><span class="line">    /*int c = d.c(this, com.mh.movie.core.mvp.ui.b.w);</span><br><span class="line">    e eVar = new e();</span><br><span class="line">    String a = d.a(this, com.mh.movie.core.mvp.ui.b.q);</span><br><span class="line">    if (a != null) &#123;</span><br><span class="line">        this.e = (List) eVar.a(a, new com.google.gson.b.a&lt;List&lt;AdsResponse&gt;&gt;() &#123;</span><br><span class="line">        &#125;.getType());</span><br><span class="line">        this.d = (AdsResponse) this.e.get((c + 1) % this.e.size());</span><br><span class="line">        Glide.with((FragmentActivity) this).load(this.d.getThumbnailUrl()).apply(new RequestOptions().placeholder(R.mipmap.launch_screen)).into(this.c);</span><br><span class="line">    &#125;*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后把a方法里面的广告加载都删除了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*public void a(long j, List&lt;AdsResponse&gt; list, boolean z) &#123;</span></span><br><span class="line"><span class="comment">     int i = 1;</span></span><br><span class="line"><span class="comment">     this.g = true;</span></span><br><span class="line"><span class="comment">     this.h = z;</span></span><br><span class="line"><span class="comment">     ((SplashPresenter) this.b).e();</span></span><br><span class="line"><span class="comment">     ((SplashPresenter) this.b).g();</span></span><br><span class="line"><span class="comment">     if (!(list == null || list.isEmpty())) &#123;</span></span><br><span class="line"><span class="comment">         int c = d.c(this, com.mh.movie.core.mvp.ui.b.w);</span></span><br><span class="line"><span class="comment">         int i2 = 0;</span></span><br><span class="line"><span class="comment">         if (this.e == null || !((AdsResponse) this.e.get(0)).getThumbnailUrl().equals(((AdsResponse) list.get(0)).getThumbnailUrl())) &#123;</span></span><br><span class="line"><span class="comment">             d.a((Context) this, com.mh.movie.core.mvp.ui.b.q, new e().a((Object) list));</span></span><br><span class="line"><span class="comment">             while (i &lt; list.size()) &#123;</span></span><br><span class="line"><span class="comment">                 if (!TextUtils.isEmpty(((AdsResponse) list.get(i)).getThumbnailUrl())) &#123;</span></span><br><span class="line"><span class="comment">                     Glide.with((FragmentActivity) this).load(((AdsResponse) list.get(i)).getThumbnailUrl()).preload();</span></span><br><span class="line"><span class="comment">                 &#125;</span></span><br><span class="line"><span class="comment">                 i++;</span></span><br><span class="line"><span class="comment">             &#125;</span></span><br><span class="line"><span class="comment">         &#125; else &#123;</span></span><br><span class="line"><span class="comment">             i2 = (c + 1) % list.size();</span></span><br><span class="line"><span class="comment">         &#125;</span></span><br><span class="line"><span class="comment">         d.a((Context) this, com.mh.movie.core.mvp.ui.b.w, i2);</span></span><br><span class="line"><span class="comment">         this.d = (AdsResponse) list.get(i2);</span></span><br><span class="line"><span class="comment">         Glide.with((FragmentActivity) this).load(this.d.getThumbnailUrl()).apply(new RequestOptions().placeholder(this.c.getDrawable())).into(this.c);</span></span><br><span class="line"><span class="comment">         com.mh.movie.core.mvp.ui.b.c = d.b(this.r, "is_first_partner");</span></span><br><span class="line"><span class="comment">     &#125;*/</span></span><br><span class="line">     f();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>总结一下去掉闪屏广告：</p>
+<ol>
+<li>去掉从缓存里面加载广告</li>
+<li>去掉请求广告api成功的显示广告</li>
+<li>去掉延迟启动主界面 （MainActivity）</li>
+</ol>
+<p>好了，世界从此干净了。。。</p>
+<p>最后说一点，每次启动到MainActivity都会问我要不要登陆。我不想看到它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    @Subscriber(tag = &quot;sign_up_success&quot;)</span><br><span class="line">    public void signupSuccess(String str) &#123;</span><br><span class="line">        this.p = &quot;&quot;;</span><br><span class="line">        if (com.mh.movie.core.mvp.ui.b.H &gt; 0) &#123;</span><br><span class="line">            CustomToast.makeTitleText(this.r, &quot;新手奖励&quot;, String.format(&quot;恭喜你获得新会员奖励：%s麻花币，快去看看吧！&quot;, new Object[]&#123;Integer.valueOf(com.mh.movie.core.mvp.ui.b.H)&#125;)).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> public void f() &#123;</span><br><span class="line">    if (this.d || com.mh.movie.core.mvp.ui.b.H &lt;= 0) &#123;</span><br><span class="line">        g();</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if (this.h == null) &#123;</span><br><span class="line">        this.h = new RequestPermissionDialog(this.r, 3, 2);</span><br><span class="line">        this.h.a(&quot;新手奖励&quot;);</span><br><span class="line">        this.h.b(String.format(&quot;恭喜你获得新会员奖励:%s麻花币，麻花币可以兑换特权和奖品哦！&quot;, new Object[]&#123;Integer.valueOf(com.mh.movie.core.mvp.ui.b.H)&#125;));</span><br><span class="line">        this.h.a(new RequestPermissionDialog.a() &#123;</span><br><span class="line">            public void a() &#123;</span><br><span class="line">                MainActivity.this.h.dismiss();</span><br><span class="line">                MainActivity.this.startActivity(new Intent(MainActivity.this.r, RegistActivity.class));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            public void b() &#123;</span><br><span class="line">                MainActivity.this.h.dismiss();</span><br><span class="line">                MainActivity.this.g();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    this.h.show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>把这个方法注释了。就行了。这篇文章是开始，没啥技术含量~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2018/12/14/2018-12-14-去掉麻花影视闪屏广告（完成）/" data-id="cjqevh0om003ljl24fu792gbv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/15/2018-12-15-分析麻花影视点击视频播放按钮操作（完成）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2018-12-15-分析麻花影视点击视频播放按钮操作（完成）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/13/2018-12-13-麻花影视分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2018-12-13-麻花影视分析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/">ndk</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/jni/">jni</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/逆向/">逆向</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jni/">jni</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ndk/">ndk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 15.56px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.11px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.11px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.11px;">Django</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.11px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.11px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.89px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.22px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.22px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PS笔记/" style="font-size: 12.22px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.22px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.33px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.11px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.11px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/jni/" style="font-size: 10px;">jni</a> <a href="/tags/ndk/" style="font-size: 10px;">ndk</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.11px;">其他</a> <a href="/tags/加密/" style="font-size: 13.33px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.11px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.22px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 14.44px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.22px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向/" style="font-size: 17.78px;">逆向</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a> <a href="/tags/麻花影视/" style="font-size: 16.67px;">麻花影视</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/27/2018-12-27-麻花影视会员蓝关分析（方案不可行）/">2018-12-27-麻花影视会员蓝关分析（方案不可行）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/25/2018-12-25-麻花影视去除热门视频强制分享的要求（完成）/">2018-12-25-麻花影视去除热门视频强制分享的要求（完成）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/18/2018-12-18-麻花影视模拟发送请求（完成）/">2018-12-18-麻花影视模拟发送请求（完成）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/17/2018-12-17-解密麻花影视视频播放地址（完成）/">2018-12-17-解密麻花影视视频播放地址（完成）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/16/2018-12-16-绕过麻花影视抓包检测（完成）/">2018-12-16-绕过麻花影视抓包检测（完成）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 QX<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

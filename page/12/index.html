@@ -69,14 +69,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set." class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-02-25-字符编码简介" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/12/02/2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set./" class="article-date">
-  <time datetime="2014-12-02T14:20:17.000Z" itemprop="datePublished">2014-12-02</time>
+    <a href="/2015/01/24/2015-02-25-字符编码简介/" class="article-date">
+  <time datetime="2015-01-24T08:40:58.000Z" itemprop="datePublished">2015-01-24</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Hadoop/">Hadoop</a>
+    <a class="article-category-link" href="/categories/编码/">编码</a>
   </div>
 
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/02/2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set./">hadoop 2.4.1单击模式启动报错JAVA_HOME is not set.</a>
+      <a class="article-title" href="/2015/01/24/2015-02-25-字符编码简介/">字符编码简介</a>
     </h1>
   
 
@@ -95,30 +95,290 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Hadoop  启动服务的时候报如下错误：</p>
-<p>[code lang=”java”]</p>
-<p>[root@localhost hadoop-2.4.1]# start-all.sh    </p>
-<p>This script is Deprecated. Instead use start-dfs.sh and start-mapred.sh   </p>
-<p>starting namenode, logging to /home/hadoop/hadoop-2.4.1/bin/../logs/hadoop-root-namenode-ubuntu.out   </p>
-<p>localhost: Error: JAVA_HOME is not set.   </p>
-<p>localhost: Error: JAVA_HOME is not set.   </p>
-<p>starting jobtracker, logging to /home/hadoop/hadoop-2.4.1/bin/../logs/hadoop-root-jobtracker-ubuntu.out   </p>
-<p>localhost: Error: JAVA_HOME is not set.  </p>
-<p>[/code]</p>
-<p>我明明已经在 /etc/profile 中配置了JAVA_HOME 了，不知打为什么这里还报错。</p>
-<p>但是通过下面的方法可以解决：</p>
+        <p>首先声明这篇文章是抄的，<a href="http://www.cnblogs.com/huxi/articles/1897271.html" target="_blank" rel="noopener">原文出处</a></p>
+<h2 id="字符编码简介"><a href="#字符编码简介" class="headerlink" title="字符编码简介"></a>字符编码简介</h2><h3 id="1-1-ASCII"><a href="#1-1-ASCII" class="headerlink" title="1.1. ASCII"></a>1.1. ASCII</h3><p>ASCII(American Standard Code for Information Interchange)，是一种单字节的编码。计算机世界里一开始只有英文，而单字节可以表示256个不同的字符，可以表示所有的英文字符和许多的控制符号。不过ASCII只用到了其中的一半（\x80以下），这也是MBCS得以实现的基础。</p>
+<h3 id="1-2-MBCS"><a href="#1-2-MBCS" class="headerlink" title="1.2. MBCS"></a>1.2. MBCS</h3><p>然而计算机世界里很快就有了其他语言，单字节的ASCII已无法满足需求。后来每个语言就制定了一套自己的编码，由于单字节能表示的字符太少，而且同时也需要与ASCII编码保持兼容，所以这些编码纷纷使用了多字节来表示字符，如GBxxx、BIGxxx等等，他们的规则是，如果第一个字节是\x80以下，则仍然表示ASCII字符；而如果是\x80以上，则跟下一个字节一起（共两个字节）表示一个字符，然后跳过下一个字节，继续往下判断。</p>
+<p>这里，IBM发明了一个叫Code Page的概念，将这些编码都收入囊中并分配页码，GBK是第936页，也就是CP936。所以，也可以使用CP936表示GBK。</p>
+<p>MBCS(Multi-Byte Character Set)是这些编码的统称。目前为止大家都是用了双字节，所以有时候也叫做DBCS(Double-Byte Character Set)。必须明确的是，MBCS并不是某一种特定的编码，Windows里根据你设定的区域不同，MBCS指代不同的编码，而Linux里无法使用MBCS作为编码。在Windows中你看不到MBCS这几个字符，因为微软为了更加洋气，使用了ANSI来吓唬人，记事本的另存为对话框里编码ANSI就是MBCS。同时，在简体中文Windows默认的区域设定里，指代GBK。</p>
+<h3 id="1-3-Unicode"><a href="#1-3-Unicode" class="headerlink" title="1.3. Unicode"></a>1.3. Unicode</h3><p>后来，有人开始觉得太多编码导致世界变得过于复杂了，让人脑袋疼，于是大家坐在一起拍脑袋想出来一个方法：所有语言的字符都用同一种字符集来表示，这就是Unicode。</p>
+<p>最初的Unicode标准UCS-2使用两个字节表示一个字符，所以你常常可以听到Unicode使用两个字节表示一个字符的说法。但过了不久有人觉得256*256太少了，还是不够用，于是出现了UCS-4标准，它使用4个字节表示一个字符，不过我们用的最多的仍然是UCS-2。</p>
+<p>UCS(Unicode Character Set)还仅仅是字符对应码位的一张表而已，比如”汉”这个字的码位是6C49。字符具体如何传输和储存则是由UTF(UCS Transformation Format)来负责。</p>
+<p>一开始这事很简单，直接使用UCS的码位来保存，这就是UTF-16，比如，”汉”直接使用\x6C\x49保存(UTF-16-BE)，或是倒过来使用\x49\x6C保存(UTF-16-LE)。但用着用着美国人觉得自己吃了大亏，以前英文字母只需要一个字节就能保存了，现在大锅饭一吃变成了两个字节，空间消耗大了一倍……于是UTF-8横空出世。</p>
+<p>UTF-8是一种很别扭的编码，具体表现在他是变长的，并且兼容ASCII，ASCII字符使用1字节表示。然而这里省了的必定是从别的地方抠出来的，你肯定也听说过UTF-8里中文字符使用3个字节来保存吧？4个字节保存的字符更是在泪奔……（具体UCS-2是怎么变成UTF-8的请自行搜索）</p>
+<p>另外值得一提的是BOM(Byte Order Mark)。我们在储存文件时，文件使用的编码并没有保存，打开时则需要我们记住原先保存时使用的编码并使用这个编码打开，这样一来就产生了许多麻烦。（你可能想说记事本打开文件时并没有让选编码？不妨先打开记事本再使用文件 -&gt; 打开看看）而UTF则引入了BOM来表示自身编码，如果一开始读入的几个字节是其中之一，则代表接下来要读取的文字使用的编码是相应的编码：</p>
+<p>BOM_UTF8 ‘\xef\xbb\xbf’ </p>
+<p>BOM_UTF16_LE ‘\xff\xfe’ </p>
+<p>BOM_UTF16_BE ‘\xfe\xff’</p>
+<p>并不是所有的编辑器都会写入BOM，但即使没有BOM，Unicode还是可以读取的，只是像MBCS的编码一样，需要另行指定具体的编码，否则解码将会失败。</p>
+<p>你可能听说过UTF-8不需要BOM，这种说法是不对的，只是绝大多数编辑器在没有BOM时都是以UTF-8作为默认编码读取。即使是保存时默认使用ANSI(MBCS)的记事本，在读取文件时也是先使用UTF-8测试编码，如果可以成功解码，则使用UTF-8解码。记事本这个别扭的做法造成了一个BUG：如果你新建文本文件并输入”姹塧”然后使用ANSI(MBCS)保存，再打开就会变成”汉a”，你不妨试试 ：）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/01/24/2015-02-25-字符编码简介/" data-id="cjqeijz8d001n8w24l1hj1yag" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编码/">编码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-01-13-PostGres数据库导入导出" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/13/2015-01-13-PostGres数据库导入导出/" class="article-date">
+  <time datetime="2015-01-13T08:06:59.000Z" itemprop="datePublished">2015-01-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/13/2015-01-13-PostGres数据库导入导出/">PostGres数据库导入导出</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数据导出，备份"><a href="#数据导出，备份" class="headerlink" title="数据导出，备份"></a>数据导出，备份</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[node@gpmather ~]$ pg_dump -f clickworld.sql -i  -C -E UTF8 -n public  -U admin -h 192.168.1.87 -W clinkworld</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">假设我在192.168.1.87 上有一个名为 clinkworld的数据库，想把它备份到装有pg_dump服务的任何主机上，我在这个装有pg_dump服务的主机或者客户端，运行以上代码</span><br><span class="line"></span><br><span class="line">[code lang=&quot;sql&quot;]</span><br><span class="line"></span><br><span class="line">一般选项:</span><br><span class="line"></span><br><span class="line">  -f, --file=FILENAME          输出文件或目录名</span><br><span class="line"></span><br><span class="line">  -F, --format=c|d|t|p         输出文件格式 (定制, 目录, tar)</span><br><span class="line"></span><br><span class="line">                               明文 (默认值))</span><br><span class="line"></span><br><span class="line">  -v, --verbose                详细模式</span><br><span class="line"></span><br><span class="line">  -V, --version                输出版本信息，然后退出</span><br><span class="line"></span><br><span class="line">  -Z, --compress=0-9           被压缩格式的压缩级别</span><br><span class="line"></span><br><span class="line">  --lock-wait-timeout=TIMEOUT  在等待表锁超时后操作失败</span><br><span class="line"></span><br><span class="line">  -?, --help                   显示此帮助, 然后退出</span><br><span class="line"></span><br><span class="line">控制输出内容选项:</span><br><span class="line"></span><br><span class="line">  -a, --data-only              只转储数据,不包括模式</span><br><span class="line"></span><br><span class="line">  -b, --blobs                  在转储中包括大对象</span><br><span class="line"></span><br><span class="line">  -c, --clean                  在重新创建之前，先清除（删除）数据库对象</span><br><span class="line"></span><br><span class="line">  -C, --create                 在转储中包括命令,以便创建数据库</span><br><span class="line"></span><br><span class="line">  -E, --encoding=ENCODING      转储以ENCODING形式编码的数据</span><br><span class="line"></span><br><span class="line">  -n, --schema=SCHEMA          只转储指定名称的模式</span><br><span class="line"></span><br><span class="line">  -N, --exclude-schema=SCHEMA  不转储已命名的模式</span><br><span class="line"></span><br><span class="line">  -o, --oids                   在转储中包括 OID</span><br><span class="line"></span><br><span class="line">  -O, --no-owner               在明文格式中, 忽略恢复对象所属者</span><br><span class="line"></span><br><span class="line">  -s, --schema-only            只转储模式, 不包括数据    只导出数据库结构</span><br><span class="line"></span><br><span class="line">  -S, --superuser=NAME         在明文格式中使用指定的超级用户名</span><br><span class="line"></span><br><span class="line">  -t, --table=TABLE            只转储指定名称的表</span><br><span class="line"></span><br><span class="line">  -T, --exclude-table=TABLE    不转储指定名称的表</span><br><span class="line"></span><br><span class="line">  -x, --no-privileges          不要转储权限 (grant/revoke)</span><br><span class="line"></span><br><span class="line">  --binary-upgrade             只能由升级工具使用</span><br><span class="line"></span><br><span class="line">  --column-inserts             以带有列名的INSERT命令形式转储数据</span><br><span class="line"></span><br><span class="line">  --disable-dollar-quoting     取消美元 (符号) 引号, 使用 SQL 标准引号</span><br><span class="line"></span><br><span class="line">  --disable-triggers           在只恢复数据的过程中禁用触发器</span><br><span class="line"></span><br><span class="line">  --exclude-table-data=TABLE   不转储指定名称的表中的数据</span><br><span class="line"></span><br><span class="line">  --inserts                    以INSERT命令，而不是COPY命令的形式转储数据</span><br><span class="line"></span><br><span class="line">  --no-security-labels         不转储安全标签的分配</span><br><span class="line"></span><br><span class="line">  --no-tablespaces             不转储表空间分配信息</span><br><span class="line"></span><br><span class="line">  --no-unlogged-table-data     不转储没有日志的表数据</span><br><span class="line"></span><br><span class="line">  --quote-all-identifiers      所有标识符加引号，即使不是关键字</span><br><span class="line"></span><br><span class="line">  --section=SECTION            备份命名的节 (数据前, 数据, 及 数据后)</span><br><span class="line"></span><br><span class="line">  --serializable-deferrable   等到备份可以无异常运行</span><br><span class="line"></span><br><span class="line">  --use-set-session-authorization</span><br><span class="line"></span><br><span class="line">                               使用 SESSION AUTHORIZATION 命令代替</span><br><span class="line"></span><br><span class="line">                ALTER OWNER 命令来设置所有权</span><br><span class="line"></span><br><span class="line">联接选项:</span><br><span class="line"></span><br><span class="line">  -h, --host=主机名        数据库服务器的主机名或套接字目录</span><br><span class="line"></span><br><span class="line">  -p, --port=端口号        数据库服务器的端口号</span><br><span class="line"></span><br><span class="line">  -U, --username=名字      以指定的数据库用户联接</span><br><span class="line"></span><br><span class="line">  -w, --no-password        永远不提示输入口令</span><br><span class="line"></span><br><span class="line">  -W, --password           强制口令提示 (自动)</span><br><span class="line"></span><br><span class="line">  --role=ROLENAME          在转储前运行SET ROLE</span><br></pre></td></tr></table></figure>
+<h2 id="数据导入，数据恢复"><a href="#数据导入，数据恢复" class="headerlink" title="数据导入，数据恢复"></a>数据导入，数据恢复</h2><p><code>[node@gpmather ~]$  psql -f clickworld.sql -h 192.168.1.108 -U admin -W clinkworld</code></p>
+<p>我把本地的 clickworld.sql 这个文件中的数据恢复到192.168.1.108 这台主机，并且创建表，但是在192.168.1.108 上 clinkworld 是先要创建好的。</p>
+<p>附：</p>
+<p>   最后一个参数，是数据库名称了</p>
+<ol>
+<li><p>只导出所有对象的数据库结构</p>
+<p>C:>pg_dump -f backup.sql -i  -C -E UTF8 -n public -s  -U admin -h localhost -W clinkworld</p>
+</li>
+<li><p>导出所有对象的数据库结构和数据</p>
+<p>C:>pg_dump -f backup.sql -i  -C -E UTF8 -n public  -U admin -h localhost -W clinkworld</p>
+<p>没有-s参数</p>
+</li>
+<li><p>只导出所有的表数据</p>
+<p>C:>pg_dump -f backup.sql -i -a -C -E UTF8 -n public  -U admin -h localhost -W clinkworld</p>
+<p>-a 只导出数据</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/01/13/2015-01-13-PostGres数据库导入导出/" data-id="cjqeijz80000s8w24ilyb536m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015-01-04-Postgres序列操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/04/2015-01-04-Postgres序列操作/" class="article-date">
+  <time datetime="2015-01-04T03:23:39.000Z" itemprop="datePublished">2015-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/04/2015-01-04-Postgres序列操作/">Postgres 序列操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在用到postgres的时候我们用到这么一个功能：</p>
+<ol>
+<li>需要一个自增的主键，在postgres中，要增加一列来充当自增主键的话，必须增加一个序列，</li>
+</ol>
+<p>即使用serial8类型能指定自增，我们也知道系统会默认为我们的这张表添加一个自增序列保存。</p>
+<ol start="2">
+<li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可用的序列函数有∶</span><br><span class="line"></span><br><span class="line">nextval</span><br><span class="line"></span><br><span class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </span><br><span class="line"></span><br><span class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</span><br><span class="line"></span><br><span class="line">currval</span><br><span class="line"></span><br><span class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </span><br><span class="line"></span><br><span class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</span><br><span class="line"></span><br><span class="line">lastval</span><br><span class="line"></span><br><span class="line">返回当前会话里最近一次 nextval 返回的数值。 </span><br><span class="line"></span><br><span class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </span><br><span class="line"></span><br><span class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</span><br><span class="line"></span><br><span class="line">setval</span><br><span class="line"></span><br><span class="line">重置序列对象的计数器数值。</span><br><span class="line"></span><br><span class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 <span class="keyword">true</span>，</span><br><span class="line"></span><br><span class="line">表示下一次 nextval 将在返回数值之前递增该序列。</span><br><span class="line"></span><br><span class="line">在三参数形式里，is_called 可以设置为 <span class="keyword">true</span> 或 <span class="keyword">false</span>。</span><br><span class="line"></span><br><span class="line">如果你把它设置为 <span class="keyword">false</span>，那么下一次 nextval 将返回这里声明的数值，</span><br><span class="line"></span><br><span class="line">而从随后的 nextval 才开始递增该序列。</span><br><span class="line"></span><br><span class="line">比如</span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>)</span></span>;    <span class="comment">//下次nextval将返回 43</span></span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">true</span>)</span></span>;     <span class="comment">//和上面一样</span></span><br><span class="line"></span><br><span class="line"><span class="function">SELECT <span class="title">setval</span><span class="params">(<span class="string">'序列名字'</span>, <span class="number">42</span>, <span class="keyword">false</span>)</span></span>;    <span class="comment">//下次nextval将返回 42</span></span><br><span class="line"></span><br><span class="line">setval 返回的结果就是它的第二个参数的数值。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/01/04/2015-01-04-Postgres序列操作/" data-id="cjqeijz7x000l8w24fuekxqyq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2014-12-11-Postgres 序列操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/04/2014-12-11-Postgres 序列操作/" class="article-date">
+  <time datetime="2015-01-04T03:23:39.000Z" itemprop="datePublished">2015-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/04/2014-12-11-Postgres 序列操作/">Postgres 序列操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在用到postgres的时候我们用到这么一个功能：</p>
+<ol>
+<li>需要一个自增的主键，在postgres中，要增加一列来充当自增主键的话，必须增加一个序列，</li>
+</ol>
+<p>即使用serial8类型能指定自增，我们也知道系统会默认为我们的这张表添加一个自增序列保存。</p>
+<ol start="2">
+<li>我们不单单要自增还想在序列号的11开始自增，这就用到了下面的几个函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可用的序列函数有∶</span><br><span class="line"></span><br><span class="line">nextval</span><br><span class="line"></span><br><span class="line">递增序列对象到它的下一个数值并且返回该值。这个动作是自动完成的： </span><br><span class="line"></span><br><span class="line">即使多个会话并发运行 nextval，每个进程也会安全地收到一个唯一的序列值。</span><br><span class="line"></span><br><span class="line">currval</span><br><span class="line"></span><br><span class="line">在当前会话中返回最近一次 nextval 抓到的该序列的数值。 </span><br><span class="line"></span><br><span class="line">（如果在本会话中从未在该序列上调用过 nextval， 那么会报告一个错误。）请注意因为此函数返回一个会话范围的数值， 它也能给出一个可预计的结果，可以判断其它会话是否执行过 nextval。</span><br><span class="line"></span><br><span class="line">lastval</span><br><span class="line"></span><br><span class="line">返回当前会话里最近一次 nextval 返回的数值。 </span><br><span class="line"></span><br><span class="line">这个函数等效于 currval，只是它不用序列名位参数， 它抓取当前会话里面最近一次 nextval 使用的序列。 </span><br><span class="line"></span><br><span class="line">如果当前会话还没有调用过 nextval，那么调用 lastval 是会报错的。</span><br><span class="line"></span><br><span class="line">setval</span><br><span class="line"></span><br><span class="line">重置序列对象的计数器数值。</span><br><span class="line"></span><br><span class="line">双参数的形式设置序列的 last_value 字段为声明数值并且将其 is_called 字段设置为 true，</span><br><span class="line"></span><br><span class="line">表示下一次 nextval 将在返回数值之前递增该序列。</span><br><span class="line"></span><br><span class="line">在三参数形式里，is_called 可以设置为 true 或 false。</span><br><span class="line"></span><br><span class="line">如果你把它设置为 false，那么下一次 nextval 将返回这里声明的数值，</span><br><span class="line"></span><br><span class="line">而从随后的 nextval 才开始递增该序列。</span><br><span class="line"></span><br><span class="line">比如</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42);    //下次nextval将返回 43</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42, true);     //和上面一样</span><br><span class="line"></span><br><span class="line">SELECT setval(&apos;序列名字&apos;, 42, false);    //下次nextval将返回 42</span><br><span class="line"></span><br><span class="line">setval 返回的结果就是它的第二个参数的数值。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2015/01/04/2014-12-11-Postgres 序列操作/" data-id="cjqeijz7s000c8w242c7sot5u" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2014-12-23-获取表和字段的元数据的方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/23/2014-12-23-获取表和字段的元数据的方法/" class="article-date">
+  <time datetime="2014-12-23T10:36:24.000Z" itemprop="datePublished">2014-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/postgres/">postgres</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/23/2014-12-23-获取表和字段的元数据的方法/">获取表和字段的元数据的方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="外键关系查询语句"><a href="#外键关系查询语句" class="headerlink" title="外键关系查询语句"></a>外键关系查询语句</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tc. CONSTRAINT_NAME,</span><br><span class="line">	tc. TABLE_NAME,</span><br><span class="line">	kcu. COLUMN_NAME,</span><br><span class="line">	ccu. TABLE_NAME <span class="keyword">AS</span> foreign_table_name,</span><br><span class="line">	ccu. COLUMN_NAME <span class="keyword">AS</span> foreign_column_name,</span><br><span class="line">	tc.is_deferrable,</span><br><span class="line">	tc.initially_deferred</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema.table_constraints <span class="keyword">AS</span> tc</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.key_column_usage <span class="keyword">AS</span> kcu <span class="keyword">ON</span> tc. CONSTRAINT_NAME = kcu. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.constraint_column_usage <span class="keyword">AS</span> ccu <span class="keyword">ON</span> ccu. CONSTRAINT_NAME = tc. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	constraint_type = <span class="string">'FOREIGN KEY'</span></span><br><span class="line"><span class="keyword">AND</span> tc. TABLE_NAME = <span class="string">'dimention_goods'</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="http://itroadmap.sinaapp.com/2014/12/23/postgres-%E8%8E%B7%E5%8F%96%E8%A1%A8%E5%92%8C%E5%AD%97%E6%AE%B5%E7%9A%84%E5%85%83%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener"><em><del>不知道如何防止被流氓网站爬取</del></em></a></p>
+<h2>字段详细信息查询语句</h2>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	col.table_schema,</span><br><span class="line">	col. TABLE_NAME,</span><br><span class="line">	col.ordinal_position,</span><br><span class="line">	col. COLUMN_NAME,</span><br><span class="line">	col.data_type,</span><br><span class="line">	col.character_maximum_length,</span><br><span class="line">	col.numeric_precision,</span><br><span class="line">	col.numeric_scale,</span><br><span class="line">	col.is_nullable,</span><br><span class="line">	col.column_default,</span><br><span class="line">	des.description</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema. <span class="keyword">COLUMNS</span> <span class="keyword">col</span></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> pg_description des <span class="keyword">ON</span> col. TABLE_NAME :: regclass = des.objoid</span><br><span class="line"><span class="keyword">AND</span> col.ordinal_position = des.objsubid</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	table_schema = <span class="string">'XXXX'</span></span><br><span class="line"><span class="keyword">AND</span> TABLE_NAME = <span class="string">'XXXX'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	ordinal_position;</span><br></pre></td></tr></table></figure>
+<h2 id="获取所有的表名"><a href="#获取所有的表名" class="headerlink" title="获取所有的表名"></a>获取所有的表名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tablename</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	pg_tables</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	tablename <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'pg%'</span></span><br><span class="line"><span class="keyword">AND</span> tablename <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'sql_%'</span></span><br></pre></td></tr></table></figure>
+<h2 id="mysql中对入插入的触发器"><a href="#mysql中对入插入的触发器" class="headerlink" title="mysql中对入插入的触发器"></a>mysql中对入插入的触发器</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DELIMITER $$</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span></span><br><span class="line">    <span class="comment">/*[DEFINER = &#123; user | CURRENT_USER &#125;]*/</span></span><br><span class="line">    <span class="keyword">TRIGGER</span> <span class="string">`clinkworld_metadata`</span>.<span class="string">`add_tid_fields_relation`</span> <span class="keyword">BEFORE</span> <span class="keyword">INSERT</span></span><br><span class="line">    <span class="keyword">ON</span> <span class="string">`clinkworld_metadata`</span>.<span class="string">`fields_relation`</span></span><br><span class="line">    <span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> <span class="keyword">BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> t_id <span class="keyword">INTO</span> @f1_tid_var <span class="keyword">FROM</span> fields_info <span class="keyword">WHERE</span> <span class="keyword">id</span>=NEW.f1_id;</span><br><span class="line"><span class="keyword">SELECT</span> t_id <span class="keyword">INTO</span> @f2_tid_var <span class="keyword">FROM</span> fields_info <span class="keyword">WHERE</span> <span class="keyword">id</span>=NEW.f2_id;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> NEW.f1_tid=@f1_tid_var;</span><br><span class="line"><span class="keyword">SET</span> NEW.f2_tid=@f2_tid_var;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">END</span>$$</span><br><span class="line"></span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
+<h2 id="主键列信息获取"><a href="#主键列信息获取" class="headerlink" title="主键列信息获取"></a>主键列信息获取</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	tc. CONSTRAINT_NAME,</span><br><span class="line">	ccu. TABLE_NAME <span class="keyword">AS</span> primary_table_name,</span><br><span class="line">	ccu. COLUMN_NAME <span class="keyword">AS</span> primary_column_name</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	information_schema.table_constraints <span class="keyword">AS</span> tc</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.key_column_usage <span class="keyword">AS</span> kcu <span class="keyword">ON</span> tc. CONSTRAINT_NAME = kcu. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">JOIN</span> information_schema.constraint_column_usage <span class="keyword">AS</span> ccu <span class="keyword">ON</span> ccu. CONSTRAINT_NAME = tc. CONSTRAINT_NAME</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	constraint_type = <span class="string">'PRIMARY KEY'</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2014/12/23/2014-12-23-获取表和字段的元数据的方法/" data-id="cjqeijz7w000h8w24txy1u7nn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgres/">postgres</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/" class="article-date">
+  <time datetime="2014-12-22T09:33:37.000Z" itemprop="datePublished">2014-12-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>►<a class="article-category-link" href="/categories/SQL/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/">Navicat Premium 连接sqlserver2008 提示Client安装失败</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>具体保存信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Installation of this product failed because it is not supported on this operating system. For information on supported configurations,</span><br><span class="line"></span><br><span class="line">see the product documentation.</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2014/12/03/sqlserver_error.png" alt=""></p>
 <p>解决方法：</p>
-<p>编辑 etc/hadoop/hadoop-env.sh</p>
-<p>把 JAVA_HOME 设置为 java 安装的根路径</p>
-<p>JAVA_HOME=/home/jdk/jdk1.6.0_16  # 这里需要根据自己的安装路径来写</p>
+<p>这个要安装一个叫做sqlncli_x64.msi的东西，手动安装，它在你的Navicat的安装目录下面，比如我的在：</p>
+<p><code>D:\Program Files\PremiumSoft\Navicat Premium</code></p>
+<p>如果你的电脑是64位的，就运行安装那个64位的，如果是32 的就运行那个sqlncli.msi。</p>
+<p>然后再进行Sqlserver的链接就不再提示安装出错了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2014/12/02/2014-12-11-hadoop 2.4.1单击模式启动报错JAVA_HOME is not set./" data-id="cjqeijz7q00088w24v11k0lx8" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2014/12/22/2014-12-22-Navicat Premium 连接sqlserver2008 提示Client安装失败/" data-id="cjqeijz7v000f8w240k175knv" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
 
     </footer>
   </div>
@@ -127,14 +387,14 @@
 
 
   
-    <article id="post-2015-02-25-Django  在数据库设计的时候的关系操作" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2014-12-11-PostGreSQL ERROR" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/" class="article-date">
-  <time datetime="2014-11-30T06:25:07.000Z" itemprop="datePublished">2014-11-30</time>
+    <a href="/2014/12/18/2014-12-11-PostGreSQL ERROR/" class="article-date">
+  <time datetime="2014-12-18T06:26:53.000Z" itemprop="datePublished">2014-12-18</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Django/">Django</a>
+    <a class="article-category-link" href="/categories/PostGreSQL/">PostGreSQL</a>
   </div>
 
   </div>
@@ -145,7 +405,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/">Django  在数据库设计的时候的关系操作</a>
+      <a class="article-title" href="/2014/12/18/2014-12-11-PostGreSQL ERROR/">PostGreSQL ERROR</a>
     </h1>
   
 
@@ -153,62 +413,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这里假设你已经建好了Django项目了。这些操作实在ubuntu命令行下面操作的，所以以下用可能会用到命令行基本操作，当然你也可以在IDE 中操作。</p>
-<p>首先我们先来看下要用到的model类，也就是对应数据库中的表：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line"># Create your models here.</span><br><span class="line"></span><br><span class="line">class Author(models.Model):</span><br><span class="line"></span><br><span class="line">    name = models.CharField(max_length=30)</span><br><span class="line"></span><br><span class="line">    def __unicode__(self):</span><br><span class="line"></span><br><span class="line">        return self.name</span><br><span class="line"></span><br><span class="line">class Comment(models.Model):</span><br><span class="line"></span><br><span class="line">    comment_name = models.CharField(max_length=30)</span><br><span class="line"></span><br><span class="line">    ##评论的回复，递归和自己产生多对多的关系</span><br><span class="line"></span><br><span class="line">    child_comments = models.ManyToManyField(&amp;quot;self&amp;quot;,blank=True,null=True)    </span><br><span class="line"></span><br><span class="line">    def __unicode__(self):</span><br><span class="line"></span><br><span class="line">        return self.comment_name	</span><br><span class="line"></span><br><span class="line">class Book(models.Model):</span><br><span class="line"></span><br><span class="line">    ##书的名字</span><br><span class="line"></span><br><span class="line">    name = models.CharField(max_length=30)</span><br><span class="line"></span><br><span class="line">    ###这里不考虑实际，只是假设一本书只有一个作者</span><br><span class="line"></span><br><span class="line">    author = models.ForeignKey(Author)</span><br><span class="line"></span><br><span class="line">    ###这里这么应用有点牵强，因为评论是一对多的关系，可以放到每个Comment对象中做外键</span><br><span class="line"></span><br><span class="line">    ###在这里就这么用了，    </span><br><span class="line"></span><br><span class="line">    comments = models.ManyToManyField(Comment)</span><br><span class="line"></span><br><span class="line">    def __unicode__(self):</span><br><span class="line"></span><br><span class="line">        return self.name</span><br></pre></td></tr></table></figure>
-<p>好models.py文件修改好了，现在开始操作数据库</p>
-<p>cd到带有manage.py 文件的目录下</p>
-<p>命令行运行：python manage.py syncdb</p>
-<p>命令行运行：python manage.py shell</p>
-<p>将上面用的到三个类import进来</p>
-<p>首先创建三个作者：</p>
-<p>xiaoming = Author(name=”xiaoming”)</p>
-<p>xiaohong = Author(name=”xiaohong”)</p>
-<p>xiaogang = Author(name=”xiaogang”)</p>
-<p>以上命令只是在内存中创建了对象，现在我们把他们保存到数据库中</p>
-<p>xiaoming.save()</p>
-<p>xiaohong.save()</p>
-<p>xiaogang.save()</p>
-<p>现在三个作者都保存到数据库了，可以查看下：</p>
-<p>Author.objects.all()</p>
-<p>OK ，接下来创建两条回复（评论），和两条子评论（评论的评论）给第一条回复添加两条回复</p>
-<p>comment1 = Comment(comment_name=”First Comment!”)</p>
-<p>comment2 = Comment(comment_name=”Second Comment!”)</p>
-<p>child_comment1 = Comment(comment_name=”First Child Comment!”)</p>
-<p>child_comment2 = Comment(comment_name=”Second Child Comment!”)</p>
-<p>#####注意要想给一个Model对象添加一个多对多的关系，必须先把这个对象保存到数据库####</p>
-<p>例如：comment1.child_comments.add(child_comment1)</p>
-<p>是会报错的，因为还没有保存到数据库中</p>
-<p>必须先执行comment1.save()</p>
-<p>所以为了避免出错，我们添加关系的时候最好都是已经在数据库中存在的哦</p>
-<p>comment1.save()</p>
-<p>comment2.save()</p>
-<p>child_comment1.save()</p>
-<p>child_comment2.save()</p>
-<p>然后执行：</p>
-<p>comment1.child_comments.add(child_comment1)</p>
-<p>comment1.child_comments.add(child_comment2)</p>
-<p>或者用下面这种方式：</p>
-<p>comment1.child_comments.add(child_comment1,child_comment2)</p>
-<p>OK 评论关系添加好了，查看一下呗</p>
-<p>Comment.objects.all()</p>
-<p>comment1.child_comments.all()</p>
-<p>下面就简单了，总之和上面一样：</p>
-<p>创建Book对象</p>
-<p>book = Book(name=”The Book “,author=xiaoming)    ##xiaoming 是一个Author对象</p>
-<p>book.save()   #这里必须先save 否则下面的添加会出错</p>
-<p>book.comments.add(comment1)</p>
-<p>book.comments.add(comment2)</p>
-<p>来看看官网的文档中的例子（很详细的）：</p>
-<p><a href="https://docs.djangoproject.com/en/1.6/topics/db/examples/many_to_many/" target="_blank" rel="noopener">https://docs.djangoproject.com/en/1.6/topics/db/examples/many_to_many/</a></p>
+        <p>今天在用PostGreSQL的命令行操作数据的时候出了下面的一个错误</p>
+<p><a href="http://www.febsky.me/" target="_blank" rel="noopener">我的网站总被一个流氓网站爬取</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mytestdb=# select * from FACTS_SALES;</span><br><span class="line"></span><br><span class="line">ERROR:  relation &amp;quot;facts_sales&amp;quot; does not exist</span><br><span class="line"></span><br><span class="line">LINE 1: select * from FACTS_SALES;</span><br><span class="line"></span><br><span class="line">                      ^</span><br></pre></td></tr></table></figure>
+<p>我就郁闷了，这怎么会没有呢，命名用  \d 命令查看数据库的所有表的时候都能看到啊。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mytestdb=<span class="comment"># \d</span></span><br><span class="line"></span><br><span class="line">                         List of relations</span><br><span class="line"></span><br><span class="line"> Schema |              Name               | Type  | Owner | Storage </span><br><span class="line"></span><br><span class="line">--------+---------------------------------+-------+-------+---------</span><br><span class="line"></span><br><span class="line"> public | FACTS_CATEGORY_SALES_TARGET     | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_INVENTORY_WAREHOUSE       | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_PROCUREMENT               | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_SALES                     | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_SALES_PAYMENT             | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_SALES_PROMOTION           | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_STORE_INVENTORY           | table | admin | heap</span><br><span class="line"></span><br><span class="line"> public | FACTS_STORE_SALES_TARGET        | table | admin | heap</span><br><span class="line"></span><br><span class="line">(<span class="number">8</span> rows)</span><br></pre></td></tr></table></figure>
+<p>原来还有这么一说，如下是网友的解答，很有道理</p>
+<p>建表的时候你在表名上加了双引号，表示表名的强制的和双引号里面的内容一致，也就是说现在表名是大写的。</p>
+<p>你查询的时候如果使用select <em> from ASSIGN_INFO_W; 表名会自动变小写，也就是select </em> from assign_info_w; 这样就查询不到表，</p>
+<p>如果你想要查询到表，可以用这种方式：select * from “ASSIGN_INFO_W”;这样就可以查到了。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test=&gt; select * from ASSIGN_INFO_W;</span><br><span class="line">ERROR:  relation "assign_info_w" does not exist</span><br><span class="line">test=&gt; select * from "ASSIGN_INFO_W";</span><br><span class="line"> DDC_PROJ_NO | RES_ID | ASSIGN_START_DATE | ASSIGN_END_DATE | ASSIGN_PERSENT | ASSIGN_PRE_FLG | INS_USER_ID | INS_TIMESTAMP | INS_PROG_ID | UPD_USER_ID | UPD_TIMESTAMP | UPD_PROG_ID</span><br><span class="line"><span class="comment">-------------+--------+-------------------+-----------------+----------------+----------------+-------------+---------------+-------------+-------------+---------------+-------------</span></span><br><span class="line">(0 rows)</span><br></pre></td></tr></table></figure>
+<p>提示：这种处理方式通常不被建议，最好还是在建表和查询时都不要使用双引号。</p>
+<p>经过网友提示，我发现的确是这么回事，因为我的SQL语句是用数据库建模工具导出的，</p>
+<p>而建模工具自动给加上了双引号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE TABLE &amp;quot;FACTS_SALES&amp;quot; (</span><br><span class="line"></span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">）；</span><br></pre></td></tr></table></figure>
+<p>暂时还不知道如何取消掉建模工具中的双引号。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2014/11/30/2015-02-25-Django  在数据库设计的时候的关系操作/" data-id="cjqeijz8400128w241thbm4yb" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2014/12/18/2014-12-11-PostGreSQL ERROR/" data-id="cjqeijz7p00078w24dng6f97e" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li></ul>
 
     </footer>
   </div>
@@ -217,14 +444,14 @@
 
 
   
-    <article id="post-2014-11-28-github操作遇到的几个问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2014-12-11-Hive添加数据和查看索引" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/28/2014-11-28-github操作遇到的几个问题/" class="article-date">
-  <time datetime="2014-11-28T15:36:29.000Z" itemprop="datePublished">2014-11-28</time>
+    <a href="/2014/12/11/2014-12-11-Hive添加数据和查看索引/" class="article-date">
+  <time datetime="2014-12-11T01:35:06.000Z" itemprop="datePublished">2014-12-11</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Git/">Git</a>
+    <a class="article-category-link" href="/categories/Hive/">Hive</a>
   </div>
 
   </div>
@@ -235,7 +462,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/28/2014-11-28-github操作遇到的几个问题/">github操作遇到的几个问题</a>
+      <a class="article-title" href="/2014/12/11/2014-12-11-Hive添加数据和查看索引/">Hive添加数据和查看索引</a>
     </h1>
   
 
@@ -243,24 +470,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天操作github在更新数据的时候报以下错误</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">error: failed to push some refs to <span class="string">'git@github.com:itroadmap/itroadmap.github.com.git'</span></span><br><span class="line"></span><br><span class="line">To prevent you from losing history, non-fast-forward updates were rejected</span><br><span class="line"></span><br><span class="line"><span class="function">Merge the remote <span class="title">changes</span> <span class="params">(e.g. <span class="string">'git pull'</span>)</span> before pushing again. See the</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">'Note about fast-forwards' section of 'git push --help' <span class="keyword">for</span> details.</span></span><br></pre></td></tr></table></figure>
-<p>有两种方式解决：</p>
-<p>第一种 用强覆盖方式用你本地的代码替代git仓库内的内容,命令行执行如下代码：</p>
-<p><code>$ git push -f</code></p>
-<p>第二种 先把git的东西fetch到你本地然后merge后再push</p>
-<p><code>$ git fetch</code></p>
-<p><code>$ git merge</code></p>
-<p>其实第二种方式的这两行代码等价于：</p>
-<p><code>$ git pull</code></p>
+        <h2 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h2><p>#本机路径（跳板机）</p>
+<p>LOAD DATA LOCAL INPATH <code>/tmp/date.txt</code> OVERWRITE INTO TABLE page_view PARTITION(pt=’2008-06-08’)</p>
+<p>#Hadoop路径</p>
+<p>LOAD DATA INPATH <code>/tmp/date.txt</code> OVERWRITE INTO TABLE page_view PARTITION(pt=’2008-06-08’)</p>
+<p>#上面OVERWRITE关键会全表覆盖，如果只是想附加数据，将OVERWRITE去掉即可。 #添加一个分区到表</p>
+<p>ALTER TABLE tmp_xx ADD PARTITION (pt=’100610’) location ‘/group/mywork/hive/xx/pt=100610’ ;</p>
+<p>#当然你可以直接从从其它的表拖数据过来</p>
+<p>INSERT OVERWRITE TABLE TMP_T1 SELECT * FROM TMP_T2;</p>
+<h2 id="显示表的索引-formatted是可选"><a href="#显示表的索引-formatted是可选" class="headerlink" title="显示表的索引 #formatted是可选"></a>显示表的索引 #formatted是可选</h2><p>show formatted index on employees</p>
+<p>show formatted indexed on employees</p>
+<p>索引表的handler，会初始化，定义，验证索引表的schema</p>
+<p>在索引建立时，会使用rebuilding process，读取表为索引表并且写到索引数据库中，所有的存储都会</p>
+<p>索引删除时，会删除明显的索引数据库</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2014/11/28/2014-11-28-github操作遇到的几个问题/" data-id="cjqeijz7o00068w2469upadf2" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2014/12/11/2014-12-11-Hive添加数据和查看索引/" data-id="cjqeijz7r000b8w246owkqi1z" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hive/">Hive</a></li></ul>
 
     </footer>
   </div>
@@ -269,14 +499,14 @@
 
 
   
-    <article id="post-2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-02-25-Django应用uWSGI  admin的样式丢失了  解决方案" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/28/2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决/" class="article-date">
-  <time datetime="2014-11-28T15:00:10.000Z" itemprop="datePublished">2014-11-28</time>
+    <a href="/2014/12/09/2015-02-25-Django应用uWSGI  admin的样式丢失了  解决方案/" class="article-date">
+  <time datetime="2014-12-09T15:14:45.000Z" itemprop="datePublished">2014-12-09</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/blog/">blog</a>►<a class="article-category-link" href="/categories/blog/Jekyll/">Jekyll</a>
+    <a class="article-category-link" href="/categories/Python/">Python</a>►<a class="article-category-link" href="/categories/Python/Django/">Django</a>
   </div>
 
   </div>
@@ -287,7 +517,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/28/2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决/">Jekyll 本地运行环境搭建以及遇到的错误解决</a>
+      <a class="article-title" href="/2014/12/09/2015-02-25-Django应用uWSGI  admin的样式丢失了  解决方案/">Django应用uWSGI  admin的样式丢失了  解决方案</a>
     </h1>
   
 
@@ -295,53 +525,94 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="首先安装Ruby环境"><a href="#首先安装Ruby环境" class="headerlink" title="首先安装Ruby环境"></a>首先安装Ruby环境</h2><p>至于下载方式不同的操作系统安装方式不同，这里不再详细给出</p>
-<p>`</p>
-<p>Ubuntu系统下，可用：sudo apt-get install ruby</p>
-<p>centos系统下，可用：sudo yum install ruby</p>
-<p>`</p>
-<h2 id="安装Jekyll"><a href="#安装Jekyll" class="headerlink" title="安装Jekyll"></a>安装Jekyll</h2><p>当Ruby环境配置完成后（不提示任何错误），就可以安装Jekyll了。执行 gem jekyll install</p>
-<p>【错误】安装Jekyll 时候出错。</p>
-<p>`</p>
-<p>ERROR: Could not find a valid gem ‘jekyll’ (&gt;= 0) in any repository</p>
-<p>ERROR: Possible alternatives: jekyll`</p>
-<p>`</p>
-<p>【解决方案】如下有解决方案</p>
-<p>`</p>
-<p>$ gem sources –remove <a href="http://rubygems.org/" target="_blank" rel="noopener">http://rubygems.org/</a></p>
-<p>$ gem sources -a <a href="http://ruby.taobao.org/" target="_blank" rel="noopener">http://ruby.taobao.org/</a></p>
-<p>$ gem sources -l</p>
-<p><strong><em> CURRENT SOURCES </em></strong></p>
-<p><a href="http://ruby.taobao.org" target="_blank" rel="noopener">http://ruby.taobao.org</a></p>
-<p>$ gem install rack</p>
-<p>`</p>
-<p>然后继续执行 gem install jekyll 即可。等待片刻，会提示 gems installed jekyll 安装完毕。</p>
-<p>【错误】启动jekyll服务的时候报错</p>
-<p>/var/lib/gems/1.9.1/gems/execjs-2.2.2/lib/execjs/runtimes.rb:51:in `autodetect’: Could not find a JavaScript runtime. See <a href="https://github.com/sstephenson/execjs" target="_blank" rel="noopener">https://github.com/sstephenson/execjs</a> for a list of available runtimes. (ExecJS::RuntimeUnavailable)</p>
-<p>【解决方案】如下有解决方案</p>
-<p>`</p>
-<p>gem install execjs</p>
-<p>gem install therubyracer ###这个我也没安装成，不过貌似没问题了</p>
-<p>sudo apt-get install nodejs</p>
-<p>`</p>
-<h2 id="以下是在用git和jekll写blog过程中常用密令"><a href="#以下是在用git和jekll写blog过程中常用密令" class="headerlink" title="以下是在用git和jekll写blog过程中常用密令"></a>以下是在用git和jekll写blog过程中常用密令</h2><p>`</p>
-<p>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:heiniuhaha/heiniuhaha.github.com.git//本地如果无远程代码，先做这步，不然就忽略</p>
-<p>cd .ssh/heiniuhaha.github.com//定位到你blog的目录下</p>
-<p>git pull origin master //先同步远程文件，后面的参数会自动连接你远程的文件</p>
-<p>git status //查看本地自己修改了多少文件</p>
-<p>git add .//添加远程不存在的git文件</p>
-<p>git commit * -m “what I want told to someone”</p>
-<p>git push origin master //更新到远程服务器上</p>
-<p>`</p>
+        <p>Django Admin管理界面样式丢失</p>
+<p>上网搜索了不少文档，多是Apache环境下的解决方案，我配置的是Nginx服务器，所以根据Apache的解决提示</p>
+<p>进而摸索办法，最终要解决这个问题我这里总结有3步（假设已经配置好admin登录系统）：</p>
+<ol>
+<li>修改settings.py中STATIC_ROOT为你的static静态文件的物理路径，比如说我静态文件存放在</li>
+</ol>
+<p>/home/user/www/static中，首先创建www目录下的static文件夹，最后修改settings.py中STATIC_ROOT</p>
+<p>指向/home/user/www/static。</p>
+<ol start="2">
+<li>运行python manage.py collectstatic命令，这将从Django资源包中复制必须的静态文件到STATIC_ROOT</li>
+</ol>
+<p>指示的static文件夹中，这其中包括admin界面所必须的样式表（style）、图片（image）及脚本（js）等。</p>
+<p>这里提示一下，假如不做第1步的话，直接运行这个命令会导致如下的错误提示（最后几行）：</p>
+<p>  `File “/usr/lib/python2.7/dist-packages/django/contrib/staticfiles/management/commands/collectstatic.py”, line 41, in <strong>init</strong></p>
+<pre><code>self.storage = get_storage_class(settings.STATICFILES_STORAGE)()
+</code></pre><p>  File “/usr/lib/python2.7/dist-packages/django/contrib/staticfiles/storage.py”, line 23, in <strong>init</strong></p>
+<pre><code>raise ImproperlyConfigured(&quot;You&apos;re using the staticfiles app &quot;
+</code></pre><p>django.core.exceptions.ImproperlyConfigured: You’re using the staticfiles app without having set the STATIC_ROOT setting.`</p>
+<p>其实已经提示需要配置STATIC_ROOT文件了（You’re using the staticfiles app without having set the </p>
+<p>STATIC_ROOT setting）。</p>
+<ol start="3">
+<li>修改Nginx配置，Debian系统下/etc/nginx/nginx.conf或者/etc/nginx/sites-enabled/里面的配置文件，</li>
+</ol>
+<p>在server节中添加如下内容（请根据实际情况修改）：</p>
+<p>`server {</p>
+<h1 id="…-其余内容略"><a href="#…-其余内容略" class="headerlink" title="… 其余内容略"></a>… 其余内容略</h1><p>  location /static {</p>
+<pre><code>root /home/user/www;
+</code></pre><p>  }</p>
+<p>}`</p>
+<p>此处不修改的话，我测试下来结果貌似默认处理会交由Django，但是依旧会由Django提示Page not found (404)。</p>
+<p>完成上面三步后，重新加载相应设置：</p>
+<p>`invoke-rc.d uwsgi reload</p>
+<p>nginx -s reload</p>
+<p>blog地址</p>
+<p><a href="http://wangye.org/blog/archives/572/`" target="_blank" rel="noopener">http://wangye.org/blog/archives/572/`</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2014/11/28/2014-11-28-Jekyll 本地运行环境搭建以及遇到的错误解决/" data-id="cjqeijz7f00008w24x37xbr1c" class="article-share-link">Share</a>
+      <a data-url="http://andx.site/2014/12/09/2015-02-25-Django应用uWSGI  admin的样式丢失了  解决方案/" data-id="cjqeijz8500148w24j0lat58q" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
 
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2014-12-08-改变html中鼠标形状" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/08/2014-12-08-改变html中鼠标形状/" class="article-date">
+  <time datetime="2014-12-08T05:48:44.000Z" itemprop="datePublished">2014-12-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HTML/">HTML</a>►<a class="article-category-link" href="/categories/HTML/Web/">Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/08/2014-12-08-改变html中鼠标形状/">改变html中鼠标形状</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>要修改的属性是：</p>
+<p><code>style=&quot;cursor:default&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pointer:是手型。</span><br><span class="line"></span><br><span class="line">　　 crosshair:是十字型，就是小乌龟首页所用的样式。</span><br><span class="line"></span><br><span class="line">　　 text:是平时鼠标移动到文本上的样式。</span><br><span class="line"></span><br><span class="line">　　 wait:是等待的效果。</span><br><span class="line"></span><br><span class="line">　　 default:是默认的那种效果。</span><br><span class="line"></span><br><span class="line">　　 help:是带问号的鼠标样式。</span><br><span class="line"></span><br><span class="line">　　 e-resize:是向右的箭头。</span><br><span class="line"></span><br><span class="line">　　 ne-resize:是向右上方的箭头。</span><br><span class="line"></span><br><span class="line">　　 n-resize:是向上的箭头。</span><br><span class="line"></span><br><span class="line">　　 nw-resize:是向左上方的箭头。</span><br><span class="line"></span><br><span class="line">　　 w-resize:是向左的箭关。</span><br><span class="line"></span><br><span class="line">　　 sw-resize:是向左下的箭头。</span><br><span class="line"></span><br><span class="line">　　 s-resize:是向下的箭头。</span><br><span class="line"></span><br><span class="line">　　 se-resize:是向右下方的箭头。</span><br><span class="line"></span><br><span class="line">　　 auto:是系统自动的效果。</span><br></pre></td></tr></table></figure>
+<p>当然一般的修改我是通过js或者jQuery的事件来改变鼠标样式属性的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://andx.site/2014/12/08/2014-12-08-改变html中鼠标形状/" data-id="cjqeijz7k00028w241yycm7n4" class="article-share-link">Share</a>
+      
+      
     </footer>
   </div>
   
@@ -353,7 +624,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span>
+    <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -364,7 +635,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/逆向/">逆向</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/AndroidStudio/">AndroidStudio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Chrome插件/">Chrome插件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/IPC/">IPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/MPAndroidChart/">MPAndroidChart</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Notification/">Notification</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Smali/">Smali</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ValueAnimator/">ValueAnimator</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/adb/">adb</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/">ndk</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/ndk/jni/">jni</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/动画/">动画</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/文件存储/">文件存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/编译/">编译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/逆向/">逆向</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/">AndroidStudio</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AndroidStudio/Android/">Android</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/WorPress/">WorPress</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Django/">Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/Web/">Web</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/搜索/">搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hive/">Hive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Android/面试/">面试</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/加密/">加密</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/算法/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/">压缩</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/压缩/Zip/">Zip</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/命令行/">命令行</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/SQL/">SQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/npm/">npm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PhotoShop/">PhotoShop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PostGreSQL/">PostGreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Django/">Django</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/">Sublime</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sublime/工具/">工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/Jekyll/">Jekyll</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/postgres/">postgres</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人想法/">个人想法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/加密/">加密</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/加密/协议/">协议</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/周易/">周易</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编码/">编码</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li></ul>
     </div>
   </div>
 
@@ -374,7 +645,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AndroidStudio/">AndroidStudio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chrome插件/">Chrome插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gson/">Gson</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hive/">Hive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPAndroidChart/">MPAndroidChart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Notification/">Notification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PS笔记/">PS笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PhotoShop/">PhotoShop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostGreSQL/">PostGreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proguard/">Proguard</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Smali/">Smali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ValueAnimator/">ValueAnimator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ViewPager/">ViewPager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WorPress/">WorPress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zip/">Zip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adb/">adb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jni/">jni</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ndk/">ndk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgres/">postgres</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人想法/">个人想法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加密/">加密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动画/">动画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/压缩/">压缩</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/周易/">周易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行/">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷键/">快捷键</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件存储/">文件存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/泛型/">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/站内搜索/">站内搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解密/">解密</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向/">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
     </div>
   </div>
 
@@ -384,7 +655,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 16.25px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.25px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.25px;">Django</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.25px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.25px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.75px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PS笔记/" style="font-size: 12.5px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.5px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.75px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.25px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.25px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.25px;">其他</a> <a href="/tags/加密/" style="font-size: 13.75px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.25px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.5px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.5px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向/" style="font-size: 13.75px;">逆向</a> <a href="/tags/面试/" style="font-size: 13.75px;">面试</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/AndroidStudio/" style="font-size: 15.56px;">AndroidStudio</a> <a href="/tags/Binder/" style="font-size: 11.11px;">Binder</a> <a href="/tags/Blog/" style="font-size: 11.11px;">Blog</a> <a href="/tags/Chrome插件/" style="font-size: 10px;">Chrome插件</a> <a href="/tags/Django/" style="font-size: 11.11px;">Django</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Gson/" style="font-size: 10px;">Gson</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 11.11px;">Hexo</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/IPC/" style="font-size: 11.11px;">IPC</a> <a href="/tags/Java/" style="font-size: 18.89px;">Java</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/Linux/" style="font-size: 12.22px;">Linux</a> <a href="/tags/MPAndroidChart/" style="font-size: 10px;">MPAndroidChart</a> <a href="/tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nodejs/" style="font-size: 12.22px;">Nodejs</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PS笔记/" style="font-size: 12.22px;">PS笔记</a> <a href="/tags/PhotoShop/" style="font-size: 12.22px;">PhotoShop</a> <a href="/tags/PostGreSQL/" style="font-size: 13.33px;">PostGreSQL</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/SQL/" style="font-size: 11.11px;">SQL</a> <a href="/tags/Smali/" style="font-size: 10px;">Smali</a> <a href="/tags/Sublime/" style="font-size: 11.11px;">Sublime</a> <a href="/tags/ValueAnimator/" style="font-size: 10px;">ValueAnimator</a> <a href="/tags/ViewPager/" style="font-size: 10px;">ViewPager</a> <a href="/tags/WorPress/" style="font-size: 10px;">WorPress</a> <a href="/tags/Zip/" style="font-size: 10px;">Zip</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/jni/" style="font-size: 10px;">jni</a> <a href="/tags/ndk/" style="font-size: 10px;">ndk</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/个人想法/" style="font-size: 10px;">个人想法</a> <a href="/tags/其他/" style="font-size: 11.11px;">其他</a> <a href="/tags/加密/" style="font-size: 13.33px;">加密</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/周易/" style="font-size: 10px;">周易</a> <a href="/tags/命令行/" style="font-size: 11.11px;">命令行</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 12.22px;">工具</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/文件存储/" style="font-size: 10px;">文件存储</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/站内搜索/" style="font-size: 10px;">站内搜索</a> <a href="/tags/算法/" style="font-size: 14.44px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/编译/" style="font-size: 12.22px;">编译</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/解密/" style="font-size: 10px;">解密</a> <a href="/tags/逆向/" style="font-size: 17.78px;">逆向</a> <a href="/tags/面试/" style="font-size: 13.33px;">面试</a> <a href="/tags/麻花影视/" style="font-size: 16.67px;">麻花影视</a>
     </div>
   </div>
 
@@ -393,7 +664,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
     </div>
   </div>
 
@@ -406,23 +677,23 @@
       <ul>
         
           <li>
-            <a href="/2017/05/18/2017-05-18-IPC-Android中的进程与进程间通信/">IPC-Android中的进程与进程间通信</a>
+            <a href="/2018/12/27/2018-12-27-麻花影视会员蓝关分析（方案不可行）/">2018-12-27-麻花影视会员蓝关分析（方案不可行）</a>
           </li>
         
           <li>
-            <a href="/2017/05/18/2017-05-18-Android Binder及其周边知识梳理 /">Android Binder及其周边知识梳理</a>
+            <a href="/2018/12/25/2018-12-25-麻花影视去除热门视频强制分享的要求（完成）/">2018-12-25-麻花影视去除热门视频强制分享的要求（完成）</a>
           </li>
         
           <li>
-            <a href="/2017/05/05/2017-05-05-Mac下Android源码（AOSP）编译环境搭建方法/">Mac下Android源码（AOSP）编译环境搭建方法</a>
+            <a href="/2018/12/18/2018-12-18-麻花影视模拟发送请求（完成）/">2018-12-18-麻花影视模拟发送请求（完成）</a>
           </li>
         
           <li>
-            <a href="/2017/03/24/2017-03-24-我的Android混淆（Proguard文件）是怎么写的/">我的Android混淆（Proguard文件）是怎么写的</a>
+            <a href="/2018/12/17/2018-12-17-解密麻花影视视频播放地址（完成）/">2018-12-17-解密麻花影视视频播放地址（完成）</a>
           </li>
         
           <li>
-            <a href="/2016/09/08/2016-09-08-PS（PhotoShop）基础知识（三）/">PS（PhotoShop）基础知识（三）</a>
+            <a href="/2018/12/16/2018-12-16-绕过麻花影视抓包检测（完成）/">2018-12-16-绕过麻花影视抓包检测（完成）</a>
           </li>
         
       </ul>
