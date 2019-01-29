@@ -11,38 +11,38 @@
 <meta name="keywords" content="Android,解密,逆向">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从别人app(Android)中拿数据">
-<meta property="og:url" content="http://andx.site/2016/07/29/2016-07-29-从别人app(Android)中拿数据/index.html">
+<meta property="og:url" content="http://qiang.github.io/2016/07/29/2016-07-29-从别人app(Android)中拿数据/index.html">
 <meta property="og:site_name" content="凉凉小线仔">
 <meta property="og:description" content="开篇之前，我一直考虑这算不算侵权？只是兴趣，如果有人告知侵权的话，立马删除。 我所说的数据不是指拿别人app中的图片资源。而是程序运行所需要的数据。 App中的数据无非两种，一种是网络数据，一种是本地数据。网络请求我们一般用抓包工具（Mac上的Charles 或者Windows上的Fiddler）来获取Api，然后在用程序循环请求，获取所有的数据。而另一种是app存储到本地的数据，一种是存储到文件">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-logo.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-search-result.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-lib-download.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-db.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-db-table.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-db-read.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-db-read2.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-search-result2.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-jd-gui-class-list.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-search-result-adm.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-jadx.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-search-result-layout.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-search-result-viewpager.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-search-jadx-adapter.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-search-detail.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-jadx-this-c.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-DetailContentView.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-jadx-this.W.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-jd-gui-this.a.c.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-db-table-ui.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-encrypt-method.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-mtehod-a.png">
-<meta property="og:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-result.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-logo.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-search-result.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-lib-download.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-db.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-db-table.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-db-read.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-db-read2.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-search-result2.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-jd-gui-class-list.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-search-result-adm.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-jadx.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-search-result-layout.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-search-result-viewpager.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-search-jadx-adapter.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-search-detail.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-jadx-this-c.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-DetailContentView.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-jadx-this.W.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-jd-gui-this.a.c.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-db-table-ui.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-encrypt-method.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-mtehod-a.png">
+<meta property="og:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-result.png">
 <meta property="og:updated_time" content="2019-01-02T05:47:25.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从别人app(Android)中拿数据">
 <meta name="twitter:description" content="开篇之前，我一直考虑这算不算侵权？只是兴趣，如果有人告知侵权的话，立马删除。 我所说的数据不是指拿别人app中的图片资源。而是程序运行所需要的数据。 App中的数据无非两种，一种是网络数据，一种是本地数据。网络请求我们一般用抓包工具（Mac上的Charles 或者Windows上的Fiddler）来获取Api，然后在用程序循环请求，获取所有的数据。而另一种是app存储到本地的数据，一种是存储到文件">
-<meta name="twitter:image" content="http://andx.site/images/2016/07/2016-07-09-kuaikuaicha-logo.png">
+<meta name="twitter:image" content="http://qiang.github.io/images/2016/07/2016-07-09-kuaikuaicha-logo.png">
   
     <link rel="alternate" href="/atom.xml" title="凉凉小线仔" type="application/atom+xml">
   
@@ -87,7 +87,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://andx.site"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qiang.github.io"></form>
       </div>
     </div>
   </div>
@@ -218,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2016/07/29/2016-07-29-从别人app(Android)中拿数据/" data-id="cjqeijzbj00a48w24za5i3veb" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2016/07/29/2016-07-29-从别人app(Android)中拿数据/" data-id="cjqeijzbj00a48w24za5i3veb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/解密/">解密</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li></ul>

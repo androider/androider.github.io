@@ -10,7 +10,7 @@
   <meta name="description" content="Android,Java,Python,博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="凉凉小线仔">
-<meta property="og:url" content="http://andx.site/index.html">
+<meta property="og:url" content="http://qiang.github.io/index.html">
 <meta property="og:site_name" content="凉凉小线仔">
 <meta property="og:description" content="Android,Java,Python,博客">
 <meta property="og:locale" content="zh-Hans">
@@ -61,7 +61,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://andx.site"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qiang.github.io"></form>
       </div>
     </div>
   </div>
@@ -139,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2018/12/27/2018-12-27-麻花影视会员蓝关分析（方案不可行）/" data-id="cjqevhof2004fjl247vyrf0gr" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2018/12/27/2018-12-27-麻花影视会员蓝关分析（方案不可行）/" data-id="cjqevhof2004fjl247vyrf0gr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
@@ -220,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2018/12/25/2018-12-25-麻花影视去除热门视频强制分享的要求（完成）/" data-id="cjqevhiq2004ajl24jq8tzi4d" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2018/12/25/2018-12-25-麻花影视去除热门视频强制分享的要求（完成）/" data-id="cjqevhiq2004ajl24jq8tzi4d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
@@ -299,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2018/12/18/2018-12-18-麻花影视模拟发送请求（完成）/" data-id="cjqevhfmv0045jl24w16uafjj" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2018/12/18/2018-12-18-麻花影视模拟发送请求（完成）/" data-id="cjqevhfmv0045jl24w16uafjj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
@@ -338,6 +338,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>经过上篇文章的处理重打包，现在app已经能够抓包了，我们抓一下视频播放地址看看。(这是当前热播电视剧《将夜》第一集的播放地址)</p>
+<p><strong>解密和模拟请求的核心代码在<a href="https://github.com/AndSmali/mahuayingshi-java" target="_blank" rel="noopener">github上面</a></strong></p>
 <p>目的：解密下面抓包的http 响应体。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">GET /api/app/video/ver2/user/clickPlayVideo_2_2/2/7?videoId=71771&amp;playType=0&amp;time=1545026021155 HTTP/1.1</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Accept: application/json</span><br><span class="line">accessToken: d9a8e5a2bea0d56c0e39baf16f7e43ad35707c79cb28f4d1016f280b6f5deb47</span><br><span class="line">X-Client-NonceStr: A3UOht4UC0</span><br><span class="line">X-Client-IP: 127.0.0.1</span><br><span class="line">X-Client-TimeStamp: 1545026021155</span><br><span class="line">X-Client-Version: 2.3.0</span><br><span class="line">X-Client-Sign: 827a5719ee3efb1e2386d06e41ca64add61fa7dce11452155c14f7c4449a7c73</span><br><span class="line">X-Client-Token: </span><br><span class="line">X-Auth-Token: mb_token:18252297:3c4eaf5d92196fd39968081553be65e8</span><br><span class="line">Host: api.hbzjmf.com</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Accept-Encoding: gzip</span><br><span class="line">User-Agent: okhttp/3.11.0</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: Tengine</span><br><span class="line">Content-Type: application/json;charset=UTF-8</span><br><span class="line">Content-Length: 736</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Date: Mon, 17 Dec 2018 05:53:41 GMT</span><br><span class="line">X-Server-TimeStamp: 1545026021</span><br><span class="line">accessToken: d9a8e5a2bea0d56c0e39baf16f7e43ad35707c79cb28f4d1016f280b6f5deb47</span><br><span class="line">Ali-Swift-Global-Savetime: 1545026021</span><br><span class="line">Via: cache31.l2cm9[54,200-0,M], cache39.l2cm9[55,0], kunlun5.cn36[64,200-0,M], kunlun2.cn36[65,0]</span><br><span class="line">X-Cache: MISS TCP_MISS dirn:-2:-2</span><br><span class="line">X-Swift-SaveTime: Mon, 17 Dec 2018 05:53:41 GMT</span><br><span class="line">X-Swift-CacheTime: 0</span><br><span class="line">Timing-Allow-Origin: *</span><br><span class="line">EagleId: 3c1ce20215450260211213683e</span><br><span class="line"></span><br><span class="line">6cab6feb4e159bdbcb652ffd544a32db308bb2bd2b00f17c9a3d523c69159a0ed7589f602c30130ad2f0213226281767123cac47ca86c8f24511cec75a89b19227ecbae6b5f4ce564561098f2b12d2d48e7f8e38cf6c0641beef2b4c2afa9ac329da660ce6166357dc72baa05f7a27073510401fa4827515b2af58d33e5a2316785322bd141117368b522265cf03bf7eb4e406701df588f76fee55cfe9e2101eab3c29933d64015b25b8d759658c6473c3fd53c39ea15e47cd913ffd2cdc7251c43b9735bf486ef140457046024cd8d7b608e3448a58704657247f50e61fb7259f7302aea6824351455093d614d162aa06cb6bcf4c00ae8ca9d932d09fc8d444a5b121b0b61570a3b544db61eb334affad3abc4060f0720f2ca893217dde2a4957d3066bac004d6ad88bb16077de6771c56332bc2df5046cef7c67292c17011df11da6b22aa27fc237c11aaa6b4f099e2f457e92ae0322c1b548e9a61e628ebb70a747e4c08dda8e77353654a7f80853</span><br></pre></td></tr></table></figure>
 <p>哈哈，加密了，别慌客户端肯定有解密代码。</p>
@@ -408,7 +409,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2018/12/17/2018-12-17-解密麻花影视视频播放地址（完成）/" data-id="cjqevhb730040jl24irxg2vfw" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2018/12/17/2018-12-17-解密麻花影视视频播放地址（完成）/" data-id="cjqevhb730040jl24irxg2vfw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
@@ -474,7 +475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2018/12/16/2018-12-16-绕过麻花影视抓包检测（完成）/" data-id="cjqevh78w003vjl24n4bu5890" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2018/12/16/2018-12-16-绕过麻花影视抓包检测（完成）/" data-id="cjqevh78w003vjl24n4bu5890" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
@@ -531,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2018/12/15/2018-12-15-分析麻花影视点击视频播放按钮操作（完成）/" data-id="cjqevh4aw003qjl24rk0mxe7n" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2018/12/15/2018-12-15-分析麻花影视点击视频播放按钮操作（完成）/" data-id="cjqevh4aw003qjl24rk0mxe7n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
@@ -609,7 +610,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2018/12/14/2018-12-14-去掉麻花影视闪屏广告（完成）/" data-id="cjqevh0om003ljl24fu792gbv" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2018/12/14/2018-12-14-去掉麻花影视闪屏广告（完成）/" data-id="cjqevh0om003ljl24fu792gbv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
@@ -693,7 +694,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2018/12/13/2018-12-13-麻花影视分析/" data-id="cjqeurshz003bjl24uzg2hor5" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2018/12/13/2018-12-13-麻花影视分析/" data-id="cjqeurshz003bjl24uzg2hor5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆向/">逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/麻花影视/">麻花影视</a></li></ul>
@@ -774,7 +775,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2018/08/02/2018-08-02-Android 上关于设备唯一标识的调研/" data-id="cjqeui6690001jl24zfbywef3" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2018/08/02/2018-08-02-Android 上关于设备唯一标识的调研/" data-id="cjqeui6690001jl24zfbywef3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -843,7 +844,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://andx.site/2018/07/10/2018-07-10-Mac 配置PHP环境/" data-id="cjqeui6650000jl24swxxigpe" class="article-share-link">Share</a>
+      <a data-url="http://qiang.github.io/2018/07/10/2018-07-10-Mac 配置PHP环境/" data-id="cjqeui6650000jl24swxxigpe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
